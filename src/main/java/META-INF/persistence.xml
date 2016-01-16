@@ -9,5 +9,6 @@
 		<class>br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.EmailEntity</class>
+		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisicaEntity</class>
 	</persistence-unit>
 </persistence>

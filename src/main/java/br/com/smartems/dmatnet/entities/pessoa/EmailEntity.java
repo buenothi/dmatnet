@@ -12,7 +12,6 @@ import javax.persistence.*;
 
 public class EmailEntity implements Serializable {
 
-	   
 	@Id
 	private long idEmail;
 	private String nomeEmail;
@@ -22,6 +21,7 @@ public class EmailEntity implements Serializable {
 	public EmailEntity() {
 		super();
 	}   
+	
 	public long getIdEmail() {
 		return this.idEmail;
 	}
@@ -29,6 +29,7 @@ public class EmailEntity implements Serializable {
 	public void setIdEmail(long idEmail) {
 		this.idEmail = idEmail;
 	}   
+	
 	public String getNomeEmail() {
 		return this.nomeEmail;
 	}
@@ -36,6 +37,7 @@ public class EmailEntity implements Serializable {
 	public void setNomeEmail(String nomeEmail) {
 		this.nomeEmail = nomeEmail;
 	}   
+	
 	public String getTipoEmail() {
 		return this.tipoEmail;
 	}
