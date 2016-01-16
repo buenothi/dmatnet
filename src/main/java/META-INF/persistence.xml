@@ -6,5 +6,8 @@
 	version="2.0">
 	<persistence-unit name="dmatnet-pu">
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaEntity</class>
+		<class>br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity</class>
+		<class>br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity</class>
+		<class>br.com.smartems.dmatnet.entities.pessoa.EmailEntity</class>
 	</persistence-unit>
 </persistence>
