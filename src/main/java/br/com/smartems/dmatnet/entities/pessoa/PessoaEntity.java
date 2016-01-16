@@ -16,7 +16,8 @@ public abstract class PessoaEntity implements Serializable {
 	private List<EnderecoEntity> enderecos;
 	@OneToMany
 	private List<TelefoneEntity> telefones;
-	@OneToMany	private List<EmailEntity> emails;
+	@OneToMany
+	private List<EmailEntity> emails;
 	
 	private static final long serialVersionUID = 1L;
 
