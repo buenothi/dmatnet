@@ -4,9 +4,10 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
 	http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
-	<persistence-unit name="dmatnet-pu" transaction-type="RESOURCE_LOCAL">
+	<persistence-unit name="dmatnet-pu">
 
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<jta-data-source>java:jboss/datasources/MySQLDS</jta-data-source>
 
 		<class>br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity</class>
@@ -15,10 +16,6 @@
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaEntity</class>
 
 		<properties>
-			<property name="javax.persistence.jdbc.url"
-				value="mysql://5697a3a90c1e66a9310000cc-smartems.rhcloud.com:57466/" />
-			<property name="javax.persistence.jdbc.user" value="admin3J8uwX1" />
-			<property name="javax.persistence.jdbc.password" value="FRI62d894JlU" />
 
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.show_sql" value="true" />
