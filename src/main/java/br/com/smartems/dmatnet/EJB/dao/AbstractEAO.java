@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
 @SuppressWarnings("unchecked")
 public class AbstractEAO <T, PK> implements IAbstractDAO <T, PK> {
 
-	@PersistenceContext
+	
 	private EntityManager entityManager;
 
 	public AbstractEAO() {
