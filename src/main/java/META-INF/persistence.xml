@@ -16,7 +16,7 @@
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"
-				value="mysql://admin3J8uwX1:FRI62d894JlU@5697a3a90c1e66a9310000cc-smartems.rhcloud.com:57466" />
+				value="mysql://5697a3a90c1e66a9310000cc-smartems.rhcloud.com:57466/" />
 			<property name="javax.persistence.jdbc.user" value="admin3J8uwX1" />
 			<property name="javax.persistence.jdbc.password" value="FRI62d894JlU" />
 
