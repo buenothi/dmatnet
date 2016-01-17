@@ -4,11 +4,26 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
 	http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
-	<persistence-unit name="dmatnet-pu">
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaEntity</class>
+	<persistence-unit name="dmatnet-pu" transaction-type="RESOURCE_LOCAL">
+
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+
 		<class>br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.EmailEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisicaEntity</class>
+		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaEntity</class>
+
+		<properties>
+			<property name="javax.persistence.jdbc.url"
+				value="mysql://admin3J8uwX1:FRI62d894JlU@5697a3a90c1e66a9310000cc-smartems.rhcloud.com:57466" />
+			<property name="javax.persistence.jdbc.user" value="admin3J8uwX1" />
+			<property name="javax.persistence.jdbc.password" value="FRI62d894JlU" />
+
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
+		</properties>
+
 	</persistence-unit>
 </persistence>
