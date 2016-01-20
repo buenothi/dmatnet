@@ -4,23 +4,22 @@ import java.io.Serializable;
 import java.lang.String;
 import javax.persistence.*;
 
-/**
- * Entity implementation class for Entity: TelefoneEntity
- *
- */
 @Entity
-
+@Table(name="tbl_telefone")
 public class TelefoneEntity implements Serializable {
 	   
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idTelefone;
 	private String numeroTelefone;
 	private String tipoTelefone;
 	private static final long serialVersionUID = 1L;
 
+	
 	public TelefoneEntity() {
 		super();
 	}   
+	
 	public long getIdTelefone() {
 		return this.idTelefone;
 	}

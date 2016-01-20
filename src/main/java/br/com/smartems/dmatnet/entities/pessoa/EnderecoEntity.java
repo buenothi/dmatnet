@@ -4,15 +4,12 @@ import java.io.Serializable;
 import java.lang.String;
 import javax.persistence.*;
 
-/**
- * Entity implementation class for Entity: EnderecoEntity
- *
- */
 @Entity
-
+@Table(name="tbl_endereco")
 public class EnderecoEntity implements Serializable {
  
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idEndereco;
 	private String logradouro;
 	private String logradouroNome;
@@ -23,8 +20,11 @@ public class EnderecoEntity implements Serializable {
 	private String cidade;
 	private String estado;
 	private String logradouroTipo;
+	private String logradouroPais;
+	
 	private static final long serialVersionUID = 1L;
 
+	
 	public EnderecoEntity() {
 		super();
 	}   
@@ -108,6 +108,14 @@ public class EnderecoEntity implements Serializable {
 		this.logradouroTipo = logradouroTipo;
 	}
 	
+	public String getLogradouroPais() {
+		return logradouroPais;
+	}
+
+	public void setLogradouroPais(String logradouroPais) {
+		this.logradouroPais = logradouroPais;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

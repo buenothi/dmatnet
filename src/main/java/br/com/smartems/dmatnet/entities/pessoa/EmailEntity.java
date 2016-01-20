@@ -4,20 +4,18 @@ import java.io.Serializable;
 import java.lang.String;
 import javax.persistence.*;
 
-/**
- * Entity implementation class for Entity: EmailEntity
- *
- */
 @Entity
-
+@Table(name="tbl_email")
 public class EmailEntity implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idEmail;
 	private String nomeEmail;
 	private String tipoEmail;
 	private static final long serialVersionUID = 1L;
 
+	
 	public EmailEntity() {
 		super();
 	}   

@@ -1,36 +1,46 @@
 package br.com.smartems.dmatnet.entities.pessoa;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
 
-@Entity
-public abstract class PessoaEntity implements Serializable {
+@MappedSuperclass
+@Inheritance(strategy=InheritanceType.JOINED)
+public abstract class AbstractPessoaEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idPessoa;
+	
 	private String nome;
+	
 	@OneToMany
 	private List<EnderecoEntity> enderecos;
+	
 	@OneToMany
 	private List<TelefoneEntity> telefones;
+	
 	@OneToMany
 	private List<EmailEntity> emails;
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date cadastroPessoa;
+	
 	private static final long serialVersionUID = 1L;
+	
 
-	public PessoaEntity() {
+	public AbstractPessoaEntity() {
 		super();
 	}
 
-	public long getId() {
+	public long getIdPessoa() {
 		return idPessoa;
 	}
 
-	public void setId(long id) {
-		this.idPessoa = id;
+	public void setIdPessoa(long idPessoa) {
+		this.idPessoa = idPessoa;
 	}
 
 	public String getNome() {
@@ -63,6 +73,14 @@ public abstract class PessoaEntity implements Serializable {
 
 	public void setEmails(List<EmailEntity> emails) {
 		this.emails = emails;
+	}	
+
+	public Date getCadastroPessoa() {
+		return cadastroPessoa;
+	}
+
+	public void setCadastroPessoa(Date cadastroPessoa) {
+		this.cadastroPessoa = cadastroPessoa;
 	}
 
 	public static long getSerialversionuid() {
@@ -91,7 +109,7 @@ public abstract class PessoaEntity implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PessoaEntity other = (PessoaEntity) obj;
+		AbstractPessoaEntity other = (AbstractPessoaEntity) obj;
 		if (idPessoa != other.idPessoa)
 			return false;
 		if (nome == null) {
