@@ -17,16 +17,19 @@ public abstract class AbstractPessoaEntity implements Serializable {
 	private String nome;
 	
 	@OneToMany
+	@JoinColumn(name="PESSOA_ID")
 	private List<EnderecoEntity> enderecos;
 	
 	@OneToMany
+	@JoinColumn(name="PESSOA_ID")
 	private List<TelefoneEntity> telefones;
 	
 	@OneToMany
+	@JoinColumn(name="PESSOA_ID")
 	private List<EmailEntity> emails;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date cadastroPessoa;
+	private Date dataCadastroPessoa;
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -76,11 +79,11 @@ public abstract class AbstractPessoaEntity implements Serializable {
 	}	
 
 	public Date getCadastroPessoa() {
-		return cadastroPessoa;
+		return dataCadastroPessoa;
 	}
 
-	public void setCadastroPessoa(Date cadastroPessoa) {
-		this.cadastroPessoa = cadastroPessoa;
+	public void setCadastroPessoa(Date dataCadastroPessoa) {
+		this.dataCadastroPessoa = dataCadastroPessoa;
 	}
 
 	public static long getSerialversionuid() {

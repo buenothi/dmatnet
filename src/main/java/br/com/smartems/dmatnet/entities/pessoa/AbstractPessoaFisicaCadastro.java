@@ -4,9 +4,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
-@Entity
-@Table(name="tbl_pessoaFisicaCadastro")
-public class PessoaFisicaCadastro implements Serializable {
+@MappedSuperclass
+public abstract class AbstractPessoaFisicaCadastro implements Serializable {
 
 	@Id
 	private long idPessoaCadastro;
@@ -31,7 +30,7 @@ public class PessoaFisicaCadastro implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	
-	public PessoaFisicaCadastro() {
+	public AbstractPessoaFisicaCadastro() {
 		super();
 	}
 

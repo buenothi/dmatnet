@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="tbl_trabalhadorCadastro")
-public class TrabalhadorCadastroEntity extends PessoaFisicaCadastro implements Serializable {
+public class TrabalhadorCadastroEntity extends AbstractPessoaFisicaCadastro implements Serializable {
 
 	private long codESocialEmpregado;//código atribuído ao empregado para atendimento do eSocial
 	private long numNIS;
@@ -23,9 +23,11 @@ public class TrabalhadorCadastroEntity extends PessoaFisicaCadastro implements S
 	private TrabalhadorDeficienteEntity trabalhadorDeficiente;
 	
 	@OneToMany
+	@JoinColumn(name="TRABALHADOR_ID")
 	private List<LocaisTrabalho> locaisTrabalho;
 	
 	@OneToMany
+	@JoinColumn(name="TRABALHADOR_ID")
 	private List<TrabalhadorAfastamentoEntity> afastamentos;
 	
 	private static final long serialVersionUID = 1L;

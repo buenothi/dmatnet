@@ -22,7 +22,7 @@
 		<class>br.com.smartems.dmatnet.entities.pessoa.TrabalhadorEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.AbstractPessoaJuridicaEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.AbstractPessoaFisicaEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisicaCadastro</class>
+		<class>br.com.smartems.dmatnet.entities.pessoa.AbstractPessoaFisicaCadastro</class>
 
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
