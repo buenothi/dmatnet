@@ -2,7 +2,6 @@ package br.com.smartems.dmatnet.entities.pessoa;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.*;
 
@@ -15,10 +14,6 @@ public class TrabalhadorEntity extends AbstractPessoaFisicaEntity implements Ser
 
 	@Temporal(TemporalType.DATE)
 	private Date dataDesligamento;
-
-	@OneToMany
-	@AssociationOverride(name = "cadastros")
-	private List<TrabalhadorCadastroEntity> cadastros;
 
 	private static final long serialVersionUID = 1L;
 
