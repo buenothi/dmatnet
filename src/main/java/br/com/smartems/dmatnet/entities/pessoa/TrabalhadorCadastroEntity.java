@@ -7,10 +7,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="tbl_trabalhadorCadastro")
-public class TrabalhadorCadastroEntity implements Serializable {
+public class TrabalhadorCadastroEntity extends PessoaFisicaCadastro implements Serializable {
 
-	@Id
-	private long idTrabalhadorCadastro;
 	private long codESocialEmpregado;//código atribuído ao empregado para atendimento do eSocial
 	private long numNIS;
 	private long numCTPS;
@@ -35,14 +33,6 @@ public class TrabalhadorCadastroEntity implements Serializable {
 	
 	public TrabalhadorCadastroEntity() {
 		super();
-	}
-
-	public long getIdTrabalhadorCadastro() {
-		return idTrabalhadorCadastro;
-	}
-
-	public void setIdTrabalhadorCadastro(long idTrabalhadorCadastro) {
-		this.idTrabalhadorCadastro = idTrabalhadorCadastro;
 	}
 
 	public long getCodESocialEmpregado() {

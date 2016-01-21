@@ -12,7 +12,6 @@
 		<class>br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.EmailEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.AbstractPessoaFisicaEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.AbstractPessoaEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisicaDocumentosEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.TrabalhadorCadastroEntity</class>
@@ -22,6 +21,8 @@
 		<class>br.com.smartems.dmatnet.entities.pessoa.TrabalhadorAfastamentoEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.TrabalhadorEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.AbstractPessoaJuridicaEntity</class>
+		<class>br.com.smartems.dmatnet.entities.pessoa.AbstractPessoaFisicaEntity</class>
+		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisicaCadastro</class>
 
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
