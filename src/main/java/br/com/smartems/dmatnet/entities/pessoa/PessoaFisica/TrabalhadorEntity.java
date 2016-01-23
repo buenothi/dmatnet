@@ -1,4 +1,4 @@
-package br.com.smartems.dmatnet.entities.pessoa;
+package br.com.smartems.dmatnet.entities.pessoa.PessoaFisica;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,6 +10,8 @@ import javax.persistence.*;
 @Table(name = "tbl_trabalhador")
 public class TrabalhadorEntity extends AbstractPessoaFisicaEntity implements Serializable {
 
+	private long codESocialEmpregado;//código atribuído ao empregado para atendimento do eSocial
+	
 	@Temporal(TemporalType.DATE)
 	private Date dataAdmissao;
 
@@ -24,6 +26,14 @@ public class TrabalhadorEntity extends AbstractPessoaFisicaEntity implements Ser
 
 	public TrabalhadorEntity() {
 		super();
+	}
+	
+	public long getCodESocialEmpregado() {
+		return codESocialEmpregado;
+	}
+
+	public void setCodESocialEmpregado(long codESocialEmpregado) {
+		this.codESocialEmpregado = codESocialEmpregado;
 	}
 
 	public Date getDataAdmissao() {

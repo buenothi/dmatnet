@@ -1,7 +1,9 @@
-package br.com.smartems.dmatnet.entities.pessoa;
+package br.com.smartems.dmatnet.entities.pessoa.PessoaFisica;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import br.com.smartems.dmatnet.entities.pessoa.AbstractPessoaEntity;
 
 @MappedSuperclass
 @Inheritance(strategy=InheritanceType.JOINED)

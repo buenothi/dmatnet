@@ -1,4 +1,4 @@
-package br.com.smartems.dmatnet.entities.pessoa;
+package br.com.smartems.dmatnet.entities.pessoa.PessoaFisica;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name="tbl_trabalhadorCadastro")
 public class TrabalhadorCadastroEntity extends AbstractPessoaFisicaCadastro implements Serializable {
 
-	private long codESocialEmpregado;//código atribuído ao empregado para atendimento do eSocial
+	private long idEventoEsocial;
 	private long numNIS;
 	private long numCTPS;
 	private long numCTPSSerie;
@@ -37,12 +37,12 @@ public class TrabalhadorCadastroEntity extends AbstractPessoaFisicaCadastro impl
 		super();
 	}
 
-	public long getCodESocialEmpregado() {
-		return codESocialEmpregado;
+	public long getIdEventoEsocial() {
+		return idEventoEsocial;
 	}
 
-	public void setCodESocialEmpregado(long codESocialEmpregado) {
-		this.codESocialEmpregado = codESocialEmpregado;
+	public void setIdEventoEsocial(long idEventoEsocial) {
+		this.idEventoEsocial = idEventoEsocial;
 	}
 
 	public long getNumNIS() {

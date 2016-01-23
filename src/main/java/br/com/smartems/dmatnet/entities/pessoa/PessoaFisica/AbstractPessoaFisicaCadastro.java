@@ -1,4 +1,4 @@
-package br.com.smartems.dmatnet.entities.pessoa;
+package br.com.smartems.dmatnet.entities.pessoa.PessoaFisica;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,6 +17,12 @@ public abstract class AbstractPessoaFisicaCadastro implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataInicioCadastro;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataFimCadastro;
+	
 	private long codMunicipioNascimento;
 	private String ufNascimento;
 	private long paisNascimento; //conforme tabela 6 do eSocial
@@ -32,6 +38,22 @@ public abstract class AbstractPessoaFisicaCadastro implements Serializable {
 	
 	public AbstractPessoaFisicaCadastro() {
 		super();
+	}
+	
+	public long getIdPessoaCadastro() {
+		return idPessoaCadastro;
+	}
+
+	public void setIdPessoaCadastro(long idPessoaCadastro) {
+		this.idPessoaCadastro = idPessoaCadastro;
+	}
+
+	public long getCodMunicipioNascimento() {
+		return codMunicipioNascimento;
+	}
+
+	public void setCodMunicipioNascimento(long codMunicipioNascimento) {
+		this.codMunicipioNascimento = codMunicipioNascimento;
 	}
 
 	public int getSexo() {
@@ -72,6 +94,22 @@ public abstract class AbstractPessoaFisicaCadastro implements Serializable {
 
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+	
+	public Date getDataInicioCadastro() {
+		return dataInicioCadastro;
+	}
+
+	public void setDataInicioCadastro(Date dataInicioCadastro) {
+		this.dataInicioCadastro = dataInicioCadastro;
+	}
+
+	public Date getDataFimCadastro() {
+		return dataFimCadastro;
+	}
+
+	public void setDataFimCadastro(Date dataFimCadastro) {
+		this.dataFimCadastro = dataFimCadastro;
 	}
 
 	public long getMunicipioNascimento() {
@@ -133,5 +171,5 @@ public abstract class AbstractPessoaFisicaCadastro implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
+	
 }

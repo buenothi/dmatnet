@@ -1,4 +1,4 @@
-package br.com.smartems.dmatnet.entities.pessoa;
+package br.com.smartems.dmatnet.entities.pessoa.PessoaFisica;
 
 import java.io.Serializable;
 import java.util.Date;
