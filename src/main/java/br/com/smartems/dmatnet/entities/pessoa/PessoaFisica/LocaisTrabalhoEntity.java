@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="tbl_locaisTrabalho")
-public class LocaisTrabalho implements Serializable {
+public class LocaisTrabalhoEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -17,7 +17,7 @@ public class LocaisTrabalho implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	
-	public LocaisTrabalho() {
+	public LocaisTrabalhoEntity() {
 		super();
 	}
 

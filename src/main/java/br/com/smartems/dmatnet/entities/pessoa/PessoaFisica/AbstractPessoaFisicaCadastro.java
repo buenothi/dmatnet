@@ -9,7 +9,7 @@ public abstract class AbstractPessoaFisicaCadastro implements Serializable {
 
 	@Id
 	private long idPessoaCadastro;
-	private int sexo;
+	private char sexo;
 	private int racaCor;
 	private int estadoCivil;
 	private int grauInstrucao;
@@ -56,11 +56,11 @@ public abstract class AbstractPessoaFisicaCadastro implements Serializable {
 		this.codMunicipioNascimento = codMunicipioNascimento;
 	}
 
-	public int getSexo() {
+	public char getSexo() {
 		return sexo;
 	}
 
-	public void setSexo(int sexo) {
+	public void setSexo(char sexo) {
 		this.sexo = sexo;
 	}
 

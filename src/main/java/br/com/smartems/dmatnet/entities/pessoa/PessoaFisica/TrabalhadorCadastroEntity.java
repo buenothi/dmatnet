@@ -24,7 +24,7 @@ public class TrabalhadorCadastroEntity extends AbstractPessoaFisicaCadastro impl
 	
 	@OneToMany
 	@JoinColumn(name="TRABALHADOR_ID")
-	private List<LocaisTrabalho> locaisTrabalho;
+	private List<LocaisTrabalhoEntity> locaisTrabalho;
 	
 	@OneToMany
 	@JoinColumn(name="TRABALHADOR_ID")
@@ -101,11 +101,11 @@ public class TrabalhadorCadastroEntity extends AbstractPessoaFisicaCadastro impl
 		this.trabalhadorDeficiente = trabalhadorDeficiente;
 	}
 
-	public List<LocaisTrabalho> getLocaisTrabalho() {
+	public List<LocaisTrabalhoEntity> getLocaisTrabalho() {
 		return locaisTrabalho;
 	}
 
-	public void setLocaisTrabalho(List<LocaisTrabalho> locaisTrabalho) {
+	public void setLocaisTrabalho(List<LocaisTrabalhoEntity> locaisTrabalho) {
 		this.locaisTrabalho = locaisTrabalho;
 	}
 

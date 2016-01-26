@@ -17,7 +17,7 @@
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.TrabalhadorCadastroEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.TrabalhadorEstrangeiroEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.TrabalhadorDeficienteEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.LocaisTrabalho</class>
+		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.LocaisTrabalhoEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.TrabalhadorAfastamentoEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.TrabalhadorEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.AbstractPessoaJuridicaEntity</class>
@@ -31,6 +31,8 @@
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaSoftwareHouse</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaDadosComplementares</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaInfoComplementarLimiteRemSubteto</class>
+		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuarios.UsuarioEntity</class>
+		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuarios.UsuariosGrupoEntity</class>
 
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />

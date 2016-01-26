@@ -11,10 +11,11 @@ public class EnderecoEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idEndereco;
-	private String logradouro;
+	private String logradouro;//conforme tabela 20 do eSocial
 	private String logradouroNome;
 	private int logradouroNumero;
 	private String logradouroComplemento;
+	private String bairro;
 	private String cep;
 	private String caixaPostal;
 	private String cidade;
@@ -63,6 +64,14 @@ public class EnderecoEntity implements Serializable {
 	
 	public String getLogradouroComplemento() {
 		return this.logradouroComplemento;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
 	}
 
 	public void setLogradouroComplemento(String logradouroComplemento) {
