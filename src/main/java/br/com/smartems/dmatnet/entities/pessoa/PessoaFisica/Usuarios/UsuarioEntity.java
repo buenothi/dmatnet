@@ -10,9 +10,10 @@ import javax.persistence.*;
 @Table(name="tbl_usuarios")
 public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Serializable {
 
+	@Column(unique = true)
 	private String login;
 	private String senha;
-	private int usuarioTipo;
+	private int usuarioTipo;//campo role do JAAS
 
 	@ManyToMany
 	@JoinTable(name="tbl_usuarioGrupoJoinTable", 

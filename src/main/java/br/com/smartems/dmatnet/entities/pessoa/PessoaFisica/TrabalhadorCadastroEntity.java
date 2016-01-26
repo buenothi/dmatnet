@@ -30,6 +30,8 @@ public class TrabalhadorCadastroEntity extends AbstractPessoaFisicaCadastro impl
 	@JoinColumn(name="TRABALHADOR_ID")
 	private List<TrabalhadorAfastamentoEntity> afastamentos;
 	
+	
+	
 	private static final long serialVersionUID = 1L;
 
 	
