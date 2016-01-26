@@ -15,7 +15,7 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 	private int usuarioTipo;
 
 	@ManyToMany
-	@JoinTable(name="tbl_usuarioGrupo", 
+	@JoinTable(name="tbl_usuarioGrupoJoinTable", 
 		joinColumns=@JoinColumn(name="usuario_ID"),
 		inverseJoinColumns=@JoinColumn(name="grupo_ID"))
 	private List<UsuariosGrupoEntity> grupos;
