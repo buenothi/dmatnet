@@ -1,4 +1,4 @@
-package br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuarios;
+package br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario;
 
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.AbstractPessoaFisicaEntity;
 import java.io.Serializable;

@@ -1,9 +1,11 @@
-package br.com.smartems.dmatnet.entities.pessoa.PessoaFisica;
+package br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador;
 
 import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
+
+import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.AbstractPessoaFisicaCadastro;
 
 @Entity
 @Table(name="tbl_trabalhadorCadastro")

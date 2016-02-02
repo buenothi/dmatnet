@@ -1,4 +1,4 @@
-package br.com.smartems.dmatnet.entities.pessoa.PessoaFisica;
+package br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador;
 
 import java.io.Serializable;
 import javax.persistence.*;

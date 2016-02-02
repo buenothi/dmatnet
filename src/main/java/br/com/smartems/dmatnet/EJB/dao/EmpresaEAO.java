@@ -1,28 +1,24 @@
 package br.com.smartems.dmatnet.EJB.dao;
 
 import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 
 @Stateless
-public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> implements UsuarioEAOLocal {
-    
+public class EmpresaEAO extends AbstractEAO<EmpresaEntity, Long> implements EmpresaEAOLocal {
+
 	@PersistenceContext
-    private EntityManager em;
+	private EntityManager em;
 	
-    public UsuarioEAO() {
+    public EmpresaEAO() {
         super();
     }
     
-    public UsuarioEntity logarUsuario(String login, String senha) {
-    	return null;
-    }
-    
-    public List<UsuarioEntity> listarUsuariosFilhos(UsuarioEntity usuario){
+    public List<EmpresaEntity> empresasCriadasPeloUsuario (UsuarioEntity usuario) {
     	return null;
     }
 
