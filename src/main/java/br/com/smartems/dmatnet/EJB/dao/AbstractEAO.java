@@ -11,7 +11,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 @LocalBean
 @SuppressWarnings("unchecked")
-public class AbstractEAO <T, PK> implements IAbstractDAO<T, PK>{
+public abstract class AbstractEAO <T, PK> implements IAbstractDAO<T, PK>{
 
 	@PersistenceContext(unitName = "dmatnet-pu")
 	private EntityManager entityManager;
