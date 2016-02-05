@@ -11,7 +11,9 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.Trabalha
 @Table(name="tbl_empresa")
 @NamedQueries({
 	@NamedQuery(name="Empresa.listarTrabalhadoresPorEmpresa", 
-			query="SELECT t FROM EmpresaEntity e JOIN e.trabalhadores t WHERE e.idPessoa=:idEmpresa")
+			query="SELECT t FROM EmpresaEntity e JOIN e.trabalhadores t WHERE e.idPessoa=:idEmpresa"),
+	@NamedQuery(name="Empresa.ListarSetoresPorEmpresa", 
+			query="SELECT s FROM EmpresaEntity e JOIN e.setores s WHERE e.idPessoa=:idEmpresa")
 })
 public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Serializable {
 
@@ -24,6 +26,10 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 	@OneToMany
 	@JoinColumn(name="EMPRESA_ID")
 	private List<TrabalhadorEntity> trabalhadores;
+	
+	@OneToMany
+	@JoinColumn(name="EMPRESA_ID")
+	private List<EmpresaSetores> setores;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -55,5 +61,13 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 	public void setTrabalhadores(List<TrabalhadorEntity> trabalhadores) {
 		this.trabalhadores = trabalhadores;
 	}
- 
+
+	public List<EmpresaSetores> getSetores() {
+		return setores;
+	}
+
+	public void setSetores(List<EmpresaSetores> setores) {
+		this.setores = setores;
+	}
+
 }

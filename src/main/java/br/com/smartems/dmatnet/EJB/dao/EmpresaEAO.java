@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaSetores;
 
 @Stateless
 public class EmpresaEAO extends AbstractEAO<EmpresaEntity, Long> implements EmpresaEAOLocal {
@@ -15,6 +16,7 @@ public class EmpresaEAO extends AbstractEAO<EmpresaEntity, Long> implements Empr
 	@PersistenceContext
 	private EntityManager em;
 	private List<TrabalhadorEntity> trabalhadores;
+	private List<EmpresaSetores> setores;
 	
     public EmpresaEAO() {
         super();
@@ -30,6 +32,14 @@ public class EmpresaEAO extends AbstractEAO<EmpresaEntity, Long> implements Empr
     			.setParameter("idEmpresa", empresa.getIdPessoa())
     			.getResultList();
     	return this.trabalhadores;
+    }
+    
+    @SuppressWarnings("unchecked")
+    public List<EmpresaSetores> listarSetoresPorEmpresa (EmpresaEntity empresa) {
+    	this.setores = (List<EmpresaSetores>)em.createNamedQuery("Empresa.listarSetoresPorEmpresa")
+    			.setParameter("idEmpresa", empresa.getIdPessoa())
+    			.getResultList();
+    	return this.setores;
     }
 
 }
