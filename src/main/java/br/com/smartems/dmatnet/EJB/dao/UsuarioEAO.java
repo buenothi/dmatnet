@@ -2,6 +2,7 @@ package br.com.smartems.dmatnet.EJB.dao;
 
 import java.util.List;
 
+import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,7 +10,8 @@ import javax.persistence.PersistenceContext;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 
 @Stateless
-public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> implements UsuarioEAOLocal {
+@Local
+public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
     
 	@PersistenceContext
     private EntityManager em;

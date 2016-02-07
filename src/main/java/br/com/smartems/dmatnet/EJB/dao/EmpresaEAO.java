@@ -1,6 +1,8 @@
 package br.com.smartems.dmatnet.EJB.dao;
 
 import java.util.List;
+
+import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,7 +13,8 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaSetores;
 
 @Stateless
-public class EmpresaEAO extends AbstractEAO<EmpresaEntity, Long> implements EmpresaEAOLocal {
+@Local
+public class EmpresaEAO extends AbstractEAO<EmpresaEntity, Long> {
 
 	@PersistenceContext
 	private EntityManager em;

@@ -3,12 +3,14 @@ package br.com.smartems.dmatnet.EJB.Facade;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.ejb.Local;
 import javax.ejb.Stateless;
 
 import br.com.smartems.dmatnet.EJB.dao.UsuarioEAO;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 
 @Stateless
+@Local
 public class UsuarioFacade implements UsuarioFacadeLocal {
 
 	@EJB
