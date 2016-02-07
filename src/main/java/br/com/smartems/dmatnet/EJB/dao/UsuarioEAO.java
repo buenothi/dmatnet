@@ -43,6 +43,8 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> implements Usua
             int j = (int) (Math.random()*carct.length);
             senha += carct[j];
             }
+        usuario.setSenha(senha);
+        this.em.merge(usuario);
         return senha;
     }
 }

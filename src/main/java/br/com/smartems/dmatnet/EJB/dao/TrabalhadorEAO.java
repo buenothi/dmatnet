@@ -19,8 +19,4 @@ public class TrabalhadorEAO extends AbstractEAO<TrabalhadorEntity, Long> impleme
         super();
     }
     
-    public List<TrabalhadorEntity> trabalhadoresPorEmpresa (EmpresaEntity empresa) {
-    	return null;
-    }
-
 }
