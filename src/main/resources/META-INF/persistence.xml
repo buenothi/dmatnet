@@ -17,7 +17,6 @@
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorCadastroEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEstrangeiroEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorDeficienteEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.LocaisTrabalhoEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorAfastamentoEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.AbstractPessoaJuridicaEntity</class>
@@ -37,7 +36,7 @@
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 		</properties>
 
 	</persistence-unit>

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.*;
 
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.AbstractPessoaFisicaCadastro;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 
 @Entity
 @Table(name="tbl_trabalhadorCadastro")
@@ -26,13 +27,10 @@ public class TrabalhadorCadastroEntity extends AbstractPessoaFisicaCadastro impl
 	
 	@OneToMany
 	@JoinColumn(name="TRABALHADOR_ID")
-	private List<LocaisTrabalhoEntity> locaisTrabalho;
-	
-	@OneToMany
-	@JoinColumn(name="TRABALHADOR_ID")
 	private List<TrabalhadorAfastamentoEntity> afastamentos;
-	
-	
+
+	@OneToOne
+	private EmpresaEntity localDeTrabalho;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -105,20 +103,20 @@ public class TrabalhadorCadastroEntity extends AbstractPessoaFisicaCadastro impl
 		this.trabalhadorDeficiente = trabalhadorDeficiente;
 	}
 
-	public List<LocaisTrabalhoEntity> getLocaisTrabalho() {
-		return locaisTrabalho;
-	}
-
-	public void setLocaisTrabalho(List<LocaisTrabalhoEntity> locaisTrabalho) {
-		this.locaisTrabalho = locaisTrabalho;
-	}
-
 	public List<TrabalhadorAfastamentoEntity> getAfastamentos() {
 		return afastamentos;
 	}
 
 	public void setAfastamentos(List<TrabalhadorAfastamentoEntity> afastamentos) {
 		this.afastamentos = afastamentos;
+	}
+
+	public EmpresaEntity getLocalDeTrabalho() {
+		return localDeTrabalho;
+	}
+
+	public void setLocalDeTrabalho(EmpresaEntity localDeTrabalho) {
+		this.localDeTrabalho = localDeTrabalho;
 	}
 	
 }

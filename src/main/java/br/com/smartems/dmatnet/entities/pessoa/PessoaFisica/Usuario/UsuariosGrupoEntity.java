@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class UsuariosGrupoEntity implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idGrupo;
 	private String nomeGrupo;
 	

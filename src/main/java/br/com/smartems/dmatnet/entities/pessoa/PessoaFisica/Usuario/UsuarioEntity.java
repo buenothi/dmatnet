@@ -29,7 +29,6 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 	@Column(unique = true)
 	private String login;
 	private String senha;
-	private int usuarioTipo;//campo role do JAAS
 
 	@ManyToMany
 	@JoinTable(name="tbl_usuarioGrupoJoinTable", 
@@ -71,14 +70,6 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 			e.printStackTrace();
 		}
 	
-	}
-
-	public int getUsuarioTipo() {
-		return usuarioTipo;
-	}
-
-	public void setUsuarioTipo(int usuarioTipo) {
-		this.usuarioTipo = usuarioTipo;
 	}
 
 	public List<UsuariosGrupoEntity> getGrupos() {
