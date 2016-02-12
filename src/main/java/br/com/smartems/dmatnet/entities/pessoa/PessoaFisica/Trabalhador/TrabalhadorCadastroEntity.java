@@ -3,10 +3,14 @@ package br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.AbstractPessoaFisicaCadastro;
-import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaSetor;
 
 @Entity
 @Table(name="tbl_trabalhadorCadastro")
@@ -28,9 +32,9 @@ public class TrabalhadorCadastroEntity extends AbstractPessoaFisicaCadastro impl
 	@OneToMany
 	@JoinColumn(name="TRABALHADOR_ID")
 	private List<TrabalhadorAfastamentoEntity> afastamentos;
-
+	
 	@OneToOne
-	private EmpresaEntity localDeTrabalho;
+	private EmpresaSetor setor;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -111,12 +115,12 @@ public class TrabalhadorCadastroEntity extends AbstractPessoaFisicaCadastro impl
 		this.afastamentos = afastamentos;
 	}
 
-	public EmpresaEntity getLocalDeTrabalho() {
-		return localDeTrabalho;
+	public EmpresaSetor getSetor() {
+		return setor;
 	}
 
-	public void setLocalDeTrabalho(EmpresaEntity localDeTrabalho) {
-		this.localDeTrabalho = localDeTrabalho;
+	public void setSetor(EmpresaSetor setor) {
+		this.setor = setor;
 	}
 	
 }

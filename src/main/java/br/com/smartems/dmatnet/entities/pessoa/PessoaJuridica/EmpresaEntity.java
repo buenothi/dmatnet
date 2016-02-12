@@ -3,8 +3,14 @@ package br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+import br.com.smartems.dmatnet.entities.LocalTrabalho.LocalTrabalhoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEntity;
 
 @Entity
@@ -29,7 +35,11 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 	
 	@OneToMany
 	@JoinColumn(name="EMPRESA_ID")
-	private List<EmpresaSetores> setores;
+	private List<EmpresaSetor> setores;
+	
+	@OneToMany
+	@JoinColumn(name="EMPRESA_ID")
+	private List<LocalTrabalhoEntity> locaisTrabalho;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -62,12 +72,20 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 		this.trabalhadores = trabalhadores;
 	}
 
-	public List<EmpresaSetores> getSetores() {
+	public List<EmpresaSetor> getSetores() {
 		return setores;
 	}
 
-	public void setSetores(List<EmpresaSetores> setores) {
+	public void setSetores(List<EmpresaSetor> setores) {
 		this.setores = setores;
+	}
+
+	public List<LocalTrabalhoEntity> getLocaisTrabalho() {
+		return locaisTrabalho;
+	}
+
+	public void setLocaisTrabalho(List<LocalTrabalhoEntity> locaisTrabalho) {
+		this.locaisTrabalho = locaisTrabalho;
 	}
 
 }

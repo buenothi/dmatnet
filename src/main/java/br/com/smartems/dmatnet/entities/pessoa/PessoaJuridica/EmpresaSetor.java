@@ -6,14 +6,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="tbl_EmpresaSetores")
-public class EmpresaSetores implements Serializable {
+public class EmpresaSetor implements Serializable {
 	   
 	@Id
 	private long idSetores;
 	private String setorNome;
 	private static final long serialVersionUID = 1L;
 
-	public EmpresaSetores() {
+	public EmpresaSetor() {
 		super();
 	}   
 	public long getIdSetores() {
