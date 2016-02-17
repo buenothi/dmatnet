@@ -3,14 +3,16 @@ package br.com.smartems.dmatnet.entities.LevAmbientais;
 import java.io.Serializable;
 import java.lang.String;
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="tbl_LevantamentoAmbiental")
-public class LevantamentoAmbiental implements Serializable {
+public class LevantamentoAmbientalEntity implements Serializable {
 
-	   
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
 	@Temporal(TemporalType.DATE)
@@ -20,9 +22,14 @@ public class LevantamentoAmbiental implements Serializable {
 	private Date dataTermino;
 	
 	private String observacoes;
+	
+	@OneToMany
+	@JoinColumn(name="LevAmbiental_ID")
+	private List<RiscoAmbientalIdentificadoEntity> riscosAmbientaisIdentificados;
+	
 	private static final long serialVersionUID = 1L;
 
-	public LevantamentoAmbiental() {
+	public LevantamentoAmbientalEntity() {
 		super();
 	}   
 	public long getId() {
@@ -52,6 +59,14 @@ public class LevantamentoAmbiental implements Serializable {
 
 	public void setObservacoes(String observacoes) {
 		this.observacoes = observacoes;
+	}
+	
+	public List<RiscoAmbientalIdentificadoEntity> getRiscosAmbientaisIdentificados() {
+		return riscosAmbientaisIdentificados;
+	}
+	
+	public void setRiscosAmbientaisIdentificados(List<RiscoAmbientalIdentificadoEntity> riscosAmbientaisIdentificados) {
+		this.riscosAmbientaisIdentificados = riscosAmbientaisIdentificados;
 	}
    
 }

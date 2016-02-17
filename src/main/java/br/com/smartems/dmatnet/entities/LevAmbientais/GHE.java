@@ -3,6 +3,8 @@ package br.com.smartems.dmatnet.entities.LevAmbientais;
 import java.io.Serializable;
 import java.lang.String;
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,7 @@ import javax.persistence.*;
 public class GHE implements Serializable {
 	   
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idGHE;
 	private String nomeGHE;
 	
@@ -23,6 +26,10 @@ public class GHE implements Serializable {
 	
 	@Basic(fetch=FetchType.LAZY)
 	private byte[] fotoParadigma;
+	
+	@OneToMany
+	@JoinColumn(name="ghe_ID")
+	private List<LevantamentoAmbientalEntity> levAmbientais;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -64,5 +71,17 @@ public class GHE implements Serializable {
 	public void setDescricaoGHE(String descricaoGHE) {
 		this.descricaoGHE = descricaoGHE;
 	}
-   
+	public byte[] getFotoParadigma() {
+		return fotoParadigma;
+	}
+	public void setFotoParadigma(byte[] fotoParadigma) {
+		this.fotoParadigma = fotoParadigma;
+	}
+	public List<LevantamentoAmbientalEntity> getLevAmbientais() {
+		return levAmbientais;
+	}
+	public void setLevAmbientais(List<LevantamentoAmbientalEntity> levAmbientais) {
+		this.levAmbientais = levAmbientais;
+	}
+	   
 }
