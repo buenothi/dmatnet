@@ -2,18 +2,13 @@ package br.com.smartems.dmatnet.entities.LocalTrabalho;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import br.com.smartems.dmatnet.entities.LevAmbientais.GHE;
 
 @Entity
 @Table(name="tbl_LocalTrabalho")
@@ -28,10 +23,13 @@ public class LocalTrabalhoEntity implements Serializable{
 	
 	@Temporal(TemporalType.DATE)
 	private Date dataFimValidade;
+<<<<<<< master
 	
 	@OneToMany(cascade={CascadeType.ALL})
 	@JoinColumn(name="local_ID")
 	private List<GHE> ghes;
+=======
+>>>>>>> a8656b1 Finalização das Entities
 	
 	private static final long serialVersionUID = 1L;
 
@@ -65,14 +63,6 @@ public class LocalTrabalhoEntity implements Serializable{
 
 	public void setDataFimValidade(Date dataFimValidade) {
 		this.dataFimValidade = dataFimValidade;
-	}
-
-	public List<GHE> getGhes() {
-		return ghes;
-	}
-
-	public void setGhes(List<GHE> ghes) {
-		this.ghes = ghes;
 	}
 	
 }
