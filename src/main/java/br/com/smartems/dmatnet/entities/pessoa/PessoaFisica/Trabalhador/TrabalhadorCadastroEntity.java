@@ -3,8 +3,10 @@ package br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -23,17 +25,18 @@ public class TrabalhadorCadastroEntity extends AbstractPessoaFisicaCadastro impl
 	private String ufCTPS;
 	private String numOrgaoClasse;
 
-	@OneToOne(mappedBy="trabalhador")
+	@OneToOne(mappedBy="trabalhador", cascade={CascadeType.ALL})
 	private TrabalhadorEstrangeiroEntity trabalhadorEstrageiro;
 	
-	@OneToOne(mappedBy="trabalhador")
+	@OneToOne(mappedBy="trabalhador", cascade={CascadeType.ALL})
 	private TrabalhadorDeficienteEntity trabalhadorDeficiente;
 	
-	@OneToMany
-	@JoinColumn(name="TRABALHADOR_ID")
+	@OneToMany(cascade={CascadeType.ALL})
+	@JoinColumn(name="trabalhador_ID")
 	private List<TrabalhadorAfastamentoEntity> afastamentos;
 	
-	@OneToOne
+	@ManyToOne
+	@JoinColumn(name="setor_ID")
 	private EmpresaSetor setor;
 	
 	private static final long serialVersionUID = 1L;
@@ -122,5 +125,5 @@ public class TrabalhadorCadastroEntity extends AbstractPessoaFisicaCadastro impl
 	public void setSetor(EmpresaSetor setor) {
 		this.setor = setor;
 	}
-	
+
 }

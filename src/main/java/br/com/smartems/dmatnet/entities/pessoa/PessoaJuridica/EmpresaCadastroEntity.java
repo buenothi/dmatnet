@@ -48,7 +48,7 @@ public class EmpresaCadastroEntity extends AbstractPessoaJuridicaEntity implemen
 	private EmpresaOrganismoInternacional organismoInternacional;
 	
 	@OneToMany
-	@JoinColumn(name="EMPRESACADASTRO_ID")
+	@JoinColumn(name="empresaCadastro_ID")
 	private List<EmpresaSoftwareHouse> empresaSoftwareHouse;
 	
 	@OneToOne(mappedBy="cadastroEmpresa")

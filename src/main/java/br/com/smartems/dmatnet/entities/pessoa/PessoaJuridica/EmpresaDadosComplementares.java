@@ -23,7 +23,7 @@ public class EmpresaDadosComplementares implements Serializable {
 	private double percAliquotaSuplementar;
 	
 	@OneToMany
-	@JoinColumn(name="DADOSCOMPLEMENTARE_ID")
+	@JoinColumn(name="dadosComplamentares_ID")
 	private List<EmpresaInfoComplementarLimiteRemSubteto> infoLimiteRemSubtetos;
 	
 	@OneToOne

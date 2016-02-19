@@ -3,21 +3,20 @@ package br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import br.com.smartems.dmatnet.entities.LocalTrabalho.LocalTrabalhoEntity;
-import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEntity;
 
 @Entity
 @Table(name="tbl_empresa")
 @NamedQueries({
-	@NamedQuery(name="Empresa.listarTrabalhadoresPorEmpresa", 
-			query="SELECT t FROM EmpresaEntity e JOIN e.trabalhadores t WHERE e.idPessoa=:idEmpresa"),
 	@NamedQuery(name="Empresa.ListarSetoresPorEmpresa", 
 			query="SELECT s FROM EmpresaEntity e JOIN e.setores s WHERE e.idPessoa=:idEmpresa")
 })
@@ -25,21 +24,21 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 
 	private long codESocialEmpresa;//código atribuído ao empregado para atendimento do eSocial
 	
-	@OneToMany
-	@JoinColumn(name="EMPRESA_ID")
+	@OneToMany(cascade={CascadeType.ALL})
+	@JoinColumn(name="empresa_ID")
 	private List<EmpresaCadastroEntity> cadastrosEmpresa;
 	
-	@OneToMany
-	@JoinColumn(name="EMPRESA_ID")
-	private List<TrabalhadorEntity> trabalhadores;
-	
-	@OneToMany
-	@JoinColumn(name="EMPRESA_ID")
+	@OneToMany(cascade={CascadeType.ALL})
+	@JoinColumn(name="empresa_ID")
 	private List<EmpresaSetor> setores;
 	
-	@OneToMany
-	@JoinColumn(name="EMPRESA_ID")
+	@OneToMany(cascade={CascadeType.ALL})
+	@JoinColumn(name="empresa_ID")
 	private List<LocalTrabalhoEntity> locaisTrabalho;
+	
+	@ManyToOne
+	@JoinColumn(name="grupo_ID")
+	private EmpresaGrupoEntity grupo;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -64,14 +63,6 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 		this.cadastrosEmpresa = cadastrosEmpresa;
 	}
 
-	public List<TrabalhadorEntity> getTrabalhadores() {
-		return trabalhadores;
-	}
-
-	public void setTrabalhadores(List<TrabalhadorEntity> trabalhadores) {
-		this.trabalhadores = trabalhadores;
-	}
-
 	public List<EmpresaSetor> getSetores() {
 		return setores;
 	}
@@ -86,6 +77,14 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 
 	public void setLocaisTrabalho(List<LocalTrabalhoEntity> locaisTrabalho) {
 		this.locaisTrabalho = locaisTrabalho;
+	}
+
+	public EmpresaGrupoEntity getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(EmpresaGrupoEntity grupo) {
+		this.grupo = grupo;
 	}
 
 }

@@ -17,7 +17,7 @@ public class TrabalhadorDeficienteEntity implements Serializable {
 	private boolean reabilitadoReadaptado;
 	private String observacao;
 	
-	@OneToOne
+	@OneToOne(cascade={CascadeType.ALL})
 	@PrimaryKeyJoinColumn
 	private TrabalhadorCadastroEntity trabalhador;
 	

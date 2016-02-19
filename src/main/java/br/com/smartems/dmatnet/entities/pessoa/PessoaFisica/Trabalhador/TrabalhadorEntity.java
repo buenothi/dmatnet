@@ -20,8 +20,8 @@ public class TrabalhadorEntity extends AbstractPessoaFisicaEntity implements Ser
 	@Temporal(TemporalType.DATE)
 	private Date dataDesligamento;
 
-	@OneToMany
-	@JoinColumn(name="TRABALHADOR_ID")
+	@OneToMany(cascade={CascadeType.ALL})
+	@JoinColumn(name="trabalhador_ID")
 	private List<TrabalhadorCadastroEntity> cadastrosTrabalhador;
 
 	private static final long serialVersionUID = 1L;

@@ -16,15 +16,15 @@ public abstract class AbstractPessoaEntity implements Serializable {
 	
 	private String nome;
 	
-	@OneToMany
+	@OneToMany(cascade={CascadeType.ALL})
 	@JoinColumn(name="PESSOA_ID")
 	private List<EnderecoEntity> enderecos;
 	
-	@OneToMany
+	@OneToMany(cascade={CascadeType.ALL})
 	@JoinColumn(name="PESSOA_ID")
 	private List<TelefoneEntity> telefones;
 	
-	@OneToMany
+	@OneToMany(cascade={CascadeType.ALL})
 	@JoinColumn(name="PESSOA_ID")
 	private List<EmailEntity> emails;
 	

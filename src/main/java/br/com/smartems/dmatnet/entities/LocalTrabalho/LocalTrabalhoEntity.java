@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -28,7 +29,7 @@ public class LocalTrabalhoEntity implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date dataFimValidade;
 	
-	@OneToMany
+	@OneToMany(cascade={CascadeType.ALL})
 	@JoinColumn(name="local_ID")
 	private List<GHE> ghes;
 	

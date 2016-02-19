@@ -17,7 +17,8 @@ public class TrabalhadorEstrangeiroEntity implements Serializable {
 	private int codClassTrabEstrangeiro;
 	private boolean casadoBR;
 	private boolean filhosBR;
-	@OneToOne
+	
+	@OneToOne(cascade={CascadeType.ALL})
 	@PrimaryKeyJoinColumn
 	private TrabalhadorCadastroEntity trabalhador;
 	

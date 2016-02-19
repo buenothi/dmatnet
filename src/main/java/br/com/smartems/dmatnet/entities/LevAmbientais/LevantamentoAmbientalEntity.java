@@ -23,7 +23,7 @@ public class LevantamentoAmbientalEntity implements Serializable {
 	
 	private String observacoes;
 	
-	@OneToMany
+	@OneToMany(cascade={CascadeType.ALL})
 	@JoinColumn(name="LevAmbiental_ID")
 	private List<RiscoAmbientalIdentificadoEntity> riscosAmbientaisIdentificados;
 	
