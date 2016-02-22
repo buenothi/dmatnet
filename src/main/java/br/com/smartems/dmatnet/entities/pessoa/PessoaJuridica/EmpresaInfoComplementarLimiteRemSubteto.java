@@ -13,6 +13,10 @@ public class EmpresaInfoComplementarLimiteRemSubteto implements Serializable {
 	private double valorSubtete;
 	private int idadeMaioridade;
 	
+	@OneToOne
+	@PrimaryKeyJoinColumn
+	private EmpresaInfoComplementarLimiteRemSubteto infoComplementares;
+	
 	private static final long serialVersionUID = 1L;
 
 	public EmpresaInfoComplementarLimiteRemSubteto() {
@@ -49,6 +53,14 @@ public class EmpresaInfoComplementarLimiteRemSubteto implements Serializable {
 
 	public void setIdadeMaioridade(int idadeMaioridade) {
 		this.idadeMaioridade = idadeMaioridade;
+	}
+
+	public EmpresaInfoComplementarLimiteRemSubteto getInfoComplementares() {
+		return infoComplementares;
+	}
+
+	public void setInfoComplementares(EmpresaInfoComplementarLimiteRemSubteto infoComplementares) {
+		this.infoComplementares = infoComplementares;
 	}
 	
 }

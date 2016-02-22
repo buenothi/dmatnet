@@ -1,22 +1,16 @@
 package br.com.smartems.dmatnet.entities.LevAmbientais;
 
 import java.io.Serializable;
+import java.lang.String;
 import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 @Table(name="tbl_LevantamentoAmbiental")
-public class LevantamentoAmbientalEntity implements Serializable {
+public class LevantamentoAmbiental implements Serializable {
 
+	   
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
 	@Temporal(TemporalType.DATE)
@@ -26,10 +20,9 @@ public class LevantamentoAmbientalEntity implements Serializable {
 	private Date dataTermino;
 	
 	private String observacoes;
-	
 	private static final long serialVersionUID = 1L;
 
-	public LevantamentoAmbientalEntity() {
+	public LevantamentoAmbiental() {
 		super();
 	}   
 	public long getId() {

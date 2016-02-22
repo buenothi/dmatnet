@@ -4,7 +4,13 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.AbstractPessoaFisicaEntity;
 
@@ -23,7 +29,7 @@ public class TrabalhadorEntity extends AbstractPessoaFisicaEntity implements Ser
 	@OneToMany(cascade={CascadeType.ALL})
 	@JoinColumn(name="trabalhador_ID")
 	private List<TrabalhadorCadastroEntity> cadastrosTrabalhador;
-
+	
 	private static final long serialVersionUID = 1L;
 
 	public TrabalhadorEntity() {
@@ -52,6 +58,14 @@ public class TrabalhadorEntity extends AbstractPessoaFisicaEntity implements Ser
 
 	public void setDataDesligamento(Date dataDesligamento) {
 		this.dataDesligamento = dataDesligamento;
+	}
+
+	public List<TrabalhadorCadastroEntity> getCadastrosTrabalhador() {
+		return cadastrosTrabalhador;
+	}
+
+	public void setCadastrosTrabalhador(List<TrabalhadorCadastroEntity> cadastrosTrabalhador) {
+		this.cadastrosTrabalhador = cadastrosTrabalhador;
 	}
 
 }

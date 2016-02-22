@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -14,8 +17,11 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="tbl_EmpresaCadastro")
-public class EmpresaCadastroEntity extends AbstractPessoaJuridicaEntity implements Serializable {
+public class EmpresaCadastroEntity implements Serializable {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private long id;
 	private long idEventoEsocial;//identificador para o o eSocial
 	private int tipoEvento;
 	private int processoEnvioDados;
@@ -61,6 +67,14 @@ public class EmpresaCadastroEntity extends AbstractPessoaJuridicaEntity implemen
 		super();
 	}
 	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	public long getIdEventoEsocial() {
 		return idEventoEsocial;
 	}

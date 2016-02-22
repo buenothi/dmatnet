@@ -132,13 +132,5 @@ public class EmpresaDadosComplementares implements Serializable {
 	public void setInfoLimiteRemSubtetos(List<EmpresaInfoComplementarLimiteRemSubteto> infoLimiteRemSubtetos) {
 		this.infoLimiteRemSubtetos = infoLimiteRemSubtetos;
 	}
-
-	public EmpresaCadastroEntity getCadastroEmpresa() {
-		return cadastroEmpresa;
-	}
-
-	public void setCadastroEmpresa(EmpresaCadastroEntity cadastroEmpresa) {
-		this.cadastroEmpresa = cadastroEmpresa;
-	}
 	
 }

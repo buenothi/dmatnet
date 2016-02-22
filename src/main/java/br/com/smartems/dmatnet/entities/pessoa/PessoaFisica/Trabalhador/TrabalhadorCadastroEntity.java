@@ -6,13 +6,11 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.AbstractPessoaFisicaCadastro;
-import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaSetor;
 
 @Entity
 @Table(name="tbl_trabalhadorCadastro")
@@ -34,10 +32,6 @@ public class TrabalhadorCadastroEntity extends AbstractPessoaFisicaCadastro impl
 	@OneToMany(cascade={CascadeType.ALL})
 	@JoinColumn(name="trabalhador_ID")
 	private List<TrabalhadorAfastamentoEntity> afastamentos;
-	
-	@ManyToOne
-	@JoinColumn(name="setor_ID")
-	private EmpresaSetor setor;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -116,14 +110,6 @@ public class TrabalhadorCadastroEntity extends AbstractPessoaFisicaCadastro impl
 
 	public void setAfastamentos(List<TrabalhadorAfastamentoEntity> afastamentos) {
 		this.afastamentos = afastamentos;
-	}
-
-	public EmpresaSetor getSetor() {
-		return setor;
-	}
-
-	public void setSetor(EmpresaSetor setor) {
-		this.setor = setor;
 	}
 
 }
