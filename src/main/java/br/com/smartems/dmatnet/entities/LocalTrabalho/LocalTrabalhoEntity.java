@@ -14,6 +14,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import br.com.smartems.dmatnet.entities.LevAmbientais.GHE;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorFuncao;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaSetor;
 
 @Entity
 @Table(name="tbl_LocalTrabalho")
@@ -32,6 +34,14 @@ public class LocalTrabalhoEntity implements Serializable{
 	@OneToMany(cascade={CascadeType.ALL})
 	@JoinColumn(name="local_ID")
 	private List<GHE> ghes;
+	
+	@OneToMany(cascade={CascadeType.ALL})
+	@JoinColumn(name="empresa_ID")
+	private List<EmpresaSetor> setores;
+	
+	@OneToMany(cascade={CascadeType.ALL})
+	@JoinColumn(name="empresa_ID")
+	private List<TrabalhadorFuncao> funcoes;
 
 	private static final long serialVersionUID = 1L;
 
@@ -65,6 +75,30 @@ public class LocalTrabalhoEntity implements Serializable{
 
 	public void setDataFimValidade(Date dataFimValidade) {
 		this.dataFimValidade = dataFimValidade;
+	}
+
+	public List<GHE> getGhes() {
+		return ghes;
+	}
+
+	public void setGhes(List<GHE> ghes) {
+		this.ghes = ghes;
+	}
+
+	public List<EmpresaSetor> getSetores() {
+		return setores;
+	}
+
+	public void setSetores(List<EmpresaSetor> setores) {
+		this.setores = setores;
+	}
+
+	public List<TrabalhadorFuncao> getFuncoes() {
+		return funcoes;
+	}
+
+	public void setFuncoes(List<TrabalhadorFuncao> funcoes) {
+		this.funcoes = funcoes;
 	}
 	
 }
