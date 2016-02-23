@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="tbl_EmpresaSetores")
-public class EmpresaSetor implements Serializable {
+public class Setor implements Serializable {
 	   
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -19,7 +19,7 @@ public class EmpresaSetor implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	public EmpresaSetor() {
+	public Setor() {
 		super();
 	}   
 	public long getIdSetores() {

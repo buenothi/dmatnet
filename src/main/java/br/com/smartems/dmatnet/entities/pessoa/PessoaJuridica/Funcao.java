@@ -1,4 +1,4 @@
-package br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador;
+package br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica;
 
 import java.io.Serializable;
 
@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="tbl_TrabalhadorFuncao")
-public class TrabalhadorFuncao implements Serializable {
+public class Funcao implements Serializable {
 	   
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class TrabalhadorFuncao implements Serializable {
 		
 	private static final long serialVersionUID = 1L;
 
-	public TrabalhadorFuncao() {
+	public Funcao() {
 		super();
 	}   
 	

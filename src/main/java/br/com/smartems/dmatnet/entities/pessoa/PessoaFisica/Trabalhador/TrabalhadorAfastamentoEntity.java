@@ -18,6 +18,10 @@ public class TrabalhadorAfastamentoEntity implements Serializable {
 	
 	@Temporal(TemporalType.DATE)
 	private Date dataTermino;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dataRetornoEfetivo;
+	
 	private int codMotivoAfastamento;//informar código da tabela 18 do eSocial
 	
 	private static final long serialVersionUID = 1L;
@@ -49,6 +53,14 @@ public class TrabalhadorAfastamentoEntity implements Serializable {
 
 	public void setDataTermino(Date dataTermino) {
 		this.dataTermino = dataTermino;
+	}
+
+	public Date getDataRetornoEfetivo() {
+		return dataRetornoEfetivo;
+	}
+
+	public void setDataRetornoEfetivo(Date dataRetornoEfetivo) {
+		this.dataRetornoEfetivo = dataRetornoEfetivo;
 	}
 
 	public int getCodMotivoAfastamento() {

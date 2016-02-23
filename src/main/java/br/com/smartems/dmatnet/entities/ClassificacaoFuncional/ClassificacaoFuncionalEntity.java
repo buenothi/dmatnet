@@ -13,8 +13,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import br.com.smartems.dmatnet.entities.LevAmbientais.GHE;
-import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorFuncao;
-import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaSetor;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.Funcao;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.Setor;
 
 @Entity
 @Table(name="tbl_ClassificacaoFuncional")
@@ -31,11 +31,11 @@ public class ClassificacaoFuncionalEntity implements Serializable {
 	
 	@OneToOne(cascade={CascadeType.MERGE})
 	@JoinColumn(name="setor_ID")
-	private EmpresaSetor setor;
+	private Setor setor;
 	
 	@OneToOne(cascade={CascadeType.MERGE})
 	@JoinColumn(name="funcao_ID")
-	private TrabalhadorFuncao funcao;
+	private Funcao funcao;
 	
 	@OneToOne(cascade={CascadeType.MERGE})
 	@JoinColumn(name="ghe_ID")
@@ -73,19 +73,19 @@ public class ClassificacaoFuncionalEntity implements Serializable {
 		this.dataTermino = dataTermino;
 	}
 
-	public EmpresaSetor getSetor() {
+	public Setor getSetor() {
 		return setor;
 	}
 
-	public void setSetor(EmpresaSetor setor) {
+	public void setSetor(Setor setor) {
 		this.setor = setor;
 	}
 
-	public TrabalhadorFuncao getFuncao() {
+	public Funcao getFuncao() {
 		return funcao;
 	}
 
-	public void setFuncao(TrabalhadorFuncao funcao) {
+	public void setFuncao(Funcao funcao) {
 		this.funcao = funcao;
 	}
 
