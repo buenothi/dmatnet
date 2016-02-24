@@ -12,7 +12,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.AbstractPessoaFisicaEntity;
@@ -36,10 +35,6 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 		joinColumns=@JoinColumn(name="usuario_ID"),
 		inverseJoinColumns=@JoinColumn(name="grupo_ID"))
 	private List<UsuariosGrupoEntity> grupos;
-	
-	@OneToMany
-	@JoinColumn(name="usuario_ID")
-	private List<UsuarioCadastroEntity> usuarioCadastros;
 	
 	private long idUsuarioPai;
 
@@ -84,14 +79,6 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 
 	public void setGrupos(List<UsuariosGrupoEntity> grupos) {
 		this.grupos = grupos;
-	}
-
-	public List<UsuarioCadastroEntity> getUsuarioCadastros() {
-		return usuarioCadastros;
-	}
-
-	public void setUsuarioCadastros(List<UsuarioCadastroEntity> usuarioCadastros) {
-		this.usuarioCadastros = usuarioCadastros;
 	}
 
 	public long getIdUsuarioPai() {
