@@ -14,6 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import br.com.smartems.dmatnet.entities.LevAmbientais.GHE;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.Funcao;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.Setor;
 
@@ -42,6 +43,18 @@ public class LocalTrabalhoEntity implements Serializable{
 	@OneToMany(cascade={CascadeType.ALL})
 	@JoinColumn(name="empresa_ID")
 	private List<Funcao> funcoes;
+	
+	@OneToMany
+	@JoinColumn(name="localTrabalho_ID")
+	private List<TrabalhadorEntity> trabalhadores;
+	
+	private String descricaoAmbiente;
+	
+	private int localAmbiente;//conforme eSocial
+	
+	private int tipoInscricao;//conforme eSocial
+	
+	private long numInscricao;
 
 	private static final long serialVersionUID = 1L;
 
@@ -99,6 +112,46 @@ public class LocalTrabalhoEntity implements Serializable{
 
 	public void setFuncoes(List<Funcao> funcoes) {
 		this.funcoes = funcoes;
+	}
+
+	public List<TrabalhadorEntity> getTrabalhadores() {
+		return trabalhadores;
+	}
+
+	public void setTrabalhadores(List<TrabalhadorEntity> trabalhadores) {
+		this.trabalhadores = trabalhadores;
+	}
+
+	public String getDescricaoAmbiente() {
+		return descricaoAmbiente;
+	}
+
+	public void setDescricaoAmbiente(String descricaoAmbiente) {
+		this.descricaoAmbiente = descricaoAmbiente;
+	}
+
+	public int getLocalAmbiente() {
+		return localAmbiente;
+	}
+
+	public void setLocalAmbiente(int localAmbiente) {
+		this.localAmbiente = localAmbiente;
+	}
+
+	public int getTipoInscricao() {
+		return tipoInscricao;
+	}
+
+	public void setTipoInscricao(int tipoInscricao) {
+		this.tipoInscricao = tipoInscricao;
+	}
+
+	public long getNumInscricao() {
+		return numInscricao;
+	}
+
+	public void setNumInscricao(long numInscricao) {
+		this.numInscricao = numInscricao;
 	}
 	
 }

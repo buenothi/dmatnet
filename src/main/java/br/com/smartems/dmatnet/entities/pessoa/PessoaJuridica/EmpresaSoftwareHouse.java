@@ -13,7 +13,7 @@ public class EmpresaSoftwareHouse implements Serializable {
 	private long numCNPJ;
 	private String razaoSocial;
 	private String nomeContato;
-	private long telFixo;
+	private String telFixo;
 	private String email;
 	
 	private static final long serialVersionUID = 1L;
@@ -55,11 +55,11 @@ public class EmpresaSoftwareHouse implements Serializable {
 		this.nomeContato = nomeContato;
 	}
 
-	public long getTelFixo() {
+	public String getTelFixo() {
 		return telFixo;
 	}
 
-	public void setTelFixo(long telFixo) {
+	public void setTelFixo(String telFixo) {
 		this.telFixo = telFixo;
 	}
 

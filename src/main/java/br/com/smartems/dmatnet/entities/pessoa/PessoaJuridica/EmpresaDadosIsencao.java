@@ -31,8 +31,8 @@ public class EmpresaDadosIsencao implements Serializable{
 	private int paginaDOU;	
 	private String nomeResponsavel;	
 	private long cpfResponsavel;	
-	private long telFixoResponsavel;	
-	private long telCelularResponsavel;	
+	private String telFixoResponsavel;	
+	private String telCelularResponsavel;	
 	private String email;
 	
 	@OneToOne
@@ -134,19 +134,19 @@ public class EmpresaDadosIsencao implements Serializable{
 		this.cpfResponsavel = cpfResponsavel;
 	}
 
-	public long getTelFixoResponsavel() {
+	public String getTelFixoResponsavel() {
 		return telFixoResponsavel;
 	}
 
-	public void setTelFixoResponsavel(long telFixoResponsavel) {
+	public void setTelFixoResponsavel(String telFixoResponsavel) {
 		this.telFixoResponsavel = telFixoResponsavel;
 	}
 
-	public long getTelCelularResponsavel() {
+	public String getTelCelularResponsavel() {
 		return telCelularResponsavel;
 	}
 
-	public void setTelCelularResponsavel(long telCelularResponsavel) {
+	public void setTelCelularResponsavel(String telCelularResponsavel) {
 		this.telCelularResponsavel = telCelularResponsavel;
 	}
 

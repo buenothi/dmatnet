@@ -30,6 +30,8 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 	@JoinColumn(name="empresa_ID")
 	private List<LocalTrabalhoEntity> locais;
 	
+	private String tipoEstabelecimento;
+	
 	private static final long serialVersionUID = 1L;
 
 	public EmpresaEntity() {
@@ -67,6 +69,14 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 
 	public void setLocais(List<LocalTrabalhoEntity> locais) {
 		this.locais = locais;
+	}
+
+	public String getTipoEstabelecimento() {
+		return tipoEstabelecimento;
+	}
+
+	public void setTipoEstabelecimento(String tipoEstabelecimento) {
+		this.tipoEstabelecimento = tipoEstabelecimento;
 	}
   
 }

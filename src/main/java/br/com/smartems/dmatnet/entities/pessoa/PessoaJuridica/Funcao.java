@@ -18,6 +18,7 @@ public class Funcao implements Serializable {
 	private long codFuncaoEsocial; //Código eSocial do Cargo 
 	private String funcaoNome;
 	private String funcaoDescricao;
+	private long cbo;
 		
 	private static final long serialVersionUID = 1L;
 
@@ -55,4 +56,12 @@ public class Funcao implements Serializable {
 		this.funcaoDescricao = funcaoDescricao;
 	}
 
+	public long getCbo() {
+		return cbo;
+	}
+
+	public void setCbo(long cbo) {
+		this.cbo = cbo;
+	}
+	
 }
