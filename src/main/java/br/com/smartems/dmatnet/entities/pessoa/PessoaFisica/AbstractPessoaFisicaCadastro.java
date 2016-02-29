@@ -8,6 +8,7 @@ import javax.persistence.*;
 public abstract class AbstractPessoaFisicaCadastro implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idPessoaCadastro;
 	private char sexo;
 	private int racaCor;

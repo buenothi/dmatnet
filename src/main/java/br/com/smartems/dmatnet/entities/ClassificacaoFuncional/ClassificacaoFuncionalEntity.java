@@ -3,8 +3,9 @@ package br.com.smartems.dmatnet.entities.ClassificacaoFuncional;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -13,6 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import br.com.smartems.dmatnet.entities.LevAmbientais.GHE;
+import br.com.smartems.dmatnet.entities.LocalTrabalho.LocalTrabalhoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.Funcao;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.Setor;
 
@@ -21,6 +23,7 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.Setor;
 public class ClassificacaoFuncionalEntity implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
 	@Temporal(TemporalType.DATE)
@@ -29,15 +32,19 @@ public class ClassificacaoFuncionalEntity implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dataTermino;
 	
-	@OneToOne(cascade={CascadeType.MERGE})
+	@OneToOne
+	@JoinColumn(name="local_ID")
+	private LocalTrabalhoEntity local;
+	
+	@OneToOne
 	@JoinColumn(name="setor_ID")
 	private Setor setor;
 	
-	@OneToOne(cascade={CascadeType.MERGE})
+	@OneToOne
 	@JoinColumn(name="funcao_ID")
 	private Funcao funcao;
 	
-	@OneToOne(cascade={CascadeType.MERGE})
+	@OneToOne
 	@JoinColumn(name="ghe_ID")
 	private GHE ghe;
 	

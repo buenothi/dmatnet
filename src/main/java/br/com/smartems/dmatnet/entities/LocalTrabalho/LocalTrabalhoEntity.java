@@ -14,7 +14,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import br.com.smartems.dmatnet.entities.LevAmbientais.GHE;
-import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.Funcao;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.Setor;
 
@@ -43,10 +42,6 @@ public class LocalTrabalhoEntity implements Serializable{
 	@OneToMany(cascade={CascadeType.ALL})
 	@JoinColumn(name="empresa_ID")
 	private List<Funcao> funcoes;
-	
-	@OneToMany
-	@JoinColumn(name="localTrabalho_ID")
-	private List<TrabalhadorEntity> trabalhadores;
 	
 	private String descricaoAmbiente;
 	
@@ -112,14 +107,6 @@ public class LocalTrabalhoEntity implements Serializable{
 
 	public void setFuncoes(List<Funcao> funcoes) {
 		this.funcoes = funcoes;
-	}
-
-	public List<TrabalhadorEntity> getTrabalhadores() {
-		return trabalhadores;
-	}
-
-	public void setTrabalhadores(List<TrabalhadorEntity> trabalhadores) {
-		this.trabalhadores = trabalhadores;
 	}
 
 	public String getDescricaoAmbiente() {

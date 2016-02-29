@@ -17,7 +17,7 @@ public class LevantamentoAmbientalEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	private long idLevAmbiental;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dataInicio;
@@ -27,36 +27,39 @@ public class LevantamentoAmbientalEntity implements Serializable {
 	
 	private String observacoes;
 	
+//	private List<RiscoAmbientalIdentificado> RiscosAmbientaisIdentificados;
+	
 	private static final long serialVersionUID = 1L;
 
 	public LevantamentoAmbientalEntity() {
 		super();
-	}   
+	}
+	
 	public long getId() {
-		return this.id;
+		return this.idLevAmbiental;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}   
+	public void setId(long idLevAmbiental) {
+		this.idLevAmbiental = idLevAmbiental;
+	}
+	
 	public Date getDataInicio() {
 		return this.dataInicio;
 	}
-
 	public void setDataInicio(Date dataInicio) {
 		this.dataInicio = dataInicio;
-	}   
+	}
+	
 	public Date getDataTermino() {
 		return this.dataTermino;
 	}
-
 	public void setDataTermino(Date dataTermino) {
 		this.dataTermino = dataTermino;
-	}   
+	}
+	
 	public String getObservacoes() {
 		return this.observacoes;
 	}
-
 	public void setObservacoes(String observacoes) {
 		this.observacoes = observacoes;
 	}
