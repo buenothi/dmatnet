@@ -14,6 +14,10 @@ public class EPIEntity extends AbstractMedidaControleEntity implements Serializa
 	@JoinColumn(name="epi_ID")
 	private List<CaEPIEntity> listaCA;
 	
+	@ManyToMany(mappedBy="epis")
+	private List<RiscoAmbientalIdentificadoEntity> riscosAmbientaisIdentificados;
+	
+	
 	private static final long serialVersionUID = 1L;
 
 	public EPIEntity() {
@@ -25,6 +29,14 @@ public class EPIEntity extends AbstractMedidaControleEntity implements Serializa
 	}
 	public void setListaCA(List<CaEPIEntity> listaCA) {
 		this.listaCA = listaCA;
+	}
+
+	public List<RiscoAmbientalIdentificadoEntity> getRiscosAmbientaisIdentificados() {
+		return riscosAmbientaisIdentificados;
+	}
+
+	public void setRiscosAmbientaisIdentificados(List<RiscoAmbientalIdentificadoEntity> riscosAmbientaisIdentificados) {
+		this.riscosAmbientaisIdentificados = riscosAmbientaisIdentificados;
 	}
    
 }

@@ -2,11 +2,14 @@ package br.com.smartems.dmatnet.entities.LevAmbientais;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,19 +30,20 @@ public class LevantamentoAmbientalEntity implements Serializable {
 	
 	private String observacoes;
 	
-//	private List<RiscoAmbientalIdentificado> RiscosAmbientaisIdentificados;
+	@OneToMany
+	@JoinColumn(name="levAmbiental_ID")
+	private List<RiscoAmbientalIdentificadoEntity> riscosAmbientais;
 	
 	private static final long serialVersionUID = 1L;
 
 	public LevantamentoAmbientalEntity() {
 		super();
 	}
-	
-	public long getId() {
-		return this.idLevAmbiental;
-	}
 
-	public void setId(long idLevAmbiental) {
+	public long getIdLevAmbiental() {
+		return idLevAmbiental;
+	}
+	public void setIdLevAmbiental(long idLevAmbiental) {
 		this.idLevAmbiental = idLevAmbiental;
 	}
 	
@@ -62,6 +66,13 @@ public class LevantamentoAmbientalEntity implements Serializable {
 	}
 	public void setObservacoes(String observacoes) {
 		this.observacoes = observacoes;
+	}
+
+	public List<RiscoAmbientalIdentificadoEntity> getRiscosAmbientais() {
+		return riscosAmbientais;
+	}
+	public void setRiscosAmbientais(List<RiscoAmbientalIdentificadoEntity> riscosAmbientais) {
+		this.riscosAmbientais = riscosAmbientais;
 	}
    
 }
