@@ -1,0 +1,16 @@
+package br.com.smartems.dmatnet.entities.LevAmbientais;
+
+import java.io.Serializable;
+import javax.persistence.*;
+
+@Entity
+@Table(name="tbl_EPC")
+public class EPCEntity extends AbstractMedidaControleEntity implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+
+	public EPCEntity() {
+		super();
+	}
+   
+}
