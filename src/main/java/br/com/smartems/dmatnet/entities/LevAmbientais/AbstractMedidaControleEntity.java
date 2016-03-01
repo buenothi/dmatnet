@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @MappedSuperclass
 @Inheritance(strategy=InheritanceType.JOINED)
-public abstract class AbstractMedidaControleEntity implements Serializable, IMedidasControle {
+public abstract class AbstractMedidaControleEntity implements Serializable {
 	   
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
