@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Table(name="tbl_MedidasAdministrativasEntity")
+@Table(name="tbl_MedidasAdministrativas")
 public class MedidasAdministrativasEntity extends AbstractMedidaControleEntity implements Serializable {
 
 	
