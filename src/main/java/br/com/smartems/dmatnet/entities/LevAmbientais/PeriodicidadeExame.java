@@ -1,4 +1,4 @@
-package br.com.smartems.dmatnet.entities.pessoa;
+package br.com.smartems.dmatnet.entities.LevAmbientais;
 
 import java.io.Serializable;
 import java.lang.String;
@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class PeriodicidadeExame implements Serializable {
 	   
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idPeriodicidade;
 	private String descricaoPeriodicidade;
 	

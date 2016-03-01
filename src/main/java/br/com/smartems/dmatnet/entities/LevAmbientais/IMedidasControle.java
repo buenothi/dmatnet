@@ -2,8 +2,8 @@ package br.com.smartems.dmatnet.entities.LevAmbientais;
 
 public interface IMedidasControle {
 
-	long getIdMedida();
-	void setIdMedida(long idMedida);
+	long getId();
+	void setId(long idMedida);
 	
 	String getNome();
 	void setNome(String nome);

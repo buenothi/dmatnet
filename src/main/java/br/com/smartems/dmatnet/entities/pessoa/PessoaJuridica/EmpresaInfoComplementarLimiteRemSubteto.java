@@ -8,6 +8,7 @@ import javax.persistence.*;
 public class EmpresaInfoComplementarLimiteRemSubteto implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idEmpresaLimiteRemSubteto;
 	private int codSubteto;
 	private double valorSubtete;

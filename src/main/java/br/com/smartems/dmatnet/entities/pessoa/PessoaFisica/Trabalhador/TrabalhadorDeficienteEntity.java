@@ -8,6 +8,7 @@ import javax.persistence.*;
 public class TrabalhadorDeficienteEntity implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idPessoa;
 	private boolean defFisica;
 	private boolean defVisual;

@@ -1,4 +1,4 @@
-package br.com.smartems.dmatnet.entities.pessoa;
+package br.com.smartems.dmatnet.entities.LevAmbientais;
 
 import java.io.Serializable;
 import java.lang.String;
@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class ExameMedicoEntity implements Serializable {
 	   
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	private String nome;
 	private String descricao;

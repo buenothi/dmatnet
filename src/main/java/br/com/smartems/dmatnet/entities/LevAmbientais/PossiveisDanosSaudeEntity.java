@@ -5,11 +5,11 @@ import java.lang.String;
 import javax.persistence.*;
 
 @Entity
-@Table(name="tbl_PossiveisDanosSaudeEntity")
+@Table(name="tbl_PossiveisDanosSaude")
 public class PossiveisDanosSaudeEntity implements Serializable {
 	   
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String nome;
 	private String descricao;

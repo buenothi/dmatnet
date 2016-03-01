@@ -8,6 +8,7 @@ import javax.persistence.*;
 public class EmpresaFAP implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idEmpresaFAP;
 	private double valorFAP;
 	private int tipoProcessoFAP;

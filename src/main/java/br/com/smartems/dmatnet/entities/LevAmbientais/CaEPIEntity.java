@@ -7,17 +7,26 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="tbl_CaEPI")
-public class CaEPI implements Serializable {
+public class CaEPIEntity implements Serializable {
 	   
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long numCA;
 	private String nome;
 	private String descricao;
+	
+	@Basic(fetch=FetchType.LAZY)
 	private byte[] imagemCA;
+	
+	@Temporal(TemporalType.DATE)
 	private Date dataInicioValidade;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dataFimValidade;
+	
 	private static final long serialVersionUID = 1L;
 
-	public CaEPI() {
+	public CaEPIEntity() {
 		super();
 	}   
 	public long getNumCA() {
@@ -54,6 +63,14 @@ public class CaEPI implements Serializable {
 
 	public void setDataInicioValidade(Date dataInicioValidade) {
 		this.dataInicioValidade = dataInicioValidade;
+	}
+	
+	public Date getDataFimValidade() {
+		return dataFimValidade;
+	}
+	
+	public void setDataFimValidade(Date dataFimValidade) {
+		this.dataFimValidade = dataFimValidade;
 	}
    
 }

@@ -9,9 +9,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="tbl_GHE")
-public class GHE implements Serializable {
+public class GHEEntity implements Serializable {
 	   
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idGHE;
 	private String nomeGHE;
 	
@@ -32,7 +33,7 @@ public class GHE implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	public GHE() {
+	public GHEEntity() {
 		super();
 	}   
 	

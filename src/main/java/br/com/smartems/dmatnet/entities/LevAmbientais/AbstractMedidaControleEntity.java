@@ -6,37 +6,37 @@ import javax.persistence.*;
 
 @MappedSuperclass
 @Inheritance(strategy=InheritanceType.JOINED)
-public abstract class AbstractMedidaControle implements Serializable, IMedidasControle {
+public abstract class AbstractMedidaControleEntity implements Serializable, IMedidasControle {
 	   
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long idMedida;
+	private long id;
 	private String nome;
 	private String descricao;
 	
 	private static final long serialVersionUID = 1L;
 
-	public AbstractMedidaControle() {
+	public AbstractMedidaControleEntity() {
 		super();
 	}   
-	public long getIdMedida() {
-		return this.idMedida;
+	
+	public long getId() {
+		return this.id;
 	}
-
-	public void setIdMedida(long idMedida) {
-		this.idMedida = idMedida;
+	public void setId(long id) {
+		this.id = id;
 	}   
+	
 	public String getNome() {
 		return this.nome;
 	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}   
+	
 	public String getDescricao() {
 		return this.descricao;
 	}
-
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}

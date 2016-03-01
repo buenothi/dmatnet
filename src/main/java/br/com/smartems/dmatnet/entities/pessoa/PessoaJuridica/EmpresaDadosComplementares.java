@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class EmpresaDadosComplementares implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idEmpresaDadosComplementares;
 	private int codSitucaoPJ;
 	private int codSituacaoPF;

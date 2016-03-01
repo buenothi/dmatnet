@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -13,7 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import br.com.smartems.dmatnet.entities.LevAmbientais.GHE;
+import br.com.smartems.dmatnet.entities.LevAmbientais.GHEEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.Funcao;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.Setor;
 
@@ -22,6 +24,7 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.Setor;
 public class LocalTrabalhoEntity implements Serializable{
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idLocalTrabalho;
 	private long codAmbienteEsocial;
 	
@@ -33,7 +36,7 @@ public class LocalTrabalhoEntity implements Serializable{
 	
 	@OneToMany(cascade={CascadeType.ALL})
 	@JoinColumn(name="local_ID")
-	private List<GHE> ghes;
+	private List<GHEEntity> ghes;
 	
 	@OneToMany(cascade={CascadeType.ALL})
 	@JoinColumn(name="empresa_ID")
@@ -85,11 +88,11 @@ public class LocalTrabalhoEntity implements Serializable{
 		this.dataFimValidade = dataFimValidade;
 	}
 
-	public List<GHE> getGhes() {
+	public List<GHEEntity> getGhes() {
 		return ghes;
 	}
 
-	public void setGhes(List<GHE> ghes) {
+	public void setGhes(List<GHEEntity> ghes) {
 		this.ghes = ghes;
 	}
 

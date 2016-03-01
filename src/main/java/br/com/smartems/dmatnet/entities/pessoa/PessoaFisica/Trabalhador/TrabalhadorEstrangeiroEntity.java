@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class TrabalhadorEstrangeiroEntity implements Serializable {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idTrabalhador;
 	
 	@Temporal(TemporalType.DATE)

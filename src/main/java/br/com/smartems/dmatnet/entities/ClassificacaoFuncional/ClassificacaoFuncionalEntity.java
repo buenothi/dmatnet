@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import br.com.smartems.dmatnet.entities.LevAmbientais.GHE;
+import br.com.smartems.dmatnet.entities.LevAmbientais.GHEEntity;
 import br.com.smartems.dmatnet.entities.LocalTrabalho.LocalTrabalhoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.Funcao;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.Setor;
@@ -23,7 +23,7 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.Setor;
 public class ClassificacaoFuncionalEntity implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	
 	@Temporal(TemporalType.DATE)
@@ -46,7 +46,7 @@ public class ClassificacaoFuncionalEntity implements Serializable {
 	
 	@OneToOne
 	@JoinColumn(name="ghe_ID")
-	private GHE ghe;
+	private GHEEntity ghe;
 	
 	private static final long serialVersionUID = 1L;
 
@@ -96,11 +96,11 @@ public class ClassificacaoFuncionalEntity implements Serializable {
 		this.funcao = funcao;
 	}
 
-	public GHE getGhe() {
+	public GHEEntity getGhe() {
 		return ghe;
 	}
 
-	public void setGhe(GHE ghe) {
+	public void setGhe(GHEEntity ghe) {
 		this.ghe = ghe;
 	}
 
