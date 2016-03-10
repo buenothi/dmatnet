@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
-import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 
 @Stateless
@@ -27,7 +26,7 @@ public class EmpresaFacade implements EmpresaFacadeLocal {
 	}
 
 	@Override
-	public UsuarioEntity update(EmpresaEntity entity) {
+	public EmpresaEntity update(EmpresaEntity entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}
