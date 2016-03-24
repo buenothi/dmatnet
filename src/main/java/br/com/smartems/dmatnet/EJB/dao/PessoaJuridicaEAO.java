@@ -11,7 +11,6 @@ public class PessoaJuridicaEAO extends AbstractEAO<AbstractPessoaJuridicaEntity,
 
     public PessoaJuridicaEAO() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 }
