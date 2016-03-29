@@ -15,6 +15,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.AbstractPessoaFisicaEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 
 @Entity
 @Table(name="tbl_usuarios")
@@ -22,7 +23,7 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.AbstractPessoaFisica
 	@NamedQuery(name="Usuario.logarUsuario", 
 			query="SELECT u FROM UsuarioEntity u WHERE u.login=:login AND u.senha=:senha"),
 	@NamedQuery(name="Usuario.listarUsuariosFilhos", 
-			query="SELECT u FROM UsuarioEntity u WHERE u.idUsuarioPai=:idUsuarioPai")
+			query="SELECT u FROM UsuarioEntity u WHERE u.idUsuarioPai=:idUsuarioPai"),
 })
 public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Serializable {
 
@@ -35,6 +36,12 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 		joinColumns=@JoinColumn(name="usuario_ID"),
 		inverseJoinColumns=@JoinColumn(name="grupo_ID"))
 	private List<UsuariosGrupoEntity> grupos;
+	
+	@ManyToMany
+	@JoinTable(name="tbl_usuarioEmpresas_joinTable",
+		joinColumns=@JoinColumn(name="usuario_ID"),
+		inverseJoinColumns=@JoinColumn(name="empresa_ID"))
+	private List<EmpresaEntity> empresasGerenciadas;
 	
 	private long idUsuarioPai;
 
@@ -79,6 +86,14 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 
 	public void setGrupos(List<UsuariosGrupoEntity> grupos) {
 		this.grupos = grupos;
+	}
+
+	public List<EmpresaEntity> getEmpresasGerenciadas() {
+		return empresasGerenciadas;
+	}
+
+	public void setEmpresasGerenciadas(List<EmpresaEntity> empresasGerenciadas) {
+		this.empresasGerenciadas = empresasGerenciadas;
 	}
 
 	public long getIdUsuarioPai() {

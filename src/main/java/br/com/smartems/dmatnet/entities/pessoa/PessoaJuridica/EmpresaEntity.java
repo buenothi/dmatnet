@@ -6,11 +6,13 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import br.com.smartems.dmatnet.entities.LocalTrabalho.LocalTrabalhoEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 
 @Entity
 @Table(name="tbl_Empresa")
@@ -29,6 +31,9 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 	@OneToMany(cascade={CascadeType.ALL})
 	@JoinColumn(name="empresa_ID")
 	private List<LocalTrabalhoEntity> locais;
+	
+	@ManyToMany(mappedBy="empresasGerenciadas")
+	private List<UsuarioEntity> usuarios;
 	
 	private String tipoEstabelecimento;
 	
@@ -77,6 +82,14 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 
 	public void setTipoEstabelecimento(String tipoEstabelecimento) {
 		this.tipoEstabelecimento = tipoEstabelecimento;
+	}
+
+	public List<UsuarioEntity> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<UsuarioEntity> usuarios) {
+		this.usuarios = usuarios;
 	}
   
 }

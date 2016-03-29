@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 @Stateless
@@ -20,27 +21,27 @@ public abstract class AbstractEAO <T, PK> implements IAbstractDAO<T, PK>{
 		
 	}
 
-	public T read(PK pk) {
+	public T read(PK pk)  throws NoResultException {
 		return (T) entityManager.find(getTypeClass(), pk);
 	}
 
-	public void create(T entity) {
+	public void create(T entity) throws NoResultException {
 		entityManager.persist(entity);
 	}
 
-	public T update(T entity) {
+	public T update(T entity) throws NoResultException {
 		return this.entityManager.merge(entity);
 	}
 
-	public void delete(T entity) {
+	public void delete(T entity) throws NoResultException {
 		entityManager.remove(entity);
 	}
 
-	public List<T> findAll() {
+	public List<T> findAll() throws NoResultException {
 		return entityManager.createQuery(("FROM " + getTypeClass().getName())).getResultList();
 	}
 
-	private Class<?> getTypeClass() {
+	private Class<?> getTypeClass() throws NoResultException {
 		Class<?> clazz = (Class<?>) ((ParameterizedType) this.getClass().getGenericSuperclass())
 				.getActualTypeArguments()[1];
 		return clazz;
