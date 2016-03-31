@@ -23,7 +23,7 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 	@NamedQuery(name="Usuario.logarUsuario", 
 			query="SELECT u FROM UsuarioEntity u WHERE u.login=:login AND u.senha=:senha"),
 	@NamedQuery(name="Usuario.listarUsuariosFilhos", 
-			query="SELECT u FROM UsuarioEntity u WHERE u.idUsuarioPai=:idUsuarioPai"),
+			query="SELECT u FROM UsuarioEntity u WHERE u.idUsuarioPai=:idUsuarioPai")
 })
 public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Serializable {
 
