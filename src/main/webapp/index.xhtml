@@ -9,12 +9,11 @@
 
 <h:head>
 	<title><h:outputText value="SMARTEMS" /></title>
-	<f:loadBundle var="msgs" basename="resources.messages_en_US"/>
 </h:head>
 
 <h:body onload="PF('dlgLogin').show();">
 
-	<p:dialog header="#{msgs.Login}" modal="true" widgetVar="dlgLogin">
+	<p:dialog header="Bem vindo ao SMARTEMS - Login" modal="true" widgetVar="dlgLogin">
 		<h:panelGrid columns="2">
 			<h:graphicImage value="/images/Logo SMARTEMS.jpg" />
 			<h:panelGrid columns="2" cellpadding="5px">
