@@ -2,24 +2,30 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title><h:outputText value="DMATNET" /></title>
+	<title><h:outputText value="DMATNET" /></title>
 </h:head>
 
 <h:body onload="PF('dlgLogin').show();">
 
-<h:panelGrid columns="1" cellpadding="5">
-    <p:commandButton value="Teste" type="button" />
-</h:panelGrid>
-
-<p:dialog header="DMATNET - Login" modal="true" widgetVar="dlgLogin">
-	<h:outputText value="This is a Modal Dialog." />
-</p:dialog>
+	<p:dialog header="DMATNET - Login" modal="true" widgetVar="dlgLogin">
+		<h:panelGrid columns="2">
+			<h:graphicImage value="/images/Logo SMARTEMS.jpg" />
+			<h:panelGrid columns="2" cellpadding="5px">
+				<h:outputLabel value="Login" />
+				<h:inputText id="iptLogin" />
+				<h:outputLabel value="Senha" />
+				<h:inputSecret id="iptSenha" />
+				<p:spacer width="100%" />
+				<p:commandButton value="Entrar" type="button" />
+			</h:panelGrid>
+		</h:panelGrid>
+	</p:dialog>
 
 </h:body>
 </html>
