@@ -4,14 +4,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:ui="http://java.sun.com/jsf/facelets"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core">
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
 
-<head>
-    <title><h:outputText value="Teste JSF Funcionando" /></title>
-</head>
+<h:head>
+    <title><h:outputText value="DMATNET" /></title>
+</h:head>
 
-<body>
-<!-- <h3><h:outputText value="#{msg.welcomeHeading}" /></h3> -->
-<!-- <p><h:outputText value="#{msg.welcomeMessage}" /></p> -->
-</body>
+<h:body onload="PF('dlgLogin').show();">
+
+<h:panelGrid columns="1" cellpadding="5">
+    <p:commandButton value="Teste" type="button" />
+</h:panelGrid>
+
+<p:dialog header="DMATNET - Login" modal="true" widgetVar="dlgLogin">
+	<h:outputText value="This is a Modal Dialog." />
+</p:dialog>
+
+</h:body>
 </html>
