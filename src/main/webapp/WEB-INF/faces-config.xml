@@ -7,7 +7,7 @@
    <var>msgs</var>
   </resource-bundle>
   <locale-config>
-   <default-locale>pt_BR</default-locale>
+   <default-locale>en_US</default-locale>
    <supported-locale>en_US</supported-locale>
   </locale-config>
  </application>
