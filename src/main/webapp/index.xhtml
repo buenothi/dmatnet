@@ -8,19 +8,21 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title><h:outputText value="SMARTEMS" /></title>
+	<title><h:outputText value="smartEMS" /></title>
+	<link rel="stylesheet" href="css/styles.css" />
 </h:head>
 
-<h:body onload="PF('dlgLogin').show();">
+<h:body onload="PF('dlgLogin').show();" styleClass="bkgndLogin">
 
-	<p:dialog header="Bem vindo ao SMARTEMS - Login" modal="true" widgetVar="dlgLogin">
+	<p:dialog header="Bem vindo ao smartEMS - Login" 
+		widgetVar="dlgLogin" draggable="false" closable="false" resizable="false" responsive="true">
 		<h:panelGrid columns="2">
 			<h:graphicImage value="/images/Logo SMARTEMS.jpg" />
 			<h:panelGrid columns="2" cellpadding="5px">
 				<h:outputLabel value="Login" />
-				<h:inputText id="iptLogin" />
+				<p:inputText id="iptLogin" />
 				<h:outputLabel value="Senha" />
-				<h:inputSecret id="iptSenha" />
+				<p:password id="iptSenha" />
 				<p:spacer width="100%" />
 				<p:commandButton value="Entrar" type="button" />
 			</h:panelGrid>
