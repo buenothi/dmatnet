@@ -43,7 +43,7 @@ public class EnderecoEntity implements Serializable {
 	}
 
 	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
+		this.logradouro = logradouro.toUpperCase();
 	}
 
 	public String getLogradouroNome() {
@@ -51,7 +51,7 @@ public class EnderecoEntity implements Serializable {
 	}
 
 	public void setLogradouroNome(String logradouroNome) {
-		this.logradouroNome = logradouroNome;
+		this.logradouroNome = logradouroNome.toUpperCase();
 	}   
 	
 	public int getLogradouroNumero() {
@@ -66,18 +66,18 @@ public class EnderecoEntity implements Serializable {
 		return this.logradouroComplemento;
 	}
 
+	public void setLogradouroComplemento(String logradouroComplemento) {
+		this.logradouroComplemento = logradouroComplemento.toUpperCase();
+	}
+
 	public String getBairro() {
 		return bairro;
 	}
 
 	public void setBairro(String bairro) {
-		this.bairro = bairro;
+		this.bairro = bairro.toUpperCase();
 	}
 
-	public void setLogradouroComplemento(String logradouroComplemento) {
-		this.logradouroComplemento = logradouroComplemento;
-	}   
-	
 	public String getCep() {
 		return this.cep;
 	}
@@ -98,7 +98,7 @@ public class EnderecoEntity implements Serializable {
 	}
 	
 	public void setCidade(String cidade) {
-		this.cidade = cidade;
+		this.cidade = cidade.toUpperCase();
 	}
 	
 	public String getEstado() {
@@ -106,7 +106,7 @@ public class EnderecoEntity implements Serializable {
 	}
 	
 	public void setEstado(String estado) {
-		this.estado = estado;
+		this.estado = estado.toUpperCase();
 	}
 	
 	public String getLogradouroTipo() {
@@ -114,7 +114,7 @@ public class EnderecoEntity implements Serializable {
 	}
 	
 	public void setLogradouroTipo(String logradouroTipo) {
-		this.logradouroTipo = logradouroTipo;
+		this.logradouroTipo = logradouroTipo.toUpperCase();
 	}
 	
 	public String getLogradouroPais() {
@@ -122,34 +122,46 @@ public class EnderecoEntity implements Serializable {
 	}
 
 	public void setLogradouroPais(String logradouroPais) {
-		this.logradouroPais = logradouroPais;
+		this.logradouroPais = logradouroPais.toUpperCase();
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "EnderecoEntity [idEndereco=" + idEndereco + ", logradouroNome=" + logradouroNome + ", logradouroNumero="
-				+ logradouroNumero + ", logradouroComplemento=" + logradouroComplemento + "]";
+		return "EnderecoEntity [logradouro=" + logradouro + ", logradouroNome=" + logradouroNome + ", logradouroNumero="
+				+ logradouroNumero + ", logradouroComplemento=" + logradouroComplemento + ", bairro=" + bairro
+				+ ", cidade=" + cidade + ", estado=" + estado + ", logradouroTipo=" + logradouroTipo
+				+ ", getIdEndereco()=" + getIdEndereco() + ", getLogradouro()=" + getLogradouro()
+				+ ", getLogradouroNome()=" + getLogradouroNome() + ", getLogradouroNumero()=" + getLogradouroNumero()
+				+ ", getLogradouroComplemento()=" + getLogradouroComplemento() + ", getBairro()=" + getBairro()
+				+ ", getCep()=" + getCep() + ", getCaixaPostal()=" + getCaixaPostal() + ", getCidade()=" + getCidade()
+				+ ", getEstado()=" + getEstado() + ", getLogradouroTipo()=" + getLogradouroTipo()
+				+ ", getLogradouroPais()=" + getLogradouroPais() + ", getClass()=" + getClass() + ", hashCode()="
+				+ hashCode() + ", toString()=" + super.toString() + "]";
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((bairro == null) ? 0 : bairro.hashCode());
 		result = prime * result + ((caixaPostal == null) ? 0 : caixaPostal.hashCode());
 		result = prime * result + ((cep == null) ? 0 : cep.hashCode());
 		result = prime * result + ((cidade == null) ? 0 : cidade.hashCode());
 		result = prime * result + ((estado == null) ? 0 : estado.hashCode());
 		result = prime * result + (int) (idEndereco ^ (idEndereco >>> 32));
+		result = prime * result + ((logradouro == null) ? 0 : logradouro.hashCode());
 		result = prime * result + ((logradouroComplemento == null) ? 0 : logradouroComplemento.hashCode());
 		result = prime * result + ((logradouroNome == null) ? 0 : logradouroNome.hashCode());
 		result = prime * result + logradouroNumero;
+		result = prime * result + ((logradouroPais == null) ? 0 : logradouroPais.hashCode());
+		result = prime * result + ((logradouroTipo == null) ? 0 : logradouroTipo.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -159,6 +171,11 @@ public class EnderecoEntity implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		EnderecoEntity other = (EnderecoEntity) obj;
+		if (bairro == null) {
+			if (other.bairro != null)
+				return false;
+		} else if (!bairro.equals(other.bairro))
+			return false;
 		if (caixaPostal == null) {
 			if (other.caixaPostal != null)
 				return false;
@@ -181,6 +198,11 @@ public class EnderecoEntity implements Serializable {
 			return false;
 		if (idEndereco != other.idEndereco)
 			return false;
+		if (logradouro == null) {
+			if (other.logradouro != null)
+				return false;
+		} else if (!logradouro.equals(other.logradouro))
+			return false;
 		if (logradouroComplemento == null) {
 			if (other.logradouroComplemento != null)
 				return false;
@@ -192,6 +214,16 @@ public class EnderecoEntity implements Serializable {
 		} else if (!logradouroNome.equals(other.logradouroNome))
 			return false;
 		if (logradouroNumero != other.logradouroNumero)
+			return false;
+		if (logradouroPais == null) {
+			if (other.logradouroPais != null)
+				return false;
+		} else if (!logradouroPais.equals(other.logradouroPais))
+			return false;
+		if (logradouroTipo == null) {
+			if (other.logradouroTipo != null)
+				return false;
+		} else if (!logradouroTipo.equals(other.logradouroTipo))
 			return false;
 		return true;
 	}

@@ -40,7 +40,7 @@ public class TelefoneEntity implements Serializable {
 	}
 	
 	public void setTipoTelefone(String tipoTelefone) {
-		this.tipoTelefone = tipoTelefone;
+		this.tipoTelefone = tipoTelefone.toUpperCase();
 	}
 	
 	public static long getSerialversionuid() {
@@ -86,5 +86,5 @@ public class TelefoneEntity implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }

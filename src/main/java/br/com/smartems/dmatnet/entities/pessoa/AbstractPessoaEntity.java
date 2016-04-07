@@ -51,7 +51,7 @@ public abstract class AbstractPessoaEntity implements Serializable {
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.nome = nome.toUpperCase();
 	}
 
 	public List<EnderecoEntity> getEnderecos() {
