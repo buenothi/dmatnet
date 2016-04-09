@@ -26,7 +26,7 @@ public class LocalTrabalhoEntity implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idLocalTrabalho;
-	private long codAmbienteEsocial;
+	private Long codAmbienteEsocial;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dataInicioValidade;
@@ -52,7 +52,7 @@ public class LocalTrabalhoEntity implements Serializable{
 	
 	private int tipoInscricao;//conforme eSocial
 	
-	private long numInscricao;
+	private Long numInscricao;
 
 	private static final long serialVersionUID = 1L;
 
@@ -64,11 +64,11 @@ public class LocalTrabalhoEntity implements Serializable{
 		this.idLocalTrabalho = idLocalTrabalho;
 	}
 
-	public long getCodAmbienteEsocial() {
+	public Long getCodAmbienteEsocial() {
 		return codAmbienteEsocial;
 	}
 
-	public void setCodAmbienteEsocial(long codAmbienteEsocial) {
+	public void setCodAmbienteEsocial(Long codAmbienteEsocial) {
 		this.codAmbienteEsocial = codAmbienteEsocial;
 	}
 
@@ -136,11 +136,11 @@ public class LocalTrabalhoEntity implements Serializable{
 		this.tipoInscricao = tipoInscricao;
 	}
 
-	public long getNumInscricao() {
+	public Long getNumInscricao() {
 		return numInscricao;
 	}
 
-	public void setNumInscricao(long numInscricao) {
+	public void setNumInscricao(Long numInscricao) {
 		this.numInscricao = numInscricao;
 	}
 	

@@ -16,7 +16,7 @@ public class EmpresaDadosComplementares implements Serializable {
 	private int codSituacaoPF;
 	private boolean possuiRPPS;
 	private String ufEnteFederativo;
-	private long codMunicipioIBGE;
+	private Long codMunicipioIBGE;
 	private int tipoPublicoAlvo;
 	private String descSegDif;
 	private double percAliquotaSeguradoRPPS;
@@ -78,11 +78,11 @@ public class EmpresaDadosComplementares implements Serializable {
 		this.ufEnteFederativo = ufEnteFederativo;
 	}
 
-	public long getCodMunicipioIBGE() {
+	public Long getCodMunicipioIBGE() {
 		return codMunicipioIBGE;
 	}
 
-	public void setCodMunicipioIBGE(long codMunicipioIBGE) {
+	public void setCodMunicipioIBGE(Long codMunicipioIBGE) {
 		this.codMunicipioIBGE = codMunicipioIBGE;
 	}
 

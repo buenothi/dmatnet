@@ -17,9 +17,9 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.AbstractPessoaFisica
 public class TrabalhadorCadastroEntity extends AbstractPessoaFisicaCadastro implements Serializable {
 
 	private long idEventoEsocial;
-	private long numNIS;
-	private long numCTPS;
-	private long numCTPSSerie;
+	private Long numNIS;
+	private Long numCTPS;
+	private Long numCTPSSerie;
 	private String ufCTPS;
 	private String numOrgaoClasse;
 
@@ -48,27 +48,27 @@ public class TrabalhadorCadastroEntity extends AbstractPessoaFisicaCadastro impl
 		this.idEventoEsocial = idEventoEsocial;
 	}
 
-	public long getNumNIS() {
+	public Long getNumNIS() {
 		return numNIS;
 	}
 
-	public void setNumNIS(long numNIS) {
+	public void setNumNIS(Long numNIS) {
 		this.numNIS = numNIS;
 	}
 
-	public long getNumCTPS() {
+	public Long getNumCTPS() {
 		return numCTPS;
 	}
 
-	public void setNumCTPS(long numCTPS) {
+	public void setNumCTPS(Long numCTPS) {
 		this.numCTPS = numCTPS;
 	}
 
-	public long getNumCTPSSerie() {
+	public Long getNumCTPSSerie() {
 		return numCTPSSerie;
 	}
 
-	public void setNumCTPSSerie(long numCTPSSerie) {
+	public void setNumCTPSSerie(Long numCTPSSerie) {
 		this.numCTPSSerie = numCTPSSerie;
 	}
 

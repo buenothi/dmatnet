@@ -11,7 +11,7 @@ public class EmpresaSoftwareHouse implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idEmpresaSoftwareHouse;
 	
-	private long numCNPJ;
+	private Long numCNPJ;
 	private String razaoSocial;
 	private String nomeContato;
 	private String telFixo;
@@ -32,11 +32,11 @@ public class EmpresaSoftwareHouse implements Serializable {
 		this.idEmpresaSoftwareHouse = idEmpresaSoftwareHouse;
 	}
 
-	public long getNumCNPJ() {
+	public Long getNumCNPJ() {
 		return numCNPJ;
 	}
 
-	public void setNumCNPJ(long numCNPJ) {
+	public void setNumCNPJ(Long numCNPJ) {
 		this.numCNPJ = numCNPJ;
 	}
 

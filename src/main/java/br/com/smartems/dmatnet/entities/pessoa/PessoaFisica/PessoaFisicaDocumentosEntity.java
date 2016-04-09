@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class PessoaFisicaDocumentosEntity implements Serializable {
 	
 	//registro de identificação civil (para atendimento do eSocial)
-	private long numRic; 
+	private Long numRic; 
 	private String ricOrgExpedidor;
 	
 	@Temporal(TemporalType.DATE)
@@ -21,15 +21,15 @@ public class PessoaFisicaDocumentosEntity implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date rgDataExpedicao;
 	
-	private long numCPF;
+	private Long numCPF;
 	
-	private long numRNE;
+	private Long numRNE;
 	private String rneOrgExpedidor;
 	
 	@Temporal(TemporalType.DATE)
 	private Date rneDataExpedicao;
 	
-	private long numCNH;
+	private Long numCNH;
 	private String cnhUf;
 	
 	@Temporal(TemporalType.DATE)
@@ -50,11 +50,11 @@ public class PessoaFisicaDocumentosEntity implements Serializable {
 		super();
 	}
 
-	public long getNumRic() {
+	public Long getNumRic() {
 		return numRic;
 	}
 
-	public void setNumRic(long numRic) {
+	public void setNumRic(Long numRic) {
 		this.numRic = numRic;
 	}
 
@@ -98,19 +98,19 @@ public class PessoaFisicaDocumentosEntity implements Serializable {
 		this.rgDataExpedicao = rgDataExpedicao;
 	}
 
-	public long getNumCPF() {
+	public Long getNumCPF() {
 		return numCPF;
 	}
 
-	public void setNumCPF(long numCPF) {
+	public void setNumCPF(Long numCPF) {
 		this.numCPF = numCPF;
 	}
 
-	public long getNumRNE() {
+	public Long getNumRNE() {
 		return numRNE;
 	}
 
-	public void setNumRNE(long numRNE) {
+	public void setNumRNE(Long numRNE) {
 		this.numRNE = numRNE;
 	}
 
@@ -130,11 +130,11 @@ public class PessoaFisicaDocumentosEntity implements Serializable {
 		this.rneDataExpedicao = rneDataExpedicao;
 	}
 
-	public long getCNH() {
+	public Long getCNH() {
 		return numCNH;
 	}
 
-	public void setCNH(long numCNH) {
+	public void setCNH(Long numCNH) {
 		this.numCNH = numCNH;
 	}
 

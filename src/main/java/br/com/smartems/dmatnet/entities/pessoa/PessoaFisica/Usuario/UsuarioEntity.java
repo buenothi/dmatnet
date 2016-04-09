@@ -23,7 +23,9 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 	@NamedQuery(name="Usuario.logarUsuario", 
 			query="SELECT u FROM UsuarioEntity u WHERE u.login=:login AND u.senha=:senha"),
 	@NamedQuery(name="Usuario.listarUsuariosFilhos", 
-			query="SELECT u FROM UsuarioEntity u WHERE u.idUsuarioPai=:idUsuarioPai")
+			query="SELECT u FROM UsuarioEntity u WHERE u.idUsuarioPai=:idUsuarioPai"),
+	@NamedQuery(name="Usuario.listarUsuariosMaster", 
+			query="SELECT u, g FROM UsuarioEntity u, UsuariosGrupoEntity g WHERE g.nomeGrupo = 'MASTER'")
 })
 public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Serializable {
 
@@ -43,7 +45,7 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 		inverseJoinColumns=@JoinColumn(name="empresa_ID"))
 	private List<EmpresaEntity> empresasGerenciadas;
 	
-	private long idUsuarioPai;
+	private Long idUsuarioPai;
 
 	private static final long serialVersionUID = 1L;
 
@@ -96,11 +98,11 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 		this.empresasGerenciadas = empresasGerenciadas;
 	}
 
-	public long getIdUsuarioPai() {
+	public Long getIdUsuarioPai() {
 		return idUsuarioPai;
 	}
 
-	public void setIdUsuarioPai(long idUsuarioPai) {
+	public void setIdUsuarioPai(Long idUsuarioPai) {
 		this.idUsuarioPai = idUsuarioPai;
 	}
 		

@@ -13,7 +13,7 @@ public class EmpresaDadosIsencao implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idEmpresaDadosIsencao;
 	private String siglaMinisterio;
-	private long numCertificado;
+	private Long numCertificado;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dataEmissaoCertificado;
@@ -21,7 +21,7 @@ public class EmpresaDadosIsencao implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date dataVencimentoCertificado;
 	
-	private long numProtocoloRenovacao;
+	private Long numProtocoloRenovacao;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dataRenovacao;
@@ -31,7 +31,7 @@ public class EmpresaDadosIsencao implements Serializable{
 	
 	private int paginaDOU;	
 	private String nomeResponsavel;	
-	private long cpfResponsavel;	
+	private Long cpfResponsavel;	
 	private String telFixoResponsavel;	
 	private String telCelularResponsavel;	
 	private String email;
@@ -63,11 +63,11 @@ public class EmpresaDadosIsencao implements Serializable{
 		this.siglaMinisterio = siglaMinisterio;
 	}
 
-	public long getNumCertificado() {
+	public Long getNumCertificado() {
 		return numCertificado;
 	}
 
-	public void setNumCertificado(long numCertificado) {
+	public void setNumCertificado(Long numCertificado) {
 		this.numCertificado = numCertificado;
 	}
 
@@ -87,11 +87,11 @@ public class EmpresaDadosIsencao implements Serializable{
 		this.dataVencimentoCertificado = dataVencimentoCertificado;
 	}
 
-	public long getNumProtocoloRenovacao() {
+	public Long getNumProtocoloRenovacao() {
 		return numProtocoloRenovacao;
 	}
 
-	public void setNumProtocoloRenovacao(long numProtocoloRenovacao) {
+	public void setNumProtocoloRenovacao(Long numProtocoloRenovacao) {
 		this.numProtocoloRenovacao = numProtocoloRenovacao;
 	}
 
@@ -127,11 +127,11 @@ public class EmpresaDadosIsencao implements Serializable{
 		this.nomeResponsavel = nomeResponsavel;
 	}
 
-	public long getCpfResponsavel() {
+	public Long getCpfResponsavel() {
 		return cpfResponsavel;
 	}
 
-	public void setCpfResponsavel(long cpfResponsavel) {
+	public void setCpfResponsavel(Long cpfResponsavel) {
 		this.cpfResponsavel = cpfResponsavel;
 	}
 

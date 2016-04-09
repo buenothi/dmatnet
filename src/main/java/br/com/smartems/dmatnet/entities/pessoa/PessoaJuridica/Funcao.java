@@ -15,10 +15,10 @@ public class Funcao implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-	private long codFuncaoEsocial; //Código eSocial do Cargo 
+	private Long codFuncaoEsocial; //Código eSocial do Cargo 
 	private String funcaoNome;
 	private String funcaoDescricao;
-	private long cbo;
+	private Long cbo;
 		
 	private static final long serialVersionUID = 1L;
 
@@ -35,10 +35,10 @@ public class Funcao implements Serializable {
 		this.id = id;
 	}
 	
-	public long getCodFuncaoEsocial() {
+	public Long getCodFuncaoEsocial() {
 		return codFuncaoEsocial;
 	}
-	public void setCodFuncaoEsocial(long codFuncaoEsocial) {
+	public void setCodFuncaoEsocial(Long codFuncaoEsocial) {
 		this.codFuncaoEsocial = codFuncaoEsocial;
 	}
 	public String getFuncaoNome() {
@@ -56,11 +56,11 @@ public class Funcao implements Serializable {
 		this.funcaoDescricao = funcaoDescricao;
 	}
 
-	public long getCbo() {
+	public Long getCbo() {
 		return cbo;
 	}
 
-	public void setCbo(long cbo) {
+	public void setCbo(Long cbo) {
 		this.cbo = cbo;
 	}
 	

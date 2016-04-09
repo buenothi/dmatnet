@@ -20,9 +20,9 @@ public abstract class AbstractRiscoEntity implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	private String nome;
-	private long codFatorRisco_tab21;
-	private long codFatorRisco_tab22;
-	private long codFatorRisco_tab23;
+	private Long codFatorRisco_tab21;
+	private Long codFatorRisco_tab22;
+	private Long codFatorRisco_tab23;
 	private String dadosComprometimentoSaude;
 	
 	@OneToMany
@@ -67,27 +67,27 @@ public abstract class AbstractRiscoEntity implements Serializable {
 		this.nome = nome;
 	}
 
-	public long getCodFatorRisco_tab21() {
+	public Long getCodFatorRisco_tab21() {
 		return codFatorRisco_tab21;
 	}
 
-	public void setCodFatorRisco_tab21(long codFatorRisco_tab21) {
+	public void setCodFatorRisco_tab21(Long codFatorRisco_tab21) {
 		this.codFatorRisco_tab21 = codFatorRisco_tab21;
 	}
 
-	public long getCodFatorRisco_tab22() {
+	public Long getCodFatorRisco_tab22() {
 		return codFatorRisco_tab22;
 	}
 
-	public void setCodFatorRisco_tab22(long codFatorRisco_tab22) {
+	public void setCodFatorRisco_tab22(Long codFatorRisco_tab22) {
 		this.codFatorRisco_tab22 = codFatorRisco_tab22;
 	}
 
-	public long getCodFatorRisco_tab23() {
+	public Long getCodFatorRisco_tab23() {
 		return codFatorRisco_tab23;
 	}
 
-	public void setCodFatorRisco_tab23(long codFatorRisco_tab23) {
+	public void setCodFatorRisco_tab23(Long codFatorRisco_tab23) {
 		this.codFatorRisco_tab23 = codFatorRisco_tab23;
 	}
 

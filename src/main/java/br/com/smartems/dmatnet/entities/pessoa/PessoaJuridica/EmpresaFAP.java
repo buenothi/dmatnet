@@ -12,7 +12,7 @@ public class EmpresaFAP implements Serializable {
 	private long idEmpresaFAP;
 	private double valorFAP;
 	private int tipoProcessoFAP;
-	private long numProcessoFAP;
+	private Long numProcessoFAP;
 	
 	@OneToOne
 	@PrimaryKeyJoinColumn
@@ -36,10 +36,10 @@ public class EmpresaFAP implements Serializable {
 	public void setTipoProcessoFAP(int tipoProcessoFAP) {
 		this.tipoProcessoFAP = tipoProcessoFAP;
 	}
-	public long getNumProcessoFAP() {
+	public Long getNumProcessoFAP() {
 		return numProcessoFAP;
 	}
-	public void setNumProcessoFAP(long numProcessoFAP) {
+	public void setNumProcessoFAP(Long numProcessoFAP) {
 		this.numProcessoFAP = numProcessoFAP;
 	}
 	
