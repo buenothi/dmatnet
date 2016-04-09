@@ -45,7 +45,7 @@ public class EmpresaGrupoEntity implements Serializable {
 	}
 
 	public void setDescricaoGrupo(String descricaoGrupo) {
-		this.descricaoGrupo = descricaoGrupo;
+		this.descricaoGrupo = descricaoGrupo.toUpperCase();
 	}
 	
 	public List<EmpresaEntity> getEmpresas() {

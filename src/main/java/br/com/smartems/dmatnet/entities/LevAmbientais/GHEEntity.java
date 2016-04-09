@@ -48,7 +48,7 @@ public class GHEEntity implements Serializable {
 		return this.nomeGHE;
 	}
 	public void setNomeGHE(String nomeGHE) {
-		this.nomeGHE = nomeGHE;
+		this.nomeGHE = nomeGHE.toUpperCase();
 	}   
 	
 	public Date getDataInicioGHE() {
@@ -69,7 +69,7 @@ public class GHEEntity implements Serializable {
 		return this.descricaoGHE;
 	}
 	public void setDescricaoGHE(String descricaoGHE) {
-		this.descricaoGHE = descricaoGHE;
+		this.descricaoGHE = descricaoGHE.toUpperCase();
 	}
 	
 	public byte[] getFotoParadigma() {

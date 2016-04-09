@@ -99,7 +99,7 @@ public class EmpresaDadosComplementares implements Serializable {
 	}
 
 	public void setDescSegDif(String descSegDif) {
-		this.descSegDif = descSegDif;
+		this.descSegDif = descSegDif.toUpperCase();
 	}
 
 	public double getPercAliquotaSeguradoRPPS() {

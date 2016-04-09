@@ -46,14 +46,14 @@ public class Funcao implements Serializable {
 	}
 
 	public void setFuncaoNome(String funcaoNome) {
-		this.funcaoNome = funcaoNome;
+		this.funcaoNome = funcaoNome.toUpperCase();
 	}   
 	public String getFuncaoDescricao() {
 		return this.funcaoDescricao;
 	}
 
 	public void setFuncaoDescricao(String funcaoDescricao) {
-		this.funcaoDescricao = funcaoDescricao;
+		this.funcaoDescricao = funcaoDescricao.toUpperCase();
 	}
 
 	public Long getCbo() {

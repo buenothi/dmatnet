@@ -104,7 +104,7 @@ public class EmpresaCadastroEntity implements Serializable {
 	}
 
 	public void setVersaoApp(String versaoApp) {
-		this.versaoApp = versaoApp;
+		this.versaoApp = versaoApp.toUpperCase();
 	}
 
 	public int getTipoInscricao() {
@@ -144,7 +144,7 @@ public class EmpresaCadastroEntity implements Serializable {
 	}
 
 	public void setRazaoSocial(String razaoSocial) {
-		this.razaoSocial = razaoSocial;
+		this.razaoSocial = razaoSocial.toUpperCase();
 	}
 
 	public int getCodClassificacaoTributaria() {

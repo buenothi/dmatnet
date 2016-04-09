@@ -30,14 +30,14 @@ public class MetodologiaAvaliacaoEntity implements Serializable {
 		return this.nome;
 	}
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.nome = nome.toUpperCase();
 	}   
 	
 	public String getDescricao() {
 		return this.descricao;
 	}
 	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+		this.descricao = descricao.toUpperCase();
 	}
    
 }

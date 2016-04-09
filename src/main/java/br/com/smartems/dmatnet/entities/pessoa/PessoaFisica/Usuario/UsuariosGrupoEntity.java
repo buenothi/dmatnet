@@ -36,7 +36,7 @@ public class UsuariosGrupoEntity implements Serializable {
 	}
 
 	public void setNomeGrupo(String nomeGrupo) {
-		this.nomeGrupo = nomeGrupo;
+		this.nomeGrupo = nomeGrupo.toUpperCase();
 	}
 
 	public List<UsuarioEntity> getUsuarios() {

@@ -42,7 +42,7 @@ public class RiscoAmbientalEntity extends AbstractRiscoEntity implements Seriali
 	}
 
 	public void setTipoClassificacao(String tipoClassificacao) {
-		this.tipoClassificacao = tipoClassificacao;
+		this.tipoClassificacao = tipoClassificacao.toUpperCase();
 	}
 
 	public boolean isAgenteInsalubre() {

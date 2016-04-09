@@ -90,7 +90,7 @@ public class TrabalhadorDeficienteEntity implements Serializable {
 	}
 
 	public void setObservacao(String observacao) {
-		this.observacao = observacao;
+		this.observacao = observacao.toUpperCase();
 	}
 
 	public TrabalhadorCadastroEntity getTrabalhador() {

@@ -55,7 +55,7 @@ public class RiscoAmbientalIdentificadoEntity extends RiscoAmbientalEntity imple
 	}
 
 	public void setUnidadeAvaliacao(String unidadeAvaliacao) {
-		this.unidadeAvaliacao = unidadeAvaliacao;
+		this.unidadeAvaliacao = unidadeAvaliacao.toLowerCase();
 	}
 
 	public int getTempoExposicao() {

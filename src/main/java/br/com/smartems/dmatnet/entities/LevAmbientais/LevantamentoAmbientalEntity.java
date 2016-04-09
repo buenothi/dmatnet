@@ -65,7 +65,7 @@ public class LevantamentoAmbientalEntity implements Serializable {
 		return this.observacoes;
 	}
 	public void setObservacoes(String observacoes) {
-		this.observacoes = observacoes;
+		this.observacoes = observacoes.toUpperCase();
 	}
 
 	public List<RiscoAmbientalIdentificadoEntity> getRiscosAmbientais() {

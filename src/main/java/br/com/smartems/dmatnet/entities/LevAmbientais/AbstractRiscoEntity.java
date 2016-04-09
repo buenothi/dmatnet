@@ -96,7 +96,7 @@ public abstract class AbstractRiscoEntity implements Serializable {
 	}
 
 	public void setDadosComprometimentoSaude(String dadosComprometimentoSaude) {
-		this.dadosComprometimentoSaude = dadosComprometimentoSaude;
+		this.dadosComprometimentoSaude = dadosComprometimentoSaude.toUpperCase();
 	}
 
 	public List<ExameMedicoEntity> getExamesMedicos() {

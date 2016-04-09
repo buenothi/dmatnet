@@ -117,7 +117,7 @@ public class LocalTrabalhoEntity implements Serializable{
 	}
 
 	public void setDescricaoAmbiente(String descricaoAmbiente) {
-		this.descricaoAmbiente = descricaoAmbiente;
+		this.descricaoAmbiente = descricaoAmbiente.toUpperCase();
 	}
 
 	public int getLocalAmbiente() {

@@ -34,7 +34,7 @@ public class Setor implements Serializable {
 	}
 
 	public void setSetorNome(String setorNome) {
-		this.setorNome = setorNome;
+		this.setorNome = setorNome.toUpperCase();
 	}
    
 }

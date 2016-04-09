@@ -35,7 +35,7 @@ public class PeriodicidadeExame implements Serializable {
 	}
 
 	public void setDescricaoPeriodicidade(String descricaoPeriodicidade) {
-		this.descricaoPeriodicidade = descricaoPeriodicidade;
+		this.descricaoPeriodicidade = descricaoPeriodicidade.toUpperCase();
 	}
 	
 	public List<ExameMedicoEntity> getExamesMedicos() {

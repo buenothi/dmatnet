@@ -77,7 +77,7 @@ public class TrabalhadorCadastroEntity extends AbstractPessoaFisicaCadastro impl
 	}
 
 	public void setUfCTPS(String ufCTPS) {
-		this.ufCTPS = ufCTPS;
+		this.ufCTPS = ufCTPS.toUpperCase();
 	}
 
 	public String getNumOrgaoClasse() {
@@ -85,7 +85,7 @@ public class TrabalhadorCadastroEntity extends AbstractPessoaFisicaCadastro impl
 	}
 
 	public void setNumOrgaoClasse(String numOrgaoClasse) {
-		this.numOrgaoClasse = numOrgaoClasse;
+		this.numOrgaoClasse = numOrgaoClasse.toUpperCase();
 	}
 
 	public TrabalhadorEstrangeiroEntity getTrabalhadorEstrageiro() {

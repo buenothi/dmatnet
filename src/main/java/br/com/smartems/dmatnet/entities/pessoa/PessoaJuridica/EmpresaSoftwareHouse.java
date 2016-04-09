@@ -45,7 +45,7 @@ public class EmpresaSoftwareHouse implements Serializable {
 	}
 
 	public void setRazaoSocial(String razaoSocial) {
-		this.razaoSocial = razaoSocial;
+		this.razaoSocial = razaoSocial.toUpperCase();
 	}
 
 	public String getNomeContato() {
@@ -53,7 +53,7 @@ public class EmpresaSoftwareHouse implements Serializable {
 	}
 
 	public void setNomeContato(String nomeContato) {
-		this.nomeContato = nomeContato;
+		this.nomeContato = nomeContato.toUpperCase();
 	}
 
 	public String getTelFixo() {
@@ -61,7 +61,7 @@ public class EmpresaSoftwareHouse implements Serializable {
 	}
 
 	public void setTelFixo(String telFixo) {
-		this.telFixo = telFixo;
+		this.telFixo = telFixo.toUpperCase();
 	}
 
 	public String getEmail() {
@@ -69,7 +69,7 @@ public class EmpresaSoftwareHouse implements Serializable {
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.email = email.toLowerCase();
 	}
    
 }

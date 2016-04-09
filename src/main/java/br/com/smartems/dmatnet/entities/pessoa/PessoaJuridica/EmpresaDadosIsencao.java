@@ -60,7 +60,7 @@ public class EmpresaDadosIsencao implements Serializable{
 	}
 
 	public void setSiglaMinisterio(String siglaMinisterio) {
-		this.siglaMinisterio = siglaMinisterio;
+		this.siglaMinisterio = siglaMinisterio.toUpperCase();
 	}
 
 	public Long getNumCertificado() {
@@ -124,7 +124,7 @@ public class EmpresaDadosIsencao implements Serializable{
 	}
 
 	public void setNomeResponsavel(String nomeResponsavel) {
-		this.nomeResponsavel = nomeResponsavel;
+		this.nomeResponsavel = nomeResponsavel.toUpperCase();
 	}
 
 	public Long getCpfResponsavel() {
@@ -140,7 +140,7 @@ public class EmpresaDadosIsencao implements Serializable{
 	}
 
 	public void setTelFixoResponsavel(String telFixoResponsavel) {
-		this.telFixoResponsavel = telFixoResponsavel;
+		this.telFixoResponsavel = telFixoResponsavel.toUpperCase();
 	}
 
 	public String getTelCelularResponsavel() {
@@ -148,7 +148,7 @@ public class EmpresaDadosIsencao implements Serializable{
 	}
 
 	public void setTelCelularResponsavel(String telCelularResponsavel) {
-		this.telCelularResponsavel = telCelularResponsavel;
+		this.telCelularResponsavel = telCelularResponsavel.toUpperCase();
 	}
 
 	public String getEmail() {
@@ -156,7 +156,7 @@ public class EmpresaDadosIsencao implements Serializable{
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		this.email = email.toLowerCase();
 	}
 
 	public EmpresaCadastroEntity getEmpresaCadastro() {
