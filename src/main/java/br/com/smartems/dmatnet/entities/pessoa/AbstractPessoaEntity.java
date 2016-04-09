@@ -27,7 +27,7 @@ public abstract class AbstractPessoaEntity implements Serializable {
 	@OneToMany(cascade={CascadeType.ALL})
 	@JoinColumn(name="PESSOA_ID")
 	private List<EmailEntity> emails;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastroPessoa;
 	
