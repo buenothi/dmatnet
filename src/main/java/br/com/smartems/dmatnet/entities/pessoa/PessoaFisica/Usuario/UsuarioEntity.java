@@ -1,8 +1,6 @@
 package br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario;
 
 import java.io.Serializable;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -16,6 +14,7 @@ import javax.persistence.Table;
 
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.AbstractPessoaFisicaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
+import br.com.smartems.dmatnet.util.CriptografiaString;
 
 @Entity
 @Table(name="tbl_usuarios")
@@ -66,20 +65,8 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 	}
 
 	public void setSenha(String senha) {
-		
-		MessageDigest algoritmo;
-		try {
-			algoritmo = MessageDigest.getInstance("SHA-256");
-			byte messageDigest[] = algoritmo.digest(senha.getBytes());
-			StringBuilder hexString = new StringBuilder();
-			for(byte b : messageDigest) {
-				hexString.append(String.format("%02X", 0xFF & b));
-			}			
-			this.senha = hexString.toString();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-	
+		CriptografiaString senhaCriptografada = new CriptografiaString();
+		this.senha = senhaCriptografada.obterHashString(senha);
 	}
 
 	public List<UsuariosGrupoEntity> getGrupos() {

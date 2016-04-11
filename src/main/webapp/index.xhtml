@@ -14,20 +14,25 @@
 
 <h:body onload="PF('dlgLogin').show();" styleClass="bkgndLogin">
 
-	<p:dialog header="Bem vindo ao smartEMS - Login" 
-		widgetVar="dlgLogin" draggable="false" closable="false" resizable="false" responsive="true">
-		<h:panelGrid columns="2">
-			<h:graphicImage value="/images/Logo SMARTEMS.jpg" />
-			<h:panelGrid columns="2" cellpadding="5px">
-				<h:outputLabel value="Login" />
-				<p:inputText id="iptLogin" />
-				<h:outputLabel value="Senha" />
-				<p:password id="iptSenha" />
-				<p:spacer width="100%" />
-				<p:commandButton value="Entrar" type="button" />
-			</h:panelGrid>
-		</h:panelGrid>
-	</p:dialog>
+	<h:form>
+		<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
 
+		<p:dialog header="Bem vindo ao smartEMS - Login" widgetVar="dlgLogin"
+			draggable="false" closable="false" resizable="false"
+			responsive="true">
+			<h:panelGrid columns="2">
+				<h:graphicImage value="/images/Logo SMARTEMS.jpg" />
+				<h:panelGrid columns="2" cellpadding="5px">
+					<h:outputLabel value="Login" />
+					<p:inputText id="iptLogin" value="#{usuarioBean.login}" />
+					<h:outputLabel value="Senha" />
+					<p:password id="iptSenha" value="#{usuarioBean.senha}" />
+					<p:spacer width="100%" />
+					<p:commandButton value="Entrar"
+						actionListener="#{usuarioBean.logarUsuario}" update="growl" />
+				</h:panelGrid>
+			</h:panelGrid>
+		</p:dialog>
+	</h:form>
 </h:body>
 </html>

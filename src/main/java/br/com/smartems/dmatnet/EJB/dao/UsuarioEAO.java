@@ -2,6 +2,7 @@ package br.com.smartems.dmatnet.EJB.dao;
 
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -9,6 +10,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
+import br.com.smartems.dmatnet.util.CriptografiaString;
 
 @Stateless
 @Local
@@ -16,6 +18,9 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 
 	@PersistenceContext
 	private EntityManager em;
+	
+	@EJB
+	private CriptografiaString cs;
 	private UsuarioEntity usuario;
 	private List<UsuarioEntity> usuarios;
 
@@ -24,9 +29,10 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 	}
 
 	public UsuarioEntity logarUsuario(String login, String senha) throws NoResultException {
+		String senhaCriptograda = cs.obterHashString(senha);
 		this.usuario = (UsuarioEntity)em.createNamedQuery("Usuario.logarUsuario")
 				.setParameter("login", login)
-				.setParameter("senha", senha)
+				.setParameter("senha", senhaCriptograda)
 				.getSingleResult();
 		return usuario;
 
