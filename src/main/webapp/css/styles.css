@@ -1,7 +1,134 @@
+*, html, body {
+	margin: 0;
+	padding: 0;
+	background-color: #b1b1b1;;
+}
+
 .bkgndLogin {
 	background-image: url("../images/backgroundLogin.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
 	background-position: right bottom;
+}
+
+*, *:before, *:after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body {
+	margin-left: 100px;
+	font: 80%/1.2 Helvetica, Arial;
+}
+
+.menuBotao {
+	height: 87px;
+	width: 100%;
+	background-size: cover;
+}
+
+#itemCadEmpresa {
+	background-image: url("../images/menuNavegacao/icoCadEmpresa_out.jpg");
+}
+
+#itemCadEmpresa:hover {
+	background-image: url("../images/menuNavegacao/icoCadEmpresa_over.jpg");
+}
+
+#itemDocLegais {
+	background-image: url("../images/menuNavegacao/icoDocLegais_out.jpg");
+}
+
+#itemDocLegais:hover {
+	background-image: url("../images/menuNavegacao/icoDocLegais_over.jpg");
+}
+
+#lateral {
+	padding: 10px 50px 0 0;
+	-moz-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	font-size: 1.2em;
+	background: rgb(75, 75, 77);
+	background-image: -moz-linear-gradient(135deg, rgb(75, 75, 77),
+		rgb(49, 49, 49));
+	background-image: -webkit-linear-gradient(135deg, rgb(75, 75, 77),
+		rgb(49, 49, 49));
+	background-image: -o-linear-gradient(135deg, rgb(75, 75, 77),
+		rgb(49, 49, 49));
+	background-image: -ms-linear-gradient(135deg, rgb(75, 75, 77),
+		rgb(49, 49, 49));
+	background-image: linear-gradient(135deg, rgb(75, 75, 77), rgb(49, 49, 49));
+	height: 100%;
+	overflow: hidden;
+	width: 250px;
+	position: fixed;
+	top: 0;
+	left: -200px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#lateral:before {
+	z-index: 1000;
+	content: url("../images/menuNavegacao/icoMenu.png");
+	font-size: 4em;
+	color: white;
+	position: fixed;
+	left: 4px;
+	top: 10px;
+}
+
+#lateral:hover:before, #lateral:focus:before {
+	left: -500px
+}
+
+#lateral:hover, #lateral:focus, #lateral:active {
+	-moz-transform: translate(200px, 0);
+	-webkit-transform: translate(200px, 0);
+	-o-transform: translate(200px, 0);
+	transform: translate(200px, 0);
+	padding-right: 0px;
+	overflow: auto;
+}
+
+#lateral .box {
+	list-style-type: none;
+	margin-bottom: 1em;
+}
+
+#menu {
+	font-weight: bold;
+	position: relative;
+	font-size: 1.0em;
+	margin: 1em 0 1em -1em;
+	padding: 0;
+}
+
+#menu li {
+	padding: 2px;
+	margin: 0;
+}
+
+#menu li a, #menu li a:link {
+	font-size: 1.2em;
+	color: rgb(255, 255, 255);
+	text-decoration: none;
+	padding: 0.8em 0 0.8em 1em;
+	display: block;
+	-moz-transition: all 1.2s ease;
+	-webkit-transition: all 1.2s ease;
+	-o-transition: all 1.2s ease;
+	transition: all 1.2s ease;
+}
+
+#menu li a:hover {
+	color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, 0.2);
+	-moz-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
 }
