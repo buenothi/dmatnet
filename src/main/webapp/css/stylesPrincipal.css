@@ -1,7 +1,7 @@
 *, html, body {
 	margin: 0;
 	padding: 0;
-	background-color: #b1b1b1;;
+	background-color: #b1b1b1;
 }
 
 .bkgndLogin {
@@ -24,26 +24,66 @@ body {
 }
 
 .menuBotao {
-	height: 87px;
-	width: 100%;
+	height: 69px;
+	width: 99.7%;
 	background-size: cover;
+	background-color: rgb(75, 75, 77);
 }
 
+
 #itemCadEmpresa {
-	background-image: url("../images/menuNavegacao/icoCadEmpresa_out.jpg");
+	background-image: url("../images/menuNavegacao/icoCadEmpresa_out.png");
 }
 
 #itemCadEmpresa:hover {
-	background-image: url("../images/menuNavegacao/icoCadEmpresa_over.jpg");
+	background-image: url("../images/menuNavegacao/icoCadEmpresa_over.png");
 }
 
+
+#itemCadUsuarios {
+	background-image: url("../images/menuNavegacao/icoCadastroUsuarios_out.png");
+}
+
+#itemCadUsuarios:hover {
+	background-image: url("../images/menuNavegacao/icoCadastroUsuarios_over.png");
+}
+
+
 #itemDocLegais {
-	background-image: url("../images/menuNavegacao/icoDocLegais_out.jpg");
+	background-image: url("../images/menuNavegacao/icoDocLegais_out.png");
 }
 
 #itemDocLegais:hover {
-	background-image: url("../images/menuNavegacao/icoDocLegais_over.jpg");
+	background-image: url("../images/menuNavegacao/icoDocLegais_over.png");
 }
+
+
+#itemOrdServicos {
+	background-image: url("../images/menuNavegacao/icoOrdServicos_out.png");
+}
+
+#itemOrdServicos:hover {
+	background-image: url("../images/menuNavegacao/icoOrdServicos_over.png");
+}
+
+
+#itemAuditoria {
+	background-image: url("../images/menuNavegacao/icoAuditoria_out.png");
+}
+
+#itemAuditoria:hover {
+	background-image: url("../images/menuNavegacao/icoAuditoria_over.png");
+}
+
+
+#itemTreinamento {
+	background-image: url("../images/menuNavegacao/icoTreinamento_out.png");
+}
+
+#itemTreinamento:hover {
+	background-image: url("../images/menuNavegacao/icoTreinamento_over.png");
+}
+
 
 #lateral {
 	padding: 10px 50px 0 0;
@@ -77,7 +117,7 @@ body {
 	font-size: 4em;
 	color: white;
 	position: fixed;
-	left: 4px;
+	left: 2.3px;
 	top: 10px;
 }
 
