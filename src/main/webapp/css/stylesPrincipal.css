@@ -24,7 +24,7 @@ body {
 }
 
 .menuBotao {
-	height: 53px;
+	height: 55px;
 	width: 99.7%;
 	background-size: cover;
 	background-color: rgb(75, 75, 77);
@@ -38,6 +38,16 @@ body {
 	position: fixed;
 	left: 0px;
 	right: 0px;
+}
+
+#logoDMAT {
+	height: 90%;
+	width: 245px;
+	background-image: url("../images/menuNavegacao/LogoDMATNET_vert.png");
+	background-size: cover;
+	float: left;
+	left:0;
+	margin-top: 2px;
 }
 
 #itemCadEmpresa {
