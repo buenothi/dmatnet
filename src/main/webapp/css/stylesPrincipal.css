@@ -33,7 +33,7 @@ body {
 #superior {
 	background-color: rgb(36, 87, 69);
 	width: 100%;
-	height: 50px;
+	height: 42px;
 	top: 0;
 	position: fixed;
 	left: 0px;
@@ -42,7 +42,7 @@ body {
 
 #logoDMAT {
 	height: 90%;
-	width: 245px;
+	width: 200px;
 	background-image: url("../images/menuNavegacao/LogoDMATNET_vert.png");
 	background-size: cover;
 	float: left;
@@ -125,7 +125,7 @@ body {
 	overflow: hidden;
 	width: 200px;
 	position: fixed;
-	top: 50px;
+	top: 42px;
 	left: -150px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
