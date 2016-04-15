@@ -11,15 +11,23 @@
 </h:head>
 
 <h:body>
-	<div id="superior"> <div id="logoDMAT"/><div id="empresaSelecionada"></div></div>
-	<div id="lateral">
-		<div id="itemCadEmpresa" class="menuBotao"/>
-		<div id="itemCadUsuarios" class="menuBotao"/>
-		<div id="itemDocLegais" class="menuBotao"/>
-		<div id="itemOrdServicos" class="menuBotao"/>
-		<div id="itemAuditoria" class="menuBotao"/>
-		<div id="itemTreinamento" class="menuBotao"/>
+	<div id="superior">
+		<div id="logoDMAT" />
+		<div id="empresaSelecionada"></div>
+		<div id="usuarioLogado"></div>
 	</div>
+	<div id="conteudo">
+		<ui:insert name="conteudo" />
+	</div>
+	<div id="lateral">
+		<div id="itemCadEmpresa" class="menuBotao" />
+		<div id="itemCadUsuarios" class="menuBotao" />
+		<div id="itemDocLegais" class="menuBotao" />
+		<div id="itemOrdServicos" class="menuBotao" />
+		<div id="itemAuditoria" class="menuBotao" />
+		<div id="itemTreinamento" class="menuBotao" />
+	</div>
+
 </h:body>
 
 </html>
