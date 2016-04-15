@@ -5,7 +5,7 @@
 }
 
 .bkgndLogin {
-	background-image: url("../images/backgroundLogin.jpg");
+	background-image: url("../resources/images/backgroundLogin.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
@@ -47,7 +47,7 @@ body {
 #logoDMAT {
 	height: 90%;
 	width: 200px;
-	background-image: url("../images/menuNavegacao/LogoDMATNET_vert.png");
+	background-image: url("../resources/images/menuNavegacao/LogoDMATNET_vert.png");
 	background-size: cover;
 	float: left;
 	left: 0;
@@ -80,53 +80,53 @@ body {
 }
 
 #itemCadEmpresa {
-	background-image: url("../images/menuNavegacao/icoCadEmpresa_out.png");
+	background-image: url("../resources/images/menuNavegacao/icoCadEmpresa_out.png");
 }
 
 #itemCadEmpresa:hover {
-	background-image: url("../images/menuNavegacao/icoCadEmpresa_over.png");
+	background-image: url("../resources/images/menuNavegacao/icoCadEmpresa_over.png");
 }
 
 #itemCadUsuarios {
 	background-image:
-		url("../images/menuNavegacao/icoCadastroUsuarios_out.png");
+		url("../resources/images/menuNavegacao/icoCadastroUsuarios_out.png");
 }
 
 #itemCadUsuarios:hover {
 	background-image:
-		url("../images/menuNavegacao/icoCadastroUsuarios_over.png");
+		url("../resources/images/menuNavegacao/icoCadastroUsuarios_over.png");
 }
 
 #itemDocLegais {
-	background-image: url("../images/menuNavegacao/icoDocLegais_out.png");
+	background-image: url("../resources/images/menuNavegacao/icoDocLegais_out.png");
 }
 
 #itemDocLegais:hover {
-	background-image: url("../images/menuNavegacao/icoDocLegais_over.png");
+	background-image: url("../resources/images/menuNavegacao/icoDocLegais_over.png");
 }
 
 #itemOrdServicos {
-	background-image: url("../images/menuNavegacao/icoOrdServicos_out.png");
+	background-image: url("../resources/images/menuNavegacao/icoOrdServicos_out.png");
 }
 
 #itemOrdServicos:hover {
-	background-image: url("../images/menuNavegacao/icoOrdServicos_over.png");
+	background-image: url("../resources/images/menuNavegacao/icoOrdServicos_over.png");
 }
 
 #itemAuditoria {
-	background-image: url("../images/menuNavegacao/icoAuditoria_out.png");
+	background-image: url("../resources/images/menuNavegacao/icoAuditoria_out.png");
 }
 
 #itemAuditoria:hover {
-	background-image: url("../images/menuNavegacao/icoAuditoria_over.png");
+	background-image: url("../resources/images/menuNavegacao/icoAuditoria_over.png");
 }
 
 #itemTreinamento {
-	background-image: url("../images/menuNavegacao/icoTreinamento_out.png");
+	background-image: url("../resources/images/menuNavegacao/icoTreinamento_out.png");
 }
 
 #itemTreinamento:hover {
-	background-image: url("../images/menuNavegacao/icoTreinamento_over.png");
+	background-image: url("../resources/images/menuNavegacao/icoTreinamento_over.png");
 }
 
 #lateral {
@@ -159,7 +159,7 @@ body {
 
 #lateral:before {
 	z-index: 1000;
-	content: url("../images/menuNavegacao/icoMenu.png");
+	content: url("../resources/images/menuNavegacao/icoMenu.png");
 	font-size: 4em;
 	color: white;
 	position: fixed;
