@@ -21,6 +21,7 @@
 body {
 	margin-left: 50px;
 	font: 80%/1.2 Helvetica, Arial;
+	min-width: 650px;
 }
 
 .menuBotao {
@@ -40,7 +41,7 @@ body {
 	right: 0px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.19), 0 4px 8px 0
 		rgba(0, 0, 0, 0.19);
-	z-index: 1000;
+	z-index: 0;
 }
 
 #logoDMAT {
@@ -60,9 +61,9 @@ body {
 	border-right-style: solid;
 	border-right-color: rgb(255, 255, 255);
 	border-right-width: 1px;
-	float: left;
-	left: 0;
+	margin-left: 200px;
 	margin-top: 2px;
+	float:left;
 }
 
 #usuarioLogado {
@@ -72,8 +73,9 @@ body {
 	border-left-style: solid;
 	border-left-color: rgb(255, 255, 255);
 	border-left-width: 1px;
-	float: right;
 	margin-top: 2px;
+	float: right;
+	right: 0;
 	z-index: 1000;
 }
 
