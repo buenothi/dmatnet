@@ -24,15 +24,10 @@ body {
 	min-width: 650px;
 }
 
-.menuBotao {
-	height: 55px;
-	width: 99.7%;
-	background-size: cover;
-	background-color: rgb(75, 75, 77);
-}
 
 #superior {
 	background-color: rgb(36, 87, 69);
+	min-width: 650px;
 	width: 100%;
 	height: 42px;
 	top: 0;
@@ -41,7 +36,7 @@ body {
 	right: 0px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.19), 0 4px 8px 0
 		rgba(0, 0, 0, 0.19);
-	z-index: 0;
+	z-index: 1000;
 }
 
 #logoDMAT {
@@ -79,6 +74,55 @@ body {
 	z-index: 1000;
 }
 
+.menuBotao {
+	height: 55px;
+	width: 99.7%;
+	background-color: rgb(75, 75, 77);
+}
+
+.logosMenu {
+	height: 54px;
+	width: 54px;
+	background-size: 48px 48px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: transparent;
+	float: left;
+}
+
+#rotuloDocLegais {
+	height: inherit;
+	max-width: 90px;
+	margin-left: 54px;
+	padding-left: 5px; 
+	background-color: transparent;
+	vertical-align: middle;
+	display: table-cell;
+}
+
+#textoDocLegais {
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 9pt;
+	color: white;
+	background-color: transparent;
+}
+
+#logoDocLegais {
+	background-image: url("../resources/images/menuNavegacao/newIcoDocLegais_out.png");
+}
+
+#itemDocLegais {
+	background-color: rgb(96, 96, 98);
+	display: block;
+}
+
+#itemDocLegais:hover {
+	background-color: rgb(153, 138, 66);
+}
+
+
+
 #itemCadEmpresa {
 	background-image: url("../resources/images/menuNavegacao/icoCadEmpresa_out.png");
 }
@@ -97,13 +141,6 @@ body {
 		url("../resources/images/menuNavegacao/icoCadastroUsuarios_over.png");
 }
 
-#itemDocLegais {
-	background-image: url("../resources/images/menuNavegacao/icoDocLegais_out.png");
-}
-
-#itemDocLegais:hover {
-	background-image: url("../resources/images/menuNavegacao/icoDocLegais_over.png");
-}
 
 #itemOrdServicos {
 	background-image: url("../resources/images/menuNavegacao/icoOrdServicos_out.png");
@@ -187,10 +224,16 @@ body {
 
 #conteudo {
 	margin-top: 42px;
+	padding-left: 50px;
+	right: 0px;
 	height: 100%;
+	width: 100%;
 	position: fixed;
-	width: 100%;
-	left: 50px;
-	right: 0;
-	width: 100%;
+	overflow: auto;
+}
+
+.painelConteudo {
+	width: inherit;
+	height: inherit;
+
 }
