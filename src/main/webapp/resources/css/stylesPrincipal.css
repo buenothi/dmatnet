@@ -77,7 +77,15 @@ body {
 .menuBotao {
 	height: 55px;
 	width: 99.7%;
-	background-color: rgb(75, 75, 77);
+	background-color: rgb(96, 96, 98);
+	display: block;
+}
+
+.menuBotao:hover {
+	height: 55px;
+	width: 99.7%;
+	background-color: rgb(153, 138, 66);
+	display: block;
 }
 
 .logosMenu {
@@ -90,7 +98,7 @@ body {
 	float: left;
 }
 
-#rotuloDocLegais {
+.rotuloMenu {
 	height: inherit;
 	max-width: 90px;
 	margin-left: 54px;
@@ -100,70 +108,16 @@ body {
 	display: table-cell;
 }
 
-#textoDocLegais {
-	font-family: Arial;
+.textoMenu {
+	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
-	font-size: 9pt;
+	font-size: 8pt;
 	color: white;
 	background-color: transparent;
 }
 
 #logoDocLegais {
 	background-image: url("../resources/images/menuNavegacao/newIcoDocLegais_out.png");
-}
-
-#itemDocLegais {
-	background-color: rgb(96, 96, 98);
-	display: block;
-}
-
-#itemDocLegais:hover {
-	background-color: rgb(153, 138, 66);
-}
-
-
-
-#itemCadEmpresa {
-	background-image: url("../resources/images/menuNavegacao/icoCadEmpresa_out.png");
-}
-
-#itemCadEmpresa:hover {
-	background-image: url("../resources/images/menuNavegacao/icoCadEmpresa_over.png");
-}
-
-#itemCadUsuarios {
-	background-image:
-		url("../resources/images/menuNavegacao/icoCadastroUsuarios_out.png");
-}
-
-#itemCadUsuarios:hover {
-	background-image:
-		url("../resources/images/menuNavegacao/icoCadastroUsuarios_over.png");
-}
-
-
-#itemOrdServicos {
-	background-image: url("../resources/images/menuNavegacao/icoOrdServicos_out.png");
-}
-
-#itemOrdServicos:hover {
-	background-image: url("../resources/images/menuNavegacao/icoOrdServicos_over.png");
-}
-
-#itemAuditoria {
-	background-image: url("../resources/images/menuNavegacao/icoAuditoria_out.png");
-}
-
-#itemAuditoria:hover {
-	background-image: url("../resources/images/menuNavegacao/icoAuditoria_over.png");
-}
-
-#itemTreinamento {
-	background-image: url("../resources/images/menuNavegacao/icoTreinamento_out.png");
-}
-
-#itemTreinamento:hover {
-	background-image: url("../resources/images/menuNavegacao/icoTreinamento_over.png");
 }
 
 #lateral {
@@ -192,10 +146,11 @@ body {
 	left: -150px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0
 		rgba(0, 0, 0, 0.19);
+	z-index: 1000;
 }
 
 #lateral:before {
-	z-index: 1000;
+	z-index: 500;
 	content: url("../resources/images/menuNavegacao/icoMenu.png");
 	font-size: 4em;
 	color: white;
