@@ -79,6 +79,7 @@ body {
 	width: 99.7%;
 	background-color: rgb(96, 96, 98);
 	display: block;
+	margin-top: 1px;
 }
 
 .menuBotao:hover {
@@ -170,11 +171,6 @@ body {
 	transform: translate(150px, 0);
 	padding-right: 0px;
 	overflow: auto;
-}
-
-#lateral .box {
-	list-style-type: none;
-	margin-bottom: 1em;
 }
 
 #conteudo {
