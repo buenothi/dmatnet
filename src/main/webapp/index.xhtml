@@ -8,8 +8,8 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title><h:outputText value="#{msgs.Login}" /></title>
-	<h:outputStylesheet library="css" name="styles.css"/>
+	<title><h:outputText value="#{msgs.TituloJanela}" /></title>
+	<h:outputStylesheet library="css" name="styles.css" />
 </h:head>
 
 <h:body onload="PF('dlgLogin').show();" styleClass="bkgndLogin">
@@ -23,12 +23,12 @@
 			<h:panelGrid columns="2">
 				<h:graphicImage value="/resources/images/Logo SMARTEMS.jpg" />
 				<h:panelGrid columns="2" cellpadding="5px">
-					<h:outputLabel value="Login" />
+					<h:outputLabel value="#{msgs.Login}" />
 					<p:inputText id="iptLogin" value="#{usuarioBean.login}" />
-					<h:outputLabel value="Senha" />
+					<h:outputLabel value="#{msgs.Senha}" />
 					<p:password id="iptSenha" value="#{usuarioBean.senha}" />
 					<p:spacer width="100%" />
-					<p:commandButton value="Entrar"
+					<p:commandButton value="#{msgs.Entrar}"
 						actionListener="#{usuarioBean.logarUsuario}" update="growl" />
 				</h:panelGrid>
 			</h:panelGrid>
