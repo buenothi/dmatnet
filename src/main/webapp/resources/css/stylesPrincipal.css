@@ -94,7 +94,7 @@ body {
 .logosMenu {
 	height: 54px;
 	width: 54px;
-	background-size: 48px 48px;
+	background-size: 46px 46px;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-color: transparent;
@@ -114,14 +114,40 @@ body {
 .textoMenu {
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
-	font-size: 8pt;
+	font-size: 7.5pt;
+	line-height: 30%;
 	color: inherit;
 	background-color: transparent;
+}
+
+#logoCadEmpresa {
+	background-image:
+		url("../resources/images/menuNavegacao/newIcoCadEmpresas_out.png");
+}
+
+#logoCadUsuarios {
+	background-image:
+		url("../resources/images/menuNavegacao/newIcoCadUsuarios_out.png");
 }
 
 #logoDocLegais {
 	background-image:
 		url("../resources/images/menuNavegacao/newIcoDocLegais_out.png");
+}
+
+#logoOrdServicos {
+	background-image:
+		url("../resources/images/menuNavegacao/newIcoOrdServicos_out.png");
+}
+
+#logoAuditoria {
+	background-image:
+		url("../resources/images/menuNavegacao/newIcoAuditoria_out.png");
+}
+
+#logoTreinamento {
+	background-image:
+		url("../resources/images/menuNavegacao/newIcoTreinamento_out.png");
 }
 
 #lateral {
