@@ -24,7 +24,6 @@ body {
 	min-width: 650px;
 }
 
-
 #superior {
 	background-color: rgb(36, 87, 69);
 	min-width: 650px;
@@ -42,7 +41,8 @@ body {
 #logoDMAT {
 	height: 90%;
 	width: 200px;
-	background-image: url("../resources/images/menuNavegacao/LogoDMATNET_vert.png");
+	background-image:
+		url("../resources/images/menuNavegacao/LogoDMATNET_vert.png");
 	background-size: cover;
 	float: left;
 	left: 0;
@@ -58,7 +58,7 @@ body {
 	border-right-width: 1px;
 	margin-left: 0px;
 	margin-top: 2px;
-	float:left;
+	float: left;
 }
 
 #usuarioLogado {
@@ -79,14 +79,16 @@ body {
 	width: 99.7%;
 	background-color: rgb(96, 96, 98);
 	display: block;
+	color: white;
 	margin-top: 1px;
 }
 
 .menuBotao:hover {
 	height: 55px;
 	width: 99.7%;
-	background-color: rgb(153, 138, 66);
+	background-color: rgb(198, 198, 198);
 	display: block;
+	color: black;
 }
 
 .logosMenu {
@@ -103,7 +105,7 @@ body {
 	height: inherit;
 	max-width: 90px;
 	margin-left: 54px;
-	padding-left: 5px; 
+	padding-left: 5px;
 	background-color: transparent;
 	vertical-align: middle;
 	display: table-cell;
@@ -113,12 +115,13 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	font-size: 8pt;
-	color: white;
+	color: inherit;
 	background-color: transparent;
 }
 
 #logoDocLegais {
-	background-image: url("../resources/images/menuNavegacao/newIcoDocLegais_out.png");
+	background-image:
+		url("../resources/images/menuNavegacao/newIcoDocLegais_out.png");
 }
 
 #lateral {
@@ -151,7 +154,7 @@ body {
 }
 
 #lateral:before {
-	z-index: 500;
+	z-index: 1000;
 	content: url("../resources/images/menuNavegacao/icoMenu.png");
 	font-size: 4em;
 	color: white;
@@ -161,7 +164,7 @@ body {
 }
 
 #lateral:hover:before, #lateral:focus:before {
-	left: -500px
+	left: -500px;
 }
 
 #lateral:hover, #lateral:focus, #lateral:active {
@@ -186,5 +189,4 @@ body {
 .painelConteudo {
 	width: inherit;
 	height: inherit;
-
 }
