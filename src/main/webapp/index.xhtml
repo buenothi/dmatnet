@@ -26,7 +26,7 @@
 					<h:outputLabel value="#{msgs.Login}" />
 					<p:inputText id="iptLogin" value="#{usuarioBean.login}" />
 					<h:outputLabel value="#{msgs.Senha}" />
-					<p:password id="iptSenha" value="#{usuarioBean.senha}" />
+					<p:password id="iptSenha" value="#{usuarioBean.senha}" redisplay="false"/>
 					<p:spacer width="100%" />
 					<p:commandButton value="#{msgs.Entrar}"
 						actionListener="#{usuarioBean.logarUsuario}" update="growl" />

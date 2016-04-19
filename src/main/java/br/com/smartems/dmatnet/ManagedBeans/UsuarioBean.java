@@ -1,4 +1,4 @@
-package br.com.smartemsdmatnet.ManagedBeans;
+package br.com.smartems.dmatnet.ManagedBeans;
 
 import java.io.Serializable;
 
