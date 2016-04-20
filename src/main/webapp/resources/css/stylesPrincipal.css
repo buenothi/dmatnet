@@ -76,7 +76,7 @@ body {
 
 .menuBotao {
 	height: 55px;
-	width: 220px;
+	width: 200px;
 	background-color: rgb(96, 96, 98);
 	display: block;
 	color: white;
@@ -246,7 +246,7 @@ os seletores abaixo, dentro do comentário são perfis legados
 }
 
 #lateral:hover, #lateral:focus, #lateral:active {
-	width: 220px;
+	width: 200px;
 	overflow: auto;
 }
 
