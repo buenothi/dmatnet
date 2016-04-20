@@ -53,9 +53,6 @@ body {
 	height: 90%;
 	width: 300px;
 	background-color: rgb(36, 87, 69);
-	border-right-style: solid;
-	border-right-color: rgb(255, 255, 255);
-	border-right-width: 1px;
 	margin-left: 0px;
 	margin-top: 2px;
 	float: left;
