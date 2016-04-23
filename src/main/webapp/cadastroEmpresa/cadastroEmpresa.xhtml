@@ -12,20 +12,19 @@
 	<ui:composition template="../principal.xhtml">
 		<ui:define name="conteudo">
 			<h:form styleClass="painelConteudo">
-				<p:layout styleClass="layoutConteudo">
-					<p:layoutUnit position="north" resizable="false" size="94">
-						<div id="tituloCadEmpresa" class="tituloCadEmpresa">
-							<h:outputFormat value="#{msgs.CadastroEmpresa}" />
-						</div>
-						<div id="barraBotoesEmpresa" class="barraBotoesPainel">
-							<p:commandButton value="#{msgs.AddEmpresa}" icon="fa fa-building"
-								type="button" />
-						</div>
-					</p:layoutUnit>
-					<p:layoutUnit position="west" resizable="true" size="300"
-						minSize="300" maxSize="500">West</p:layoutUnit>
-					<p:layoutUnit position="center">Center</p:layoutUnit>
-				</p:layout>
+				<div id="tituloCadEmpresa" class="tituloCadEmpresa">
+					<h:outputFormat value="#{msgs.CadastroEmpresa}" />
+				</div>
+				<div id="barraBotoesEmpresa" class="barraBotoesPainel">
+					<p:commandButton value="#{msgs.Adicionar}" icon="fa fa-building"
+						type="button" />
+				</div>
+				<p:tabView>
+					<p:tab title="Titulo 1"></p:tab>
+					<p:tab title="Titulo 2"></p:tab>
+					<p:tab title="Titulo 3"></p:tab>
+					<p:tab title="Titulo 4"></p:tab>
+				</p:tabView>
 			</h:form>
 		</ui:define>
 	</ui:composition>

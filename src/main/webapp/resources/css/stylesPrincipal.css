@@ -269,7 +269,8 @@ os seletores abaixo, dentro do comentário são perfis legados
 	z-index: 100;
 }
 
-.barraBotoesPainel {
+.barraBotoesPainel { 
+	 
 	height: 50px;
 	padding: 6px 6px 6px 6px;
 	width: inherit;
