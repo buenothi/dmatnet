@@ -1,7 +1,6 @@
 *, html, body {
 	margin: 0;
 	padding: 0;
-	background-color: #d3d3d3;
 }
 
 .bkgndLogin {
@@ -19,8 +18,6 @@
 }
 
 body {
-	margin-left: 50px;
-	font: 80%/1.2 Helvetica, Arial;
 	min-width: 650px;
 }
 
@@ -53,19 +50,19 @@ body {
 	height: 90%;
 	width: 300px;
 	background-color: rgb(36, 87, 69);
-	margin-left: 0px;
-	margin-top: 2px;
+	margin-left: 0;
+	margin-top: 0;
 	float: left;
 }
 
 #usuarioLogado {
-	height: 90%;
+	height: 100%;
 	width: 200px;
 	background-color: #5b5b5b;
 	border-left-style: solid;
 	border-left-color: rgb(255, 255, 255);
 	border-left-width: 1px;
-	margin-top: 2px;
+	margin-top: 0;
 	float: right;
 	right: 0;
 	z-index: 1000;
@@ -150,8 +147,6 @@ body {
 		url("../resources/images/menuNavegacao/newIcoTreinamento_out.png");
 }
 
-
-
 /*
 os seletores abaixo, dentro do comentário são perfis legados
 
@@ -207,8 +202,6 @@ os seletores abaixo, dentro do comentário são perfis legados
 	overflow: auto;
 }
 */
-
-
 #lateral {
 	padding: 0 0 0 0;
 	-moz-transition: all 0.5s ease;
@@ -239,7 +232,6 @@ os seletores abaixo, dentro do comentário são perfis legados
 
 #lateral:before {
 	z-index: 1000;
-	color: white;
 }
 
 #lateral:hover, #lateral:focus, #lateral:active {
@@ -248,16 +240,46 @@ os seletores abaixo, dentro do comentário são perfis legados
 }
 
 #conteudo {
-	margin-top: 42px;
-	padding-left: 56px;
-	right: 0px;
+	padding: 42px 0 0 56px;
 	height: 100%;
 	width: 100%;
-	position: fixed;
+	position: absolute;
 	overflow: auto;
 }
 
 .painelConteudo {
+	padding: 5px 5px 5px 5px;
+	height: 100%;
+	width: 100%;
+	background-color: white;
+	height: 100%;
+}
+
+.tituloCadEmpresa {
+	padding: 5px 0 0 10px;
 	width: inherit;
-	height: inherit;
+	height: 30px;
+	background-color: #949494;
+	color: white;
+	font-family: Arial, Helvetica, sans-serif;
+	font-style: italic;
+	font-size: 12pt;
+	font-weight: bold;
+	vertical-align: text-bottom;
+	z-index: 100;
+}
+
+.barraBotoesPainel {
+	height: 50px;
+	padding: 6px 6px 6px 6px;
+	width: inherit;
+	background-color: #ebebeb;
+	z-index: 1000;
+}
+
+.layoutConteudo {
+	min-width:400px;
+	min-height:200px;
+	height: 100%;
+	padding: 0;
 }

@@ -1,20 +1,31 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head></h:head>
 <h:body>
 	<ui:composition template="../principal.xhtml">
 		<ui:define name="conteudo">
-			<h:form style="width: 100%; height: 100%">
-				<p:panel id="pnlEmpresa" header="#{msgs.CadastroEmpresa}" styleClass="painelConteudo">
-					<h:panelGrid columns="2" cellpadding="10">
-						<h:outputText value="The story begins as Don Vito Corleone..." />
-					</h:panelGrid>
-				</p:panel>
+			<h:form styleClass="painelConteudo">
+				<p:layout styleClass="layoutConteudo">
+					<p:layoutUnit position="north" resizable="false" size="94">
+						<div id="tituloCadEmpresa" class="tituloCadEmpresa">
+							<h:outputFormat value="#{msgs.CadastroEmpresa}" />
+						</div>
+						<div id="barraBotoesEmpresa" class="barraBotoesPainel">
+							<p:commandButton value="#{msgs.AddEmpresa}" icon="fa fa-building"
+								type="button" />
+						</div>
+					</p:layoutUnit>
+					<p:layoutUnit position="west" resizable="true" size="300"
+						minSize="300" maxSize="500">West</p:layoutUnit>
+					<p:layoutUnit position="center">Center</p:layoutUnit>
+				</p:layout>
 			</h:form>
 		</ui:define>
 	</ui:composition>
