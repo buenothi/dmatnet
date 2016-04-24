@@ -253,6 +253,7 @@ os seletores abaixo, dentro do comentário são perfis legados
 	width: 100%;
 	background-color: white;
 	height: 100%;
+	display: block;
 }
 
 .tituloCadEmpresa {
@@ -266,21 +267,21 @@ os seletores abaixo, dentro do comentário são perfis legados
 	font-size: 12pt;
 	font-weight: bold;
 	vertical-align: text-bottom;
-	z-index: 100;
+	z-index: 999;
+	float: left;
+	position: relative;
 }
 
 .barraBotoesPainel { 
-	 
 	height: 50px;
 	padding: 6px 6px 6px 6px;
+	border-color: #a8a8a8;
+	border-style: solid;
+	border-width: 0.01px;
+	border-bottom-style:none;
+	background-color: white;
 	width: inherit;
-	background-color: #ebebeb;
-	z-index: 1000;
-}
-
-.layoutConteudo {
-	min-width:400px;
-	min-height:200px;
-	height: 100%;
-	padding: 0;
+	z-index: 999;
+	float: left;
+	position: relative;
 }
