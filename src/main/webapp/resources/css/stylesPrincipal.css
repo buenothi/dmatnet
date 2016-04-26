@@ -285,3 +285,12 @@ os seletores abaixo, dentro do comentário são perfis legados
 	float: left;
 	position: relative;
 }
+
+.tabTelaCheia {
+	height: 100%;
+	position: relative;
+}
+
+.tabelaSemBorda tr, .tabelaSemBorda td {
+   border: none !important;
+}

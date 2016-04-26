@@ -5,7 +5,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
 <h:head></h:head>
 <h:body>
@@ -16,11 +17,61 @@
 					<h:outputFormat value="#{msgs.CadastroEmpresa}" />
 				</div>
 				<div id="barraBotoesEmpresa" class="barraBotoesPainel">
-					<p:commandButton value="#{msgs.Adicionar}" icon="fa fa-building"
+					<p:commandButton value="#{msgs.Editar}" icon="fa fa-building"
 						type="button" />
 				</div>
-				<p:tabView style="height:100%">
-					<p:tab title="#{msgs.DadosCadastrais}"></p:tab>
+				<p:tabView styleClass="tabTelaCheia">
+					<p:tab title="#{msgs.DadosCadastrais}">
+
+						<p:panelGrid columns="6" styleClass="tabelaSemBorda">
+							<p:outputLabel value="#{msgs.DataCadastro}" />
+							<p:calendar showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy" mask="true" />
+							<p:outputLabel value="#{msgs.TipoInscricao}" />
+							<p:selectOneMenu>
+								<f:selectItem itemValue="1" itemLabel="CNPJ" />
+								<f:selectItem itemValue="2" itemLabel="CPF" />
+								<f:selectItem itemValue="3" itemLabel="CAEPF" />
+							</p:selectOneMenu>
+
+							<p:outputLabel value="#{msgs.Inscricao}" />
+							<p:inputText />
+						</p:panelGrid>
+
+						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+							<p:outputLabel value="#{msgs.RazaoSocial}" />
+							<p:inputText size="132" maxlength="250" />
+						</p:panelGrid>
+
+						<p:panelGrid columns="6" styleClass="tabelaSemBorda">
+
+							<p:outputLabel value="#{msgs.CodClassificacaoTributaria}" />
+							<p:inputText size="2" maxlength="2" />
+
+							<p:outputLabel value="#{msgs.CodNaturezaJuridica}" />
+							<p:inputText size="2" maxlength="2" />
+
+							<p:outputLabel value="#{msgs.CodIndicativoCooperativa}" />
+							<p:inputText size="2" maxlength="2" />
+
+							<p:outputLabel value="#{msgs.CodIndicativoConstrucao}" />
+							<p:inputText size="2" maxlength="2" />
+
+							<p:outputLabel value="#{msgs.CodIndicativoDesoneracaoFolha}" />
+							<p:inputText size="2" maxlength="2" />
+
+							<p:outputLabel value="#{msgs.CodIndicativoRegEletronico}" />
+							<p:inputText size="2" maxlength="2" />
+
+						</p:panelGrid>
+
+						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+							<p:outputLabel value="#{msgs.MultiplasRubricas}" />
+							<p:selectBooleanButton id="value2" onLabel="#{msgs.Sim}"
+								offLabel="#{msgs.Nao}" onIcon="ui-icon-check"
+								offIcon="ui-icon-close" style="width:120px" />
+						</p:panelGrid>
+
+					</p:tab>
 					<p:tab title="#{msgs.Endereco}"></p:tab>
 					<p:tab title="#{msgs.Contato}"></p:tab>
 					<p:tab title="#{msgs.Empregados}"></p:tab>
