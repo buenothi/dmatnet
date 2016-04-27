@@ -22,55 +22,55 @@
 				</div>
 				<p:tabView styleClass="tabTelaCheia">
 					<p:tab title="#{msgs.DadosCadastrais}">
+						<div id="formularioCadEmpresa" class="formulario">
+							<p:panelGrid columns="6" styleClass="tabelaSemBorda">
+								<p:outputLabel value="#{msgs.DataCadastro}" />
+								<p:calendar showOn="button" showButtonPanel="true"
+									pattern="dd/MM/yyyy" mask="true" size="8"/>
+								<p:outputLabel value="#{msgs.TipoInscricao}" />
+								<p:selectOneMenu>
+									<f:selectItem itemValue="1" itemLabel="CNPJ" />
+									<f:selectItem itemValue="2" itemLabel="CPF" />
+									<f:selectItem itemValue="3" itemLabel="CAEPF" />
+								</p:selectOneMenu>
+								<p:outputLabel value="#{msgs.Inscricao}" />
+								<p:inputText />
+							</p:panelGrid>
 
-						<p:panelGrid columns="6" styleClass="tabelaSemBorda">
-							<p:outputLabel value="#{msgs.DataCadastro}" />
-							<p:calendar showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy" mask="true" />
-							<p:outputLabel value="#{msgs.TipoInscricao}" />
-							<p:selectOneMenu>
-								<f:selectItem itemValue="1" itemLabel="CNPJ" />
-								<f:selectItem itemValue="2" itemLabel="CPF" />
-								<f:selectItem itemValue="3" itemLabel="CAEPF" />
-							</p:selectOneMenu>
+							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+								<p:outputLabel value="#{msgs.RazaoSocial}" />
+								<p:inputText size="85" maxlength="250" />
+							</p:panelGrid>
 
-							<p:outputLabel value="#{msgs.Inscricao}" />
-							<p:inputText />
-						</p:panelGrid>
+							<p:panelGrid columns="6" styleClass="tabelaSemBorda">
 
-						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-							<p:outputLabel value="#{msgs.RazaoSocial}" />
-							<p:inputText size="132" maxlength="250" />
-						</p:panelGrid>
+								<p:outputLabel value="#{msgs.CodClassificacaoTributaria}" />
+								<p:inputText size="2" maxlength="2" />
 
-						<p:panelGrid columns="6" styleClass="tabelaSemBorda">
+								<p:outputLabel value="#{msgs.CodNaturezaJuridica}" />
+								<p:inputText size="2" maxlength="2" />
 
-							<p:outputLabel value="#{msgs.CodClassificacaoTributaria}" />
-							<p:inputText size="2" maxlength="2" />
+								<p:outputLabel value="#{msgs.CodIndicativoCooperativa}" />
+								<p:inputText size="2" maxlength="2" />
 
-							<p:outputLabel value="#{msgs.CodNaturezaJuridica}" />
-							<p:inputText size="2" maxlength="2" />
+								<p:outputLabel value="#{msgs.CodIndicativoConstrucao}" />
+								<p:inputText size="2" maxlength="2" />
 
-							<p:outputLabel value="#{msgs.CodIndicativoCooperativa}" />
-							<p:inputText size="2" maxlength="2" />
+								<p:outputLabel value="#{msgs.CodIndicativoDesoneracaoFolha}" />
+								<p:inputText size="2" maxlength="2" />
 
-							<p:outputLabel value="#{msgs.CodIndicativoConstrucao}" />
-							<p:inputText size="2" maxlength="2" />
+								<p:outputLabel value="#{msgs.CodIndicativoRegEletronico}" />
+								<p:inputText size="2" maxlength="2" />
 
-							<p:outputLabel value="#{msgs.CodIndicativoDesoneracaoFolha}" />
-							<p:inputText size="2" maxlength="2" />
+							</p:panelGrid>
 
-							<p:outputLabel value="#{msgs.CodIndicativoRegEletronico}" />
-							<p:inputText size="2" maxlength="2" />
-
-						</p:panelGrid>
-
-						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-							<p:outputLabel value="#{msgs.MultiplasRubricas}" />
-							<p:selectBooleanButton id="value2" onLabel="#{msgs.Sim}"
-								offLabel="#{msgs.Nao}" onIcon="ui-icon-check"
-								offIcon="ui-icon-close" style="width:120px" />
-						</p:panelGrid>
-
+							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+								<p:outputLabel value="#{msgs.MultiplasRubricas}" />
+								<p:selectBooleanButton id="value2" onLabel="#{msgs.Sim}"
+									offLabel="#{msgs.Nao}" onIcon="ui-icon-check"
+									offIcon="ui-icon-close" style="width:120px" />
+							</p:panelGrid>
+						</div>
 					</p:tab>
 					<p:tab title="#{msgs.Endereco}"></p:tab>
 					<p:tab title="#{msgs.Contato}"></p:tab>
