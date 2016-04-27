@@ -10,7 +10,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tbl_RiscoAmbientalIdentificado")
+@Table(name="tbl_riscoambientalidentificado")
 public class RiscoAmbientalIdentificadoEntity extends RiscoAmbientalEntity implements Serializable {
 
 	private int intensidadeRisco;
@@ -18,19 +18,19 @@ public class RiscoAmbientalIdentificadoEntity extends RiscoAmbientalEntity imple
 	private int tempoExposicao;
 	
 	@ManyToMany
-	@JoinTable(name="tbl_RiscoAmbientalIdentificadoEPI_JoinTable",
+	@JoinTable(name="tbl_riscoambientalidentificadoepi_jointable",
 			joinColumns=@JoinColumn(name="riscoIdentificado_ID"),
 			inverseJoinColumns=@JoinColumn(name="epi_ID"))
 	private List<EPIEntity> epis;
 	
 	@ManyToMany
-	@JoinTable(name="tbl_RiscoAmbientalIdentificadoEPC_JoinTable",
+	@JoinTable(name="tbl_riscoambientalidentificadoepc_jointable",
 			joinColumns=@JoinColumn(name="riscoIdentificado_ID"),
 			inverseJoinColumns=@JoinColumn(name="epc_ID"))
 	private List<EPCEntity> epcs;
 	
 	@ManyToMany
-	@JoinTable(name="tbl_RiscoAmbientalIdentificadoMedidasAdm_JoinTable",
+	@JoinTable(name="tbl_riscoambientalidentificadomedidasadm_jointable",
 			joinColumns=@JoinColumn(name="riscoIdentificado_ID"),
 			inverseJoinColumns=@JoinColumn(name="medidasAdm_ID"))
 	private List<MedidasAdministrativasEntity> medidasAdministrativas;

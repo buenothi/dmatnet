@@ -22,7 +22,7 @@ public class EmpresaCadastroEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-	private long idEventoEsocial;//identificador para o o eSocial
+	private long idEventoEsocial;//identificador para o eSocial
 	private int tipoEvento;
 	private int processoEnvioDados;
 	private String versaoApp;

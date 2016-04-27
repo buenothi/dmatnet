@@ -5,8 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@Table(name="tbl_RiscoAmbiental")
-@Inheritance(strategy=InheritanceType.JOINED)
+@Table(name="tbl_riscoambiental")
 public class RiscoAmbientalEntity extends AbstractRiscoEntity implements Serializable {
 
 	private int limiteTolerancia_NR15;
