@@ -243,7 +243,7 @@ os seletores abaixo, dentro do comentário são perfis legados
 	padding: 42px 0 0 56px;
 	height: 100%;
 	width: 100%;
-	position: absolute;
+	position: relative;
 	overflow: auto;
 }
 
@@ -254,7 +254,8 @@ os seletores abaixo, dentro do comentário são perfis legados
 	background-color: white;
 	height: 100%;
 	display: block;
-	min-width: 810px;
+	min-width: 807px;
+	position: relative;
 }
 
 .tituloCadEmpresa {
@@ -273,13 +274,13 @@ os seletores abaixo, dentro do comentário são perfis legados
 	position: relative;
 }
 
-.barraBotoesPainel { 
+.barraBotoesPainel {
 	height: 50px;
 	padding: 6px 6px 6px 6px;
 	border-color: #a8a8a8;
 	border-style: solid;
 	border-width: 0.01px;
-	border-bottom-style:none;
+	border-bottom-style: none;
 	background-color: white;
 	width: inherit;
 	z-index: 999;
@@ -297,9 +298,10 @@ os seletores abaixo, dentro do comentário são perfis legados
 .formulario {
 	background-color: white;
 	min-width: inherit;
+	position: inherit;
 }
 
-.tabelaSemBorda tr, .tabelaSemBorda td, .tabelaSemBorda div{
-   border: 5px solid white !important;
-   font-size: 11pt !important;
+.tabelaSemBorda tr, .tabelaSemBorda td  {
+	border: 0 solid white !important;
+	font-size: 11pt !important;
 }

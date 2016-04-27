@@ -28,7 +28,7 @@
 								<p:calendar showOn="button" showButtonPanel="true"
 									pattern="dd/MM/yyyy" mask="true" size="8"/>
 								<p:outputLabel value="#{msgs.TipoInscricao}" />
-								<p:selectOneMenu>
+								<p:selectOneMenu style="width:100px">
 									<f:selectItem itemValue="1" itemLabel="CNPJ" />
 									<f:selectItem itemValue="2" itemLabel="CPF" />
 									<f:selectItem itemValue="3" itemLabel="CAEPF" />
@@ -39,7 +39,7 @@
 
 							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 								<p:outputLabel value="#{msgs.RazaoSocial}" />
-								<p:inputText size="85" maxlength="250" />
+								<p:inputText maxlength="250" size="70" />
 							</p:panelGrid>
 
 							<p:panelGrid columns="6" styleClass="tabelaSemBorda">
