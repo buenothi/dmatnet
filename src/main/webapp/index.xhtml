@@ -28,8 +28,8 @@
 					<h:outputLabel value="#{msgs.Senha}" />
 					<p:password id="iptSenha" value="#{usuarioBean.senha}" redisplay="false"/>
 					<p:spacer width="100%" />
-					<p:commandButton value="#{msgs.Entrar}"
-						actionListener="#{usuarioBean.logarUsuario}" update="growl" />
+					<p:commandButton value="#{msgs.Entrar}" update="growl"
+							action="#{usuarioBean.logarUsuario}"/>
 				</h:panelGrid>
 			</h:panelGrid>
 		</p:dialog>

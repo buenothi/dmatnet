@@ -44,7 +44,7 @@ public class UsuarioBean implements Serializable {
 		this.senha = senha;
 	}
 
-	public void logarUsuario(ActionEvent event) {
+	public void verificarUsuario(ActionEvent event) {
 
 		RequestContext context = RequestContext.getCurrentInstance();
 		FacesMessage message = null;
@@ -52,7 +52,6 @@ public class UsuarioBean implements Serializable {
 
 		try {
 			this.usuarioLogado = usuarioFachada.logarUsuario(login, senha);
-			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bem vindo", usuarioLogado.getNome());
 			logado = true;
 		} catch (Exception e) {
 			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário Inválido", "usuario inválido");
@@ -62,6 +61,28 @@ public class UsuarioBean implements Serializable {
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		context.addCallbackParam("loggedIn", logado);
 
+	}
+		
+	public String logarUsuario() {
+
+		RequestContext context = RequestContext.getCurrentInstance();
+		FacesMessage message = null;
+		boolean logado = false;
+		String outcome = "falha";
+
+		try {
+			this.usuarioLogado = usuarioFachada.logarUsuario(login, senha);
+			outcome = "sucesso";
+			logado = true;
+		} catch (Exception e) {
+			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário Inválido", "usuario inválido");
+			logado = false;
+			FacesContext.getCurrentInstance().addMessage(null, message);
+			context.addCallbackParam("loggedIn", logado);
+		}
+
+		return outcome;
+		
 	}
 
 }
