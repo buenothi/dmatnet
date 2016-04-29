@@ -7,7 +7,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 
 import org.primefaces.context.RequestContext;
 
@@ -53,23 +52,6 @@ public class UsuarioBean implements Serializable {
 	public void setUsuarioLogado(UsuarioEntity usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
 	}
-
-	public void verificarUsuario(ActionEvent event) {
-		RequestContext context = RequestContext.getCurrentInstance();
-		FacesMessage message = null;
-		boolean logado = false;
-
-		try {
-			this.usuarioLogado = usuarioFachada.logarUsuario(login, senha);
-			logado = true;
-		} catch (Exception e) {
-			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário Inválido", "usuario inválido");
-			logado = false;
-		}
-
-		FacesContext.getCurrentInstance().addMessage(null, message);
-		context.addCallbackParam("loggedIn", logado);
-	}
 		
 	public String logarUsuario() {
 		RequestContext context = RequestContext.getCurrentInstance();
@@ -81,11 +63,12 @@ public class UsuarioBean implements Serializable {
 			this.usuarioLogado = usuarioFachada.logarUsuario(login, senha);
 			outcome = "sucesso";
 			logado = true;
+			context.addCallbackParam("UsuárioLogado", logado);
 		} catch (Exception e) {
-			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário Inválido", "usuario inválido");
+			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário Inválido", "O login ou a senha informado está incorreto");
 			logado = false;
 			FacesContext.getCurrentInstance().addMessage(null, message);
-			context.addCallbackParam("loggedIn", logado);
+			context.addCallbackParam("LoginFalhou", logado);
 		}
 
 		return outcome;

@@ -5,9 +5,9 @@
   <PROCESS-ITEM ID="rules:#index.xhtml:0" NAME="item"
    PATH="/index.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="sucesso:#{usuarioBean.logarUsuario}:#principal.xhtml"
-    NAME="output" PATH="/principal.xhtml"
-    TARGET="rules:#principal.xhtml"
+    ID="sucesso:#{usuarioBean.logarUsuario}:#aplicacaoWeb#principal.xhtml"
+    NAME="output" PATH="/aplicacaoWeb/principal.xhtml"
+    TARGET="rules:#aplicacaoWeb#principal.xhtml"
     TITLE="#{usuarioBean.logarUsuario}:sucesso" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="falha:#{usuarioBean.logarUsuario}:#index.xhtml" NAME="output1"
@@ -15,6 +15,6 @@
     TITLE="#{usuarioBean.logarUsuario}:falha" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#principal.xhtml" PATH="/principal.xhtml"
-  SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#aplicacaoWeb#principal.xhtml"
+  PATH="/aplicacaoWeb/principal.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>
