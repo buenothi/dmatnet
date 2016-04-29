@@ -17,7 +17,9 @@
 	<div id="superior">
 		<div id="logoDMAT" />
 		<div id="empresaSelecionada"></div>
-		<div id="usuarioLogado"></div>
+		<div id="usuarioLogado">
+			<h:outputFormat value="#{usuarioBean.usuarioLogado.nome}" />
+		</div>
 	</div>
 	<div id="lateral">
 		<div id="itemCadEmpresa" class="menuBotao">

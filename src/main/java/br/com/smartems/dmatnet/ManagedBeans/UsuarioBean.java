@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
@@ -14,13 +15,14 @@ import br.com.smartems.dmatnet.EJB.Facade.UsuarioFacadeLocal;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 
 @ManagedBean
+@SessionScoped
 public class UsuarioBean implements Serializable {
 
 	@EJB
 	private UsuarioFacadeLocal usuarioFachada;
 	private String login;
 	private String senha;
-	private UsuarioEntity usuarioLogado = new UsuarioEntity();
+	private UsuarioEntity usuarioLogado;
 
 	private static final long serialVersionUID = 1L;
 
@@ -43,9 +45,16 @@ public class UsuarioBean implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+	public UsuarioEntity getUsuarioLogado() {
+		return usuarioLogado;
+	}
+
+	public void setUsuarioLogado(UsuarioEntity usuarioLogado) {
+		this.usuarioLogado = usuarioLogado;
+	}
 
 	public void verificarUsuario(ActionEvent event) {
-
 		RequestContext context = RequestContext.getCurrentInstance();
 		FacesMessage message = null;
 		boolean logado = false;
@@ -60,11 +69,9 @@ public class UsuarioBean implements Serializable {
 
 		FacesContext.getCurrentInstance().addMessage(null, message);
 		context.addCallbackParam("loggedIn", logado);
-
 	}
 		
 	public String logarUsuario() {
-
 		RequestContext context = RequestContext.getCurrentInstance();
 		FacesMessage message = null;
 		boolean logado = false;
@@ -82,7 +89,6 @@ public class UsuarioBean implements Serializable {
 		}
 
 		return outcome;
-		
 	}
 
 }
