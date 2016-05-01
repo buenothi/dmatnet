@@ -15,17 +15,18 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntit
 
 @ManagedBean
 @SessionScoped
-public class UsuarioBean implements Serializable {
+public class UsuarioManagedBean implements Serializable {
 
 	@EJB
 	private UsuarioFacadeLocal usuarioFachada;
 	private String login;
 	private String senha;
 	private UsuarioEntity usuarioLogado;
+	private boolean isEditarCadastro;
 
 	private static final long serialVersionUID = 1L;
 
-	public UsuarioBean() {
+	public UsuarioManagedBean() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -53,6 +54,14 @@ public class UsuarioBean implements Serializable {
 		this.usuarioLogado = usuarioLogado;
 	}
 		
+	public boolean isEditarCadastro() {
+		return isEditarCadastro;
+	}
+
+	public void setEditarCadastro(boolean isEditarCadastro) {
+		this.isEditarCadastro = isEditarCadastro;
+	}
+
 	public String logarUsuario() {
 		RequestContext context = RequestContext.getCurrentInstance();
 		FacesMessage message = null;
@@ -73,5 +82,6 @@ public class UsuarioBean implements Serializable {
 
 		return outcome;
 	}
+
 
 }
