@@ -6,14 +6,11 @@ import java.util.List;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 
 @MappedSuperclass
-@Inheritance(strategy=InheritanceType.JOINED)
 public abstract class AbstractRiscoEntity implements Serializable {
 
 	@Id

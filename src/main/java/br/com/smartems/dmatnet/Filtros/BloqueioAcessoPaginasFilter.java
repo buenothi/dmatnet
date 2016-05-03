@@ -31,7 +31,6 @@ public class BloqueioAcessoPaginasFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
-		this.usuarioMB.isLogado = false;
 		System.out.println("passagem pelo filtro na ida");
 		usuarioMB = (UsuarioManagedBean) ((HttpServletRequest) request).getSession().getAttribute("usuarioManagedBean");
 
