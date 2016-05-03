@@ -7,6 +7,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 import org.primefaces.context.RequestContext;
 
@@ -23,6 +24,7 @@ public class UsuarioManagedBean implements Serializable {
 	private String senha;
 	private UsuarioEntity usuarioLogado;
 	private boolean isEditarCadastro;
+	private String outcome;
 
 	private static final long serialVersionUID = 1L;
 
@@ -45,7 +47,7 @@ public class UsuarioManagedBean implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
+
 	public UsuarioEntity getUsuarioLogado() {
 		return usuarioLogado;
 	}
@@ -53,7 +55,7 @@ public class UsuarioManagedBean implements Serializable {
 	public void setUsuarioLogado(UsuarioEntity usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
 	}
-		
+
 	public boolean isEditarCadastro() {
 		return isEditarCadastro;
 	}
@@ -62,26 +64,32 @@ public class UsuarioManagedBean implements Serializable {
 		this.isEditarCadastro = isEditarCadastro;
 	}
 
-	public String logarUsuario() {
+	public void logarUsuario(ActionEvent e) {
+
 		RequestContext context = RequestContext.getCurrentInstance();
 		FacesMessage message = null;
 		boolean logado = false;
-		String outcome = "falha";
+		
+		this.outcome = null;
 
 		try {
-			this.usuarioLogado = usuarioFachada.logarUsuario(login, senha);
-			outcome = "sucesso";
 			logado = true;
-			context.addCallbackParam("UsuárioLogado", logado);
-		} catch (Exception e) {
-			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário Inválido", "O login ou a senha informado está incorreto");
+			this.usuarioLogado = usuarioFachada.logarUsuario(login, senha);
+			this.outcome = "sucesso";
+		} catch (Exception ex) {
 			logado = false;
+			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário Inválido",
+					"O login ou a senha informado está incorreto");
 			FacesContext.getCurrentInstance().addMessage(null, message);
-			context.addCallbackParam("LoginFalhou", logado);
+			this.outcome = "falha";
 		}
 
-		return outcome;
+		context.addCallbackParam("logado", logado);
+
 	}
 
+	public String navegar() {
+		return this.outcome;
+	}
 
 }

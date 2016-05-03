@@ -26,10 +26,12 @@
 					<h:outputLabel value="#{msgs.Login}" />
 					<p:inputText id="iptLogin" value="#{usuarioManagedBean.login}" />
 					<h:outputLabel value="#{msgs.Senha}" />
-					<p:password id="iptSenha" value="#{usuarioManagedBean.senha}" redisplay="false"/>
+					<p:password id="iptSenha" value="#{usuarioManagedBean.senha}"
+						redisplay="false" />
 					<p:spacer width="100%" />
 					<p:commandButton value="#{msgs.Entrar}" update="growl"
-							action="#{usuarioManagedBean.logarUsuario}"/>
+						actionListener="#{usuarioManagedBean.logarUsuario}" 
+						action="#{usuarioManagedBean.navegar}"/>
 				</h:panelGrid>
 			</h:panelGrid>
 		</p:dialog>
