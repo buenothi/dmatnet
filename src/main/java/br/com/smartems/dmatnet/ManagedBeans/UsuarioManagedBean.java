@@ -24,6 +24,7 @@ public class UsuarioManagedBean implements Serializable {
 	private String senha;
 	private UsuarioEntity usuarioLogado;
 	private boolean isEditarCadastro;
+	public boolean isLogado;
 	private String outcome;
 
 	private static final long serialVersionUID = 1L;
@@ -67,23 +68,23 @@ public class UsuarioManagedBean implements Serializable {
 	public void logarUsuario(ActionEvent e) {
 		RequestContext context = RequestContext.getCurrentInstance();
 		FacesMessage message = null;
-		boolean logado = false;
+		isLogado = false;
 
 		this.outcome = null;
 
 		try {
-			logado = true;
+			isLogado = true;
 			this.usuarioLogado = usuarioFachada.logarUsuario(login, senha);
 			this.outcome = "sucesso";
 		} catch (Exception ex) {
-			logado = false;
+			isLogado = false;
 			message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário Inválido",
 					"O login ou a senha informado está incorreto");
 			FacesContext.getCurrentInstance().addMessage(null, message);
 			this.outcome = "falha";
 		}
 
-		context.addCallbackParam("logado", logado);
+		context.addCallbackParam("logado", isLogado);
 	}
 
 	public String navegar() {
