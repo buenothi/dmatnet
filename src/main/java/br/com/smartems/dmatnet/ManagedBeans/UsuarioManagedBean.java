@@ -65,11 +65,10 @@ public class UsuarioManagedBean implements Serializable {
 	}
 
 	public void logarUsuario(ActionEvent e) {
-
 		RequestContext context = RequestContext.getCurrentInstance();
 		FacesMessage message = null;
 		boolean logado = false;
-		
+
 		this.outcome = null;
 
 		try {
@@ -85,7 +84,6 @@ public class UsuarioManagedBean implements Serializable {
 		}
 
 		context.addCallbackParam("logado", logado);
-
 	}
 
 	public String navegar() {
