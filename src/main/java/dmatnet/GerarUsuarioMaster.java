@@ -55,6 +55,10 @@ public class GerarUsuarioMaster extends HttpServlet {
 			if (usuarios.isEmpty()) {
 				
 				grupo.setNomeGrupo("master");
+				List<UsuariosGrupoEntity> grupos = new ArrayList<>();
+				grupos.add(grupo);
+				
+				um.setGrupos(grupos);
 
 				um.setNome("Thiago Gonçalves Bueno");
 				um.setSenha("Tgb6878");
@@ -74,7 +78,7 @@ public class GerarUsuarioMaster extends HttpServlet {
 				emails.add(emailPrincipal);
 
 				um.setEmails(emails);
-				um.setLogin("buenothi");
+				um.setLogin("thiago.bueno");
 
 				EnderecoEntity enderecoComercial = new EnderecoEntity();
 				enderecoComercial.setLogradouroTipo("Avenida");
@@ -91,7 +95,7 @@ public class GerarUsuarioMaster extends HttpServlet {
 				enderecos.add(enderecoComercial);
 
 				um.setEnderecos(enderecos);
-
+				
 				em.persist(grupo);
 				em.persist(um);
 
