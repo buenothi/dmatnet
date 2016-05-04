@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -11,6 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="tbl_riscoambientalidentificado")
+@Inheritance(strategy=InheritanceType.JOINED)
 public class RiscoAmbientalIdentificadoEntity extends RiscoAmbientalEntity implements Serializable {
 
 	private int intensidadeRisco;

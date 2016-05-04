@@ -11,7 +11,6 @@ public class GheEAO extends AbstractEAO<GHEEntity, Long> {
        
     public GheEAO() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 }

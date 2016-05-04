@@ -39,7 +39,7 @@ public class BloqueioAcessoPaginasFilter implements Filter {
 			chain.doFilter(request, response);
 		} else {
 			String contextPath = ((HttpServletRequest) request).getContextPath();
-			((HttpServletResponse) response).sendRedirect(contextPath + "/index.jsf");
+			((HttpServletResponse) response).sendRedirect(contextPath);
 			System.out.println("usuário não está logado");
 		}
 
