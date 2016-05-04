@@ -55,7 +55,7 @@ body {
 	float: left;
 }
 
-#usuarioLogado {
+.usuarioLogado {
 	height: 100%;
 	width: 270px;
 	background-color: #5b5b5b;
@@ -70,7 +70,13 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	font-size: 8pt;
-	padding: 8px 0 0 10px;
+	padding: 2px 0 0 10px;
+}
+
+.usuarioLogado .textoUsuarioLogado {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 6pt;
 }
 
 .menuBotao {

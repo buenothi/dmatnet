@@ -58,6 +58,8 @@ public class GerarUsuarioMaster extends HttpServlet {
 
 				um.setNome("Thiago Gonçalves Bueno");
 				um.setSenha("Tgb6878");
+				
+				um.setGrupo(grupo);
 
 				TelefoneEntity telefone = new TelefoneEntity();
 				telefone.setNumeroTelefone("11974802701");

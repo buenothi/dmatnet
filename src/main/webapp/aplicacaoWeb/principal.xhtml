@@ -17,9 +17,10 @@
 	<div id="superior">
 		<div id="logoDMAT" />
 		<div id="empresaSelecionada"></div>
-		<div id="usuarioLogado">
+		<h:panelGrid class="usuarioLogado" columns="1">
 			<h:outputFormat value="#{usuarioManagedBean.usuarioLogado.nome}" />
-		</div>
+			<h:outputFormat value="#{usuarioManagedBean.usuarioLogado.grupo.nomeGrupo}" styleClass="textoUsuarioLogado"/>
+		</h:panelGrid>
 	</div>
 	<div id="lateral">
 		<div id="itemCadEmpresa" class="menuBotao">
