@@ -3,7 +3,12 @@ package br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="tbl_usuariosGrupo")
@@ -14,7 +19,7 @@ public class UsuariosGrupoEntity implements Serializable {
 	private int idGrupo;
 	private String nomeGrupo;
 	
-	@ManyToMany(mappedBy="grupos")
+	@OneToMany(mappedBy="grupo")
 	private List<UsuarioEntity> usuarios;
 	
 	private static final long serialVersionUID = 1L;

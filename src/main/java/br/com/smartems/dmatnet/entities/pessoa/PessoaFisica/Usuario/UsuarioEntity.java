@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -32,11 +33,9 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 	private String login;
 	private String senha;
 
-	@ManyToMany
-	@JoinTable(name="tbl_usuarioGrupo_JoinTable", 
-		joinColumns=@JoinColumn(name="usuario_ID"),
-		inverseJoinColumns=@JoinColumn(name="grupo_ID"))
-	private List<UsuariosGrupoEntity> grupos;
+	@ManyToOne
+	@JoinColumn(name="usuarioGrupo_ID")
+	private UsuariosGrupoEntity grupo;
 	
 	@ManyToMany
 	@JoinTable(name="tbl_usuarioEmpresas_joinTable",
@@ -69,12 +68,12 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 		this.senha = senhaCriptografada.obterHashString(senha);
 	}
 
-	public List<UsuariosGrupoEntity> getGrupos() {
-		return grupos;
+	public UsuariosGrupoEntity getGrupo() {
+		return grupo;
 	}
 
-	public void setGrupos(List<UsuariosGrupoEntity> grupos) {
-		this.grupos = grupos;
+	public void setGrupo(UsuariosGrupoEntity grupo) {
+		this.grupo = grupo;
 	}
 
 	public List<EmpresaEntity> getEmpresasGerenciadas() {

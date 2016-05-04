@@ -55,10 +55,6 @@ public class GerarUsuarioMaster extends HttpServlet {
 			if (usuarios.isEmpty()) {
 				
 				grupo.setNomeGrupo("master");
-				List<UsuariosGrupoEntity> grupos = new ArrayList<>();
-				grupos.add(grupo);
-				
-				um.setGrupos(grupos);
 
 				um.setNome("Thiago Gonçalves Bueno");
 				um.setSenha("Tgb6878");
