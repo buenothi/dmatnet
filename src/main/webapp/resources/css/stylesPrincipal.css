@@ -18,12 +18,12 @@
 }
 
 body {
-	min-width: 770px;
+	min-width: 650px;
 }
 
 #superior {
 	background-color: rgb(36, 87, 69);
-	min-width: 700px;
+	min-width: 771px;
 	width: 100%;
 	height: 42px;
 	top: 0;
