@@ -12,15 +12,13 @@
 <h:body>
 	<ui:composition template="../principal.xhtml">
 		<ui:define name="menuCadastroEmpresa">
-			<h:commandLink action="cadastroEmpresa">
-				<div id="itemCadEmpresa" class="menuBotaoSelecionado">
-					<div id="logoCadEmpresa" class="logosMenu" />
-					<div id="rotuloCadEmpresas" class="rotuloMenu">
-						<h:outputFormat styleClass="textoMenu"
-							value="#{fn:toUpperCase(msgs.CadastroEmpresa)}" />
-					</div>
+			<div id="itemCadEmpresa" class="menuBotaoSelecionado">
+				<div id="logoCadEmpresa" class="logosMenu" />
+				<div id="rotuloCadEmpresas" class="rotuloMenu">
+					<h:outputFormat styleClass="textoMenu"
+						value="#{fn:toUpperCase(msgs.CadastroEmpresa)}" />
 				</div>
-			</h:commandLink>
+			</div>
 		</ui:define>
 
 		<ui:define name="conteudo">
