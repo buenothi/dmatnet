@@ -15,6 +15,13 @@
    <to-view-id>/index.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/aplicacaoWeb/principal.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>cadastroEmpresa</from-outcome>
+   <to-view-id>/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
  <application>
   <resource-bundle>
    <base-name>messages</base-name>

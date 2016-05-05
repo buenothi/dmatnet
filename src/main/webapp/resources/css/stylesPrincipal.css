@@ -21,6 +21,10 @@ body {
 	min-width: 650px;
 }
 
+a:LINK {
+	text-decoration: none;
+}
+
 #superior {
 	background-color: rgb(36, 87, 69);
 	min-width: 771px;
