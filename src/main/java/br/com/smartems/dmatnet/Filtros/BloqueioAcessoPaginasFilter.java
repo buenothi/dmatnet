@@ -33,17 +33,17 @@ public class BloqueioAcessoPaginasFilter implements Filter {
 
 		System.out.println("passagem pelo filtro na ida");
 		usuarioMB = (UsuarioManagedBean) ((HttpServletRequest) request).getSession().getAttribute("usuarioManagedBean");
-		
+
 		try {
-		if (usuarioMB.isLogado) {
-			System.out.println(usuarioMB.isLogado);
-			chain.doFilter(request, response);
-		} else {
-			String contextPath = ((HttpServletRequest) request).getContextPath();
-			((HttpServletResponse) response).sendRedirect(contextPath);
-			System.out.println("usuário não está logado");
-		}
-		}catch (Exception ex) {
+			if (usuarioMB.isLogado) {
+				System.out.println(usuarioMB.isLogado);
+				chain.doFilter(request, response);
+			} else {
+				String contextPath = ((HttpServletRequest) request).getContextPath();
+				((HttpServletResponse) response).sendRedirect(contextPath);
+				System.out.println("usuário não está logado");
+			}
+		} catch (Exception ex) {
 			String contextPath = ((HttpServletRequest) request).getContextPath();
 			((HttpServletResponse) response).sendRedirect(contextPath);
 			System.out.println("usuário não está logado");

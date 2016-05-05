@@ -11,6 +11,18 @@
 <h:head></h:head>
 <h:body>
 	<ui:composition template="../principal.xhtml">
+		<ui:define name="menuCadastroEmpresa">
+			<h:commandLink action="cadastroEmpresa">
+				<div id="itemCadEmpresa" class="menuBotaoSelecionado">
+					<div id="logoCadEmpresa" class="logosMenu" />
+					<div id="rotuloCadEmpresas" class="rotuloMenu">
+						<h:outputFormat styleClass="textoMenu"
+							value="#{fn:toUpperCase(msgs.CadastroEmpresa)}" />
+					</div>
+				</div>
+			</h:commandLink>
+		</ui:define>
+
 		<ui:define name="conteudo">
 			<h:form styleClass="painelConteudo">
 				<div id="tituloCadEmpresa" class="tituloCadEmpresa">
@@ -22,7 +34,8 @@
 				</div>
 				<p:tabView styleClass="tabTelaCheia">
 					<p:tab title="#{msgs.DadosCadastrais}">
-						<ui:include src="/aplicacaoWeb/cadastroEmpresa/dadosCadastrais.xhtml" />
+						<ui:include
+							src="/aplicacaoWeb/cadastroEmpresa/dadosCadastrais.xhtml" />
 					</p:tab>
 					<p:tab title="#{msgs.Endereco}"></p:tab>
 					<p:tab title="#{msgs.Contato}"></p:tab>
