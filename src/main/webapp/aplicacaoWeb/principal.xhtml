@@ -29,17 +29,13 @@
 	<h:form>
 		<div id="lateral">
 			<ui:insert name="menuHome">
-				<h:commandLink action="home">
-					<ui:insert name="menuHome">
-						<div id="itemHome" class="menuBotao">
-							<div id="logoHome" class="logosMenu" />
-							<div id="rotuloCadEmpresas" class="rotuloMenu">
-								<h:outputFormat styleClass="textoMenu"
-									value="#{fn:toUpperCase(msgs.Home)}" />
-							</div>
-						</div>
-					</ui:insert>
-				</h:commandLink>
+				<div id="itemHome" class="menuBotaoSelecionado">
+					<div id="logoHome" class="logosMenu" />
+					<div id="rotuloCadEmpresas" class="rotuloMenu">
+						<h:outputFormat styleClass="textoMenu"
+							value="#{fn:toUpperCase(msgs.Home)}" />
+					</div>
+				</div>
 			</ui:insert>
 
 			<ui:insert name="menuCadastroEmpresa">

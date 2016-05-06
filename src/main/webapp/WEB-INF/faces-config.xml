@@ -20,7 +20,6 @@
   <navigation-case>
    <from-outcome>cadastroEmpresa</from-outcome>
    <to-view-id>/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml</to-view-id>
-   <redirect/>
   </navigation-case>
   <navigation-case>
    <from-outcome>home</from-outcome>
