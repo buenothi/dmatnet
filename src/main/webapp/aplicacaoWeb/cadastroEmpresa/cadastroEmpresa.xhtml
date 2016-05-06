@@ -13,7 +13,7 @@
 	<ui:composition template="../principal.xhtml">
 
 		<ui:define name="menuHome">
-			<a href="#{root}/dmatnet/aplicacaoWeb/principal.jsf">
+			<a href="#{request.contextPath}/aplicacaoWeb/principal.jsf">
 				<div id="itemHome" class="menuBotao">
 					<div id="logoHome" class="logosMenu" />
 					<div id="rotuloCadEmpresas" class="rotuloMenu">
@@ -23,7 +23,7 @@
 				</div>
 			</a>
 		</ui:define>
-		
+
 		<ui:define name="menuCadastroEmpresa">
 			<div id="itemCadEmpresa" class="menuBotaoSelecionado">
 				<div id="logoCadEmpresa" class="logosMenu" />
@@ -33,7 +33,7 @@
 				</div>
 			</div>
 		</ui:define>
-		
+
 		<ui:define name="conteudo">
 			<h:form styleClass="painelConteudo">
 				<div id="tituloCadEmpresa" class="tituloCadEmpresa">
@@ -54,7 +54,7 @@
 				</p:tabView>
 			</h:form>
 		</ui:define>
-		
+
 	</ui:composition>
 </h:body>
 </html>
