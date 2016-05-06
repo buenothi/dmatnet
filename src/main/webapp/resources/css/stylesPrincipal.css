@@ -142,6 +142,11 @@ a:LINK {
 	background-color: transparent;
 }
 
+#logoHome {
+	background-image:
+		url("../resources/images/menuNavegacao/newIcoHome_out.png");
+}
+
 #logoCadEmpresa {
 	background-image:
 		url("../resources/images/menuNavegacao/newIcoCadEmpresas_out.png");
