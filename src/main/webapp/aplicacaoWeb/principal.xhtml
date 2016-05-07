@@ -28,22 +28,27 @@
 
 	<h:form>
 		<div id="lateral">
-			<div id="itemHome" class="menuBotaoSelecionado">
-				<div id="logoHome" class="logosMenu" />
-				<div id="rotuloCadEmpresas" class="rotuloMenu">
-					<h:outputFormat styleClass="textoMenu"
-						value="#{fn:toUpperCase(msgs.Home)}" />
-				</div>
-			</div>
+			<h:commandLink
+				actionListener="#{principalManagedBean.exibirHome}">
+				<h:panelGroup layout="block" styleClass="#{principalManagedBean.classMenuBotaoHome}">
+					<div id="logoHome" class="logosMenu" />
+					<div id="rotuloCadEmpresas" class="rotuloMenu">
+						<h:outputFormat styleClass="textoMenu"
+							value="#{fn:toUpperCase(msgs.Home)}" />
+					</div>
+				</h:panelGroup>
+			</h:commandLink>
 
-			<h:commandLink actionListener="#{principalManagedBean.exibirCadastroEmpresa}">
-			<div id="itemCadEmpresa" class="menuBotao">
-				<div id="logoCadEmpresa" class="logosMenu" />
-				<div id="rotuloCadEmpresas" class="rotuloMenu">
-					<h:outputFormat styleClass="textoMenu"
-						value="#{fn:toUpperCase(msgs.CadastroEmpresa)}" />
-				</div>
-			</div>
+			<h:commandLink
+				actionListener="#{principalManagedBean.exibirCadastroEmpresa}">
+				<h:panelGroup layout="block"
+					styleClass="#{principalManagedBean.classMenuBotaoCadEmpresa}">
+					<div id="logoCadEmpresa" class="logosMenu" />
+					<div id="rotuloCadEmpresas" class="rotuloMenu">
+						<h:outputFormat styleClass="textoMenu"
+							value="#{fn:toUpperCase(msgs.CadastroEmpresa)}" />
+					</div>
+				</h:panelGroup>
 			</h:commandLink>
 
 			<div id="itemCadUsuarios" class="menuBotao">
@@ -88,12 +93,12 @@
 		</div>
 
 	</h:form>
-	
+
 	<h:panelGroup layout="block" styleClass="conteudo"
 		rendered="#{principalManagedBean.cadastroEmpresa}">
 		<ui:include src="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml" />
 	</h:panelGroup>
-	
+
 </h:body>
 
 </html>
