@@ -28,84 +28,72 @@
 
 	<h:form>
 		<div id="lateral">
-			<ui:insert name="menuHome">
-				<div id="itemHome" class="menuBotaoSelecionado">
-					<div id="logoHome" class="logosMenu" />
-					<div id="rotuloCadEmpresas" class="rotuloMenu">
-						<h:outputFormat styleClass="textoMenu"
-							value="#{fn:toUpperCase(msgs.Home)}" />
-					</div>
+			<div id="itemHome" class="menuBotaoSelecionado">
+				<div id="logoHome" class="logosMenu" />
+				<div id="rotuloCadEmpresas" class="rotuloMenu">
+					<h:outputFormat styleClass="textoMenu"
+						value="#{fn:toUpperCase(msgs.Home)}" />
 				</div>
-			</ui:insert>
+			</div>
 
-			<ui:insert name="menuCadastroEmpresa">
-				<h:commandLink action="cadastroEmpresa">
-					<div id="itemCadEmpresa" class="menuBotao">
-						<div id="logoCadEmpresa" class="logosMenu" />
-						<div id="rotuloCadEmpresas" class="rotuloMenu">
-							<h:outputFormat styleClass="textoMenu"
-								value="#{fn:toUpperCase(msgs.CadastroEmpresa)}" />
-						</div>
-					</div>
-				</h:commandLink>
-			</ui:insert>
-
-			<ui:insert name="menuCadastroUsuario">
-				<div id="itemCadUsuarios" class="menuBotao">
-					<div id="logoCadUsuarios" class="logosMenu" />
-					<div id="rotuloCadUsuarioss" class="rotuloMenu">
-						<h:outputFormat styleClass="textoMenu"
-							value="#{fn:toUpperCase(msgs.CadastroUsuario)}" />
-					</div>
+			<h:commandLink actionListener="#{principalManagedBean.exibirCadastroEmpresa}">
+			<div id="itemCadEmpresa" class="menuBotao">
+				<div id="logoCadEmpresa" class="logosMenu" />
+				<div id="rotuloCadEmpresas" class="rotuloMenu">
+					<h:outputFormat styleClass="textoMenu"
+						value="#{fn:toUpperCase(msgs.CadastroEmpresa)}" />
 				</div>
-			</ui:insert>
+			</div>
+			</h:commandLink>
 
-			<ui:insert name="menuDocLegais">
-				<div id="itemDocLegais" class="menuBotao">
-					<div id="logoDocLegais" class="logosMenu" />
-					<div id="rotuloDocLegais" class="rotuloMenu">
-						<h:outputFormat styleClass="textoMenu"
-							value="#{fn:toUpperCase(msgs.DocumentosLegais)}" />
-					</div>
+			<div id="itemCadUsuarios" class="menuBotao">
+				<div id="logoCadUsuarios" class="logosMenu" />
+				<div id="rotuloCadUsuarioss" class="rotuloMenu">
+					<h:outputFormat styleClass="textoMenu"
+						value="#{fn:toUpperCase(msgs.CadastroUsuario)}" />
 				</div>
-			</ui:insert>
+			</div>
 
-			<ui:insert name="menuOrdServicos">
-				<div id="itemOrdServicos" class="menuBotao">
-					<div id="logoOrdServicos" class="logosMenu" />
-					<div id="rotuloOrdServicos" class="rotuloMenu">
-						<h:outputFormat styleClass="textoMenu"
-							value="#{fn:toUpperCase(msgs.OrdensServicos)}" />
-					</div>
+			<div id="itemDocLegais" class="menuBotao">
+				<div id="logoDocLegais" class="logosMenu" />
+				<div id="rotuloDocLegais" class="rotuloMenu">
+					<h:outputFormat styleClass="textoMenu"
+						value="#{fn:toUpperCase(msgs.DocumentosLegais)}" />
 				</div>
-			</ui:insert>
+			</div>
 
-			<ui:insert name="menuAuditoria">
-				<div id="itemAuditoria" class="menuBotao">
-					<div id="logoAuditoria" class="logosMenu" />
-					<div id="rotuloAuditoria" class="rotuloMenu">
-						<h:outputFormat styleClass="textoMenu"
-							value="#{fn:toUpperCase(msgs.Auditoria)}" />
-					</div>
+			<div id="itemOrdServicos" class="menuBotao">
+				<div id="logoOrdServicos" class="logosMenu" />
+				<div id="rotuloOrdServicos" class="rotuloMenu">
+					<h:outputFormat styleClass="textoMenu"
+						value="#{fn:toUpperCase(msgs.OrdensServicos)}" />
 				</div>
-			</ui:insert>
+			</div>
 
-			<ui:insert name="menuTreinamento">
-				<div id="itemTreinamento" class="menuBotao">
-					<div id="logoTreinamento" class="logosMenu" />
-					<div id="rotuloTreinmento" class="rotuloMenu">
-						<h:outputFormat styleClass="textoMenu"
-							value="#{fn:toUpperCase(msgs.TreinamentosSST)}" />
-					</div>
+			<div id="itemAuditoria" class="menuBotao">
+				<div id="logoAuditoria" class="logosMenu" />
+				<div id="rotuloAuditoria" class="rotuloMenu">
+					<h:outputFormat styleClass="textoMenu"
+						value="#{fn:toUpperCase(msgs.Auditoria)}" />
 				</div>
-			</ui:insert>
+			</div>
+
+			<div id="itemTreinamento" class="menuBotao">
+				<div id="logoTreinamento" class="logosMenu" />
+				<div id="rotuloTreinmento" class="rotuloMenu">
+					<h:outputFormat styleClass="textoMenu"
+						value="#{fn:toUpperCase(msgs.TreinamentosSST)}" />
+				</div>
+			</div>
 		</div>
+
 	</h:form>
-
-	<div id="conteudo">
-		<ui:insert name="conteudo" />
-	</div>
-
+	
+	<h:panelGroup layout="block" styleClass="conteudo"
+		rendered="#{principalManagedBean.cadastroEmpresa}">
+		<ui:include src="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml" />
+	</h:panelGroup>
+	
 </h:body>
 
 </html>

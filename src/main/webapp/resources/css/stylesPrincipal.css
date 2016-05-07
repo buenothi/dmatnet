@@ -269,7 +269,7 @@ os seletores abaixo, dentro do comentário são perfis legados
 	overflow: auto;
 }
 
-#conteudo {
+.conteudo {
 	padding: 42px 0 0 56px;
 	height: 100%;
 	width: 100%;
