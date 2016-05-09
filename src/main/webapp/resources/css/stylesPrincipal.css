@@ -335,3 +335,7 @@ os seletores abaixo, dentro do comentário são perfis legados
 	border: 0 solid white !important;
 	font-size: 11pt !important;
 }
+
+.dataTable table span{
+	font-size: 10pt;
+}
