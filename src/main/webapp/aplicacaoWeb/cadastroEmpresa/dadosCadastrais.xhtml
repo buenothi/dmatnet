@@ -7,7 +7,8 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
 <ui:composition>
-	<div id="formularioCadEmpresa" class="formulario">
+	<h:panelGroup layout="block" id="formularioCadEmpresa"
+		class="formulario">
 		<p:panelGrid columns="6" styleClass="tabelaSemBorda">
 			<p:outputLabel value="#{msgs.DataCadastro}" />
 			<p:calendar showOn="button" showButtonPanel="true"
@@ -27,25 +28,25 @@
 			<p:inputText maxlength="250" size="70" />
 		</p:panelGrid>
 
-		<p:panelGrid columns="6" styleClass="tabelaSemBorda">
+		<p:panelGrid columns="4" styleClass="tabelaSemBorda">
 
 			<p:outputLabel value="#{msgs.CodClassificacaoTributaria}" />
-			<p:selectCheckboxMenu size="2" maxlength="2" />
+			<p:selectOneMenu />
 
 			<p:outputLabel value="#{msgs.CodNaturezaJuridica}" />
-			<p:inputText size="2" maxlength="2" />
+			<p:selectOneMenu />
 
 			<p:outputLabel value="#{msgs.CodIndicativoCooperativa}" />
-			<p:inputText size="2" maxlength="2" />
+			<p:selectOneMenu />
 
 			<p:outputLabel value="#{msgs.CodIndicativoConstrucao}" />
-			<p:inputText size="2" maxlength="2" />
+			<p:selectOneMenu />
 
 			<p:outputLabel value="#{msgs.CodIndicativoDesoneracaoFolha}" />
-			<p:inputText size="2" maxlength="2" />
+			<p:selectOneMenu />
 
 			<p:outputLabel value="#{msgs.CodIndicativoRegEletronico}" />
-			<p:inputText size="2" maxlength="2" />
+			<p:selectOneMenu />
 
 		</p:panelGrid>
 
@@ -55,6 +56,31 @@
 				offLabel="#{msgs.Nao}" onIcon="ui-icon-check"
 				offIcon="ui-icon-close" style="width:120px" />
 		</p:panelGrid>
-	</div>
+
+		<p:dataTable scrollable="true" scrollWidth="100%" scrollHeight="150">
+		<f:facet name="header">#{msgs.Historico}</f:facet>
+			<p:column headerText="#{msgs.DataCadastro}">
+			</p:column>
+			<p:column headerText="#{msgs.TipoInscricao}">
+			</p:column>
+			<p:column headerText="#{msgs.Inscricao}">
+			</p:column>
+			<p:column headerText="#{msgs.RazaoSocial}">
+			</p:column>
+			<p:column headerText="#{msgs.CodClassificacaoTributaria}">
+			</p:column>
+			<p:column headerText="#{msgs.CodNaturezaJuridica}">
+			</p:column>
+			<p:column headerText="#{msgs.CodIndicativoCooperativa}">
+			</p:column>
+			<p:column headerText="#{msgs.CodIndicativoConstrucao}">
+			</p:column>
+			<p:column headerText="#{msgs.CodIndicativoDesoneracaoFolha}">
+			</p:column>
+			<p:column headerText="#{msgs.CodIndicativoRegEletronico}">
+			</p:column>
+		</p:dataTable>
+
+	</h:panelGroup>
 </ui:composition>
 </html>
