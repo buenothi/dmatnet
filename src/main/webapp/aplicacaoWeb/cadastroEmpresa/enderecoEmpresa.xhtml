@@ -4,31 +4,45 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition>
 	<h:panelGroup layout="block" class="formulario">
-			<h:panelGrid columns="2">
-				<p:outputLabel value="logradouro"/>
-				<p:selectOneMenu>
-					<f:selectItem itemLabel="Rua"/>
-				</p:selectOneMenu>
-				
-				<p:outputLabel value="Endereço"/>
-				<p:inputText maxlength="250" size="62" />
-				
-				<p:outputLabel value="Numero"/>
-				<p:inputText maxlength="10" size="10" />
-				
-				<p:outputLabel value="Complemento"/>
-				<p:inputText maxlength="250" size="62" />
-				
-				<p:outputLabel value="Bairro"/>
-				<p:inputText maxlength="250" size="62" />
-				
-				<p:outputLabel value="CEP"/>
-				<p:inputText maxlength="8" size="62" />
-			</h:panelGrid>
+		<h:panelGrid columns="2">
+			<p:outputLabel value="logradouro" />
+			<p:selectOneMenu>
+				<f:selectItem itemLabel="Rua" />
+			</p:selectOneMenu>
+
+			<p:outputLabel value="Endereço" />
+			<p:inputText maxlength="250" size="62" />
+
+			<p:outputLabel value="Numero" />
+			<p:inputText maxlength="10" size="10" />
+
+			<p:outputLabel value="Complemento" />
+			<p:inputText maxlength="250" size="62" />
+
+			<p:outputLabel value="Bairro" />
+			<p:inputText maxlength="250" size="62" />
+
+			<p:outputLabel value="CEP" />
+			<p:inputText maxlength="8" size="8" />
+
+			<p:outputLabel value="Caixa Postal" />
+			<p:inputText maxlength="8" size="8" />
+
+			<p:outputLabel value="Estado" />
+			<p:selectOneMenu panelStyle="width:150px" effect="fade"
+				style="width:60px" filter="true" filterMatchMode="startsWith">
+			</p:selectOneMenu>
+
+			<p:outputLabel value="Cidade" />
+			<p:selectOneMenu panelStyle="width:180px" effect="fade"
+				style="width:160px" filter="true" filterMatchMode="startsWith">
+			</p:selectOneMenu>
+
+		</h:panelGrid>
 	</h:panelGroup>
 </ui:composition>
 </html>
