@@ -23,13 +23,22 @@
 			<p:inputText />
 		</p:panelGrid>
 
-		<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+		<p:panelGrid columns="5" styleClass="tabelaSemBorda">
 			<p:outputLabel value="#{msgs.RazaoSocial}" />
-			<p:inputText maxlength="250" size="70" />
+			<p:inputText maxlength="250" size="62" />
+			<p:outputLabel value="#{msgs.FAP}" />
+			<p:inputText maxlength="250" size="5" />
+			<p:commandButton value="#{msgs.ProcessoFAP}"/>
+		</p:panelGrid>
+		
+		<p:panelGrid columns="5" styleClass="tabelaSemBorda">
+			<p:commandButton value="#{msgs.empresaDadosIsencao}"/>
+			<p:commandButton value="#{msgs.organismoInternacional}"/>
+			<p:commandButton value="#{msgs.empresaSoftwareHouse}"/>
+			<p:commandButton value="#{msgs.empresaDadosComplementares}"/>
 		</p:panelGrid>
 
 		<p:panelGrid columns="4" styleClass="tabelaSemBorda">
-
 			<p:outputLabel value="#{msgs.CodClassificacaoTributaria}" />
 			<p:selectOneMenu />
 
@@ -47,7 +56,6 @@
 
 			<p:outputLabel value="#{msgs.CodIndicativoRegEletronico}" />
 			<p:selectOneMenu />
-
 		</p:panelGrid>
 
 		<p:panelGrid columns="2" styleClass="tabelaSemBorda">
@@ -57,9 +65,12 @@
 				offIcon="ui-icon-close" style="width:120px" />
 		</p:panelGrid>
 
+
 		<p:dataTable scrollable="true" scrollWidth="100%" scrollHeight="150" styleClass="dataTable">
 		<f:facet name="header">#{msgs.Historico}</f:facet>
-			<p:column headerText="#{msgs.DataCadastro}">
+			<p:column headerText="#{msgs.DataCadastro}" width="110">
+			</p:column>
+			<p:column headerText="#{msgs.DataTermino}" width="110">
 			</p:column>
 			<p:column headerText="#{msgs.TipoInscricao}">
 			</p:column>
