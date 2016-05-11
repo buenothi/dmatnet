@@ -43,6 +43,33 @@
 			</p:selectOneMenu>
 
 		</h:panelGrid>
+
+		<p:dataTable scrollable="true" scrollWidth="100%" scrollHeight="150"
+			styleClass="dataTable">
+			<f:facet name="header">#{msgs.Historico}</f:facet>
+			<p:column headerText="#{msgs.DataCadastro}" width="110">
+			</p:column>
+			<p:column headerText="#{msgs.DataTermino}" width="110">
+			</p:column>
+			<p:column headerText="#{msgs.TipoInscricao}">
+			</p:column>
+			<p:column headerText="#{msgs.Inscricao}">
+			</p:column>
+			<p:column headerText="#{msgs.RazaoSocial}">
+			</p:column>
+			<p:column headerText="#{msgs.CodClassificacaoTributaria}">
+			</p:column>
+			<p:column headerText="#{msgs.CodNaturezaJuridica}">
+			</p:column>
+			<p:column headerText="#{msgs.CodIndicativoCooperativa}">
+			</p:column>
+			<p:column headerText="#{msgs.CodIndicativoConstrucao}">
+			</p:column>
+			<p:column headerText="#{msgs.CodIndicativoDesoneracaoFolha}">
+			</p:column>
+			<p:column headerText="#{msgs.CodIndicativoRegEletronico}">
+			</p:column>
+		</p:dataTable>
 	</h:panelGroup>
 </ui:composition>
 </html>
