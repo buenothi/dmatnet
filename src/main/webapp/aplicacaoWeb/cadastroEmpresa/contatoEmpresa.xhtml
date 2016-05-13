@@ -13,14 +13,8 @@
 			</p:layoutUnit>
 
 			<p:layoutUnit position="center">
-				<p:tabView>
-					<p:tab title="#{msgs.DadosCadastrais}">						
-					</p:tab>
-					<p:tab title="#{msgs.Endereco}">						
-					</p:tab>
-					<p:tab title="#{msgs.Contatos}">
-					</p:tab>
-				</p:tabView>
+				<ui:include
+					src="/aplicacaoWeb/cadastroUsuario/cadastroUsuario.xhtml" />
 			</p:layoutUnit>
 		</p:layout>
 	</h:panelGroup>
