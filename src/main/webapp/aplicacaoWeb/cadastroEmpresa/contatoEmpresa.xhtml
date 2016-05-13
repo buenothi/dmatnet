@@ -3,11 +3,26 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition>
 	<h:panelGroup layout="block" class="formulario">
+		<p:layout styleClass="contatoLayout">
+			<p:layoutUnit position="west" resizable="true" size="300"
+				minSize="40" maxSize="200">
+			</p:layoutUnit>
 
+			<p:layoutUnit position="center">
+				<p:tabView>
+					<p:tab title="#{msgs.DadosCadastrais}">						
+					</p:tab>
+					<p:tab title="#{msgs.Endereco}">						
+					</p:tab>
+					<p:tab title="#{msgs.Contatos}">
+					</p:tab>
+				</p:tabView>
+			</p:layoutUnit>
+		</p:layout>
 	</h:panelGroup>
 </ui:composition>
 </html>

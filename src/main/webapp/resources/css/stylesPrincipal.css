@@ -339,3 +339,9 @@ os seletores abaixo, dentro do comentário são perfis legados
 .dataTable table span{
 	font-size: 10pt;
 }
+
+.contatoLayout {
+	min-width:400px;
+	min-height:200px;
+	width: 100%;
+}
