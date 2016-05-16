@@ -6,6 +6,19 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
-	<ui:composition>
-	</ui:composition>
+<ui:composition>
+	<h:form>
+		<h:panelGrid columns="2" styleClass="tabelaSemBorda">
+			<p:outputLabel value="Data Cadastro" />
+			<p:calendar showOn="button" showButtonPanel="true"
+				pattern="dd/MM/yyyy" mask="true" size="8" />
+
+			<p:outputLabel value="nome" />
+			<p:inputText />
+
+			<p:outputLabel value="nome" />
+			<p:inputText />
+		</h:panelGrid>
+	</h:form>
+</ui:composition>
 </html>

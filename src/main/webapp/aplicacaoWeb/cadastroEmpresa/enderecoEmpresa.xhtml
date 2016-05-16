@@ -7,69 +7,71 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition>
-	<h:panelGroup layout="block" class="formulario">
-		<h:panelGrid columns="2" styleClass="tabelaSemBorda">
-			<p:outputLabel value="#{msgs.Logradouro}" />
-			<p:selectOneMenu>
-				<f:selectItem itemLabel="Rua" />
-			</p:selectOneMenu>
+	<h:form>
+		<h:panelGroup layout="block" class="formulario">
+			<h:panelGrid columns="2" styleClass="tabelaSemBorda">
+				<p:outputLabel value="#{msgs.Logradouro}" />
+				<p:selectOneMenu>
+					<f:selectItem itemLabel="Rua" />
+				</p:selectOneMenu>
 
-			<p:outputLabel value="#{msgs.Endereco}" />
-			<p:inputText maxlength="250" size="62" />
+				<p:outputLabel value="#{msgs.Endereco}" />
+				<p:inputText maxlength="250" size="62" />
 
-			<p:outputLabel value="#{msgs.Numero}" />
-			<p:inputText maxlength="10" size="10" />
+				<p:outputLabel value="#{msgs.Numero}" />
+				<p:inputText maxlength="10" size="10" />
 
-			<p:outputLabel value="#{msgs.Complemento}" />
-			<p:inputText maxlength="250" size="62" />
+				<p:outputLabel value="#{msgs.Complemento}" />
+				<p:inputText maxlength="250" size="62" />
 
-			<p:outputLabel value="#{msgs.Bairro}" />
-			<p:inputText maxlength="250" size="62" />
+				<p:outputLabel value="#{msgs.Bairro}" />
+				<p:inputText maxlength="250" size="62" />
 
-			<p:outputLabel value="#{msgs.CEP}" />
-			<p:inputText maxlength="8" size="8" />
+				<p:outputLabel value="#{msgs.CEP}" />
+				<p:inputText maxlength="8" size="8" />
 
-			<p:outputLabel value="#{msgs.CaixaPostal}" />
-			<p:inputText maxlength="8" size="8" />
+				<p:outputLabel value="#{msgs.CaixaPostal}" />
+				<p:inputText maxlength="8" size="8" />
 
-			<p:outputLabel value="#{msgs.Estado}" />
-			<p:selectOneMenu panelStyle="width:150px" effect="fade"
-				style="width:60px" filter="true" filterMatchMode="startsWith">
-			</p:selectOneMenu>
+				<p:outputLabel value="#{msgs.Estado}" />
+				<p:selectOneMenu panelStyle="width:150px" effect="fade"
+					style="width:60px" filter="true" filterMatchMode="startsWith">
+				</p:selectOneMenu>
 
-			<p:outputLabel value="#{msgs.Cidade}" />
-			<p:selectOneMenu panelStyle="width:180px" effect="fade"
-				style="width:160px" filter="true" filterMatchMode="startsWith">
-			</p:selectOneMenu>
+				<p:outputLabel value="#{msgs.Cidade}" />
+				<p:selectOneMenu panelStyle="width:180px" effect="fade"
+					style="width:160px" filter="true" filterMatchMode="startsWith">
+				</p:selectOneMenu>
 
-		</h:panelGrid>
+			</h:panelGrid>
 
-		<p:dataTable scrollable="true" scrollWidth="100%" scrollHeight="150"
-			styleClass="dataTable">
-			<f:facet name="header">#{msgs.Historico}</f:facet>
-			<p:column headerText="#{msgs.DataCadastro}" width="110">
-			</p:column>
-			<p:column headerText="#{msgs.DataTermino}" width="110">
-			</p:column>
-			<p:column headerText="#{msgs.Logradouro}">
-			</p:column>
-			<p:column headerText="#{msgs.Endereco}">
-			</p:column>
-			<p:column headerText="#{msgs.Numero}">
-			</p:column>
-			<p:column headerText="#{msgs.Complemento}">
-			</p:column>
-			<p:column headerText="#{msgs.Bairro}">
-			</p:column>
-			<p:column headerText="#{msgs.CEP}">
-			</p:column>
-			<p:column headerText="#{msgs.CaixaPostal}">
-			</p:column>
-			<p:column headerText="#{msgs.Cidade}">
-			</p:column>
-			<p:column headerText="#{msgs.Estado}">
-			</p:column>
-		</p:dataTable>
-	</h:panelGroup>
+			<p:dataTable scrollable="true" scrollWidth="100%" scrollHeight="150"
+				styleClass="dataTable">
+				<f:facet name="header">#{msgs.Historico}</f:facet>
+				<p:column headerText="#{msgs.DataCadastro}" width="110">
+				</p:column>
+				<p:column headerText="#{msgs.DataTermino}" width="110">
+				</p:column>
+				<p:column headerText="#{msgs.Logradouro}">
+				</p:column>
+				<p:column headerText="#{msgs.Endereco}">
+				</p:column>
+				<p:column headerText="#{msgs.Numero}">
+				</p:column>
+				<p:column headerText="#{msgs.Complemento}">
+				</p:column>
+				<p:column headerText="#{msgs.Bairro}">
+				</p:column>
+				<p:column headerText="#{msgs.CEP}">
+				</p:column>
+				<p:column headerText="#{msgs.CaixaPostal}">
+				</p:column>
+				<p:column headerText="#{msgs.Cidade}">
+				</p:column>
+				<p:column headerText="#{msgs.Estado}">
+				</p:column>
+			</p:dataTable>
+		</h:panelGroup>
+	</h:form>
 </ui:composition>
 </html>

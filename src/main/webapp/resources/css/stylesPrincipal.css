@@ -340,8 +340,14 @@ os seletores abaixo, dentro do comentário são perfis legados
 	font-size: 10pt;
 }
 
-.contatoLayout {
-	min-width:400px;
-	min-height:300px;
+.contatoDivEsquerda{
+	width: 288px;
+	margin-left: 3px;
+	position: absolute;
+}
+
+.contatoDivDireita{
 	width: 100%;
+	padding-left: 296px;
+	min-height: 140px;
 }
