@@ -8,31 +8,31 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
-<h:head></h:head>
-<h:body>
-	<ui:composition>
-		<h:form styleClass="painelConteudo">
-			<div id="tituloCadEmpresa" class="tituloCadEmpresa">
-				<h:outputFormat value="#{msgs.CadastroEmpresa}" />
-			</div>
-			<div id="barraBotoesEmpresa" class="barraBotoesPainel">
-				<p:commandButton value="#{msgs.Editar}" icon="fa fa-building"
-					type="button" />
-			</div>
-			<p:tabView styleClass="tabTelaCheia">
-				<p:tab title="#{msgs.DadosCadastrais}">
-					<ui:include
-						src="/aplicacaoWeb/cadastroEmpresa/dadosCadastrais.xhtml" />
-				</p:tab>
-				<p:tab title="#{msgs.Endereco}">
-					<ui:include src="/aplicacaoWeb/cadastroEmpresa/enderecoEmpresa.xhtml" />
-				</p:tab>
-				<p:tab title="#{msgs.ContatoUsuario}">
-					<ui:include src="/aplicacaoWeb/cadastroEmpresa/contatoEmpresa.xhtml" />
-				</p:tab>
-				<p:tab title="#{msgs.Empregados}"></p:tab>
-			</p:tabView>
-		</h:form>
-	</ui:composition>
-</h:body>
+
+<ui:fragment>
+	<h:form styleClass="painelConteudo">
+		<div id="tituloCadEmpresa" class="tituloCadEmpresa">
+			<h:outputFormat value="#{msgs.CadastroEmpresa}" />
+		</div>
+		<div id="barraBotoesEmpresa" class="barraBotoesPainel">
+			<p:commandButton value="#{msgs.Editar}" icon="fa fa-building"
+				type="button" />
+		</div>
+		<p:tabView styleClass="tabTelaCheia">
+			<p:tab title="#{msgs.DadosCadastrais}">
+				<ui:include
+					src="/aplicacaoWeb/cadastroEmpresa/dadosCadastrais.xhtml" />
+			</p:tab>
+			<p:tab title="#{msgs.Endereco}">
+				<ui:include
+					src="/aplicacaoWeb/cadastroEmpresa/enderecoEmpresa.xhtml" />
+			</p:tab>
+			<p:tab title="#{msgs.ContatoUsuario}">
+				<ui:include src="/aplicacaoWeb/cadastroEmpresa/contatoEmpresa.xhtml" />
+			</p:tab>
+			<p:tab title="#{msgs.Empregados}"></p:tab>
+		</p:tabView>
+	</h:form>
+</ui:fragment>
+
 </html>
