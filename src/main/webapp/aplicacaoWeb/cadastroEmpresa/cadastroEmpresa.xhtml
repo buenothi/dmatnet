@@ -14,6 +14,12 @@
 		<div id="tituloCadEmpresa" class="tituloCadEmpresa">
 			<h:outputFormat value="#{msgs.CadastroEmpresa}" />
 		</div>
+		<h:panelGroup styleClass="barraBotoesPainel">
+			<p:commandButton value="#{msgs.Editar}" styleClass="botoes" icon="fa fa-edit"/>
+			<p:commandButton value="#{msgs.Cancelar}" styleClass="botoes" icon="fa fa-remove" disabled="true" />
+			<p:commandButton value="#{msgs.Salvar}" styleClass="botoes" icon="fa fa-save" disabled="true" />
+			<p:commandButton value="#{msgs.NovaEmpresa}" styleClass="botoes" icon="fa fa-plus" />
+		</h:panelGroup>
 		<p:tabView styleClass="tabTelaCheia">
 			<p:tab title="#{msgs.DadosCadastrais}">
 				<ui:include

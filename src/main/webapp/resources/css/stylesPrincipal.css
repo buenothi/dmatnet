@@ -318,6 +318,10 @@ os seletores abaixo, dentro do comentário são perfis legados
 	position: relative;
 }
 
+.botoes {
+	margin: 0 6px 0 6px;
+}
+
 .tabTelaCheia {
 	height: 100%;
 	position: relative;
