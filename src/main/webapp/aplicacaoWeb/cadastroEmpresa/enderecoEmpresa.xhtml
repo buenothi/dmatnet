@@ -8,8 +8,8 @@
 
 <ui:composition>
 	<h:form>
-		<h:panelGroup layout="block" class="formulario">
-			<h:panelGrid columns="2" styleClass="tabelaSemBorda">
+		<h:panelGroup layout="block" styleClass="formulario">
+			<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 				<p:outputLabel value="#{msgs.Logradouro}" />
 				<p:selectOneMenu>
 					<f:selectItem itemLabel="Rua" />
@@ -43,7 +43,7 @@
 					style="width:160px" filter="true" filterMatchMode="startsWith">
 				</p:selectOneMenu>
 
-			</h:panelGrid>
+			</p:panelGrid>
 
 			<p:dataTable scrollable="true" scrollWidth="100%" scrollHeight="150"
 				styleClass="dataTable">

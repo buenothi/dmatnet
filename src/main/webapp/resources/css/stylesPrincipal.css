@@ -338,6 +338,7 @@ os seletores abaixo, dentro do comentário são perfis legados
 .tabelaSemBorda tr, .tabelaSemBorda td  {
 	border: 0 solid white !important;
 	font-size: 11pt !important;
+	background-color: white !important;
 }
 
 .dataTable table span{
