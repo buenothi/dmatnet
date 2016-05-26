@@ -279,13 +279,11 @@ os seletores abaixo, dentro do comentário são perfis legados
 
 .painelConteudo {
 	padding: 5px 5px 5px 5px;
-	height: 100%;
 	width: 100%;
 	background-color: white;
 	height: 100%;
-	display: block;
-	min-width: 807px;
-	position: relative;
+	min-width: 1000px;
+	font-size: 10pt;
 }
 
 .tituloCadEmpresa {
@@ -322,15 +320,14 @@ os seletores abaixo, dentro do comentário são perfis legados
 	margin: 0 6px 0 6px;
 }
 
-.tabTelaCheia {
-	height: 100%;
-	position: relative;
-	background-color: #f0f0f0;
-	min-width: inherit;
+.tabsConteiner {
+	border-color: #a8a8a8;
+	border-style: solid;
+	border-width: 0.01px;
 }
 
 .formulario {
-	background-color: white;
+	
 	min-width: inherit;
 	position: inherit;
 }
@@ -338,7 +335,6 @@ os seletores abaixo, dentro do comentário são perfis legados
 .tabelaSemBorda tr, .tabelaSemBorda td  {
 	border: 0 solid white !important;
 	font-size: 11pt !important;
-	background-color: white !important;
 }
 
 .dataTable table span{

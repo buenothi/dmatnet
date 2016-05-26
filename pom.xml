@@ -47,6 +47,11 @@
 			<artifactId>casablanca</artifactId>
 			<version>1.0.10</version>
 		</dependency>
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>black-tie</artifactId>
+			<version>1.0.10</version>
+		</dependency>
 	</dependencies>
 
 	<repositories>

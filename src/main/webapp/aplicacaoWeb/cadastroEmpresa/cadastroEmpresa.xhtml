@@ -24,20 +24,23 @@
 			<p:commandButton value="#{msgs.NovaEmpresa}" styleClass="botoes"
 				icon="fa fa-plus" />
 		</h:panelGroup>
-		<p:tabView styleClass="tabTelaCheia">
-			<p:tab title="#{msgs.DadosCadastrais}">
-				<ui:include
-					src="/aplicacaoWeb/cadastroEmpresa/dadosCadastrais.xhtml" />
-			</p:tab>
-			<p:tab title="#{msgs.Endereco}">
-				<ui:include
-					src="/aplicacaoWeb/cadastroEmpresa/enderecoEmpresa.xhtml" />
-			</p:tab>
-			<p:tab title="#{msgs.ContatoUsuario}">
-				<ui:include src="/aplicacaoWeb/cadastroEmpresa/contatoEmpresa.xhtml" />
-			</p:tab>
-			<p:tab title="#{msgs.Empregados}"></p:tab>
-		</p:tabView>
+		<h:panelGroup layout="block" styleClass="tabsConteiner">
+			<p:tabView>
+				<p:tab title="#{msgs.DadosCadastrais}">
+					<ui:include
+						src="/aplicacaoWeb/cadastroEmpresa/dadosCadastrais.xhtml" />
+				</p:tab>
+				<p:tab title="#{msgs.Endereco}">
+					<ui:include
+						src="/aplicacaoWeb/cadastroEmpresa/enderecoEmpresa.xhtml" />
+				</p:tab>
+				<p:tab title="#{msgs.ContatoUsuario}">
+					<ui:include
+						src="/aplicacaoWeb/cadastroEmpresa/contatoEmpresa.xhtml" />
+				</p:tab>
+				<p:tab title="#{msgs.Empregados}"></p:tab>
+			</p:tabView>
+		</h:panelGroup>
 	</h:form>
 </ui:fragment>
 
