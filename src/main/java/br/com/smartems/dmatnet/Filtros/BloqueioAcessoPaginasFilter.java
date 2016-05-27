@@ -13,12 +13,12 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.smartems.dmatnet.ManagedBeans.UsuarioManagedBean;
+import br.com.smartems.dmatnet.ManagedBeans.UsuarioMB;
 
 @WebFilter(dispatcherTypes = { DispatcherType.REQUEST }, urlPatterns = { "/aplicacaoWeb/*" })
 public class BloqueioAcessoPaginasFilter implements Filter {
 
-	private UsuarioManagedBean usuarioMB = new UsuarioManagedBean();
+	private UsuarioMB usuarioMB = new UsuarioMB();
 
 	public BloqueioAcessoPaginasFilter() {
 
@@ -32,7 +32,7 @@ public class BloqueioAcessoPaginasFilter implements Filter {
 			throws IOException, ServletException {
 
 		System.out.println("passagem pelo filtro na ida");
-		usuarioMB = (UsuarioManagedBean) ((HttpServletRequest) request).getSession().getAttribute("usuarioManagedBean");
+		usuarioMB = (UsuarioMB) ((HttpServletRequest) request).getSession().getAttribute("usuarioMB");
 
 		try {
 			if (usuarioMB.isLogado) {

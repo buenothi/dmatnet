@@ -19,9 +19,9 @@
 		<div id="logoDMAT" />
 		<div id="empresaSelecionada"></div>
 		<h:panelGrid class="usuarioLogado" columns="1">
-			<h:outputFormat value="#{usuarioManagedBean.usuarioLogado.nome}" />
+			<h:outputFormat value="#{usuarioMB.usuarioLogado.nome}" />
 			<h:outputFormat
-				value="#{usuarioManagedBean.usuarioLogado.grupo.nomeGrupo}"
+				value="#{usuarioMB.usuarioLogado.grupo.nomeGrupo}"
 				styleClass="textoUsuarioLogado" />
 		</h:panelGrid>
 	</div>
@@ -29,8 +29,8 @@
 	<h:form>
 		<div id="lateral">
 			<h:commandLink
-				actionListener="#{principalManagedBean.exibirHome}">
-				<h:panelGroup layout="block" styleClass="#{principalManagedBean.classMenuBotaoHome}">
+				actionListener="#{principalMB.exibirHome}">
+				<h:panelGroup layout="block" styleClass="#{principalMB.classMenuBotaoHome}">
 					<div id="logoHome" class="logosMenu" />
 					<div id="rotuloCadEmpresas" class="rotuloMenu">
 						<h:outputFormat styleClass="textoMenu"
@@ -40,9 +40,9 @@
 			</h:commandLink>
 
 			<h:commandLink
-				actionListener="#{principalManagedBean.exibirCadastroEmpresa}">
+				actionListener="#{principalMB.exibirCadastroEmpresa}">
 				<h:panelGroup layout="block"
-					styleClass="#{principalManagedBean.classMenuBotaoCadEmpresa}">
+					styleClass="#{principalMB.classMenuBotaoCadEmpresa}">
 					<div id="logoCadEmpresa" class="logosMenu" />
 					<div id="rotuloCadEmpresas" class="rotuloMenu">
 						<h:outputFormat styleClass="textoMenu"
@@ -95,7 +95,7 @@
 	</h:form>
 
 	<h:panelGroup layout="block" styleClass="conteudo"
-		rendered="#{principalManagedBean.cadastroEmpresa}">
+		rendered="#{principalMB.cadastroEmpresa}">
 		<ui:include src="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml"/>
 	</h:panelGroup>
 

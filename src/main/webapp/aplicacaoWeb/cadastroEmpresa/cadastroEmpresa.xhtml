@@ -16,13 +16,18 @@
 		</div>
 		<h:panelGroup styleClass="barraBotoesPainel">
 			<p:commandButton value="#{msgs.Editar}" styleClass="botoes"
-				icon="fa fa-edit" />
+				icon="fa fa-edit"
+				disabled="#{cadastroEmpresaManagedBean.btnEditarDesativado}"
+				actionListener="#{cadastroEmpresaManagedBean.editarCadastro}"/>
 			<p:commandButton value="#{msgs.Cancelar}" styleClass="botoes"
-				icon="fa fa-remove" disabled="true" />
+				icon="fa fa-remove" 
+				disabled="#{cadastroEmpresaManagedBean.btnCancelarDesativado}" />
 			<p:commandButton value="#{msgs.Salvar}" styleClass="botoes"
-				icon="fa fa-save" disabled="true" />
+				icon="fa fa-save" 
+				disabled="#{cadastroEmpresaManagedBean.btnSalvarDesativado}" />
 			<p:commandButton value="#{msgs.NovaEmpresa}" styleClass="botoes"
-				icon="fa fa-plus" />
+				icon="fa fa-plus" 
+				disabled="#{cadastroEmpresaManagedBean.btnNovaEmpresaDesativado}"/>
 		</h:panelGroup>
 		<h:panelGroup layout="block" styleClass="tabsConteiner">
 			<p:tabView>

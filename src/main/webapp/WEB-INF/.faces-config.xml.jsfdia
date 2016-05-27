@@ -5,14 +5,13 @@
   <PROCESS-ITEM ID="rules:#index.xhtml:0" NAME="item"
    PATH="/index.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="sucesso:#{usuarioManagedBean.navegar}:#aplicacaoWeb#principal.xhtml"
+    ID="sucesso:#{usuarioMB.navegar}:#aplicacaoWeb#principal.xhtml"
     NAME="output" PATH="/aplicacaoWeb/principal.xhtml"
     TARGET="rules:#aplicacaoWeb#principal.xhtml"
-    TITLE="#{usuarioManagedBean.navegar}:sucesso" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT
-    ID="falha:#{usuarioManagedBean.navegar}:#index.xhtml" NAME="output1"
-    PATH="/index.xhtml" TARGET="rules:#index.xhtml"
-    TITLE="#{usuarioManagedBean.navegar}:falha" model-entity="JSFProcessItemOutput"/>
+    TITLE="#{usuarioMB.navegar}:sucesso" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="falha:#{usuarioMB.navegar}:#index.xhtml"
+    NAME="output1" PATH="/index.xhtml" TARGET="rules:#index.xhtml"
+    TITLE="#{usuarioMB.navegar}:falha" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#aplicacaoWeb#principal.xhtml"

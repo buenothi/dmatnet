@@ -15,13 +15,14 @@
 				<p:calendar showOn="button" showButtonPanel="true"
 					pattern="dd/MM/yyyy" mask="true" size="8" />
 				<p:outputLabel value="#{msgs.TipoInscricao}" />
-				<p:selectOneMenu style="width:100px">
+				<p:selectOneMenu style="width:100px"
+					value="#{cadastroEmpresaManagedBean.pessoaJuridicaSelecionada}">
 					<f:selectItem itemValue="1" itemLabel="CNPJ" />
 					<f:selectItem itemValue="2" itemLabel="CPF" />
 					<f:selectItem itemValue="3" itemLabel="CAEPF" />
 				</p:selectOneMenu>
 				<p:outputLabel value="#{msgs.Inscricao}" />
-				<p:inputText />
+				<p:inputMask id="ipmInscricao" mask="#{cadastroEmpresaManagedBean.mascaraPessoaJuridica}"/>
 			</p:panelGrid>
 
 			<p:panelGrid columns="5" styleClass="tabelaSemBorda">

@@ -16,7 +16,7 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntit
 
 @ManagedBean
 @SessionScoped
-public class UsuarioManagedBean implements Serializable {
+public class UsuarioMB implements Serializable {
 
 	@EJB
 	private UsuarioFacadeLocal usuarioFachada;
@@ -29,7 +29,7 @@ public class UsuarioManagedBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public UsuarioManagedBean() {
+	public UsuarioMB() {
 	}
 
 	public String getLogin() {

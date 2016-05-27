@@ -11,42 +11,48 @@
 		<h:panelGroup layout="block" styleClass="formulario">
 			<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 				<p:outputLabel value="#{msgs.Logradouro}" />
-				<p:selectOneMenu>
-					<f:selectItem itemLabel="Rua" />
-				</p:selectOneMenu>
-
-				<p:outputLabel value="#{msgs.Endereco}" />
-				<p:inputText maxlength="250" size="62" />
+				<h:panelGrid columns="2">
+					<p:selectOneMenu style="width: 100px">
+						<f:selectItem itemLabel="Rua" />
+						<f:selectItem itemLabel="Avenida" />
+						<f:selectItem itemLabel="Alameda" />
+					</p:selectOneMenu>
+					<p:inputText maxlength="250" style="width: 290px" />
+				</h:panelGrid>
 
 				<p:outputLabel value="#{msgs.Numero}" />
-				<p:inputText maxlength="10" size="10" />
-
-				<p:outputLabel value="#{msgs.Complemento}" />
-				<p:inputText maxlength="250" size="62" />
-
+				<h:panelGrid columns="4">
+					<p:inputText maxlength="10" style="width: 100px" />
+					<p:spacer height="15" />
+					<p:outputLabel value="#{msgs.Complemento}" />
+					<p:inputText maxlength="250" style="width: 180px" />
+				</h:panelGrid>
+				
 				<p:outputLabel value="#{msgs.Bairro}" />
-				<p:inputText maxlength="250" size="62" />
+				<h:panelGrid>
+					<p:inputText maxlength="250" style="width: 393px"/>
+				</h:panelGrid>
 
 				<p:outputLabel value="#{msgs.CEP}" />
-				<p:inputText maxlength="8" size="8" />
+				<h:panelGrid columns="4">
+					<p:inputMask mask="99999-999" maxlength="8" size="8" />
+					<p:spacer height="15" />
+					<p:outputLabel value="#{msgs.CaixaPostal}" />
+					<p:inputText maxlength="8" style="width: 200px" />
+				</h:panelGrid>
 
-				<p:outputLabel value="#{msgs.CaixaPostal}" />
-				<p:inputText maxlength="8" size="8" />
-
-				<p:outputLabel value="#{msgs.Estado}" />
-				<p:selectOneMenu panelStyle="width:150px" effect="fade"
-					style="width:60px" filter="true" filterMatchMode="startsWith">
-				</p:selectOneMenu>
-
-				<p:outputLabel value="#{msgs.Cidade}" />
-				<p:selectOneMenu panelStyle="width:180px" effect="fade"
-					style="width:160px" filter="true" filterMatchMode="startsWith">
-				</p:selectOneMenu>
-
+				<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}" />
+				<h:panelGrid columns="2">
+					<p:selectOneMenu panelStyle="width:150px" effect="fade"
+						style="width:60px">
+					</p:selectOneMenu>
+					<p:selectOneMenu panelStyle="width:180px" effect="fade"
+						style="width:333px" filter="true" filterMatchMode="startsWith">
+					</p:selectOneMenu>
+				</h:panelGrid>
 			</p:panelGrid>
 
-			<p:dataTable scrollable="true"
-				styleClass="dataTable">
+			<p:dataTable scrollable="true" styleClass="dataTable">
 				<f:facet name="header">#{msgs.Historico}</f:facet>
 				<p:column headerText="#{msgs.DataCadastro}" width="110">
 				</p:column>

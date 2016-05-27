@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.event.ActionEvent;
 
 @ManagedBean
-public class PrincipalManagedBean implements Serializable {
+public class PrincipalMB implements Serializable {
 
 	private boolean isCadastroEmpresa = false;
 	private String classMenuBotaoCadEmpresa = "menuBotao";
