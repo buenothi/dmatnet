@@ -12,14 +12,14 @@
 			styleClass="formulario">
 			<p:panelGrid columns="6" styleClass="tabelaSemBorda">
 				<p:outputLabel value="#{msgs.DataCadastro}" />
-				<p:calendar showOn="button" showButtonPanel="true"
+				<p:calendar locale="pt" showOn="button" showButtonPanel="true"
 					pattern="dd/MM/yyyy" mask="true" size="8" />
 				<p:outputLabel value="#{msgs.TipoInscricao}" />
 				<p:selectOneMenu style="width:100px"
 					value="#{cadastroEmpresaMB.pessoaJuridicaSelecionada}">
+					<p:ajax listener="#{cadastroEmpresaMB.alterarMascaraPessoaJuridica}" update="ipmInscricao" />
 					<f:selectItem itemValue="1" itemLabel="CNPJ" />
 					<f:selectItem itemValue="2" itemLabel="CPF" />
-					<f:selectItem itemValue="3" itemLabel="CAEPF" />
 				</p:selectOneMenu>
 				<p:outputLabel value="#{msgs.Inscricao}" />
 				<p:inputMask id="ipmInscricao" mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}"/>
@@ -29,7 +29,7 @@
 				<p:outputLabel value="#{msgs.RazaoSocial}" />
 				<p:inputText maxlength="250" size="62" />
 				<p:outputLabel value="#{msgs.FAP}" />
-				<p:inputText maxlength="250" size="5" />
+				<p:inputMask mask="9,999"  maxlength="250" size="5" />
 				<p:commandButton value="#{msgs.ProcessoFAP}" />
 			</p:panelGrid>
 

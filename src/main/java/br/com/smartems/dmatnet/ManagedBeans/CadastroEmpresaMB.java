@@ -5,19 +5,18 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.event.ActionEvent;
-import javax.faces.event.ValueChangeEvent;
 
 @ManagedBean
 @RequestScoped
-public class CadastroEmpresaMB implements Serializable{
-	
+public class CadastroEmpresaMB implements Serializable {
+
 	private boolean isBtnEditarDesativado = false;
 	private boolean isBtnCancelarDesativado = true;
 	private boolean isBtnSalvarDesativado = true;
 	private boolean isBtnNovaEmpresaDesativado = false;
 	private int pessoaJuridicaSelecionada;
 	private String mascaraPessoaJuridica = "99.999.999/9999-99";
-	
+
 	private static final long serialVersionUID = 1L;
 
 	public boolean isBtnEditarDesativado() {
@@ -65,19 +64,44 @@ public class CadastroEmpresaMB implements Serializable{
 	}
 
 	public void editarCadastro(ActionEvent e) {
-		 this.isBtnCancelarDesativado = false;
-		 System.out.println("teste editar Cadastro");
+		this.isBtnEditarDesativado = true;
+		this.isBtnCancelarDesativado = false;
+		this.isBtnSalvarDesativado = false;
+		this.isBtnNovaEmpresaDesativado = true;
+		System.out.println("teste editar Cadastro");
+	}
+
+	public void cancelarCadastro(ActionEvent e) {
+		System.out.println("teste cancelar Cadastro");
+		this.isBtnEditarDesativado = false;
+		this.isBtnCancelarDesativado = true;
+		this.isBtnSalvarDesativado = true;
+		this.isBtnNovaEmpresaDesativado = false;
 	}
 	
-	public void alterarMascaraPessoaJuridica(ValueChangeEvent e) {
-		switch (this.pessoaJuridicaSelecionada){
+	public void salvarCadastro(ActionEvent e) {
+		System.out.println("teste salvar Cadastro");
+		this.isBtnEditarDesativado = false;
+		this.isBtnCancelarDesativado = true;
+		this.isBtnSalvarDesativado = true;
+		this.isBtnNovaEmpresaDesativado = false;
+	}
+	
+	public void novoCadastro(ActionEvent e) {
+		this.isBtnEditarDesativado = true;
+		this.isBtnCancelarDesativado = false;
+		this.isBtnSalvarDesativado = false;
+		this.isBtnNovaEmpresaDesativado = true;
+		System.out.println("teste novo Cadastro");
+	}
+
+	public void alterarMascaraPessoaJuridica() {
+		switch (this.pessoaJuridicaSelecionada) {
 		case 1:
 			this.mascaraPessoaJuridica = "99.999.999/9999-99";
-			System.out.println("1");
 			break;
 		case 2:
-			this.mascaraPessoaJuridica = "999.999.999-99";	
-			System.out.println("2");
+			this.mascaraPessoaJuridica = "999.999.999-99";
 			break;
 		}
 	}

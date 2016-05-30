@@ -12,19 +12,26 @@
 <ui:fragment>
 	<h:form styleClass="painelConteudo">
 		<h:panelGroup styleClass="barraBotoesPainel">
-			<p:commandButton value="#{msgs.Editar}" styleClass="botoes"
-				icon="fa fa-edit"
+			<p:commandButton id="btnEditar" value="#{msgs.Editar}"
+				styleClass="botoes" icon="fa fa-edit"
 				disabled="#{cadastroEmpresaMB.btnEditarDesativado}"
-				actionListener="#{cadastroEmpresaMB.editarCadastro}"/>
+				actionListener="#{cadastroEmpresaMB.editarCadastro}"
+				update="btnCancelar btnSalvar btnNovaEmpresa @this" />
 			<p:commandButton id="btnCancelar" value="#{msgs.Cancelar}"
 				styleClass="botoes" icon="fa fa-remove"
-				disabled="#{cadastroEmpresaMB.btnCancelarDesativado}" />
+				disabled="#{cadastroEmpresaMB.btnCancelarDesativado}"
+				actionListener="#{cadastroEmpresaMB.cancelarCadastro}"
+				update="btnEditar btnSalvar btnNovaEmpresa @this" />
 			<p:commandButton id="btnSalvar" value="#{msgs.Salvar}"
 				styleClass="botoes" icon="fa fa-save"
-				disabled="#{cadastroEmpresaMB.btnSalvarDesativado}" />
+				disabled="#{cadastroEmpresaMB.btnSalvarDesativado}"
+				actionListener="#{cadastroEmpresaMB.salvarCadastro}"
+				update="btnEditar btnCancelar btnNovaEmpresa @this" />
 			<p:commandButton id="btnNovaEmpresa" value="#{msgs.NovaEmpresa}"
 				styleClass="botoes" icon="fa fa-plus"
-				disabled="#{cadastroEmpresaMB.btnNovaEmpresaDesativado}" />
+				disabled="#{cadastroEmpresaMB.btnNovaEmpresaDesativado}" 
+				actionListener="#{cadastroEmpresaMB.novoCadastro}"
+				update="btnEditar btnCancelar btnSalvar @this" />
 		</h:panelGroup>
 		<h:panelGroup layout="block" styleClass="tabsConteiner">
 			<p:tabView>

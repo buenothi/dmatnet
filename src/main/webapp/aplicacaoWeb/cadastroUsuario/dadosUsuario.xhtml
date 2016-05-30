@@ -10,7 +10,7 @@
 	<h:form>
 		<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 			<p:outputLabel value="Data Cadastro" />
-			<p:calendar showOn="button" showButtonPanel="true"
+			<p:calendar locale="pt" showOn="button" showButtonPanel="true"
 				pattern="dd/MM/yyyy" mask="true" size="8" />
 
 			<p:outputLabel value="#{msgs.Nome}" />
@@ -20,7 +20,7 @@
 			<p:inputText />
 			
 			<p:outputLabel value="#{msgs.DataNascimento}" />
-			<p:calendar showOn="button" showButtonPanel="true"
+			<p:calendar locale="pt" showOn="button" showButtonPanel="true"
 				pattern="dd/MM/yyyy" mask="true" size="8" />
 	
 		</p:panelGrid>
