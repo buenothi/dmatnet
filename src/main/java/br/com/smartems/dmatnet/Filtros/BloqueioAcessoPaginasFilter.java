@@ -49,7 +49,7 @@ public class BloqueioAcessoPaginasFilter implements Filter {
 			System.out.println("usuário não está logado");
 		}
 
-		System.out.println("passagem pelo filtro na volta");
+		System.out.println("passagem pelo filtro na volta\n" + "-----------------------------------");
 
 	}
 

@@ -270,7 +270,7 @@ os seletores abaixo, dentro do comentário são perfis legados
 }
 
 .conteudo {
-	padding: 42px 0 0 56px;
+	padding: 42px 0 0 56px !important;
 	height: 100%;
 	width: 100%;
 	position: relative;

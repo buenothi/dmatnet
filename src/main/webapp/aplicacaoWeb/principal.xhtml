@@ -20,28 +20,27 @@
 		<div id="empresaSelecionada"></div>
 		<h:panelGrid class="usuarioLogado" columns="1">
 			<h:outputFormat value="#{usuarioMB.usuarioLogado.nome}" />
-			<h:outputFormat
-				value="#{usuarioMB.usuarioLogado.grupo.nomeGrupo}"
+			<h:outputFormat value="#{usuarioMB.usuarioLogado.grupo.nomeGrupo}"
 				styleClass="textoUsuarioLogado" />
 		</h:panelGrid>
 	</div>
 
 	<h:form>
 		<div id="lateral">
-			<h:commandLink
-				actionListener="#{principalMB.exibirHome}">
-				<h:panelGroup layout="block" styleClass="#{principalMB.classMenuBotaoHome}">
+			<p:commandLink actionListener="#{principalMB.exibirHome}" update="@this pnlCadastroEmpresa btnCadastroEmpresa">
+				<h:panelGroup id="btnHome" layout="block"
+					styleClass="#{principalMB.classMenuBotaoHome}">
 					<div id="logoHome" class="logosMenu" />
 					<div id="rotuloCadEmpresas" class="rotuloMenu">
 						<h:outputFormat styleClass="textoMenu"
 							value="#{fn:toUpperCase(msgs.Home)}" />
 					</div>
 				</h:panelGroup>
-			</h:commandLink>
+			</p:commandLink>
 
-			<h:commandLink
-				actionListener="#{principalMB.exibirCadastroEmpresa}">
-				<h:panelGroup layout="block"
+			<p:commandLink actionListener="#{principalMB.exibirCadastroEmpresa}"
+				update="pnlCadastroEmpresa @this btnHome">
+				<h:panelGroup id="btnCadastroEmpresa" layout="block"
 					styleClass="#{principalMB.classMenuBotaoCadEmpresa}">
 					<div id="logoCadEmpresa" class="logosMenu" />
 					<div id="rotuloCadEmpresas" class="rotuloMenu">
@@ -49,11 +48,11 @@
 							value="#{fn:toUpperCase(msgs.CadastroEmpresa)}" />
 					</div>
 				</h:panelGroup>
-			</h:commandLink>
+			</p:commandLink>
 
 			<div id="itemCadUsuarios" class="menuBotao">
 				<div id="logoCadUsuarios" class="logosMenu" />
-				<div id="rotuloCadUsuarioss" class="rotuloMenu">
+				<div id="rotuloCadUsuarios" class="rotuloMenu">
 					<h:outputFormat styleClass="textoMenu"
 						value="#{fn:toUpperCase(msgs.CadastroUsuario)}" />
 				</div>
@@ -91,14 +90,12 @@
 				</div>
 			</div>
 		</div>
-
 	</h:form>
-
-	<h:panelGroup layout="block" styleClass="conteudo"
-		rendered="#{principalMB.cadastroEmpresa}">
-		<ui:include src="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml"/>
-	</h:panelGroup>
-
+	<p:panel id="pnlCadastroEmpresa" widgetVar="pnlCadastroEmpresa"
+		styleClass="conteudo" header="#{msgs.CadastroEmpresa}"
+		visible="#{principalMB.renderizarCadastroEmpresa}">
+		<ui:include src="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml" />
+	</p:panel>
 </h:body>
 
 </html>

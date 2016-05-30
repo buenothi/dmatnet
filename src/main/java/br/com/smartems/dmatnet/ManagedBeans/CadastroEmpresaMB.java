@@ -3,10 +3,13 @@ package br.com.smartems.dmatnet.ManagedBeans;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.event.ActionEvent;
 import javax.faces.event.ValueChangeEvent;
 
 @ManagedBean
-public class CadastroEmpresaManagedBean implements Serializable{
+@RequestScoped
+public class CadastroEmpresaMB implements Serializable{
 	
 	private boolean isBtnEditarDesativado = false;
 	private boolean isBtnCancelarDesativado = true;
@@ -61,8 +64,9 @@ public class CadastroEmpresaManagedBean implements Serializable{
 		return mascaraPessoaJuridica;
 	}
 
-	public void editarCadastro() {
+	public void editarCadastro(ActionEvent e) {
 		 this.isBtnCancelarDesativado = false;
+		 System.out.println("teste editar Cadastro");
 	}
 	
 	public void alterarMascaraPessoaJuridica(ValueChangeEvent e) {
