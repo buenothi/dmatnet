@@ -7,17 +7,26 @@
 	xmlns:composite="http://java.sun.com/jsf/composite">
 
 <composite:interface>
-	<composite:editableValueHolder name="logradouroNome"
+	<composite:attribute name="logradouroNome" />
+	<composite:editableValueHolder name="logradouroNomeInput"
 		targets="form:logradouroNome" />
-	<composite:editableValueHolder name="logradouroNumero"
+
+	<composite:attribute name="logradouroNumero" />
+	<composite:editableValueHolder name="logradouroNumeroInput"
 		targets="form:logradouroNumero" />
-	<composite:editableValueHolder name="logradouroComplemento"
+
+	<composite:attribute name="logradouroComplemento" />
+	<composite:editableValueHolder name="logradouroComplementoInput"
 		targets="form:logradouroComplemento" />
-	<composite:editableValueHolder name="bairro"
-		targets="form:bairro" />
-	<composite:editableValueHolder name="cep"
-		targets="form:cep" />
-	<composite:editableValueHolder name="caixaPostal"
+
+	<composite:attribute name="bairro" />
+	<composite:editableValueHolder name="bairroInput" targets="form:bairro" />
+
+	<composite:attribute name="cep" />
+	<composite:editableValueHolder name="cepInput" targets="form:cep" />
+
+	<composite:attribute name="caixaPostal" />
+	<composite:editableValueHolder name="caixaPostalnput"
 		targets="form:caixaPostal" />
 </composite:interface>
 
@@ -48,15 +57,18 @@
 
 				<p:outputLabel value="#{msgs.Bairro}" />
 				<h:panelGrid>
-					<p:inputText id="bairro" maxlength="250" style="width: 393px" value="#{cc.attrs.bairro}"/>
+					<p:inputText id="bairro" maxlength="250" style="width: 393px"
+						value="#{cc.attrs.bairro}" />
 				</h:panelGrid>
 
 				<p:outputLabel value="#{msgs.CEP}" />
 				<h:panelGrid columns="4">
-					<p:inputMask id="cep" mask="99999-999" maxlength="8" size="8" value="#{cc.attrs.cep}"/>
+					<p:inputMask id="cep" mask="99999-999" maxlength="8" size="8"
+						value="#{cc.attrs.cep}" />
 					<p:spacer height="15" />
 					<p:outputLabel value="#{msgs.CaixaPostal}" />
-					<p:inputText id="caixaPostal" maxlength="8" style="width: 200px" value="#{cc.attrs.caixaPostal}"/>
+					<p:inputText id="caixaPostal" maxlength="8" style="width: 200px"
+						value="#{cc.attrs.caixaPostal}" />
 				</h:panelGrid>
 
 				<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}" />
@@ -69,32 +81,36 @@
 					</p:selectOneMenu>
 				</h:panelGrid>
 			</p:panelGrid>
+			
+			<p:commandButton value="#{msgs.exibirHistorico}" icon="fa fa-history"/>
 
-			<p:dataTable scrollable="true" styleClass="dataTable">
-				<f:facet name="header">#{msgs.Historico}</f:facet>
-				<p:column headerText="#{msgs.DataCadastro}" width="110">
-				</p:column>
-				<p:column headerText="#{msgs.DataTermino}" width="110">
-				</p:column>
-				<p:column headerText="#{msgs.Logradouro}">
-				</p:column>
-				<p:column headerText="#{msgs.Endereco}">
-				</p:column>
-				<p:column headerText="#{msgs.Numero}">
-				</p:column>
-				<p:column headerText="#{msgs.Complemento}">
-				</p:column>
-				<p:column headerText="#{msgs.Bairro}">
-				</p:column>
-				<p:column headerText="#{msgs.CEP}">
-				</p:column>
-				<p:column headerText="#{msgs.CaixaPostal}">
-				</p:column>
-				<p:column headerText="#{msgs.Cidade}">
-				</p:column>
-				<p:column headerText="#{msgs.Estado}">
-				</p:column>
-			</p:dataTable>
+			<p:dialog header="#{msgs.Historico}" widgetVar="dlgHistoricoEndereco" closable="true" resizable="true">
+				<p:dataTable scrollable="true" styleClass="dataTable">
+					<f:facet name="header">#{msgs.Historico}</f:facet>
+					<p:column headerText="#{msgs.DataCadastro}" width="110">
+					</p:column>
+					<p:column headerText="#{msgs.DataTermino}" width="110">
+					</p:column>
+					<p:column headerText="#{msgs.Logradouro}">
+					</p:column>
+					<p:column headerText="#{msgs.Endereco}">
+					</p:column>
+					<p:column headerText="#{msgs.Numero}">
+					</p:column>
+					<p:column headerText="#{msgs.Complemento}">
+					</p:column>
+					<p:column headerText="#{msgs.Bairro}">
+					</p:column>
+					<p:column headerText="#{msgs.CEP}">
+					</p:column>
+					<p:column headerText="#{msgs.CaixaPostal}">
+					</p:column>
+					<p:column headerText="#{msgs.Cidade}">
+					</p:column>
+					<p:column headerText="#{msgs.Estado}">
+					</p:column>
+				</p:dataTable>
+			</p:dialog>
 		</h:panelGroup>
 	</h:form>
 </composite:implementation>

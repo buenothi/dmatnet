@@ -50,32 +50,36 @@
 					</p:selectOneMenu>
 				</h:panelGrid>
 			</p:panelGrid>
+			
+			<p:commandButton value="#{msgs.exibirHistorico}" icon="fa fa-history"/>
 
-			<p:dataTable scrollable="true" styleClass="dataTable">
-				<f:facet name="header">#{msgs.Historico}</f:facet>
-				<p:column headerText="#{msgs.DataCadastro}" width="110">
-				</p:column>
-				<p:column headerText="#{msgs.DataTermino}" width="110">
-				</p:column>
-				<p:column headerText="#{msgs.Logradouro}">
-				</p:column>
-				<p:column headerText="#{msgs.Endereco}">
-				</p:column>
-				<p:column headerText="#{msgs.Numero}">
-				</p:column>
-				<p:column headerText="#{msgs.Complemento}">
-				</p:column>
-				<p:column headerText="#{msgs.Bairro}">
-				</p:column>
-				<p:column headerText="#{msgs.CEP}">
-				</p:column>
-				<p:column headerText="#{msgs.CaixaPostal}">
-				</p:column>
-				<p:column headerText="#{msgs.Cidade}">
-				</p:column>
-				<p:column headerText="#{msgs.Estado}">
-				</p:column>
-			</p:dataTable>
+			<p:dialog header="#{msgs.Historico}" widgetVar="dlgHistoricoEndereco" closable="true" resizable="true">
+				<p:dataTable scrollable="true" styleClass="dataTable">
+					<f:facet name="header">#{msgs.Historico}</f:facet>
+					<p:column headerText="#{msgs.DataCadastro}" width="110">
+					</p:column>
+					<p:column headerText="#{msgs.DataTermino}" width="110">
+					</p:column>
+					<p:column headerText="#{msgs.Logradouro}">
+					</p:column>
+					<p:column headerText="#{msgs.Endereco}">
+					</p:column>
+					<p:column headerText="#{msgs.Numero}">
+					</p:column>
+					<p:column headerText="#{msgs.Complemento}">
+					</p:column>
+					<p:column headerText="#{msgs.Bairro}">
+					</p:column>
+					<p:column headerText="#{msgs.CEP}">
+					</p:column>
+					<p:column headerText="#{msgs.CaixaPostal}">
+					</p:column>
+					<p:column headerText="#{msgs.Cidade}">
+					</p:column>
+					<p:column headerText="#{msgs.Estado}">
+					</p:column>
+				</p:dataTable>
+			</p:dialog>
 		</h:panelGroup>
 	</h:form>
 </ui:composition>
