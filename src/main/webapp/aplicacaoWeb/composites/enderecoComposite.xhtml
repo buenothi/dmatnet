@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:editableValueHolder name="logradouroNome"
+		targets="form:logradouroNome" />
+	<composite:editableValueHolder name="logradouroNumero"
+		targets="form:logradouroNumero" />
+	<composite:editableValueHolder name="logradouroComplemento"
+		targets="form:logradouroComplemento" />
+	<composite:editableValueHolder name="bairro"
+		targets="form:bairro" />
+	<composite:editableValueHolder name="cep"
+		targets="form:cep" />
+	<composite:editableValueHolder name="caixaPostal"
+		targets="form:caixaPostal" />
+</composite:interface>
+
+<composite:implementation>
+	<h:form id="form">
+		<h:panelGroup layout="block" styleClass="formulario">
+			<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+				<p:outputLabel value="#{msgs.Logradouro}" />
+				<h:panelGrid columns="2">
+					<p:selectOneMenu style="width: 100px">
+						<f:selectItem itemLabel="Rua" />
+						<f:selectItem itemLabel="Avenida" />
+						<f:selectItem itemLabel="Alameda" />
+					</p:selectOneMenu>
+					<p:inputText id="logradouroNome" maxlength="250"
+						style="width: 290px" value="#{cc.attrs.logradouroNome}" />
+				</h:panelGrid>
+
+				<p:outputLabel value="#{msgs.Numero}" />
+				<h:panelGrid columns="4">
+					<p:inputText id="logradouroNumero" maxlength="10"
+						style="width: 100px" value="#{cc.attrs.logradouroNumero}" />
+					<p:spacer height="15" />
+					<p:outputLabel value="#{msgs.Complemento}" />
+					<p:inputText id="logradouroComplemento" maxlength="250"
+						style="width: 180px" value="#{cc.attrs.logradouroComplemento}" />
+				</h:panelGrid>
+
+				<p:outputLabel value="#{msgs.Bairro}" />
+				<h:panelGrid>
+					<p:inputText id="bairro" maxlength="250" style="width: 393px" value="#{cc.attrs.bairro}"/>
+				</h:panelGrid>
+
+				<p:outputLabel value="#{msgs.CEP}" />
+				<h:panelGrid columns="4">
+					<p:inputMask id="cep" mask="99999-999" maxlength="8" size="8" value="#{cc.attrs.cep}"/>
+					<p:spacer height="15" />
+					<p:outputLabel value="#{msgs.CaixaPostal}" />
+					<p:inputText id="caixaPostal" maxlength="8" style="width: 200px" value="#{cc.attrs.caixaPostal}"/>
+				</h:panelGrid>
+
+				<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}" />
+				<h:panelGrid columns="2">
+					<p:selectOneMenu panelStyle="width:150px" effect="fade"
+						style="width:60px">
+					</p:selectOneMenu>
+					<p:selectOneMenu panelStyle="width:180px" effect="fade"
+						style="width:333px" filter="true" filterMatchMode="startsWith">
+					</p:selectOneMenu>
+				</h:panelGrid>
+			</p:panelGrid>
+
+			<p:dataTable scrollable="true" styleClass="dataTable">
+				<f:facet name="header">#{msgs.Historico}</f:facet>
+				<p:column headerText="#{msgs.DataCadastro}" width="110">
+				</p:column>
+				<p:column headerText="#{msgs.DataTermino}" width="110">
+				</p:column>
+				<p:column headerText="#{msgs.Logradouro}">
+				</p:column>
+				<p:column headerText="#{msgs.Endereco}">
+				</p:column>
+				<p:column headerText="#{msgs.Numero}">
+				</p:column>
+				<p:column headerText="#{msgs.Complemento}">
+				</p:column>
+				<p:column headerText="#{msgs.Bairro}">
+				</p:column>
+				<p:column headerText="#{msgs.CEP}">
+				</p:column>
+				<p:column headerText="#{msgs.CaixaPostal}">
+				</p:column>
+				<p:column headerText="#{msgs.Cidade}">
+				</p:column>
+				<p:column headerText="#{msgs.Estado}">
+				</p:column>
+			</p:dataTable>
+		</h:panelGroup>
+	</h:form>
+</composite:implementation>
+</html>
