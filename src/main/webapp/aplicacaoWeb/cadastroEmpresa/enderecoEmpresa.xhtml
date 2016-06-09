@@ -26,10 +26,10 @@
 					<p:outputLabel value="#{msgs.Complemento}" />
 					<p:inputText maxlength="250" style="width: 180px" />
 				</h:panelGrid>
-				
+
 				<p:outputLabel value="#{msgs.Bairro}" />
 				<h:panelGrid>
-					<p:inputText maxlength="250" style="width: 393px"/>
+					<p:inputText maxlength="250" style="width: 393px" />
 				</h:panelGrid>
 
 				<p:outputLabel value="#{msgs.CEP}" />
@@ -50,10 +50,12 @@
 					</p:selectOneMenu>
 				</h:panelGrid>
 			</p:panelGrid>
-			
-			<p:commandButton value="#{msgs.exibirHistorico}" icon="fa fa-history" onclick="PF('dlgHistoricoEndereco').show()"/>
 
-			<p:dialog header="#{msgs.Historico}" widgetVar="dlgHistoricoEndereco" closable="true" resizable="true" width="1000" modal="true">
+			<p:commandButton value="#{msgs.exibirHistorico}" icon="fa fa-history"
+				onclick="PF('dlgHistoricoEndereco').show()" />
+
+			<p:dialog header="#{msgs.Historico}" widgetVar="dlgHistoricoEndereco"
+				closable="true" resizable="true" width="1000" modal="true">
 				<p:dataTable scrollable="true" styleClass="dataTable">
 					<f:facet name="header">#{msgs.Historico}</f:facet>
 					<p:column headerText="#{msgs.DataCadastro}" width="110">

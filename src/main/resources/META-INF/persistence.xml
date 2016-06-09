@@ -16,7 +16,6 @@
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.AbstractPessoaFisicaCadastro</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.AbstractPessoaFisicaEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.PessoaFisicaDocumentosEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorAfastamentoEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorCadastroEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorDeficienteEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEntity</class>
@@ -39,11 +38,12 @@
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaSoftwareHouse</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.NaturezaJuridica</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity</class>
+		<class>br.com.smartems.dmatnet.entities.pessoa.EnderecoTipoEntity</class>
 
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.show_sql" value="true" />
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
 		</properties>
 
 	</persistence-unit>

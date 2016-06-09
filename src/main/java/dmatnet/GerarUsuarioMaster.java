@@ -77,17 +77,17 @@ public class GerarUsuarioMaster extends HttpServlet {
 
 				um.setEmails(emails);
 				um.setLogin("thiago.bueno");
-
+				
 				EnderecoEntity enderecoComercial = new EnderecoEntity();
-				enderecoComercial.setLogradouroTipo("Avenida");
-				enderecoComercial.setLogradouro("Paulista");
+				enderecoComercial.setLogradouroTipo("Comercial");
+				enderecoComercial.setEnderecoTipo("AVENIDA");
 				enderecoComercial.setLogradouroNumero(509);
 				enderecoComercial.setLogradouroComplemento("sala 28");
 				enderecoComercial.setBairro("Bela Vista");
 				enderecoComercial.setCep("01311000");
 				enderecoComercial.setCidade("São Paulo");
 				enderecoComercial.setEstado("SP");
-				enderecoComercial.setLogradouroNome("comercial");
+				enderecoComercial.setLogradouroNome("Paulista");
 
 				List<EnderecoEntity> enderecos = new ArrayList<>();
 				enderecos.add(enderecoComercial);

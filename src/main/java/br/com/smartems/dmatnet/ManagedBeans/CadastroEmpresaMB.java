@@ -2,14 +2,23 @@ package br.com.smartems.dmatnet.ManagedBeans;
 
 import java.io.Serializable;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.event.ActionEvent;
+
+import br.com.smartems.dmatnet.EJB.Facade.PessoaJuridicaFacadeLocal;
+import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 
 @ManagedBean
 @RequestScoped
 public class CadastroEmpresaMB implements Serializable {
 
+	@EJB
+	private PessoaJuridicaFacadeLocal pessoaJuridicaFachada; 
+	
+	private EnderecoEntity endereco;
+	
 	private boolean isBtnEditarDesativado = false;
 	private boolean isBtnCancelarDesativado = true;
 	private boolean isBtnSalvarDesativado = true;
@@ -18,6 +27,14 @@ public class CadastroEmpresaMB implements Serializable {
 	private String mascaraPessoaJuridica = "99.999.999/9999-99";
 
 	private static final long serialVersionUID = 1L;
+
+	public EnderecoEntity getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(EnderecoEntity endereco) {
+		this.endereco = endereco;
+	}
 
 	public boolean isBtnEditarDesativado() {
 		return isBtnEditarDesativado;
