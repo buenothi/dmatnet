@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
 
 import br.com.smartems.dmatnet.EJB.Facade.PessoaJuridicaFacadeLocal;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class CadastroEmpresaMB implements Serializable {
 
 	@EJB
@@ -29,6 +29,9 @@ public class CadastroEmpresaMB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public EnderecoEntity getEndereco() {
+		if(this.endereco == null) {
+			endereco = new EnderecoEntity(); 
+		}
 		return endereco;
 	}
 
