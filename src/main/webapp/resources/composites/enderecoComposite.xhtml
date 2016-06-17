@@ -41,7 +41,7 @@
 <composite:implementation>
 	<h:form id="form">
 		<h:panelGroup layout="block" styleClass="formularioEnderecoEditar"
-			rendered="#{cadastroEmpresaMB.btnCancelarDesativado}">
+			rendered="#{cadastroEmpresaMB.btnEditarDesativado}">
 			<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 				<p:outputLabel value="#{msgs.Logradouro}" />
 				<h:panelGrid columns="2">
@@ -126,7 +126,7 @@
 		</h:panelGroup>
 
 		<h:panelGroup layout="block" styleClass="formularioEnderecoExibir"
-			rendered="#{cadastroEmpresaMB.btnEditarDesativado}">
+			rendered="#{cadastroEmpresaMB.btnCancelarDesativado}">
 			<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 				<p:outputLabel value="#{msgs.Logradouro}" />
 				<h:panelGrid columns="2">

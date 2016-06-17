@@ -9,7 +9,7 @@
 <ui:composition>
 	<h:form>
 		<h:panelGroup layout="block" id="formularioCadEmpresaEditar"
-			styleClass="formulario" rendered="#{cadastroEmpresaMB.btnCancelarDesativado}">
+			styleClass="formulario" rendered="#{cadastroEmpresaMB.btnEditarDesativado}">
 			<p:panelGrid columns="6" styleClass="tabelaSemBorda">
 				<p:outputLabel value="#{msgs.DataCadastro}" />
 				<p:calendar locale="pt" showOn="button" showButtonPanel="true"
@@ -107,7 +107,7 @@
 		</h:panelGroup>
 		
 		<h:panelGroup layout="block" id="formularioCadEmpresaExibir"
-			styleClass="formulario" rendered="#{cadastroEmpresaMB.btnEditarDesativado}">
+			styleClass="formulario" rendered="#{cadastroEmpresaMB.btnCancelarDesativado}">
 			<p:panelGrid columns="6" styleClass="tabelaSemBorda">
 				<p:outputLabel value="#{msgs.DataCadastro}" />
 				<p:outputLabel
@@ -160,18 +160,14 @@
 					value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoDesoneracaoFolha}"/>
 
 				<p:outputLabel value="#{msgs.CodIndicativoRegEletronico}" />
-				<p:selectOneMenu />
 				<p:outputLabel
-					value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoRegEletronico}"
-					rendered="false" />
+					value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoRegEletronico}"/>
 			</p:panelGrid>
 
 			<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 				<p:outputLabel value="#{msgs.MultiplasRubricas}" />
-				
 				<p:outputLabel
-					value="#{cadastroEmpresaMB.dadosCadastrais.multiplasTabRubricas}"
-					rendered="false" />
+					value="#{cadastroEmpresaMB.dadosCadastrais.multiplasTabRubricas}"/>
 			</p:panelGrid>
 
 			<p:commandButton value="#{msgs.exibirHistorico}" icon="fa fa-history"
