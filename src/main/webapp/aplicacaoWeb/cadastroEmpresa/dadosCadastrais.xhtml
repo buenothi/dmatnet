@@ -8,28 +8,34 @@
 
 <ui:composition>
 	<h:form>
-		<h:panelGroup layout="block" id="formularioCadEmpresa"
-			styleClass="formulario">
+		<h:panelGroup layout="block" id="formularioCadEmpresaEditar"
+			styleClass="formulario" rendered="#{cadastroEmpresaMB.btnCancelarDesativado}">
 			<p:panelGrid columns="6" styleClass="tabelaSemBorda">
 				<p:outputLabel value="#{msgs.DataCadastro}" />
 				<p:calendar locale="pt" showOn="button" showButtonPanel="true"
 					pattern="dd/MM/yyyy" mask="true" size="8" />
+
 				<p:outputLabel value="#{msgs.TipoInscricao}" />
 				<p:selectOneMenu style="width:100px"
-					value="#{cadastroEmpresaMB.pessoaJuridicaSelecionada}">
-					<p:ajax listener="#{cadastroEmpresaMB.alterarMascaraPessoaJuridica}" update="ipmInscricao" />
+					value="#{cadastroEmpresaMB.tipoPessoaJuridicaSelecionada}">
+					<p:ajax
+						listener="#{cadastroEmpresaMB.alterarMascaraPessoaJuridica}"
+						update="ipmInscricao" />
 					<f:selectItem itemValue="1" itemLabel="CNPJ" />
 					<f:selectItem itemValue="2" itemLabel="CPF" />
 				</p:selectOneMenu>
+				
 				<p:outputLabel value="#{msgs.Inscricao}" />
-				<p:inputMask id="ipmInscricao" mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}"/>
+				<p:inputMask id="ipmInscricao"
+					mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}" />
 			</p:panelGrid>
 
 			<p:panelGrid columns="5" styleClass="tabelaSemBorda">
 				<p:outputLabel value="#{msgs.RazaoSocial}" />
 				<p:inputText maxlength="250" size="62" />
+
 				<p:outputLabel value="#{msgs.FAP}" />
-				<p:inputMask mask="9,999"  maxlength="250" size="5" />
+				<p:inputMask mask="9,999" maxlength="250" size="5" />
 				<p:commandButton value="#{msgs.ProcessoFAP}" />
 			</p:panelGrid>
 
@@ -67,32 +73,113 @@
 					offIcon="ui-icon-close" style="width:120px" />
 			</p:panelGrid>
 
-			<p:dataTable scrollable="true" styleClass="dataTable">
-				<f:facet name="header">#{msgs.Historico}</f:facet>
-				<p:column headerText="#{msgs.DataCadastro}" width="110">
-				</p:column>
-				<p:column headerText="#{msgs.DataTermino}" width="110">
-				</p:column>
-				<p:column headerText="#{msgs.TipoInscricao}">
-				</p:column>
-				<p:column headerText="#{msgs.Inscricao}">
-				</p:column>
-				<p:column headerText="#{msgs.RazaoSocial}">
-				</p:column>
-				<p:column headerText="#{msgs.CodClassificacaoTributaria}">
-				</p:column>
-				<p:column headerText="#{msgs.CodNaturezaJuridica}">
-				</p:column>
-				<p:column headerText="#{msgs.CodIndicativoCooperativa}">
-				</p:column>
-				<p:column headerText="#{msgs.CodIndicativoConstrucao}">
-				</p:column>
-				<p:column headerText="#{msgs.CodIndicativoDesoneracaoFolha}">
-				</p:column>
-				<p:column headerText="#{msgs.CodIndicativoRegEletronico}">
-				</p:column>
-			</p:dataTable>
+			<p:commandButton value="#{msgs.exibirHistorico}" icon="fa fa-history"
+				onclick="PF('dlgHistoricoCadastro').show()" />
+				
+			<p:dialog header="#{msgs.Historico}" widgetVar="dlgHistoricoCadastro"
+				closable="true" resizable="true" width="1000" modal="true">
+				<p:dataTable scrollable="true" styleClass="dataTable">
+					<f:facet name="header">#{msgs.Historico}</f:facet>
+					<p:column headerText="#{msgs.DataCadastro}" width="110">
+					</p:column>
+					<p:column headerText="#{msgs.DataTermino}" width="110">
+					</p:column>
+					<p:column headerText="#{msgs.TipoInscricao}">
+					</p:column>
+					<p:column headerText="#{msgs.Inscricao}">
+					</p:column>
+					<p:column headerText="#{msgs.RazaoSocial}">
+					</p:column>
+					<p:column headerText="#{msgs.CodClassificacaoTributaria}">
+					</p:column>
+					<p:column headerText="#{msgs.CodNaturezaJuridica}">
+					</p:column>
+					<p:column headerText="#{msgs.CodIndicativoCooperativa}">
+					</p:column>
+					<p:column headerText="#{msgs.CodIndicativoConstrucao}">
+					</p:column>
+					<p:column headerText="#{msgs.CodIndicativoDesoneracaoFolha}">
+					</p:column>
+					<p:column headerText="#{msgs.CodIndicativoRegEletronico}">
+					</p:column>
+				</p:dataTable>
+			</p:dialog>
 		</h:panelGroup>
+		
+		<h:panelGroup layout="block" id="formularioCadEmpresaExibir"
+			styleClass="formulario" rendered="#{cadastroEmpresaMB.btnEditarDesativado}">
+			<p:panelGrid columns="6" styleClass="tabelaSemBorda">
+				<p:outputLabel value="#{msgs.DataCadastro}" />
+				<p:outputLabel
+					value="#{cadastroEmpresaMB.dadosCadastrais.dataInicioCadastro}"/>
+
+				<p:outputLabel value="#{msgs.TipoInscricao}" />
+				<p:outputLabel
+					value="#{cadastroEmpresaMB.tipoInscricaoPJ(cadastroEmpresaMB.dadosCadastrais.tipoInscricao)}" />
+
+				<p:outputLabel value="#{msgs.Inscricao}" />
+				<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.numCNPJ}" />
+			</p:panelGrid>
+
+			<p:panelGrid columns="5" styleClass="tabelaSemBorda">
+				<p:outputLabel value="#{msgs.RazaoSocial}" />
+				<p:outputLabel
+					value="#{cadastroEmpresaMB.dadosCadastrais.razaoSocial}"/>
+
+				<p:outputLabel value="#{msgs.FAP}" />
+				<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.empresaFAP.valorFAP}"/>
+				<p:commandButton value="#{msgs.ProcessoFAP}" />
+			</p:panelGrid>
+
+			<p:panelGrid columns="5" styleClass="tabelaSemBorda">
+				<p:commandButton value="#{msgs.empresaDadosIsencao}" />
+				<p:commandButton value="#{msgs.organismoInternacional}" />
+				<p:commandButton value="#{msgs.empresaSoftwareHouse}" />
+				<p:commandButton value="#{msgs.empresaDadosComplementares}" />
+			</p:panelGrid>
+
+			<p:panelGrid columns="4" styleClass="tabelaSemBorda">
+				<p:outputLabel value="#{msgs.CodClassificacaoTributaria}" />
+				<p:outputLabel
+					value="#{cadastroEmpresaMB.dadosCadastrais.codClassificacaoTributaria}"/>
+
+				<p:outputLabel value="#{msgs.CodNaturezaJuridica}" />
+				<p:outputLabel
+					value="#{cadastroEmpresaMB.dadosCadastrais.codNaturezaJuridica}"/>
+
+				<p:outputLabel value="#{msgs.CodIndicativoCooperativa}" />
+				<p:outputLabel
+					value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoCooperativa}"/>
+
+				<p:outputLabel value="#{msgs.CodIndicativoConstrucao}" />
+				<p:outputLabel
+					value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoConstrucao}" />
+
+				<p:outputLabel value="#{msgs.CodIndicativoDesoneracaoFolha}" />
+				<p:outputLabel
+					value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoDesoneracaoFolha}"/>
+
+				<p:outputLabel value="#{msgs.CodIndicativoRegEletronico}" />
+				<p:selectOneMenu />
+				<p:outputLabel
+					value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoRegEletronico}"
+					rendered="false" />
+			</p:panelGrid>
+
+			<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+				<p:outputLabel value="#{msgs.MultiplasRubricas}" />
+				
+				<p:outputLabel
+					value="#{cadastroEmpresaMB.dadosCadastrais.multiplasTabRubricas}"
+					rendered="false" />
+			</p:panelGrid>
+
+			<p:commandButton value="#{msgs.exibirHistorico}" icon="fa fa-history"
+				onclick="PF('dlgHistoricoCadastro').show()" />
+				
+		</h:panelGroup>
+		
+		
 	</h:form>
 </ui:composition>
 </html>

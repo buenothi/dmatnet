@@ -18,7 +18,11 @@
 
 	<div id="superior">
 		<div id="logoDMAT" />
-		<div id="empresaSelecionada"></div>
+		<h:panelGrid class="empresaSelecionada" columns="2">
+			<p:outputLabel id="oplEmpresaSelecionada" value="#{principalMB.empresaSelecionada.nomeFantasia}"/>
+			<p:commandButton id="btnSelecionarEmpresa" value="#{msgs.mudarEmpresa}" styleClass="botoesWebApp" 
+				onclick="PF('dlgSelecionarEmpresa').show()" />
+		</h:panelGrid>
 		<h:panelGrid class="usuarioLogado" columns="1">
 			<h:outputFormat value="#{usuarioMB.usuarioLogado.nome}" />
 			<h:outputFormat value="#{usuarioMB.usuarioLogado.grupo.nomeGrupo}"
@@ -97,6 +101,17 @@
 		visible="#{principalMB.renderizarCadastroEmpresa}">
 		<ui:include src="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml" />
 	</p:panel>
+	
+	<p:dialog widgetVar="dlgSelecionarEmpresa" resizable="true" modal="true">
+		<p:dataTable styleClass="dataTable">
+			<p:column headerText="#{msgs.Nome}"/>
+			<p:column headerText="#{msgs.RazaoSocial}"/>
+			<p:column>
+				<p:commandButton icon="fa fa-check-square" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+	
 </h:body>
 
 </html>

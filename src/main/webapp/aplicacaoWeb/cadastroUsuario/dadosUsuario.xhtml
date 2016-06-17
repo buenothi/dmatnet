@@ -8,21 +8,37 @@
 
 <ui:composition>
 	<h:form>
-		<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+		<p:panelGrid id="dadosUsuario" columns="2" styleClass="tabelaSemBorda"
+			rendered="#{cadastroEmpresaMB.btnCancelarDesativado}">
 			<p:outputLabel value="Data Cadastro" />
 			<p:calendar locale="pt" showOn="button" showButtonPanel="true"
 				pattern="dd/MM/yyyy" mask="true" size="8" />
+			<p:outputLabel value="#{cadastroUsuarioMB.usuario.cadastroPessoa}"
+				rendered="false"/>
 
 			<p:outputLabel value="#{msgs.Nome}" />
 			<p:inputText />
+			<p:outputLabel value="#{cadastroUsuarioMB.usuario.nome}" 
+				rendered="false"/>
 
 			<p:outputLabel value="#{msgs.Genero}" />
 			<p:inputText />
-			
-			<p:outputLabel value="#{msgs.DataNascimento}" />
-			<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-				pattern="dd/MM/yyyy" mask="true" size="8" />
-	
+			<p:outputLabel value="#{cadastroUsuarioMB.textoGenero(cadastroUsuarioMB.usuario.genero)}"
+				rendered="false"/>
+
+		</p:panelGrid>
+		
+		<p:panelGrid id="dadosUsuarioExibir" columns="2" styleClass="tabelaSemBorda"
+			rendered="#{cadastroEmpresaMB.btnEditarDesativado}">
+			<p:outputLabel value="Data Cadastro" />
+			<p:outputLabel value="#{cadastroUsuarioMB.usuario.cadastroPessoa}"/>
+
+			<p:outputLabel value="#{msgs.Nome}" />
+			<p:outputLabel value="#{cadastroUsuarioMB.usuario.nome}" />
+
+			<p:outputLabel value="#{msgs.Genero}" />
+			<p:outputLabel value="#{cadastroUsuarioMB.textoGenero(cadastroUsuarioMB.usuario.genero)}"/>
+
 		</p:panelGrid>
 	</h:form>
 </ui:composition>

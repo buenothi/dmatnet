@@ -9,10 +9,20 @@ import br.com.smartems.dmatnet.entities.pessoa.AbstractPessoaEntity;
 @Inheritance(strategy=InheritanceType.JOINED)
 public abstract class AbstractPessoaFisicaEntity extends AbstractPessoaEntity implements Serializable {
 	
+	private int genero;
+	
 	private static final long serialVersionUID = 1L;
 	
 	public AbstractPessoaFisicaEntity() {
 		super();
+	}
+
+	public int getGenero() {
+		return genero;
+	}
+
+	public void setGenero(int genero) {
+		this.genero = genero;
 	}
 
 }

@@ -50,13 +50,15 @@ a:LINK {
 	margin-top: 2px;
 }
 
-#empresaSelecionada {
+.empresaSelecionada {
 	height: 90%;
 	width: 300px;
 	background-color: rgb(36, 87, 69);
 	margin-left: 0;
 	margin-top: 0;
+	padding-top: 7px;
 	float: left;
+	color: white;
 }
 
 .usuarioLogado {
@@ -350,4 +352,8 @@ os seletores abaixo, dentro do comentário são perfis legados
 	width: 100%;
 	padding-left: 296px;
 	min-height: 140px;
+}
+
+.botoesWebApp {
+	font-size: 10pt;
 }

@@ -9,6 +9,7 @@ import javax.faces.event.ActionEvent;
 
 import br.com.smartems.dmatnet.EJB.Facade.PessoaJuridicaFacadeLocal;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
 
 @ManagedBean
 @SessionScoped
@@ -17,16 +18,38 @@ public class CadastroEmpresaMB implements Serializable {
 	@EJB
 	private PessoaJuridicaFacadeLocal pessoaJuridicaFachada; 
 	
+	private EmpresaCadastroEntity dadosCadastrais;
 	private EnderecoEntity endereco;
 	
 	private boolean isBtnEditarDesativado = false;
 	private boolean isBtnCancelarDesativado = true;
 	private boolean isBtnSalvarDesativado = true;
 	private boolean isBtnNovaEmpresaDesativado = false;
-	private int pessoaJuridicaSelecionada;
+	private int tipoPessoaJuridicaSelecionada;
 	private String mascaraPessoaJuridica = "99.999.999/9999-99";
 
 	private static final long serialVersionUID = 1L;
+
+	
+	
+	public EmpresaCadastroEntity getDadosCadastrais() {
+		if(this.dadosCadastrais == null) {
+			dadosCadastrais = new EmpresaCadastroEntity();
+		}
+		return dadosCadastrais;
+	}
+
+	public void setDadosCadastrais(EmpresaCadastroEntity dadosCadastrais) {
+		this.dadosCadastrais = dadosCadastrais;
+	}
+	
+	public String tipoInscricaoPJ(int tipoInscricao) {
+		String textoInscricao = "CNPJ";
+		if(tipoInscricao == 2) {
+			textoInscricao = "CPF";
+		}
+		return textoInscricao;
+	}
 
 	public EnderecoEntity getEndereco() {
 		if(this.endereco == null) {
@@ -71,12 +94,12 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnNovaEmpresaDesativado = isBtnNovaEmpresaDesativado;
 	}
 
-	public void setPessoaJuridicaSelecionada(int pessoaJuridicaSelecionada) {
-		this.pessoaJuridicaSelecionada = pessoaJuridicaSelecionada;
+	public void setTipoPessoaJuridicaSelecionada(int tipoPessoaJuridicaSelecionada) {
+		this.tipoPessoaJuridicaSelecionada = tipoPessoaJuridicaSelecionada;
 	}
 
-	public int getPessoaJuridicaSelecionada() {
-		return pessoaJuridicaSelecionada;
+	public int getTipoPessoaJuridicaSelecionada() {
+		return tipoPessoaJuridicaSelecionada;
 	}
 
 	public String getMascaraPessoaJuridica() {
@@ -116,7 +139,7 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void alterarMascaraPessoaJuridica() {
-		switch (this.pessoaJuridicaSelecionada) {
+		switch (this.tipoPessoaJuridicaSelecionada) {
 		case 1:
 			this.mascaraPessoaJuridica = "99.999.999/9999-99";
 			break;
