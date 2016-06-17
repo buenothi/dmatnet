@@ -102,7 +102,8 @@
 		<ui:include src="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml" />
 	</p:panel>
 	
-	<p:dialog widgetVar="dlgSelecionarEmpresa" resizable="false" modal="true" width="830" header="#{msgs.selecionarEmpresa}">
+	<p:dialog widgetVar="dlgSelecionarEmpresa" resizable="false" modal="true" width="830" header="#{msgs.selecionarEmpresa}"
+		responsive="true">
 		<p:dataTable styleClass="dataTable" scrollable="true">
 			<p:column headerText="#{msgs.Nome}" width="250" />
 			<p:column headerText="#{msgs.RazaoSocial}" width="400"/>
