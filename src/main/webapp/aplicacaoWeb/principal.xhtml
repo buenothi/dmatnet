@@ -14,7 +14,7 @@
 	<h:outputScript library="js" name="scripts.js"/>
 </h:head>
 
-<h:body>
+<h:body onload="PF('dlgSelecionarEmpresa').show()">
 
 	<div id="superior">
 		<div id="logoDMAT" />
@@ -102,12 +102,12 @@
 		<ui:include src="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml" />
 	</p:panel>
 	
-	<p:dialog widgetVar="dlgSelecionarEmpresa" resizable="true" modal="true">
-		<p:dataTable styleClass="dataTable">
-			<p:column headerText="#{msgs.Nome}"/>
-			<p:column headerText="#{msgs.RazaoSocial}"/>
-			<p:column>
-				<p:commandButton icon="fa fa-check-square" />
+	<p:dialog widgetVar="dlgSelecionarEmpresa" resizable="false" modal="true" width="830" header="#{msgs.selecionarEmpresa}">
+		<p:dataTable styleClass="dataTable" scrollable="true">
+			<p:column headerText="#{msgs.Nome}" width="250" />
+			<p:column headerText="#{msgs.RazaoSocial}" width="400"/>
+			<p:column width="30">
+				<p:commandButton icon="fa fa-check-square"/>
 			</p:column>
 		</p:dataTable>
 	</p:dialog>
