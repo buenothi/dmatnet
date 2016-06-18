@@ -92,7 +92,50 @@
 				</h:panelGrid>
 			</p:panelGrid>
 
-			<p:commandButton value="#{msgs.exibirHistorico}" icon="fa fa-history"
+		</h:panelGroup>
+
+		<h:panelGroup layout="block" styleClass="formularioEnderecoExibir"
+			rendered="#{cadastroEmpresaMB.btnCancelarDesativado}">
+			<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+				<p:outputLabel value="#{msgs.Logradouro}:" />
+				<h:panelGrid columns="2">
+					<p:outputLabel id="logradouroTipoExibir"
+						value="#{cc.attrs.logradouroTipo}" />
+					<p:outputLabel id="logradouroNomeExibir"
+						value="#{cc.attrs.logradouroNome}" />
+				</h:panelGrid>
+
+				<p:outputLabel value="#{msgs.Numero}:" />
+				<h:panelGrid columns="4">
+					<p:outputLabel id="logradouroNumeroExibir"
+						value="#{cc.attrs.logradouroNumero}" />
+					<p:spacer height="14" />
+					<p:outputLabel id="logradouroComplementoExibir"
+						value="#{cc.attrs.logradouroComplemento}" />
+				</h:panelGrid>
+
+				<p:outputLabel value="#{msgs.Bairro}:" />
+				<h:panelGrid>
+					<p:outputLabel id="bairroExibir" value="#{cc.attrs.bairro}" />
+				</h:panelGrid>
+
+				<p:outputLabel value="#{msgs.CEP}:" />
+				<h:panelGrid columns="4">
+					<p:outputLabel id="cepExibir" value="#{cc.attrs.cep}" />
+					<p:spacer height="15" />
+					<p:outputLabel value="#{msgs.CaixaPostal}:" />
+					<p:outputLabel id="caixaPostalExibir"
+						value="#{cc.attrs.caixaPostal}" />
+				</h:panelGrid>
+
+				<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}:" />
+				<h:panelGrid columns="2">
+					<p:outputLabel id="estadoExibir" value="#{cc.attrs.estado}" />
+					<p:outputLabel id="cidadeExibir" value="#{cc.attrs.cidade}" />
+				</h:panelGrid>
+			</p:panelGrid>
+
+			<p:commandButton value="#{msgs.ExibirHistorico}" icon="fa fa-history"
 				onclick="PF('dlgHistoricoEndereco').show()" />
 
 			<p:dialog header="#{msgs.Historico}" widgetVar="dlgHistoricoEndereco"
@@ -123,46 +166,6 @@
 					</p:column>
 				</p:dataTable>
 			</p:dialog>
-		</h:panelGroup>
-
-		<h:panelGroup layout="block" styleClass="formularioEnderecoExibir"
-			rendered="#{cadastroEmpresaMB.btnCancelarDesativado}">
-			<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-				<p:outputLabel value="#{msgs.Logradouro}" />
-				<h:panelGrid columns="2">
-					<p:outputLabel id="logradouroTipoExibir"
-						value="#{cc.attrs.logradouroTipo}" />
-					<p:outputLabel id="logradouroNomeExibir"
-						value="#{cc.attrs.logradouroNome}" />
-				</h:panelGrid>
-				
-				<p:outputLabel value="#{msgs.Numero}" />
-				<h:panelGrid columns="4">
-					<p:outputLabel id="logradouroNumeroExibir" value="#{cc.attrs.logradouroNumero}"/>
-					<p:spacer height="14" />
-					<p:outputLabel id="logradouroComplementoExibir" 
-						value="#{cc.attrs.logradouroComplemento}" />
-				</h:panelGrid>
-
-				<p:outputLabel value="#{msgs.Bairro}" />
-				<h:panelGrid>
-					<p:outputLabel id="bairroExibir" value="#{cc.attrs.bairro}" />
-				</h:panelGrid>
-
-				<p:outputLabel value="#{msgs.CEP}" />
-				<h:panelGrid columns="4">
-					<p:outputLabel id="cepExibir" value="#{cc.attrs.cep}" />
-					<p:spacer height="15" />
-					<p:outputLabel value="#{msgs.CaixaPostal}" />
-					<p:outputLabel id="caixaPostalExibir" value="#{cc.attrs.caixaPostal}" />
-				</h:panelGrid>
-
-				<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}" />
-				<h:panelGrid columns="2">
-					<p:outputLabel id="estadoExibir" value="#{cc.attrs.estado}"/>
-					<p:outputLabel id="cidadeExibir" value="#{cc.attrs.cidade}"/>
-				</h:panelGrid>
-			</p:panelGrid>
 
 		</h:panelGroup>
 	</h:form>

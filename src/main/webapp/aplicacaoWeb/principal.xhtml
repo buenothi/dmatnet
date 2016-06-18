@@ -20,7 +20,7 @@
 		<div id="logoDMAT" />
 		<h:panelGrid class="empresaSelecionada" columns="2">
 			<p:outputLabel id="oplEmpresaSelecionada" value="#{principalMB.empresaSelecionada.nomeFantasia}"/>
-			<p:commandButton id="btnSelecionarEmpresa" value="#{msgs.mudarEmpresa}" icon="fa fa-list-alt" styleClass="botoesWebApp" 
+			<p:commandButton id="btnSelecionarEmpresa" value="#{msgs.MudarEmpresa}" icon="fa fa-list-alt" styleClass="botoesWebApp" 
 				onclick="PF('dlgSelecionarEmpresa').show()" />
 		</h:panelGrid>
 		<h:panelGrid class="usuarioLogado" columns="1">
@@ -102,7 +102,7 @@
 		<ui:include src="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml" />
 	</p:panel>
 	
-	<p:dialog widgetVar="dlgSelecionarEmpresa" resizable="false" modal="true" width="830" header="#{msgs.selecionarEmpresa}"
+	<p:dialog widgetVar="dlgSelecionarEmpresa" resizable="false" modal="true" width="830" header="#{msgs.SelecionarEmpresa}"
 		responsive="true">
 		<p:dataTable styleClass="dataTable" scrollable="true">
 			<p:column headerText="#{msgs.Nome}" width="250" />
