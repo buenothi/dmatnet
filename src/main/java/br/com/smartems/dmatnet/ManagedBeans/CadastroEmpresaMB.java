@@ -1,6 +1,7 @@
 package br.com.smartems.dmatnet.ManagedBeans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -170,6 +171,11 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnCancelarDesativado = false;
 		this.isBtnSalvarDesativado = false;
 		this.isBtnNovaEmpresaDesativado = true;
+		this.grupo = new EmpresaGrupoEntity();
+		this.empresa = new EmpresaEntity();
+		this.dadosCadastrais = new EmpresaCadastroEntity();
+		this.endereco = new EnderecoEntity();
+		this.empresas = new ArrayList<EmpresaEntity>();
 		System.out.println("teste novo Cadastro");
 	}
 
