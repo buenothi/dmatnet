@@ -1,16 +1,35 @@
 package br.com.smartems.dmatnet.EJB.dao;
 
+import java.util.List;
+
 import javax.ejb.Local;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
+import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.AbstractPessoaJuridicaEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 
 @Stateless
 @Local
 public class PessoaJuridicaEAO extends AbstractEAO<AbstractPessoaJuridicaEntity, Long> {
 
-    public PessoaJuridicaEAO() {
-        super();
-    }
+	@PersistenceContext(unitName = "dmatnet-pu")
+	private EntityManager entityManager;
+
+	public PessoaJuridicaEAO() {
+		super();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<EmpresaEntity> listarEmpresas(UsuarioEntity usuarioLogado) throws NoResultException {
+		Query query = entityManager.createQuery("FROM EmpresaEntity e WHERE e.usuarios.idPessoa = :idUsuario",
+				EmpresaEntity.class);
+		query.setParameter("idUsuario", usuarioLogado.getIdPessoa());
+		return (List<EmpresaEntity>) query.getResultList();
+	}
 
 }

@@ -1,15 +1,20 @@
 package br.com.smartems.dmatnet.ManagedBeans;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
+import javax.persistence.NoResultException;
 
 import br.com.smartems.dmatnet.EJB.Facade.PessoaJuridicaFacadeLocal;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaGrupoEntity;
 
 @ManagedBean
 @SessionScoped
@@ -18,20 +23,38 @@ public class CadastroEmpresaMB implements Serializable {
 	@EJB
 	private PessoaJuridicaFacadeLocal pessoaJuridicaFachada; 
 	
+	private EmpresaGrupoEntity grupo;
+	private EmpresaEntity empresa;
 	private EmpresaCadastroEntity dadosCadastrais;
 	private EnderecoEntity endereco;
+	private List<EmpresaEntity> empresas;
 	
 	private boolean isBtnEditarDesativado = false;
 	private boolean isBtnCancelarDesativado = true;
 	private boolean isBtnSalvarDesativado = true;
 	private boolean isBtnNovaEmpresaDesativado = false;
+	private boolean isListaEmpresa = false; 
 	private int tipoPessoaJuridicaSelecionada;
 	private String mascaraPessoaJuridica = "99.999.999/9999-99";
 
 	private static final long serialVersionUID = 1L;
 
-	
-	
+	public EmpresaGrupoEntity getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(EmpresaGrupoEntity grupo) {
+		this.grupo = grupo;
+	}
+
+	public EmpresaEntity getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(EmpresaEntity empresa) {
+		this.empresa = empresa;
+	}
+
 	public EmpresaCadastroEntity getDadosCadastrais() {
 		if(this.dadosCadastrais == null) {
 			dadosCadastrais = new EmpresaCadastroEntity();
@@ -62,6 +85,14 @@ public class CadastroEmpresaMB implements Serializable {
 		this.endereco = endereco;
 	}
 
+	public List<EmpresaEntity> getEmpresas() {
+		return empresas;
+	}
+
+	public void setEmpresas(List<EmpresaEntity> empresas) {
+		this.empresas = empresas;
+	}
+
 	public boolean isBtnEditarDesativado() {
 		return isBtnEditarDesativado;
 	}
@@ -88,6 +119,10 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public boolean isBtnNovaEmpresaDesativado() {
 		return isBtnNovaEmpresaDesativado;
+	}
+
+	public boolean isListaEmpresa() {
+		return isListaEmpresa;
 	}
 
 	public void setBtnNovaEmpresaDesativado(boolean isBtnNovaEmpresaDesativado) {
@@ -146,6 +181,16 @@ public class CadastroEmpresaMB implements Serializable {
 		case 2:
 			this.mascaraPessoaJuridica = "999.999.999-99";
 			break;
+		}
+	}
+	
+	public void listarEmpresasDisponiveis(ActionEvent evt, UsuarioEntity usuarioLogado){
+		try {
+			this.empresas = pessoaJuridicaFachada.listarEmpresas(usuarioLogado);
+			this.isListaEmpresa = false;
+		} catch (NoResultException e) {
+			e.printStackTrace();
+			this.isListaEmpresa = true;
 		}
 	}
 }

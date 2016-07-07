@@ -14,11 +14,18 @@
 					styleClass="formulario"
 					rendered="#{cadastroEmpresaMB.btnEditarDesativado}">
 					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-						<p:outputLabel value="#{msgs.DataCadastro}" />
+						<p:outputLabel value="#{msgs.DataCadastro}:" />
 						<p:calendar locale="pt" showOn="button" showButtonPanel="true"
 							pattern="dd/MM/yyyy" mask="true" size="8" />
 
-						<p:outputLabel value="#{msgs.TipoInscricao}" />
+						<p:outputLabel value="#{msgs.EmpresaGrupo}:" />
+						<h:panelGroup>
+							<p:outputLabel value="" />
+							<p:commandButton value="#{msgs.EmpresaGrupo}"
+								onclick="PF('dlgGrupo').show()" />
+						</h:panelGroup>
+
+						<p:outputLabel value="#{msgs.TipoInscricao}:" />
 						<p:selectOneMenu style="width:100px"
 							value="#{cadastroEmpresaMB.tipoPessoaJuridicaSelecionada}">
 							<p:ajax
@@ -27,22 +34,33 @@
 							<f:selectItem itemValue="1" itemLabel="CNPJ" />
 							<f:selectItem itemValue="2" itemLabel="CPF" />
 						</p:selectOneMenu>
-						<p:outputLabel value="#{msgs.Inscricao}" />
+						<p:outputLabel value="#{msgs.Inscricao}:" />
 						<p:inputMask id="ipmInscricao"
 							mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}" />
 
-						<p:outputLabel value="#{msgs.NomeFantasia}" />
+						<p:outputLabel value="#{msgs.NomeFantasia}:" />
 						<p:inputText maxlength="250" size="62" />
 
-						<p:outputLabel value="#{msgs.RazaoSocial}" />
+						<p:outputLabel value="#{msgs.RazaoSocial}:" />
 						<p:inputText maxlength="250" size="62" />
 
-						<p:outputLabel value="#{msgs.FAP}" />
+						<p:outputLabel value="#{msgs.FAP}:" />
 						<h:panelGroup>
 							<p:inputMask mask="9,999" maxlength="250" size="5" />
 							<p:commandButton value="#{msgs.ProcessoFAP}" />
 						</h:panelGroup>
 					</p:panelGrid>
+
+					<p:dialog header="#{msgs.EmpresaGrupo}" widgetVar="dlgGrupo"
+						closable="true" resizable="false" draggable="true">
+						<h:panelGrid columns="2">
+							<p:inputText style="width: 252px" />
+							<p:commandButton icon="fa fa-search"
+								style="font-size:10pt;height:31px" />
+						</h:panelGrid>
+						<p:dataList paginator="true" rows="10">
+						</p:dataList>
+					</p:dialog>
 
 					<p:panelGrid columns="4" styleClass="tabelaSemBorda">
 						<p:outputLabel value="#{msgs.CodClassificacaoTributaria}" />
@@ -80,6 +98,9 @@
 						<p:outputLabel value="#{msgs.DataCadastro}:" />
 						<p:outputLabel
 							value="#{cadastroEmpresaMB.dadosCadastrais.dataInicioCadastro}" />
+
+						<p:outputLabel value="#{msgs.EmpresaGrupo}:" />
+						<p:outputLabel />
 
 						<p:outputLabel value="#{msgs.TipoInscricao}:" />
 						<p:outputLabel

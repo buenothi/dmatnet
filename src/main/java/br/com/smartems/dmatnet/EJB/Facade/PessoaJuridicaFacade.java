@@ -6,7 +6,9 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.com.smartems.dmatnet.EJB.dao.PessoaJuridicaEAO;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.AbstractPessoaJuridicaEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 
 @Stateless
 public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
@@ -40,6 +42,15 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 	@Override
 	public List<AbstractPessoaJuridicaEntity> findAll() {
 		return pessoaJuridicaEAO.findAll();
+	}
+	
+	public List<EmpresaEntity> empresasDisponiveis(UsuarioEntity usuarioLogado) {
+		return pessoaJuridicaEAO.listarEmpresas(usuarioLogado);		
+	}
+
+	@Override
+	public List<EmpresaEntity> listarEmpresas(UsuarioEntity usuarioLogado) {
+		return pessoaJuridicaEAO.listarEmpresas(usuarioLogado);
 	}
 
 }
