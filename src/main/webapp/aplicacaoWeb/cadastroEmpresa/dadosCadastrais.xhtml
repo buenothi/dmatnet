@@ -36,13 +36,14 @@
 						</p:selectOneMenu>
 						<p:outputLabel value="#{msgs.Inscricao}:" />
 						<p:inputMask id="ipmInscricao"
-							mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}" />
+							mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}" 
+							value="#{cadastroEmpresaMB.dadosCadastrais.numCNPJ}"/>
 
 						<p:outputLabel value="#{msgs.NomeFantasia}:" />
-						<p:inputText maxlength="250" size="62" />
+						<p:inputText maxlength="250" size="62" value="#{cadastroEmpresaMB.empresa.nomeFantasia}"/>
 
 						<p:outputLabel value="#{msgs.RazaoSocial}:" />
-						<p:inputText maxlength="250" size="62" />
+						<p:inputText maxlength="250" size="62" value="#{cadastroEmpresaMB.empresa.nome}"/>
 
 						<p:outputLabel value="#{msgs.FAP}:" />
 						<h:panelGroup>
@@ -53,13 +54,7 @@
 
 					<p:dialog header="#{msgs.EmpresaGrupo}" widgetVar="dlgGrupo"
 						closable="true" resizable="false" draggable="true" responsive="true">
-						<h:panelGrid columns="2">
-							<p:inputText style="width: 252px" />
-							<p:commandButton icon="fa fa-search"
-								style="font-size:10pt;height:31px" />
-						</h:panelGrid>
-						<p:dataList paginator="true" rows="10">
-						</p:dataList>
+						<ui:include src="/aplicacaoWeb/cadastroEmpresa/grupoEmpresa.xhtml" />
 					</p:dialog>
 
 					<p:panelGrid columns="4" styleClass="tabelaSemBorda">

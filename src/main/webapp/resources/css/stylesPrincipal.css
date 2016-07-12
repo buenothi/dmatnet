@@ -287,13 +287,13 @@ a:LINK {
 	font-size: 8pt;
 }
 
-.contatoDivEsquerda{
+.pdialogDivEsquerda{
 	width: 288px;
 	margin-left: 3px;
 	position: absolute;
 }
 
-.contatoDivDireita{
+.pdialogDivDireita{
 	width: 100%;
 	padding-left: 296px;
 	min-height: 140px;

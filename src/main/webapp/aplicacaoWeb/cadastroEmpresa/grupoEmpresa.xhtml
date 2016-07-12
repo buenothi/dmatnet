@@ -4,11 +4,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
-	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
-
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 <ui:composition>
-
 	<h:panelGroup layout="block" styleClass="pdialogDivEsquerda">
 		<h:panelGrid columns="2">
 			<p:inputText style="width: 252px" />
@@ -21,13 +18,9 @@
 
 	<h:panelGroup layout="block" styleClass="pdialogDivDireita">
 		<p:tabView>
-			<p:tab title="#{msgs.DadosUsuario}">
-				<ui:include src="/aplicacaoWeb/cadastroUsuario/dadosUsuario.xhtml" />
+			<p:tab title="#{msgs.EmpresaGrupo}">
 			</p:tab>
-			<p:tab title="#{msgs.Endereco}">
-				
-			</p:tab>
-			<p:tab title="#{msgs.Contatos}">
+			<p:tab title="#{msgs.Empresas}">
 			</p:tab>
 		</p:tabView>
 	</h:panelGroup>
