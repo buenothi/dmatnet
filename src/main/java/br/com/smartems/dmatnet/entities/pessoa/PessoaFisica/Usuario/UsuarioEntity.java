@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.AbstractPessoaFisicaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaGrupoEntity;
 import br.com.smartems.dmatnet.util.CriptografiaString;
 
 @Entity
@@ -42,6 +43,9 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 		joinColumns=@JoinColumn(name="usuario_ID"),
 		inverseJoinColumns=@JoinColumn(name="empresa_ID"))
 	private List<EmpresaEntity> empresasGerenciadas;
+	
+	@ManyToMany(mappedBy="usuarios")
+	private List<EmpresaGrupoEntity> gruposGerenciados;
 	
 	private Long idUsuarioPai;
 
@@ -91,5 +95,13 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 	public void setIdUsuarioPai(Long idUsuarioPai) {
 		this.idUsuarioPai = idUsuarioPai;
 	}
-		
+
+	public List<EmpresaGrupoEntity> getGruposGerenciados() {
+		return gruposGerenciados;
+	}
+
+	public void setGruposGerenciados(List<EmpresaGrupoEntity> gruposGerenciados) {
+		this.gruposGerenciados = gruposGerenciados;
+	}
+	
 }

@@ -6,10 +6,11 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.event.ActionEvent;
 import javax.persistence.NoResultException;
 
+import br.com.smartems.dmatnet.EJB.Facade.EmpresaGrupoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.PessoaJuridicaFacadeLocal;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
@@ -18,11 +19,14 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaGrupoEntity;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class CadastroEmpresaMB implements Serializable {
 
 	@EJB
 	private PessoaJuridicaFacadeLocal pessoaJuridicaFachada; 
+	
+	@EJB
+	private EmpresaGrupoFacadeLocal empresaGrupoFachada;
 	
 	private EmpresaGrupoEntity grupo;
 	private EmpresaEntity empresa;
@@ -164,6 +168,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnCancelarDesativado = true;
 		this.isBtnSalvarDesativado = true;
 		this.isBtnNovaEmpresaDesativado = false;
+		this.pessoaJuridicaFachada.create(this.empresa);
 	}
 	
 	public void novoCadastro(ActionEvent e) {

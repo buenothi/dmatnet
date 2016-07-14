@@ -6,6 +6,29 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 <ui:composition>
+	<h:panelGroup>
+		<p:commandButton id="btnEditarGrupo" value="#{msgs.Editar}"
+			styleClass="botoes" icon="fa fa-edit"
+			disabled="#{cadastroEmpresaMB.btnEditarDesativado}"
+			actionListener="#{cadastroEmpresaMB.editarCadastro}"
+			update="btnCancelarGrupo btnSalvarGrupo btnNovoGrupo" />
+		<p:commandButton id="btnCancelarGrupo" value="#{msgs.Cancelar}"
+			styleClass="botoes" icon="fa fa-remove"
+			disabled="#{cadastroEmpresaMB.btnCancelarDesativado}"
+			actionListener="#{cadastroEmpresaMB.cancelarCadastro}"
+			update="btnEditarGrupo btnSalvarGrupo btnNovoGrupo" />
+		<p:commandButton id="btnSalvarGrupo" value="#{msgs.Salvar}"
+			styleClass="botoes" icon="fa fa-save"
+			disabled="#{cadastroEmpresaMB.btnSalvarDesativado}"
+			actionListener="#{cadastroEmpresaMB.salvarCadastro}"
+			update="btnEditarGrupo btnCancelarGrupo btnNovoGrupo" />
+		<p:commandButton id="btnNovoGrupo" value="#{msgs.NovaEmpresa}"
+			styleClass="botoes" icon="fa fa-plus"
+			disabled="#{cadastroEmpresaMB.btnNovaEmpresaDesativado}"
+			actionListener="#{cadastroEmpresaMB.novoCadastro}"
+			update="btnEditarGrupo btnCancelarGrupo btnSalvarGrupo" />
+	</h:panelGroup>
+
 	<h:panelGroup layout="block" styleClass="pdialogDivEsquerda">
 		<h:panelGrid columns="2">
 			<p:inputText style="width: 252px" />
@@ -19,6 +42,12 @@
 	<h:panelGroup layout="block" styleClass="pdialogDivDireita">
 		<p:tabView>
 			<p:tab title="#{msgs.EmpresaGrupo}">
+				<h:panelGrid columns="2" styleClass="tabelaSemBorda">
+					<h:outputLabel value="#{msgs.EmpresaGrupoNome}" />
+					<p:inputText />
+					<h:outputLabel value="#{msgs.EmpresaGrupoDescricao}" />
+					<p:inputText />
+				</h:panelGrid>
 			</p:tab>
 			<p:tab title="#{msgs.Empresas}">
 			</p:tab>
