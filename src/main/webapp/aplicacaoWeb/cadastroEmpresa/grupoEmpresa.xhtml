@@ -35,7 +35,8 @@
 			<p:commandButton icon="fa fa-search"
 				style="font-size:10pt;height:31px" />
 		</h:panelGrid>
-		<p:dataList paginator="true" rows="10">
+		<p:dataList id="dtlGrupos" paginator="true" rows="10" var="grupos" value="#{cadastroEmpresaMB.grupos}">
+			#{grupos.nomeGrupo}
 		</p:dataList>
 	</h:panelGroup>
 

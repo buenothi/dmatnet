@@ -21,13 +21,13 @@ public class EmpresaGrupoEAO extends AbstractEAO<EmpresaGrupoEntity, Long>{
 	private EntityManager entityManager;
 
 	public EmpresaGrupoEAO() {
-		super();
+		super(EmpresaGrupoEntity.class);
 	}
 
 	@SuppressWarnings("unchecked")
 	public List<EmpresaGrupoEntity> listarGrupoEmpresas(UsuarioEntity usuarioLogado) throws NoResultException {
 		List<EmpresaGrupoEntity> listaGruposEmpresa = new ArrayList<EmpresaGrupoEntity>();
-		if (usuarioLogado != null && usuarioLogado.getGrupo().getNomeGrupo() == "MASTER") {
+		if (usuarioLogado.getGrupo().getNomeGrupo() == "MASTER") {
 			listaGruposEmpresa = this.findAll();
 		} else {
 			Query query = entityManager.createNamedQuery("EmpresaGrupo.listarGruposPorUsuario", EmpresaGrupoEntity.class);

@@ -39,6 +39,7 @@
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.NaturezaJuridica</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.EnderecoTipoEntity</class>
+		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaGrupoEntity</class>
 
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />

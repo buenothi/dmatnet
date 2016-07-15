@@ -10,7 +10,7 @@ import br.com.smartems.dmatnet.entities.LevAmbientais.GHEEntity;
 public class GheEAO extends AbstractEAO<GHEEntity, Long> {
        
     public GheEAO() {
-        super();
+        super(GHEEntity.class);
     }
 
 }

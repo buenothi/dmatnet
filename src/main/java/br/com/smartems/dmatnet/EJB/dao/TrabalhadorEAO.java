@@ -10,7 +10,7 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.Trabalha
 public class TrabalhadorEAO extends AbstractEAO<TrabalhadorEntity, Long> {
        
     public TrabalhadorEAO() {
-        super();
+        super(TrabalhadorEntity.class);
         // TODO Auto-generated constructor stub
     }
 

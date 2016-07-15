@@ -3,11 +3,13 @@ package br.com.smartems.dmatnet.ManagedBeans;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.event.ActionEvent;
 
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 
 @ManagedBean
+@RequestScoped
 public class PrincipalMB implements Serializable {
 
 	private String classMenuBotaoCadEmpresa = "menuBotao";

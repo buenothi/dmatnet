@@ -10,7 +10,7 @@ import br.com.smartems.dmatnet.entities.ClassificacaoFuncional.ClassificacaoFunc
 public class ClassificacaoFuncionalEAO extends AbstractEAO<ClassificacaoFuncionalEntity, Long> {
        
     public ClassificacaoFuncionalEAO() {
-        super();
+        super(ClassificacaoFuncionalEntity.class);
     }
 
 }

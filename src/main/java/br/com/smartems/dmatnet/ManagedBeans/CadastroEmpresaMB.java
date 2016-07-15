@@ -4,16 +4,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.el.ELContext;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.persistence.NoResultException;
 
 import br.com.smartems.dmatnet.EJB.Facade.EmpresaGrupoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.PessoaJuridicaFacadeLocal;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
-import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaGrupoEntity;
@@ -22,6 +24,10 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaGrupoEntity
 @RequestScoped
 public class CadastroEmpresaMB implements Serializable {
 
+	UsuarioMB usuarioMB;
+	FacesContext facesContext = FacesContext.getCurrentInstance();
+	ELContext elContext = facesContext.getELContext();
+	
 	@EJB
 	private PessoaJuridicaFacadeLocal pessoaJuridicaFachada; 
 	
@@ -33,6 +39,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private EmpresaCadastroEntity dadosCadastrais;
 	private EnderecoEntity endereco;
 	private List<EmpresaEntity> empresas;
+	private List<EmpresaGrupoEntity> grupos; 
 	
 	private boolean isBtnEditarDesativado = false;
 	private boolean isBtnCancelarDesativado = true;
@@ -96,6 +103,14 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setEmpresas(List<EmpresaEntity> empresas) {
 		this.empresas = empresas;
+	}
+
+	public List<EmpresaGrupoEntity> getGrupos() {
+		return grupos;
+	}
+
+	public void setGrupos(List<EmpresaGrupoEntity> grupos) {
+		this.grupos = grupos;
 	}
 
 	public boolean isBtnEditarDesativado() {
@@ -192,16 +207,20 @@ public class CadastroEmpresaMB implements Serializable {
 		case 2:
 			this.mascaraPessoaJuridica = "999.999.999-99";
 			break;
-		}
+		}	
 	}
 	
-	public void listarEmpresasDisponiveis(ActionEvent evt, UsuarioEntity usuarioLogado){
+	@PostConstruct
+	public void listarEmpresasDisponiveis(){
+		this.usuarioMB = (UsuarioMB) facesContext.getApplication().getELResolver().getValue(elContext, null, "usuarioMB");
 		try {
-			this.empresas = pessoaJuridicaFachada.listarEmpresas(usuarioLogado);
+			this.grupos = empresaGrupoFachada.findAll();
+			System.out.println(grupos.get(0).getNomeGrupo());
 			this.isListaEmpresa = false;
 		} catch (NoResultException e) {
 			e.printStackTrace();
 			this.isListaEmpresa = true;
 		}
 	}
+	
 }

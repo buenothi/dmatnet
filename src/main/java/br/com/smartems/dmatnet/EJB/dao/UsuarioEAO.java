@@ -25,7 +25,7 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 	private List<UsuarioEntity> usuarios;
 
 	public UsuarioEAO() {
-		super();
+		super(UsuarioEntity.class);
 	}
 
 	public UsuarioEntity logarUsuario(String login, String senha) throws NoResultException {

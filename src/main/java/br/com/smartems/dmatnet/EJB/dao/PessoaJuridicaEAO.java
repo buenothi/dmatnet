@@ -21,7 +21,7 @@ public class PessoaJuridicaEAO extends AbstractEAO<AbstractPessoaJuridicaEntity,
 	private EntityManager entityManager;
 
 	public PessoaJuridicaEAO() {
-		super();
+		super(AbstractPessoaJuridicaEntity.class);
 	}
 
 	@SuppressWarnings("unchecked")

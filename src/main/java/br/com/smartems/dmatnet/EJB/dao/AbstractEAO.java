@@ -1,6 +1,5 @@
 package br.com.smartems.dmatnet.EJB.dao;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -8,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaQuery;
 
 @Stateless
 @LocalBean
@@ -16,13 +16,15 @@ public abstract class AbstractEAO <T, PK> implements IAbstractDAO<T, PK>{
 
 	@PersistenceContext(unitName = "dmatnet-pu")
 	private EntityManager entityManager;
+	
+	private Class<T> persistentClass;
 
-	public AbstractEAO() {
-		
+	public AbstractEAO(Class<T> entityClass) {
+		this.persistentClass = entityClass;
 	}
 
 	public T read(PK pk)  throws NoResultException {
-		return (T) entityManager.find(getTypeClass(), pk);
+		return (T) entityManager.find(persistentClass, pk);
 	}
 
 	public void create(T entity) throws NoResultException {
@@ -37,14 +39,11 @@ public abstract class AbstractEAO <T, PK> implements IAbstractDAO<T, PK>{
 		entityManager.remove(entity);
 	}
 
-	public List<T> findAll() throws NoResultException {
-		return entityManager.createQuery(("FROM " + getTypeClass().getName())).getResultList();
-	}
-
-	private Class<?> getTypeClass() throws NoResultException {
-		Class<?> clazz = (Class<?>) ((ParameterizedType) this.getClass().getGenericSuperclass())
-				.getActualTypeArguments()[1];
-		return clazz;
-	}
+	@SuppressWarnings({ "rawtypes" })
+    public List<T> findAll() {
+        CriteriaQuery cq = entityManager.getCriteriaBuilder().createQuery();
+        cq.select(cq.from(persistentClass));
+        return entityManager.createQuery(cq).getResultList();
+    }
 
 }
