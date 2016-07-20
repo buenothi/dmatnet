@@ -291,12 +291,13 @@ a:LINK {
 	width: 288px;
 	margin-left: 3px;
 	position: absolute;
+	min-height: 300px;
 }
 
 .pdialogDivDireita{
 	width: 100%;
 	padding-left: 296px;
-	min-height: 140px;
+	min-height: 300px;
 }
 
 .botoesWebApp {

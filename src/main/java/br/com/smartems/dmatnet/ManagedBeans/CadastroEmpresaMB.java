@@ -6,12 +6,15 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.el.ELContext;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.persistence.NoResultException;
+
+import org.primefaces.event.SelectEvent;
 
 import br.com.smartems.dmatnet.EJB.Facade.EmpresaGrupoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.PessoaJuridicaFacadeLocal;
@@ -21,12 +24,11 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaGrupoEntity;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class CadastroEmpresaMB implements Serializable {
-
-	UsuarioMB usuarioMB;
-	FacesContext facesContext = FacesContext.getCurrentInstance();
-	ELContext elContext = facesContext.getELContext();
+	
+	@ManagedProperty(value="#{usuarioMB}")
+	private UsuarioMB usuarioMB;
 	
 	@EJB
 	private PessoaJuridicaFacadeLocal pessoaJuridicaFachada; 
@@ -35,6 +37,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private EmpresaGrupoFacadeLocal empresaGrupoFachada;
 	
 	private EmpresaGrupoEntity grupo;
+	private EmpresaGrupoEntity grupoSelecionado;
 	private EmpresaEntity empresa;
 	private EmpresaCadastroEntity dadosCadastrais;
 	private EnderecoEntity endereco;
@@ -50,6 +53,15 @@ public class CadastroEmpresaMB implements Serializable {
 	private String mascaraPessoaJuridica = "99.999.999/9999-99";
 
 	private static final long serialVersionUID = 1L;
+
+
+	public UsuarioMB getUsuarioMB() {
+		return usuarioMB;
+	}
+
+	public void setUsuarioMB(UsuarioMB usuarioMB) {
+		this.usuarioMB = usuarioMB;
+	}
 
 	public EmpresaGrupoEntity getGrupo() {
 		return grupo;
@@ -111,6 +123,14 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setGrupos(List<EmpresaGrupoEntity> grupos) {
 		this.grupos = grupos;
+	}
+
+	public EmpresaGrupoEntity getGrupoSelecionado() {
+		return grupoSelecionado;
+	}
+
+	public void setGrupoSelecionado(EmpresaGrupoEntity grupoSelecionado) {
+		this.grupoSelecionado = grupoSelecionado;
 	}
 
 	public boolean isBtnEditarDesativado() {
@@ -212,15 +232,19 @@ public class CadastroEmpresaMB implements Serializable {
 	
 	@PostConstruct
 	public void listarEmpresasDisponiveis(){
-		this.usuarioMB = (UsuarioMB) facesContext.getApplication().getELResolver().getValue(elContext, null, "usuarioMB");
 		try {
-			this.grupos = empresaGrupoFachada.findAll();
-			System.out.println(grupos.get(0).getNomeGrupo());
+			this.grupos = empresaGrupoFachada.listarGrupoEmpresas(usuarioMB.getUsuarioLogado());
 			this.isListaEmpresa = false;
 		} catch (NoResultException e) {
 			e.printStackTrace();
 			this.isListaEmpresa = true;
 		}
+	}
+	
+	public void onSelectionGrupo(SelectEvent evt){
+		FacesMessage msg = new FacesMessage("Teste", ((EmpresaGrupoEntity)evt.getObject()).getNomeGrupo());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        this.grupoSelecionado = (EmpresaGrupoEntity)evt.getObject();
 	}
 	
 }

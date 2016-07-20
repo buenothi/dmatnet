@@ -11,7 +11,8 @@
 
 
 <ui:fragment>
-	<h:form styleClass="painelConteudo">
+	<h:form id="formCadEmpresa" styleClass="painelConteudo">
+		<p:growl id="growlTeste" showDetail="true" sticky="false" life="3000"/>
 		<h:panelGroup styleClass="barraBotoesPainel">
 			<p:commandButton id="btnEditar" value="#{msgs.Editar}"
 				styleClass="botoes" icon="fa fa-edit"

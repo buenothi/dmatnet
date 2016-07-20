@@ -29,26 +29,36 @@
 			update="btnEditarGrupo btnCancelarGrupo btnSalvarGrupo" />
 	</h:panelGroup>
 
-	<h:panelGroup layout="block" styleClass="pdialogDivEsquerda">
+	<h:panelGroup id="pngGrupos" layout="block"
+		styleClass="pdialogDivEsquerda">
 		<h:panelGrid columns="2">
 			<p:inputText style="width: 252px" />
 			<p:commandButton icon="fa fa-search"
 				style="font-size:10pt;height:31px" />
 		</h:panelGrid>
-		<p:dataList id="dtlGrupos" paginator="true" rows="10" var="grupos" value="#{cadastroEmpresaMB.grupos}">
-			#{grupos.nomeGrupo}
-		</p:dataList>
+		<p:dataTable id="dtlGrupos" var="grupo"
+			value="#{cadastroEmpresaMB.grupos}" selectionMode="single"
+			rowKey="#{grupo.idGrupo}" selection="#{cadastroEmpresaMB.grupoSelecionado}"
+			paginator="true" rows="10">
+			<p:ajax event="rowSelect"
+				listener="#{cadastroEmpresaMB.onSelectionGrupo}"
+				update="formCadEmpresa:growlTeste,formCadEmpresa:tabCadastroEmpresa:formDadosCadastrais:acpDadosCadastrais:tabEditarGrupo"/>
+			<p:column>
+				<h:outputText value="#{grupo.nomeGrupo}" />
+			</p:column>
+		</p:dataTable>
 	</h:panelGroup>
 
-	<h:panelGroup layout="block" styleClass="pdialogDivDireita">
-		<p:tabView>
+	<h:panelGroup id="grpEditarGrupo" layout="block"
+		styleClass="pdialogDivDireita">
+		<p:tabView id="tabEditarGrupo">
 			<p:tab title="#{msgs.EmpresaGrupo}">
-				<h:panelGrid columns="2" styleClass="tabelaSemBorda">
-					<h:outputLabel value="#{msgs.EmpresaGrupoNome}" />
-					<p:inputText />
-					<h:outputLabel value="#{msgs.EmpresaGrupoDescricao}" />
-					<p:inputText />
-				</h:panelGrid>
+				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+					<p:outputLabel value="#{msgs.EmpresaGrupoNome}" />
+					<p:inputText value="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
+					<p:outputLabel value="#{msgs.EmpresaGrupoDescricao}" />
+					<p:inputText value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
+				</p:panelGrid>
 			</p:tab>
 			<p:tab title="#{msgs.Empresas}">
 			</p:tab>

@@ -7,11 +7,10 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 
 <ui:composition>
-	<h:form>
-		<p:accordionPanel>
-			<p:tab title="#{msgs.DadosBasicos}">
-				<h:panelGroup layout="block" id="formularioCadEmpresaEditar"
-					styleClass="formulario"
+	<h:form id="formDadosCadastrais">
+		<p:accordionPanel id="acpDadosCadastrais">
+			<p:tab id="tabDadosBasicos" title="#{msgs.DadosBasicos}">
+				<h:panelGroup id="frmCadEmpresaEditar" layout="block" styleClass="formulario"
 					rendered="#{cadastroEmpresaMB.btnEditarDesativado}">
 					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 						<p:outputLabel value="#{msgs.DataCadastro}:" />
@@ -52,8 +51,8 @@
 						</h:panelGroup>
 					</p:panelGrid>
 
-					<p:dialog header="#{msgs.EmpresaGrupo}" widgetVar="dlgGrupo"
-						closable="true" resizable="false" draggable="true" responsive="true">
+					<p:dialog id="dlgGrupo" header="#{msgs.EmpresaGrupo}" widgetVar="dlgGrupo"
+						closable="true" resizable="false" draggable="true" responsive="true" >
 						<ui:include src="/aplicacaoWeb/cadastroEmpresa/grupoEmpresa.xhtml" />
 					</p:dialog>
 

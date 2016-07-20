@@ -27,8 +27,9 @@ public class EmpresaGrupoEAO extends AbstractEAO<EmpresaGrupoEntity, Long>{
 	@SuppressWarnings("unchecked")
 	public List<EmpresaGrupoEntity> listarGrupoEmpresas(UsuarioEntity usuarioLogado) throws NoResultException {
 		List<EmpresaGrupoEntity> listaGruposEmpresa = new ArrayList<EmpresaGrupoEntity>();
-		if (usuarioLogado.getGrupo().getNomeGrupo() == "MASTER") {
-			listaGruposEmpresa = this.findAll();
+		//verificar se o usuário é Master, caso seja lista todos, caso não somente o que o usuário tem autorização
+		if (usuarioLogado.getGrupo().getIdGrupo() == 1) {
+			listaGruposEmpresa = findAll();
 		} else {
 			Query query = entityManager.createNamedQuery("EmpresaGrupo.listarGruposPorUsuario", EmpresaGrupoEntity.class);
 			query.setParameter("idUsuario", usuarioLogado.getIdPessoa());
