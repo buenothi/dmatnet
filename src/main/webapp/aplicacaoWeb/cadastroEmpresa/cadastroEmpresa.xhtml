@@ -18,26 +18,22 @@
 				styleClass="botoes" icon="fa fa-edit"
 				disabled="#{cadastroEmpresaMB.btnEditarDesativado}"
 				actionListener="#{cadastroEmpresaMB.editarCadastro}"
-				update="btnCancelar btnSalvar btnNovaEmpresa @this 
-					tabCadastroEmpresa"/>
+				update="formCadEmpresa"/>
 			<p:commandButton id="btnCancelar" value="#{msgs.Cancelar}"
 				styleClass="botoes" icon="fa fa-remove"
 				disabled="#{cadastroEmpresaMB.btnCancelarDesativado}"
 				actionListener="#{cadastroEmpresaMB.cancelarCadastro}"
-				update="btnEditar btnSalvar btnNovaEmpresa @this
-					tabCadastroEmpresa" />
+				update="formCadEmpresa" />
 			<p:commandButton id="btnSalvar" value="#{msgs.Salvar}"
 				styleClass="botoes" icon="fa fa-save"
 				disabled="#{cadastroEmpresaMB.btnSalvarDesativado}"
 				actionListener="#{cadastroEmpresaMB.salvarCadastro}"
-				update="btnEditar btnCancelar btnNovaEmpresa @this
-					tabCadastroEmpresa" />
+				update="formCadEmpresa" />
 			<p:commandButton id="btnNovaEmpresa" value="#{msgs.NovaEmpresa}"
 				styleClass="botoes" icon="fa fa-plus"
 				disabled="#{cadastroEmpresaMB.btnNovaEmpresaDesativado}" 
 				actionListener="#{cadastroEmpresaMB.novoCadastro}"
-				update="btnEditar btnCancelar btnSalvar @this
-					tabCadastroEmpresa" />
+				update="formCadEmpresa" />
 		</h:panelGroup>
 		<h:panelGroup layout="block" styleClass="tabsConteiner">
 			<p:tabView id="tabCadastroEmpresa">
@@ -46,14 +42,6 @@
 						src="/aplicacaoWeb/cadastroEmpresa/dadosCadastrais.xhtml" />
 				</p:tab>				
 				<p:tab title="#{msgs.Endereco}">
-					<dmat:enderecoComposite logradouroNome="#{cadastroEmpresaMB.endereco.logradouroNome}" 
-						logradouroNumero="#{cadastroEmpresaMB.endereco.logradouroNumero}"
-						logradouroComplemento="#{cadastroEmpresaMB.endereco.logradouroComplemento}"
-						bairro="#{cadastroEmpresaMB.endereco.bairro}"
-						cep="#{cadastroEmpresaMB.endereco.cep}"
-						caixaPostal="#{cadastroEmpresaMB.endereco.caixaPostal}" 
-						cidade="#{cadastroEmpresaMB.endereco.cidade}"
-						estado="#{cadastroEmpresaMB.endereco.estado}"/>
 				</p:tab>
 				<p:tab title="#{msgs.ContatoUsuario}">
 					<ui:include

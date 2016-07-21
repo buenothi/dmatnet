@@ -6,64 +6,89 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 <ui:composition>
-	<h:panelGroup>
-		<p:commandButton id="btnEditarGrupo" value="#{msgs.Editar}"
-			styleClass="botoes" icon="fa fa-edit"
-			disabled="#{cadastroEmpresaMB.btnEditarDesativado}"
-			actionListener="#{cadastroEmpresaMB.editarCadastro}"
-			update="btnCancelarGrupo btnSalvarGrupo btnNovoGrupo" />
-		<p:commandButton id="btnCancelarGrupo" value="#{msgs.Cancelar}"
-			styleClass="botoes" icon="fa fa-remove"
-			disabled="#{cadastroEmpresaMB.btnCancelarDesativado}"
-			actionListener="#{cadastroEmpresaMB.cancelarCadastro}"
-			update="btnEditarGrupo btnSalvarGrupo btnNovoGrupo" />
-		<p:commandButton id="btnSalvarGrupo" value="#{msgs.Salvar}"
-			styleClass="botoes" icon="fa fa-save"
-			disabled="#{cadastroEmpresaMB.btnSalvarDesativado}"
-			actionListener="#{cadastroEmpresaMB.salvarCadastro}"
-			update="btnEditarGrupo btnCancelarGrupo btnNovoGrupo" />
-		<p:commandButton id="btnNovoGrupo" value="#{msgs.NovaEmpresa}"
-			styleClass="botoes" icon="fa fa-plus"
-			disabled="#{cadastroEmpresaMB.btnNovaEmpresaDesativado}"
-			actionListener="#{cadastroEmpresaMB.novoCadastro}"
-			update="btnEditarGrupo btnCancelarGrupo btnSalvarGrupo" />
-	</h:panelGroup>
+	<h:panelGroup id="pngGrupos">
+		<h:panelGroup id="pngGrupoBotoesCRUD">
+			<p:commandButton id="btnEditarGrupo" value="#{msgs.Editar}"
+				styleClass="botoes" icon="fa fa-edit"
+				disabled="#{cadastroEmpresaMB.btnGrupoEditarDesativado}"
+				actionListener="#{cadastroEmpresaMB.editarCadastroGrupo}"
+				update="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos" />
+			<p:commandButton id="btnCancelarGrupo" value="#{msgs.Cancelar}"
+				styleClass="botoes" icon="fa fa-remove"
+				disabled="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}"
+				actionListener="#{cadastroEmpresaMB.cancelarCadastroGrupo}"
+				update="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos" />
+			<p:commandButton id="btnSalvarGrupo" value="#{msgs.Salvar}"
+				styleClass="botoes" icon="fa fa-save"
+				disabled="#{cadastroEmpresaMB.btnGrupoSalvarDesativado}"
+				actionListener="#{cadastroEmpresaMB.salvarCadastroGrupo}"
+				update="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos" />
+			<p:commandButton id="btnNovoGrupo" value="#{msgs.NovaEmpresa}"
+				styleClass="botoes" icon="fa fa-plus"
+				disabled="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
+				actionListener="#{cadastroEmpresaMB.novoCadastroGrupo}"
+				update="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos" />
+		</h:panelGroup>
 
-	<h:panelGroup id="pngGrupos" layout="block"
-		styleClass="pdialogDivEsquerda">
-		<h:panelGrid columns="2">
-			<p:inputText style="width: 252px" />
-			<p:commandButton icon="fa fa-search"
-				style="font-size:10pt;height:31px" />
-		</h:panelGrid>
-		<p:dataTable id="dtlGrupos" var="grupo"
-			value="#{cadastroEmpresaMB.grupos}" selectionMode="single"
-			rowKey="#{grupo.idGrupo}" selection="#{cadastroEmpresaMB.grupoSelecionado}"
-			paginator="true" rows="10">
-			<p:ajax event="rowSelect"
-				listener="#{cadastroEmpresaMB.onSelectionGrupo}"
-				update="formCadEmpresa:growlTeste,formCadEmpresa:tabCadastroEmpresa:formDadosCadastrais:acpDadosCadastrais:tabEditarGrupo"/>
-			<p:column>
-				<h:outputText value="#{grupo.nomeGrupo}" />
-			</p:column>
-		</p:dataTable>
-	</h:panelGroup>
+		<h:panelGroup id="pngGruposLista" layout="block"
+			styleClass="pdialogDivEsquerda">
+			<h:panelGrid columns="2">
+				<p:inputText style="width: 252px" />
+				<p:commandButton icon="fa fa-search"
+					style="font-size:10pt;height:31px" />
+			</h:panelGrid>
+			<p:dataTable id="dtlGrupos" var="grupo"
+				value="#{cadastroEmpresaMB.grupos}" selectionMode="single"
+				rowKey="#{grupo.idGrupo}"
+				selection="#{cadastroEmpresaMB.grupoSelecionado}" paginator="true"
+				rows="10">
+				<p:ajax event="rowSelect"
+					listener="#{cadastroEmpresaMB.onSelectionGrupo}"
+					update="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:tabEditarGrupo,
+						formCadEmpresa:growlTeste,formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:tabExibirGrupo" />
+				<p:column>
+					<h:outputText value="#{grupo.nomeGrupo}" />
+				</p:column>
+			</p:dataTable>
+		</h:panelGroup>
 
-	<h:panelGroup id="grpEditarGrupo" layout="block"
-		styleClass="pdialogDivDireita">
-		<p:tabView id="tabEditarGrupo">
-			<p:tab title="#{msgs.EmpresaGrupo}">
-				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-					<p:outputLabel value="#{msgs.EmpresaGrupoNome}" />
-					<p:inputText value="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
-					<p:outputLabel value="#{msgs.EmpresaGrupoDescricao}" />
-					<p:inputText value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
-				</p:panelGrid>
-			</p:tab>
-			<p:tab title="#{msgs.Empresas}">
-			</p:tab>
-		</p:tabView>
-	</h:panelGroup>
+		<h:panelGroup id="pngGrupoEditar" layout="block"
+			styleClass="pdialogDivDireita"
+			rendered="#{cadastroEmpresaMB.btnGrupoEditarDesativado}">
+			<p:tabView id="tabEditarGrupo">
+				<p:tab title="#{msgs.EmpresaGrupo}">
+					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+						<p:outputLabel value="#{msgs.EmpresaGrupoNome}" />
+						<p:inputText
+							value="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
+						<p:outputLabel value="#{msgs.EmpresaGrupoDescricao}" />
+						<p:inputText
+							value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
+					</p:panelGrid>
+				</p:tab>
+				<p:tab title="#{msgs.Empresas}">
+				</p:tab>
+			</p:tabView>
+		</h:panelGroup>
 
+		<h:panelGroup id="pngGrupoExibir" layout="block"
+			styleClass="pdialogDivDireita"
+			rendered="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}">
+			<p:tabView id="tabExibirGrupo">
+				<p:tab title="#{msgs.EmpresaGrupo}">
+					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+						<p:outputLabel value="#{msgs.EmpresaGrupoNome}" />
+						<p:outputLabel
+							value="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
+						<p:outputLabel value="#{msgs.EmpresaGrupoDescricao}" />
+						<p:outputLabel
+							value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
+					</p:panelGrid>
+				</p:tab>
+				<p:tab title="#{msgs.Empresas}">
+				</p:tab>
+			</p:tabView>
+		</h:panelGroup>
+	</h:panelGroup>
 </ui:composition>
 </html>

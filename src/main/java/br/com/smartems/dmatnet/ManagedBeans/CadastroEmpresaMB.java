@@ -26,34 +26,41 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaGrupoEntity
 @ManagedBean
 @ViewScoped
 public class CadastroEmpresaMB implements Serializable {
-	
-	@ManagedProperty(value="#{usuarioMB}")
+
+	@ManagedProperty(value = "#{usuarioMB}")
 	private UsuarioMB usuarioMB;
-	
+
 	@EJB
-	private PessoaJuridicaFacadeLocal pessoaJuridicaFachada; 
-	
+	private PessoaJuridicaFacadeLocal pessoaJuridicaFachada;
+
 	@EJB
 	private EmpresaGrupoFacadeLocal empresaGrupoFachada;
-	
+
 	private EmpresaGrupoEntity grupo;
 	private EmpresaGrupoEntity grupoSelecionado;
 	private EmpresaEntity empresa;
 	private EmpresaCadastroEntity dadosCadastrais;
 	private EnderecoEntity endereco;
 	private List<EmpresaEntity> empresas;
-	private List<EmpresaGrupoEntity> grupos; 
-	
+	private List<EmpresaGrupoEntity> grupos;
+
+	// botões referentes à Edição do Cadastro de Empresa
 	private boolean isBtnEditarDesativado = false;
 	private boolean isBtnCancelarDesativado = true;
 	private boolean isBtnSalvarDesativado = true;
 	private boolean isBtnNovaEmpresaDesativado = false;
-	private boolean isListaEmpresa = false; 
+	private boolean isListaEmpresa = false;
 	private int tipoPessoaJuridicaSelecionada;
+
+	// botões referentes à Edição do Cadastro de Grupo Empresa
+	private boolean isBtnGrupoEditarDesativado = false;
+	private boolean isBtnGrupoCancelarDesativado = true;
+	private boolean isBtnGrupoSalvarDesativado = true;
+	private boolean isBtnGrupoNovoDesativado = false;
+
 	private String mascaraPessoaJuridica = "99.999.999/9999-99";
 
 	private static final long serialVersionUID = 1L;
-
 
 	public UsuarioMB getUsuarioMB() {
 		return usuarioMB;
@@ -80,7 +87,7 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public EmpresaCadastroEntity getDadosCadastrais() {
-		if(this.dadosCadastrais == null) {
+		if (this.dadosCadastrais == null) {
 			dadosCadastrais = new EmpresaCadastroEntity();
 		}
 		return dadosCadastrais;
@@ -89,18 +96,18 @@ public class CadastroEmpresaMB implements Serializable {
 	public void setDadosCadastrais(EmpresaCadastroEntity dadosCadastrais) {
 		this.dadosCadastrais = dadosCadastrais;
 	}
-	
+
 	public String tipoInscricaoPJ(int tipoInscricao) {
 		String textoInscricao = "CNPJ";
-		if(tipoInscricao == 2) {
+		if (tipoInscricao == 2) {
 			textoInscricao = "CPF";
 		}
 		return textoInscricao;
 	}
 
 	public EnderecoEntity getEndereco() {
-		if(this.endereco == null) {
-			endereco = new EnderecoEntity(); 
+		if (this.endereco == null) {
+			endereco = new EnderecoEntity();
 		}
 		return endereco;
 	}
@@ -165,6 +172,38 @@ public class CadastroEmpresaMB implements Serializable {
 		return isListaEmpresa;
 	}
 
+	public boolean isBtnGrupoEditarDesativado() {
+		return isBtnGrupoEditarDesativado;
+	}
+
+	public void setBtnGrupoEditarDesativado(boolean isBtnGrupoEditarDesativado) {
+		this.isBtnGrupoEditarDesativado = isBtnGrupoEditarDesativado;
+	}
+
+	public boolean isBtnGrupoCancelarDesativado() {
+		return isBtnGrupoCancelarDesativado;
+	}
+
+	public void setBtnGrupoCancelarDesativado(boolean isBtnGrupoCancelarDesativado) {
+		this.isBtnGrupoCancelarDesativado = isBtnGrupoCancelarDesativado;
+	}
+
+	public boolean isBtnGrupoSalvarDesativado() {
+		return isBtnGrupoSalvarDesativado;
+	}
+
+	public void setBtnGrupoSalvarDesativado(boolean isBtnGrupoSalvarDesativado) {
+		this.isBtnGrupoSalvarDesativado = isBtnGrupoSalvarDesativado;
+	}
+
+	public boolean isBtnGrupoNovoDesativado() {
+		return isBtnGrupoNovoDesativado;
+	}
+
+	public void setBtnGrupoNovaEmpresaDesativado(boolean isBtnGrupoNovoDesativado) {
+		this.isBtnGrupoNovoDesativado = isBtnGrupoNovoDesativado;
+	}
+
 	public void setBtnNovaEmpresaDesativado(boolean isBtnNovaEmpresaDesativado) {
 		this.isBtnNovaEmpresaDesativado = isBtnNovaEmpresaDesativado;
 	}
@@ -180,7 +219,19 @@ public class CadastroEmpresaMB implements Serializable {
 	public String getMascaraPessoaJuridica() {
 		return mascaraPessoaJuridica;
 	}
+	
+	public void alterarMascaraPessoaJuridica() {
+		switch (this.tipoPessoaJuridicaSelecionada) {
+		case 1:
+			this.mascaraPessoaJuridica = "99.999.999/9999-99";
+			break;
+		case 2:
+			this.mascaraPessoaJuridica = "999.999.999-99";
+			break;
+		}
+	}
 
+	// action dos botões de dados cadastrais da empresa
 	public void editarCadastro(ActionEvent e) {
 		this.isBtnEditarDesativado = true;
 		this.isBtnCancelarDesativado = false;
@@ -196,16 +247,15 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnSalvarDesativado = true;
 		this.isBtnNovaEmpresaDesativado = false;
 	}
-	
+
 	public void salvarCadastro(ActionEvent e) {
 		System.out.println("teste salvar Cadastro");
 		this.isBtnEditarDesativado = false;
 		this.isBtnCancelarDesativado = true;
 		this.isBtnSalvarDesativado = true;
 		this.isBtnNovaEmpresaDesativado = false;
-		this.pessoaJuridicaFachada.create(this.empresa);
 	}
-	
+
 	public void novoCadastro(ActionEvent e) {
 		this.isBtnEditarDesativado = true;
 		this.isBtnCancelarDesativado = false;
@@ -219,19 +269,43 @@ public class CadastroEmpresaMB implements Serializable {
 		System.out.println("teste novo Cadastro");
 	}
 
-	public void alterarMascaraPessoaJuridica() {
-		switch (this.tipoPessoaJuridicaSelecionada) {
-		case 1:
-			this.mascaraPessoaJuridica = "99.999.999/9999-99";
-			break;
-		case 2:
-			this.mascaraPessoaJuridica = "999.999.999-99";
-			break;
-		}	
+	// action dos botões de grupos-empresa
+	public void editarCadastroGrupo(ActionEvent e) {
+		this.isBtnGrupoEditarDesativado = true;
+		this.isBtnGrupoCancelarDesativado = false;
+		this.isBtnGrupoSalvarDesativado = false;
+		this.isBtnGrupoNovoDesativado = true;
+		System.out.println("teste editar Grupo");
+	}
+
+	public void cancelarCadastroGrupo(ActionEvent e) {
+		System.out.println("teste cancelar Cadastro");
+		this.isBtnGrupoEditarDesativado = false;
+		this.isBtnGrupoCancelarDesativado = true;
+		this.isBtnGrupoSalvarDesativado = true;
+		this.isBtnGrupoNovoDesativado = false;
+	}
+
+	public void salvarCadastroGrupo(ActionEvent e) {
+		System.out.println("teste salvar Grupo");
+		this.isBtnGrupoEditarDesativado = false;
+		this.isBtnGrupoCancelarDesativado = true;
+		this.isBtnGrupoSalvarDesativado = true;
+		this.isBtnGrupoNovoDesativado = false;
+	}
+
+	public void novoCadastroGrupo(ActionEvent e) {
+		this.isBtnGrupoEditarDesativado = true;
+		this.isBtnGrupoCancelarDesativado = false;
+		this.isBtnGrupoSalvarDesativado = false;
+		this.isBtnGrupoNovoDesativado = true;
+		this.grupo = new EmpresaGrupoEntity();
+		System.out.println("teste novo Cadastro");
 	}
 	
+	
 	@PostConstruct
-	public void listarEmpresasDisponiveis(){
+	public void listarGruposEmpresasDisponiveis() {
 		try {
 			this.grupos = empresaGrupoFachada.listarGrupoEmpresas(usuarioMB.getUsuarioLogado());
 			this.isListaEmpresa = false;
@@ -240,11 +314,9 @@ public class CadastroEmpresaMB implements Serializable {
 			this.isListaEmpresa = true;
 		}
 	}
-	
-	public void onSelectionGrupo(SelectEvent evt){
-		FacesMessage msg = new FacesMessage("Teste", ((EmpresaGrupoEntity)evt.getObject()).getNomeGrupo());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-        this.grupoSelecionado = (EmpresaGrupoEntity)evt.getObject();
+
+	public void onSelectionGrupo(SelectEvent evt) {
+		this.grupoSelecionado = (EmpresaGrupoEntity) evt.getObject();
 	}
-	
+
 }
