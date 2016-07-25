@@ -287,17 +287,22 @@ a:LINK {
 	font-size: 8pt;
 }
 
+.pdialogGrupo{
+	width: 1500px;
+	height: 300px;																				
+}
+
 .pdialogDivEsquerda{
 	width: 288px;
 	margin-left: 3px;
-	position: absolute;
-	min-height: 300px;
+	height: 120px;
+	position:absolute;
 }
 
 .pdialogDivDireita{
-	width: 100%;
+	width: 800px;
 	padding-left: 296px;
-	min-height: 300px;
+	height: 300px;
 }
 
 .botoesWebApp {

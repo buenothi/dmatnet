@@ -36,7 +36,6 @@ public class CadastroEmpresaMB implements Serializable {
 	@EJB
 	private EmpresaGrupoFacadeLocal empresaGrupoFachada;
 
-	private EmpresaGrupoEntity grupo;
 	private EmpresaGrupoEntity grupoSelecionado;
 	private EmpresaEntity empresa;
 	private EmpresaCadastroEntity dadosCadastrais;
@@ -70,15 +69,10 @@ public class CadastroEmpresaMB implements Serializable {
 		this.usuarioMB = usuarioMB;
 	}
 
-	public EmpresaGrupoEntity getGrupo() {
-		return grupo;
-	}
-
-	public void setGrupo(EmpresaGrupoEntity grupo) {
-		this.grupo = grupo;
-	}
-
 	public EmpresaEntity getEmpresa() {
+		if(empresa == null){
+			empresa = new EmpresaEntity();
+		}
 		return empresa;
 	}
 
@@ -117,6 +111,9 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public List<EmpresaEntity> getEmpresas() {
+		if(empresas == null){
+			empresas = new ArrayList<EmpresaEntity>();
+		}
 		return empresas;
 	}
 
@@ -125,6 +122,9 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public List<EmpresaGrupoEntity> getGrupos() {
+		if(grupos == null){
+			grupos = new ArrayList<EmpresaGrupoEntity>();
+		}
 		return grupos;
 	}
 
@@ -133,6 +133,9 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public EmpresaGrupoEntity getGrupoSelecionado() {
+		if(grupoSelecionado == null) {
+			grupoSelecionado = new EmpresaGrupoEntity();
+		}
 		return grupoSelecionado;
 	}
 
@@ -261,11 +264,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnCancelarDesativado = false;
 		this.isBtnSalvarDesativado = false;
 		this.isBtnNovaEmpresaDesativado = true;
-		this.grupo = new EmpresaGrupoEntity();
 		this.empresa = new EmpresaEntity();
-		this.dadosCadastrais = new EmpresaCadastroEntity();
-		this.endereco = new EnderecoEntity();
-		this.empresas = new ArrayList<EmpresaEntity>();
 		System.out.println("teste novo Cadastro");
 	}
 
@@ -275,7 +274,6 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnGrupoCancelarDesativado = false;
 		this.isBtnGrupoSalvarDesativado = false;
 		this.isBtnGrupoNovoDesativado = true;
-		System.out.println("teste editar Grupo");
 	}
 
 	public void cancelarCadastroGrupo(ActionEvent e) {
@@ -287,11 +285,21 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void salvarCadastroGrupo(ActionEvent e) {
-		System.out.println("teste salvar Grupo");
 		this.isBtnGrupoEditarDesativado = false;
 		this.isBtnGrupoCancelarDesativado = true;
 		this.isBtnGrupoSalvarDesativado = true;
 		this.isBtnGrupoNovoDesativado = false;
+		
+		if(this.grupoSelecionado.getIdGrupo() == 0) {
+			this.empresaGrupoFachada.create(this.grupoSelecionado);
+		} else {
+			this.empresaGrupoFachada.update(this.grupoSelecionado);
+		}
+		
+		FacesMessage msg = new FacesMessage("Sucesso", this.grupoSelecionado.getNomeGrupo() + " Salvo com Sucesso");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+		
+		this.initGrupo();
 	}
 
 	public void novoCadastroGrupo(ActionEvent e) {
@@ -299,13 +307,12 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnGrupoCancelarDesativado = false;
 		this.isBtnGrupoSalvarDesativado = false;
 		this.isBtnGrupoNovoDesativado = true;
-		this.grupo = new EmpresaGrupoEntity();
-		System.out.println("teste novo Cadastro");
+		this.grupoSelecionado = new EmpresaGrupoEntity();
 	}
 	
 	
 	@PostConstruct
-	public void listarGruposEmpresasDisponiveis() {
+	public void initGrupo() {
 		try {
 			this.grupos = empresaGrupoFachada.listarGrupoEmpresas(usuarioMB.getUsuarioLogado());
 			this.isListaEmpresa = false;
