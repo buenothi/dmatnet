@@ -52,7 +52,9 @@ public class CadastroEmpresaMB implements Serializable {
 	private int tipoPessoaJuridicaSelecionada;
 
 	// botões referentes à Edição do Cadastro de Grupo Empresa
-	private boolean isBtnGrupoEditarDesativado = false;
+	private boolean isBtnGrupoEditarDesativado = true;
+	private boolean isTabEditarDesativado = false;
+	private boolean isTabExibirDesativado = true;
 	private boolean isBtnGrupoCancelarDesativado = true;
 	private boolean isBtnGrupoSalvarDesativado = true;
 	private boolean isBtnGrupoNovoDesativado = false;
@@ -183,6 +185,22 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnGrupoEditarDesativado = isBtnGrupoEditarDesativado;
 	}
 
+	public boolean isTabEditarDesativado() {
+		return isTabEditarDesativado;
+	}
+
+	public void setTabEditarDesativado(boolean isTabEditarDesativado) {
+		this.isTabEditarDesativado = isTabEditarDesativado;
+	}
+	
+	public boolean isTabExibirDesativado() {
+		return isTabExibirDesativado;
+	}
+
+	public void setTabExibirDesativado(boolean isTabExibirDesativado) {
+		this.isTabExibirDesativado = isTabExibirDesativado;
+	}
+
 	public boolean isBtnGrupoCancelarDesativado() {
 		return isBtnGrupoCancelarDesativado;
 	}
@@ -274,14 +292,17 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnGrupoCancelarDesativado = false;
 		this.isBtnGrupoSalvarDesativado = false;
 		this.isBtnGrupoNovoDesativado = true;
+		this.isTabEditarDesativado = true;
+		this.isTabExibirDesativado = false;
 	}
 
 	public void cancelarCadastroGrupo(ActionEvent e) {
-		System.out.println("teste cancelar Cadastro");
-		this.isBtnGrupoEditarDesativado = false;
+		this.isBtnGrupoEditarDesativado = true;
 		this.isBtnGrupoCancelarDesativado = true;
 		this.isBtnGrupoSalvarDesativado = true;
 		this.isBtnGrupoNovoDesativado = false;
+		this.isTabEditarDesativado = false;
+		this.isTabExibirDesativado = true;
 	}
 
 	public void salvarCadastroGrupo(ActionEvent e) {
@@ -289,6 +310,8 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnGrupoCancelarDesativado = true;
 		this.isBtnGrupoSalvarDesativado = true;
 		this.isBtnGrupoNovoDesativado = false;
+		this.isTabEditarDesativado = false;
+		this.isTabExibirDesativado = true;
 		
 		if(this.grupoSelecionado.getIdGrupo() == 0) {
 			this.empresaGrupoFachada.create(this.grupoSelecionado);
@@ -307,6 +330,8 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnGrupoCancelarDesativado = false;
 		this.isBtnGrupoSalvarDesativado = false;
 		this.isBtnGrupoNovoDesativado = true;
+		this.isTabEditarDesativado = true;
+		this.isTabExibirDesativado = false;
 		this.grupoSelecionado = new EmpresaGrupoEntity();
 	}
 	
@@ -324,6 +349,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void onSelectionGrupo(SelectEvent evt) {
 		this.grupoSelecionado = (EmpresaGrupoEntity) evt.getObject();
+		this.isBtnGrupoEditarDesativado = false;
 	}
 
 }

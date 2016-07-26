@@ -24,7 +24,7 @@
 				actionListener="#{cadastroEmpresaMB.salvarCadastroGrupo}"
 				update="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos,
 					formCadEmpresa:growlPrincipal" />
-			<p:commandButton id="btnNovoGrupo" value="#{msgs.NovaEmpresa}"
+			<p:commandButton id="btnNovoGrupo" value="#{msgs.EmpresaGrupoNovo}"
 				styleClass="botoes" icon="fa fa-plus"
 				disabled="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
 				actionListener="#{cadastroEmpresaMB.novoCadastroGrupo}"
@@ -46,8 +46,7 @@
 				rows="10">
 				<p:ajax event="rowSelect"
 					listener="#{cadastroEmpresaMB.onSelectionGrupo}"
-					update="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:tabEditarGrupo,
-						formCadEmpresa:growlPrincipal,formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:tabExibirGrupo" />
+					update="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos" />
 				<p:column>
 					<h:outputText value="#{grupo.nomeGrupo}" />
 				</p:column>
@@ -56,7 +55,7 @@
 
 		<h:panelGroup id="pngGrupoEditar" layout="block"
 			styleClass="pdialogDivDireita"
-			rendered="#{cadastroEmpresaMB.btnGrupoEditarDesativado}">
+			rendered="#{cadastroEmpresaMB.tabEditarDesativado}">
 			<p:tabView id="tabEditarGrupo">
 				<p:tab title="#{msgs.EmpresaGrupo}">
 					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
@@ -75,7 +74,7 @@
 
 		<h:panelGroup id="pngGrupoExibir" layout="block"
 			styleClass="pdialogDivDireita"
-			rendered="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}">
+			rendered="#{cadastroEmpresaMB.tabExibirDesativado}">
 			<p:tabView id="tabExibirGrupo">
 				<p:tab title="#{msgs.EmpresaGrupo}">
 					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
