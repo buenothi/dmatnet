@@ -15,6 +15,7 @@ import javax.faces.event.ActionEvent;
 import javax.persistence.NoResultException;
 
 import org.primefaces.event.SelectEvent;
+import org.primefaces.model.DualListModel;
 
 import br.com.smartems.dmatnet.EJB.Facade.EmpresaGrupoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.PessoaJuridicaFacadeLocal;
@@ -40,7 +41,9 @@ public class CadastroEmpresaMB implements Serializable {
 	private EmpresaEntity empresa;
 	private EmpresaCadastroEntity dadosCadastrais;
 	private EnderecoEntity endereco;
-	private List<EmpresaEntity> empresas;
+	private List<EmpresaEntity> empresasDisponiveis;
+	private List<EmpresaEntity> empresasAtribuidas;
+	private DualListModel<EmpresaEntity> empresas;
 	private List<EmpresaGrupoEntity> grupos;
 
 	// botões referentes à Edição do Cadastro de Empresa
@@ -72,7 +75,7 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public EmpresaEntity getEmpresa() {
-		if(empresa == null){
+		if (empresa == null) {
 			empresa = new EmpresaEntity();
 		}
 		return empresa;
@@ -112,19 +115,41 @@ public class CadastroEmpresaMB implements Serializable {
 		this.endereco = endereco;
 	}
 
-	public List<EmpresaEntity> getEmpresas() {
-		if(empresas == null){
-			empresas = new ArrayList<EmpresaEntity>();
+	public List<EmpresaEntity> getEmpresasDisponiveis() {
+		if (empresasDisponiveis == null) {
+			empresasDisponiveis = new ArrayList<EmpresaEntity>();
+		}
+		return empresasDisponiveis;
+	}
+
+	public void setEmpresasDisponiveis(List<EmpresaEntity> empresasDisponiveis) {
+		this.empresasDisponiveis = empresasDisponiveis;
+	}
+
+	public List<EmpresaEntity> getEmpresasAtribuidas() {
+		if (empresasAtribuidas == null) {
+			empresasAtribuidas = new ArrayList<EmpresaEntity>();
+		}
+		return empresasAtribuidas;
+	}
+
+	public void setEmpresasAtribuidas(List<EmpresaEntity> empresasAtribuidas) {
+		this.empresasAtribuidas = empresasAtribuidas;
+	}
+
+	public DualListModel<EmpresaEntity> getEmpresas() {
+		if (empresas == null) {
+			empresas = new DualListModel<EmpresaEntity>();
 		}
 		return empresas;
 	}
 
-	public void setEmpresas(List<EmpresaEntity> empresas) {
+	public void setEmpresas(DualListModel<EmpresaEntity> empresas) {
 		this.empresas = empresas;
 	}
 
 	public List<EmpresaGrupoEntity> getGrupos() {
-		if(grupos == null){
+		if (grupos == null) {
 			grupos = new ArrayList<EmpresaGrupoEntity>();
 		}
 		return grupos;
@@ -135,7 +160,7 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public EmpresaGrupoEntity getGrupoSelecionado() {
-		if(grupoSelecionado == null) {
+		if (grupoSelecionado == null) {
 			grupoSelecionado = new EmpresaGrupoEntity();
 		}
 		return grupoSelecionado;
@@ -192,7 +217,7 @@ public class CadastroEmpresaMB implements Serializable {
 	public void setTabEditarDesativado(boolean isTabEditarDesativado) {
 		this.isTabEditarDesativado = isTabEditarDesativado;
 	}
-	
+
 	public boolean isTabExibirDesativado() {
 		return isTabExibirDesativado;
 	}
@@ -240,7 +265,7 @@ public class CadastroEmpresaMB implements Serializable {
 	public String getMascaraPessoaJuridica() {
 		return mascaraPessoaJuridica;
 	}
-	
+
 	public void alterarMascaraPessoaJuridica() {
 		switch (this.tipoPessoaJuridicaSelecionada) {
 		case 1:
@@ -312,16 +337,16 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnGrupoNovoDesativado = false;
 		this.isTabEditarDesativado = false;
 		this.isTabExibirDesativado = true;
-		
-		if(this.grupoSelecionado.getIdGrupo() == 0) {
+
+		if (this.grupoSelecionado.getIdGrupo() == 0) {
 			this.empresaGrupoFachada.create(this.grupoSelecionado);
 		} else {
 			this.empresaGrupoFachada.update(this.grupoSelecionado);
 		}
-		
+
 		FacesMessage msg = new FacesMessage("Sucesso", this.grupoSelecionado.getNomeGrupo() + " Salvo com Sucesso");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-		
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+
 		this.initGrupo();
 	}
 
@@ -334,12 +359,19 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isTabExibirDesativado = false;
 		this.grupoSelecionado = new EmpresaGrupoEntity();
 	}
-	
-	
+
 	@PostConstruct
 	public void initGrupo() {
 		try {
 			this.grupos = empresaGrupoFachada.listarGrupoEmpresas(usuarioMB.getUsuarioLogado());
+			try {
+				this.empresasDisponiveis = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
+				if(this.empresasDisponiveis != null){
+					this.empresas = new DualListModel<EmpresaEntity>(this.empresasDisponiveis, this.empresasAtribuidas);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			this.isListaEmpresa = false;
 		} catch (NoResultException e) {
 			e.printStackTrace();

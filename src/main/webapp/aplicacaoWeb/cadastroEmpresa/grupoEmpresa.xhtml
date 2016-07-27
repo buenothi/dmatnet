@@ -87,6 +87,9 @@
 					</p:panelGrid>
 				</p:tab>
 				<p:tab title="#{msgs.Empresas}">
+					<p:pickList id="pclEmpresasGrupo"
+						value="#{cadastroEmpresaMB.empresas}" var="empresa"
+						itemLabel="#{empresa}" itemValue="#{empresa}" />
 				</p:tab>
 			</p:tabView>
 		</h:panelGroup>

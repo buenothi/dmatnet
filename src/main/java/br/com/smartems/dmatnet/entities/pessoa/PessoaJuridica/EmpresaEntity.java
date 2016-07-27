@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -15,39 +17,41 @@ import br.com.smartems.dmatnet.entities.LocalTrabalho.LocalTrabalhoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 
 @Entity
-@Table(name="tbl_Empresa")
+@Table(name = "tbl_Empresa")
+@NamedQueries({
+		@NamedQuery(name = "Empresa.listarEmpresasPorUsuario", query = "SELECT empresa FROM EmpresaEntity empresa "
+				+ "inner join empresa.usuarios usuario WHERE usuario.idPessoa in :idUsuario") })
 public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Serializable {
-	
+
 	private long codESocialEmpresa;
-	
+
 	@ManyToOne
-	@JoinColumn(name="grupo_ID")
+	@JoinColumn(name = "grupo_ID")
 	private EmpresaGrupoEntity grupo;
-	
-	@OneToMany(cascade={CascadeType.ALL})
-	@JoinColumn(name="empresa_ID")
+
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "empresa_ID")
 	private List<EmpresaCadastroEntity> cadastros;
-	
-	@OneToMany(cascade={CascadeType.ALL})
-	@JoinColumn(name="empresa_ID")
+
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "empresa_ID")
 	private List<LocalTrabalhoEntity> locais;
-	
-	@ManyToMany(mappedBy="empresasGerenciadas")
+
+	@ManyToMany(mappedBy = "empresasGerenciadas")
 	private List<UsuarioEntity> usuarios;
-	
+
 	@ManyToOne
-	@JoinColumn(name="usuarioCriador_ID")
+	@JoinColumn(name = "usuarioCriador_ID")
 	private UsuarioEntity usuarioCriador;
-	
+
 	private String tipoEstabelecimento;
-	
+
 	private static final long serialVersionUID = 1L;
 
 	public EmpresaEntity() {
 		super();
-	}   
-	
-	
+	}
+
 	public long getCodESocialEmpresa() {
 		return this.codESocialEmpresa;
 	}
@@ -103,5 +107,5 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 	public void setUsuarioCriador(UsuarioEntity usuarioCriador) {
 		this.usuarioCriador = usuarioCriador;
 	}
-  
+
 }

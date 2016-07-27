@@ -26,8 +26,7 @@ public class PessoaJuridicaEAO extends AbstractEAO<AbstractPessoaJuridicaEntity,
 
 	@SuppressWarnings("unchecked")
 	public List<EmpresaEntity> listarEmpresas(UsuarioEntity usuarioLogado) throws NoResultException {
-		Query query = entityManager.createQuery("FROM EmpresaEntity e WHERE e.usuarios.idPessoa = :idUsuario",
-				EmpresaEntity.class);
+		Query query = entityManager.createNamedQuery("Empresa.listarEmpresasPorUsuario", EmpresaEntity.class);
 		query.setParameter("idUsuario", usuarioLogado.getIdPessoa());
 		return (List<EmpresaEntity>) query.getResultList();
 	}

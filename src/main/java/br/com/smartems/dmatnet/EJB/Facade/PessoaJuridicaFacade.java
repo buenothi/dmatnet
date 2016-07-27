@@ -43,10 +43,6 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 	public List<AbstractPessoaJuridicaEntity> findAll() {
 		return pessoaJuridicaEAO.findAll();
 	}
-	
-	public List<EmpresaEntity> empresasDisponiveis(UsuarioEntity usuarioLogado) {
-		return pessoaJuridicaEAO.listarEmpresas(usuarioLogado);		
-	}
 
 	@Override
 	public List<EmpresaEntity> listarEmpresas(UsuarioEntity usuarioLogado) {
