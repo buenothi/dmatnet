@@ -366,7 +366,7 @@ public class CadastroEmpresaMB implements Serializable {
 			this.grupos = empresaGrupoFachada.listarGrupoEmpresas(usuarioMB.getUsuarioLogado());
 			try {
 				this.empresasDisponiveis = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
-				if(this.empresasDisponiveis != null){
+				if(this.empresasDisponiveis == null){
 					this.empresas = new DualListModel<EmpresaEntity>(this.empresasDisponiveis, this.empresasAtribuidas);
 				}
 			} catch (Exception e) {
