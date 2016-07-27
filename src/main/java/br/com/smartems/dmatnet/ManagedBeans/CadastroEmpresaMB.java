@@ -61,6 +61,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private boolean isBtnGrupoCancelarDesativado = true;
 	private boolean isBtnGrupoSalvarDesativado = true;
 	private boolean isBtnGrupoNovoDesativado = false;
+	private boolean isBtnSelecionarGrupo = true;
 
 	private String mascaraPessoaJuridica = "99.999.999/9999-99";
 
@@ -246,6 +247,14 @@ public class CadastroEmpresaMB implements Serializable {
 		return isBtnGrupoNovoDesativado;
 	}
 
+	public boolean isBtnSelecionarGrupo() {
+		return isBtnSelecionarGrupo;
+	}
+
+	public void setBtnSelecionarGrupo(boolean isBtnSelecionarGrupo) {
+		this.isBtnSelecionarGrupo = isBtnSelecionarGrupo;
+	}
+
 	public void setBtnGrupoNovaEmpresaDesativado(boolean isBtnGrupoNovoDesativado) {
 		this.isBtnGrupoNovoDesativado = isBtnGrupoNovoDesativado;
 	}
@@ -382,6 +391,7 @@ public class CadastroEmpresaMB implements Serializable {
 	public void onSelectionGrupo(SelectEvent evt) {
 		this.grupoSelecionado = (EmpresaGrupoEntity) evt.getObject();
 		this.isBtnGrupoEditarDesativado = false;
+		this.isBtnSelecionarGrupo = false;
 	}
 
 }

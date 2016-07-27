@@ -30,6 +30,12 @@
 				actionListener="#{cadastroEmpresaMB.novoCadastroGrupo}"
 				update="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos,
 					formCadEmpresa:growlPrincipal" />
+			<p:commandButton id="btnSelecionarGrupo" value="#{msgs.EmpresaGrupoAtribuirGrupo}"
+				styleClass="botoes" icon="fa fa-check"
+				disabled="#{cadastroEmpresaMB.btnSelecionarGrupo}"
+				actionListener="#{cadastroEmpresaMB.novoCadastroGrupo}"
+				update="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos,
+					formCadEmpresa:growlPrincipal" />
 		</h:panelGroup>
 
 		<h:panelGroup id="pngGruposLista" layout="block"
@@ -43,7 +49,7 @@
 				value="#{cadastroEmpresaMB.grupos}" selectionMode="single"
 				rowKey="#{grupo.idGrupo}"
 				selection="#{cadastroEmpresaMB.grupoSelecionado}" paginator="true"
-				rows="10">
+				rows="7">
 				<p:ajax event="rowSelect"
 					listener="#{cadastroEmpresaMB.onSelectionGrupo}"
 					update="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos" />
