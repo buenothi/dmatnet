@@ -335,6 +335,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnGrupoCancelarDesativado = true;
 		this.isBtnGrupoSalvarDesativado = true;
 		this.isBtnGrupoNovoDesativado = false;
+		this.isBtnSelecionarGrupo = true;
 		this.isTabEditarDesativado = false;
 		this.isTabExibirDesativado = true;
 	}
@@ -368,6 +369,17 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isTabExibirDesativado = false;
 		this.grupoSelecionado = new EmpresaGrupoEntity();
 	}
+	
+	public void selecionarGrupo(ActionEvent e) {
+		this.isBtnGrupoEditarDesativado = true;
+		this.isBtnGrupoCancelarDesativado = true;
+		this.isBtnGrupoSalvarDesativado = true;
+		this.isBtnGrupoNovoDesativado = false;
+		this.isBtnSelecionarGrupo = true;
+		this.isTabEditarDesativado = false;
+		this.isTabExibirDesativado = true;
+	}
+	
 
 	@PostConstruct
 	public void initGrupo() {
