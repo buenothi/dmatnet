@@ -406,4 +406,12 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnSelecionarGrupo = false;
 	}
 
+	public void setListaEmpresa(boolean isListaEmpresa) {
+		this.isListaEmpresa = isListaEmpresa;
+	}
+
+	public void setBtnGrupoNovoDesativado(boolean isBtnGrupoNovoDesativado) {
+		this.isBtnGrupoNovoDesativado = isBtnGrupoNovoDesativado;
+	}
+
 }
