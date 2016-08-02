@@ -12,10 +12,10 @@
 			<h:panelGroup id="pngCadEmpresaEditar" layout="block"
 				styleClass="formulario"
 				rendered="#{cadastroEmpresaMB.btnEditarDesativado}">
-				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+				<p:panelGrid id="pngEditarDadoCadastrais" columns="2" styleClass="tabelaSemBorda">
 					<p:outputLabel value="#{msgs.DataCadastro}:" />
 					<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-						pattern="dd/MM/yyyy" mask="true" size="8" />
+						pattern="dd/MM/yyyy" mask="true" size="8" value="#{cadastroEmpresaMB.dadosCadastrais.dataInicioCadastro}"/>
 
 					<p:outputLabel value="#{msgs.EmpresaGrupo}:" />
 					<h:panelGroup>
@@ -28,7 +28,7 @@
 					<p:selectOneMenu style="width:100px">
 						<p:ajax
 							listener="#{cadastroEmpresaMB.alterarMascaraPessoaJuridica}"
-							update="ipmInscricao" />
+							update="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:ipmInscricao" />
 						<f:selectItem itemValue="1" itemLabel="CNPJ" />
 						<f:selectItem itemValue="2" itemLabel="CPF" />
 					</p:selectOneMenu>
