@@ -22,6 +22,7 @@ import br.com.smartems.dmatnet.EJB.Facade.PessoaJuridicaFacadeLocal;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaGrupoEntity;
 
 @ManagedBean
@@ -40,6 +41,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private EmpresaGrupoEntity grupoSelecionado;
 	private EmpresaEntity empresa;
 	private EmpresaCadastroEntity dadosCadastrais;
+	private EmpresaFAP empresaFap;
 	private EnderecoEntity endereco;
 	private List<EmpresaEntity> empresasDisponiveis;
 	private List<EmpresaEntity> empresasAtribuidas;
@@ -95,6 +97,17 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setDadosCadastrais(EmpresaCadastroEntity dadosCadastrais) {
 		this.dadosCadastrais = dadosCadastrais;
+	}
+	
+	public EmpresaFAP getEmpresaFap() {
+		if (this.empresaFap == null) {
+			empresaFap = new EmpresaFAP();
+		}
+		return empresaFap;
+	}
+
+	public void setEmpresaFap(EmpresaFAP empresaFap) {
+		this.empresaFap = empresaFap;
 	}
 
 	public String tipoInscricaoPJ(int tipoInscricao) {
@@ -276,7 +289,7 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void alterarMascaraPessoaJuridica() {
-		switch (this.tipoPessoaJuridicaSelecionada) {
+		switch (this.dadosCadastrais.getTipoInscricao()) {
 		case 1:
 			this.mascaraPessoaJuridica = "99.999.999/9999-99";
 			break;

@@ -25,7 +25,7 @@
 					</h:panelGroup>
 
 					<p:outputLabel value="#{msgs.TipoInscricao}:" />
-					<p:selectOneMenu style="width:100px" value="#{cadastroEmpresaMB.tipoPessoaJuridicaSelecionada}">
+					<p:selectOneMenu style="width:100px" value="#{cadastroEmpresaMB.dadosCadastrais.tipoInscricao}">
 						<p:ajax
 							listener="#{cadastroEmpresaMB.alterarMascaraPessoaJuridica}"
 							update="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:ipmInscricao" />
@@ -38,10 +38,10 @@
 						value="#{cadastroEmpresaMB.dadosCadastrais.numCNPJ}" />
 
 					<p:outputLabel value="#{msgs.NomeFantasia}:" />
-					<p:inputText maxlength="250" size="62"/>
+					<p:inputText maxlength="250" size="62" value="#{cadastroEmpresaMB.empresa.nome}"/>
 
 					<p:outputLabel value="#{msgs.RazaoSocial}:" />
-					<p:inputText maxlength="250" size="62"/>
+					<p:inputText maxlength="250" size="62" value="#{cadastroEmpresaMB.dadosCadastrais.razaoSocial}"/>
 
 					<p:outputLabel value="#{msgs.FAP}:" />
 					<h:panelGroup>
@@ -61,19 +61,19 @@
 					<p:selectOneMenu />
 
 					<p:outputLabel value="#{msgs.CodNaturezaJuridica}" />
-					<p:selectOneMenu />
+					<p:selectOneMenu value="#{cadastroEmpresaMB.dadosCadastrais.codNaturezaJuridica}"/>
 
 					<p:outputLabel value="#{msgs.CodIndicativoCooperativa}" />
-					<p:selectOneMenu />
+					<p:selectOneMenu value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoCooperativa}"/>
 
 					<p:outputLabel value="#{msgs.CodIndicativoConstrucao}" />
-					<p:selectOneMenu />
+					<p:selectOneMenu value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoConstrucao}"/>
 
 					<p:outputLabel value="#{msgs.CodIndicativoDesoneracaoFolha}" />
-					<p:selectOneMenu />
+					<p:selectOneMenu value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoDesoneracaoFolha}"/>
 
 					<p:outputLabel value="#{msgs.CodIndicativoRegEletronico}" />
-					<p:selectOneMenu />
+					<p:selectOneMenu value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoRegEletronico}"/>
 				</p:panelGrid>
 
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
