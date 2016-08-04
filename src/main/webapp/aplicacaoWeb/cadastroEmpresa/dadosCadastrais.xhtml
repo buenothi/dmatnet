@@ -90,7 +90,9 @@
 				rendered="#{cadastroEmpresaMB.btnCancelarDesativado}">
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 					<p:outputLabel value="#{msgs.DataCadastro}:" />
-					<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.dataInicioCadastro}"/>
+					<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.dataInicioCadastro}">
+						<f:convertDateTime type="both" timeZone="GMT-3" pattern="dd/MM/YYYY" />
+					</p:outputLabel>
 
 					<p:outputLabel value="#{msgs.EmpresaGrupo}:" />
 					<p:outputLabel value="#{cadastroEmpresaMB.grupoEmpresa.nomeGrupo}"/>
@@ -125,27 +127,27 @@
 
 					<p:panelGrid columns="4" styleClass="tabelaSemBorda">
 						<p:outputLabel value="#{msgs.CodClassificacaoTributaria}:" />
-						<p:outputLabel value="" />
+						<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.codClassificacaoTributaria}" />
 
 						<p:outputLabel value="#{msgs.CodNaturezaJuridica}:" />
-						<p:outputLabel value="" />
+						<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.codNaturezaJuridica}" />
 
 						<p:outputLabel value="#{msgs.CodIndicativoCooperativa}:" />
-						<p:outputLabel value="" />
+						<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoCooperativa}" />
 
 						<p:outputLabel value="#{msgs.CodIndicativoConstrucao}:" />
-						<p:outputLabel value="" />
+						<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoConstrucao}" />
 
 						<p:outputLabel value="#{msgs.CodIndicativoDesoneracaoFolha}:" />
-						<p:outputLabel value="" />
+						<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoDesoneracaoFolha}" />
 
 						<p:outputLabel value="#{msgs.CodIndicativoRegEletronico}:" />
-						<p:outputLabel value="" />
+						<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoRegEletronico}" />
 					</p:panelGrid>
 
 					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 						<p:outputLabel value="#{msgs.MultiplasRubricas}:" />
-						<p:outputLabel value="" />
+						<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.multiplasTabRubricas}" />
 					</p:panelGrid>
 				</p:dialog>
 			</h:panelGroup>
