@@ -39,6 +39,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private EmpresaGrupoFacadeLocal empresaGrupoFachada;
 
 	private EmpresaGrupoEntity grupoSelecionado;
+	private EmpresaGrupoEntity grupoEmpresa;
 	private EmpresaEntity empresa;
 	private EmpresaCadastroEntity dadosCadastrais;
 	private EmpresaFAP empresaFap;
@@ -182,6 +183,17 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setGrupoSelecionado(EmpresaGrupoEntity grupoSelecionado) {
 		this.grupoSelecionado = grupoSelecionado;
+	}
+
+	public EmpresaGrupoEntity getGrupoEmpresa() {
+		if (grupoEmpresa == null) {
+			grupoEmpresa = new EmpresaGrupoEntity();
+		}
+		return grupoEmpresa;
+	}
+
+	public void setGrupoEmpresa(EmpresaGrupoEntity grupoEmpresa) {
+		this.grupoEmpresa = grupoEmpresa;
 	}
 
 	public boolean isBtnEditarDesativado() {

@@ -90,26 +90,26 @@
 				rendered="#{cadastroEmpresaMB.btnCancelarDesativado}">
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 					<p:outputLabel value="#{msgs.DataCadastro}:" />
-					<p:outputLabel/>
+					<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.dataInicioCadastro}"/>
 
 					<p:outputLabel value="#{msgs.EmpresaGrupo}:" />
-					<p:outputLabel />
+					<p:outputLabel value="#{cadastroEmpresaMB.grupoEmpresa.nomeGrupo}"/>
 
 					<p:outputLabel value="#{msgs.TipoInscricao}:" />
-					<p:outputLabel />
+					<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.tipoInscricao}"/>
 
 					<p:outputLabel value="#{msgs.Inscricao}:" />
-					<p:outputLabel value="" />
+					<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.numCNPJ}" />
 
 					<p:outputLabel value="#{msgs.NomeFantasia}:" />
-					<p:outputLabel value="" />
+					<p:outputLabel value="#{cadastroEmpresaMB.empresa.nome}" />
 
 					<p:outputLabel value="#{msgs.RazaoSocial}:" />
-					<p:outputLabel value="" />
+					<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.razaoSocial}" />
 
 					<p:outputLabel value="#{msgs.FAP}:" />
 					<h:panelGroup>
-						<p:outputLabel value="" />
+						<p:outputLabel value="#{cadastroEmpresaMB.empresaFap.numProcessoFAP}" />
 						<p:commandButton value="#{msgs.ProcessoFAP}" />
 					</h:panelGroup>
 				</p:panelGrid>
