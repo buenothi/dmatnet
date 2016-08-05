@@ -101,7 +101,7 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 	
 	public EmpresaFAP getEmpresaFap() {
-		if (this.empresaFap == null) {
+		if (empresaFap == null) {
 			empresaFap = new EmpresaFAP();
 		}
 		return empresaFap;
@@ -120,7 +120,7 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public EnderecoEntity getEndereco() {
-		if (this.endereco == null) {
+		if (endereco == null) {
 			endereco = new EnderecoEntity();
 		}
 		return endereco;
@@ -317,11 +317,9 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnCancelarDesativado = false;
 		this.isBtnSalvarDesativado = false;
 		this.isBtnNovaEmpresaDesativado = true;
-		System.out.println("teste editar Cadastro");
 	}
 
 	public void cancelarCadastro(ActionEvent e) {
-		System.out.println("teste cancelar Cadastro");
 		this.isBtnEditarDesativado = false;
 		this.isBtnCancelarDesativado = true;
 		this.isBtnSalvarDesativado = true;
@@ -329,7 +327,6 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void salvarCadastro(ActionEvent e) {
-		System.out.println("teste salvar Cadastro");
 		this.isBtnEditarDesativado = false;
 		this.isBtnCancelarDesativado = true;
 		this.isBtnSalvarDesativado = true;
@@ -341,8 +338,6 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnCancelarDesativado = false;
 		this.isBtnSalvarDesativado = false;
 		this.isBtnNovaEmpresaDesativado = true;
-		this.empresa = new EmpresaEntity();
-		System.out.println("teste novo Cadastro");
 	}
 
 	// action dos botões de grupos-empresa

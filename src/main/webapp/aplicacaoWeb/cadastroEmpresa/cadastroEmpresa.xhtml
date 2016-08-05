@@ -42,6 +42,18 @@
 						src="/aplicacaoWeb/cadastroEmpresa/dadosCadastrais.xhtml" />
 				</p:tab>				
 				<p:tab title="#{msgs.Endereco}">
+					<dmat:enderecoComposite 
+						logradouroTipo="#{cadastroEmpresaMB.endereco.logradouroTipo}"
+						logradouroNome="#{cadastroEmpresaMB.endereco.logradouroNome}"
+						logradouroNumero="#{cadastroEmpresaMB.endereco.logradouroNumero}"
+						logradouroComplemento="#{cadastroEmpresaMB.endereco.logradouroComplemento}"
+						bairro="#{cadastroEmpresaMB.endereco.bairro}"
+						cep="#{cadastroEmpresaMB.endereco.cep}"
+						caixaPostal="#{cadastroEmpresaMB.endereco.caixaPostal}"
+						cidade="#{cadastroEmpresaMB.endereco.cidade}"
+						estado="#{cadastroEmpresaMB.endereco.estado}"
+						rendCancelarDesativado="#{cadastroEmpresaMB.btnCancelarDesativado}"
+						rendEditarDesativado="#{cadastroEmpresaMB.btnEditarDesativado}" />
 				</p:tab>
 				<p:tab title="#{msgs.ContatoUsuario}">
 					<ui:include

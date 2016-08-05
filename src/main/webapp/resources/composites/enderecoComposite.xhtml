@@ -36,12 +36,15 @@
 
 	<composite:attribute name="estado" />
 	<composite:editableValueHolder name="estadoInput" targets="form:estado" />
+	
+	<composite:attribute name="rendEditarDesativado"/>
+	<composite:attribute name="rendCancelarDesativado"/>
 </composite:interface>
 
 <composite:implementation>
 	<h:form id="form">
 		<h:panelGroup layout="block" styleClass="formularioEnderecoEditar"
-			rendered="#{cadastroEmpresaMB.btnEditarDesativado}">
+			rendered="#{cc.attrs.rendEditarDesativado}">
 			<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 				<p:outputLabel value="#{msgs.Logradouro}" />
 				<h:panelGrid columns="2">
@@ -83,11 +86,11 @@
 				<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}" />
 				<h:panelGrid columns="2">
 					<p:selectOneMenu id="listEstado" panelStyle="width:150px"
-						effect="fade" style="width:60px" value="#{cc.attrs.estado}">
+						effect="fade" style="width:60px" >
 					</p:selectOneMenu>
 					<p:selectOneMenu id="listCidade" panelStyle="width:180px"
 						effect="fade" style="width:333px" filter="true"
-						filterMatchMode="startsWith" value="#{cc.attrs.estado}">
+						filterMatchMode="startsWith" >
 					</p:selectOneMenu>
 				</h:panelGrid>
 			</p:panelGrid>
@@ -95,7 +98,7 @@
 		</h:panelGroup>
 
 		<h:panelGroup layout="block" styleClass="formularioEnderecoExibir"
-			rendered="#{cadastroEmpresaMB.btnCancelarDesativado}">
+			rendered="#{cc.attrs.rendCancelarDesativado}">
 			<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 				<p:outputLabel value="#{msgs.Logradouro}:" />
 				<h:panelGrid columns="2">
