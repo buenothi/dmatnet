@@ -48,7 +48,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private List<EmpresaEntity> empresasAtribuidas;
 	private DualListModel<EmpresaEntity> empresas;
 	private List<EmpresaGrupoEntity> grupos;
-
+	
 	// botões referentes à Edição do Cadastro de Empresa
 	private boolean isBtnEditarDesativado = false;
 	private boolean isBtnCancelarDesativado = true;
@@ -101,8 +101,8 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 	
 	public EmpresaFAP getEmpresaFap() {
-		if (empresaFap == null) {
-			empresaFap = new EmpresaFAP();
+		if (this.empresaFap == null) {
+			this.empresaFap = new EmpresaFAP();
 		}
 		return empresaFap;
 	}
@@ -120,8 +120,8 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public EnderecoEntity getEndereco() {
-		if (endereco == null) {
-			endereco = new EnderecoEntity();
+		if (this.endereco == null) {
+			this.endereco = new EnderecoEntity();
 		}
 		return endereco;
 	}
@@ -131,8 +131,8 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public List<EmpresaEntity> getEmpresasDisponiveis() {
-		if (empresasDisponiveis == null) {
-			empresasDisponiveis = new ArrayList<EmpresaEntity>();
+		if (this.empresasDisponiveis == null) {
+			this.empresasDisponiveis = new ArrayList<EmpresaEntity>();
 		}
 		return empresasDisponiveis;
 	}
@@ -142,8 +142,8 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public List<EmpresaEntity> getEmpresasAtribuidas() {
-		if (empresasAtribuidas == null) {
-			empresasAtribuidas = new ArrayList<EmpresaEntity>();
+		if (this.empresasAtribuidas == null) {
+			this.empresasAtribuidas = new ArrayList<EmpresaEntity>();
 		}
 		return empresasAtribuidas;
 	}
@@ -153,8 +153,8 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public DualListModel<EmpresaEntity> getEmpresas() {
-		if (empresas == null) {
-			empresas = new DualListModel<EmpresaEntity>();
+		if (this.empresas == null) {
+			this.empresas = new DualListModel<EmpresaEntity>();
 		}
 		return empresas;
 	}
@@ -164,8 +164,8 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public List<EmpresaGrupoEntity> getGrupos() {
-		if (grupos == null) {
-			grupos = new ArrayList<EmpresaGrupoEntity>();
+		if (this.grupos == null) {
+			this.grupos = new ArrayList<EmpresaGrupoEntity>();
 		}
 		return grupos;
 	}
@@ -175,8 +175,8 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public EmpresaGrupoEntity getGrupoSelecionado() {
-		if (grupoSelecionado == null) {
-			grupoSelecionado = new EmpresaGrupoEntity();
+		if (this.grupoSelecionado == null) {
+			this.grupoSelecionado = new EmpresaGrupoEntity();
 		}
 		return grupoSelecionado;
 	}
@@ -186,8 +186,8 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public EmpresaGrupoEntity getGrupoEmpresa() {
-		if (grupoEmpresa == null) {
-			grupoEmpresa = new EmpresaGrupoEntity();
+		if (this.grupoEmpresa == null) {
+			this.grupoEmpresa = new EmpresaGrupoEntity();
 		}
 		return grupoEmpresa;
 	}
@@ -377,7 +377,7 @@ public class CadastroEmpresaMB implements Serializable {
 		FacesMessage msg = new FacesMessage("Sucesso", this.grupoSelecionado.getNomeGrupo() + " Salvo com Sucesso");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 
-		this.initGrupo();
+		this.initEmpresa();
 	}
 
 	public void novoCadastroGrupo(ActionEvent e) {
@@ -402,7 +402,7 @@ public class CadastroEmpresaMB implements Serializable {
 	
 
 	@PostConstruct
-	public void initGrupo() {
+	public void initEmpresa() {
 		try {
 			this.grupos = empresaGrupoFachada.listarGrupoEmpresas(usuarioMB.getUsuarioLogado());
 			try {

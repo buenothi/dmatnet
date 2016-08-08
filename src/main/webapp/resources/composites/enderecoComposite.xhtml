@@ -36,9 +36,9 @@
 
 	<composite:attribute name="estado" />
 	<composite:editableValueHolder name="estadoInput" targets="form:estado" />
-	
-	<composite:attribute name="rendEditarDesativado"/>
-	<composite:attribute name="rendCancelarDesativado"/>
+
+	<composite:attribute name="rendEditarDesativado" />
+	<composite:attribute name="rendCancelarDesativado" />
 </composite:interface>
 
 <composite:implementation>
@@ -86,11 +86,13 @@
 				<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}" />
 				<h:panelGrid columns="2">
 					<p:selectOneMenu id="listEstado" panelStyle="width:150px"
-						effect="fade" style="width:60px" >
+						effect="fade" style="width:60px">
+						<f:selectItems value="#{estadoMB.estados}" var="estado"
+							itemLabel="#{estado.estadoSigla}" itemValue="#{estado}" />
 					</p:selectOneMenu>
 					<p:selectOneMenu id="listCidade" panelStyle="width:180px"
 						effect="fade" style="width:333px" filter="true"
-						filterMatchMode="startsWith" >
+						filterMatchMode="startsWith">
 					</p:selectOneMenu>
 				</h:panelGrid>
 			</p:panelGrid>
