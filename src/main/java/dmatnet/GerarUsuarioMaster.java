@@ -85,8 +85,6 @@ public class GerarUsuarioMaster extends HttpServlet {
 				enderecoComercial.setLogradouroComplemento("sala 28");
 				enderecoComercial.setBairro("Bela Vista");
 				enderecoComercial.setCep("01311000");
-				enderecoComercial.setCidade("São Paulo");
-				enderecoComercial.setEstado("SP");
 				enderecoComercial.setLogradouroNome("Paulista");
 
 				List<EnderecoEntity> enderecos = new ArrayList<>();

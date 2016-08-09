@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.lang.String;
 import javax.persistence.*;
 
+import br.com.smartems.dmatnet.entities.cidades.CidadeEntity;
+import br.com.smartems.dmatnet.entities.cidades.EstadoEntity;
+
 @Entity
 @Table(name="tbl_endereco")
 public class EnderecoEntity implements Serializable {
@@ -18,8 +21,15 @@ public class EnderecoEntity implements Serializable {
 	private String bairro;
 	private String cep;
 	private String caixaPostal;
-	private String cidade;
-	private String estado;
+	
+	@ManyToOne
+	@JoinColumn(name="CIDADE_ID")
+	private CidadeEntity cidade;
+	
+	@ManyToOne
+	@JoinColumn(name="ESTADO_ID")
+	private EstadoEntity estado;
+	
 	private String logradouroTipo;
 	private String logradouroPais;
 	
@@ -92,23 +102,23 @@ public class EnderecoEntity implements Serializable {
 	public void setCaixaPostal(String caixaPostal) {
 		this.caixaPostal = caixaPostal;
 	}
-	
-	public String getCidade() {
+
+	public CidadeEntity getCidade() {
 		return cidade;
 	}
-	
-	public void setCidade(String cidade) {
-		this.cidade = cidade.toUpperCase();
+
+	public void setCidade(CidadeEntity cidade) {
+		this.cidade = cidade;
 	}
-	
-	public String getEstado() {
+
+	public EstadoEntity getEstado() {
 		return estado;
 	}
-	
-	public void setEstado(String estado) {
-		this.estado = estado.toUpperCase();
+
+	public void setEstado(EstadoEntity estado) {
+		this.estado = estado;
 	}
-	
+
 	public String getLogradouroTipo() {
 		return logradouroTipo;
 	}
