@@ -43,108 +43,109 @@
 
 <composite:implementation>
 	<h:form id="form">
-		<h:panelGroup layout="block" styleClass="formularioEnderecoEditar"
-			rendered="#{cc.attrs.rendEditarDesativado}">
-			<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-				<p:outputLabel value="#{msgs.Logradouro}" />
-				<h:panelGrid columns="2">
-					<p:selectOneMenu id="listLogradouroTipo" style="width: 100px">
-						<f:selectItem itemLabel="Rua" />
-						<f:selectItem itemLabel="Avenida" />
-						<f:selectItem itemLabel="Alameda" />
-					</p:selectOneMenu>
-					<p:inputText id="logradouroNome" maxlength="250"
-						style="width: 290px" value="#{cc.attrs.logradouroNome}" />
-				</h:panelGrid>
+		<p:accordionPanel id="acpEndereco">
+			<p:tab title="#{msgs.Endereco}">
+				<h:panelGroup layout="block" styleClass="formularioEnderecoEditar"
+					rendered="#{cc.attrs.rendEditarDesativado}">
+					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+						<p:outputLabel value="#{msgs.Logradouro}" />
+						<h:panelGrid columns="2">
+							<p:selectOneMenu id="listLogradouroTipo" style="width: 100px">
+								<f:selectItem itemLabel="Rua" />
+								<f:selectItem itemLabel="Avenida" />
+								<f:selectItem itemLabel="Alameda" />
+							</p:selectOneMenu>
+							<p:inputText id="logradouroNome" maxlength="250"
+								style="width: 290px" value="#{cc.attrs.logradouroNome}" />
+						</h:panelGrid>
 
-				<p:outputLabel value="#{msgs.Numero}" />
-				<h:panelGrid columns="4">
-					<p:inputText id="logradouroNumero" maxlength="10"
-						style="width: 100px" value="#{cc.attrs.logradouroNumero}" />
-					<p:spacer height="14" />
-					<p:outputLabel value="#{msgs.Complemento}" />
-					<p:inputText id="logradouroComplemento" maxlength="250"
-						style="width: 180px" value="#{cc.attrs.logradouroComplemento}" />
-				</h:panelGrid>
+						<p:outputLabel value="#{msgs.Numero}" />
+						<h:panelGrid columns="4">
+							<p:inputText id="logradouroNumero" maxlength="10"
+								style="width: 100px" value="#{cc.attrs.logradouroNumero}" />
+							<p:spacer height="14" />
+							<p:outputLabel value="#{msgs.Complemento}" />
+							<p:inputText id="logradouroComplemento" maxlength="250"
+								style="width: 180px" value="#{cc.attrs.logradouroComplemento}" />
+						</h:panelGrid>
 
-				<p:outputLabel value="#{msgs.Bairro}" />
-				<h:panelGrid>
-					<p:inputText id="bairro" maxlength="250" style="width: 393px"
-						value="#{cc.attrs.bairro}" />
-				</h:panelGrid>
+						<p:outputLabel value="#{msgs.Bairro}" />
+						<h:panelGrid>
+							<p:inputText id="bairro" maxlength="250" style="width: 393px"
+								value="#{cc.attrs.bairro}" />
+						</h:panelGrid>
 
-				<p:outputLabel value="#{msgs.CEP}" />
-				<h:panelGrid columns="4">
-					<p:inputMask id="cep" mask="99999-999" maxlength="8" size="8"
-						value="#{cc.attrs.cep}" />
-					<p:spacer height="15" />
-					<p:outputLabel value="#{msgs.CaixaPostal}" />
-					<p:inputText id="caixaPostal" maxlength="8" style="width: 200px"
-						value="#{cc.attrs.caixaPostal}" />
-				</h:panelGrid>
+						<p:outputLabel value="#{msgs.CEP}" />
+						<h:panelGrid columns="4">
+							<p:inputMask id="cep" mask="99999-999" maxlength="8" size="8"
+								value="#{cc.attrs.cep}" />
+							<p:spacer height="15" />
+							<p:outputLabel value="#{msgs.CaixaPostal}" />
+							<p:inputText id="caixaPostal" maxlength="8" style="width: 200px"
+								value="#{cc.attrs.caixaPostal}" />
+						</h:panelGrid>
 
-				<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}" />
-				<h:panelGrid columns="2">
-					<p:selectOneMenu id="listEstado" panelStyle="width:150px"
-						effect="fade" style="width:60px">
-						<f:selectItems value="#{estadoMB.estados}" var="estado"
-							itemLabel="#{estado.estadoSigla}" itemValue="#{estado}" />
-					</p:selectOneMenu>
-					<p:selectOneMenu id="listCidade" panelStyle="width:180px"
-						effect="fade" style="width:333px" filter="true"
-						filterMatchMode="startsWith">
-					</p:selectOneMenu>
-				</h:panelGrid>
-			</p:panelGrid>
+						<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}" />
+						<h:panelGrid columns="2">
+							<p:selectOneMenu id="listEstado" panelStyle="width:150px"
+								effect="fade" style="width:60px">
+								<f:selectItems value="#{estadoMB.estados}" var="estado"
+									itemLabel="#{estado.estadoSigla}" itemValue="#{estado}" />
+							</p:selectOneMenu>
+							<p:selectOneMenu id="listCidade" panelStyle="width:180px"
+								effect="fade" style="width:333px" filter="true"
+								filterMatchMode="startsWith">
+							</p:selectOneMenu>
+						</h:panelGrid>
+					</p:panelGrid>
 
-		</h:panelGroup>
+				</h:panelGroup>
 
-		<h:panelGroup layout="block" styleClass="formularioEnderecoExibir"
-			rendered="#{cc.attrs.rendCancelarDesativado}">
-			<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-				<p:outputLabel value="#{msgs.Logradouro}:" />
-				<h:panelGrid columns="2">
-					<p:outputLabel id="logradouroTipoExibir"
-						value="#{cc.attrs.logradouroTipo}" />
-					<p:outputLabel id="logradouroNomeExibir"
-						value="#{cc.attrs.logradouroNome}" />
-				</h:panelGrid>
+				<h:panelGroup layout="block" styleClass="formularioEnderecoExibir"
+					rendered="#{cc.attrs.rendCancelarDesativado}">
+					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+						<p:outputLabel value="#{msgs.Logradouro}:" />
+						<h:panelGrid columns="2">
+							<p:outputLabel id="logradouroTipoExibir"
+								value="#{cc.attrs.logradouroTipo}" />
+							<p:outputLabel id="logradouroNomeExibir"
+								value="#{cc.attrs.logradouroNome}" />
+						</h:panelGrid>
 
-				<p:outputLabel value="#{msgs.Numero}:" />
-				<h:panelGrid columns="4">
-					<p:outputLabel id="logradouroNumeroExibir"
-						value="#{cc.attrs.logradouroNumero}" />
-					<p:spacer height="14" />
-					<p:outputLabel id="logradouroComplementoExibir"
-						value="#{cc.attrs.logradouroComplemento}" />
-				</h:panelGrid>
+						<p:outputLabel value="#{msgs.Numero}:" />
+						<h:panelGrid columns="4">
+							<p:outputLabel id="logradouroNumeroExibir"
+								value="#{cc.attrs.logradouroNumero}" />
+							<p:spacer height="14" />
+							<p:outputLabel id="logradouroComplementoExibir"
+								value="#{cc.attrs.logradouroComplemento}" />
+						</h:panelGrid>
 
-				<p:outputLabel value="#{msgs.Bairro}:" />
-				<h:panelGrid>
-					<p:outputLabel id="bairroExibir" value="#{cc.attrs.bairro}" />
-				</h:panelGrid>
+						<p:outputLabel value="#{msgs.Bairro}:" />
+						<h:panelGrid>
+							<p:outputLabel id="bairroExibir" value="#{cc.attrs.bairro}" />
+						</h:panelGrid>
 
-				<p:outputLabel value="#{msgs.CEP}:" />
-				<h:panelGrid columns="4">
-					<p:outputLabel id="cepExibir" value="#{cc.attrs.cep}" />
-					<p:spacer height="15" />
-					<p:outputLabel value="#{msgs.CaixaPostal}:" />
-					<p:outputLabel id="caixaPostalExibir"
-						value="#{cc.attrs.caixaPostal}" />
-				</h:panelGrid>
+						<p:outputLabel value="#{msgs.CEP}:" />
+						<h:panelGrid columns="4">
+							<p:outputLabel id="cepExibir" value="#{cc.attrs.cep}" />
+							<p:spacer height="15" />
+							<p:outputLabel value="#{msgs.CaixaPostal}:" />
+							<p:outputLabel id="caixaPostalExibir"
+								value="#{cc.attrs.caixaPostal}" />
+						</h:panelGrid>
 
-				<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}:" />
-				<h:panelGrid columns="2">
-					<p:outputLabel id="estadoExibir" value="#{cc.attrs.estado}" />
-					<p:outputLabel id="cidadeExibir" value="#{cc.attrs.cidade}" />
-				</h:panelGrid>
-			</p:panelGrid>
-
-			<p:commandButton value="#{msgs.ExibirHistorico}" icon="fa fa-history"
-				onclick="PF('dlgHistoricoEndereco').show()" />
-
-			<p:dialog header="#{msgs.Historico}" widgetVar="dlgHistoricoEndereco"
-				closable="true" resizable="true" width="1000" modal="true">
+						<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}:" />
+						<h:panelGrid columns="2">
+							<p:outputLabel id="estadoExibir" value="#{cc.attrs.estado}" />
+							<p:outputLabel id="cidadeExibir" value="#{cc.attrs.cidade}" />
+						</h:panelGrid>
+					</p:panelGrid>
+					
+				</h:panelGroup>
+			</p:tab>
+			
+			<p:tab title="#{msgs.Historico}">
 				<p:dataTable scrollable="true" styleClass="dataTable">
 					<f:facet name="header">#{msgs.Historico}</f:facet>
 					<p:column headerText="#{msgs.DataCadastro}" width="110">
@@ -170,9 +171,9 @@
 					<p:column headerText="#{msgs.Estado}">
 					</p:column>
 				</p:dataTable>
-			</p:dialog>
-
-		</h:panelGroup>
+			</p:tab>
+			
+		</p:accordionPanel>
 	</h:form>
 </composite:implementation>
 </html>
