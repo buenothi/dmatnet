@@ -19,6 +19,7 @@ import org.primefaces.model.DualListModel;
 
 import br.com.smartems.dmatnet.EJB.Facade.EmpresaGrupoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.PessoaJuridicaFacadeLocal;
+import br.com.smartems.dmatnet.entities.cidades.EstadoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
@@ -48,6 +49,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private List<EmpresaEntity> empresasAtribuidas;
 	private DualListModel<EmpresaEntity> empresas;
 	private List<EmpresaGrupoEntity> grupos;
+	private EstadoEntity estadoSelecionado;
 	
 	// botões referentes à Edição do Cadastro de Empresa
 	private boolean isBtnEditarDesativado = false;
@@ -172,6 +174,14 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setGrupos(List<EmpresaGrupoEntity> grupos) {
 		this.grupos = grupos;
+	}
+	
+	public EstadoEntity getEstadoSelecionado() {
+		return estadoSelecionado;
+	}
+
+	public void setEstadoSelecionado(EstadoEntity estadoSelecionado) {
+		this.estadoSelecionado = estadoSelecionado;
 	}
 
 	public EmpresaGrupoEntity getGrupoSelecionado() {
