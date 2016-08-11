@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.com.smartems.dmatnet.EJB.dao.EstadosEAO;
+import br.com.smartems.dmatnet.entities.cidades.CidadeEntity;
 import br.com.smartems.dmatnet.entities.cidades.EstadoEntity;
 
 @Stateless
@@ -39,5 +40,8 @@ public class EstadoFacade implements EstadoFacadeLocal {
 		return estadosEAO.findAll();
 	}
 	
+	public List<CidadeEntity> listarCidadesPorEstado(EstadoEntity estado){
+	}
+	}
 
 }

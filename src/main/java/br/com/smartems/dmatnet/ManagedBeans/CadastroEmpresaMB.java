@@ -18,7 +18,9 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DualListModel;
 
 import br.com.smartems.dmatnet.EJB.Facade.EmpresaGrupoFacadeLocal;
+import br.com.smartems.dmatnet.EJB.Facade.EstadoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.PessoaJuridicaFacadeLocal;
+import br.com.smartems.dmatnet.entities.cidades.CidadeEntity;
 import br.com.smartems.dmatnet.entities.cidades.EstadoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
@@ -38,6 +40,9 @@ public class CadastroEmpresaMB implements Serializable {
 
 	@EJB
 	private EmpresaGrupoFacadeLocal empresaGrupoFachada;
+	
+	@EJB
+	private EstadoFacadeLocal estadoFachada;
 
 	private EmpresaGrupoEntity grupoSelecionado;
 	private EmpresaGrupoEntity grupoEmpresa;
@@ -50,6 +55,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private DualListModel<EmpresaEntity> empresas;
 	private List<EmpresaGrupoEntity> grupos;
 	private EstadoEntity estadoSelecionado;
+	private List<CidadeEntity> cidades;
 	
 	// botões referentes à Edição do Cadastro de Empresa
 	private boolean isBtnEditarDesativado = false;
@@ -182,6 +188,17 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setEstadoSelecionado(EstadoEntity estadoSelecionado) {
 		this.estadoSelecionado = estadoSelecionado;
+	}
+
+	public List<CidadeEntity> getCidades() {
+		if(this.cidades == null){
+			this.cidades = new ArrayList<CidadeEntity>();
+		}
+		return cidades;
+	}
+
+	public void setCidades(List<CidadeEntity> cidades) {
+		this.cidades = cidades;
 	}
 
 	public EmpresaGrupoEntity getGrupoSelecionado() {
@@ -408,8 +425,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnSelecionarGrupo = true;
 		this.isTabEditarDesativado = false;
 		this.isTabExibirDesativado = true;
-	}
-	
+	}	
 
 	@PostConstruct
 	public void initEmpresa() {
@@ -442,6 +458,10 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setBtnGrupoNovoDesativado(boolean isBtnGrupoNovoDesativado) {
 		this.isBtnGrupoNovoDesativado = isBtnGrupoNovoDesativado;
+	}
+	
+	public void onSelectionEstado() {
+		System.out.println("teste234");
 	}
 
 }

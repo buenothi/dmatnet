@@ -7,25 +7,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tbl_estados")
+@Table(name = "tbl_estados")
+@NamedQueries({
+		@NamedQuery(name = "Estados.listarTodasCidadesPorEstado", 
+				query = "SELECT cid FROM CidadeEntity cid WHERE cid.estado=:estado")})
 public class EstadoEntity implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	private String estadoSigla;
 	private String estadoNome;
-	
-	@OneToMany(mappedBy="estado")
+
+	@OneToMany(mappedBy = "estado")
 	private List<CidadeEntity> cidades;
-	
+
 	private static final long serialVersionUID = 1L;
-	
 
 	public EstadoEntity() {
 		super();
@@ -96,5 +100,5 @@ public class EstadoEntity implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 }
