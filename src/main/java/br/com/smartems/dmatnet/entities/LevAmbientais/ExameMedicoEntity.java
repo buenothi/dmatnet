@@ -52,5 +52,49 @@ public class ExameMedicoEntity implements Serializable {
 	public void setPeriodicidadeExame(PeriodicidadeExame periodicidadeExame) {
 		this.periodicidadeExame = periodicidadeExame;
 	}
-   
+	
+	@Override
+	public String toString() {
+		return nome;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((periodicidadeExame == null) ? 0 : periodicidadeExame.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ExameMedicoEntity other = (ExameMedicoEntity) obj;
+		if (descricao == null) {
+			if (other.descricao != null)
+				return false;
+		} else if (!descricao.equals(other.descricao))
+			return false;
+		if (id != other.id)
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (periodicidadeExame == null) {
+			if (other.periodicidadeExame != null)
+				return false;
+		} else if (!periodicidadeExame.equals(other.periodicidadeExame))
+			return false;
+		return true;
+	}
+	
 }

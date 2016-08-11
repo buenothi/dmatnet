@@ -74,5 +74,51 @@ public class LevantamentoAmbientalEntity implements Serializable {
 	public void setRiscosAmbientais(List<RiscoAmbientalIdentificadoEntity> riscosAmbientais) {
 		this.riscosAmbientais = riscosAmbientais;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dataInicio == null) ? 0 : dataInicio.hashCode());
+		result = prime * result + ((dataTermino == null) ? 0 : dataTermino.hashCode());
+		result = prime * result + (int) (idLevAmbiental ^ (idLevAmbiental >>> 32));
+		result = prime * result + ((observacoes == null) ? 0 : observacoes.hashCode());
+		result = prime * result + ((riscosAmbientais == null) ? 0 : riscosAmbientais.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		LevantamentoAmbientalEntity other = (LevantamentoAmbientalEntity) obj;
+		if (dataInicio == null) {
+			if (other.dataInicio != null)
+				return false;
+		} else if (!dataInicio.equals(other.dataInicio))
+			return false;
+		if (dataTermino == null) {
+			if (other.dataTermino != null)
+				return false;
+		} else if (!dataTermino.equals(other.dataTermino))
+			return false;
+		if (idLevAmbiental != other.idLevAmbiental)
+			return false;
+		if (observacoes == null) {
+			if (other.observacoes != null)
+				return false;
+		} else if (!observacoes.equals(other.observacoes))
+			return false;
+		if (riscosAmbientais == null) {
+			if (other.riscosAmbientais != null)
+				return false;
+		} else if (!riscosAmbientais.equals(other.riscosAmbientais))
+			return false;
+		return true;
+	}
    
 }

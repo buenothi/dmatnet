@@ -54,4 +54,40 @@ public class CidadeEntity implements Serializable {
 		this.estado = estado;
 	}
 
+	@Override
+	public String toString() {
+		return cidadeNome;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cidadeNome == null) ? 0 : cidadeNome.hashCode());
+		result = prime * result + ((estado == null) ? 0 : estado.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CidadeEntity other = (CidadeEntity) obj;
+		if (cidadeNome == null) {
+			if (other.cidadeNome != null)
+				return false;
+		} else if (!cidadeNome.equals(other.cidadeNome))
+			return false;
+		if (estado == null) {
+			if (other.estado != null)
+				return false;
+		} else if (!estado.equals(other.estado))
+			return false;
+		return true;
+	}
+
 }
