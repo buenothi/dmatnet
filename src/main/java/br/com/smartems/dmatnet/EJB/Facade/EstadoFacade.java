@@ -41,7 +41,7 @@ public class EstadoFacade implements EstadoFacadeLocal {
 	}
 	
 	public List<CidadeEntity> listarCidadesPorEstado(EstadoEntity estado){
-	}
+		return estadosEAO.listarCidadesPorEstado(estado);
 	}
 
 }
