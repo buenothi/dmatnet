@@ -39,15 +39,19 @@
 
 	<composite:attribute name="rendEditarDesativado" />
 	<composite:attribute name="rendCancelarDesativado" />
+	<composite:attribute name="ajaxComponentRender" />
+
 </composite:interface>
 
 <composite:implementation>
 	<h:form id="form">
 		<p:accordionPanel id="acpEndereco">
-			<p:tab title="#{msgs.Endereco}">
-				<h:panelGroup layout="block" styleClass="formularioEnderecoEditar"
+			<p:tab id="tabEndereco" title="#{msgs.Endereco}">
+				<h:panelGroup id="pngEnderecoEditar" layout="block"
+					styleClass="formularioEnderecoEditar"
 					rendered="#{cc.attrs.rendEditarDesativado}">
-					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+					<p:panelGrid id="tblEndereco" columns="2"
+						styleClass="tabelaSemBorda">
 						<p:outputLabel value="#{msgs.Logradouro}" />
 						<h:panelGrid columns="2">
 							<p:selectOneMenu id="listLogradouroTipo" style="width: 100px">
@@ -90,20 +94,28 @@
 							<p:selectOneMenu id="listEstado" panelStyle="width:150px"
 								effect="fade" style="width:60px" value="#{cc.attrs.estado}"
 								converter="estadoConverter" immediate="true">
-								<p:ajax event="change" listener="#{estadoMB.onSelectionEstado}" />
+								<p:ajax event="change" listener="#{estadoMB.onSelectionEstado}"
+									update="#{cc.attrs.ajaxComponentRender}" />
+								<f:selectItem itemLabel="UF"
+									noSelectionOption="true" />
 								<f:selectItems value="#{estadoMB.estados}" var="estado"
 									itemLabel="#{estado.estadoSigla}" itemValue="#{estado}" />
 							</p:selectOneMenu>
 							<p:selectOneMenu id="listCidade" panelStyle="width:180px"
 								effect="fade" style="width:333px" filter="true"
 								filterMatchMode="startsWith">
+								<f:selectItem itemLabel="Selecionar a Cidade"
+									noSelectionOption="true" />
+								<f:selectItems value="#{estadoMB.cidadesPorEstado}" var="cidade"
+									itemLabel="#{cidade.cidadeNome}" itemValue="#{cidade}" />
 							</p:selectOneMenu>
 						</h:panelGrid>
 					</p:panelGrid>
 
 				</h:panelGroup>
 
-				<h:panelGroup layout="block" styleClass="formularioEnderecoExibir"
+				<h:panelGroup id="pngEnderecoExibir" layout="block"
+					styleClass="formularioEnderecoExibir"
 					rendered="#{cc.attrs.rendCancelarDesativado}">
 					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 						<p:outputLabel value="#{msgs.Logradouro}:" />
@@ -147,7 +159,7 @@
 				</h:panelGroup>
 			</p:tab>
 
-			<p:tab title="#{msgs.Historico}">
+			<p:tab id="tabEnderecoHistorico" title="#{msgs.Historico}">
 				<p:dataTable scrollable="true" styleClass="dataTable">
 					<f:facet name="header">#{msgs.Historico}</f:facet>
 					<p:column headerText="#{msgs.DataCadastro}" width="110">
