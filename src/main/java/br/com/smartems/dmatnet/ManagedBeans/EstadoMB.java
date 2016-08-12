@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.persistence.NoResultException;
 
 import br.com.smartems.dmatnet.EJB.Facade.EstadoFacadeLocal;
@@ -21,7 +22,6 @@ public class EstadoMB implements Serializable {
 	private EstadoFacadeLocal estadoFachada;
 	
 	private List<EstadoEntity> estados;
-	private EstadoEntity estadoSelecionado;
 
 	private static final long serialVersionUID = 1L;
 
@@ -36,15 +36,8 @@ public class EstadoMB implements Serializable {
 		this.estados = estados;
 	}
 	
-	public EstadoEntity getEstadoSelecionado() {
-		if (this.estadoSelecionado == null) {
-			this.estadoSelecionado = new EstadoEntity();
-		}
-		return estadoSelecionado;
-	}
-
-	public void setEstadoSelecionado(EstadoEntity estadoSelecionado) {
-		this.estadoSelecionado = estadoSelecionado;
+	public void onSelectionEstado(AjaxBehaviorEvent evt) {
+		System.out.println();
 	}
 
 	@PostConstruct

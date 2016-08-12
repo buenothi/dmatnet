@@ -459,9 +459,5 @@ public class CadastroEmpresaMB implements Serializable {
 	public void setBtnGrupoNovoDesativado(boolean isBtnGrupoNovoDesativado) {
 		this.isBtnGrupoNovoDesativado = isBtnGrupoNovoDesativado;
 	}
-	
-	public void onSelectionEstado() {
-		System.out.println("teste234");
-	}
 
 }

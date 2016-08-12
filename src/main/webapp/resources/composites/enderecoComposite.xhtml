@@ -87,9 +87,10 @@
 
 						<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}" />
 						<h:panelGrid columns="2">
-							<p:selectOneMenu id="listEstado" panelStyle="width:150px"								effect="fade" style="width:60px" value="#{cc.attrs.estado}"
+							<p:selectOneMenu id="listEstado" panelStyle="width:150px"
+								effect="fade" style="width:60px" value="#{cc.attrs.estado}"
 								converter="estadoConverter" immediate="true">
-								<p:ajax listener="#{cadastroEmpresaMB.onSelectionEstado}"/>
+								<p:ajax event="change" listener="#{estadoMB.onSelectionEstado}" />
 								<f:selectItems value="#{estadoMB.estados}" var="estado"
 									itemLabel="#{estado.estadoSigla}" itemValue="#{estado}" />
 							</p:selectOneMenu>
