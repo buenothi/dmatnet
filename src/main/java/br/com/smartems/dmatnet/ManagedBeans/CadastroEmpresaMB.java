@@ -20,8 +20,6 @@ import org.primefaces.model.DualListModel;
 import br.com.smartems.dmatnet.EJB.Facade.EmpresaGrupoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.EstadoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.PessoaJuridicaFacadeLocal;
-import br.com.smartems.dmatnet.entities.cidades.CidadeEntity;
-import br.com.smartems.dmatnet.entities.cidades.EstadoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
@@ -54,8 +52,6 @@ public class CadastroEmpresaMB implements Serializable {
 	private List<EmpresaEntity> empresasAtribuidas;
 	private DualListModel<EmpresaEntity> empresas;
 	private List<EmpresaGrupoEntity> grupos;
-	private EstadoEntity estadoSelecionado;
-	private List<CidadeEntity> cidades;
 	
 	// botões referentes à Edição do Cadastro de Empresa
 	private boolean isBtnEditarDesativado = false;
@@ -180,25 +176,6 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setGrupos(List<EmpresaGrupoEntity> grupos) {
 		this.grupos = grupos;
-	}
-	
-	public EstadoEntity getEstadoSelecionado() {
-		return estadoSelecionado;
-	}
-
-	public void setEstadoSelecionado(EstadoEntity estadoSelecionado) {
-		this.estadoSelecionado = estadoSelecionado;
-	}
-
-	public List<CidadeEntity> getCidades() {
-		if(this.cidades == null){
-			this.cidades = new ArrayList<CidadeEntity>();
-		}
-		return cidades;
-	}
-
-	public void setCidades(List<CidadeEntity> cidades) {
-		this.cidades = cidades;
 	}
 
 	public EmpresaGrupoEntity getGrupoSelecionado() {

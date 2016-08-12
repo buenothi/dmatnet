@@ -90,20 +90,20 @@
 						</h:panelGrid>
 
 						<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}" />
-						<h:panelGrid columns="2">
+						<h:panelGrid id="tblCidadeEstado" columns="2">
 							<p:selectOneMenu id="listEstado" panelStyle="width:150px"
 								effect="fade" style="width:60px" value="#{cc.attrs.estado}"
 								converter="estadoConverter" immediate="true">
 								<p:ajax event="change" listener="#{estadoMB.onSelectionEstado}"
 									update="#{cc.attrs.ajaxComponentRender}" />
-								<f:selectItem itemLabel="UF"
-									noSelectionOption="true" />
+								<f:selectItem itemLabel="UF" noSelectionOption="true" />
 								<f:selectItems value="#{estadoMB.estados}" var="estado"
 									itemLabel="#{estado.estadoSigla}" itemValue="#{estado}" />
 							</p:selectOneMenu>
 							<p:selectOneMenu id="listCidade" panelStyle="width:180px"
-								effect="fade" style="width:333px" filter="true"
-								filterMatchMode="startsWith">
+								effect="fade" style="width:333px" value="#{cc.attrs.cidade}"
+								converter="cidadeConverter" immediate="true"
+								filter="true" filterMatchMode="startsWith">
 								<f:selectItem itemLabel="Selecionar a Cidade"
 									noSelectionOption="true" />
 								<f:selectItems value="#{estadoMB.cidadesPorEstado}" var="cidade"

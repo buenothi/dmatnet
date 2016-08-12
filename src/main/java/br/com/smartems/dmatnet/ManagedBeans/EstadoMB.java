@@ -64,7 +64,6 @@ public class EstadoMB implements Serializable {
 	public void onSelectionEstado(AjaxBehaviorEvent evt) {
 		this.estadoSelecionado = ((EstadoEntity) evt.getComponent().getAttributes().get("value"));
 		this.cidadesPorEstado = this.estadoFachada.listarCidadesPorEstado(estadoSelecionado);
-		System.out.println(this.cidadesPorEstado.get(4));
 	}
 
 	@PostConstruct
