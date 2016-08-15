@@ -4,34 +4,32 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
+
 <ui:composition>
 	<h:panelGroup id="pngGrupos">
 		<h:panelGroup id="pngGrupoBotoesCRUD">
-			<p:commandButton id="btnEditarGrupo" value="#{msgs.Editar}"
-				styleClass="botoes" icon="fa fa-edit"
-				disabled="#{cadastroEmpresaMB.btnGrupoEditarDesativado}"
-				actionListener="#{cadastroEmpresaMB.editarCadastroGrupo}"
-				update="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos" />
-			<p:commandButton id="btnCancelarGrupo" value="#{msgs.Cancelar}"
-				styleClass="botoes" icon="fa fa-remove"
-				disabled="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}"
-				actionListener="#{cadastroEmpresaMB.cancelarCadastroGrupo}"
-				update="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos" />
-			<p:commandButton id="btnSalvarGrupo" value="#{msgs.Salvar}"
-				styleClass="botoes" icon="fa fa-save"
-				disabled="#{cadastroEmpresaMB.btnGrupoSalvarDesativado}"
-				actionListener="#{cadastroEmpresaMB.salvarCadastroGrupo}"
-				update="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos,
+			<dmat:barraBotoesComposite
+				disabledEditar="#{cadastroEmpresaMB.btnGrupoEditarDesativado}"
+				actionListenerEditar="#{cadastroEmpresaMB.editarCadastroGrupo}"
+				updateEditar="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos"
+				disabledCancelar="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}"
+				actionListenerCancelar="#{cadastroEmpresaMB.cancelarCadastroGrupo}"
+				updateCancelar="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos"
+				disabledSalvar="#{cadastroEmpresaMB.btnGrupoSalvarDesativado}"
+				actionListenerSalvar="#{cadastroEmpresaMB.salvarCadastro}"
+				updateSalvar="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos,
+					formCadEmpresa:growlPrincipal"
+				labelNovo="#{msgs.EmpresaGrupoNovo}"
+				disabledNovo="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
+				actionListenerNovo="#{cadastroEmpresaMB.novoCadastroGrupo}"
+				updateNovo="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos,
 					formCadEmpresa:growlPrincipal" />
-			<p:commandButton id="btnNovoGrupo" value="#{msgs.EmpresaGrupoNovo}"
-				styleClass="botoes" icon="fa fa-plus"
-				disabled="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
-				actionListener="#{cadastroEmpresaMB.novoCadastroGrupo}"
-				update="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos,
-					formCadEmpresa:growlPrincipal" />
-			<p:commandButton id="btnSelecionarGrupo" value="#{msgs.EmpresaGrupoAtribuirGrupo}"
-				styleClass="botoes" icon="fa fa-check"
+
+			<p:commandButton id="btnSelecionarGrupo"
+				value="#{msgs.EmpresaGrupoAtribuirGrupo}" styleClass="botoes"
+				icon="fa fa-check"
 				disabled="#{cadastroEmpresaMB.btnSelecionarGrupo}"
 				actionListener="#{cadastroEmpresaMB.selecionarGrupo}"
 				update="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos,

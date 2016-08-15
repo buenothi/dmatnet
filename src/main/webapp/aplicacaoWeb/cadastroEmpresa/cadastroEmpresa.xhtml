@@ -14,21 +14,21 @@
 	<h:form id="formCadEmpresa" styleClass="painelConteudo">
 		<p:growl id="growlPrincipal" showDetail="true" sticky="false"
 			life="3000" />
-
-		<dmat:barraBotoesComposite
-			disabledEditar="#{cadastroEmpresaMB.btnEditarDesativado}"
-			actionListenerEditar="#{cadastroEmpresaMB.editarCadastro}" 
-			updateEditar="formCadEmpresa" 
-			disabledCancelar="#{cadastroEmpresaMB.btnCancelarDesativado}"
-			actionListenerCancelar="#{cadastroEmpresaMB.cancelarCadastro}"
-			updateCancelar="formCadEmpresa" 
-			disabledSalvar="#{cadastroEmpresaMB.btnSalvarDesativado}"
-			actionListenerSalvar="#{cadastroEmpresaMB.salvarCadastro}"
-			updateSalvar="formCadEmpresa"
-			labelNovo="#{msgs.NovaEmpresa}"
-			disabledNovo="#{cadastroEmpresaMB.btnNovaEmpresaDesativado}"
-			actionListenerNovo="#{cadastroEmpresaMB.novoCadastro}"
-			updateNovo="formCadEmpresa"/>
+		<h:panelGroup styleClass="barraBotoesPainel">
+			<dmat:barraBotoesComposite
+				disabledEditar="#{cadastroEmpresaMB.btnEditarDesativado}"
+				actionListenerEditar="#{cadastroEmpresaMB.editarCadastro}"
+				updateEditar="formCadEmpresa"
+				disabledCancelar="#{cadastroEmpresaMB.btnCancelarDesativado}"
+				actionListenerCancelar="#{cadastroEmpresaMB.cancelarCadastro}"
+				updateCancelar="formCadEmpresa"
+				disabledSalvar="#{cadastroEmpresaMB.btnSalvarDesativado}"
+				actionListenerSalvar="#{cadastroEmpresaMB.salvarCadastro}"
+				updateSalvar="formCadEmpresa" labelNovo="#{msgs.NovaEmpresa}"
+				disabledNovo="#{cadastroEmpresaMB.btnNovaEmpresaDesativado}"
+				actionListenerNovo="#{cadastroEmpresaMB.novoCadastro}"
+				updateNovo="formCadEmpresa" />
+		</h:panelGroup>
 
 		<h:panelGroup layout="block" styleClass="tabsConteiner">
 			<p:tabView id="tabCadastroEmpresa">
@@ -49,7 +49,7 @@
 						estado="#{cadastroEmpresaMB.endereco.estado}"
 						rendCancelarDesativado="#{cadastroEmpresaMB.btnCancelarDesativado}"
 						rendEditarDesativado="#{cadastroEmpresaMB.btnEditarDesativado}"
-						ajaxComponentRender="formCadEmpresa:tabCadastroEmpresa:j_idt150:form:acpEndereco:listCidade" />
+						ajaxComponentRender="formCadEmpresa:tabCadastroEmpresa:j_idt248:form:acpEndereco:listCidade" />
 				</p:tab>
 				<p:tab title="#{msgs.ContatoUsuario}">
 					<ui:include
