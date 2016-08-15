@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+
+	<composite:attribute name="disabledEditar" />
+	<composite:attribute name="actionListenerEditar"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="updateEditar" />
+
+	<composite:attribute name="disabledCancelar" />
+	<composite:attribute name="actionListenerCancelar"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="updateCancelar" />
+
+	<composite:attribute name="disabledSalvar" />
+	<composite:attribute name="actionListenerSalvar"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="updateSalvar" />
+
+	<composite:attribute name="labelNovo" />
+	<composite:attribute name="disabledNovo" />
+	<composite:attribute name="actionListenerNovo"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="updateNovo" />
+
+</composite:interface>
+
+
+<composite:implementation>
+
+	<h:panelGroup styleClass="barraBotoesPainel">
+		<p:commandButton id="btnEditar" value="#{msgs.Editar}"
+			styleClass="botoes" icon="fa fa-edit"
+			disabled="#{cc.attrs.disabledEditar}"
+			actionListener="#{cc.attrs.actionListenerEditar}"
+			update="#{cc.attrs.updateEditar}" />
+		<p:commandButton id="btnCancelar" value="#{msgs.Cancelar}"
+			styleClass="botoes" icon="fa fa-remove"
+			disabled="#{cc.attrs.disabledCancelar}"
+			actionListener="#{cc.attrs.actionListenerCancelar}"
+			update="#{cc.attrs.updateCancelar}" />
+		<p:commandButton id="btnSalvar" value="#{msgs.Salvar}"
+			styleClass="botoes" icon="fa fa-save"
+			disabled="#{cc.attrs.disabledSalvar}"
+			actionListener="#{cc.attrs.actionListenerSalvar}"
+			update="#{cc.attrs.updateSalvar}" />
+		<p:commandButton id="btnNovoObjeto" value="#{cc.attrs.labelNovo}"
+			styleClass="botoes" icon="fa fa-plus"
+			disabled="#{cc.attrs.disabledNovo}"
+			actionListener="#{cc.attrs.actionListenerNovo}"
+			update="#{cc.attrs.updateNovo}" />
+	</h:panelGroup>
+
+</composite:implementation>
+</html>

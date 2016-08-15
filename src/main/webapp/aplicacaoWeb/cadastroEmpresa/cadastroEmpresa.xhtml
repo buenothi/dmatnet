@@ -12,37 +12,32 @@
 
 <ui:fragment>
 	<h:form id="formCadEmpresa" styleClass="painelConteudo">
-		<p:growl id="growlPrincipal" showDetail="true" sticky="false" life="3000"/>
-		<h:panelGroup styleClass="barraBotoesPainel">
-			<p:commandButton id="btnEditar" value="#{msgs.Editar}"
-				styleClass="botoes" icon="fa fa-edit"
-				disabled="#{cadastroEmpresaMB.btnEditarDesativado}"
-				actionListener="#{cadastroEmpresaMB.editarCadastro}"
-				update="formCadEmpresa"/>
-			<p:commandButton id="btnCancelar" value="#{msgs.Cancelar}"
-				styleClass="botoes" icon="fa fa-remove"
-				disabled="#{cadastroEmpresaMB.btnCancelarDesativado}"
-				actionListener="#{cadastroEmpresaMB.cancelarCadastro}"
-				update="formCadEmpresa" />
-			<p:commandButton id="btnSalvar" value="#{msgs.Salvar}"
-				styleClass="botoes" icon="fa fa-save"
-				disabled="#{cadastroEmpresaMB.btnSalvarDesativado}"
-				actionListener="#{cadastroEmpresaMB.salvarCadastro}"
-				update="formCadEmpresa" />
-			<p:commandButton id="btnNovaEmpresa" value="#{msgs.NovaEmpresa}"
-				styleClass="botoes" icon="fa fa-plus"
-				disabled="#{cadastroEmpresaMB.btnNovaEmpresaDesativado}" 
-				actionListener="#{cadastroEmpresaMB.novoCadastro}"
-				update="formCadEmpresa" />
-		</h:panelGroup>
+		<p:growl id="growlPrincipal" showDetail="true" sticky="false"
+			life="3000" />
+
+		<dmat:barraBotoesComposite
+			disabledEditar="#{cadastroEmpresaMB.btnEditarDesativado}"
+			actionListenerEditar="#{cadastroEmpresaMB.editarCadastro}" 
+			updateEditar="formCadEmpresa" 
+			disabledCancelar="#{cadastroEmpresaMB.btnCancelarDesativado}"
+			actionListenerCancelar="#{cadastroEmpresaMB.cancelarCadastro}"
+			updateCancelar="formCadEmpresa" 
+			disabledSalvar="#{cadastroEmpresaMB.btnSalvarDesativado}"
+			actionListenerSalvar="#{cadastroEmpresaMB.salvarCadastro}"
+			updateSalvar="formCadEmpresa"
+			labelNovo="#{msgs.NovaEmpresa}"
+			disabledNovo="#{cadastroEmpresaMB.btnNovaEmpresaDesativado}"
+			actionListenerNovo="#{cadastroEmpresaMB.novoCadastro}"
+			updateNovo="formCadEmpresa"/>
+
 		<h:panelGroup layout="block" styleClass="tabsConteiner">
 			<p:tabView id="tabCadastroEmpresa">
 				<p:tab title="#{msgs.DadosCadastrais}">
 					<ui:include
 						src="/aplicacaoWeb/cadastroEmpresa/dadosCadastrais.xhtml" />
-				</p:tab>				
+				</p:tab>
 				<p:tab title="#{msgs.Endereco}">
-					<dmat:enderecoComposite 
+					<dmat:enderecoComposite
 						logradouroTipo="#{cadastroEmpresaMB.endereco.logradouroTipo}"
 						logradouroNome="#{cadastroEmpresaMB.endereco.logradouroNome}"
 						logradouroNumero="#{cadastroEmpresaMB.endereco.logradouroNumero}"
@@ -53,8 +48,8 @@
 						cidade="#{cadastroEmpresaMB.endereco.cidade}"
 						estado="#{cadastroEmpresaMB.endereco.estado}"
 						rendCancelarDesativado="#{cadastroEmpresaMB.btnCancelarDesativado}"
-						rendEditarDesativado="#{cadastroEmpresaMB.btnEditarDesativado}" 
-						ajaxComponentRender="formCadEmpresa:tabCadastroEmpresa:j_idt149:form:acpEndereco:listCidade"/>
+						rendEditarDesativado="#{cadastroEmpresaMB.btnEditarDesativado}"
+						ajaxComponentRender="formCadEmpresa:tabCadastroEmpresa:j_idt149:form:acpEndereco:listCidade" />
 				</p:tab>
 				<p:tab title="#{msgs.ContatoUsuario}">
 					<ui:include
