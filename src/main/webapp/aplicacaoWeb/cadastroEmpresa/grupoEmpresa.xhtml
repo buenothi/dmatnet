@@ -13,18 +13,18 @@
 			<dmat:barraBotoesComposite
 				disabledEditar="#{cadastroEmpresaMB.btnGrupoEditarDesativado}"
 				actionListenerEditar="#{cadastroEmpresaMB.editarCadastroGrupo}"
-				updateEditar="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos"
+				updateEditar="formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:pngGrupos"
 				disabledCancelar="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}"
 				actionListenerCancelar="#{cadastroEmpresaMB.cancelarCadastroGrupo}"
-				updateCancelar="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos"
+				updateCancelar="formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:pngGrupos"
 				disabledSalvar="#{cadastroEmpresaMB.btnGrupoSalvarDesativado}"
 				actionListenerSalvar="#{cadastroEmpresaMB.salvarCadastroGrupo}"
-				updateSalvar="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos,
+				updateSalvar="formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:pngGrupos,
 					formCadEmpresa:growlPrincipal"
 				labelNovo="#{msgs.EmpresaGrupoNovo}"
 				disabledNovo="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
 				actionListenerNovo="#{cadastroEmpresaMB.novoCadastroGrupo}"
-				updateNovo="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos,
+				updateNovo="formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:pngGrupos,
 					formCadEmpresa:growlPrincipal" />
 
 			<p:commandButton id="btnSelecionarGrupo"
@@ -32,7 +32,7 @@
 				icon="fa fa-check"
 				disabled="#{cadastroEmpresaMB.btnSelecionarGrupo}"
 				actionListener="#{cadastroEmpresaMB.selecionarGrupo}"
-				update="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos,
+				update="formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:pngGrupos,
 					formCadEmpresa:growlPrincipal" />
 		</h:panelGroup>
 
@@ -50,7 +50,7 @@
 				rows="7">
 				<p:ajax event="rowSelect"
 					listener="#{cadastroEmpresaMB.onSelectionGrupo}"
-					update="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:pngGrupos" />
+					update="formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:pngGrupos" />
 				<p:column>
 					<h:outputText value="#{grupo.nomeGrupo}" />
 				</p:column>

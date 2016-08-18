@@ -4,31 +4,36 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
 
 <ui:composition>
 	<p:accordionPanel id="acpDadosCadastrais">
 		<p:tab id="tabDadosBasicos" title="#{msgs.DadosBasicos}">
 			<h:panelGroup id="pngCadEmpresaEditar" layout="block"
 				styleClass="formulario"
-				rendered="#{cadastroEmpresaMB.btnEditarDesativado}">
-				<p:panelGrid id="pngEditarDadoCadastrais" columns="2" styleClass="tabelaSemBorda">
+				rendered="#{cadastroEmpresaMB.btnEmpresaEditarDesativado}">
+				<p:panelGrid id="pngEditarDadoCadastrais" columns="2"
+					styleClass="tabelaSemBorda">
 					<p:outputLabel value="#{msgs.DataCadastro}:" />
 					<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-						pattern="dd/MM/yyyy" mask="true" size="8" value="#{cadastroEmpresaMB.dadosCadastrais.dataInicioCadastro}"/>
+						pattern="dd/MM/yyyy" mask="true" size="8"
+						value="#{cadastroEmpresaMB.dadosCadastrais.dataInicioCadastro}" />
 
 					<p:outputLabel value="#{msgs.EmpresaGrupo}:" />
 					<h:panelGroup>
-						<p:outputLabel value="#{cadastroEmpresaMB.empresa.grupo.nomeGrupo}" />
+						<p:outputLabel
+							value="#{cadastroEmpresaMB.empresa.grupo.nomeGrupo}" />
 						<p:commandButton value="#{msgs.EmpresaGrupo}"
 							onclick="PF('dlgGrupo').show()" />
 					</h:panelGroup>
 
 					<p:outputLabel value="#{msgs.TipoInscricao}:" />
-					<p:selectOneMenu style="width:100px" value="#{cadastroEmpresaMB.dadosCadastrais.tipoInscricao}">
+					<p:selectOneMenu style="width:100px"
+						value="#{cadastroEmpresaMB.dadosCadastrais.tipoInscricao}">
 						<p:ajax
 							listener="#{cadastroEmpresaMB.alterarMascaraPessoaJuridica}"
-							update="formCadEmpresa:tabCadastroEmpresa:acpDadosCadastrais:ipmInscricao" />
+							update="formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:ipmInscricao" />
 						<f:selectItem itemValue="1" itemLabel="CNPJ" />
 						<f:selectItem itemValue="2" itemLabel="CPF" />
 					</p:selectOneMenu>
@@ -38,10 +43,12 @@
 						value="#{cadastroEmpresaMB.dadosCadastrais.numCNPJ}" />
 
 					<p:outputLabel value="#{msgs.NomeFantasia}:" />
-					<p:inputText maxlength="250" size="62" value="#{cadastroEmpresaMB.empresa.nome}"/>
+					<p:inputText maxlength="250" size="62"
+						value="#{cadastroEmpresaMB.empresa.nome}" />
 
 					<p:outputLabel value="#{msgs.RazaoSocial}:" />
-					<p:inputText maxlength="250" size="62" value="#{cadastroEmpresaMB.dadosCadastrais.razaoSocial}"/>
+					<p:inputText maxlength="250" size="62"
+						value="#{cadastroEmpresaMB.dadosCadastrais.razaoSocial}" />
 
 					<p:outputLabel value="#{msgs.FAP}:" />
 					<h:panelGroup>
@@ -61,19 +68,24 @@
 					<p:selectOneMenu />
 
 					<p:outputLabel value="#{msgs.CodNaturezaJuridica}" />
-					<p:selectOneMenu value="#{cadastroEmpresaMB.dadosCadastrais.codNaturezaJuridica}"/>
+					<p:selectOneMenu
+						value="#{cadastroEmpresaMB.dadosCadastrais.codNaturezaJuridica}" />
 
 					<p:outputLabel value="#{msgs.CodIndicativoCooperativa}" />
-					<p:selectOneMenu value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoCooperativa}"/>
+					<p:selectOneMenu
+						value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoCooperativa}" />
 
 					<p:outputLabel value="#{msgs.CodIndicativoConstrucao}" />
-					<p:selectOneMenu value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoConstrucao}"/>
+					<p:selectOneMenu
+						value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoConstrucao}" />
 
 					<p:outputLabel value="#{msgs.CodIndicativoDesoneracaoFolha}" />
-					<p:selectOneMenu value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoDesoneracaoFolha}"/>
+					<p:selectOneMenu
+						value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoDesoneracaoFolha}" />
 
 					<p:outputLabel value="#{msgs.CodIndicativoRegEletronico}" />
-					<p:selectOneMenu value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoRegEletronico}"/>
+					<p:selectOneMenu
+						value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoRegEletronico}" />
 				</p:panelGrid>
 
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
@@ -82,23 +94,62 @@
 						offLabel="#{msgs.Nao}" onIcon="ui-icon-check"
 						offIcon="ui-icon-close" style="width:120px" />
 				</p:panelGrid>
+				
+				<p:spacer width="100%" height="10px"/>
+
+				<p:panel id="pnlHistoricoEnderecoEditar" header="#{msgs.Historico}"
+					toggleable="true" closable="false" toggleSpeed="500"
+					collapsed="true" closeSpeed="500" widgetVar="panel"
+					style="margin-bottom:20px">
+
+					<h:panelGrid columns="2" cellpadding="10">
+						<p:dataTable scrollable="true" styleClass="dataTable">
+							<p:column headerText="#{msgs.DataCadastro}" width="110">
+							</p:column>
+							<p:column headerText="#{msgs.DataTermino}" width="110">
+							</p:column>
+							<p:column headerText="#{msgs.TipoInscricao}">
+							</p:column>
+							<p:column headerText="#{msgs.Inscricao}">
+							</p:column>
+							<p:column headerText="#{msgs.RazaoSocial}">
+							</p:column>
+							<p:column headerText="#{msgs.CodClassificacaoTributaria}">
+							</p:column>
+							<p:column headerText="#{msgs.CodNaturezaJuridica}">
+							</p:column>
+							<p:column headerText="#{msgs.CodIndicativoCooperativa}">
+							</p:column>
+							<p:column headerText="#{msgs.CodIndicativoConstrucao}">
+							</p:column>
+							<p:column headerText="#{msgs.CodIndicativoDesoneracaoFolha}">
+							</p:column>
+							<p:column headerText="#{msgs.CodIndicativoRegEletronico}">
+							</p:column>
+						</p:dataTable>
+					</h:panelGrid>
+
+				</p:panel>
 
 			</h:panelGroup>
 
 			<h:panelGroup id="pngCadEmpresaExibir" layout="block"
 				styleClass="formulario"
-				rendered="#{cadastroEmpresaMB.btnCancelarDesativado}">
+				rendered="#{cadastroEmpresaMB.btnEmpresaCancelarDesativado}">
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 					<p:outputLabel value="#{msgs.DataCadastro}:" />
-					<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.dataInicioCadastro}">
-						<f:convertDateTime type="both" timeZone="GMT-3" pattern="dd/MM/YYYY" />
+					<p:outputLabel
+						value="#{cadastroEmpresaMB.dadosCadastrais.dataInicioCadastro}">
+						<f:convertDateTime type="both" timeZone="GMT-3"
+							pattern="dd/MM/YYYY" />
 					</p:outputLabel>
 
 					<p:outputLabel value="#{msgs.EmpresaGrupo}:" />
-					<p:outputLabel value="#{cadastroEmpresaMB.grupoEmpresa.nomeGrupo}"/>
+					<p:outputLabel value="#{cadastroEmpresaMB.grupoEmpresa.nomeGrupo}" />
 
 					<p:outputLabel value="#{msgs.TipoInscricao}:" />
-					<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.tipoInscricao}"/>
+					<p:outputLabel
+						value="#{cadastroEmpresaMB.dadosCadastrais.tipoInscricao}" />
 
 					<p:outputLabel value="#{msgs.Inscricao}:" />
 					<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.numCNPJ}" />
@@ -107,11 +158,13 @@
 					<p:outputLabel value="#{cadastroEmpresaMB.empresa.nome}" />
 
 					<p:outputLabel value="#{msgs.RazaoSocial}:" />
-					<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.razaoSocial}" />
+					<p:outputLabel
+						value="#{cadastroEmpresaMB.dadosCadastrais.razaoSocial}" />
 
 					<p:outputLabel value="#{msgs.FAP}:" />
 					<h:panelGroup>
-						<p:outputLabel value="#{cadastroEmpresaMB.empresaFap.numProcessoFAP}" />
+						<p:outputLabel
+							value="#{cadastroEmpresaMB.empresaFap.numProcessoFAP}" />
 						<p:commandButton value="#{msgs.ProcessoFAP}" />
 					</h:panelGroup>
 				</p:panelGrid>
@@ -127,29 +180,73 @@
 
 					<p:panelGrid columns="4" styleClass="tabelaSemBorda">
 						<p:outputLabel value="#{msgs.CodClassificacaoTributaria}:" />
-						<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.codClassificacaoTributaria}" />
+						<p:outputLabel
+							value="#{cadastroEmpresaMB.dadosCadastrais.codClassificacaoTributaria}" />
 
 						<p:outputLabel value="#{msgs.CodNaturezaJuridica}:" />
-						<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.codNaturezaJuridica}" />
+						<p:outputLabel
+							value="#{cadastroEmpresaMB.dadosCadastrais.codNaturezaJuridica}" />
 
 						<p:outputLabel value="#{msgs.CodIndicativoCooperativa}:" />
-						<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoCooperativa}" />
+						<p:outputLabel
+							value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoCooperativa}" />
 
 						<p:outputLabel value="#{msgs.CodIndicativoConstrucao}:" />
-						<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoConstrucao}" />
+						<p:outputLabel
+							value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoConstrucao}" />
 
 						<p:outputLabel value="#{msgs.CodIndicativoDesoneracaoFolha}:" />
-						<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoDesoneracaoFolha}" />
+						<p:outputLabel
+							value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoDesoneracaoFolha}" />
 
 						<p:outputLabel value="#{msgs.CodIndicativoRegEletronico}:" />
-						<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoRegEletronico}" />
+						<p:outputLabel
+							value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoRegEletronico}" />
 					</p:panelGrid>
 
 					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 						<p:outputLabel value="#{msgs.MultiplasRubricas}:" />
-						<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.multiplasTabRubricas}" />
+						<p:outputLabel
+							value="#{cadastroEmpresaMB.dadosCadastrais.multiplasTabRubricas}" />
 					</p:panelGrid>
 				</p:dialog>
+				
+				<p:spacer width="100%" height="10px"/>
+
+				<p:panel id="pnlHistoricoEnderecoExibir" header="#{msgs.Historico}"
+					toggleable="true" closable="false" toggleSpeed="500"
+					collapsed="true" closeSpeed="500" widgetVar="panel"
+					style="margin-bottom:20px">
+
+					<h:panelGrid columns="2" cellpadding="10">
+						<p:dataTable scrollable="true" styleClass="dataTable">
+							<p:column headerText="#{msgs.DataCadastro}" width="110">
+							</p:column>
+							<p:column headerText="#{msgs.DataTermino}" width="110">
+							</p:column>
+							<p:column headerText="#{msgs.TipoInscricao}">
+							</p:column>
+							<p:column headerText="#{msgs.Inscricao}">
+							</p:column>
+							<p:column headerText="#{msgs.RazaoSocial}">
+							</p:column>
+							<p:column headerText="#{msgs.CodClassificacaoTributaria}">
+							</p:column>
+							<p:column headerText="#{msgs.CodNaturezaJuridica}">
+							</p:column>
+							<p:column headerText="#{msgs.CodIndicativoCooperativa}">
+							</p:column>
+							<p:column headerText="#{msgs.CodIndicativoConstrucao}">
+							</p:column>
+							<p:column headerText="#{msgs.CodIndicativoDesoneracaoFolha}">
+							</p:column>
+							<p:column headerText="#{msgs.CodIndicativoRegEletronico}">
+							</p:column>
+						</p:dataTable>
+					</h:panelGrid>
+
+				</p:panel>
+
 			</h:panelGroup>
 		</p:tab>
 
@@ -163,34 +260,6 @@
 		</p:tab>
 
 		<p:tab title="#{msgs.EmpresaDadosComplementares}">
-		</p:tab>
-
-		<p:tab title="#{msgs.Historico}">
-			<p:dataTable scrollable="true" styleClass="dataTable">
-				<f:facet name="header">#{msgs.Historico}</f:facet>
-				<p:column headerText="#{msgs.DataCadastro}" width="110">
-				</p:column>
-				<p:column headerText="#{msgs.DataTermino}" width="110">
-				</p:column>
-				<p:column headerText="#{msgs.TipoInscricao}">
-				</p:column>
-				<p:column headerText="#{msgs.Inscricao}">
-				</p:column>
-				<p:column headerText="#{msgs.RazaoSocial}">
-				</p:column>
-				<p:column headerText="#{msgs.CodClassificacaoTributaria}">
-				</p:column>
-				<p:column headerText="#{msgs.CodNaturezaJuridica}">
-				</p:column>
-				<p:column headerText="#{msgs.CodIndicativoCooperativa}">
-				</p:column>
-				<p:column headerText="#{msgs.CodIndicativoConstrucao}">
-				</p:column>
-				<p:column headerText="#{msgs.CodIndicativoDesoneracaoFolha}">
-				</p:column>
-				<p:column headerText="#{msgs.CodIndicativoRegEletronico}">
-				</p:column>
-			</p:dataTable>
 		</p:tab>
 
 	</p:accordionPanel>

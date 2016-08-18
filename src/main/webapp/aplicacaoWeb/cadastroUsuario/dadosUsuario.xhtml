@@ -9,7 +9,7 @@
 <ui:composition>
 	<h:form>
 		<p:panelGrid id="dadosUsuario" columns="2" styleClass="tabelaSemBorda"
-			rendered="#{cadastroEmpresaMB.btnCancelarDesativado}">
+			rendered="#{cadastroEmpresaMB.btnEmpresaCancelarDesativado}">
 			<p:outputLabel value="Data Cadastro" />
 			<p:calendar locale="pt" showOn="button" showButtonPanel="true"
 				pattern="dd/MM/yyyy" mask="true" size="8" />
@@ -29,7 +29,7 @@
 		</p:panelGrid>
 		
 		<p:panelGrid id="dadosUsuarioExibir" columns="2" styleClass="tabelaSemBorda"
-			rendered="#{cadastroEmpresaMB.btnEditarDesativado}">
+			rendered="#{cadastroEmpresaMB.btnEmpresaEditarDesativado}">
 			<p:outputLabel value="Data Cadastro" />
 			<p:outputLabel value="#{cadastroUsuarioMB.usuario.cadastroPessoa}"/>
 

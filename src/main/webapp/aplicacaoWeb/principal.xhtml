@@ -6,7 +6,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
 
 	<h:head>
 		<title><h:outputText value="#{msgs.TituloJanela}" /></title>
@@ -14,7 +15,7 @@
 		<h:outputScript library="js" name="scripts.js" />
 	</h:head>
 
-	<h:body onload="PF('dlgSelecionarEmpresa').show()">
+	<h:body>
 		<div id="superior">
 			<div id="logoDMAT" />
 			<h:panelGrid class="empresaSelecionada" columns="2">
@@ -107,7 +108,25 @@
 
 		<p:dialog widgetVar="dlgSelecionarEmpresa" resizable="false"
 			modal="true" width="830" header="#{msgs.SelecionarEmpresa}"
-			responsive="true" rendered="#{cadastroEmpresaMB.listaEmpresa}">
+			responsive="true" style="padding:10px">
+			
+			<dmat:barraBotoesComposite
+				disabledEditar="#{cadastroEmpresaMB.btnEmpresaEditarDesativado}"
+				actionListenerEditar="#{cadastroEmpresaMB.editarCadastroEmpresa}"
+				updateEditar=""
+				labelNovo="#{msgs.NovaEmpresa}"
+				disabledNovo="#{cadastroEmpresaMB.btnEmpresaNovaEmpresaDesativado}"
+				actionListenerNovo="#{cadastroEmpresaMB.novoCadastroEmpresa}"
+				updateNovo=""
+				disabledCancelar="#{cadastroEmpresaMB.btnEmpresaCancelarDesativado}"
+				actionListenerCancelar="#{cadastroEmpresaMB.cancelarCadastroEmpresa}"
+				updateCancelar=""
+				disabledSalvar="#{cadastroEmpresaMB.btnEmpresaSalvarDesativado}"
+				actionListenerSalvar="#{cadastroEmpresaMB.salvarCadastroEmpresa}"
+				updateSalvar=""/>
+			
+			<p:spacer width="100%" height="10px"/>
+			
 			<p:dataTable styleClass="dataTable" scrollable="true">
 				<p:column headerText="#{msgs.Nome}" width="250" />
 				<p:column headerText="#{msgs.RazaoSocial}" width="400" />

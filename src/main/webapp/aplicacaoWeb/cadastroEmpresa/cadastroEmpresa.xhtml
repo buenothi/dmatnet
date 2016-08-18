@@ -14,30 +14,15 @@
 	<h:form id="formCadEmpresa" styleClass="painelConteudo">
 		<p:growl id="growlPrincipal" showDetail="true" sticky="false"
 			life="3000" />
-		<h:panelGroup styleClass="barraBotoesPainel">
-			<dmat:barraBotoesComposite
-				disabledEditar="#{cadastroEmpresaMB.btnEditarDesativado}"
-				actionListenerEditar="#{cadastroEmpresaMB.editarCadastro}"
-				updateEditar="formCadEmpresa"
-				disabledCancelar="#{cadastroEmpresaMB.btnCancelarDesativado}"
-				actionListenerCancelar="#{cadastroEmpresaMB.cancelarCadastro}"
-				updateCancelar="formCadEmpresa"
-				disabledSalvar="#{cadastroEmpresaMB.btnSalvarDesativado}"
-				actionListenerSalvar="#{cadastroEmpresaMB.salvarCadastro}"
-				updateSalvar="formCadEmpresa" labelNovo="#{msgs.NovaEmpresa}"
-				disabledNovo="#{cadastroEmpresaMB.btnNovaEmpresaDesativado}"
-				actionListenerNovo="#{cadastroEmpresaMB.novoCadastro}"
-				updateNovo="formCadEmpresa" />
-		</h:panelGroup>
 
 		<h:panelGroup layout="block" styleClass="tabsConteiner">
-			<p:tabView id="tabCadastroEmpresa">
-				<p:tab title="#{msgs.DadosCadastrais}">
+			<p:tabView id="tbwCadastroEmpresa">
+				<p:tab id="tabDadosCadastrais" title="#{msgs.DadosCadastrais}">
 					<ui:include
 						src="/aplicacaoWeb/cadastroEmpresa/dadosCadastrais.xhtml" />
 				</p:tab>
-				<p:tab title="#{msgs.Endereco}">
-					<dmat:enderecoComposite
+				<p:tab id="tabEndereco" title="#{msgs.Endereco}">
+					<dmat:enderecoComposite id="dmatEnderecoEmpresa"
 						logradouroTipo="#{cadastroEmpresaMB.endereco.logradouroTipo}"
 						logradouroNome="#{cadastroEmpresaMB.endereco.logradouroNome}"
 						logradouroNumero="#{cadastroEmpresaMB.endereco.logradouroNumero}"
@@ -47,9 +32,9 @@
 						caixaPostal="#{cadastroEmpresaMB.endereco.caixaPostal}"
 						cidade="#{cadastroEmpresaMB.endereco.cidade}"
 						estado="#{cadastroEmpresaMB.endereco.estado}"
-						rendCancelarDesativado="#{cadastroEmpresaMB.btnCancelarDesativado}"
-						rendEditarDesativado="#{cadastroEmpresaMB.btnEditarDesativado}"
-						ajaxComponentRender="formCadEmpresa:tabCadastroEmpresa:j_idt153:form:acpEndereco:listCidade" />
+						rendCancelarDesativado="#{cadastroEmpresaMB.btnEmpresaCancelarDesativado}"
+						rendEditarDesativado="#{cadastroEmpresaMB.btnEmpresaEditarDesativado}"
+						ajaxComponentRender="formCadEmpresa:tbwCadastroEmpresa:dmatEnderecoEmpresa:form:acpEndereco:listCidade" />
 				</p:tab>
 				<p:tab title="#{msgs.ContatoUsuario}">
 					<ui:include
