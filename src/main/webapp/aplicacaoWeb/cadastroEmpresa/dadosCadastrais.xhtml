@@ -8,11 +8,27 @@
 	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
 
 <ui:composition>
+
+	<dmat:barraBotoesComposite id="barraBotoesDadosCadastrais"
+		disabledEditar="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}" 
+		actionListenerEditar="#{cadastroEmpresaMB.editarDadosCadastraisEmpresa}"
+		updateEditar="formCadEmpresa" 
+		disabledCancelar="#{cadastroEmpresaMB.btnDadosCadastraisCancelarDesativado}" 
+		actionListenerCancelar="#{cadastroEmpresaMB.cancelarDadosCadastraisEmpresa}"
+		updateCancelar="formCadEmpresa" 
+		disabledSalvar="#{cadastroEmpresaMB.btnDadosCadastraisSalvarDesativado}" 
+		actionListenerSalvar="#{cadastroEmpresaMB.salvarDadosCadastraisEmpresa}"
+		updateSalvar="formCadEmpresa"  
+		labelNovo="#{msgs.NovoEmpresaDadosCadastrais}" 
+		disabledNovo="#{cadastroEmpresaMB.btnDadosCadastraisNovaEmpresaDesativado}" 
+		actionListenerNovo="#{cadastroEmpresaMB.novoDadosCadastraisEmpresa}"
+		updateNovo="formCadEmpresa" />
+
 	<p:accordionPanel id="acpDadosCadastrais">
 		<p:tab id="tabDadosBasicos" title="#{msgs.DadosBasicos}">
 			<h:panelGroup id="pngCadEmpresaEditar" layout="block"
 				styleClass="formulario"
-				rendered="#{cadastroEmpresaMB.btnEmpresaEditarDesativado}">
+				rendered="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}">
 				<p:panelGrid id="pngEditarDadoCadastrais" columns="2"
 					styleClass="tabelaSemBorda">
 					<p:outputLabel value="#{msgs.DataCadastro}:" />
@@ -94,48 +110,12 @@
 						offLabel="#{msgs.Nao}" onIcon="ui-icon-check"
 						offIcon="ui-icon-close" style="width:120px" />
 				</p:panelGrid>
-				
-				<p:spacer width="100%" height="10px"/>
-
-				<p:panel id="pnlHistoricoEnderecoEditar" header="#{msgs.Historico}"
-					toggleable="true" closable="false" toggleSpeed="500"
-					collapsed="true" closeSpeed="500" widgetVar="panel"
-					style="margin-bottom:20px">
-
-					<h:panelGrid columns="2" cellpadding="10">
-						<p:dataTable scrollable="true" styleClass="dataTable">
-							<p:column headerText="#{msgs.DataCadastro}" width="110">
-							</p:column>
-							<p:column headerText="#{msgs.DataTermino}" width="110">
-							</p:column>
-							<p:column headerText="#{msgs.TipoInscricao}">
-							</p:column>
-							<p:column headerText="#{msgs.Inscricao}">
-							</p:column>
-							<p:column headerText="#{msgs.RazaoSocial}">
-							</p:column>
-							<p:column headerText="#{msgs.CodClassificacaoTributaria}">
-							</p:column>
-							<p:column headerText="#{msgs.CodNaturezaJuridica}">
-							</p:column>
-							<p:column headerText="#{msgs.CodIndicativoCooperativa}">
-							</p:column>
-							<p:column headerText="#{msgs.CodIndicativoConstrucao}">
-							</p:column>
-							<p:column headerText="#{msgs.CodIndicativoDesoneracaoFolha}">
-							</p:column>
-							<p:column headerText="#{msgs.CodIndicativoRegEletronico}">
-							</p:column>
-						</p:dataTable>
-					</h:panelGrid>
-
-				</p:panel>
 
 			</h:panelGroup>
 
 			<h:panelGroup id="pngCadEmpresaExibir" layout="block"
 				styleClass="formulario"
-				rendered="#{cadastroEmpresaMB.btnEmpresaCancelarDesativado}">
+				rendered="#{cadastroEmpresaMB.btnDadosCadastraisCancelarDesativado}">
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 					<p:outputLabel value="#{msgs.DataCadastro}:" />
 					<p:outputLabel
@@ -210,42 +190,6 @@
 							value="#{cadastroEmpresaMB.dadosCadastrais.multiplasTabRubricas}" />
 					</p:panelGrid>
 				</p:dialog>
-				
-				<p:spacer width="100%" height="10px"/>
-
-				<p:panel id="pnlHistoricoEnderecoExibir" header="#{msgs.Historico}"
-					toggleable="true" closable="false" toggleSpeed="500"
-					collapsed="true" closeSpeed="500" widgetVar="panel"
-					style="margin-bottom:20px">
-
-					<h:panelGrid columns="2" cellpadding="10">
-						<p:dataTable scrollable="true" styleClass="dataTable">
-							<p:column headerText="#{msgs.DataCadastro}" width="110">
-							</p:column>
-							<p:column headerText="#{msgs.DataTermino}" width="110">
-							</p:column>
-							<p:column headerText="#{msgs.TipoInscricao}">
-							</p:column>
-							<p:column headerText="#{msgs.Inscricao}">
-							</p:column>
-							<p:column headerText="#{msgs.RazaoSocial}">
-							</p:column>
-							<p:column headerText="#{msgs.CodClassificacaoTributaria}">
-							</p:column>
-							<p:column headerText="#{msgs.CodNaturezaJuridica}">
-							</p:column>
-							<p:column headerText="#{msgs.CodIndicativoCooperativa}">
-							</p:column>
-							<p:column headerText="#{msgs.CodIndicativoConstrucao}">
-							</p:column>
-							<p:column headerText="#{msgs.CodIndicativoDesoneracaoFolha}">
-							</p:column>
-							<p:column headerText="#{msgs.CodIndicativoRegEletronico}">
-							</p:column>
-						</p:dataTable>
-					</h:panelGrid>
-
-				</p:panel>
 
 			</h:panelGroup>
 		</p:tab>
@@ -260,6 +204,35 @@
 		</p:tab>
 
 		<p:tab title="#{msgs.EmpresaDadosComplementares}">
+		</p:tab>
+
+		<p:tab title="#{msgs.Historico}">
+			<h:panelGrid columns="2" cellpadding="10">
+				<p:dataTable scrollable="true" styleClass="dataTable">
+					<p:column headerText="#{msgs.DataCadastro}" width="110">
+					</p:column>
+					<p:column headerText="#{msgs.DataTermino}" width="110">
+					</p:column>
+					<p:column headerText="#{msgs.TipoInscricao}">
+					</p:column>
+					<p:column headerText="#{msgs.Inscricao}">
+					</p:column>
+					<p:column headerText="#{msgs.RazaoSocial}">
+					</p:column>
+					<p:column headerText="#{msgs.CodClassificacaoTributaria}">
+					</p:column>
+					<p:column headerText="#{msgs.CodNaturezaJuridica}">
+					</p:column>
+					<p:column headerText="#{msgs.CodIndicativoCooperativa}">
+					</p:column>
+					<p:column headerText="#{msgs.CodIndicativoConstrucao}">
+					</p:column>
+					<p:column headerText="#{msgs.CodIndicativoDesoneracaoFolha}">
+					</p:column>
+					<p:column headerText="#{msgs.CodIndicativoRegEletronico}">
+					</p:column>
+				</p:dataTable>
+			</h:panelGrid>
 		</p:tab>
 
 	</p:accordionPanel>

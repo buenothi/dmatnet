@@ -69,11 +69,18 @@ public class CadastroEmpresaMB implements Serializable {
 	private boolean isBtnGrupoSalvarDesativado = true;
 	private boolean isBtnGrupoNovoDesativado = false;
 	private boolean isBtnSelecionarGrupo = true;
+	
+	// botões referentes à Edição do Cadastro de Dados Cadastrais da Empresa
+	private boolean isBtnDadosCadastraisEditarDesativado = false;
+	private boolean isBtnDadosCadastraisCancelarDesativado = true;
+	private boolean isBtnDadosCadastraisSalvarDesativado = true;
+	private boolean isBtnDadosCadastraisNovaEmpresaDesativado = false;
 
 	private String mascaraPessoaJuridica = "99.999.999/9999-99";
 
 	private static final long serialVersionUID = 1L;
 
+	//inicio dos getters e setters
 	public UsuarioMB getUsuarioMB() {
 		return usuarioMB;
 	}
@@ -292,6 +299,38 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnGrupoNovoDesativado = isBtnGrupoNovoDesativado;
 	}
 
+	public boolean isBtnDadosCadastraisEditarDesativado() {
+		return isBtnDadosCadastraisEditarDesativado;
+	}
+
+	public void setBtnDadosCadastraisEditarDesativado(boolean isBtnDadosCadastraisEditarDesativado) {
+		this.isBtnDadosCadastraisEditarDesativado = isBtnDadosCadastraisEditarDesativado;
+	}
+
+	public boolean isBtnDadosCadastraisCancelarDesativado() {
+		return isBtnDadosCadastraisCancelarDesativado;
+	}
+
+	public void setBtnDadosCadastraisCancelarDesativado(boolean isBtnDadosCadastraisCancelarDesativado) {
+		this.isBtnDadosCadastraisCancelarDesativado = isBtnDadosCadastraisCancelarDesativado;
+	}
+
+	public boolean isBtnDadosCadastraisSalvarDesativado() {
+		return isBtnDadosCadastraisSalvarDesativado;
+	}
+
+	public void setBtnDadosCadastraisSalvarDesativado(boolean isBtnDadosCadastraisSalvarDesativado) {
+		this.isBtnDadosCadastraisSalvarDesativado = isBtnDadosCadastraisSalvarDesativado;
+	}
+
+	public boolean isBtnDadosCadastraisNovaEmpresaDesativado() {
+		return isBtnDadosCadastraisNovaEmpresaDesativado;
+	}
+
+	public void setBtnDadosCadastraisNovaEmpresaDesativado(boolean isBtnDadosCadastraisNovaEmpresaDesativado) {
+		this.isBtnDadosCadastraisNovaEmpresaDesativado = isBtnDadosCadastraisNovaEmpresaDesativado;
+	}
+
 	public void setTipoPessoaJuridicaSelecionada(int tipoPessoaJuridicaSelecionada) {
 		this.tipoPessoaJuridicaSelecionada = tipoPessoaJuridicaSelecionada;
 	}
@@ -314,8 +353,10 @@ public class CadastroEmpresaMB implements Serializable {
 			break;
 		}
 	}
-
-	// action dos botões de dados cadastrais da empresa
+	//fim dos getters e setters
+	
+	
+	// action dos botões de cadastro de empresa
 	public void editarCadastroEmpresa(ActionEvent e) {
 		this.isBtnEmpresaEditarDesativado = true;
 		this.isBtnEmpresaCancelarDesativado = false;
@@ -343,7 +384,39 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnEmpresaSalvarDesativado = false;
 		this.isBtnEmpresaNovaEmpresaDesativado = true;
 	}
+	
+	
+	//action dos botões dados cadastrais da empresa
 
+	public void editarDadosCadastraisEmpresa(ActionEvent e) {
+		this.isBtnDadosCadastraisEditarDesativado = true;
+		this.isBtnDadosCadastraisCancelarDesativado = false;
+		this.isBtnDadosCadastraisSalvarDesativado = false;
+		this.isBtnDadosCadastraisNovaEmpresaDesativado = true;
+	}
+	
+	public void cancelarDadosCadastraisEmpresa(ActionEvent e) {
+		this.isBtnDadosCadastraisEditarDesativado = false;
+		this.isBtnDadosCadastraisCancelarDesativado = true;
+		this.isBtnDadosCadastraisSalvarDesativado = true;
+		this.isBtnDadosCadastraisNovaEmpresaDesativado = false;
+	}
+	
+	public void salvarDadosCadastraisEmpresa(ActionEvent e) {
+		this.isBtnDadosCadastraisEditarDesativado = false;
+		this.isBtnDadosCadastraisCancelarDesativado = true;
+		this.isBtnDadosCadastraisSalvarDesativado = true;
+		this.isBtnDadosCadastraisNovaEmpresaDesativado = false;
+	}
+	
+	public void novoDadosCadastraisEmpresa(ActionEvent e) {
+		this.isBtnDadosCadastraisEditarDesativado = true;
+		this.isBtnDadosCadastraisCancelarDesativado = false;
+		this.isBtnDadosCadastraisSalvarDesativado = false;
+		this.isBtnDadosCadastraisNovaEmpresaDesativado = true;
+	}
+	
+	
 	// action dos botões de grupos-empresa
 	public void editarCadastroGrupo(ActionEvent e) {
 		this.isBtnGrupoEditarDesativado = true;
