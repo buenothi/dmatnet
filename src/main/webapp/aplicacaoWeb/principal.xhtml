@@ -9,133 +9,140 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
 
-	<h:head>
-		<title><h:outputText value="#{msgs.TituloJanela}" /></title>
-		<h:outputStylesheet library="css" name="stylesPrincipal.css" />
-		<h:outputScript library="js" name="scripts.js" />
-	</h:head>
+<h:head>
+	<title><h:outputText value="#{msgs.TituloJanela}" /></title>
+	<h:outputStylesheet library="css" name="stylesPrincipal.css" />
+	<h:outputScript library="js" name="scripts.js" />
+</h:head>
 
-	<h:body>
-		<div id="superior">
-			<div id="logoDMAT" />
-			<h:panelGrid class="empresaSelecionada" columns="2">
-				<p:outputLabel id="oplEmpresaSelecionada"
-					value="#{principalMB.empresaSelecionada.nome}" />
-				<p:commandButton id="btnSelecionarEmpresa"
-					value="#{msgs.MudarEmpresa}" icon="fa fa-list-alt"
-					styleClass="botoesWebApp"
-					onclick="PF('dlgSelecionarEmpresa').show()" />
-			</h:panelGrid>
-			<h:panelGrid class="usuarioLogado" columns="1">
-				<h:outputFormat value="#{usuarioMB.usuarioLogado.nome}" />
-				<h:outputFormat value="#{usuarioMB.usuarioLogado.grupo.nomeGrupo}"
-					styleClass="textoUsuarioLogado" />
-			</h:panelGrid>
-		</div>
+<h:body>
+	<div id="superior">
+		<div id="logoDMAT" />
+		<h:panelGrid class="empresaSelecionada" columns="2">
+			<p:outputLabel id="oplEmpresaSelecionada"
+				value="#{principalMB.empresaSelecionada.nome}" />
+			<p:commandButton id="btnSelecionarEmpresa"
+				value="#{msgs.MudarEmpresa}" icon="fa fa-list-alt"
+				styleClass="botoesWebApp"
+				onclick="PF('dlgSelecionarEmpresa').show()" />
+		</h:panelGrid>
+		<h:panelGrid class="usuarioLogado" columns="1">
+			<h:outputFormat value="#{usuarioMB.usuarioLogado.nome}" />
+			<h:outputFormat value="#{usuarioMB.usuarioLogado.grupo.nomeGrupo}"
+				styleClass="textoUsuarioLogado" />
+		</h:panelGrid>
+	</div>
 
-		<h:form>
-			<div id="lateral">
-				<p:commandLink actionListener="#{principalMB.exibirHome}"
-					update="@this pnlCadastroEmpresa btnCadastroEmpresa">
-					<h:panelGroup id="btnHome" layout="block"
-						styleClass="#{principalMB.classMenuBotaoHome}">
-						<div id="logoHome" class="logosMenu" />
-						<div id="rotuloCadEmpresas" class="rotuloMenu">
-							<h:outputFormat styleClass="textoMenu"
-								value="#{fn:toUpperCase(msgs.Home)}" />
-						</div>
-					</h:panelGroup>
-				</p:commandLink>
-
-				<p:commandLink actionListener="#{principalMB.exibirCadastroEmpresa}"
-					update="pnlCadastroEmpresa @this btnHome">
-					<h:panelGroup id="btnCadastroEmpresa" layout="block"
-						styleClass="#{principalMB.classMenuBotaoCadEmpresa}">
-						<div id="logoCadEmpresa" class="logosMenu" />
-						<div id="rotuloCadEmpresas" class="rotuloMenu">
-							<h:outputFormat styleClass="textoMenu"
-								value="#{fn:toUpperCase(msgs.CadastroEmpresa)}" />
-						</div>
-					</h:panelGroup>
-				</p:commandLink>
-
-				<div id="itemCadUsuarios" class="menuBotao">
-					<div id="logoCadUsuarios" class="logosMenu" />
-					<div id="rotuloCadUsuarios" class="rotuloMenu">
+	<h:form>
+		<div id="lateral">
+			<p:commandLink actionListener="#{principalMB.exibirHome}"
+				update="@this pnlCadastroEmpresa btnCadastroEmpresa">
+				<h:panelGroup id="btnHome" layout="block"
+					styleClass="#{principalMB.classMenuBotaoHome}">
+					<div id="logoHome" class="logosMenu" />
+					<div id="rotuloCadEmpresas" class="rotuloMenu">
 						<h:outputFormat styleClass="textoMenu"
-							value="#{fn:toUpperCase(msgs.CadastroUsuario)}" />
+							value="#{fn:toUpperCase(msgs.Home)}" />
 					</div>
-				</div>
+				</h:panelGroup>
+			</p:commandLink>
 
-				<div id="itemDocLegais" class="menuBotao">
-					<div id="logoDocLegais" class="logosMenu" />
-					<div id="rotuloDocLegais" class="rotuloMenu">
+			<p:commandLink actionListener="#{principalMB.exibirCadastroEmpresa}"
+				update="pnlCadastroEmpresa @this btnHome">
+				<h:panelGroup id="btnCadastroEmpresa" layout="block"
+					styleClass="#{principalMB.classMenuBotaoCadEmpresa}">
+					<div id="logoCadEmpresa" class="logosMenu" />
+					<div id="rotuloCadEmpresas" class="rotuloMenu">
 						<h:outputFormat styleClass="textoMenu"
-							value="#{fn:toUpperCase(msgs.DocumentosLegais)}" />
+							value="#{fn:toUpperCase(msgs.CadastroEmpresa)}" />
 					</div>
-				</div>
+				</h:panelGroup>
+			</p:commandLink>
 
-				<div id="itemOrdServicos" class="menuBotao">
-					<div id="logoOrdServicos" class="logosMenu" />
-					<div id="rotuloOrdServicos" class="rotuloMenu">
-						<h:outputFormat styleClass="textoMenu"
-							value="#{fn:toUpperCase(msgs.OrdensServicos)}" />
-					</div>
-				</div>
-
-				<div id="itemAuditoria" class="menuBotao">
-					<div id="logoAuditoria" class="logosMenu" />
-					<div id="rotuloAuditoria" class="rotuloMenu">
-						<h:outputFormat styleClass="textoMenu"
-							value="#{fn:toUpperCase(msgs.Auditoria)}" />
-					</div>
-				</div>
-
-				<div id="itemTreinamento" class="menuBotao">
-					<div id="logoTreinamento" class="logosMenu" />
-					<div id="rotuloTreinmento" class="rotuloMenu">
-						<h:outputFormat styleClass="textoMenu"
-							value="#{fn:toUpperCase(msgs.TreinamentosSST)}" />
-					</div>
+			<div id="itemCadUsuarios" class="menuBotao">
+				<div id="logoCadUsuarios" class="logosMenu" />
+				<div id="rotuloCadUsuarios" class="rotuloMenu">
+					<h:outputFormat styleClass="textoMenu"
+						value="#{fn:toUpperCase(msgs.CadastroUsuario)}" />
 				</div>
 			</div>
-		</h:form>
-		<p:panel id="pnlCadastroEmpresa" widgetVar="pnlCadastroEmpresa"
-			styleClass="conteudo" header="#{msgs.CadastroEmpresa}"
-			visible="#{principalMB.renderizarCadastroEmpresa}">
-			<ui:include src="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml" />
-		</p:panel>
 
-		<p:dialog widgetVar="dlgSelecionarEmpresa" resizable="false"
-			modal="true" width="830" header="#{msgs.SelecionarEmpresa}"
-			responsive="true" style="padding:10px">
-			
-			<dmat:barraBotoesComposite
-				disabledEditar="#{cadastroEmpresaMB.btnEmpresaEditarDesativado}"
-				actionListenerEditar="#{cadastroEmpresaMB.editarCadastroEmpresa}"
-				updateEditar=""
-				labelNovo="#{msgs.NovaEmpresa}"
-				disabledNovo="#{cadastroEmpresaMB.btnEmpresaNovaEmpresaDesativado}"
-				actionListenerNovo="#{cadastroEmpresaMB.novoCadastroEmpresa}"
-				updateNovo=""
-				disabledCancelar="#{cadastroEmpresaMB.btnEmpresaCancelarDesativado}"
-				actionListenerCancelar="#{cadastroEmpresaMB.cancelarCadastroEmpresa}"
-				updateCancelar=""
-				disabledSalvar="#{cadastroEmpresaMB.btnEmpresaSalvarDesativado}"
-				actionListenerSalvar="#{cadastroEmpresaMB.salvarCadastroEmpresa}"
-				updateSalvar=""/>
-			
-			<p:spacer width="100%" height="10px"/>
-			
-			<p:dataTable styleClass="dataTable" scrollable="true">
-				<p:column headerText="#{msgs.Nome}" width="250" />
-				<p:column headerText="#{msgs.RazaoSocial}" width="400" />
-				<p:column width="30">
-					<p:commandButton icon="fa fa-check-square" />
-				</p:column>
-			</p:dataTable>
-		</p:dialog>
+			<div id="itemDocLegais" class="menuBotao">
+				<div id="logoDocLegais" class="logosMenu" />
+				<div id="rotuloDocLegais" class="rotuloMenu">
+					<h:outputFormat styleClass="textoMenu"
+						value="#{fn:toUpperCase(msgs.DocumentosLegais)}" />
+				</div>
+			</div>
 
-	</h:body>
+			<div id="itemOrdServicos" class="menuBotao">
+				<div id="logoOrdServicos" class="logosMenu" />
+				<div id="rotuloOrdServicos" class="rotuloMenu">
+					<h:outputFormat styleClass="textoMenu"
+						value="#{fn:toUpperCase(msgs.OrdensServicos)}" />
+				</div>
+			</div>
+
+			<div id="itemAuditoria" class="menuBotao">
+				<div id="logoAuditoria" class="logosMenu" />
+				<div id="rotuloAuditoria" class="rotuloMenu">
+					<h:outputFormat styleClass="textoMenu"
+						value="#{fn:toUpperCase(msgs.Auditoria)}" />
+				</div>
+			</div>
+
+			<div id="itemTreinamento" class="menuBotao">
+				<div id="logoTreinamento" class="logosMenu" />
+				<div id="rotuloTreinmento" class="rotuloMenu">
+					<h:outputFormat styleClass="textoMenu"
+						value="#{fn:toUpperCase(msgs.TreinamentosSST)}" />
+				</div>
+			</div>
+		</div>
+	</h:form>
+	<p:panel id="pnlCadastroEmpresa" widgetVar="pnlCadastroEmpresa"
+		styleClass="conteudo" header="#{msgs.CadastroEmpresa}"
+		visible="#{principalMB.renderizarCadastroEmpresa}">
+		<ui:include src="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml" />
+	</p:panel>
+
+	<p:dialog widgetVar="dlgSelecionarEmpresa" resizable="false"
+		modal="true" width="830" header="#{msgs.SelecionarEmpresa}"
+		responsive="true" style="padding:10px">
+
+		<dmat:barraBotoesComposite
+			disabledEditar="#{cadastroEmpresaMB.btnEmpresaEditarDesativado}"
+			actionListenerEditar="#{cadastroEmpresaMB.editarCadastroEmpresa}"
+			updateEditar="" labelNovo="#{msgs.NovaEmpresa}"
+			disabledNovo="#{cadastroEmpresaMB.btnEmpresaNovaEmpresaDesativado}"
+			actionListenerNovo="#{cadastroEmpresaMB.novoCadastroEmpresa}"
+			updateNovo=""
+			disabledCancelar="#{cadastroEmpresaMB.btnEmpresaCancelarDesativado}"
+			actionListenerCancelar="#{cadastroEmpresaMB.cancelarCadastroEmpresa}"
+			updateCancelar=""
+			disabledSalvar="#{cadastroEmpresaMB.btnEmpresaSalvarDesativado}"
+			actionListenerSalvar="#{cadastroEmpresaMB.salvarCadastroEmpresa}"
+			updateSalvar="" />
+
+		<p:spacer width="100%" height="10px" />
+
+		<p:dataTable styleClass="dataTable" scrollable="true">
+			<p:column headerText="#{msgs.Nome}" width="250" />
+			<p:column headerText="#{msgs.RazaoSocial}" width="400" />
+			<p:column width="30">
+				<p:commandButton icon="fa fa-check-square" />
+			</p:column>
+		</p:dataTable>
+	</p:dialog>
+
+	<p:ajaxStatus onstart="PF('statusDialog').show()"
+		onsuccess="PF('statusDialog').hide()" />
+
+	<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+		closable="false" resizable="false" showHeader="false">
+		<p:graphicImage name="/resources/images/dmatLoading.gif" />
+	</p:dialog>
+
+</h:body>
 
 </html>
