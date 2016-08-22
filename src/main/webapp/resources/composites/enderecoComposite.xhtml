@@ -4,7 +4,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:composite="http://java.sun.com/jsf/composite">
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
 
 <composite:interface>
 	<composite:attribute name="logradouroTipo" />
@@ -41,10 +42,44 @@
 	<composite:attribute name="rendCancelarDesativado" />
 	<composite:attribute name="ajaxComponentRender" />
 
+	<composite:attribute name="disabledEditar" />
+	<composite:attribute name="actionListenerEditar"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="updateEditar" />
+
+	<composite:attribute name="disabledCancelar" />
+	<composite:attribute name="actionListenerCancelar"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="updateCancelar" />
+
+	<composite:attribute name="disabledSalvar" />
+	<composite:attribute name="actionListenerSalvar"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="updateSalvar" />
+
+	<composite:attribute name="disabledNovo" />
+	<composite:attribute name="actionListenerNovo"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="updateNovo" />
+
 </composite:interface>
 
 <composite:implementation>
 	<h:form id="form">
+		<dmat:barraBotoesComposite id="barraCRUDEndereco"
+			disabledEditar="#{cc.attrs.disabledEditar}"
+			actionListenerEditar="#{cc.attrs.actionListenerEditar}"
+			updateEditar="#{cc.attrs.updateEditar}"
+			disabledCancelar="#{cc.attrs.disabledCancelar}"
+			actionListenerCancelar="#{cc.attrs.actionListenerCancelar}"
+			updateCancelar="#{cc.attrs.updateCancelar}"
+			disabledSalvar="#{cc.attrs.disabledSalvar}"
+			actionListenerSalvar="#{cc.attrs.actionListenerSalvar}"
+			updateSalvar="#{cc.attrs.updateSalvar}"
+			labelNovo="#{msgs.NovoEndereco}"
+			disabledNovo="#{cc.attrs.disabledNovo}"
+			actionListenerNovo="#{cc.attrs.actionListenerNovo}"
+			updateNovo="#{cc.attrs.updateNovo}" />
 		<p:accordionPanel id="acpEndereco">
 			<p:tab id="tabEndereco" title="#{msgs.Endereco}">
 				<h:panelGroup id="pngEnderecoEditar" layout="block"
@@ -102,8 +137,8 @@
 							</p:selectOneMenu>
 							<p:selectOneMenu id="listCidade" panelStyle="width:180px"
 								effect="fade" style="width:333px" value="#{cc.attrs.cidade}"
-								converter="cidadeConverter" immediate="true"
-								filter="true" filterMatchMode="startsWith">
+								converter="cidadeConverter" immediate="true" filter="true"
+								filterMatchMode="startsWith">
 								<f:selectItem itemLabel="Selecionar a Cidade"
 									noSelectionOption="true" />
 								<f:selectItems value="#{estadoMB.cidadesPorEstado}" var="cidade"
@@ -150,8 +185,8 @@
 						</h:panelGrid>
 
 						<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}:" />
-						<h:panelGrid columns="2" cellspacing="13" >
-							<p:outputLabel id="estadoExibir" value="#{cc.attrs.estado}"/>
+						<h:panelGrid columns="2" cellspacing="13">
+							<p:outputLabel id="estadoExibir" value="#{cc.attrs.estado}" />
 							<p:outputLabel id="cidadeExibir" value="#{cc.attrs.cidade}" />
 						</h:panelGrid>
 					</p:panelGrid>
