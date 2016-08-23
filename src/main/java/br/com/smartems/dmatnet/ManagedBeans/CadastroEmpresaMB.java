@@ -55,6 +55,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	
 	// botões referentes à Edição do Cadastro de Empresa
+	
 	private boolean isBtnEmpresaEditarDesativado = false;
 	private boolean isBtnEmpresaCancelarDesativado = true;
 	private boolean isBtnEmpresaSalvarDesativado = true;
@@ -64,6 +65,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	
 	// botões referentes à Edição do Cadastro de Grupo Empresa
+	
 	private boolean isBtnGrupoEditarDesativado = true;
 	private boolean isTabEditarDesativado = false;
 	private boolean isTabExibirDesativado = true;
@@ -74,6 +76,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	
 	// botões referentes à Edição do Cadastro de Dados Cadastrais da Empresa
+	
 	private boolean isBtnDadosCadastraisEditarDesativado = false;
 	private boolean isBtnDadosCadastraisCancelarDesativado = true;
 	private boolean isBtnDadosCadastraisSalvarDesativado = true;
@@ -81,6 +84,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	
 	// botões referentes à Edição do Endereço da Empresa
+	
 	private boolean isBtnEnderecoEditarDesativado = false;
 	private boolean isBtnEnderecoCancelarDesativado = true;
 	private boolean isBtnEnderecoSalvarDesativado = true;
@@ -92,6 +96,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	
 	// inicio dos getters e setters
+	
 	public UsuarioMB getUsuarioMB() {
 		return usuarioMB;
 	}
@@ -463,6 +468,7 @@ public class CadastroEmpresaMB implements Serializable {
 	
 	
 	// action dos botões de endereco empresa
+	
 	public void editarEnderecoEmpresa(ActionEvent e){
 		this.isBtnEnderecoEditarDesativado = true;
 		this.isBtnEnderecoCancelarDesativado = false;

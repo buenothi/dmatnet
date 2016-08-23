@@ -9,7 +9,19 @@
 
 <ui:composition>
 
-	<dmat:barraBotoesComposite />
+	<dmat:barraBotoesComposite id="dmatBotoesContatosEmpresa"
+		disabledEditar="#{cadastroUsuarioMB.btnUsuarioEditarDesativado}"
+		actionListenerEditar="#{cadastroUsuarioMB.editarUsuario}"
+		updateEditar="formCadEmpresa"
+		disabledCancelar="#{cadastroUsuarioMB.btnUsuarioCancelarDesativado}"
+		actionListenerCancelar="#{cadastroUsuarioMB.cancelarUsuario}"
+		updateCancelar="formCadEmpresa"
+		disabledSalvar="#{cadastroUsuarioMB.btnUsuarioSalvarDesativado}"
+		actionListenerSalvar="#{cadastroUsuarioMB.salvarUsuario}"
+		updateSalvar="formCadEmpresa" labelNovo="#{msgs.NovoContato}"
+		disabledNovo="#{cadastroUsuarioMB.btnUsuarioNovoDesativado}"
+		actionListenerNovo="#{cadastroUsuarioMB.novoUsuario}"
+		updateNovo="formCadEmpresa" />
 
 	<h:panelGroup layout="block" styleClass="pdialogDivEsquerda">
 		<h:panelGrid columns="2">
@@ -27,7 +39,7 @@
 				<ui:include src="/aplicacaoWeb/cadastroUsuario/dadosUsuario.xhtml" />
 			</p:tab>
 			<p:tab title="#{msgs.Endereco}">
-				
+
 			</p:tab>
 			<p:tab title="#{msgs.Contatos}">
 			</p:tab>
