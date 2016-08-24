@@ -54,7 +54,7 @@
 						<f:selectItem itemValue="2" itemLabel="CPF" />
 					</p:selectOneMenu>
 					<p:outputLabel value="#{msgs.Inscricao}:" />
-					<p:inputMask id="ipmInscricao"
+					<p:inputMask id="ipmInscricao" converter="cnpjCpfConverter"
 						mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}"
 						value="#{cadastroEmpresaMB.dadosCadastrais.numCNPJ}" />
 

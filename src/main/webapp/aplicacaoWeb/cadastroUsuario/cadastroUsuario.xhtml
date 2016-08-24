@@ -21,7 +21,7 @@
 		updateSalvar="formCadEmpresa" labelNovo="#{msgs.NovoContato}"
 		disabledNovo="#{cadastroUsuarioMB.btnUsuarioNovoDesativado}"
 		actionListenerNovo="#{cadastroUsuarioMB.novoUsuario}"
-		updateNovo="formCadEmpresa" />
+		updateNovo="formCadEmpresa"/>
 
 	<h:panelGroup layout="block" styleClass="pdialogDivEsquerda">
 		<h:panelGrid columns="2">
@@ -34,7 +34,7 @@
 	</h:panelGroup>
 
 	<h:panelGroup layout="block" styleClass="pdialogDivDireita">
-		<p:tabView>
+		<p:tabView id="tbwCadastroUsuario">
 			<p:tab title="#{msgs.DadosUsuario}">
 				<ui:include src="/aplicacaoWeb/cadastroUsuario/dadosUsuario.xhtml" />
 			</p:tab>

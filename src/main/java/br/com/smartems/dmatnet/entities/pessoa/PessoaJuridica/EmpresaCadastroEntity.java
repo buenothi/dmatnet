@@ -120,6 +120,7 @@ public class EmpresaCadastroEntity implements Serializable {
 	}
 
 	public void setNumCNPJ(Long numCNPJ) {
+		
 		this.numCNPJ = numCNPJ;
 	}
 

@@ -38,8 +38,6 @@
 	<composite:attribute name="estado" />
 	<composite:editableValueHolder name="estadoInput" targets="form:estado" />
 
-	<composite:attribute name="rendEditarDesativado" />
-	<composite:attribute name="rendCancelarDesativado" />
 	<composite:attribute name="ajaxComponentRender" />
 
 	<composite:attribute name="disabledEditar" />
@@ -84,7 +82,7 @@
 			<p:tab id="tabEndereco" title="#{msgs.Endereco}">
 				<h:panelGroup id="pngEnderecoEditar" layout="block"
 					styleClass="formularioEnderecoEditar"
-					rendered="#{cc.attrs.rendEditarDesativado}">
+					rendered="#{cc.attrs.disabledEditar}">
 					<p:panelGrid id="tblEndereco" columns="2"
 						styleClass="tabelaSemBorda">
 						<p:outputLabel value="#{msgs.Logradouro}" />
@@ -151,7 +149,7 @@
 
 				<h:panelGroup id="pngEnderecoExibir" layout="block"
 					styleClass="formularioEnderecoExibir"
-					rendered="#{cc.attrs.rendCancelarDesativado}">
+					rendered="#{cc.attrs.disabledCancelar}">
 					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 						<p:outputLabel value="#{msgs.Logradouro}:" />
 						<h:panelGrid columns="2">
