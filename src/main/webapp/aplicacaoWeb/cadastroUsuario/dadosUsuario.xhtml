@@ -4,9 +4,25 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
 
 <ui:composition>
+
+	<dmat:barraBotoesComposite id="dmatBotoesContatosEmpresa"
+		disabledEditar="#{cadastroUsuarioMB.btnUsuarioEditarDesativado}"
+		actionListenerEditar="#{cadastroUsuarioMB.editarUsuario}"
+		updateEditar="formCadEmpresa"
+		disabledCancelar="#{cadastroUsuarioMB.btnUsuarioCancelarDesativado}"
+		actionListenerCancelar="#{cadastroUsuarioMB.cancelarUsuario}"
+		updateCancelar="formCadEmpresa"
+		disabledSalvar="#{cadastroUsuarioMB.btnUsuarioSalvarDesativado}"
+		actionListenerSalvar="#{cadastroUsuarioMB.salvarUsuario}"
+		updateSalvar="formCadEmpresa" labelNovo="#{msgs.NovoDadosUsuario}"
+		disabledNovo="#{cadastroUsuarioMB.btnUsuarioNovoDesativado}"
+		actionListenerNovo="#{cadastroUsuarioMB.novoUsuario}"
+		updateNovo="formCadEmpresa" />
+
 	<p:panelGrid id="dadosUsuario" columns="2" styleClass="tabelaSemBorda"
 		rendered="#{cadastroUsuarioMB.btnUsuarioEditarDesativado}">
 		<p:outputLabel value="Data Cadastro" />
@@ -19,7 +35,8 @@
 
 		<p:outputLabel value="#{msgs.Genero}" />
 		<p:selectOneRadio value="#{cadastroUsuarioMB.usuario.genero}"
-			required="true" requiredMessage="#{msgs.MensagemUsuarioGeneroRequerido}">
+			required="true"
+			requiredMessage="#{msgs.MensagemUsuarioGeneroRequerido}">
 			<f:selectItem itemLabel="#{msgs.Masculino}" itemValue="1" />
 			<f:selectItem itemLabel="#{msgs.Feminino}" itemValue="2" />
 		</p:selectOneRadio>

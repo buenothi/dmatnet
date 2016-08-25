@@ -17,6 +17,7 @@ import javax.persistence.NoResultException;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DualListModel;
 
+import br.com.smartems.dmatnet.Converters.CNPJCPFConverter;
 import br.com.smartems.dmatnet.EJB.Facade.EmpresaGrupoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.EstadoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.PessoaJuridicaFacadeLocal;
@@ -403,6 +404,15 @@ public class CadastroEmpresaMB implements Serializable {
 			this.mascaraPessoaJuridica = "999.999.999-99";
 			break;
 		}
+	}
+	
+	public String getNumPessoaJuridicaFormatado(){
+		CNPJCPFConverter converter = new CNPJCPFConverter();
+		String numPessoaJuridicaFormatado = new String();
+		if (this.dadosCadastrais.getNumCNPJ() != null){
+			numPessoaJuridicaFormatado = converter.getNumPessoaJuridicaFormatado(this.dadosCadastrais.getNumCNPJ());
+		}
+		return numPessoaJuridicaFormatado;
 	}
 
 	
