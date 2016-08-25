@@ -27,7 +27,7 @@ public class EmpresaCadastroEntity implements Serializable {
 	private int processoEnvioDados;
 	private String versaoApp;
 	private int tipoInscricao;
-	private Long numCNPJ;
+	private String numCNPJ;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataInicioCadastro;
@@ -115,11 +115,11 @@ public class EmpresaCadastroEntity implements Serializable {
 		this.tipoInscricao = tipoInscricao;
 	}
 
-	public Long getNumCNPJ() {
+	public String getNumCNPJ() {
 		return numCNPJ;
 	}
 
-	public void setNumCNPJ(Long numCNPJ) {
+	public void setNumCNPJ(String numCNPJ) {
 		
 		this.numCNPJ = numCNPJ;
 	}
