@@ -39,34 +39,7 @@
 				<ui:include src="/aplicacaoWeb/cadastroUsuario/dadosUsuario.xhtml" />
 			</p:tab>
 			<p:tab title="#{msgs.Endereco}">
-				<dmat:enderecoComposite id="dmatEnderecoUsuario"
-					disabledCancelar="#{cadastroUsuarioMB.btnEnderecoCancelarDesativado}"
-					actionListenerCancelar="#{cadastroUsuarioMB.cancelarEnderecoUsuario}"
-					updateCancelar="formCadEmpresa"
-					
-					disabledEditar="#{cadastroUsuarioMB.btnEnderecoEditarDesativado}"
-					actionListenerEditar="#{cadastroUsuarioMB.editarEnderecoUsuario}"
-					updateEditar="formCadEmpresa"
-					
-					disabledNovo="#{cadastroUsuarioMB.btnEnderecoNovoDesativado}"
-					actionListenerNovo="#{cadastroUsuarioMB.novoEnderecoUsuario}"
-					updateNovo="formCadEmpresa"
-					
-					disabledSalvar="#{cadastroUsuarioMB.btnEnderecoSalvarDesativado}"
-					actionListenerSalvar="#{cadastroUsuarioMB.salvarEnderecoUsuario}"
-					updateSalvar="formCadEmpresa"
-					
-					ajaxComponentRender="formCadEmpresa:tbwCadastroUsuario:dmatEnderecoUsuario:form:acpEndereco:listCidade"
-					bairro="#{cadastroUsuarioMB.enderecoUsuario.bairro}"
-					caixaPostal="#{cadastroUsuarioMB.enderecoUsuario.caixaPostal}"
-					cep="#{cadastroUsuarioMB.enderecoUsuario.cep}"
-					cidade="#{cadastroUsuarioMB.enderecoUsuario.cidade}"
-					estado="#{cadastroUsuarioMB.enderecoUsuario.estado}"
-					logradouroComplemento="#{cadastroUsuarioMB.enderecoUsuario.logradouroComplemento}"
-					logradouroNome="#{cadastroUsuarioMB.enderecoUsuario.logradouroNome}"
-					logradouroNumero="#{cadastroUsuarioMB.enderecoUsuario.logradouroNumero}"
-					logradouroTipo="#{cadastroUsuarioMB.enderecoUsuario.logradouroTipo}"	
-				/>
+				<ui:include src="/aplicacaoWeb/cadastroUsuario/enderecoUsuario.xhtml" />
 			</p:tab>
 			<p:tab title="#{msgs.Contatos}">
 			</p:tab>

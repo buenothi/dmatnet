@@ -147,6 +147,7 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isBtnUsuarioCancelarDesativado = false;
 		this.isBtnUsuarioSalvarDesativado = false;
 		this.isBtnUsuarioNovoDesativado = true;
+		System.out.println("Teste Editar");
 	}
 	
 	public void cancelarUsuario(ActionEvent e) {

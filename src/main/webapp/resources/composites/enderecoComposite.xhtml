@@ -63,164 +63,162 @@
 </composite:interface>
 
 <composite:implementation>
-	<h:form id="form">
-		<dmat:barraBotoesComposite id="barraCRUDEndereco"
-			disabledEditar="#{cc.attrs.disabledEditar}"
-			actionListenerEditar="#{cc.attrs.actionListenerEditar}"
-			updateEditar="#{cc.attrs.updateEditar}"
-			disabledCancelar="#{cc.attrs.disabledCancelar}"
-			actionListenerCancelar="#{cc.attrs.actionListenerCancelar}"
-			updateCancelar="#{cc.attrs.updateCancelar}"
-			disabledSalvar="#{cc.attrs.disabledSalvar}"
-			actionListenerSalvar="#{cc.attrs.actionListenerSalvar}"
-			updateSalvar="#{cc.attrs.updateSalvar}"
-			labelNovo="#{msgs.NovoEndereco}"
-			disabledNovo="#{cc.attrs.disabledNovo}"
-			actionListenerNovo="#{cc.attrs.actionListenerNovo}"
-			updateNovo="#{cc.attrs.updateNovo}" />
-		<p:accordionPanel id="acpEndereco">
-			<p:tab id="tabEndereco" title="#{msgs.Endereco}">
-				<h:panelGroup id="pngEnderecoEditar" layout="block"
-					styleClass="formularioEnderecoEditar"
-					rendered="#{cc.attrs.disabledEditar}">
-					<p:panelGrid id="tblEndereco" columns="2"
-						styleClass="tabelaSemBorda">
-						<p:outputLabel value="#{msgs.Logradouro}" />
-						<h:panelGrid columns="2">
-							<p:selectOneMenu id="listLogradouroTipo" style="width: 100px">
-								<f:selectItem itemLabel="Rua" />
-								<f:selectItem itemLabel="Avenida" />
-								<f:selectItem itemLabel="Alameda" />
-							</p:selectOneMenu>
-							<p:inputText id="logradouroNome" maxlength="250"
-								style="width: 290px" value="#{cc.attrs.logradouroNome}" />
-						</h:panelGrid>
+	<dmat:barraBotoesComposite id="barraCRUDEndereco"
+		disabledEditar="#{cc.attrs.disabledEditar}"
+		actionListenerEditar="#{cc.attrs.actionListenerEditar}"
+		updateEditar="#{cc.attrs.updateEditar}"
+		disabledCancelar="#{cc.attrs.disabledCancelar}"
+		actionListenerCancelar="#{cc.attrs.actionListenerCancelar}"
+		updateCancelar="#{cc.attrs.updateCancelar}"
+		disabledSalvar="#{cc.attrs.disabledSalvar}"
+		actionListenerSalvar="#{cc.attrs.actionListenerSalvar}"
+		updateSalvar="#{cc.attrs.updateSalvar}"
+		labelNovo="#{msgs.NovoEndereco}"
+		disabledNovo="#{cc.attrs.disabledNovo}"
+		actionListenerNovo="#{cc.attrs.actionListenerNovo}"
+		updateNovo="#{cc.attrs.updateNovo}" />
+	<p:accordionPanel id="acpEndereco">
+		<p:tab id="tabEndereco" title="#{msgs.Endereco}">
+			<h:panelGroup id="pngEnderecoEditar" layout="block"
+				styleClass="formularioEnderecoEditar"
+				rendered="#{cc.attrs.disabledEditar}">
+				<p:panelGrid id="tblEndereco" columns="2"
+					styleClass="tabelaSemBorda">
+					<p:outputLabel value="#{msgs.Logradouro}" />
+					<h:panelGrid columns="2">
+						<p:selectOneMenu id="listLogradouroTipo" style="width: 100px">
+							<f:selectItem itemLabel="Rua" />
+							<f:selectItem itemLabel="Avenida" />
+							<f:selectItem itemLabel="Alameda" />
+						</p:selectOneMenu>
+						<p:inputText id="logradouroNome" maxlength="250"
+							style="width: 290px" value="#{cc.attrs.logradouroNome}" />
+					</h:panelGrid>
 
-						<p:outputLabel value="#{msgs.Numero}" />
-						<h:panelGrid columns="4">
-							<p:inputText id="logradouroNumero" maxlength="10"
-								style="width: 100px" value="#{cc.attrs.logradouroNumero}" />
-							<p:spacer height="14" />
-							<p:outputLabel value="#{msgs.Complemento}" />
-							<p:inputText id="logradouroComplemento" maxlength="250"
-								style="width: 180px" value="#{cc.attrs.logradouroComplemento}" />
-						</h:panelGrid>
+					<p:outputLabel value="#{msgs.Numero}" />
+					<h:panelGrid columns="4">
+						<p:inputText id="logradouroNumero" maxlength="10"
+							style="width: 100px" value="#{cc.attrs.logradouroNumero}" />
+						<p:spacer height="14" />
+						<p:outputLabel value="#{msgs.Complemento}" />
+						<p:inputText id="logradouroComplemento" maxlength="250"
+							style="width: 180px" value="#{cc.attrs.logradouroComplemento}" />
+					</h:panelGrid>
 
-						<p:outputLabel value="#{msgs.Bairro}" />
-						<h:panelGrid>
-							<p:inputText id="bairro" maxlength="250" style="width: 393px"
-								value="#{cc.attrs.bairro}" />
-						</h:panelGrid>
+					<p:outputLabel value="#{msgs.Bairro}" />
+					<h:panelGrid>
+						<p:inputText id="bairro" maxlength="250" style="width: 393px"
+							value="#{cc.attrs.bairro}" />
+					</h:panelGrid>
 
-						<p:outputLabel value="#{msgs.CEP}" />
-						<h:panelGrid columns="4">
-							<p:inputMask id="cep" mask="99999-999" maxlength="8" size="8"
-								value="#{cc.attrs.cep}" />
-							<p:spacer height="15" />
-							<p:outputLabel value="#{msgs.CaixaPostal}" />
-							<p:inputText id="caixaPostal" maxlength="8" style="width: 200px"
-								value="#{cc.attrs.caixaPostal}" />
-						</h:panelGrid>
+					<p:outputLabel value="#{msgs.CEP}" />
+					<h:panelGrid columns="4">
+						<p:inputMask id="cep" mask="99999-999" maxlength="8" size="8"
+							value="#{cc.attrs.cep}" />
+						<p:spacer height="15" />
+						<p:outputLabel value="#{msgs.CaixaPostal}" />
+						<p:inputText id="caixaPostal" maxlength="8" style="width: 200px"
+							value="#{cc.attrs.caixaPostal}" />
+					</h:panelGrid>
 
-						<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}" />
-						<h:panelGrid id="tblCidadeEstado" columns="2">
-							<p:selectOneMenu id="listEstado" panelStyle="width:150px"
-								effect="fade" style="width:60px" value="#{cc.attrs.estado}"
-								converter="estadoConverter" immediate="true">
-								<p:ajax event="change" listener="#{estadoMB.onSelectionEstado}"
-									update="#{cc.attrs.ajaxComponentRender}" />
-								<f:selectItem itemLabel="UF" noSelectionOption="true" />
-								<f:selectItems value="#{estadoMB.estados}" var="estado"
-									itemLabel="#{estado.estadoSigla}" itemValue="#{estado}" />
-							</p:selectOneMenu>
-							<p:selectOneMenu id="listCidade" panelStyle="width:180px"
-								effect="fade" style="width:333px" value="#{cc.attrs.cidade}"
-								converter="cidadeConverter" immediate="true" filter="true"
-								filterMatchMode="startsWith">
-								<f:selectItem itemLabel="Selecionar a Cidade"
-									noSelectionOption="true" />
-								<f:selectItems value="#{estadoMB.cidadesPorEstado}" var="cidade"
-									itemLabel="#{cidade.cidadeNome}" itemValue="#{cidade}" />
-							</p:selectOneMenu>
-						</h:panelGrid>
-					</p:panelGrid>
+					<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}" />
+					<h:panelGrid id="tblCidadeEstado" columns="2">
+						<p:selectOneMenu id="listEstado" panelStyle="width:150px"
+							effect="fade" style="width:60px" value="#{cc.attrs.estado}"
+							converter="estadoConverter" immediate="true">
+							<p:ajax event="change" listener="#{estadoMB.onSelectionEstado}"
+								update="#{cc.attrs.ajaxComponentRender}" />
+							<f:selectItem itemLabel="UF" noSelectionOption="true" />
+							<f:selectItems value="#{estadoMB.estados}" var="estado"
+								itemLabel="#{estado.estadoSigla}" itemValue="#{estado}" />
+						</p:selectOneMenu>
+						<p:selectOneMenu id="listCidade" panelStyle="width:180px"
+							effect="fade" style="width:333px" value="#{cc.attrs.cidade}"
+							converter="cidadeConverter" immediate="true" filter="true"
+							filterMatchMode="startsWith">
+							<f:selectItem itemLabel="Selecionar a Cidade"
+								noSelectionOption="true" />
+							<f:selectItems value="#{estadoMB.cidadesPorEstado}" var="cidade"
+								itemLabel="#{cidade.cidadeNome}" itemValue="#{cidade}" />
+						</p:selectOneMenu>
+					</h:panelGrid>
+				</p:panelGrid>
 
-				</h:panelGroup>
+			</h:panelGroup>
 
-				<h:panelGroup id="pngEnderecoExibir" layout="block"
-					styleClass="formularioEnderecoExibir"
-					rendered="#{cc.attrs.disabledCancelar}">
-					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-						<p:outputLabel value="#{msgs.Logradouro}:" />
-						<h:panelGrid columns="2">
-							<p:outputLabel id="logradouroTipoExibir"
-								value="#{cc.attrs.logradouroTipo}" />
-							<p:outputLabel id="logradouroNomeExibir"
-								value="#{cc.attrs.logradouroNome}" />
-						</h:panelGrid>
+			<h:panelGroup id="pngEnderecoExibir" layout="block"
+				styleClass="formularioEnderecoExibir"
+				rendered="#{cc.attrs.disabledCancelar}">
+				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+					<p:outputLabel value="#{msgs.Logradouro}:" />
+					<h:panelGrid columns="2">
+						<p:outputLabel id="logradouroTipoExibir"
+							value="#{cc.attrs.logradouroTipo}" />
+						<p:outputLabel id="logradouroNomeExibir"
+							value="#{cc.attrs.logradouroNome}" />
+					</h:panelGrid>
 
-						<p:outputLabel value="#{msgs.Numero}:" />
-						<h:panelGrid columns="4">
-							<p:outputLabel id="logradouroNumeroExibir"
-								value="#{cc.attrs.logradouroNumero}" />
-							<p:spacer height="14" />
-							<p:outputLabel id="logradouroComplementoExibir"
-								value="#{cc.attrs.logradouroComplemento}" />
-						</h:panelGrid>
+					<p:outputLabel value="#{msgs.Numero}:" />
+					<h:panelGrid columns="4">
+						<p:outputLabel id="logradouroNumeroExibir"
+							value="#{cc.attrs.logradouroNumero}" />
+						<p:spacer height="14" />
+						<p:outputLabel id="logradouroComplementoExibir"
+							value="#{cc.attrs.logradouroComplemento}" />
+					</h:panelGrid>
 
-						<p:outputLabel value="#{msgs.Bairro}:" />
-						<h:panelGrid>
-							<p:outputLabel id="bairroExibir" value="#{cc.attrs.bairro}" />
-						</h:panelGrid>
+					<p:outputLabel value="#{msgs.Bairro}:" />
+					<h:panelGrid>
+						<p:outputLabel id="bairroExibir" value="#{cc.attrs.bairro}" />
+					</h:panelGrid>
 
-						<p:outputLabel value="#{msgs.CEP}:" />
-						<h:panelGrid columns="4">
-							<p:outputLabel id="cepExibir" value="#{cc.attrs.cep}" />
-							<p:spacer height="15" />
-							<p:outputLabel value="#{msgs.CaixaPostal}:" />
-							<p:outputLabel id="caixaPostalExibir"
-								value="#{cc.attrs.caixaPostal}" />
-						</h:panelGrid>
+					<p:outputLabel value="#{msgs.CEP}:" />
+					<h:panelGrid columns="4">
+						<p:outputLabel id="cepExibir" value="#{cc.attrs.cep}" />
+						<p:spacer height="15" />
+						<p:outputLabel value="#{msgs.CaixaPostal}:" />
+						<p:outputLabel id="caixaPostalExibir"
+							value="#{cc.attrs.caixaPostal}" />
+					</h:panelGrid>
 
-						<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}:" />
-						<h:panelGrid columns="2" cellspacing="13">
-							<p:outputLabel id="estadoExibir" value="#{cc.attrs.estado}" />
-							<p:outputLabel id="cidadeExibir" value="#{cc.attrs.cidade}" />
-						</h:panelGrid>
-					</p:panelGrid>
+					<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}:" />
+					<h:panelGrid columns="2" cellspacing="13">
+						<p:outputLabel id="estadoExibir" value="#{cc.attrs.estado}" />
+						<p:outputLabel id="cidadeExibir" value="#{cc.attrs.cidade}" />
+					</h:panelGrid>
+				</p:panelGrid>
 
-				</h:panelGroup>
-			</p:tab>
+			</h:panelGroup>
+		</p:tab>
 
-			<p:tab id="tabEnderecoHistorico" title="#{msgs.Historico}">
-				<p:dataTable scrollable="true" styleClass="dataTable">
-					<f:facet name="header">#{msgs.Historico}</f:facet>
-					<p:column headerText="#{msgs.DataCadastro}" width="110">
-					</p:column>
-					<p:column headerText="#{msgs.DataTermino}" width="110">
-					</p:column>
-					<p:column headerText="#{msgs.Logradouro}">
-					</p:column>
-					<p:column headerText="#{msgs.Endereco}">
-					</p:column>
-					<p:column headerText="#{msgs.Numero}">
-					</p:column>
-					<p:column headerText="#{msgs.Complemento}">
-					</p:column>
-					<p:column headerText="#{msgs.Bairro}">
-					</p:column>
-					<p:column headerText="#{msgs.CEP}">
-					</p:column>
-					<p:column headerText="#{msgs.CaixaPostal}">
-					</p:column>
-					<p:column headerText="#{msgs.Cidade}">
-					</p:column>
-					<p:column headerText="#{msgs.Estado}">
-					</p:column>
-				</p:dataTable>
-			</p:tab>
+		<p:tab id="tabEnderecoHistorico" title="#{msgs.Historico}">
+			<p:dataTable scrollable="true" styleClass="dataTable">
+				<f:facet name="header">#{msgs.Historico}</f:facet>
+				<p:column headerText="#{msgs.DataCadastro}" width="110">
+				</p:column>
+				<p:column headerText="#{msgs.DataTermino}" width="110">
+				</p:column>
+				<p:column headerText="#{msgs.Logradouro}">
+				</p:column>
+				<p:column headerText="#{msgs.Endereco}">
+				</p:column>
+				<p:column headerText="#{msgs.Numero}">
+				</p:column>
+				<p:column headerText="#{msgs.Complemento}">
+				</p:column>
+				<p:column headerText="#{msgs.Bairro}">
+				</p:column>
+				<p:column headerText="#{msgs.CEP}">
+				</p:column>
+				<p:column headerText="#{msgs.CaixaPostal}">
+				</p:column>
+				<p:column headerText="#{msgs.Cidade}">
+				</p:column>
+				<p:column headerText="#{msgs.Estado}">
+				</p:column>
+			</p:dataTable>
+		</p:tab>
 
-		</p:accordionPanel>
-	</h:form>
+	</p:accordionPanel>
 </composite:implementation>
 </html>
