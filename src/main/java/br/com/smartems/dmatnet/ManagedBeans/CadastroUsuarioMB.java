@@ -38,6 +38,14 @@ public class CadastroUsuarioMB implements Serializable {
 	private boolean isBtnEnderecoCancelarDesativado = true;
 	private boolean isBtnEnderecoSalvarDesativado = true;
 	private boolean isBtnEnderecoNovoDesativado = false;
+	
+	
+	// botões referentes à Edição do Contatos de Usuários
+	
+	private boolean isBtnContatosEditarDesativado = false;
+	private boolean isBtnContatosCancelarDesativado = true;
+	private boolean isBtnContatosSalvarDesativado = true;
+	private boolean isBtnContatosNovoDesativado = false;
 
 	public UsuarioEntity getUsuario() {
 		if(usuario == null){
@@ -117,6 +125,38 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isBtnEnderecoNovoDesativado = isBtnEnderecoNovoDesativado;
 	}
 
+	public boolean isBtnContatosEditarDesativado() {
+		return isBtnContatosEditarDesativado;
+	}
+
+	public void setBtnContatosEditarDesativado(boolean isBtnContatosEditarDesativado) {
+		this.isBtnContatosEditarDesativado = isBtnContatosEditarDesativado;
+	}
+
+	public boolean isBtnContatosCancelarDesativado() {
+		return isBtnContatosCancelarDesativado;
+	}
+
+	public void setBtnContatosCancelarDesativado(boolean isBtnContatosCancelarDesativado) {
+		this.isBtnContatosCancelarDesativado = isBtnContatosCancelarDesativado;
+	}
+
+	public boolean isBtnContatosSalvarDesativado() {
+		return isBtnContatosSalvarDesativado;
+	}
+
+	public void setBtnContatosSalvarDesativado(boolean isBtnContatosSalvarDesativado) {
+		this.isBtnContatosSalvarDesativado = isBtnContatosSalvarDesativado;
+	}
+
+	public boolean isBtnContatosNovoDesativado() {
+		return isBtnContatosNovoDesativado;
+	}
+
+	public void setBtnContatosNovoDesativado(boolean isBtnContatosNovoDesativado) {
+		this.isBtnContatosNovoDesativado = isBtnContatosNovoDesativado;
+	}
+
 	public EnderecoEntity getEnderecoUsuario() {
 		if(this.enderecoUsuario == null){
 			this.enderecoUsuario = new EnderecoEntity();
@@ -172,7 +212,7 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 	
 	
-	// action dos botões de endereçco do usuário
+	// action dos botões de endereço do usuário
 	
 	public void editarEnderecoUsuario(ActionEvent e) {
 		this.isBtnEnderecoEditarDesativado = true;
@@ -202,4 +242,34 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isBtnEnderecoNovoDesativado = true;
 	}
 	
+	
+	// action dos botões de contato do usuário
+	
+	public void editarContatoUsuario(ActionEvent e) {
+		this.isBtnContatosEditarDesativado = true;
+		this.isBtnContatosCancelarDesativado = false;
+		this.isBtnContatosSalvarDesativado = false;
+		this.isBtnContatosNovoDesativado = true;
+	}
+	
+	public void cancelarContatoUsuario(ActionEvent e) {
+		this.isBtnContatosEditarDesativado = false;
+		this.isBtnContatosCancelarDesativado = true;
+		this.isBtnContatosSalvarDesativado = true;
+		this.isBtnContatosNovoDesativado = false;
+	}
+	
+	public void salvarContatoUsuario(ActionEvent e) {
+		this.isBtnContatosEditarDesativado = false;
+		this.isBtnContatosCancelarDesativado = true;
+		this.isBtnContatosSalvarDesativado = true;
+		this.isBtnContatosNovoDesativado = false;
+	}
+	
+	public void novoContatoUsuario(ActionEvent e) {
+		this.isBtnContatosEditarDesativado = true;
+		this.isBtnContatosCancelarDesativado = false;
+		this.isBtnContatosSalvarDesativado = false;
+		this.isBtnContatosNovoDesativado = true;
+	}
 }

@@ -21,7 +21,8 @@
 		updateSalvar="formCadEmpresa" labelNovo="#{msgs.NovoDadosUsuario}"
 		disabledNovo="#{cadastroUsuarioMB.btnUsuarioNovoDesativado}"
 		actionListenerNovo="#{cadastroUsuarioMB.novoUsuario}"
-		updateNovo="formCadEmpresa" />
+		updateNovo="formCadEmpresa" 
+		renderedBtnNovo="false"/>
 
 	<p:panelGrid id="dadosUsuario" columns="2" styleClass="tabelaSemBorda"
 		rendered="#{cadastroUsuarioMB.btnUsuarioEditarDesativado}">
@@ -34,11 +35,9 @@
 		<p:inputText value="#{cadastroUsuarioMB.usuario.nome}" />
 
 		<p:outputLabel value="#{msgs.Genero}" />
-		<p:selectOneRadio value="#{cadastroUsuarioMB.usuario.genero}"
-			required="true"
-			requiredMessage="#{msgs.MensagemUsuarioGeneroRequerido}">
+		<p:selectOneRadio value="#{cadastroUsuarioMB.usuario.genero}">
 			<f:selectItem itemLabel="#{msgs.Masculino}" itemValue="1" />
-			<f:selectItem itemLabel="#{msgs.Feminino}" itemValue="2" />
+			<f:selectItem itemLabel="#{msgs.Feminino}" itemValue="2"/>
 		</p:selectOneRadio>
 
 	</p:panelGrid>

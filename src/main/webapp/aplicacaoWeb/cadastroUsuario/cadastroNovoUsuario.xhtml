@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
+
+<ui:composition>
+	<p:wizard>
+		<p:tab title="#{msgs.DadosUsuario}">
+			<p:panelGrid id="dadosUsuario" columns="2"
+				styleClass="tabelaSemBorda">
+				<p:outputLabel value="Data Cadastro" />
+				<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+					pattern="dd/MM/yyyy" mask="true" size="8" />
+
+				<p:outputLabel value="#{msgs.Nome}" />
+				<p:inputText />
+
+				<p:outputLabel value="#{msgs.Genero}" />
+				<p:selectOneRadio>
+					<f:selectItem itemLabel="#{msgs.Masculino}" itemValue="1" />
+					<f:selectItem itemLabel="#{msgs.Feminino}" itemValue="2" />
+				</p:selectOneRadio>
+			</p:panelGrid>
+		</p:tab>
+		<p:tab title="#{msgs.Endereco}">
+			<h:panelGroup id="pngEnderecoEditar" layout="block"
+				styleClass="formularioEnderecoEditar">
+				<p:panelGrid id="tblEndereco" columns="2"
+					styleClass="tabelaSemBorda">
+					<p:outputLabel value="#{msgs.Logradouro}" />
+					<h:panelGrid columns="2">
+						<p:selectOneMenu id="listLogradouroTipo" style="width: 100px">
+							<f:selectItem itemLabel="Rua" />
+							<f:selectItem itemLabel="Avenida" />
+							<f:selectItem itemLabel="Alameda" />
+						</p:selectOneMenu>
+						<p:inputText id="logradouroNome" maxlength="250"
+							style="width: 290px" />
+					</h:panelGrid>
+
+					<p:outputLabel value="#{msgs.Numero}" />
+					<h:panelGrid columns="4">
+						<p:inputText id="logradouroNumero" maxlength="10"
+							style="width: 100px" />
+						<p:spacer height="14" />
+						<p:outputLabel value="#{msgs.Complemento}" />
+						<p:inputText id="logradouroComplemento" maxlength="250"
+							style="width: 180px" />
+					</h:panelGrid>
+
+					<p:outputLabel value="#{msgs.Bairro}" />
+					<h:panelGrid>
+						<p:inputText id="bairro" maxlength="250" style="width: 393px"/>
+					</h:panelGrid>
+
+					<p:outputLabel value="#{msgs.CEP}" />
+					<h:panelGrid columns="4">
+						<p:inputMask id="cep" mask="99999-999" maxlength="8" size="8"/>
+						<p:spacer height="15" />
+						<p:outputLabel value="#{msgs.CaixaPostal}" />
+						<p:inputText id="caixaPostal" maxlength="8" style="width: 200px" />
+					</h:panelGrid>
+
+					<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}" />
+					<h:panelGrid id="tblCidadeEstado" columns="2">
+						<p:selectOneMenu id="listEstado" panelStyle="width:150px"
+							effect="fade" style="width:60px" converter="estadoConverter" immediate="true">
+							<p:ajax event="change" listener="#{estadoMB.onSelectionEstado}" />
+							<f:selectItem itemLabel="UF" noSelectionOption="true" />
+							<f:selectItems value="#{estadoMB.estados}" var="estado"
+								itemLabel="#{estado.estadoSigla}" itemValue="#{estado}" />
+						</p:selectOneMenu>
+						<p:selectOneMenu id="listCidade" panelStyle="width:180px"
+							effect="fade" style="width:333px" 
+							converter="cidadeConverter" immediate="true" filter="true"
+							filterMatchMode="startsWith">
+							<f:selectItem itemLabel="Selecionar a Cidade"
+								noSelectionOption="true" />
+							<f:selectItems value="#{estadoMB.cidadesPorEstado}" var="cidade"
+								itemLabel="#{cidade.cidadeNome}" itemValue="#{cidade}" />
+						</p:selectOneMenu>
+					</h:panelGrid>
+				</p:panelGrid>
+
+			</h:panelGroup>
+		</p:tab>
+		<p:tab title="#{msgs.ContatoUsuario}"></p:tab>
+	</p:wizard>
+</ui:composition>
+</html>

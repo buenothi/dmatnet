@@ -29,6 +29,7 @@
 	<composite:attribute name="actionListenerNovo"
 		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
 	<composite:attribute name="updateNovo" />
+	<composite:attribute name="renderedBtnNovo" />
 
 </composite:interface>
 
@@ -54,6 +55,7 @@
 		<p:commandButton id="btnNovoObjeto" value="#{cc.attrs.labelNovo}"
 			styleClass="botoes" icon="fa fa-plus"
 			disabled="#{cc.attrs.disabledNovo}"
+			rendered="#{cc.attrs.renderedBtnNovo}"
 			actionListener="#{cc.attrs.actionListenerNovo}"
 			update="#{cc.attrs.updateNovo}" />
 	</h:panelGroup>
