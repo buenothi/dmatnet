@@ -110,27 +110,44 @@
 		modal="true" width="830" header="#{msgs.SelecionarEmpresa}"
 		responsive="true" style="padding:10px">
 
-		<dmat:barraBotoesComposite
-			disabledEditar="#{cadastroEmpresaMB.btnEmpresaEditarDesativado}"
-			actionListenerEditar="#{cadastroEmpresaMB.editarCadastroEmpresa}"
-			updateEditar="" labelNovo="#{msgs.NovaEmpresa}"
-			disabledNovo="#{cadastroEmpresaMB.btnEmpresaNovaEmpresaDesativado}"
-			actionListenerNovo="#{cadastroEmpresaMB.novoCadastroEmpresa}"
-			updateNovo=""
-			disabledCancelar="#{cadastroEmpresaMB.btnEmpresaCancelarDesativado}"
-			actionListenerCancelar="#{cadastroEmpresaMB.cancelarCadastroEmpresa}"
-			updateCancelar=""
-			disabledSalvar="#{cadastroEmpresaMB.btnEmpresaSalvarDesativado}"
-			actionListenerSalvar="#{cadastroEmpresaMB.salvarCadastroEmpresa}"
-			updateSalvar="" />
+		<h:panelGroup>
+			<p:commandButton icon="fa fa-plus" value="#{msgs.NovaEmpresa}" />
+		</h:panelGroup>
 
 		<p:spacer width="100%" height="10px" />
 
-		<p:dataTable styleClass="dataTable" scrollable="true">
-			<p:column headerText="#{msgs.Nome}" width="250" />
-			<p:column headerText="#{msgs.RazaoSocial}" width="400" />
-			<p:column width="30">
-				<p:commandButton icon="fa fa-check-square" />
+		<h:panelGrid columns="2" style="width:100%">
+			<p:inputText style="width: 100%" />
+			<p:commandButton icon="fa fa-search"
+				style="font-size:10pt;height:31px" />
+		</h:panelGrid>
+
+		<p:spacer width="100%" height="10px" />
+		
+		<p:dataTable styleClass="dataTable" scrollable="true" paginator="true"
+			rows="10" editable="true">
+			<p:column headerText="#{msgs.Nome}" width="250">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="#{msgs.RazaoSocial}" width="400">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column style="width:32px">
+				<p:rowEditor />
 			</p:column>
 		</p:dataTable>
 	</p:dialog>
