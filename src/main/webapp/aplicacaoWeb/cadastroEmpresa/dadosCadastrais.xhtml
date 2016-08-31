@@ -37,14 +37,6 @@
 						pattern="dd/MM/yyyy" mask="true" size="8"
 						value="#{cadastroEmpresaMB.dadosCadastrais.dataInicioCadastro}" />
 
-					<p:outputLabel value="#{msgs.EmpresaGrupo}:" />
-					<h:panelGroup>
-						<p:outputLabel
-							value="#{cadastroEmpresaMB.empresa.grupo.nomeGrupo}" />
-						<p:commandButton value="#{msgs.EmpresaGrupo}"
-							onclick="PF('dlgGrupo').show()" />
-					</h:panelGroup>
-
 					<p:outputLabel value="#{msgs.TipoInscricao}:" />
 					<p:selectOneMenu style="width:100px"
 						value="#{cadastroEmpresaMB.dadosCadastrais.tipoInscricao}">
@@ -73,12 +65,6 @@
 						<p:commandButton value="#{msgs.ProcessoFAP}" />
 					</h:panelGroup>
 				</p:panelGrid>
-
-				<p:dialog id="dlgGrupo" header="#{msgs.EmpresaGrupo}"
-					widgetVar="dlgGrupo" closable="true" resizable="false"
-					draggable="true" responsive="true" styleClass="pdialogGrupo">
-					<ui:include src="/aplicacaoWeb/cadastroEmpresa/grupoEmpresa.xhtml" />
-				</p:dialog>
 
 				<p:panelGrid columns="4" styleClass="tabelaSemBorda">
 					<p:outputLabel value="#{msgs.CodClassificacaoTributaria}" />
@@ -124,9 +110,6 @@
 						<f:convertDateTime type="both" timeZone="GMT-3"
 							pattern="dd/MM/YYYY" />
 					</p:outputLabel>
-
-					<p:outputLabel value="#{msgs.EmpresaGrupo}:" />
-					<p:outputLabel value="#{cadastroEmpresaMB.grupoEmpresa.nomeGrupo}" />
 
 					<p:outputLabel value="#{msgs.TipoInscricao}:" />
 					<p:outputLabel

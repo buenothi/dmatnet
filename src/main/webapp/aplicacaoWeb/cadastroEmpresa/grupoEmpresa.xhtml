@@ -13,19 +13,17 @@
 			<dmat:barraBotoesComposite
 				disabledEditar="#{cadastroEmpresaMB.btnGrupoEditarDesativado}"
 				actionListenerEditar="#{cadastroEmpresaMB.editarCadastroGrupo}"
-				updateEditar="formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:pngGrupos"
+				updateEditar="formCadEmpresa"
 				disabledCancelar="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}"
 				actionListenerCancelar="#{cadastroEmpresaMB.cancelarCadastroGrupo}"
-				updateCancelar="formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:pngGrupos"
+				updateCancelar="formCadEmpresa"
 				disabledSalvar="#{cadastroEmpresaMB.btnGrupoSalvarDesativado}"
 				actionListenerSalvar="#{cadastroEmpresaMB.salvarCadastroGrupo}"
-				updateSalvar="formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:pngGrupos,
-					formCadEmpresa:growlPrincipal"
+				updateSalvar="formCadEmpresa, formCadEmpresa:growlPrincipal"
 				labelNovo="#{msgs.EmpresaGrupoNovo}"
 				disabledNovo="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
 				actionListenerNovo="#{cadastroEmpresaMB.novoCadastroGrupo}"
-				updateNovo="formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:pngGrupos,
-					formCadEmpresa:growlPrincipal" 
+				updateNovo="formCadEmpresa, formCadEmpresa:growlPrincipal" 
 				renderedBtnNovo="true"/>
 
 			<p:commandButton id="btnSelecionarGrupo"
@@ -33,8 +31,7 @@
 				icon="fa fa-check"
 				disabled="#{cadastroEmpresaMB.btnSelecionarGrupo}"
 				actionListener="#{cadastroEmpresaMB.selecionarGrupo}"
-				update="formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:pngGrupos,
-					formCadEmpresa:growlPrincipal" />
+				update="formCadEmpresa,	formCadEmpresa:growlPrincipal" />
 		</h:panelGroup>
 
 		<h:panelGroup id="pngGruposLista" layout="block"
@@ -51,7 +48,7 @@
 				rows="7">
 				<p:ajax event="rowSelect"
 					listener="#{cadastroEmpresaMB.onSelectionGrupo}"
-					update="formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:pngGrupos" />
+					update="formCadEmpresa" />
 				<p:column>
 					<h:outputText value="#{grupo.nomeGrupo}" />
 				</p:column>
