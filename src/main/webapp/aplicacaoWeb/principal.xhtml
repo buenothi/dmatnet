@@ -106,7 +106,7 @@
 		<ui:include src="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml" />
 	</p:panel>
 
-	<p:dialog widgetVar="dlgSelecionarEmpresa" resizable="false"
+	<p:dialog id="dlgSelecionarEmpresa" widgetVar="dlgSelecionarEmpresa" resizable="false"
 		modal="true" width="830" header="#{msgs.SelecionarEmpresa}"
 		responsive="true" style="padding:10px">
 
@@ -159,7 +159,7 @@
 		<ui:include src="/aplicacaoWeb/cadastroEmpresa/grupoEmpresa.xhtml" />
 	</p:dialog>
 
-	<p:dialog widgetVar="dlgCriarEmpresa" resizable="false" modal="true"
+	<p:dialog id="dlgCriarEmpresa" widgetVar="dlgCriarEmpresa" resizable="false" modal="true"
 		width="450" header="#{msgs.NovaEmpresa}" responsive="true"
 		style="padding:10px">
 		<h:panelGroup>

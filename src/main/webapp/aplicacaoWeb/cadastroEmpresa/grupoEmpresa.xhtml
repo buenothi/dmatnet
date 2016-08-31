@@ -8,93 +8,88 @@
 	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
 
 <ui:composition>
-	<h:panelGroup id="pngGrupos">
-		<h:panelGroup id="pngGrupoBotoesCRUD">
-			<dmat:barraBotoesComposite
-				disabledEditar="#{cadastroEmpresaMB.btnGrupoEditarDesativado}"
-				actionListenerEditar="#{cadastroEmpresaMB.editarCadastroGrupo}"
-				updateEditar="formCadEmpresa"
-				disabledCancelar="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}"
-				actionListenerCancelar="#{cadastroEmpresaMB.cancelarCadastroGrupo}"
-				updateCancelar="formCadEmpresa"
-				disabledSalvar="#{cadastroEmpresaMB.btnGrupoSalvarDesativado}"
-				actionListenerSalvar="#{cadastroEmpresaMB.salvarCadastroGrupo}"
-				updateSalvar="formCadEmpresa, formCadEmpresa:growlPrincipal"
-				labelNovo="#{msgs.EmpresaGrupoNovo}"
-				disabledNovo="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
-				actionListenerNovo="#{cadastroEmpresaMB.novoCadastroGrupo}"
-				updateNovo="formCadEmpresa, formCadEmpresa:growlPrincipal" 
-				renderedBtnNovo="true"/>
+	<h:form id="formGrupoEmpresa">
+		<h:panelGroup id="pngGrupos">
+			<h:panelGroup id="pngGrupoBotoesCRUD">
+				<dmat:barraBotoesComposite
+					disabledEditar="#{cadastroEmpresaMB.btnGrupoEditarDesativado}"
+					actionListenerEditar="#{cadastroEmpresaMB.editarCadastroGrupo}"
+					updateEditar="formGrupoEmpresa, dlgSelecionarEmpresa"
+					disabledCancelar="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}"
+					actionListenerCancelar="#{cadastroEmpresaMB.cancelarCadastroGrupo}"
+					updateCancelar="formGrupoEmpresa, dlgSelecionarEmpresa"
+					disabledSalvar="#{cadastroEmpresaMB.btnGrupoSalvarDesativado}"
+					actionListenerSalvar="#{cadastroEmpresaMB.salvarCadastroGrupo}"
+					updateSalvar="formGrupoEmpresa, dlgSelecionarEmpresa, formCadEmpresa:growlPrincipal"
+					labelNovo="#{msgs.EmpresaGrupoNovo}"
+					disabledNovo="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
+					actionListenerNovo="#{cadastroEmpresaMB.novoCadastroGrupo}"
+					updateNovo="formGrupoEmpresa, dlgSelecionarEmpresa, formCadEmpresa:growlPrincipal"
+					renderedBtnNovo="true" />
+			</h:panelGroup>
 
-			<p:commandButton id="btnSelecionarGrupo"
-				value="#{msgs.EmpresaGrupoAtribuirGrupo}" styleClass="botoes"
-				icon="fa fa-check"
-				disabled="#{cadastroEmpresaMB.btnSelecionarGrupo}"
-				actionListener="#{cadastroEmpresaMB.selecionarGrupo}"
-				update="formCadEmpresa,	formCadEmpresa:growlPrincipal" />
-		</h:panelGroup>
+			<h:panelGroup id="pngGruposLista" layout="block"
+				styleClass="pdialogDivEsquerda">
+				<h:panelGrid columns="2">
+					<p:inputText style="width: 252px" />
+					<p:commandButton icon="fa fa-search"
+						style="font-size:10pt;height:31px" />
+				</h:panelGrid>
+				<p:dataTable id="dtlGrupos" var="grupo"
+					value="#{cadastroEmpresaMB.grupos}" selectionMode="single"
+					rowKey="#{grupo.idGrupo}"
+					selection="#{cadastroEmpresaMB.grupoSelecionado}" paginator="true"
+					rows="7">
+					<p:ajax event="rowSelect"
+						listener="#{cadastroEmpresaMB.onSelectionGrupo}"
+						update="formCadEmpresa" />
+					<p:column>
+						<h:outputText value="#{grupo.nomeGrupo}" />
+					</p:column>
+				</p:dataTable>
+			</h:panelGroup>
 
-		<h:panelGroup id="pngGruposLista" layout="block"
-			styleClass="pdialogDivEsquerda">
-			<h:panelGrid columns="2">
-				<p:inputText style="width: 252px" />
-				<p:commandButton icon="fa fa-search"
-					style="font-size:10pt;height:31px" />
-			</h:panelGrid>
-			<p:dataTable id="dtlGrupos" var="grupo"
-				value="#{cadastroEmpresaMB.grupos}" selectionMode="single"
-				rowKey="#{grupo.idGrupo}"
-				selection="#{cadastroEmpresaMB.grupoSelecionado}" paginator="true"
-				rows="7">
-				<p:ajax event="rowSelect"
-					listener="#{cadastroEmpresaMB.onSelectionGrupo}"
-					update="formCadEmpresa" />
-				<p:column>
-					<h:outputText value="#{grupo.nomeGrupo}" />
-				</p:column>
-			</p:dataTable>
-		</h:panelGroup>
+			<h:panelGroup id="pngGrupoEditar" layout="block"
+				styleClass="pdialogDivDireita"
+				rendered="#{cadastroEmpresaMB.tabEditarDesativado}">
+				<p:tabView id="tabEditarGrupo">
+					<p:tab title="#{msgs.EmpresaGrupo}">
+						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+							<p:outputLabel value="#{msgs.EmpresaGrupoNome}" />
+							<p:inputText size="33"
+								value="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
+							<p:outputLabel value="#{msgs.EmpresaGrupoDescricao}" />
+							<p:inputTextarea cols="33"
+								value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
+						</p:panelGrid>
+					</p:tab>
+					<p:tab title="#{msgs.Empresas}">
+					</p:tab>
+				</p:tabView>
+			</h:panelGroup>
 
-		<h:panelGroup id="pngGrupoEditar" layout="block"
-			styleClass="pdialogDivDireita"
-			rendered="#{cadastroEmpresaMB.tabEditarDesativado}">
-			<p:tabView id="tabEditarGrupo">
-				<p:tab title="#{msgs.EmpresaGrupo}">
-					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-						<p:outputLabel value="#{msgs.EmpresaGrupoNome}" />
-						<p:inputText size="33"
-							value="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
-						<p:outputLabel value="#{msgs.EmpresaGrupoDescricao}" />
-						<p:inputTextarea cols="33"
-							value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
-					</p:panelGrid>
-				</p:tab>
-				<p:tab title="#{msgs.Empresas}">
-				</p:tab>
-			</p:tabView>
+			<h:panelGroup id="pngGrupoExibir" layout="block"
+				styleClass="pdialogDivDireita"
+				rendered="#{cadastroEmpresaMB.tabExibirDesativado}">
+				<p:tabView id="tabExibirGrupo">
+					<p:tab title="#{msgs.EmpresaGrupo}">
+						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+							<p:outputLabel value="#{msgs.EmpresaGrupoNome}" />
+							<p:outputLabel
+								value="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
+							<p:outputLabel value="#{msgs.EmpresaGrupoDescricao}" />
+							<p:outputLabel
+								value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
+						</p:panelGrid>
+					</p:tab>
+					<p:tab title="#{msgs.Empresas}">
+						<p:pickList id="pclEmpresasGrupo"
+							value="#{cadastroEmpresaMB.empresas}" var="empresa"
+							itemLabel="#{empresa}" itemValue="#{empresa}" />
+					</p:tab>
+				</p:tabView>
+			</h:panelGroup>
 		</h:panelGroup>
-
-		<h:panelGroup id="pngGrupoExibir" layout="block"
-			styleClass="pdialogDivDireita"
-			rendered="#{cadastroEmpresaMB.tabExibirDesativado}">
-			<p:tabView id="tabExibirGrupo">
-				<p:tab title="#{msgs.EmpresaGrupo}">
-					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-						<p:outputLabel value="#{msgs.EmpresaGrupoNome}" />
-						<p:outputLabel
-							value="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
-						<p:outputLabel value="#{msgs.EmpresaGrupoDescricao}" />
-						<p:outputLabel
-							value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
-					</p:panelGrid>
-				</p:tab>
-				<p:tab title="#{msgs.Empresas}">
-					<p:pickList id="pclEmpresasGrupo"
-						value="#{cadastroEmpresaMB.empresas}" var="empresa"
-						itemLabel="#{empresa}" itemValue="#{empresa}" />
-				</p:tab>
-			</p:tabView>
-		</h:panelGroup>
-	</h:panelGroup>
+	</h:form>
 </ui:composition>
 </html>
