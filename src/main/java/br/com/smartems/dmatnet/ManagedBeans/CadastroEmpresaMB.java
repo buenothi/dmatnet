@@ -72,6 +72,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private boolean isBtnGrupoCancelarDesativado = true;
 	private boolean isBtnGrupoSalvarDesativado = true;
 	private boolean isBtnGrupoNovoDesativado = false;
+	private boolean isBtnGrupoExcluirDesativado = true;
 	private boolean isBtnSelecionarGrupo = true;
 
 	
@@ -301,6 +302,14 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public boolean isBtnGrupoNovoDesativado() {
 		return isBtnGrupoNovoDesativado;
+	}
+
+	public boolean isBtnGrupoExcluirDesativado() {
+		return isBtnGrupoExcluirDesativado;
+	}
+
+	public void setBtnGrupoExcluirDesativado(boolean isBtnGrupoExcluirDesativado) {
+		this.isBtnGrupoExcluirDesativado = isBtnGrupoExcluirDesativado;
 	}
 
 	public boolean isBtnSelecionarGrupo() {
@@ -547,6 +556,19 @@ public class CadastroEmpresaMB implements Serializable {
 		this.grupoSelecionado = new EmpresaGrupoEntity();
 	}
 
+	public void excluirCadastroGrupo(ActionEvent e) {
+
+		if (this.grupoSelecionado != null) {
+			this.empresaGrupoFachada.delete(this.grupoSelecionado);
+		}
+
+		FacesMessage msg = new FacesMessage("Sucesso", this.grupoSelecionado.getNomeGrupo() + " Excluído com Sucesso");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+
+		this.initEmpresa();
+		
+	}
+
 	public void selecionarGrupo(ActionEvent e) {
 		this.isBtnGrupoEditarDesativado = true;
 		this.isBtnGrupoCancelarDesativado = true;
@@ -580,6 +602,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.grupoSelecionado = (EmpresaGrupoEntity) evt.getObject();
 		this.isBtnGrupoEditarDesativado = false;
 		this.isBtnSelecionarGrupo = false;
+		this.isBtnGrupoExcluirDesativado = false;
 	}
 
 	public void setListaEmpresa(boolean isListaEmpresa) {

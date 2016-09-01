@@ -100,15 +100,17 @@
 			</div>
 		</div>
 	</h:form>
+
 	<p:panel id="pnlCadastroEmpresa" widgetVar="pnlCadastroEmpresa"
 		styleClass="conteudo" header="#{msgs.CadastroEmpresa}"
 		visible="#{principalMB.renderizarCadastroEmpresa}">
 		<ui:include src="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml" />
 	</p:panel>
 
-	<p:dialog id="dlgSelecionarEmpresa" widgetVar="dlgSelecionarEmpresa" resizable="false"
-		modal="true" width="830" header="#{msgs.SelecionarEmpresa}"
-		responsive="true" style="padding:10px">
+	<p:dialog id="dlgSelecionarEmpresa" widgetVar="dlgSelecionarEmpresa"
+		resizable="false" modal="true" width="830"
+		header="#{msgs.SelecionarEmpresa}" responsive="true"
+		style="padding:10px">
 
 		<h:panelGroup>
 			<p:commandButton icon="fa fa-plus" value="#{msgs.NovaEmpresa}"
@@ -153,33 +155,16 @@
 		</p:dataTable>
 	</p:dialog>
 
-	<p:dialog id="dlgGrupo" header="#{msgs.EmpresaGrupo}"
-		widgetVar="dlgGrupo" closable="true" resizable="false"
+	<p:dialog id="dlgGrupo" header="#{msgs.EmpresaGrupo}" height="350px"
+		widgetVar="dlgGrupo" closable="true" resizable="false" dynamic="true" 
 		draggable="true" responsive="true" styleClass="pdialogGrupo">
 		<ui:include src="/aplicacaoWeb/cadastroEmpresa/grupoEmpresa.xhtml" />
 	</p:dialog>
 
-	<p:dialog id="dlgCriarEmpresa" widgetVar="dlgCriarEmpresa" resizable="false" modal="true"
-		width="450" header="#{msgs.NovaEmpresa}" responsive="true"
-		style="padding:10px">
-		<h:panelGroup>
-			<p:commandButton icon="fa fa-save" value="#{msgs.Salvar}" />
-		</h:panelGroup>
-		<p:spacer width="100%" height="10px" />
-		<h:panelGroup id="pngCadastroNovaEmpresa">
-			<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-				<p:outputLabel value="#{msgs.NomeFantasia}" />
-				<p:inputText />
-				<p:outputLabel value="#{msgs.EmpresaGrupo}:" />
-				<h:panelGroup id="pngGrupo">
-					<p:selectOneMenu style="width:300px">
-						<f:selectItems value="#{cadastroEmpresaMB.grupos}" var="grupos"
-							itemLabel="#{grupos.nomeGrupo}" itemValue="#{grupos}" />
-					</p:selectOneMenu>
-					<p:commandButton onclick="PF('dlgGrupo').show()" value="#{msgs.EmpresaGrupo}"/>
-				</h:panelGroup>
-			</p:panelGrid>
-		</h:panelGroup>
+	<p:dialog id="dlgCriarEmpresa" widgetVar="dlgCriarEmpresa"
+		resizable="false" modal="true" width="565" dynamic="true"
+		header="#{msgs.NovaEmpresa}" responsive="true" style="padding:10px"	>
+		<ui:include src="/aplicacaoWeb/cadastroEmpresa/criarEmpresa.xhtml" />
 	</p:dialog>
 
 	<p:ajaxStatus onstart="PF('statusDialog').show()"

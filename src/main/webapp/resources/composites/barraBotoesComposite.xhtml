@@ -31,6 +31,13 @@
 	<composite:attribute name="updateNovo" />
 	<composite:attribute name="renderedBtnNovo" />
 
+	<composite:attribute name="labelExcluir" />
+	<composite:attribute name="disabledExcluir" />
+	<composite:attribute name="actionListenerExcluir"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="updateExcluir" />
+	<composite:attribute name="renderedBtnExcluir" />
+
 </composite:interface>
 
 
@@ -58,6 +65,12 @@
 			rendered="#{cc.attrs.renderedBtnNovo}"
 			actionListener="#{cc.attrs.actionListenerNovo}"
 			update="#{cc.attrs.updateNovo}" />
+		<p:commandButton id="btnExcluirObjeto"
+			value="#{cc.attrs.labelExcluir}" styleClass="botoes"
+			icon="fa fa-minus" disabled="#{cc.attrs.disabledExcluir}"
+			rendered="#{cc.attrs.renderedBtnExcluir}"
+			actionListener="#{cc.attrs.actionListenerExcluir}"
+			update="#{cc.attrs.updateExcluir}" />
 	</h:panelGroup>
 
 	<p:spacer height="10px" width="100%" />

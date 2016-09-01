@@ -36,7 +36,8 @@ public abstract class AbstractEAO <T, PK> implements IAbstractDAO<T, PK>{
 	}
 
 	public void delete(T entity) throws NoResultException {
-		entityManager.remove(entity);
+		Object c = entityManager.merge(entity);
+		entityManager.remove(c);
 	}
 
 	@SuppressWarnings({ "rawtypes" })

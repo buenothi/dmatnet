@@ -14,18 +14,23 @@
 				<dmat:barraBotoesComposite
 					disabledEditar="#{cadastroEmpresaMB.btnGrupoEditarDesativado}"
 					actionListenerEditar="#{cadastroEmpresaMB.editarCadastroGrupo}"
-					updateEditar="formGrupoEmpresa, dlgSelecionarEmpresa"
+					updateEditar="formGrupoEmpresa, formCriarEmpresa"
 					disabledCancelar="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}"
 					actionListenerCancelar="#{cadastroEmpresaMB.cancelarCadastroGrupo}"
-					updateCancelar="formGrupoEmpresa, dlgSelecionarEmpresa"
+					updateCancelar="formGrupoEmpresa"
 					disabledSalvar="#{cadastroEmpresaMB.btnGrupoSalvarDesativado}"
 					actionListenerSalvar="#{cadastroEmpresaMB.salvarCadastroGrupo}"
-					updateSalvar="formGrupoEmpresa, dlgSelecionarEmpresa, formCadEmpresa:growlPrincipal"
+					updateSalvar="formGrupoEmpresa, formCriarEmpresa, formCadEmpresa:growlPrincipal"
 					labelNovo="#{msgs.EmpresaGrupoNovo}"
 					disabledNovo="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
 					actionListenerNovo="#{cadastroEmpresaMB.novoCadastroGrupo}"
-					updateNovo="formGrupoEmpresa, dlgSelecionarEmpresa, formCadEmpresa:growlPrincipal"
-					renderedBtnNovo="true" />
+					updateNovo="formGrupoEmpresa, formCriarEmpresa, formCadEmpresa:growlPrincipal"
+					renderedBtnNovo="true" 
+					labelExcluir="#{msgs.EmpresaGrupoExcluir}"
+					disabledExcluir="#{cadastroEmpresaMB.btnGrupoExcluirDesativado}"
+					actionListenerExcluir="#{cadastroEmpresaMB.excluirCadastroGrupo}"
+					updateExcluir="formGrupoEmpresa, formCriarEmpresa, formCadEmpresa:growlPrincipal"
+					renderedBtnExcluir="true"/>
 			</h:panelGroup>
 
 			<h:panelGroup id="pngGruposLista" layout="block"
@@ -42,7 +47,7 @@
 					rows="7">
 					<p:ajax event="rowSelect"
 						listener="#{cadastroEmpresaMB.onSelectionGrupo}"
-						update="formCadEmpresa" />
+						update="formGrupoEmpresa" />
 					<p:column>
 						<h:outputText value="#{grupo.nomeGrupo}" />
 					</p:column>
