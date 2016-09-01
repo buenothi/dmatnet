@@ -10,18 +10,17 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
-import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.AbstractPessoaJuridicaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 
 @Stateless
 @Local
-public class PessoaJuridicaEAO extends AbstractEAO<AbstractPessoaJuridicaEntity, Long> {
+public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 
 	@PersistenceContext(unitName = "dmatnet-pu")
 	private EntityManager entityManager;
 
 	public PessoaJuridicaEAO() {
-		super(AbstractPessoaJuridicaEntity.class);
+		super(EmpresaEntity.class);
 	}
 
 	@SuppressWarnings("unchecked")

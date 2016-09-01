@@ -434,6 +434,13 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnEmpresaCancelarDesativado = true;
 		this.isBtnEmpresaSalvarDesativado = true;
 		this.isBtnEmpresaNovaEmpresaDesativado = false;
+		
+		if(this.empresa != null){
+			this.empresa.setUsuarioCriador(this.usuarioMB.getUsuarioLogado());
+			this.empresa.setGrupo(this.grupoEmpresa);
+			this.pessoaJuridicaFachada.create(this.empresa);
+			this.initEmpresa();
+		}
 	}
 
 	public void novoCadastroEmpresa(ActionEvent e) {
@@ -583,6 +590,7 @@ public class CadastroEmpresaMB implements Serializable {
 	public void initEmpresa() {
 		try {
 			this.grupos = empresaGrupoFachada.listarGrupoEmpresas(usuarioMB.getUsuarioLogado());
+			this.empresasDisponiveis = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
 			try {
 				this.empresasDisponiveis = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
 				if (this.empresasDisponiveis == null) {

@@ -10,18 +10,25 @@
 <ui:composition>
 	<h:form id="formCriarEmpresa">
 		<h:panelGroup>
-			<p:commandButton icon="fa fa-save" value="#{msgs.Salvar}" />
+			<p:commandButton icon="fa fa-save" value="#{msgs.Salvar}" 
+				actionListener="#{cadastroEmpresaMB.salvarCadastroEmpresa}"
+				update=""/>
 		</h:panelGroup>
 		<p:spacer width="100%" height="10px" />
 		<h:panelGroup id="pngCadastroNovaEmpresa">
 			<p:panelGrid columns="3" styleClass="tabelaSemBorda">
+				<p:outputLabel value="#{msgs.DataCadastro}:" />
+				<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+						pattern="dd/MM/yyyy" mask="true" size="8"
+						value="#{cadastroEmpresaMB.empresa.cadastroPessoa}"/>
+				<p:spacer />
 				<p:outputLabel value="#{msgs.NomeFantasia}:" />
-				<p:inputText size="25" />
+				<p:inputText size="25" value="#{cadastroEmpresaMB.empresa.nome}"/>
 				<p:spacer />
 				<p:outputLabel value="#{msgs.EmpresaGrupo}:" />
-				<p:selectOneMenu style="width:220px">
+				<p:selectOneMenu style="width:220px" value="#{cadastroEmpresaMB.grupoEmpresa}">
 					<f:selectItems value="#{cadastroEmpresaMB.grupos}" var="grupos"
-						itemLabel="#{grupos.nomeGrupo}" itemValue="#{grupos}" />
+						itemLabel="#{grupos.nomeGrupo}" itemValue="#{grupos}"  />
 				</p:selectOneMenu>
 				<p:commandButton onclick="PF('dlgGrupo').show()"
 					icon="fa fa-group"
