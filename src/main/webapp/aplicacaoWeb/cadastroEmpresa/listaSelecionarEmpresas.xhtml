@@ -24,42 +24,22 @@
 
 		<p:spacer width="100%" height="10px" />
 
-		<p:dataTable id="dtbEmpresas" styleClass="dataTable" scrollable="true" paginator="true"
-			rows="10" editable="true" draggableColumns="true" selectionMode="single" 
-			value="#{cadastroEmpresaMB.empresasDisponiveis}" var="empresa">
+		<p:dataTable id="dtbEmpresas" var="empresa"
+			value="#{cadastroEmpresaMB.empresasDisponiveis}" paginator="true"
+			rows="10" editable="true" draggableColumns="true"
+			rowKey="#{empresa.idPessoa}" selectionMode="single">
 
-			<p:ajax event="rowEdit"
-				listener="#{cadastroEmpresaMB.onRowEditGrupo}"
-				update="formSelecionarEmpresa:dtbEmpresas, growlPrincipal" />
+			<p:ajax event="rowSelect"
+				listener="#{principalMB.onSelectionEmpresa}"
+				update="formSuperior, formSelecionarEmpresa:dtbEmpresas, growlPrincipal" />
 
 			<p:column headerText="#{msgs.Nome}">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{empresa.nome}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText style="width:100%" value="#{empresa.nome}" />
-					</f:facet>
-				</p:cellEditor>
+				<h:outputText value="#{empresa.nome}" />
 			</p:column>
 			<p:column headerText="#{msgs.EmpresaGrupo}">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{empresa.grupo.nomeGrupo}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:selectOneMenu style="width:100%"
-							value="#{empresa.grupo}"
-							converter="empresaGrupoConverter">
-							<f:selectItems value="#{cadastroEmpresaMB.grupos}" var="grupos"
-								itemLabel="#{grupos.nomeGrupo}" itemValue="#{grupos}" />
-						</p:selectOneMenu>
-					</f:facet>
-				</p:cellEditor>
+				<h:outputText value="#{empresa.grupo.nomeGrupo}" />
 			</p:column>
-			<p:column style="width:32px">
-				<p:rowEditor />
-			</p:column>
+
 		</p:dataTable>
 	</h:form>
 </ui:composition>

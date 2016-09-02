@@ -3,13 +3,15 @@ package br.com.smartems.dmatnet.ManagedBeans;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
+
+import org.primefaces.event.SelectEvent;
 
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class PrincipalMB implements Serializable {
 
 	private String classMenuBotaoCadEmpresa = "menuBotao";
@@ -51,6 +53,11 @@ public class PrincipalMB implements Serializable {
 	public void exibirHome(ActionEvent evt) {
 		this.classMenuBotaoCadEmpresa = "menuBotao";
 		this.classMenuBotaoHome = "menuBotaoSelecionado";
+		this.isRenderizarCadastroEmpresa = false;
+	}
+	
+	public void onSelectionEmpresa(SelectEvent evt) {
+		this.empresaSelecionada = (EmpresaEntity)evt.getObject();
 	}
 	
 }

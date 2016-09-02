@@ -12,17 +12,17 @@
 	<dmat:barraBotoesComposite id="barraBotoesDadosCadastrais"
 		disabledEditar="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}" 
 		actionListenerEditar="#{cadastroEmpresaMB.editarDadosCadastraisEmpresa}"
-		updateEditar="formCadEmpresa" 
+		updateEditar="formModulos:formCadEmpresa" 
 		disabledCancelar="#{cadastroEmpresaMB.btnDadosCadastraisCancelarDesativado}" 
 		actionListenerCancelar="#{cadastroEmpresaMB.cancelarDadosCadastraisEmpresa}"
-		updateCancelar="formCadEmpresa" 
+		updateCancelar="formModulos:formCadEmpresa" 
 		disabledSalvar="#{cadastroEmpresaMB.btnDadosCadastraisSalvarDesativado}" 
 		actionListenerSalvar="#{cadastroEmpresaMB.salvarDadosCadastraisEmpresa}"
-		updateSalvar="formCadEmpresa"  
+		updateSalvar="formModulos:formCadEmpresa"  
 		labelNovo="#{msgs.NovoEmpresaDadosCadastrais}" 
 		disabledNovo="#{cadastroEmpresaMB.btnDadosCadastraisNovaEmpresaDesativado}" 
 		actionListenerNovo="#{cadastroEmpresaMB.novoDadosCadastraisEmpresa}"
-		updateNovo="formCadEmpresa" 
+		updateNovo="formModulos:formCadEmpresa" 
 		renderedBtnNovo="true"/>
 
 	<p:accordionPanel id="acpDadosCadastrais">
@@ -42,7 +42,7 @@
 						value="#{cadastroEmpresaMB.dadosCadastrais.tipoInscricao}">
 						<p:ajax
 							listener="#{cadastroEmpresaMB.alterarMascaraPessoaJuridica}"
-							update="formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:ipmInscricao" />
+							update="formModulos:formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:ipmInscricao" />
 						<f:selectItem itemValue="1" itemLabel="CNPJ" />
 						<f:selectItem itemValue="2" itemLabel="CPF" />
 					</p:selectOneMenu>

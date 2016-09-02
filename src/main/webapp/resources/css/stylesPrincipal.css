@@ -27,7 +27,7 @@ a:LINK {
 
 #superior {
 	background-color: rgb(36, 87, 69);
-	min-width: 771px;
+	min-width: 871px;
 	width: 100%;
 	height: 42px;
 	top: 0;
@@ -52,13 +52,15 @@ a:LINK {
 
 .empresaSelecionada {
 	height: 90%;
-	width: 300px;
 	background-color: rgb(36, 87, 69);
 	margin-left: 0;
 	margin-top: 0;
 	padding-top: 6px;
 	float: left;
 	color: white;
+	font-size: 9pt;
+	font-family: sans-serif;
+	font-weight: bold;
 }
 
 .usuarioLogado {
@@ -222,6 +224,7 @@ a:LINK {
 	width: 100%;
 	position: relative;
 	overflow: auto;
+		font-size: 10pt;
 }
 
 .painelConteudo {
@@ -230,7 +233,7 @@ a:LINK {
 	background-color: white;
 	height: 100%;
 	min-width: 1000px;
-	font-size: 10pt;
+	font-size: 8pt;
 }
 
 .tituloCadEmpresa {
@@ -278,27 +281,27 @@ a:LINK {
 	position: inherit;
 }
 
-.tabelaSemBorda tr, .tabelaSemBorda td  {
+.tabelaSemBorda tr, .tabelaSemBorda td {
 	border: 0 solid white !important;
 	font-size: 11pt !important;
 }
 
-.dataTable table span{
+.dataTable table span {
 	font-size: 8pt;
 }
 
-.pdialogGrupo{
+.pdialogGrupo {
 	width: 1500px;
-	height: 300px;																				
+	height: 300px;
 }
 
-.pdialogDivEsquerda{
+.pdialogDivEsquerda {
 	width: 288px;
 	margin-left: 3px;
 	position: absolute;
 }
 
-.pdialogDivDireita{
+.pdialogDivDireita {
 	width: 950px;
 	padding-left: 296px;
 	min-height: 200px;

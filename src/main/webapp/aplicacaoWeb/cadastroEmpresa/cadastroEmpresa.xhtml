@@ -30,23 +30,23 @@
 						caixaPostal="#{cadastroEmpresaMB.endereco.caixaPostal}"
 						cidade="#{cadastroEmpresaMB.endereco.cidade}"
 						estado="#{cadastroEmpresaMB.endereco.estado}"
-						ajaxComponentRender="formCadEmpresa:tbwCadastroEmpresa:dmatEnderecoEmpresa:acpEndereco:listCidade" 
+						ajaxComponentRender="formModulos:formCadEmpresa:tbwCadastroEmpresa:dmatEnderecoEmpresa:acpEndereco:listCidade" 
 						
 						disabledEditar="#{cadastroEmpresaMB.btnEnderecoEditarDesativado}"
 						actionListenerEditar="#{cadastroEmpresaMB.editarEnderecoEmpresa}"
-						updateEditar="formCadEmpresa"
+						updateEditar="formModulos:formCadEmpresa"
 						
 						disabledCancelar="#{cadastroEmpresaMB.btnEnderecoCancelarDesativado}"
 						actionListenerCancelar="#{cadastroEmpresaMB.cancelarEnderecoEmpresa}"
-						updateCancelar="formCadEmpresa"
+						updateCancelar="formModulos:formCadEmpresa"
 						
 						disabledSalvar="#{cadastroEmpresaMB.btnEnderecoSalvarDesativado}"
 						actionListenerSalvar="#{cadastroEmpresaMB.salvarEnderecoEmpresa}"
-						updateSalvar="formCadEmpresa"
+						updateSalvar="formModulos:formCadEmpresa"
 						
 						disabledNovo="#{cadastroEmpresaMB.btnEnderecoNovoDesativado}"
 						actionListenerNovo="#{cadastroEmpresaMB.novoEnderecoEmpresa}"
-						updateNovo="formCadEmpresa"/>
+						updateNovo="formModulos:formCadEmpresa"/>
 				</p:tab>
 				<p:tab title="#{msgs.ContatoUsuario}">
 					<ui:include

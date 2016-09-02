@@ -14,7 +14,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.persistence.NoResultException;
 
-import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DualListModel;
 
@@ -46,6 +45,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private EmpresaGrupoEntity grupoSelecionado;
 	private EmpresaGrupoEntity grupoEmpresa;
 	private EmpresaEntity empresa;
+	private EmpresaEntity empresaSelecionada;
 	private EmpresaCadastroEntity dadosCadastrais;
 	private EmpresaFAP empresaFap;
 	private EnderecoEntity endereco;
@@ -116,6 +116,17 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setEmpresa(EmpresaEntity empresa) {
 		this.empresa = empresa;
+	}
+
+	public EmpresaEntity getEmpresaSelecionada() {
+		if (this.empresaSelecionada == null) {
+			this.empresaSelecionada = new EmpresaEntity();
+		}
+		return empresaSelecionada;
+	}
+
+	public void setEmpresaSelecionada(EmpresaEntity empresaSelecionada) {
+		this.empresaSelecionada = empresaSelecionada;
 	}
 
 	public EmpresaCadastroEntity getDadosCadastrais() {
@@ -612,16 +623,6 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnGrupoEditarDesativado = false;
 		this.isBtnSelecionarGrupo = false;
 		this.isBtnGrupoExcluirDesativado = false;
-	}
-	
-	public void onRowEditGrupo(RowEditEvent evt) {
-		this.empresa = (EmpresaEntity)evt.getObject();
-		
-		this.pessoaJuridicaFachada.update(this.empresa);
-		
-		FacesMessage msg = new FacesMessage("Sucesso", this.empresa.getNome().toString() + " Alterado com Sucesso");
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-		this.initEmpresa();
 	}
 
 	public void setListaEmpresa(boolean isListaEmpresa) {
