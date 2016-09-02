@@ -26,9 +26,10 @@
 				<p:inputText size="25" value="#{cadastroEmpresaMB.empresa.nome}"/>
 				<p:spacer />
 				<p:outputLabel value="#{msgs.EmpresaGrupo}:" />
-				<p:selectOneMenu style="width:220px" value="#{cadastroEmpresaMB.grupoEmpresa}">
+				<p:selectOneMenu style="width:220px" value="#{cadastroEmpresaMB.grupoEmpresa}"
+					converter="empresaGrupoConverter">
 					<f:selectItems value="#{cadastroEmpresaMB.grupos}" var="grupos"
-						itemLabel="#{grupos.nomeGrupo}" itemValue="#{grupos}"  />
+						itemLabel="#{grupos.nomeGrupo}" itemValue="#{grupos}" />
 				</p:selectOneMenu>
 				<p:commandButton onclick="PF('dlgGrupo').show()"
 					icon="fa fa-group"

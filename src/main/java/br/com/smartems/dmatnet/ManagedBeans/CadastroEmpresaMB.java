@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.persistence.NoResultException;
 
+import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DualListModel;
 
@@ -611,6 +612,16 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnGrupoEditarDesativado = false;
 		this.isBtnSelecionarGrupo = false;
 		this.isBtnGrupoExcluirDesativado = false;
+	}
+	
+	public void onRowEditGrupo(RowEditEvent evt) {
+		this.empresa = (EmpresaEntity)evt.getObject();
+		
+		this.pessoaJuridicaFachada.update(this.empresa);
+		
+		FacesMessage msg = new FacesMessage("Sucesso", this.empresa.getNome().toString() + " Alterado com Sucesso");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+		this.initEmpresa();
 	}
 
 	public void setListaEmpresa(boolean isListaEmpresa) {

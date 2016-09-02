@@ -111,59 +111,18 @@
 		resizable="false" modal="true" width="830"
 		header="#{msgs.SelecionarEmpresa}" responsive="true"
 		style="padding:10px">
-
-		<h:panelGroup>
-			<p:commandButton icon="fa fa-plus" value="#{msgs.NovaEmpresa}"
-				onclick="PF('dlgCriarEmpresa').show()" />
-		</h:panelGroup>
-
-		<p:spacer width="100%" height="10px" />
-
-		<h:panelGrid columns="2" style="width:100%">
-			<p:inputText style="width: 100%" />
-			<p:commandButton icon="fa fa-search"
-				style="font-size:10pt;height:31px" />
-		</h:panelGrid>
-
-		<p:spacer width="100%" height="10px" />
-
-		<p:dataTable styleClass="dataTable" scrollable="true" paginator="true"
-			rows="10" editable="true" value="#{cadastroEmpresaMB.empresasDisponiveis}" var="empresas">
-			<p:column headerText="#{msgs.Nome}" width="250" >
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{empresas.nome}"/>
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText style="width:100%" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
-			<p:column headerText="#{msgs.EmpresaGrupo}" width="400">
-				<p:cellEditor>
-					<f:facet name="output">
-						<h:outputText value="#{empresas.grupo}"/>
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText style="width:100%" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
-			<p:column style="width:32px">
-				<p:rowEditor />
-			</p:column>
-		</p:dataTable>
+			<ui:include src="/aplicacaoWeb/cadastroEmpresa/listaSelecionarEmpresas.xhtml" />
 	</p:dialog>
 
 	<p:dialog id="dlgGrupo" header="#{msgs.EmpresaGrupo}" height="350px"
-		widgetVar="dlgGrupo" closable="true" resizable="false" dynamic="true" 
+		widgetVar="dlgGrupo" closable="true" resizable="false" dynamic="true"
 		draggable="true" responsive="true" styleClass="pdialogGrupo">
 		<ui:include src="/aplicacaoWeb/cadastroEmpresa/grupoEmpresa.xhtml" />
 	</p:dialog>
 
 	<p:dialog id="dlgCriarEmpresa" widgetVar="dlgCriarEmpresa"
 		resizable="false" modal="true" width="565" dynamic="true"
-		header="#{msgs.NovaEmpresa}" responsive="true" style="padding:10px"	>
+		header="#{msgs.NovaEmpresa}" responsive="true" style="padding:10px">
 		<ui:include src="/aplicacaoWeb/cadastroEmpresa/criarEmpresa.xhtml" />
 	</p:dialog>
 
@@ -174,6 +133,9 @@
 		closable="false" resizable="false" showHeader="false">
 		<h:graphicImage name="images/16.gif" />
 	</p:dialog>
+
+	<p:growl id="growlPrincipal" showDetail="true" sticky="false"
+		life="3000" />
 
 </h:body>
 

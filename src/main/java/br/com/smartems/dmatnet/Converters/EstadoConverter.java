@@ -20,8 +20,7 @@ public class EstadoConverter implements Converter {
             } catch(NumberFormatException e) {
                 throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Not a valid EstadoEntity."));
             }
-        }
-        else {
+        } else {
             return null;
         }
 	}
