@@ -36,8 +36,17 @@
 			<p:column headerText="#{msgs.Nome}">
 				<h:outputText value="#{empresa.nome}" />
 			</p:column>
+
 			<p:column headerText="#{msgs.EmpresaGrupo}">
 				<h:outputText value="#{empresa.grupo.nomeGrupo}" />
+			</p:column>
+
+			<p:column width="55">
+				<p:commandButton icon="fa fa-edit" />
+			</p:column>
+
+			<p:column width="55">
+				<p:commandButton icon="fa fa-trash" />
 			</p:column>
 
 		</p:dataTable>
