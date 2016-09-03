@@ -452,6 +452,7 @@ public class CadastroEmpresaMB implements Serializable {
 			this.empresa.setGrupo(this.grupoEmpresa);
 			this.pessoaJuridicaFachada.create(this.empresa);
 			this.initEmpresa();
+			this.empresa = null;
 		}
 	}
 
