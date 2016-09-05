@@ -54,7 +54,14 @@
 			</p:column>
 
 			<p:column width="55">
-				<p:commandButton icon="fa fa-trash" />
+				<p:commandButton icon="fa fa-trash"
+					update="formSelecionarEmpresa"
+					actionListener="#{cadastroEmpresaMB.excluirCadastroEmpresa(empresa)}">
+					<f:setPropertyActionListener value="#{empresa}"
+						target="#{cadastroEmpresaMB.empresa}" />
+					<p:confirm header="#{msgs.Confirmar}"
+						message="#{msgs.DeletarEmpresa} #{empresa.nome} ?" icon="ui-icon-alert" />
+				</p:commandButton>
 			</p:column>
 
 		</p:dataTable>

@@ -106,8 +106,7 @@
 	</h:form>
 
 	<h:form id="formModulos" styleClass="conteudo">
-		<p:panel id="pnlCadastroEmpresa"
-			header="#{msgs.CadastroEmpresa}"
+		<p:panel id="pnlCadastroEmpresa" header="#{msgs.CadastroEmpresa}"
 			visible="#{principalMB.renderizarCadastroEmpresa}">
 			<ui:include src="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml" />
 		</p:panel>
@@ -116,20 +115,23 @@
 	<p:dialog id="dlgSelecionarEmpresa" widgetVar="dlgSelecionarEmpresa"
 		resizable="false" modal="true" width="830"
 		header="#{msgs.SelecionarEmpresa}" responsive="true"
-		style="padding:10px">
+		style="padding:10px"
+		showEffect="fade" hideEffect="fade">
 		<ui:include
 			src="/aplicacaoWeb/cadastroEmpresa/listaSelecionarEmpresas.xhtml" />
 	</p:dialog>
 
 	<p:dialog id="dlgGrupo" header="#{msgs.EmpresaGrupo}" height="350px"
 		widgetVar="dlgGrupo" closable="true" resizable="false" dynamic="true"
-		draggable="true" responsive="true" styleClass="pdialogGrupo">
+		draggable="true" responsive="true" styleClass="pdialogGrupo"
+		showEffect="fade" hideEffect="fade">
 		<ui:include src="/aplicacaoWeb/cadastroEmpresa/grupoEmpresa.xhtml" />
 	</p:dialog>
 
 	<p:dialog id="dlgCriarEmpresa" widgetVar="dlgCriarEmpresa"
 		resizable="false" modal="true" width="565" dynamic="true"
-		header="#{msgs.NovaEmpresa}" responsive="true" style="padding:10px">
+		header="#{msgs.NovaEmpresa}" responsive="true" style="padding:10px"
+		showEffect="fade" hideEffect="fade">
 		<ui:include src="/aplicacaoWeb/cadastroEmpresa/criarEmpresa.xhtml" />
 	</p:dialog>
 
@@ -137,9 +139,17 @@
 		onsuccess="PF('statusDialog').hide()" />
 
 	<p:dialog widgetVar="statusDialog" modal="false" draggable="false"
-		closable="false" resizable="false" showHeader="false">
+		closable="false" resizable="false" showHeader="false"
+		showEffect="fade" hideEffect="fade">
 		<h:graphicImage name="images/16.gif" />
 	</p:dialog>
+
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+		<p:commandButton value="#{msgs.Sim}" type="button"
+			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+		<p:commandButton value="#{msgs.Nao}" type="button"
+			styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+	</p:confirmDialog>
 
 	<p:growl id="growlPrincipal" showDetail="true" sticky="false"
 		life="3000" />

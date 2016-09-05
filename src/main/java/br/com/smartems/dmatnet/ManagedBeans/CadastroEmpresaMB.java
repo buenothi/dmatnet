@@ -413,7 +413,12 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 	}
 	
-	public void excluirCadastroEmpresa(ActionEvent e){
+	public void excluirCadastroEmpresa(EmpresaEntity empresa){
+		if(this.empresa != null){
+			this.pessoaJuridicaFachada.delete(empresa);
+			this.initEmpresa();
+			this.empresa = null;
+		}
 		
 	}
 
