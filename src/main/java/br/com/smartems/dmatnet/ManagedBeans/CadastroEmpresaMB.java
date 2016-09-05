@@ -44,8 +44,8 @@ public class CadastroEmpresaMB implements Serializable {
 
 	private EmpresaGrupoEntity grupoSelecionado;
 	private EmpresaGrupoEntity grupoEmpresa;
-	private EmpresaEntity empresa;
 	private EmpresaEntity empresaSelecionada;
+	private EmpresaEntity empresa;
 	private EmpresaCadastroEntity dadosCadastrais;
 	private EmpresaFAP empresaFap;
 	private EnderecoEntity endereco;
@@ -57,10 +57,6 @@ public class CadastroEmpresaMB implements Serializable {
 	
 	// botões referentes à Edição do Cadastro de Empresa
 	
-	private boolean isBtnEmpresaEditarDesativado = false;
-	private boolean isBtnEmpresaCancelarDesativado = true;
-	private boolean isBtnEmpresaSalvarDesativado = true;
-	private boolean isBtnEmpresaNovaEmpresaDesativado = false;
 	private boolean isListaEmpresa = false;
 	private int tipoPessoaJuridicaSelecionada;
 
@@ -236,38 +232,6 @@ public class CadastroEmpresaMB implements Serializable {
 		this.grupoEmpresa = grupoEmpresa;
 	}
 
-	public boolean isBtnEmpresaEditarDesativado() {
-		return isBtnEmpresaEditarDesativado;
-	}
-
-	public void setBtnEmpresaEditarDesativado(boolean isBtnEmpresaEditarDesativado) {
-		this.isBtnEmpresaEditarDesativado = isBtnEmpresaEditarDesativado;
-	}
-
-	public boolean isBtnEmpresaCancelarDesativado() {
-		return isBtnEmpresaCancelarDesativado;
-	}
-
-	public void setBtnEmpresaCancelarDesativado(boolean isBtnEmpresaCancelarDesativado) {
-		this.isBtnEmpresaCancelarDesativado = isBtnEmpresaCancelarDesativado;
-	}
-
-	public boolean isBtnEmpresaSalvarDesativado() {
-		return isBtnEmpresaSalvarDesativado;
-	}
-
-	public void setBtnEmpresaSalvarDesativado(boolean isBtnEmpresaSalvarDesativado) {
-		this.isBtnEmpresaSalvarDesativado = isBtnEmpresaSalvarDesativado;
-	}
-
-	public boolean isBtnEmpresaNovaEmpresaDesativado() {
-		return isBtnEmpresaNovaEmpresaDesativado;
-	}
-
-	public void setBtnEmpresaNovaEmpresaDesativado(boolean isBtnEmpresaNovaEmpresaDesativado) {
-		this.isBtnEmpresaNovaEmpresaDesativado = isBtnEmpresaNovaEmpresaDesativado;
-	}
-
 	public boolean isListaEmpresa() {
 		return isListaEmpresa;
 	}
@@ -426,41 +390,35 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 	}
 	
+	
 	// action dos botões de cadastro de empresa
+	
 	public void editarCadastroEmpresa(ActionEvent e) {
-		this.isBtnEmpresaEditarDesativado = true;
-		this.isBtnEmpresaCancelarDesativado = false;
-		this.isBtnEmpresaSalvarDesativado = false;
-		this.isBtnEmpresaNovaEmpresaDesativado = true;
+
 	}
 
 	public void cancelarCadastroEmpresa(ActionEvent e) {
-		this.isBtnEmpresaEditarDesativado = false;
-		this.isBtnEmpresaCancelarDesativado = true;
-		this.isBtnEmpresaSalvarDesativado = true;
-		this.isBtnEmpresaNovaEmpresaDesativado = false;
+
 	}
 
 	public void salvarCadastroEmpresa(ActionEvent e) {
-		this.isBtnEmpresaEditarDesativado = false;
-		this.isBtnEmpresaCancelarDesativado = true;
-		this.isBtnEmpresaSalvarDesativado = true;
-		this.isBtnEmpresaNovaEmpresaDesativado = false;
-		
 		if(this.empresa != null){
 			this.empresa.setUsuarioCriador(this.usuarioMB.getUsuarioLogado());
 			this.empresa.setGrupo(this.grupoEmpresa);
 			this.pessoaJuridicaFachada.create(this.empresa);
 			this.initEmpresa();
+			FacesMessage msg = new FacesMessage("Sucesso", this.empresa.getNome().toString() + " Salvo com Sucesso");
+			FacesContext.getCurrentInstance().addMessage(null, msg);
 			this.empresa = null;
 		}
 	}
+	
+	public void excluirCadastroEmpresa(ActionEvent e){
+		
+	}
 
 	public void novoCadastroEmpresa(ActionEvent e) {
-		this.isBtnEmpresaEditarDesativado = true;
-		this.isBtnEmpresaCancelarDesativado = false;
-		this.isBtnEmpresaSalvarDesativado = false;
-		this.isBtnEmpresaNovaEmpresaDesativado = true;
+		this.empresa = new EmpresaEntity();
 	}
 	
 
@@ -598,6 +556,11 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isTabEditarDesativado = false;
 		this.isTabExibirDesativado = true;
 	}
+	
+	public void editarEmpresaSelecionada(ActionEvent e) {
+		System.out.println("teste");
+	}
+	
 
 	@PostConstruct
 	public void initEmpresa() {
