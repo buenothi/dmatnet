@@ -11,7 +11,7 @@
 	<h:form id="formGrupoEmpresa">
 		<h:panelGroup id="pngGrupos">
 			<h:panelGroup id="pngGrupoBotoesCRUD">
-				<dmat:barraBotoesComposite
+				<dmat:barraBotoesComposite id="dmatBotoesCRUDGrupo"
 					disabledEditar="#{cadastroEmpresaMB.btnGrupoEditarDesativado}"
 					actionListenerEditar="#{cadastroEmpresaMB.editarCadastroGrupo}"
 					updateEditar="formGrupoEmpresa, formCriarEmpresa"
@@ -25,12 +25,13 @@
 					disabledNovo="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
 					actionListenerNovo="#{cadastroEmpresaMB.novoCadastroGrupo}"
 					updateNovo="formGrupoEmpresa, formCriarEmpresa, growlPrincipal"
-					renderedBtnNovo="true" 
-					labelExcluir="#{msgs.EmpresaGrupoExcluir}"
+					renderedBtnNovo="true" labelExcluir="#{msgs.EmpresaGrupoExcluir}"
 					disabledExcluir="#{cadastroEmpresaMB.btnGrupoExcluirDesativado}"
 					actionListenerExcluir="#{cadastroEmpresaMB.excluirCadastroGrupo}"
 					updateExcluir="formGrupoEmpresa, formCriarEmpresa, growlPrincipal"
-					renderedBtnExcluir="true"/>
+					renderedBtnExcluir="true" headerConfirma="#{msgs.Confirmar}"
+					messageConfirma="#{msgs.DeletarGrupo}"
+					objetoConfirma="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
 			</h:panelGroup>
 
 			<h:panelGroup id="pngGruposLista" layout="block"
@@ -47,7 +48,9 @@
 					rows="7">
 					<p:ajax event="rowSelect"
 						listener="#{cadastroEmpresaMB.onSelectionGrupo}"
-						update="formGrupoEmpresa" />
+						update="formGrupoEmpresa:pngGrupoBotoesCRUD, 
+							formGrupoEmpresa:tbvEditarGrupo:tabEditarGrupo, 
+							formGrupoEmpresa:tbvExibirGrupo:tabExibirGrupo" />
 					<p:column>
 						<h:outputText value="#{grupo.nomeGrupo}" />
 					</p:column>
@@ -57,8 +60,8 @@
 			<h:panelGroup id="pngGrupoEditar" layout="block"
 				styleClass="pdialogDivDireita"
 				rendered="#{cadastroEmpresaMB.tabEditarDesativado}">
-				<p:tabView id="tabEditarGrupo">
-					<p:tab title="#{msgs.EmpresaGrupo}">
+				<p:tabView id="tbvEditarGrupo">
+					<p:tab id="tabEditarGrupo" title="#{msgs.EmpresaGrupo}">
 						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 							<p:outputLabel value="#{msgs.EmpresaGrupoNome}" />
 							<p:inputText size="33"
@@ -76,8 +79,8 @@
 			<h:panelGroup id="pngGrupoExibir" layout="block"
 				styleClass="pdialogDivDireita"
 				rendered="#{cadastroEmpresaMB.tabExibirDesativado}">
-				<p:tabView id="tabExibirGrupo">
-					<p:tab title="#{msgs.EmpresaGrupo}">
+				<p:tabView id="tbvExibirGrupo">
+					<p:tab id="tabExibirGrupo" title="#{msgs.EmpresaGrupo}">
 						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 							<p:outputLabel value="#{msgs.EmpresaGrupoNome}" />
 							<p:outputLabel
@@ -90,7 +93,8 @@
 					<p:tab title="#{msgs.Empresas}">
 						<p:pickList id="pclEmpresasGrupo"
 							value="#{cadastroEmpresaMB.empresas}" var="empresa"
-							itemLabel="#{empresa}" itemValue="#{empresa}" />
+							itemLabel="#{empresa.nome}" itemValue="#{empresa}"
+							converter="empresaConverter" />
 					</p:tab>
 				</p:tabView>
 			</h:panelGroup>
