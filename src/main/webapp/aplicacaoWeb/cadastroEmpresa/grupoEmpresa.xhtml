@@ -48,9 +48,7 @@
 					rows="7">
 					<p:ajax event="rowSelect"
 						listener="#{cadastroEmpresaMB.onSelectionGrupo}"
-						update="formGrupoEmpresa:pngGrupoBotoesCRUD, 
-							formGrupoEmpresa:tbvEditarGrupo:tabEditarGrupo, 
-							formGrupoEmpresa:tbvExibirGrupo:tabExibirGrupo" />
+						update="formGrupoEmpresa" />
 					<p:column>
 						<h:outputText value="#{grupo.nomeGrupo}" />
 					</p:column>
@@ -71,7 +69,11 @@
 								value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
 						</p:panelGrid>
 					</p:tab>
-					<p:tab title="#{msgs.Empresas}">
+					<p:tab id="tabEditarEmpresas" title="#{msgs.Empresas}">
+						<p:pickList id="pclEmpresasGrupo"
+							value="#{cadastroEmpresaMB.empresas}" var="empresa"
+							itemLabel="#{empresa.nome}" itemValue="#{empresa}"
+							converter="empresaConverter" />
 					</p:tab>
 				</p:tabView>
 			</h:panelGroup>
@@ -90,7 +92,7 @@
 								value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
 						</p:panelGrid>
 					</p:tab>
-					<p:tab title="#{msgs.Empresas}">
+					<p:tab id="tabExibirEmpresas" title="#{msgs.Empresas}">
 						<p:pickList id="pclEmpresasGrupo"
 							value="#{cadastroEmpresaMB.empresas}" var="empresa"
 							itemLabel="#{empresa.nome}" itemValue="#{empresa}"

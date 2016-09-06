@@ -12,7 +12,8 @@
 		<h:panelGroup>
 			<p:commandButton icon="fa fa-save" value="#{msgs.Salvar}" 
 				actionListener="#{cadastroEmpresaMB.salvarCadastroEmpresa}"
-				update="formSelecionarEmpresa, formCriarEmpresa, growlPrincipal "/>
+				update="formSelecionarEmpresa, formCriarEmpresa, growlPrincipal"
+				oncomplete="PF('dlgCriarEmpresa').hide()"/>
 		</h:panelGroup>
 		<p:spacer width="100%" height="10px" />
 		<h:panelGroup id="pngCadastroNovaEmpresa">
@@ -28,6 +29,7 @@
 				<p:outputLabel value="#{msgs.EmpresaGrupo}:" />
 				<p:selectOneMenu style="width:220px" value="#{cadastroEmpresaMB.grupoEmpresa}"
 					converter="empresaGrupoConverter">
+					<f:selectItem itemLabel="#{msgs.GrupoNoSelectionOption}" noSelectionOption="true"/>
 					<f:selectItems value="#{cadastroEmpresaMB.grupos}" var="grupos"
 						itemLabel="#{grupos.nomeGrupo}" itemValue="#{grupos}" />
 				</p:selectOneMenu>
