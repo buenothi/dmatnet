@@ -21,7 +21,7 @@ public class EmpresaGrupoEntity implements Serializable {
 	private String nomeGrupo;
 	private String descricaoGrupo;
 
-	@OneToMany(mappedBy = "grupo")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "grupo")
 	private List<EmpresaEntity> empresas;
 
 	@ManyToMany
