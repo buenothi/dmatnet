@@ -585,16 +585,21 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void onSelectionGrupo(SelectEvent evt) {
-		this.grupoSelecionado = (EmpresaGrupoEntity) evt.getObject();
 		this.isBtnGrupoEditarDesativado = false;
 		this.isBtnSelecionarGrupo = false;
 		this.isBtnGrupoExcluirDesativado = false;
+		this.grupoSelecionado = (EmpresaGrupoEntity) evt.getObject();
+		this.empresasDisponiveis = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
+		if (this.empresasAtribuidas == null) {
+			this.empresasAtribuidas = new ArrayList<>();
+		}
 		this.empresasAtribuidas = this.grupoSelecionado.getEmpresas();
 		for (EmpresaEntity empresa : this.empresasAtribuidas) {
 			if (this.empresasDisponiveis.contains(empresa)) {
 				this.empresasDisponiveis.remove(empresa);
 			}
 		}
+		this.dualListEmpresasDisponiveis(this.empresasDisponiveis, this.empresasAtribuidas);
 	}
 	
 	private void dualListEmpresasDisponiveis(List<EmpresaEntity> empresasDisponiveis, List<EmpresaEntity> empresasAtribuidas) {

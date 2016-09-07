@@ -15,7 +15,7 @@
 	<h:outputScript library="js" name="scripts.js" />
 </h:head>
 
-<h:body>
+<h:body onload="PF('dlgSelecionarEmpresa').show()">
 	<div id="superior">
 		<div id="logoDMAT" />
 		<h:form id="formSuperior">
@@ -37,7 +37,7 @@
 		</h:form>
 	</div>
 
-	<h:form>
+	<h:form >
 		<div id="lateral">
 			<p:commandLink actionListener="#{principalMB.exibirHome}"
 				update="@this formModulos btnCadastroEmpresa">
@@ -121,7 +121,7 @@
 			src="/aplicacaoWeb/cadastroEmpresa/listaSelecionarEmpresas.xhtml" />
 	</p:dialog>
 
-	<p:dialog id="dlgGrupo" header="#{msgs.EmpresaGrupo}" height="350px"
+	<p:dialog id="dlgGrupo" header="#{msgs.EmpresaGrupo}" height="370px"
 		widgetVar="dlgGrupo" closable="true" resizable="false" dynamic="true"
 		draggable="true" responsive="true" styleClass="pdialogGrupo"
 		showEffect="fade" hideEffect="fade">

@@ -70,10 +70,14 @@
 						</p:panelGrid>
 					</p:tab>
 					<p:tab id="tabEditarEmpresas" title="#{msgs.Empresas}">
-						<p:pickList id="pclEmpresasGrupo"
-							value="#{cadastroEmpresaMB.empresas}" var="empresa"
-							itemLabel="#{empresa.nome}" itemValue="#{empresa}"
-							converter="empresaConverter" />
+						<p:panelGrid columns="1" styleClass="tabelaSemBorda">
+							<h:outputText
+								value="#{msgs.textoSelecionarMultiplasEmpresasGrupo}" />
+							<p:pickList id="pclEmpresasGrupo"
+								value="#{cadastroEmpresaMB.empresas}" var="empresa"
+								itemLabel="#{empresa.nome}" itemValue="#{empresa}"
+								converter="empresaConverter" />
+						</p:panelGrid>
 					</p:tab>
 				</p:tabView>
 			</h:panelGroup>
@@ -93,10 +97,14 @@
 						</p:panelGrid>
 					</p:tab>
 					<p:tab id="tabExibirEmpresas" title="#{msgs.Empresas}">
-						<p:pickList id="pclEmpresasGrupo"
-							value="#{cadastroEmpresaMB.empresas}" var="empresa"
-							itemLabel="#{empresa.nome}" itemValue="#{empresa}"
-							converter="empresaConverter" />
+						<p:panelGrid columns="1" styleClass="tabelaSemBorda ">
+							<h:outputText
+								value="#{msgs.textoSelecionarMultiplasEmpresasGrupo}" />
+							<p:pickList id="pclEmpresasGrupo"
+								value="#{cadastroEmpresaMB.empresas}" var="empresa"
+								itemLabel="#{empresa.nome}" itemValue="#{empresa}"
+								converter="empresaConverter" />
+						</p:panelGrid>
 					</p:tab>
 				</p:tabView>
 			</h:panelGroup>
