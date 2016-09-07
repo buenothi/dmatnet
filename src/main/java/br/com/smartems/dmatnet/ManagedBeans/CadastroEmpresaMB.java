@@ -50,6 +50,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private EmpresaFAP empresaFap;
 	private EnderecoEntity endereco;
 	private List<EmpresaEntity> empresasDisponiveis;
+	private List<EmpresaEntity> empresasNaoAtribuidasGrupo;
 	private List<EmpresaEntity> empresasAtribuidas;
 	private DualListModel<EmpresaEntity> empresas;
 	private List<EmpresaGrupoEntity> grupos;
@@ -170,6 +171,17 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setEmpresasDisponiveis(List<EmpresaEntity> empresasDisponiveis) {
 		this.empresasDisponiveis = empresasDisponiveis;
+	}
+
+	public List<EmpresaEntity> getEmpresasNaoAtribuidasGrupo() {
+		if (this.empresasNaoAtribuidasGrupo == null){
+			this.empresasNaoAtribuidasGrupo = new ArrayList<EmpresaEntity>();
+		}
+		return empresasNaoAtribuidasGrupo;
+	}
+
+	public void setEmpresasNaoAtribuidasGrupo(List<EmpresaEntity> empresasNaoAtribuidasGrupo) {
+		this.empresasNaoAtribuidasGrupo = empresasNaoAtribuidasGrupo;
 	}
 
 	public List<EmpresaEntity> getEmpresasAtribuidas() {
@@ -587,23 +599,23 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnSelecionarGrupo = false;
 		this.isBtnGrupoExcluirDesativado = false;
 		this.grupoSelecionado = (EmpresaGrupoEntity) evt.getObject();
-		this.empresasDisponiveis = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
+		this.empresasNaoAtribuidasGrupo = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
 		if (this.empresasAtribuidas == null) {
 			this.empresasAtribuidas = new ArrayList<>();
 		}
 		this.empresasAtribuidas = this.grupoSelecionado.getEmpresas();
 		for (EmpresaEntity empresa : this.empresasAtribuidas) {
-			if (this.empresasDisponiveis.contains(empresa)) {
-				this.empresasDisponiveis.remove(empresa);
+			if (this.empresasNaoAtribuidasGrupo.contains(empresa)) {
+				this.empresasNaoAtribuidasGrupo.remove(empresa);
 			}
 		}
-		this.dualListEmpresasDisponiveis(this.empresasDisponiveis, this.empresasAtribuidas);
+		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
 	}
 
-	private void dualListEmpresasDisponiveis(List<EmpresaEntity> empresasDisponiveis,
+	private void dualListEmpresasDisponiveis(List<EmpresaEntity> empresasNaoAtribuidas,
 			List<EmpresaEntity> empresasAtribuidas) {
 		try {
-			this.empresas = new DualListModel<EmpresaEntity>(empresasDisponiveis, empresasAtribuidas);
+			this.empresas = new DualListModel<EmpresaEntity>(empresasNaoAtribuidas, empresasAtribuidas);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
