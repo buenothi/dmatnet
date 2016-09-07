@@ -570,9 +570,7 @@ public class CadastroEmpresaMB implements Serializable {
 	public void initEmpresa() {
 		try {
 			this.grupos = empresaGrupoFachada.listarGrupoEmpresas(usuarioMB.getUsuarioLogado());
-			if (this.empresasDisponiveis == null) {
-				this.empresasDisponiveis = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
-			}
+			this.empresasDisponiveis = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
 			if (this.empresasAtribuidas == null) {
 				this.empresasAtribuidas = new ArrayList<>();
 			}
@@ -601,8 +599,9 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 		this.dualListEmpresasDisponiveis(this.empresasDisponiveis, this.empresasAtribuidas);
 	}
-	
-	private void dualListEmpresasDisponiveis(List<EmpresaEntity> empresasDisponiveis, List<EmpresaEntity> empresasAtribuidas) {
+
+	private void dualListEmpresasDisponiveis(List<EmpresaEntity> empresasDisponiveis,
+			List<EmpresaEntity> empresasAtribuidas) {
 		try {
 			this.empresas = new DualListModel<EmpresaEntity>(empresasDisponiveis, empresasAtribuidas);
 		} catch (Exception e) {

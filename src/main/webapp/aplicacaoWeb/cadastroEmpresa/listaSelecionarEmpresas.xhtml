@@ -55,8 +55,8 @@
 
 			<p:column width="55">
 				<p:commandButton icon="fa fa-trash"
-					update="formSelecionarEmpresa"
-					actionListener="#{cadastroEmpresaMB.excluirCadastroEmpresa(empresa)}">
+					actionListener="#{cadastroEmpresaMB.excluirCadastroEmpresa(empresa)}"
+					update="formSelecionarEmpresa">
 					<f:setPropertyActionListener value="#{empresa}"
 						target="#{cadastroEmpresaMB.empresa}" />
 					<p:confirm header="#{msgs.Confirmar}"
