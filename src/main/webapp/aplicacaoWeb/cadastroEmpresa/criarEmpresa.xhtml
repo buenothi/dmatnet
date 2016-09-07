@@ -28,12 +28,13 @@
 				<p:spacer />
 				<p:outputLabel value="#{msgs.EmpresaGrupo}:" />
 				<p:selectOneMenu style="width:220px"
-					value="#{cadastroEmpresaMB.grupoEmpresa}"
-					converter="empresaGrupoConverter" >
+					value="#{cadastroEmpresaMB.empresa.grupo}"
+					converter="empresaGrupoConverter" filter="true"
+					filterMatchMode="startsWith">
 					<f:selectItem itemLabel="#{msgs.GrupoNoSelectionOption}"
-						noSelectionOption="true" />
+						noSelectionOption="true" itemValue=""/>
 					<f:selectItems value="#{cadastroEmpresaMB.grupos}" var="grupos"
-						itemLabel="#{grupos.nomeGrupo}" itemValue="#{grupos}"/>
+						itemLabel="#{grupos.nomeGrupo}" itemValue="#{grupos}" />
 				</p:selectOneMenu>
 				<p:commandButton onclick="PF('dlgGrupo').show()" icon="fa fa-group"
 					value="#{msgs.EmpresaGrupo}" />

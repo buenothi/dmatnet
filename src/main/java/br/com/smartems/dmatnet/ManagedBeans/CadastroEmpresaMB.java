@@ -410,7 +410,6 @@ public class CadastroEmpresaMB implements Serializable {
 		if (this.empresa != null) {
 			if (this.empresa.getIdPessoa() == 0) {
 				this.empresa.setUsuarioCriador(this.usuarioMB.getUsuarioLogado());
-				this.empresa.setGrupo(this.grupoEmpresa);
 				this.pessoaJuridicaFachada.create(this.empresa);
 				this.initEmpresa();
 				FacesMessage msg = new FacesMessage("Sucesso",
@@ -419,7 +418,6 @@ public class CadastroEmpresaMB implements Serializable {
 				this.empresa = null;
 			} else {
 				this.empresa.setUsuarioCriador(this.usuarioMB.getUsuarioLogado());
-				this.empresa.setGrupo(this.grupoEmpresa);
 				this.pessoaJuridicaFachada.update(this.empresa);
 				this.initEmpresa();
 				FacesMessage msg = new FacesMessage("Sucesso",
