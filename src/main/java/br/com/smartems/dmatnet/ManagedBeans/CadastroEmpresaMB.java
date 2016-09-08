@@ -174,7 +174,7 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public List<EmpresaEntity> getEmpresasNaoAtribuidasGrupo() {
-		if (this.empresasNaoAtribuidasGrupo == null){
+		if (this.empresasNaoAtribuidasGrupo == null) {
 			this.empresasNaoAtribuidasGrupo = new ArrayList<EmpresaEntity>();
 		}
 		return empresasNaoAtribuidasGrupo;
@@ -617,6 +617,24 @@ public class CadastroEmpresaMB implements Serializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void salvarEmpresasNoGrupoSelecionado(ActionEvent evt) {
+		
+	}
+	
+	public void cancelarEmpresasNoGrupoSelecionado(ActionEvent evt) {
+		this.empresasNaoAtribuidasGrupo = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
+		if (this.empresasAtribuidas == null) {
+			this.empresasAtribuidas = new ArrayList<>();
+		}
+		this.empresasAtribuidas = this.grupoSelecionado.getEmpresas();
+		for (EmpresaEntity empresa : this.empresasAtribuidas) {
+			if (this.empresasNaoAtribuidasGrupo.contains(empresa)) {
+				this.empresasNaoAtribuidasGrupo.remove(empresa);
+			}
+		}
+		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
 	}
 
 	public void setListaEmpresa(boolean isListaEmpresa) {

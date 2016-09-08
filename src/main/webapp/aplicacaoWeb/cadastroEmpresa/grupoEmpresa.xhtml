@@ -48,66 +48,68 @@
 					rows="7">
 					<p:ajax event="rowSelect"
 						listener="#{cadastroEmpresaMB.onSelectionGrupo}"
-						update="formGrupoEmpresa" />
+						update="formGrupoEmpresa:tbvEditarGrupo:pngEditarGrupo, 
+							formGrupoEmpresa:pngGrupoBotoesCRUD, 
+							formGrupoEmpresa:tbvEditarGrupo:pngEmpresasPorGrupo" />
 					<p:column>
 						<h:outputText value="#{grupo.nomeGrupo}" />
 					</p:column>
 				</p:dataTable>
 			</h:panelGroup>
 
-			<h:panelGroup id="pngGrupoEditar" layout="block"
-				styleClass="pdialogDivDireita"
-				rendered="#{cadastroEmpresaMB.tabEditarDesativado}">
+			<h:panelGroup id="pngGrupo" layout="block"
+				styleClass="pdialogDivDireita">
 				<p:tabView id="tbvEditarGrupo">
 					<p:tab id="tabEditarGrupo" title="#{msgs.EmpresaGrupo}">
-						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-							<p:outputLabel value="#{msgs.EmpresaGrupoNome}" />
-							<p:inputText size="33"
-								value="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
-							<p:outputLabel value="#{msgs.EmpresaGrupoDescricao}" />
-							<p:inputTextarea cols="33"
-								value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
-						</p:panelGrid>
+						<h:panelGroup id="pngEditarGrupo">
+							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+								<p:outputLabel value="#{msgs.EmpresaGrupoNome}" />
+								<p:inputText size="33"
+									rendered="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
+									value="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
+								<p:outputLabel
+									rendered="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}"
+									value="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
+
+								<p:outputLabel value="#{msgs.EmpresaGrupoDescricao}" />
+								<p:inputTextarea cols="33"
+									rendered="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
+									value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
+								<p:outputLabel
+									rendered="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}"
+									value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
+							</p:panelGrid>
+						</h:panelGroup>
 					</p:tab>
 					<p:tab id="tabEditarEmpresas" title="#{msgs.Empresas}">
-						<p:panelGrid columns="1" styleClass="tabelaSemBorda">
-							<h:outputText
-								value="#{msgs.textoSelecionarMultiplasEmpresasGrupo}" />
-							<p:pickList id="pclEmpresasGrupo"
-								value="#{cadastroEmpresaMB.empresas}" var="empresa"
-								itemLabel="#{empresa.nome}" itemValue="#{empresa}"
-								converter="empresaConverter" />
-						</p:panelGrid>
+						<h:panelGroup id="pngEmpresasPorGrupo">
+							<p:panelGrid columns="1" styleClass="tabelaSemBorda">
+								<h:outputText
+									value="#{msgs.textoSelecionarMultiplasEmpresasGrupo}" />
+								<h:panelGroup>
+									<p:commandButton value="#{msgs.SalvarEmpresasGrupo}"
+										icon="fa fa-save" actionListener="#{cadastroEmpresaMB.salvarEmpresasNoGrupoSelecionado}" />
+									<p:commandButton value="#{msgs.Cancelar}" icon="fa fa-remove" 
+										actionListener="#{cadastroEmpresaMB.cancelarEmpresasNoGrupoSelecionado}"
+										update="formGrupoEmpresa:tbvEditarGrupo:pngEmpresasPorGrupo"/>
+								</h:panelGroup>
+								<p:pickList id="pclEmpresasGrupo"
+									value="#{cadastroEmpresaMB.empresas}" var="empresa"
+									itemLabel="#{empresa.nome}" itemValue="#{empresa}"
+									converter="empresaConverter">
+									<f:facet name="sourceCaption">
+										<p:outputLabel value="#{msgs.EmpresaDisponivel}" />
+									</f:facet>
+									<f:facet name="targetCaption">
+										<p:outputLabel value="#{msgs.EmpresaAtribuida}" />
+									</f:facet>
+								</p:pickList>
+							</p:panelGrid>
+						</h:panelGroup>
 					</p:tab>
 				</p:tabView>
 			</h:panelGroup>
 
-			<h:panelGroup id="pngGrupoExibir" layout="block"
-				styleClass="pdialogDivDireita"
-				rendered="#{cadastroEmpresaMB.tabExibirDesativado}">
-				<p:tabView id="tbvExibirGrupo">
-					<p:tab id="tabExibirGrupo" title="#{msgs.EmpresaGrupo}">
-						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-							<p:outputLabel value="#{msgs.EmpresaGrupoNome}" />
-							<p:outputLabel
-								value="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
-							<p:outputLabel value="#{msgs.EmpresaGrupoDescricao}" />
-							<p:outputLabel
-								value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
-						</p:panelGrid>
-					</p:tab>
-					<p:tab id="tabExibirEmpresas" title="#{msgs.Empresas}">
-						<p:panelGrid columns="1" styleClass="tabelaSemBorda ">
-							<h:outputText
-								value="#{msgs.textoSelecionarMultiplasEmpresasGrupo}" />
-							<p:pickList id="pclEmpresasGrupo"
-								value="#{cadastroEmpresaMB.empresas}" var="empresa"
-								itemLabel="#{empresa.nome}" itemValue="#{empresa}"
-								converter="empresaConverter" />
-						</p:panelGrid>
-					</p:tab>
-				</p:tabView>
-			</h:panelGroup>
 		</h:panelGroup>
 	</h:form>
 </ui:composition>
