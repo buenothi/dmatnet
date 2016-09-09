@@ -70,7 +70,6 @@
 								<p:outputLabel
 									rendered="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}"
 									value="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
-
 								<p:outputLabel value="#{msgs.EmpresaGrupoDescricao}" />
 								<p:inputTextarea cols="33"
 									rendered="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
@@ -83,16 +82,18 @@
 					</p:tab>
 					<p:tab id="tabEditarEmpresas" title="#{msgs.Empresas}">
 						<h:panelGroup id="pngEmpresasPorGrupo">
+								<h:panelGroup>
+									<p:commandButton value="#{msgs.SalvarEmpresasGrupo}"
+										icon="fa fa-save"
+										actionListener="#{cadastroEmpresaMB.salvarEmpresasNoGrupoSelecionado}"
+										update="formSelecionarEmpresa, formGrupoEmpresa:tbvEditarGrupo:pngEmpresasPorGrupo" />
+									<p:commandButton value="#{msgs.Cancelar}" icon="fa fa-remove"
+										actionListener="#{cadastroEmpresaMB.cancelarEmpresasNoGrupoSelecionado}"
+										update="formSelecionarEmpresa, formGrupoEmpresa:tbvEditarGrupo:pngEmpresasPorGrupo" />
+								</h:panelGroup>
 							<p:panelGrid columns="1" styleClass="tabelaSemBorda">
 								<h:outputText
 									value="#{msgs.textoSelecionarMultiplasEmpresasGrupo}" />
-								<h:panelGroup>
-									<p:commandButton value="#{msgs.SalvarEmpresasGrupo}"
-										icon="fa fa-save" actionListener="#{cadastroEmpresaMB.salvarEmpresasNoGrupoSelecionado}" />
-									<p:commandButton value="#{msgs.Cancelar}" icon="fa fa-remove" 
-										actionListener="#{cadastroEmpresaMB.cancelarEmpresasNoGrupoSelecionado}"
-										update="formGrupoEmpresa:tbvEditarGrupo:pngEmpresasPorGrupo"/>
-								</h:panelGroup>
 								<p:pickList id="pclEmpresasGrupo"
 									value="#{cadastroEmpresaMB.empresas}" var="empresa"
 									itemLabel="#{empresa.nome}" itemValue="#{empresa}"

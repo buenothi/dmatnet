@@ -620,7 +620,31 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 	
 	public void salvarEmpresasNoGrupoSelecionado(ActionEvent evt) {
-		
+		if (!this.empresas.getTarget().isEmpty()) {
+			for (EmpresaEntity empresa : this.empresas.getTarget()) {
+				empresa.setGrupo(this.grupoSelecionado);
+				this.pessoaJuridicaFachada.update(empresa);
+			}
+		}
+		if (!this.empresas.getSource().isEmpty()) {
+			for (EmpresaEntity empresa : this.empresas.getSource()) {
+				if (empresa.getGrupo() == this.grupoSelecionado) {
+					empresa.setGrupo(null);
+					this.pessoaJuridicaFachada.update(empresa);
+				}
+			}
+		}
+		this.empresasNaoAtribuidasGrupo = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
+		if (this.empresasAtribuidas == null) {
+			this.empresasAtribuidas = new ArrayList<>();
+		}
+		this.empresasAtribuidas = this.grupoSelecionado.getEmpresas();
+		for (EmpresaEntity empresa : this.empresasAtribuidas) {
+			if (this.empresasNaoAtribuidasGrupo.contains(empresa)) {
+				this.empresasNaoAtribuidasGrupo.remove(empresa);
+			}
+		}
+		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
 	}
 	
 	public void cancelarEmpresasNoGrupoSelecionado(ActionEvent evt) {
