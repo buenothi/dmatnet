@@ -34,6 +34,7 @@ public class EmpresaGrupoEAO extends AbstractEAO<EmpresaGrupoEntity, Long>{
 			Query query = entityManager.createNamedQuery("EmpresaGrupo.listarGruposPorUsuario", EmpresaGrupoEntity.class);
 			query.setParameter("idUsuario", usuarioLogado.getIdPessoa());
 			listaGruposEmpresa = (List<EmpresaGrupoEntity>) query.getResultList();
+			entityManager.flush();
 		}
 		return listaGruposEmpresa;
 	}

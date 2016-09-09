@@ -585,7 +585,6 @@ public class CadastroEmpresaMB implements Serializable {
 				this.empresasAtribuidas = new ArrayList<>();
 			}
 			this.dualListEmpresasDisponiveis(this.empresasDisponiveis, this.empresasAtribuidas);
-			this.isListaEmpresa = false;
 		} catch (NoResultException e) {
 			e.printStackTrace();
 			this.isListaEmpresa = true;
@@ -618,7 +617,7 @@ public class CadastroEmpresaMB implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void salvarEmpresasNoGrupoSelecionado(ActionEvent evt) {
 		if (!this.empresas.getTarget().isEmpty()) {
 			for (EmpresaEntity empresa : this.empresas.getTarget()) {
@@ -628,27 +627,24 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 		if (!this.empresas.getSource().isEmpty()) {
 			for (EmpresaEntity empresa : this.empresas.getSource()) {
-				if (empresa.getGrupo() == this.grupoSelecionado) {
+				if (empresa.getGrupo().equals(this.grupoSelecionado)) {
 					empresa.setGrupo(null);
 					this.pessoaJuridicaFachada.update(empresa);
 				}
 			}
 		}
+		this.initEmpresa();
 		this.empresasNaoAtribuidasGrupo = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
-		if (this.empresasAtribuidas == null) {
-			this.empresasAtribuidas = new ArrayList<>();
-		}
 		this.empresasAtribuidas = this.grupoSelecionado.getEmpresas();
-		for (EmpresaEntity empresa : this.empresasAtribuidas) {
-			if (this.empresasNaoAtribuidasGrupo.contains(empresa)) {
-				this.empresasNaoAtribuidasGrupo.remove(empresa);
+		for (EmpresaEntity empresaAtribuida : this.empresasAtribuidas) {
+			if (this.empresasNaoAtribuidasGrupo.contains(empresaAtribuida)) {
+				this.empresasNaoAtribuidasGrupo.remove(empresaAtribuida);
 			}
 		}
 		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
 	}
-	
+
 	public void cancelarEmpresasNoGrupoSelecionado(ActionEvent evt) {
-		this.empresasNaoAtribuidasGrupo = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
 		if (this.empresasAtribuidas == null) {
 			this.empresasAtribuidas = new ArrayList<>();
 		}
