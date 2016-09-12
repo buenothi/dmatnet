@@ -633,12 +633,12 @@ public class CadastroEmpresaMB implements Serializable {
 				}
 			}
 		}
-		this.empresas = new DualListModel<>();
 		this.initEmpresa();
-		this.empresasNaoAtribuidasGrupo = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
 		if (this.empresasAtribuidas == null) {
 			this.empresasAtribuidas = new ArrayList<>();
 		}
+		this.empresasNaoAtribuidasGrupo = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
+		this.grupoSelecionado = this.empresaGrupoFachada.read(this.grupoSelecionado.getIdGrupo());
 		this.empresasAtribuidas = this.grupoSelecionado.getEmpresas();
 		for (EmpresaEntity empresa : this.empresasAtribuidas) {
 			if (this.empresasNaoAtribuidasGrupo.contains(empresa)) {
@@ -649,13 +649,23 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void cancelarEmpresasNoGrupoSelecionado(ActionEvent evt) {
+		initEmpresa();
+		this.empresasNaoAtribuidasGrupo = this.empresasDisponiveis;
 		if (this.empresasAtribuidas == null) {
 			this.empresasAtribuidas = new ArrayList<>();
 		}
-		this.empresasAtribuidas = this.grupoSelecionado.getEmpresas();
-		for (EmpresaEntity empresa : this.empresasAtribuidas) {
-			if (this.empresasNaoAtribuidasGrupo.contains(empresa)) {
-				this.empresasNaoAtribuidasGrupo.remove(empresa);
+		if (!this.empresasAtribuidas.isEmpty()) {
+			this.grupoSelecionado = this.empresaGrupoFachada.read(this.grupoSelecionado.getIdGrupo());
+			this.empresasAtribuidas = this.grupoSelecionado.getEmpresas();
+			for (EmpresaEntity empresa : this.empresasAtribuidas) {
+				if (this.empresasNaoAtribuidasGrupo.contains(empresa)) {
+					this.empresasNaoAtribuidasGrupo.remove(empresa);
+				}
+			}
+			for (EmpresaEntity empresa : this.empresasNaoAtribuidasGrupo) {
+				if (this.empresasAtribuidas.contains(empresa)) {
+					this.empresasAtribuidas.remove(empresa);
+				}
 			}
 		}
 		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);

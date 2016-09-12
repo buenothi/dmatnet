@@ -32,7 +32,9 @@ public abstract class AbstractEAO <T, PK> implements IAbstractDAO<T, PK>{
 	}
 
 	public T update(T entity) throws NoResultException {
-		return this.entityManager.merge(entity);
+		Object c = this.entityManager.merge(entity);
+		entityManager.flush();
+		return (T)c;
 	}
 
 	public void delete(T entity) throws NoResultException {
