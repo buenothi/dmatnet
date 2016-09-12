@@ -310,3 +310,7 @@ a:LINK {
 .botoesWebApp {
 	font-size: 10pt;
 }
+
+.outputPadrao {
+	text-transform: lowercase;
+}

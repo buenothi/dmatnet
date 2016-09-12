@@ -30,9 +30,8 @@
 					onclick="PF('dlgSelecionarEmpresa').show()" />
 			</h:panelGrid>
 			<h:panelGrid class="usuarioLogado" columns="1">
-				<h:outputFormat value="#{usuarioMB.usuarioLogado.nome}" />
-				<h:outputFormat value="#{usuarioMB.usuarioLogado.grupo.nomeGrupo}"
-					styleClass="textoUsuarioLogado" />
+				<h:outputFormat value="#{usuarioMB.usuarioLogado.nome}"/>
+				<h:outputFormat value="#{usuarioMB.usuarioLogado.grupo.nomeGrupo}" styleClass="outputPadrao"/>
 			</h:panelGrid>
 		</h:form>
 	</div>
