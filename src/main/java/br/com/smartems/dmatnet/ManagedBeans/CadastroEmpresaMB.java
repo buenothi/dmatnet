@@ -633,12 +633,16 @@ public class CadastroEmpresaMB implements Serializable {
 				}
 			}
 		}
+		this.empresas = new DualListModel<>();
 		this.initEmpresa();
 		this.empresasNaoAtribuidasGrupo = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
+		if (this.empresasAtribuidas == null) {
+			this.empresasAtribuidas = new ArrayList<>();
+		}
 		this.empresasAtribuidas = this.grupoSelecionado.getEmpresas();
-		for (EmpresaEntity empresaAtribuida : this.empresasAtribuidas) {
-			if (this.empresasNaoAtribuidasGrupo.contains(empresaAtribuida)) {
-				this.empresasNaoAtribuidasGrupo.remove(empresaAtribuida);
+		for (EmpresaEntity empresa : this.empresasAtribuidas) {
+			if (this.empresasNaoAtribuidasGrupo.contains(empresa)) {
+				this.empresasNaoAtribuidasGrupo.remove(empresa);
 			}
 		}
 		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
@@ -655,14 +659,6 @@ public class CadastroEmpresaMB implements Serializable {
 			}
 		}
 		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
-	}
-
-	public void setListaEmpresa(boolean isListaEmpresa) {
-		this.isListaEmpresa = isListaEmpresa;
-	}
-
-	public void setBtnGrupoNovoDesativado(boolean isBtnGrupoNovoDesativado) {
-		this.isBtnGrupoNovoDesativado = isBtnGrupoNovoDesativado;
 	}
 
 }

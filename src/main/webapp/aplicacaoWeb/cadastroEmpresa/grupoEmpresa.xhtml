@@ -94,7 +94,7 @@
 							<p:panelGrid columns="1" styleClass="tabelaSemBorda">
 								<h:outputText
 									value="#{msgs.textoSelecionarMultiplasEmpresasGrupo}" />
-								<p:pickList id="pclEmpresasGrupo"
+								<p:pickList id="pclEmpresasGrupo" immediate="true"
 									value="#{cadastroEmpresaMB.empresas}" var="empresa"
 									itemLabel="#{empresa.nome}" itemValue="#{empresa}"
 									converter="empresaConverter">
