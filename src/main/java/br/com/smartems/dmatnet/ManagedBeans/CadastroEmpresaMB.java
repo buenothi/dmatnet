@@ -646,6 +646,9 @@ public class CadastroEmpresaMB implements Serializable {
 			}
 		}
 		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
+		
+		FacesMessage msg = new FacesMessage("Sucesso", this.grupoSelecionado.getNomeGrupo() + " Alterado com Sucesso");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 	public void cancelarEmpresasNoGrupoSelecionado(ActionEvent evt) {
