@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
 @MappedSuperclass
 @Inheritance(strategy=InheritanceType.JOINED)
 public abstract class AbstractPessoaEntity implements Serializable {
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idPessoa;
