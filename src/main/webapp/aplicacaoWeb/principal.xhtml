@@ -21,7 +21,7 @@
 		<h:form id="formSuperior">
 			<h:panelGrid class="empresaSelecionada" columns="4">
 				<p:spacer height="100%" width="10px" />
-				<p:outputLabel id="oplEmpresaSelecionada"
+				<p:outputLabel id="oplEmpresaSelecionada" converter="stringConverter"
 					value="#{principalMB.empresaSelecionada.nome}" />
 				<p:spacer height="100%" width="10px" />
 				<p:commandButton id="btnSelecionarEmpresa"
@@ -30,8 +30,8 @@
 					onclick="PF('dlgSelecionarEmpresa').show()" />
 			</h:panelGrid>
 			<h:panelGrid class="usuarioLogado" columns="1">
-				<h:outputFormat value="#{usuarioMB.usuarioLogado.nome}"/>
-				<h:outputFormat value="#{usuarioMB.usuarioLogado.grupo.nomeGrupo}" styleClass="outputPadrao"/>
+				<h:outputFormat value="#{usuarioMB.usuarioLogado.nome}" converter="stringConverter"/>
+				<h:outputFormat value="#{usuarioMB.usuarioLogado.grupo.nomeGrupo}" converter="stringConverter"/>
 			</h:panelGrid>
 		</h:form>
 	</div>
@@ -128,7 +128,7 @@
 	</p:dialog>
 
 	<p:dialog id="dlgCriarEmpresa" widgetVar="dlgCriarEmpresa"
-		resizable="false" modal="true" width="565" dynamic="true"
+		resizable="false" modal="true" width="585" dynamic="true"
 		header="#{msgs.NovaEmpresa}" responsive="true" style="padding:10px"
 		showEffect="fade" hideEffect="fade">
 		<ui:include src="/aplicacaoWeb/cadastroEmpresa/criarEmpresa.xhtml" />

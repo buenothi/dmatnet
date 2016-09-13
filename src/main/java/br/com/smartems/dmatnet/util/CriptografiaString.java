@@ -6,8 +6,8 @@ import java.security.NoSuchAlgorithmException;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 
-@Stateless
 @Local
+@Stateless
 public class CriptografiaString {
 
 	public String obterHashString(String senha) {

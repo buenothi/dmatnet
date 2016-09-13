@@ -385,6 +385,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	// fim dos getters e setters
 
+	
 	public void alterarMascaraPessoaJuridica() {
 		switch (this.dadosCadastrais.getTipoInscricao()) {
 		case 1:
@@ -396,6 +397,7 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 	}
 
+	
 	// action dos botões de cadastro de empresa
 
 	public void editarCadastroEmpresa(ActionEvent e) {
@@ -441,6 +443,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.empresa = new EmpresaEntity();
 	}
 
+	
 	// action dos botões dados cadastrais da empresa
 
 	public void editarDadosCadastraisEmpresa(ActionEvent e) {
@@ -471,6 +474,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = true;
 	}
 
+	
 	// action dos botões de endereco empresa
 
 	public void editarEnderecoEmpresa(ActionEvent e) {
@@ -501,6 +505,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnEnderecoNovoDesativado = true;
 	}
 
+	
 	// action dos botões de grupos-empresa
 
 	public void editarCadastroGrupo(ActionEvent e) {

@@ -32,12 +32,12 @@
 					converter="empresaGrupoConverter" filter="true"
 					filterMatchMode="startsWith">
 					<f:selectItem itemLabel="#{msgs.GrupoNoSelectionOption}"
-						noSelectionOption="true" itemValue=""/>
+						noSelectionOption="true" />
 					<f:selectItems value="#{cadastroEmpresaMB.grupos}" var="grupos"
-						itemLabel="#{grupos.nomeGrupo}" itemValue="#{grupos}" />
+						itemLabel="#{grupos.nomeGrupo}" />
 				</p:selectOneMenu>
 				<p:commandButton onclick="PF('dlgGrupo').show()" icon="fa fa-group"
-					value="#{msgs.EmpresaGrupo}" />
+					value="#{msgs.EmpresaGrupoCriar}"/>
 			</p:panelGrid>
 		</h:panelGroup>
 	</h:form>
