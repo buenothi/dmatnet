@@ -19,9 +19,12 @@
 		<p:spacer width="100%" height="10px" />
 
 		<h:panelGrid columns="2" style="width:100%">
-			<p:inputText style="width: 100%" />
+			<p:inputText id="iptBuscarEmpresa" style="width: 100%"
+				value="#{cadastroEmpresaMB.nomeEmpresaProcurada}" />
 			<p:commandButton icon="fa fa-search"
-				style="font-size:10pt;height:31px" />
+				style="font-size:10pt;height:31px"
+				actionListener="#{cadastroEmpresaMB.filtrarEmpresa}"
+				update="formSelecionarEmpresa"/>
 		</h:panelGrid>
 
 		<p:spacer width="100%" height="10px" />
@@ -60,7 +63,8 @@
 					<f:setPropertyActionListener value="#{empresa}"
 						target="#{cadastroEmpresaMB.empresa}" />
 					<p:confirm header="#{msgs.Confirmar}"
-						message="#{msgs.DeletarEmpresa} #{empresa.nome} ?" icon="ui-icon-alert" />
+						message="#{msgs.DeletarEmpresa} #{empresa.nome} ?"
+						icon="ui-icon-alert" />
 				</p:commandButton>
 			</p:column>
 

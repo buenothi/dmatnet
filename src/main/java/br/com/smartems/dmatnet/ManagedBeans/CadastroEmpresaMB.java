@@ -25,6 +25,8 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEnt
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaGrupoEntity;
+import br.com.smartems.dmatnet.util.filtrosCollection.Filter;
+import br.com.smartems.dmatnet.util.filtrosCollection.FiltroEmpresa;
 
 @ManagedBean
 @ViewScoped
@@ -60,6 +62,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	private boolean isListaEmpresa = false;
 	private int tipoPessoaJuridicaSelecionada;
+	private String nomeEmpresaProcurada;
 
 	// botões referentes à Edição do Cadastro de Grupo Empresa
 
@@ -390,6 +393,14 @@ public class CadastroEmpresaMB implements Serializable {
 	public int getTipoPessoaJuridicaSelecionada() {
 		return tipoPessoaJuridicaSelecionada;
 	}
+	
+	public String getNomeEmpresaProcurada() {
+		return nomeEmpresaProcurada;
+	}
+
+	public void setNomeEmpresaProcurada(String nomeEmpresaProcurada) {
+		this.nomeEmpresaProcurada = nomeEmpresaProcurada;
+	}
 
 	public String getMascaraPessoaJuridica() {
 		return mascaraPessoaJuridica;
@@ -397,7 +408,6 @@ public class CadastroEmpresaMB implements Serializable {
 
 	// fim dos getters e setters
 
-	
 	public void alterarMascaraPessoaJuridica() {
 		switch (this.dadosCadastrais.getTipoInscricao()) {
 		case 1:
@@ -409,7 +419,6 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 	}
 
-	
 	// action dos botões de cadastro de empresa
 
 	public void editarCadastroEmpresa(ActionEvent e) {
@@ -454,8 +463,18 @@ public class CadastroEmpresaMB implements Serializable {
 	public void novoCadastroEmpresa(ActionEvent e) {
 		this.empresa = new EmpresaEntity();
 	}
-
 	
+	public void filtrarEmpresa(ActionEvent e) {
+		if (!this.nomeEmpresaProcurada.isEmpty()) {
+			this.filtrarEmpresas();
+			this.empresasDisponiveis = this.empresasFiltradas;
+			System.out.println("true");
+		} else {
+			this.initEmpresa();
+			System.out.println("false");
+		}
+	}
+
 	// action dos botões dados cadastrais da empresa
 
 	public void editarDadosCadastraisEmpresa(ActionEvent e) {
@@ -486,7 +505,6 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = true;
 	}
 
-	
 	// action dos botões de endereco empresa
 
 	public void editarEnderecoEmpresa(ActionEvent e) {
@@ -517,7 +535,6 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnEnderecoNovoDesativado = true;
 	}
 
-	
 	// action dos botões de grupos-empresa
 
 	public void editarCadastroGrupo(ActionEvent e) {
@@ -663,7 +680,7 @@ public class CadastroEmpresaMB implements Serializable {
 			}
 		}
 		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
-		
+
 		FacesMessage msg = new FacesMessage("Sucesso", this.grupoSelecionado.getNomeGrupo() + " Alterado com Sucesso");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
@@ -689,6 +706,15 @@ public class CadastroEmpresaMB implements Serializable {
 			}
 		}
 		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
+	}
+
+	// filtros para buscas diversas
+
+	public void filtrarEmpresas() {
+		Filter<EmpresaEntity> filtroEmpresa = new FiltroEmpresa();
+		for (EmpresaEntity empresa : this.empresasDisponiveis) //realizando a busca
+			if (filtroEmpresa.match(empresa, this.nomeEmpresaProcurada))
+				this.empresasFiltradas.add(empresa);
 	}
 
 }
