@@ -310,3 +310,8 @@ a:LINK {
 .botoesWebApp {
 	font-size: 10pt;
 }
+
+.panelGroupGrupo {
+	height: 370px;
+	min-height: 370px;
+}

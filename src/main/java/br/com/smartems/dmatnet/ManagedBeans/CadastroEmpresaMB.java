@@ -52,6 +52,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private List<EmpresaEntity> empresasDisponiveis;
 	private List<EmpresaEntity> empresasNaoAtribuidasGrupo;
 	private List<EmpresaEntity> empresasAtribuidas;
+	private List<EmpresaEntity> empresasFiltradas;
 	private DualListModel<EmpresaEntity> empresas;
 	private List<EmpresaGrupoEntity> grupos;
 
@@ -193,6 +194,17 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setEmpresasAtribuidas(List<EmpresaEntity> empresasAtribuidas) {
 		this.empresasAtribuidas = empresasAtribuidas;
+	}
+
+	public List<EmpresaEntity> getEmpresasFiltradas() {
+		if (this.empresasFiltradas == null) {
+			this.empresasFiltradas = new ArrayList<EmpresaEntity>();
+		}
+		return empresasFiltradas;
+	}
+
+	public void setEmpresasFiltradas(List<EmpresaEntity> empresasFiltradas) {
+		this.empresasFiltradas = empresasFiltradas;
 	}
 
 	public DualListModel<EmpresaEntity> getEmpresas() {

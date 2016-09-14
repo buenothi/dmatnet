@@ -10,48 +10,20 @@
 <ui:composition>
 	<h:form id="formGrupoEmpresa">
 		<h:panelGroup id="pngGrupos">
-			<h:panelGroup id="pngGrupoBotoesCRUD">
-				<dmat:barraBotoesComposite id="dmatBotoesCRUDGrupo"
-					disabledEditar="#{cadastroEmpresaMB.btnGrupoEditarDesativado}"
-					actionListenerEditar="#{cadastroEmpresaMB.editarCadastroGrupo}"
-					updateEditar="formGrupoEmpresa, formCriarEmpresa"
-					disabledCancelar="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}"
-					actionListenerCancelar="#{cadastroEmpresaMB.cancelarCadastroGrupo}"
-					updateCancelar="formGrupoEmpresa"
-					disabledSalvar="#{cadastroEmpresaMB.btnGrupoSalvarDesativado}"
-					actionListenerSalvar="#{cadastroEmpresaMB.salvarCadastroGrupo}"
-					updateSalvar="formGrupoEmpresa, formCriarEmpresa, growlPrincipal"
-					labelNovo="#{msgs.EmpresaGrupoNovo}"
-					disabledNovo="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
-					actionListenerNovo="#{cadastroEmpresaMB.novoCadastroGrupo}"
-					updateNovo="formGrupoEmpresa, formCriarEmpresa, growlPrincipal"
-					renderedBtnNovo="true" labelExcluir="#{msgs.EmpresaGrupoExcluir}"
-					disabledExcluir="#{cadastroEmpresaMB.btnGrupoExcluirDesativado}"
-					actionListenerExcluir="#{cadastroEmpresaMB.excluirCadastroGrupo}"
-					updateExcluir="formGrupoEmpresa, formCriarEmpresa, growlPrincipal"
-					renderedBtnExcluir="true" headerConfirma="#{msgs.Confirmar}"
-					messageConfirma="#{msgs.DeletarGrupo}"
-					objetoConfirma="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
-			</h:panelGroup>
-
 			<h:panelGroup id="pngGruposLista" layout="block"
 				styleClass="pdialogDivEsquerda">
-				<h:panelGrid columns="2">
-					<p:inputText style="width: 252px" />
-					<p:commandButton icon="fa fa-search"
-						style="font-size:10pt;height:31px" />
-				</h:panelGrid>
-				<p:dataTable id="dtlGrupos" var="grupo"
+				<p:dataTable id="dtlGrupos" var="grupo" widgetVar="dtlGrupos"
 					value="#{cadastroEmpresaMB.grupos}" selectionMode="single"
 					rowKey="#{grupo.idGrupo}"
 					selection="#{cadastroEmpresaMB.grupoSelecionado}" paginator="true"
-					rows="7">
+					rows="13" emptyMessage="#{msgs.ListaGruposVazio}">
 					<p:ajax event="rowSelect"
 						listener="#{cadastroEmpresaMB.onSelectionGrupo}"
 						update="formGrupoEmpresa:tbvEditarGrupo:pngEditarGrupo, 
-							formGrupoEmpresa:pngGrupoBotoesCRUD, 
+							formGrupoEmpresa:tbvEditarGrupo:pngGrupoBotoesCRUD, 
 							formGrupoEmpresa:tbvEditarGrupo:pngEmpresasPorGrupo" />
-					<p:column>
+					<p:column filterBy="#{grupo.nomeGrupo}" filterMatchMode="contains"
+						filterStyle="width:100%" >
 						<h:outputText value="#{grupo.nomeGrupo}" />
 					</p:column>
 				</p:dataTable>
@@ -61,27 +33,54 @@
 				styleClass="pdialogDivDireita">
 				<p:tabView id="tbvEditarGrupo">
 					<p:tab id="tabEditarGrupo" title="#{msgs.EmpresaGrupo}">
-						<h:panelGroup id="pngEditarGrupo">
-							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-								<p:outputLabel value="#{msgs.EmpresaGrupoNome}" />
-								<p:inputText size="33"
-									rendered="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
-									value="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
-								<p:outputLabel
-									rendered="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}"
-									value="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
-								<p:outputLabel value="#{msgs.EmpresaGrupoDescricao}" />
-								<p:inputTextarea cols="33"
-									rendered="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
-									value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
-								<p:outputLabel
-									rendered="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}"
-									value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
-							</p:panelGrid>
+						<h:panelGroup layout="block" styleClass="panelGroupGrupo">
+							<h:panelGroup id="pngGrupoBotoesCRUD">
+								<dmat:barraBotoesComposite id="dmatBotoesCRUDGrupo"
+									disabledEditar="#{cadastroEmpresaMB.btnGrupoEditarDesativado}"
+									actionListenerEditar="#{cadastroEmpresaMB.editarCadastroGrupo}"
+									updateEditar="formGrupoEmpresa, formCriarEmpresa"
+									disabledCancelar="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}"
+									actionListenerCancelar="#{cadastroEmpresaMB.cancelarCadastroGrupo}"
+									updateCancelar="formGrupoEmpresa"
+									disabledSalvar="#{cadastroEmpresaMB.btnGrupoSalvarDesativado}"
+									actionListenerSalvar="#{cadastroEmpresaMB.salvarCadastroGrupo}"
+									updateSalvar="formGrupoEmpresa, formCriarEmpresa, growlPrincipal"
+									labelNovo="#{msgs.EmpresaGrupoNovo}"
+									disabledNovo="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
+									actionListenerNovo="#{cadastroEmpresaMB.novoCadastroGrupo}"
+									updateNovo="formGrupoEmpresa, formCriarEmpresa, growlPrincipal"
+									renderedBtnNovo="true"
+									labelExcluir="#{msgs.EmpresaGrupoExcluir}"
+									disabledExcluir="#{cadastroEmpresaMB.btnGrupoExcluirDesativado}"
+									actionListenerExcluir="#{cadastroEmpresaMB.excluirCadastroGrupo}"
+									updateExcluir="formGrupoEmpresa, formCriarEmpresa, growlPrincipal"
+									renderedBtnExcluir="true" headerConfirma="#{msgs.Confirmar}"
+									messageConfirma="#{msgs.DeletarGrupo}"
+									objetoConfirma="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
+							</h:panelGroup>
+							<h:panelGroup id="pngEditarGrupo">
+								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+									<p:outputLabel value="#{msgs.EmpresaGrupoNome}" />
+									<p:inputText size="33"
+										rendered="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
+										value="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
+									<p:outputLabel
+										rendered="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}"
+										value="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
+									<p:outputLabel value="#{msgs.EmpresaGrupoDescricao}" />
+									<p:inputTextarea cols="33"
+										rendered="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
+										value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
+									<p:outputLabel
+										rendered="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}"
+										value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
+								</p:panelGrid>
+							</h:panelGroup>
 						</h:panelGroup>
 					</p:tab>
 					<p:tab id="tabEditarEmpresas" title="#{msgs.Empresas}">
-						<h:panelGroup id="pngEmpresasPorGrupo">
+						<h:panelGroup id="pngEmpresasPorGrupo" layout="block"
+							styleClass="panelGroupGrupo">
 							<p:panelGrid columns="1" styleClass="tabelaSemBorda">
 								<h:outputText
 									value="#{msgs.textoSelecionarMultiplasEmpresasGrupo}" />
@@ -100,7 +99,8 @@
 								<p:pickList id="pclEmpresasGrupo" immediate="true"
 									value="#{cadastroEmpresaMB.empresas}" var="empresa"
 									itemLabel="#{empresa.nome}" itemValue="#{empresa}"
-									converter="empresaConverter">
+									converter="empresaConverter" showSourceFilter="true"
+									showTargetFilter="true" filterMatchMode="contains">
 									<f:facet name="sourceCaption">
 										<p:outputLabel value="#{msgs.EmpresaDisponivel}" />
 									</f:facet>
