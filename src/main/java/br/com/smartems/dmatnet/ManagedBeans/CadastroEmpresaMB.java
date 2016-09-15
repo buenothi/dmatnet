@@ -393,8 +393,11 @@ public class CadastroEmpresaMB implements Serializable {
 	public int getTipoPessoaJuridicaSelecionada() {
 		return tipoPessoaJuridicaSelecionada;
 	}
-	
+
 	public String getNomeEmpresaProcurada() {
+		if (this.nomeEmpresaProcurada == null) {
+			this.nomeEmpresaProcurada = new String();
+		}
 		return nomeEmpresaProcurada;
 	}
 
@@ -463,16 +466,21 @@ public class CadastroEmpresaMB implements Serializable {
 	public void novoCadastroEmpresa(ActionEvent e) {
 		this.empresa = new EmpresaEntity();
 	}
-	
+
 	public void filtrarEmpresa(ActionEvent e) {
 		if (!this.nomeEmpresaProcurada.isEmpty()) {
+			this.initEmpresa();
 			this.filtrarEmpresas();
 			this.empresasDisponiveis = this.empresasFiltradas;
-			System.out.println("true");
 		} else {
 			this.initEmpresa();
-			System.out.println("false");
 		}
+	}
+
+	public void removerFiltroEmpresa(ActionEvent e) {
+		this.initEmpresa();
+		this.nomeEmpresaProcurada = null;
+		this.empresasFiltradas = null;
 	}
 
 	// action dos botões dados cadastrais da empresa
@@ -712,9 +720,13 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void filtrarEmpresas() {
 		Filter<EmpresaEntity> filtroEmpresa = new FiltroEmpresa();
-		for (EmpresaEntity empresa : this.empresasDisponiveis) //realizando a busca
-			if (filtroEmpresa.match(empresa, this.nomeEmpresaProcurada))
-				this.empresasFiltradas.add(empresa);
+		if (this.nomeEmpresaProcurada != null) {
+			this.empresasFiltradas = new ArrayList<EmpresaEntity>();
+			for (EmpresaEntity empresa : this.empresasDisponiveis)
+				if (filtroEmpresa.match(empresa, this.nomeEmpresaProcurada))
+					this.empresasFiltradas.add(empresa);
+
+		}
 	}
 
 }

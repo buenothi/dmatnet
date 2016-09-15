@@ -9,22 +9,30 @@
 
 <ui:composition>
 	<h:form id="formSelecionarEmpresa">
-		<h:panelGroup>
+		<h:panelGrid columns="1">
+			<p:outputLabel value="#{msgs.TextoSelecionarEmpresa}"/>
+			<p:spacer width="100%" height="5px" />
 			<p:commandButton icon="fa fa-plus" value="#{msgs.NovaEmpresa}"
 				onclick="PF('dlgCriarEmpresa').show()"
 				actionListener="#{cadastroEmpresaMB.novoCadastroEmpresa}"
 				update="formCriarEmpresa" />
-		</h:panelGroup>
+		</h:panelGrid>
 
 		<p:spacer width="100%" height="10px" />
 
 		<h:panelGrid columns="2" style="width:100%">
-			<p:inputText id="iptBuscarEmpresa" style="width: 100%"
-				value="#{cadastroEmpresaMB.nomeEmpresaProcurada}" />
-			<p:commandButton icon="fa fa-search"
-				style="font-size:10pt;height:31px"
-				actionListener="#{cadastroEmpresaMB.filtrarEmpresa}"
-				update="formSelecionarEmpresa"/>
+			<p:inputText id="iptBuscarEmpresa" style="width: 705px"
+				value="#{cadastroEmpresaMB.nomeEmpresaProcurada}" placeholder="#{msgs.DigiteEmpresa}" />
+			<h:panelGroup>
+				<p:commandButton icon="fa fa-search"
+					style="font-size:10pt;height:31px"
+					actionListener="#{cadastroEmpresaMB.filtrarEmpresa}"
+					update="formSelecionarEmpresa" />
+				<p:commandButton icon="fa fa-rotate-left"
+					style="font-size:10pt;height:31px"
+					actionListener="#{cadastroEmpresaMB.removerFiltroEmpresa}"
+					update="formSelecionarEmpresa" />
+			</h:panelGroup>
 		</h:panelGrid>
 
 		<p:spacer width="100%" height="10px" />
@@ -32,7 +40,8 @@
 		<p:dataTable id="dtbEmpresas" var="empresa"
 			value="#{cadastroEmpresaMB.empresasDisponiveis}" paginator="true"
 			rows="10" editable="true" draggableColumns="true"
-			rowKey="#{empresa.idPessoa}" selectionMode="single">
+			rowKey="#{empresa.idPessoa}" selectionMode="single"
+			emptyMessage="#{msgs.ListaEmpresasVazia}">
 
 			<p:ajax event="rowSelect"
 				oncomplete="PF('dlgSelecionarEmpresa').hide()"
