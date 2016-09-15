@@ -34,6 +34,9 @@ public class CadastroEmpresaMB implements Serializable {
 
 	@ManagedProperty(value = "#{usuarioMB}")
 	private UsuarioMB usuarioMB;
+	
+	@ManagedProperty(value = "#{principalMB}")
+	private PrincipalMB principalMB;
 
 	@EJB
 	private PessoaJuridicaFacadeLocal pessoaJuridicaFachada;
@@ -101,6 +104,14 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setUsuarioMB(UsuarioMB usuarioMB) {
 		this.usuarioMB = usuarioMB;
+	}
+
+	public PrincipalMB getPrincipalMB() {
+		return principalMB;
+	}
+
+	public void setPrincipalMB(PrincipalMB principalMB) {
+		this.principalMB = principalMB;
 	}
 
 	public EmpresaEntity getEmpresa() {

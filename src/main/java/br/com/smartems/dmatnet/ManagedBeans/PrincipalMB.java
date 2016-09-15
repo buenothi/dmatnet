@@ -21,6 +21,9 @@ public class PrincipalMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	public PrincipalMB() {
+	}
+
 	public String getClassMenuBotaoCadEmpresa() {
 		return classMenuBotaoCadEmpresa;
 	}
