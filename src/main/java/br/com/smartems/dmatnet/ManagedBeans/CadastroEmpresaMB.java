@@ -632,6 +632,7 @@ public class CadastroEmpresaMB implements Serializable {
 	@PostConstruct
 	public void initEmpresa() {
 		try {
+			this.empresaSelecionada = this.principalMB.getEmpresaSelecionada();
 			this.grupos = empresaGrupoFachada.listarGrupoEmpresas(usuarioMB.getUsuarioLogado());
 			this.empresasDisponiveis = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
 			if (this.empresasAtribuidas == null) {

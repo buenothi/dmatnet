@@ -19,7 +19,9 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntit
 @Entity
 @Table(name = "tbl_Empresa")
 @NamedQueries({
-		@NamedQuery(name = "Empresa.listarEmpresasPorUsuario", query = "SELECT empresa FROM EmpresaEntity empresa inner join empresa.usuarioCriador usuario WHERE usuario.idPessoa in :idUsuario") })
+		@NamedQuery(name = "Empresa.listarEmpresasPorUsuario", query = "SELECT empresa FROM EmpresaEntity empresa inner join empresa.usuarioCriador usuario WHERE usuario.idPessoa in :idUsuario")})
+//		@NamedQuery(name = "Empresa.ListarUltimoDadosCadastrais", query = ""),
+//		@NamedQuery(name = "Empresa.ListarUltimoEndereco", query = "")})
 public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Serializable {
 
 	private long codESocialEmpresa;
