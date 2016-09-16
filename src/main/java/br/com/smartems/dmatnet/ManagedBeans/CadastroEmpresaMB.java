@@ -34,7 +34,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	@ManagedProperty(value = "#{usuarioMB}")
 	private UsuarioMB usuarioMB;
-	
+
 	@ManagedProperty(value = "#{principalMB}")
 	private PrincipalMB principalMB;
 
@@ -49,15 +49,21 @@ public class CadastroEmpresaMB implements Serializable {
 
 	private EmpresaGrupoEntity grupoSelecionado;
 	private EmpresaGrupoEntity grupoEmpresa;
+
 	private EmpresaEntity empresaSelecionada;
 	private EmpresaEntity empresa;
-	private EmpresaCadastroEntity dadosCadastrais;
 	private EmpresaFAP empresaFap;
-	private EnderecoEntity endereco;
+
 	private List<EmpresaEntity> empresasDisponiveis;
 	private List<EmpresaEntity> empresasNaoAtribuidasGrupo;
 	private List<EmpresaEntity> empresasAtribuidas;
 	private List<EmpresaEntity> empresasFiltradas;
+
+	private EmpresaCadastroEntity dadosCadastraisAtual;
+	private List<EmpresaCadastroEntity> dadosCadastraisHistorico;
+
+	private EnderecoEntity enderecoAtual;
+
 	private DualListModel<EmpresaEntity> empresas;
 	private List<EmpresaGrupoEntity> grupos;
 
@@ -136,15 +142,26 @@ public class CadastroEmpresaMB implements Serializable {
 		this.empresaSelecionada = empresaSelecionada;
 	}
 
-	public EmpresaCadastroEntity getDadosCadastrais() {
-		if (this.dadosCadastrais == null) {
-			dadosCadastrais = new EmpresaCadastroEntity();
+	public EmpresaCadastroEntity getDadosCadastraisAtual() {
+		if (this.dadosCadastraisAtual == null) {
+			dadosCadastraisAtual = new EmpresaCadastroEntity();
 		}
-		return dadosCadastrais;
+		return dadosCadastraisAtual;
 	}
 
-	public void setDadosCadastrais(EmpresaCadastroEntity dadosCadastrais) {
-		this.dadosCadastrais = dadosCadastrais;
+	public void setDadosCadastraisAtual(EmpresaCadastroEntity dadosCadastraisAtual) {
+		this.dadosCadastraisAtual = dadosCadastraisAtual;
+	}
+
+	public List<EmpresaCadastroEntity> getDadosCadastraisHistorico() {
+		if (this.dadosCadastraisHistorico == null) {
+			this.dadosCadastraisHistorico = new ArrayList<EmpresaCadastroEntity>();
+		}
+		return dadosCadastraisHistorico;
+	}
+
+	public void setDadosCadastraisHistorico(List<EmpresaCadastroEntity> dadosCadastraisHistorico) {
+		this.dadosCadastraisHistorico = dadosCadastraisHistorico;
 	}
 
 	public EmpresaFAP getEmpresaFap() {
@@ -166,15 +183,15 @@ public class CadastroEmpresaMB implements Serializable {
 		return textoInscricao;
 	}
 
-	public EnderecoEntity getEndereco() {
-		if (this.endereco == null) {
-			this.endereco = new EnderecoEntity();
+	public EnderecoEntity getEnderecoAtual() {
+		if (this.enderecoAtual == null) {
+			this.enderecoAtual = new EnderecoEntity();
 		}
-		return endereco;
+		return enderecoAtual;
 	}
 
-	public void setEndereco(EnderecoEntity endereco) {
-		this.endereco = endereco;
+	public void setEnderecoAtual(EnderecoEntity enderecoAtual) {
+		this.enderecoAtual = enderecoAtual;
 	}
 
 	public List<EmpresaEntity> getEmpresasDisponiveis() {
@@ -423,7 +440,7 @@ public class CadastroEmpresaMB implements Serializable {
 	// fim dos getters e setters
 
 	public void alterarMascaraPessoaJuridica() {
-		switch (this.dadosCadastrais.getTipoInscricao()) {
+		switch (this.dadosCadastraisAtual.getTipoInscricao()) {
 		case 1:
 			this.mascaraPessoaJuridica = "99.999.999/9999-99";
 			break;
@@ -515,6 +532,9 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisCancelarDesativado = true;
 		this.isBtnDadosCadastraisSalvarDesativado = true;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = false;
+		System.out.println(this.empresaSelecionada.getNome());
+//		this.empresaSelecionada.getCadastros().add(dadosCadastraisAtual);
+//		this.pessoaJuridicaFachada.update(this.empresaSelecionada);
 	}
 
 	public void novoDadosCadastraisEmpresa(ActionEvent e) {
@@ -632,7 +652,6 @@ public class CadastroEmpresaMB implements Serializable {
 	@PostConstruct
 	public void initEmpresa() {
 		try {
-			this.empresaSelecionada = this.principalMB.getEmpresaSelecionada();
 			this.grupos = empresaGrupoFachada.listarGrupoEmpresas(usuarioMB.getUsuarioLogado());
 			this.empresasDisponiveis = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
 			if (this.empresasAtribuidas == null) {
@@ -727,6 +746,8 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
 	}
+
+	// listar Dados Cadastrais
 
 	// filtros para buscas diversas
 

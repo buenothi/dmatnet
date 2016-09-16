@@ -35,11 +35,11 @@
 					<p:outputLabel value="#{msgs.DataCadastro}:" />
 					<p:calendar locale="pt" showOn="button" showButtonPanel="true"
 						pattern="dd/MM/yyyy" mask="true" size="8"
-						value="#{cadastroEmpresaMB.dadosCadastrais.dataInicioCadastro}" />
+						value="#{cadastroEmpresaMB.dadosCadastraisAtual.dataInicioCadastro}" />
 
 					<p:outputLabel value="#{msgs.TipoInscricao}:" />
 					<p:selectOneMenu style="width:100px"
-						value="#{cadastroEmpresaMB.dadosCadastrais.tipoInscricao}">
+						value="#{cadastroEmpresaMB.dadosCadastraisAtual.tipoInscricao}">
 						<p:ajax
 							listener="#{cadastroEmpresaMB.alterarMascaraPessoaJuridica}"
 							update="formModulos:formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:ipmInscricao" />
@@ -49,15 +49,11 @@
 					<p:outputLabel value="#{msgs.Inscricao}:" />
 					<p:inputMask id="ipmInscricao" converter="cnpjCpfConverter"
 						mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}"
-						value="#{cadastroEmpresaMB.dadosCadastrais.numCNPJ}" />
-
-					<p:outputLabel value="#{msgs.NomeFantasia}:" />
-					<p:inputText maxlength="250" size="62"
-						value="#{cadastroEmpresaMB.empresa.nome}" />
+						value="#{cadastroEmpresaMB.dadosCadastraisAtual.numCNPJ}" />
 
 					<p:outputLabel value="#{msgs.RazaoSocial}:" />
 					<p:inputText maxlength="250" size="62"
-						value="#{cadastroEmpresaMB.dadosCadastrais.razaoSocial}" />
+						value="#{cadastroEmpresaMB.dadosCadastraisAtual.razaoSocial}" />
 
 					<p:outputLabel value="#{msgs.FAP}:" />
 					<h:panelGroup>
@@ -72,23 +68,23 @@
 
 					<p:outputLabel value="#{msgs.CodNaturezaJuridica}" />
 					<p:selectOneMenu
-						value="#{cadastroEmpresaMB.dadosCadastrais.codNaturezaJuridica}" />
+						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codNaturezaJuridica}" />
 
 					<p:outputLabel value="#{msgs.CodIndicativoCooperativa}" />
 					<p:selectOneMenu
-						value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoCooperativa}" />
+						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoCooperativa}" />
 
 					<p:outputLabel value="#{msgs.CodIndicativoConstrucao}" />
 					<p:selectOneMenu
-						value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoConstrucao}" />
+						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoConstrucao}" />
 
 					<p:outputLabel value="#{msgs.CodIndicativoDesoneracaoFolha}" />
 					<p:selectOneMenu
-						value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoDesoneracaoFolha}" />
+						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoDesoneracaoFolha}" />
 
 					<p:outputLabel value="#{msgs.CodIndicativoRegEletronico}" />
 					<p:selectOneMenu
-						value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoRegEletronico}" />
+						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoRegEletronico}" />
 				</p:panelGrid>
 
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
@@ -106,26 +102,23 @@
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 					<p:outputLabel value="#{msgs.DataCadastro}:" />
 					<p:outputLabel
-						value="#{cadastroEmpresaMB.dadosCadastrais.dataInicioCadastro}">
+						value="#{cadastroEmpresaMB.dadosCadastraisAtual.dataInicioCadastro}">
 						<f:convertDateTime type="both" timeZone="GMT-3"
 							pattern="dd/MM/YYYY" />
 					</p:outputLabel>
 
 					<p:outputLabel value="#{msgs.TipoInscricao}:" />
 					<p:outputLabel
-						value="#{cadastroEmpresaMB.dadosCadastrais.tipoInscricao}" />
+						value="#{cadastroEmpresaMB.dadosCadastraisAtual.tipoInscricao}"/>
 
 					<p:outputLabel value="#{msgs.Inscricao}:" />
-					<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastrais.numCNPJ}">
+					<p:outputLabel value="#{cadastroEmpresaMB.dadosCadastraisAtual.numCNPJ}">
 						<f:converter converterId="cnpjCpfConverter"/>
 					</p:outputLabel>
 
-					<p:outputLabel value="#{msgs.NomeFantasia}:" />
-					<p:outputLabel value="#{cadastroEmpresaMB.empresa.nome}" />
-
 					<p:outputLabel value="#{msgs.RazaoSocial}:" />
 					<p:outputLabel
-						value="#{cadastroEmpresaMB.dadosCadastrais.razaoSocial}" />
+						value="#{cadastroEmpresaMB.dadosCadastraisAtual.razaoSocial}" converter="stringConverter"/>
 
 					<p:outputLabel value="#{msgs.FAP}:" />
 					<h:panelGroup>
@@ -147,33 +140,33 @@
 					<p:panelGrid columns="4" styleClass="tabelaSemBorda">
 						<p:outputLabel value="#{msgs.CodClassificacaoTributaria}:" />
 						<p:outputLabel
-							value="#{cadastroEmpresaMB.dadosCadastrais.codClassificacaoTributaria}" />
+							value="#{cadastroEmpresaMB.dadosCadastraisAtual.codClassificacaoTributaria}" />
 
 						<p:outputLabel value="#{msgs.CodNaturezaJuridica}:" />
 						<p:outputLabel
-							value="#{cadastroEmpresaMB.dadosCadastrais.codNaturezaJuridica}" />
+							value="#{cadastroEmpresaMB.dadosCadastraisAtual.codNaturezaJuridica}" />
 
 						<p:outputLabel value="#{msgs.CodIndicativoCooperativa}:" />
 						<p:outputLabel
-							value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoCooperativa}" />
+							value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoCooperativa}" />
 
 						<p:outputLabel value="#{msgs.CodIndicativoConstrucao}:" />
 						<p:outputLabel
-							value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoConstrucao}" />
+							value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoConstrucao}" />
 
 						<p:outputLabel value="#{msgs.CodIndicativoDesoneracaoFolha}:" />
 						<p:outputLabel
-							value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoDesoneracaoFolha}" />
+							value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoDesoneracaoFolha}" />
 
 						<p:outputLabel value="#{msgs.CodIndicativoRegEletronico}:" />
 						<p:outputLabel
-							value="#{cadastroEmpresaMB.dadosCadastrais.codIndicativoRegEletronico}" />
+							value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoRegEletronico}" />
 					</p:panelGrid>
 
 					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 						<p:outputLabel value="#{msgs.MultiplasRubricas}:" />
 						<p:outputLabel
-							value="#{cadastroEmpresaMB.dadosCadastrais.multiplasTabRubricas}" />
+							value="#{cadastroEmpresaMB.dadosCadastraisAtual.multiplasTabRubricas}" />
 					</p:panelGrid>
 				</p:dialog>
 
@@ -194,28 +187,40 @@
 
 		<p:tab title="#{msgs.Historico}">
 			<h:panelGrid columns="2" cellpadding="10">
-				<p:dataTable scrollable="true" styleClass="dataTable">
+				<p:dataTable scrollable="true" styleClass="dataTable" emptyMessage="#{msgs.ListaHistoricoDadosCadastrais}" 
+					value="#{cadastroEmpresaMB.dadosCadastraisHistorico}" var="cadastro">
 					<p:column headerText="#{msgs.DataCadastro}" width="110">
+						<p:outputLabel value="#{cadastro.dataInicioCadastro}"/>
 					</p:column>
 					<p:column headerText="#{msgs.DataTermino}" width="110">
+						<p:outputLabel value="#{cadastro.dataFimCadastro}"/>
 					</p:column>
 					<p:column headerText="#{msgs.TipoInscricao}">
+						<p:outputLabel value="#{cadastro.tipoInscricao}"/>
 					</p:column>
 					<p:column headerText="#{msgs.Inscricao}">
+						<p:outputLabel value="#{cadastro.numCNPJ}"/>
 					</p:column>
 					<p:column headerText="#{msgs.RazaoSocial}">
+						<p:outputLabel value="#{cadastro.razaoSocial}" converter="stringConverter"/>					
 					</p:column>
 					<p:column headerText="#{msgs.CodClassificacaoTributaria}">
+						<p:outputLabel value="#{cadastro.codClassificacaoTributaria}" />					
 					</p:column>
 					<p:column headerText="#{msgs.CodNaturezaJuridica}">
+						<p:outputLabel value="#{cadastro.codNaturezaJuridica}" />					
 					</p:column>
 					<p:column headerText="#{msgs.CodIndicativoCooperativa}">
+						<p:outputLabel value="#{cadastro.codIndicativoCooperativa}" />					
 					</p:column>
 					<p:column headerText="#{msgs.CodIndicativoConstrucao}">
+						<p:outputLabel value="#{cadastro.codIndicativoConstrucao}" />					
 					</p:column>
 					<p:column headerText="#{msgs.CodIndicativoDesoneracaoFolha}">
+						<p:outputLabel value="#{cadastro.codIndicativoDesoneracaoFolha}" />					
 					</p:column>
 					<p:column headerText="#{msgs.CodIndicativoRegEletronico}">
+						<p:outputLabel value="#{cadastro.codIndicativoRegEletronico}" />					
 					</p:column>
 				</p:dataTable>
 			</h:panelGrid>

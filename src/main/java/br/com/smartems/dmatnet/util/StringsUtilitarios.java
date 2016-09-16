@@ -9,7 +9,7 @@ public class StringsUtilitarios {
 
 	public String formatarTextoParaLeitura(String value) {
 		String stringFormatada = new String();
-		if (value != null) {
+		if (value != null && !value.isEmpty()) {
 			String stringRecebida = value.toString();
 			String[] stringArray = stringRecebida.split(" ");
 			for (int i = 0; i < stringArray.length; i++) {

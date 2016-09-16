@@ -6,7 +6,7 @@ public class FiltroEmpresa implements Filter<EmpresaEntity>{
 
 	@Override
 	public boolean match(EmpresaEntity empresa, String nomeEmpresa) {
-		boolean empresaOk = empresa.getNome() != null
+		boolean empresaOk = empresa.getNome() != null && !empresa.getNome().isEmpty()
 				? empresa.getNome().contains(nomeEmpresa.toUpperCase()) : false;
 		return empresaOk;
 	}
