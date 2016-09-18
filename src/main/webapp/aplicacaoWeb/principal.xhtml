@@ -22,7 +22,7 @@
 			<h:panelGrid class="empresaSelecionada" columns="4">
 				<p:spacer height="100%" width="10px" />
 				<p:outputLabel id="oplEmpresaSelecionada" converter="stringConverter"
-					value="#{principalMB.empresaSelecionada.nome}" />
+					value="#{cadastroEmpresaMB.empresaSelecionada.nome}" />
 				<p:spacer height="100%" width="10px" />
 				<p:commandButton id="btnSelecionarEmpresa"
 					value="#{msgs.MudarEmpresa}" icon="fa fa-list-alt"
@@ -106,7 +106,7 @@
 
 	<h:form id="formModulos" styleClass="conteudo">
 		<p:panel id="pnlCadastroEmpresa" header="#{msgs.CadastroEmpresa}"
-			visible="#{principalMB.renderizarCadastroEmpresa}">
+			rendered="#{principalMB.renderizarCadastroEmpresa}" >
 			<ui:include src="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml" />
 		</p:panel>
 	</h:form>

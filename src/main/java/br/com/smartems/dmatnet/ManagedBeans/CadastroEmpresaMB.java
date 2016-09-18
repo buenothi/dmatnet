@@ -35,9 +35,6 @@ public class CadastroEmpresaMB implements Serializable {
 	@ManagedProperty(value = "#{usuarioMB}")
 	private UsuarioMB usuarioMB;
 
-	@ManagedProperty(value = "#{principalMB}")
-	private PrincipalMB principalMB;
-
 	@EJB
 	private PessoaJuridicaFacadeLocal pessoaJuridicaFachada;
 
@@ -110,14 +107,6 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setUsuarioMB(UsuarioMB usuarioMB) {
 		this.usuarioMB = usuarioMB;
-	}
-
-	public PrincipalMB getPrincipalMB() {
-		return principalMB;
-	}
-
-	public void setPrincipalMB(PrincipalMB principalMB) {
-		this.principalMB = principalMB;
 	}
 
 	public EmpresaEntity getEmpresa() {
@@ -511,6 +500,10 @@ public class CadastroEmpresaMB implements Serializable {
 		this.empresasFiltradas = null;
 	}
 
+	public void onSelectionEmpresa(SelectEvent evt) {
+		this.empresaSelecionada = (EmpresaEntity) evt.getObject();
+	}
+
 	// action dos botões dados cadastrais da empresa
 
 	public void editarDadosCadastraisEmpresa(ActionEvent e) {
@@ -532,9 +525,10 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisCancelarDesativado = true;
 		this.isBtnDadosCadastraisSalvarDesativado = true;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = false;
-		System.out.println(this.empresaSelecionada.getNome());
-//		this.empresaSelecionada.getCadastros().add(dadosCadastraisAtual);
-//		this.pessoaJuridicaFachada.update(this.empresaSelecionada);
+		if (this.dadosCadastraisAtual != null) {
+			this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
+			this.pessoaJuridicaFachada.update(empresaSelecionada);
+		}
 	}
 
 	public void novoDadosCadastraisEmpresa(ActionEvent e) {
@@ -542,6 +536,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisCancelarDesativado = false;
 		this.isBtnDadosCadastraisSalvarDesativado = false;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = true;
+		this.dadosCadastraisAtual = new EmpresaCadastroEntity();
 	}
 
 	// action dos botões de endereco empresa
@@ -649,21 +644,6 @@ public class CadastroEmpresaMB implements Serializable {
 		System.out.println("teste");
 	}
 
-	@PostConstruct
-	public void initEmpresa() {
-		try {
-			this.grupos = empresaGrupoFachada.listarGrupoEmpresas(usuarioMB.getUsuarioLogado());
-			this.empresasDisponiveis = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
-			if (this.empresasAtribuidas == null) {
-				this.empresasAtribuidas = new ArrayList<>();
-			}
-			this.dualListEmpresasDisponiveis(this.empresasDisponiveis, this.empresasAtribuidas);
-		} catch (NoResultException e) {
-			e.printStackTrace();
-			this.isListaEmpresa = true;
-		}
-	}
-
 	public void onSelectionGrupo(SelectEvent evt) {
 		this.isBtnGrupoEditarDesativado = false;
 		this.isBtnSelecionarGrupo = false;
@@ -759,6 +739,21 @@ public class CadastroEmpresaMB implements Serializable {
 				if (filtroEmpresa.match(empresa, this.nomeEmpresaProcurada))
 					this.empresasFiltradas.add(empresa);
 
+		}
+	}
+
+	@PostConstruct
+	public void initEmpresa() {
+		try {
+			this.grupos = empresaGrupoFachada.listarGrupoEmpresas(usuarioMB.getUsuarioLogado());
+			this.empresasDisponiveis = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
+			if (this.empresasAtribuidas == null) {
+				this.empresasAtribuidas = new ArrayList<>();
+			}
+			this.dualListEmpresasDisponiveis(this.empresasDisponiveis, this.empresasAtribuidas);
+		} catch (NoResultException e) {
+			e.printStackTrace();
+			this.isListaEmpresa = true;
 		}
 	}
 

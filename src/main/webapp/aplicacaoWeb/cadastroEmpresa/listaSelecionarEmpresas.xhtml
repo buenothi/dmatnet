@@ -45,7 +45,7 @@
 
 			<p:ajax event="rowSelect"
 				oncomplete="PF('dlgSelecionarEmpresa').hide()"
-				listener="#{principalMB.onSelectionEmpresa}"
+				listener="#{cadastroEmpresaMB.onSelectionEmpresa}"
 				update="formSuperior, formSelecionarEmpresa:dtbEmpresas, growlPrincipal" />
 
 			<p:column headerText="#{msgs.Nome}">
