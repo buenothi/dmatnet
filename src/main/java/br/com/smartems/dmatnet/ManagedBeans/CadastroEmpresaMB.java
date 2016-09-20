@@ -2,6 +2,7 @@ package br.com.smartems.dmatnet.ManagedBeans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -502,7 +503,23 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void onSelectionEmpresa(SelectEvent evt) {
 		this.empresaSelecionada = (EmpresaEntity) evt.getObject();
-		this.dadosCadastraisAtual = null;
+		this.listarDadosCadastrais(this.empresaSelecionada);
+		if (this.empresaSelecionada.getCadastros().remove(dadosCadastraisAtual)) {
+			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
+		} else {
+			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
+		}
+	}
+
+	public void listarDadosCadastrais(EmpresaEntity empresa) {
+		Date dataMaisRecente = new Date();
+		for (EmpresaCadastroEntity dadoCadastral : empresa.getCadastros()) {
+			if (empresa.getCadastroPessoa().before(dataMaisRecente)) {
+				dataMaisRecente = dadoCadastral.getDataInicioCadastro();
+				dadosCadastraisAtual = dadoCadastral;
+			}
+		}
+
 	}
 
 	// action dos botões dados cadastrais da empresa
@@ -527,6 +544,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisSalvarDesativado = true;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = false;
 		if (this.dadosCadastraisAtual != null) {
+			this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
 			this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
 			this.pessoaJuridicaFachada.update(empresaSelecionada);
 		}
