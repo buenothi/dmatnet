@@ -502,6 +502,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void onSelectionEmpresa(SelectEvent evt) {
 		this.empresaSelecionada = (EmpresaEntity) evt.getObject();
+		this.dadosCadastraisAtual = null;
 	}
 
 	// action dos botões dados cadastrais da empresa
