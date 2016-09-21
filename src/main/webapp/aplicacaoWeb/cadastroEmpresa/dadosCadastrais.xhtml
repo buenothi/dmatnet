@@ -189,38 +189,46 @@
 			<h:panelGrid columns="2" cellpadding="10">
 				<p:dataTable scrollable="true" styleClass="dataTable" emptyMessage="#{msgs.ListaHistoricoDadosCadastrais}" 
 					value="#{cadastroEmpresaMB.dadosCadastraisHistorico}" var="cadastro">
-					<p:column headerText="#{msgs.DataCadastro}" width="110">
-						<p:outputLabel value="#{cadastro.dataInicioCadastro}"/>
+					<p:column headerText="#{msgs.DataCadastro}" width="90">
+						<p:outputLabel value="#{cadastro.dataInicioCadastro}" style="font-size: 9pt;" >
+							<f:convertDateTime pattern="dd/MM/yyyy" />
+						</p:outputLabel>
 					</p:column>
-					<p:column headerText="#{msgs.DataTermino}" width="110">
-						<p:outputLabel value="#{cadastro.dataFimCadastro}"/>
+					<p:column headerText="#{msgs.DataTermino}" width="90">
+						<p:outputLabel value="#{cadastro.dataFimCadastro}"  style="font-size: 9pt;">
+							<f:convertDateTime pattern="dd/MM/yyyy"/>
+						</p:outputLabel>
 					</p:column>
-					<p:column headerText="#{msgs.TipoInscricao}">
-						<p:outputLabel value="#{cadastro.tipoInscricao}"/>
+					<p:column headerText="#{msgs.TipoInscricao}" width="80">
+						<p:outputLabel value="#{cadastro.tipoInscricao}" style="font-size: 9pt;"/>
 					</p:column>
-					<p:column headerText="#{msgs.Inscricao}">
-						<p:outputLabel value="#{cadastro.numCNPJ}"/>
+					<p:column headerText="#{msgs.Inscricao}" width="160">
+						<p:outputLabel value="#{cadastro.numCNPJ}" style="font-size: 9pt;">
+							<f:converter converterId="cnpjCpfConverter" />
+						</p:outputLabel>
 					</p:column>
-					<p:column headerText="#{msgs.RazaoSocial}">
-						<p:outputLabel value="#{cadastro.razaoSocial}" converter="stringConverter"/>					
+					<p:column headerText="#{msgs.RazaoSocial}" >
+						<p:outputLabel value="#{cadastro.razaoSocial}"  style="font-size: 9pt;" >
+							<f:converter converterId="stringConverter"/>
+						</p:outputLabel>					
 					</p:column>
-					<p:column headerText="#{msgs.CodClassificacaoTributaria}">
-						<p:outputLabel value="#{cadastro.codClassificacaoTributaria}" />					
+					<p:column headerText="#{msgs.CodClassificacaoTributaria}" width="90">
+						<p:outputLabel value="#{cadastro.codClassificacaoTributaria}" style="font-size: 9pt;" />					
 					</p:column>
-					<p:column headerText="#{msgs.CodNaturezaJuridica}">
-						<p:outputLabel value="#{cadastro.codNaturezaJuridica}" />					
+					<p:column headerText="#{msgs.CodNaturezaJuridica}" width="90">
+						<p:outputLabel value="#{cadastro.codNaturezaJuridica}" style="font-size: 9pt;" />					
 					</p:column>
-					<p:column headerText="#{msgs.CodIndicativoCooperativa}">
-						<p:outputLabel value="#{cadastro.codIndicativoCooperativa}" />					
+					<p:column headerText="#{msgs.CodIndicativoCooperativa}" width="90">
+						<p:outputLabel value="#{cadastro.codIndicativoCooperativa}" style="font-size: 8pt;"/>					
 					</p:column>
-					<p:column headerText="#{msgs.CodIndicativoConstrucao}">
-						<p:outputLabel value="#{cadastro.codIndicativoConstrucao}" />					
+					<p:column headerText="#{msgs.CodIndicativoConstrucao}" width="90">
+						<p:outputLabel value="#{cadastro.codIndicativoConstrucao}" style="font-size: 8pt;"/>					
 					</p:column>
-					<p:column headerText="#{msgs.CodIndicativoDesoneracaoFolha}">
-						<p:outputLabel value="#{cadastro.codIndicativoDesoneracaoFolha}" />					
+					<p:column headerText="#{msgs.CodIndicativoDesoneracaoFolha}" width="90">
+						<p:outputLabel value="#{cadastro.codIndicativoDesoneracaoFolha}" style="font-size: 8pt;"/>					
 					</p:column>
-					<p:column headerText="#{msgs.CodIndicativoRegEletronico}">
-						<p:outputLabel value="#{cadastro.codIndicativoRegEletronico}" />					
+					<p:column headerText="#{msgs.CodIndicativoRegEletronico}" width="90">
+						<p:outputLabel value="#{cadastro.codIndicativoRegEletronico}" style="font-size: 8pt;"/>					
 					</p:column>
 				</p:dataTable>
 			</h:panelGrid>

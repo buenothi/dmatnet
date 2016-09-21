@@ -15,7 +15,7 @@
 			<p:commandButton icon="fa fa-plus" value="#{msgs.NovaEmpresa}"
 				onclick="PF('dlgCriarEmpresa').show()"
 				actionListener="#{cadastroEmpresaMB.novoCadastroEmpresa}"
-				update="formCriarEmpresa" />
+				update="formCriarEmpresa, formModulos" />
 		</h:panelGrid>
 
 		<p:spacer width="100%" height="10px" />
@@ -46,7 +46,7 @@
 			<p:ajax event="rowSelect"
 				oncomplete="PF('dlgSelecionarEmpresa').hide()"
 				listener="#{cadastroEmpresaMB.onSelectionEmpresa}"
-				update="formSuperior, formSelecionarEmpresa:dtbEmpresas, growlPrincipal" />
+				update="formSuperior, formSelecionarEmpresa:dtbEmpresas, growlPrincipal, formModulos" />
 
 			<p:column headerText="#{msgs.Nome}">
 				<h:outputText value="#{empresa.nome}" />
@@ -59,7 +59,7 @@
 			<p:column width="55">
 				<p:commandButton icon="fa fa-edit"
 					oncomplete="PF('dlgCriarEmpresa').show()"
-					update="formSelecionarEmpresa, formCriarEmpresa">
+					update="formSelecionarEmpresa, formCriarEmpresa, formModulos">
 					<f:setPropertyActionListener value="#{empresa}"
 						target="#{cadastroEmpresaMB.empresa}" />
 				</p:commandButton>
@@ -68,7 +68,7 @@
 			<p:column width="55">
 				<p:commandButton icon="fa fa-trash"
 					actionListener="#{cadastroEmpresaMB.excluirCadastroEmpresa(empresa)}"
-					update="formSelecionarEmpresa">
+					update="formSelecionarEmpresa, formModulos">
 					<f:setPropertyActionListener value="#{empresa}"
 						target="#{cadastroEmpresaMB.empresa}" />
 					<p:confirm header="#{msgs.Confirmar}"

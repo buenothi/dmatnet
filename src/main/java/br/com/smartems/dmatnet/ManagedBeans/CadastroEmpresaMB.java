@@ -546,7 +546,13 @@ public class CadastroEmpresaMB implements Serializable {
 		if (this.dadosCadastraisAtual != null) {
 			this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
 			this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
-			this.pessoaJuridicaFachada.update(empresaSelecionada);
+			this.empresaSelecionada = this.pessoaJuridicaFachada.update(empresaSelecionada);
+			this.listarDadosCadastrais(this.empresaSelecionada);
+			if (this.empresaSelecionada.getCadastros().remove(dadosCadastraisAtual)) {
+				this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
+			} else {
+				this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
+			}
 		}
 	}
 
