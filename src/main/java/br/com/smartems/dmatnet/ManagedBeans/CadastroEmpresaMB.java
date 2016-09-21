@@ -26,6 +26,7 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEnt
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaGrupoEntity;
+import br.com.smartems.dmatnet.util.StringsUtilitarios;
 import br.com.smartems.dmatnet.util.filtrosCollection.Filter;
 import br.com.smartems.dmatnet.util.filtrosCollection.FiltroEmpresa;
 
@@ -44,6 +45,9 @@ public class CadastroEmpresaMB implements Serializable {
 
 	@EJB
 	private EstadoFacadeLocal estadoFachada;
+	
+	@EJB
+	private StringsUtilitarios stringUtils;
 
 	private EmpresaGrupoEntity grupoSelecionado;
 	private EmpresaGrupoEntity grupoEmpresa;
@@ -457,15 +461,16 @@ public class CadastroEmpresaMB implements Serializable {
 				this.pessoaJuridicaFachada.create(this.empresa);
 				this.initEmpresa();
 				FacesMessage msg = new FacesMessage("Sucesso",
-						this.empresa.getNome().toString() + " Salvo com Sucesso");
+						stringUtils.formatarTextoParaLeitura(this.empresa.getNome().toString()) + " Salvo com Sucesso");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 				this.empresa = null;
 			} else {
 				this.empresa.setUsuarioCriador(this.usuarioMB.getUsuarioLogado());
+				this.empresa.getCadastros().add(dadosCadastraisAtual);
 				this.pessoaJuridicaFachada.update(this.empresa);
 				this.initEmpresa();
 				FacesMessage msg = new FacesMessage("Sucesso",
-						this.empresa.getNome().toString() + " Atualizado com Sucesso");
+						stringUtils.formatarTextoParaLeitura(this.empresa.getNome().toString()) + " Atualizado com Sucesso");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 				this.empresa = null;
 			}
@@ -502,6 +507,7 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void onSelectionEmpresa(SelectEvent evt) {
+		this.dadosCadastraisAtual = new EmpresaCadastroEntity();
 		this.empresaSelecionada = (EmpresaEntity) evt.getObject();
 		this.listarDadosCadastrais(this.empresaSelecionada);
 		if (this.empresaSelecionada.getCadastros().remove(dadosCadastraisAtual)) {
@@ -633,7 +639,7 @@ public class CadastroEmpresaMB implements Serializable {
 			this.empresaGrupoFachada.update(this.grupoSelecionado);
 		}
 
-		FacesMessage msg = new FacesMessage("Sucesso", this.grupoSelecionado.getNomeGrupo() + " Salvo com Sucesso");
+		FacesMessage msg = new FacesMessage("Sucesso", stringUtils.formatarTextoParaLeitura(this.grupoSelecionado.getNomeGrupo()) + " Salvo com Sucesso");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 
 		this.initEmpresa();
@@ -658,7 +664,7 @@ public class CadastroEmpresaMB implements Serializable {
 			this.empresaGrupoFachada.delete(this.grupoSelecionado);
 		}
 
-		FacesMessage msg = new FacesMessage("Sucesso", this.grupoSelecionado.getNomeGrupo() + " Excluído com Sucesso");
+		FacesMessage msg = new FacesMessage("Sucesso", stringUtils.formatarTextoParaLeitura(this.grupoSelecionado.getNomeGrupo()) + " Excluído com Sucesso");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 
 		this.initEmpresa();
@@ -725,7 +731,7 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
 
-		FacesMessage msg = new FacesMessage("Sucesso", this.grupoSelecionado.getNomeGrupo() + " Alterado com Sucesso");
+		FacesMessage msg = new FacesMessage("Sucesso", stringUtils.formatarTextoParaLeitura(this.grupoSelecionado.getNomeGrupo()) + " Alterado com Sucesso");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
@@ -772,7 +778,7 @@ public class CadastroEmpresaMB implements Serializable {
 		try {
 			this.grupos = empresaGrupoFachada.listarGrupoEmpresas(usuarioMB.getUsuarioLogado());
 			this.empresasDisponiveis = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
-			if (this.empresasAtribuidas == null) {
+			if (this.empresasAtribuidas == null || this.empresasAtribuidas.isEmpty()) {
 				this.empresasAtribuidas = new ArrayList<>();
 			}
 			this.dualListEmpresasDisponiveis(this.empresasDisponiveis, this.empresasAtribuidas);

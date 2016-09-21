@@ -49,11 +49,11 @@
 				update="formSuperior, formSelecionarEmpresa:dtbEmpresas, growlPrincipal, formModulos" />
 
 			<p:column headerText="#{msgs.Nome}">
-				<h:outputText value="#{empresa.nome}" />
+				<h:outputText value="#{empresa.nome}" converter="stringConverter"/>
 			</p:column>
 
 			<p:column headerText="#{msgs.EmpresaGrupo}">
-				<h:outputText value="#{empresa.grupo.nomeGrupo}" />
+				<h:outputText value="#{empresa.grupo.nomeGrupo}" converter="stringConverter"/>
 			</p:column>
 
 			<p:column width="55">

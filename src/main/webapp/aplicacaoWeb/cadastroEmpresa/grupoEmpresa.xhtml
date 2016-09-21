@@ -24,7 +24,7 @@
 							formGrupoEmpresa:tbvEditarGrupo:pngEmpresasPorGrupo" />
 					<p:column filterBy="#{grupo.nomeGrupo}" filterMatchMode="contains"
 						filterStyle="width:100%" >
-						<h:outputText value="#{grupo.nomeGrupo}" />
+						<h:outputText value="#{grupo.nomeGrupo}" converter="stringConverter"/>
 					</p:column>
 				</p:dataTable>
 			</h:panelGroup>
@@ -64,14 +64,14 @@
 									<p:inputText size="33"
 										rendered="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
 										value="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
-									<p:outputLabel
+									<p:outputLabel converter="stringConverter"
 										rendered="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}"
 										value="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
-									<p:outputLabel value="#{msgs.EmpresaGrupoDescricao}" />
+									<p:outputLabel value="#{msgs.EmpresaGrupoDescricao}" converter="stringConverter" />
 									<p:inputTextarea cols="33"
 										rendered="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
 										value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
-									<p:outputLabel
+									<p:outputLabel converter="stringConverter"
 										rendered="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}"
 										value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
 								</p:panelGrid>
@@ -102,10 +102,10 @@
 									converter="empresaConverter" showSourceFilter="true"
 									showTargetFilter="true" filterMatchMode="contains">
 									<f:facet name="sourceCaption">
-										<p:outputLabel value="#{msgs.EmpresaDisponivel}" />
+										<h:outputText value="#{msgs.EmpresaDisponivel}" converter="stringConverter"/>
 									</f:facet>
 									<f:facet name="targetCaption">
-										<p:outputLabel value="#{msgs.EmpresaAtribuida}" />
+										<h:outputText value="#{msgs.EmpresaAtribuida}" converter="stringConverter"/>
 									</f:facet>
 								</p:pickList>
 							</p:panelGrid>
