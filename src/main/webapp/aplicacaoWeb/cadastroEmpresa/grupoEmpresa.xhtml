@@ -14,7 +14,7 @@
 				styleClass="pdialogDivEsquerda">
 				<p:dataTable id="dtlGrupos" var="grupo" widgetVar="dtlGrupos"
 					value="#{cadastroEmpresaMB.grupos}" selectionMode="single"
-					rowKey="#{grupo.idGrupo}"
+					rowKey="#{grupo.idGrupo}" paginatorAlwaysVisible="false"
 					selection="#{cadastroEmpresaMB.grupoSelecionado}" paginator="true"
 					rows="13" emptyMessage="#{msgs.ListaGruposVazio}">
 					<p:ajax event="rowSelect"

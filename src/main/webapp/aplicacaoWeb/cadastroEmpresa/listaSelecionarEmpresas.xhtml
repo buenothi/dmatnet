@@ -38,8 +38,9 @@
 		<p:spacer width="100%" height="10px" />
 
 		<p:dataTable id="dtbEmpresas" var="empresa"
+			paginatorAlwaysVisible="false"
 			value="#{cadastroEmpresaMB.empresasDisponiveis}" paginator="true"
-			rows="10" editable="true" draggableColumns="true"
+			rows="7" editable="true" draggableColumns="true"
 			rowKey="#{empresa.idPessoa}" selectionMode="single"
 			emptyMessage="#{msgs.ListaEmpresasVazia}">
 
