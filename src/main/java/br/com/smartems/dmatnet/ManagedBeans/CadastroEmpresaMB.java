@@ -522,6 +522,7 @@ public class CadastroEmpresaMB implements Serializable {
 		Date dataMaisRecente = new Date();
 		if (!empresa.getCadastros().isEmpty()) {
 			dataMaisRecente = empresa.getCadastros().get(0).getDataInicioCadastro();
+			this.dadosCadastraisAtual = empresa.getCadastros().get(0);
 			for (EmpresaCadastroEntity dadoCadastral : empresa.getCadastros()) {
 				if (dadoCadastral.getDataInicioCadastro().after(dataMaisRecente)) {
 					dataMaisRecente = dadoCadastral.getDataInicioCadastro();
