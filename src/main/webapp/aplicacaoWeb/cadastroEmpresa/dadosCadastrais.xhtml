@@ -189,8 +189,7 @@
 		<p:tab title="#{msgs.Historico}">
 			<h:panelGrid columns="2" cellpadding="10">
 				<p:dataTable paginator="true" rows="10" scrollable="true"
-					styleClass="dataTable" sortBy="#{cadastro.dataInicioCadastro}"
-					sortOrder="descending"
+					styleClass="dataTable"
 					emptyMessage="#{msgs.ListaHistoricoDadosCadastrais}"
 					value="#{cadastroEmpresaMB.dadosCadastraisHistorico}"
 					paginatorAlwaysVisible="false" var="cadastro">

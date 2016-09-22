@@ -508,7 +508,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void onSelectionEmpresa(SelectEvent evt) {
 		this.dadosCadastraisAtual = new EmpresaCadastroEntity();
-		this.empresaSelecionada = (EmpresaEntity) evt.getObject();
+		this.empresaSelecionada = pessoaJuridicaFachada.read(((EmpresaEntity)evt.getObject()).getIdPessoa());
 		this.listarDadosCadastrais(this.empresaSelecionada);
 		if (this.empresaSelecionada.getCadastros().remove(dadosCadastraisAtual)) {
 			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
@@ -520,7 +520,7 @@ public class CadastroEmpresaMB implements Serializable {
 	public void listarDadosCadastrais(EmpresaEntity empresa) {
 		Date dataMaisRecente = new Date();
 		for (EmpresaCadastroEntity dadoCadastral : empresa.getCadastros()) {
-			if (empresa.getCadastroPessoa().before(dataMaisRecente)) {
+			if (empresa.getCadastroPessoa().after(dataMaisRecente)) {
 				dataMaisRecente = dadoCadastral.getDataInicioCadastro();
 				dadosCadastraisAtual = dadoCadastral;
 			}
@@ -542,6 +542,12 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisCancelarDesativado = true;
 		this.isBtnDadosCadastraisSalvarDesativado = true;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = false;
+		this.listarDadosCadastrais(this.empresaSelecionada);
+		if (this.empresaSelecionada.getCadastros().remove(dadosCadastraisAtual)) {
+			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
+		} else {
+			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
+		}
 	}
 
 	public void salvarDadosCadastraisEmpresa(ActionEvent e) {
