@@ -192,7 +192,9 @@
 					styleClass="dataTable"
 					emptyMessage="#{msgs.ListaHistoricoDadosCadastrais}"
 					value="#{cadastroEmpresaMB.dadosCadastraisHistorico}"
-					paginatorAlwaysVisible="false" var="cadastro">
+					paginatorAlwaysVisible="false" var="cadastro"
+					sortBy="#{cadastro.dataInicioCadastro}"
+					sortOrder="descending">
 					<p:column headerText="#{msgs.DataCadastro}" width="90">
 						<p:outputLabel value="#{cadastro.dataInicioCadastro}"
 							style="font-size: 9pt;">
