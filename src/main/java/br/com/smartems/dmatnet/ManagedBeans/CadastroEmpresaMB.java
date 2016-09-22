@@ -61,6 +61,9 @@ public class CadastroEmpresaMB implements Serializable {
 	private List<EmpresaEntity> empresasAtribuidas;
 	private List<EmpresaEntity> empresasFiltradas;
 
+	private EmpresaCadastroEntity dadosCadastraisAnterior; // é utilizado para
+															// adicionar data de
+															// término
 	private EmpresaCadastroEntity dadosCadastraisAtual;
 	private List<EmpresaCadastroEntity> dadosCadastraisHistorico;
 
@@ -519,7 +522,7 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void listarDadosCadastrais(EmpresaEntity empresa) {
-		Date dataMaisRecente = new Date();
+		Date dataMaisRecente;
 		if (!empresa.getCadastros().isEmpty()) {
 			dataMaisRecente = empresa.getCadastros().get(0).getDataInicioCadastro();
 			this.dadosCadastraisAtual = empresa.getCadastros().get(0);
@@ -563,6 +566,11 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = false;
 		if (this.dadosCadastraisAtual != null) {
 			this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
+			for (EmpresaCadastroEntity dadoCadastral : this.empresaSelecionada.getCadastros()) {
+				if (dadoCadastral.getId() == this.dadosCadastraisAnterior.getId()) {
+					dadoCadastral.setDataFimCadastro(new Date(System.currentTimeMillis()));
+				}
+			}
 			this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
 			this.empresaSelecionada = this.pessoaJuridicaFachada.update(empresaSelecionada);
 			this.listarDadosCadastrais(this.empresaSelecionada);
@@ -579,6 +587,9 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisCancelarDesativado = false;
 		this.isBtnDadosCadastraisSalvarDesativado = false;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = true;
+		if (this.dadosCadastraisAtual != null || this.dadosCadastraisAtual.getId() != 0) {
+			this.dadosCadastraisAnterior = this.dadosCadastraisAtual;
+		}
 		this.dadosCadastraisAtual = new EmpresaCadastroEntity();
 	}
 
@@ -772,8 +783,6 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
 	}
-
-	// listar Dados Cadastrais
 
 	// filtros para buscas diversas
 
