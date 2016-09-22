@@ -45,7 +45,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	@EJB
 	private EstadoFacadeLocal estadoFachada;
-	
+
 	@EJB
 	private StringsUtilitarios stringUtils;
 
@@ -470,7 +470,8 @@ public class CadastroEmpresaMB implements Serializable {
 				this.pessoaJuridicaFachada.update(this.empresa);
 				this.initEmpresa();
 				FacesMessage msg = new FacesMessage("Sucesso",
-						stringUtils.formatarTextoParaLeitura(this.empresa.getNome().toString()) + " Atualizado com Sucesso");
+						stringUtils.formatarTextoParaLeitura(this.empresa.getNome().toString())
+								+ " Atualizado com Sucesso");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 				this.empresa = null;
 			}
@@ -508,7 +509,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void onSelectionEmpresa(SelectEvent evt) {
 		this.dadosCadastraisAtual = new EmpresaCadastroEntity();
-		this.empresaSelecionada = pessoaJuridicaFachada.read(((EmpresaEntity)evt.getObject()).getIdPessoa());
+		this.empresaSelecionada = pessoaJuridicaFachada.read(((EmpresaEntity) evt.getObject()).getIdPessoa());
 		this.listarDadosCadastrais(this.empresaSelecionada);
 		if (this.empresaSelecionada.getCadastros().remove(dadosCadastraisAtual)) {
 			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
@@ -519,10 +520,13 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void listarDadosCadastrais(EmpresaEntity empresa) {
 		Date dataMaisRecente = new Date();
-		for (EmpresaCadastroEntity dadoCadastral : empresa.getCadastros()) {
-			if (empresa.getCadastroPessoa().after(dataMaisRecente)) {
-				dataMaisRecente = dadoCadastral.getDataInicioCadastro();
-				dadosCadastraisAtual = dadoCadastral;
+		if (!empresa.getCadastros().isEmpty()) {
+			dataMaisRecente = empresa.getCadastros().get(0).getDataInicioCadastro();
+			for (EmpresaCadastroEntity dadoCadastral : empresa.getCadastros()) {
+				if (dadoCadastral.getDataInicioCadastro().after(dataMaisRecente)) {
+					dataMaisRecente = dadoCadastral.getDataInicioCadastro();
+					dadosCadastraisAtual = dadoCadastral;
+				}
 			}
 		}
 
@@ -542,6 +546,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisCancelarDesativado = true;
 		this.isBtnDadosCadastraisSalvarDesativado = true;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = false;
+		this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
 		this.listarDadosCadastrais(this.empresaSelecionada);
 		if (this.empresaSelecionada.getCadastros().remove(dadosCadastraisAtual)) {
 			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
@@ -645,7 +650,8 @@ public class CadastroEmpresaMB implements Serializable {
 			this.empresaGrupoFachada.update(this.grupoSelecionado);
 		}
 
-		FacesMessage msg = new FacesMessage("Sucesso", stringUtils.formatarTextoParaLeitura(this.grupoSelecionado.getNomeGrupo()) + " Salvo com Sucesso");
+		FacesMessage msg = new FacesMessage("Sucesso",
+				stringUtils.formatarTextoParaLeitura(this.grupoSelecionado.getNomeGrupo()) + " Salvo com Sucesso");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 
 		this.initEmpresa();
@@ -670,7 +676,8 @@ public class CadastroEmpresaMB implements Serializable {
 			this.empresaGrupoFachada.delete(this.grupoSelecionado);
 		}
 
-		FacesMessage msg = new FacesMessage("Sucesso", stringUtils.formatarTextoParaLeitura(this.grupoSelecionado.getNomeGrupo()) + " Excluído com Sucesso");
+		FacesMessage msg = new FacesMessage("Sucesso",
+				stringUtils.formatarTextoParaLeitura(this.grupoSelecionado.getNomeGrupo()) + " Excluído com Sucesso");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 
 		this.initEmpresa();
@@ -737,7 +744,8 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
 
-		FacesMessage msg = new FacesMessage("Sucesso", stringUtils.formatarTextoParaLeitura(this.grupoSelecionado.getNomeGrupo()) + " Alterado com Sucesso");
+		FacesMessage msg = new FacesMessage("Sucesso",
+				stringUtils.formatarTextoParaLeitura(this.grupoSelecionado.getNomeGrupo()) + " Alterado com Sucesso");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
