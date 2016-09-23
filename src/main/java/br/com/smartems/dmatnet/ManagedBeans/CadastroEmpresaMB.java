@@ -566,19 +566,24 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisSalvarDesativado = true;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = false;
 		if (this.dadosCadastraisAtual != null) {
-			this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
-			for (EmpresaCadastroEntity dadoCadastral : this.empresaSelecionada.getCadastros()) {
-				if (dadoCadastral.getId() == this.dadosCadastraisAnterior.getId()) {
-					dadoCadastral.setDataFimCadastro(new Date(System.currentTimeMillis()));
+			if (dadosCadastraisAtual.getId() == 0) {
+				this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
+				for (EmpresaCadastroEntity dadoCadastral : this.empresaSelecionada.getCadastros()) {
+					if (dadoCadastral.getId() == this.dadosCadastraisAnterior.getId()) {
+						dadoCadastral.setDataFimCadastro(new Date(System.currentTimeMillis()));
+					}
 				}
-			}
-			this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
-			this.empresaSelecionada = this.pessoaJuridicaFachada.update(empresaSelecionada);
-			this.listarDadosCadastrais(this.empresaSelecionada);
-			if (this.empresaSelecionada.getCadastros().remove(dadosCadastraisAtual)) {
-				this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
+				this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
+				this.empresaSelecionada = this.pessoaJuridicaFachada.update(empresaSelecionada);
+				this.listarDadosCadastrais(this.empresaSelecionada);
+				if (this.empresaSelecionada.getCadastros().remove(dadosCadastraisAtual)) {
+					this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
+				} else {
+					this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
+				}
 			} else {
-				this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
+				this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
+				this.empresaSelecionada = this.pessoaJuridicaFachada.update(empresaSelecionada);
 			}
 		}
 	}
@@ -593,13 +598,13 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 		this.dadosCadastraisAtual = new EmpresaCadastroEntity();
 	}
-	
+
 	public void onRowEditDadosCadastraisEmpresa(RowEditEvent e) {
-		
+
 	}
-	
+
 	public void onRowCancelDadosCadastraisEmpresa(RowEditEvent e) {
-		
+
 	}
 
 	// action dos botões de endereco empresa
