@@ -189,66 +189,178 @@
 		<p:tab title="#{msgs.Historico}">
 			<h:panelGrid columns="2" cellpadding="10">
 				<p:dataTable paginator="true" rows="10" scrollable="true"
-					styleClass="dataTable"
+					styleClass="dataTable" 
 					emptyMessage="#{msgs.ListaHistoricoDadosCadastrais}"
 					value="#{cadastroEmpresaMB.dadosCadastraisHistorico}"
 					paginatorAlwaysVisible="false" var="cadastro"
-					sortBy="#{cadastro.dataInicioCadastro}"
-					sortOrder="descending">
-					<p:column headerText="#{msgs.DataCadastro}" width="90">
-						<p:outputLabel value="#{cadastro.dataInicioCadastro}"
-							style="font-size: 9pt;">
-							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</p:outputLabel>
+					sortBy="#{cadastro.dataInicioCadastro}" sortOrder="descending"
+					editable="true" rowKey="#{cadastro.id}">
+
+					<!-- 					<p:ajax event="rowEdit"
+						listener="#{cadastroEmpresaMB.onRowEditDadosCadastraisEmpresa}"
+						update="formModulos" />
+					<p:ajax event="rowEditCancel"
+						listener="#{cadastroEmpresaMB.onRowCancelDadosCadastraisEmpresa}"
+						update="formModulos" /> -->
+
+					<p:column headerText="#{msgs.DataCadastro}" width="100">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.dataInicioCadastro}"
+									style="font-size: 9pt;">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:calendar value="#{cadastro.dataInicioCadastro}" locale="pt"
+									showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
+									mask="true" size="8" />
+							</f:facet>
+						</p:cellEditor>
 					</p:column>
-					<p:column headerText="#{msgs.DataTermino}" width="90">
-						<p:outputLabel value="#{cadastro.dataFimCadastro}"
-							style="font-size: 9pt;">
-							<f:convertDateTime pattern="dd/MM/yyyy" />
-						</p:outputLabel>
+					<p:column headerText="#{msgs.DataTermino}" width="100">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.dataFimCadastro}"
+									style="font-size: 9pt;">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:calendar value="#{cadastro.dataFimCadastro}" locale="pt"
+									showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
+									mask="true" size="8" />
+							</f:facet>
+						</p:cellEditor>
 					</p:column>
 					<p:column headerText="#{msgs.TipoInscricao}" width="80">
-						<p:outputLabel value="#{cadastro.tipoInscricao}"
-							style="font-size: 9pt;" />
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.tipoInscricao}"
+									style="font-size: 9pt;" />
+							</f:facet>
+							<f:facet name="input">
+								<p:selectOneMenu style="width:100%; font-size: 9pt;"
+									value="#{cadastro.tipoInscricao}">
+									<f:selectItem itemValue="1" itemLabel="CNPJ" />
+									<f:selectItem itemValue="2" itemLabel="CPF" />
+								</p:selectOneMenu>
+							</f:facet>
+						</p:cellEditor>
 					</p:column>
 					<p:column headerText="#{msgs.Inscricao}" width="160">
-						<p:outputLabel value="#{cadastro.numCNPJ}" style="font-size: 9pt;">
-							<f:converter converterId="cnpjCpfConverter" />
-						</p:outputLabel>
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.numCNPJ}"
+									style="font-size: 9pt;">
+									<f:converter converterId="cnpjCpfConverter" />
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputMask id="ipmInscricao" converter="cnpjCpfConverter"
+									mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}"
+									value="#{cadastro.numCNPJ}" style="font-size: 9pt;" />
+							</f:facet>
+						</p:cellEditor>
 					</p:column>
 					<p:column headerText="#{msgs.RazaoSocial}" width="300">
-						<p:outputLabel value="#{cadastro.razaoSocial}"
-							style="font-size: 9pt;">
-							<f:converter converterId="stringConverter" />
-						</p:outputLabel>
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.razaoSocial}"
+									style="font-size: 9pt;">
+									<f:converter converterId="stringConverter" />
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{cadastro.razaoSocial}"
+									style="font-size: 9pt; width: 100%" />
+							</f:facet>
+						</p:cellEditor>
 					</p:column>
 					<p:column headerText="#{msgs.CodClassificacaoTributaria}"
 						width="90">
-						<p:outputLabel value="#{cadastro.codClassificacaoTributaria}"
-							style="font-size: 9pt;" />
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.codClassificacaoTributaria}"
+									style="font-size: 9pt;" />
+							</f:facet>
+							<f:facet name="input">
+								<p:selectOneMenu style="font-size: 9pt;" />
+							</f:facet>
+						</p:cellEditor>
 					</p:column>
 					<p:column headerText="#{msgs.CodNaturezaJuridica}" width="90">
-						<p:outputLabel value="#{cadastro.codNaturezaJuridica}"
-							style="font-size: 9pt;" />
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.codNaturezaJuridica}"
+									style="font-size: 9pt;" />
+							</f:facet>
+							<f:facet name="input">
+								<p:selectOneMenu value="#{cadastro.codNaturezaJuridica}"
+									style="font-size: 9pt;" />
+							</f:facet>
+						</p:cellEditor>
 					</p:column>
 					<p:column headerText="#{msgs.CodIndicativoCooperativa}" width="90">
-						<p:outputLabel value="#{cadastro.codIndicativoCooperativa}"
-							style="font-size: 8pt;" />
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.codIndicativoCooperativa}"
+									style="font-size: 9pt;" />
+							</f:facet>
+							<f:facet name="input">
+								<p:selectOneMenu value="#{cadastro.codIndicativoCooperativa}"
+									style="font-size: 9pt;" />
+							</f:facet>
+						</p:cellEditor>
 					</p:column>
 					<p:column headerText="#{msgs.CodIndicativoConstrucao}" width="90">
-						<p:outputLabel value="#{cadastro.codIndicativoConstrucao}"
-							style="font-size: 8pt;" />
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.codIndicativoConstrucao}"
+									style="font-size: 9pt;" />
+							</f:facet>
+							<f:facet name="input">
+								<p:selectOneMenu value="#{cadastro.codIndicativoConstrucao}"
+									style="font-size: 9pt;" />
+							</f:facet>
+						</p:cellEditor>
 					</p:column>
 					<p:column headerText="#{msgs.CodIndicativoDesoneracaoFolha}"
 						width="90">
-						<p:outputLabel value="#{cadastro.codIndicativoDesoneracaoFolha}"
-							style="font-size: 8pt;" />
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.codIndicativoDesoneracaoFolha}"
+									style="font-size: 9pt;" />
+							</f:facet>
+							<f:facet name="input">
+								<p:selectOneMenu
+									value="#{cadastro.codIndicativoDesoneracaoFolha}"
+									style="font-size: 9pt;" />
+							</f:facet>
+						</p:cellEditor>
 					</p:column>
 					<p:column headerText="#{msgs.CodIndicativoRegEletronico}"
 						width="90">
-						<p:outputLabel value="#{cadastro.codIndicativoRegEletronico}"
-							style="font-size: 8pt;" />
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.codIndicativoRegEletronico}"
+									style="font-size: 9pt;" />
+							</f:facet>
+							<f:facet name="input">
+								<p:selectOneMenu value="#{cadastro.codIndicativoRegEletronico}"
+									style="font-size: 9pt;" />
+							</f:facet>
+						</p:cellEditor>
 					</p:column>
+
+					<p:column style="width:55px" >
+						<p:rowEditor />
+					</p:column>
+					
+					<p:column style="width:55px">
+						<p:commandButton icon="fa fa-trash"/>
+					</p:column>
+
 				</p:dataTable>
 			</h:panelGrid>
 		</p:tab>

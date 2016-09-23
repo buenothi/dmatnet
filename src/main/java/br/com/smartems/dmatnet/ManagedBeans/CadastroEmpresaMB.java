@@ -15,6 +15,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.persistence.NoResultException;
 
+import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DualListModel;
 
@@ -591,6 +592,14 @@ public class CadastroEmpresaMB implements Serializable {
 			this.dadosCadastraisAnterior = this.dadosCadastraisAtual;
 		}
 		this.dadosCadastraisAtual = new EmpresaCadastroEntity();
+	}
+	
+	public void onRowEditDadosCadastraisEmpresa(RowEditEvent e) {
+		
+	}
+	
+	public void onRowCancelDadosCadastraisEmpresa(RowEditEvent e) {
+		
 	}
 
 	// action dos botões de endereco empresa
