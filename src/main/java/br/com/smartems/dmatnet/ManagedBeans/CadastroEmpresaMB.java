@@ -512,8 +512,12 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void onSelectionEmpresa(SelectEvent evt) {
+		this.separarDadosCadastraisAtualDoHistorico((EmpresaEntity) evt.getObject());
+	}
+	
+	public void separarDadosCadastraisAtualDoHistorico(EmpresaEntity empresa) {
 		this.dadosCadastraisAtual = new EmpresaCadastroEntity();
-		this.empresaSelecionada = pessoaJuridicaFachada.read(((EmpresaEntity) evt.getObject()).getIdPessoa());
+		this.empresaSelecionada = pessoaJuridicaFachada.read(empresa.getIdPessoa());
 		this.listarDadosCadastrais(this.empresaSelecionada);
 		if (this.empresaSelecionada.getCadastros().remove(dadosCadastraisAtual)) {
 			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
@@ -584,6 +588,8 @@ public class CadastroEmpresaMB implements Serializable {
 			} else {
 				this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
 				this.empresaSelecionada = this.pessoaJuridicaFachada.update(empresaSelecionada);
+				this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
+				
 			}
 		}
 	}
