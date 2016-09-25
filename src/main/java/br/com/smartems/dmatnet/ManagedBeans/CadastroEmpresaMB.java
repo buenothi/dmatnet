@@ -2,6 +2,7 @@ package br.com.smartems.dmatnet.ManagedBeans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -574,7 +575,10 @@ public class CadastroEmpresaMB implements Serializable {
 				this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
 				for (EmpresaCadastroEntity dadoCadastral : this.empresaSelecionada.getCadastros()) {
 					if (dadoCadastral.getId() == this.dadosCadastraisAnterior.getId()) {
-						dadoCadastral.setDataFimCadastro(new Date(System.currentTimeMillis()));
+						Calendar calendar = Calendar.getInstance();
+						calendar.setTime(this.dadosCadastraisAtual.getDataInicioCadastro());
+						calendar.add(Calendar.DAY_OF_MONTH, -1);
+						dadoCadastral.setDataFimCadastro(calendar.getTime());
 					}
 				}
 				this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
