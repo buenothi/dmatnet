@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.com.smartems.dmatnet.entities.LocalTrabalho.LocalTrabalhoEntity;
@@ -43,6 +44,10 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 	@ManyToOne
 	@JoinColumn(name = "usuarioCriador_ID")
 	private UsuarioEntity usuarioCriador;
+	
+	@OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	@JoinColumn(name = "empresaFoto_ID")
+	private EmpresaFoto empresaFotoFachada;
 
 	private String tipoEstabelecimento;
 
@@ -106,6 +111,14 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 
 	public void setUsuarioCriador(UsuarioEntity usuarioCriador) {
 		this.usuarioCriador = usuarioCriador;
+	}
+
+	public EmpresaFoto getEmpresaFotoFachada() {
+		return empresaFotoFachada;
+	}
+
+	public void setEmpresaFotoFachada(EmpresaFoto empresaFotoFachada) {
+		this.empresaFotoFachada = empresaFotoFachada;
 	}
 
 }

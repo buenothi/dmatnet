@@ -40,11 +40,6 @@
 								pattern="dd/MM/yyyy" mask="true" size="8"
 								value="#{cadastroEmpresaMB.dadosCadastraisAtual.dataInicioCadastro}" />
 						</p:column>
-						<p:column rowspan="5">
-							<p:fileUpload style="height: 100%"
-								mode="advanced" dragDropSupport="true" 
-								sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-						</p:column>
 					</p:row>
 
 					<p:row>
@@ -95,6 +90,17 @@
 								<p:inputMask mask="9,999" maxlength="250" size="5" />
 								<p:commandButton value="#{msgs.ProcessoFAP}" />
 							</h:panelGroup>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.FachadaEmpresa}:" />
+						</p:column>
+						<p:column>
+							<p:commandButton value="#{msgs.FachadaEmpresa}"
+								onclick="PF('dlgFachadaEmpresa').show()" 
+								icon="fa fa-photo"/>
 						</p:column>
 					</p:row>
 				</p:panelGrid>
@@ -148,7 +154,6 @@
 									pattern="dd/MM/YYYY" />
 							</p:outputLabel>
 						</p:column>
-						<p:column rowspan="5">teste</p:column>
 					</p:row>
 
 					<p:row>
@@ -189,6 +194,16 @@
 
 					<p:row>
 						<p:column>
+							<p:outputLabel value="#{msgs.FachadaEmpresa}:" />
+						</p:column>
+						<p:column>
+							<p:commandButton value="#{msgs.FachadaEmpresa}"
+								onclick="PF('dlgFachadaEmpresa').show()" icon="fa fa-photo"/>
+						</p:column>
+					</p:row>
+
+					<p:row>
+						<p:column>
 							<p:outputLabel value="#{msgs.FAP}:" />
 						</p:column>
 
@@ -209,8 +224,8 @@
 				</p:panelGrid>
 
 				<p:dialog header="#{msgs.CodigosESocial}"
-					widgetVar="dlgCodigoESocial" closable="true" resizable="true"
-					width="1000" modal="true">
+					widgetVar="dlgCodigoESocial" closable="true" resizable="false"
+					width="700" modal="true">
 
 					<p:panelGrid columns="4" styleClass="tabelaSemBorda">
 						<p:outputLabel value="#{msgs.CodClassificacaoTributaria}:" />
@@ -246,6 +261,16 @@
 				</p:dialog>
 
 			</h:panelGroup>
+
+			<p:dialog header="#{msgs.FachadaEmpresa}"
+				widgetVar="dlgFachadaEmpresa" closable="true" resizable="false"
+				width="500" modal="false">
+				<p:fileUpload style="height: 100%" mode="advanced"
+					dragDropSupport="true" sizeLimit="100000"
+					allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+					rendered="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}" />
+			</p:dialog>
+
 		</p:tab>
 
 		<p:tab title="#{msgs.EmpresaDadosIsencao}">
