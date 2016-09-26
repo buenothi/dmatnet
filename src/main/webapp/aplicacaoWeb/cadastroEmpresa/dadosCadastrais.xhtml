@@ -99,8 +99,7 @@
 						</p:column>
 						<p:column>
 							<p:commandButton value="#{msgs.FachadaEmpresa}"
-								onclick="PF('dlgFachadaEmpresa').show()" 
-								icon="fa fa-photo"/>
+								onclick="PF('dlgFachadaEmpresa').show()" icon="fa fa-photo" />
 						</p:column>
 					</p:row>
 				</p:panelGrid>
@@ -197,8 +196,10 @@
 							<p:outputLabel value="#{msgs.FachadaEmpresa}:" />
 						</p:column>
 						<p:column>
-							<p:commandButton value="#{msgs.FachadaEmpresa}"
-								onclick="PF('dlgFachadaEmpresa').show()" icon="fa fa-photo"/>
+							<p:commandButton id="btnFachada" value="#{msgs.FachadaEmpresa}"
+								icon="fa fa-photo" />
+							<p:overlayPanel id="imagePanel" for="btnFachada" hideEffect="fade">
+							</p:overlayPanel>
 						</p:column>
 					</p:row>
 
@@ -266,9 +267,10 @@
 				widgetVar="dlgFachadaEmpresa" closable="true" resizable="false"
 				width="500" modal="false">
 				<p:fileUpload style="height: 100%" mode="advanced"
-					dragDropSupport="true" sizeLimit="100000"
+					dragDropSupport="true" sizeLimit="1000000"
 					allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
-					rendered="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}" />
+					rendered="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}" 
+					fileUploadListener="#{cadastroEmpresaMB.gravarImagemFachada}"/>
 			</p:dialog>
 
 		</p:tab>

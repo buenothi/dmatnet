@@ -45,7 +45,7 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 	@JoinColumn(name = "usuarioCriador_ID")
 	private UsuarioEntity usuarioCriador;
 	
-	@OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	@OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
 	@JoinColumn(name = "empresaFoto_ID")
 	private EmpresaFoto empresaFotoFachada;
 

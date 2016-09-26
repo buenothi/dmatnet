@@ -16,6 +16,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.persistence.NoResultException;
 
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DualListModel;
@@ -27,6 +28,7 @@ import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFoto;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaGrupoEntity;
 import br.com.smartems.dmatnet.util.StringsUtilitarios;
 import br.com.smartems.dmatnet.util.filtrosCollection.Filter;
@@ -68,6 +70,7 @@ public class CadastroEmpresaMB implements Serializable {
 															// término
 	private EmpresaCadastroEntity dadosCadastraisAtual;
 	private List<EmpresaCadastroEntity> dadosCadastraisHistorico;
+	private byte[] fotografiaEmpresa;
 
 	private EnderecoEntity enderecoAtual;
 
@@ -161,6 +164,14 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setDadosCadastraisHistorico(List<EmpresaCadastroEntity> dadosCadastraisHistorico) {
 		this.dadosCadastraisHistorico = dadosCadastraisHistorico;
+	}
+	
+	public byte[] getFotografiaEmpresa() {
+		return fotografiaEmpresa;
+	}
+
+	public void setFotografiaEmpresa(byte[] fotografiaEmpresa) {
+		this.fotografiaEmpresa = fotografiaEmpresa;
 	}
 
 	public EmpresaFAP getEmpresaFap() {
@@ -615,6 +626,15 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void onRowCancelDadosCadastraisEmpresa(RowEditEvent e) {
 
+	}
+	
+	public void gravarImagemFachada(FileUploadEvent evt) {
+//		EmpresaFoto fotografiaFachadaEmpresa = new EmpresaFoto();
+//		fotografiaFachadaEmpresa.setFotoFachada(evt.getFile().getContents());
+//		this.empresaSelecionada.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
+//		this.pessoaJuridicaFachada.update(this.empresaSelecionada);
+//		System.out.println(this.empresaSelecionada.getIdPessoa());
+//		System.out.println(this.empresaSelecionada.getEmpresaFotoFachada().toString());
 	}
 
 	// action dos botões de endereco empresa
