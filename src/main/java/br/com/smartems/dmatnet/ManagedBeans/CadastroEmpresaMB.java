@@ -1,5 +1,7 @@
 package br.com.smartems.dmatnet.ManagedBeans;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -19,7 +21,9 @@ import javax.persistence.NoResultException;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
+import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.DualListModel;
+import org.primefaces.model.StreamedContent;
 
 import br.com.smartems.dmatnet.EJB.Facade.EmpresaGrupoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.EstadoFacadeLocal;
@@ -165,7 +169,7 @@ public class CadastroEmpresaMB implements Serializable {
 	public void setDadosCadastraisHistorico(List<EmpresaCadastroEntity> dadosCadastraisHistorico) {
 		this.dadosCadastraisHistorico = dadosCadastraisHistorico;
 	}
-	
+
 	public byte[] getFotografiaEmpresa() {
 		return fotografiaEmpresa;
 	}
@@ -526,32 +530,7 @@ public class CadastroEmpresaMB implements Serializable {
 	public void onSelectionEmpresa(SelectEvent evt) {
 		this.separarDadosCadastraisAtualDoHistorico((EmpresaEntity) evt.getObject());
 	}
-	
-	public void separarDadosCadastraisAtualDoHistorico(EmpresaEntity empresa) {
-		this.dadosCadastraisAtual = new EmpresaCadastroEntity();
-		this.empresaSelecionada = pessoaJuridicaFachada.read(empresa.getIdPessoa());
-		this.listarDadosCadastrais(this.empresaSelecionada);
-		if (this.empresaSelecionada.getCadastros().remove(dadosCadastraisAtual)) {
-			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
-		} else {
-			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
-		}
-	}
 
-	public void listarDadosCadastrais(EmpresaEntity empresa) {
-		Date dataMaisRecente;
-		if (!empresa.getCadastros().isEmpty()) {
-			dataMaisRecente = empresa.getCadastros().get(0).getDataInicioCadastro();
-			this.dadosCadastraisAtual = empresa.getCadastros().get(0);
-			for (EmpresaCadastroEntity dadoCadastral : empresa.getCadastros()) {
-				if (dadoCadastral.getDataInicioCadastro().after(dataMaisRecente)) {
-					dataMaisRecente = dadoCadastral.getDataInicioCadastro();
-					dadosCadastraisAtual = dadoCadastral;
-				}
-			}
-		}
-
-	}
 
 	// action dos botões dados cadastrais da empresa
 
@@ -604,7 +583,6 @@ public class CadastroEmpresaMB implements Serializable {
 				this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
 				this.empresaSelecionada = this.pessoaJuridicaFachada.update(empresaSelecionada);
 				this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
-				
 			}
 		}
 	}
@@ -627,14 +605,42 @@ public class CadastroEmpresaMB implements Serializable {
 	public void onRowCancelDadosCadastraisEmpresa(RowEditEvent e) {
 
 	}
-	
+
 	public void gravarImagemFachada(FileUploadEvent evt) {
-//		EmpresaFoto fotografiaFachadaEmpresa = new EmpresaFoto();
-//		fotografiaFachadaEmpresa.setFotoFachada(evt.getFile().getContents());
-//		this.empresaSelecionada.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
-//		this.pessoaJuridicaFachada.update(this.empresaSelecionada);
-//		System.out.println(this.empresaSelecionada.getIdPessoa());
-//		System.out.println(this.empresaSelecionada.getEmpresaFotoFachada().toString());
+		EmpresaFoto fotografiaFachadaEmpresa = new EmpresaFoto();
+		fotografiaFachadaEmpresa.setFotoFachada(evt.getFile().getContents());
+		this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
+		this.empresaSelecionada.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
+		this.empresaSelecionada = this.pessoaJuridicaFachada.update(this.empresaSelecionada);
+		this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
+		System.out.println(this.empresaSelecionada.getIdPessoa());
+		System.out.println(this.empresaSelecionada.getEmpresaFotoFachada().toString());
+	}
+
+	public void separarDadosCadastraisAtualDoHistorico(EmpresaEntity empresa) {
+		this.dadosCadastraisAtual = new EmpresaCadastroEntity();
+		this.empresaSelecionada = pessoaJuridicaFachada.read(empresa.getIdPessoa());
+		this.listarDadosCadastrais(this.empresaSelecionada);
+		if (this.empresaSelecionada.getCadastros().remove(dadosCadastraisAtual)) {
+			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
+		} else {
+			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
+		}
+	}
+
+	public void listarDadosCadastrais(EmpresaEntity empresa) {
+		Date dataMaisRecente;
+		if (!empresa.getCadastros().isEmpty()) {
+			dataMaisRecente = empresa.getCadastros().get(0).getDataInicioCadastro();
+			this.dadosCadastraisAtual = empresa.getCadastros().get(0);
+			for (EmpresaCadastroEntity dadoCadastral : empresa.getCadastros()) {
+				if (dadoCadastral.getDataInicioCadastro().after(dataMaisRecente)) {
+					dataMaisRecente = dadoCadastral.getDataInicioCadastro();
+					dadosCadastraisAtual = dadoCadastral;
+				}
+			}
+		}
+
 	}
 
 	// action dos botões de endereco empresa
