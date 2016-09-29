@@ -24,6 +24,7 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.DualListModel;
 
+import br.com.smartems.dmatnet.EJB.Facade.EmpresaFotoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.EmpresaGrupoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.EstadoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.PessoaJuridicaFacadeLocal;
@@ -55,6 +56,9 @@ public class CadastroEmpresaMB implements Serializable {
 
 	@EJB
 	private StringsUtilitarios stringUtils;
+
+	@EJB
+	private EmpresaFotoFacadeLocal empresaFotoFachada;
 
 	private EmpresaGrupoEntity grupoSelecionado;
 	private EmpresaGrupoEntity grupoEmpresa;
@@ -565,12 +569,12 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 	}
 
-	public void salvarDadosCadastraisEmpresa(ActionEvent e) {
+	public void salvarDadosCadastraisEmpresa(ActionEvent evt) {
 		this.isBtnDadosCadastraisEditarDesativado = false;
 		this.isBtnDadosCadastraisCancelarDesativado = true;
 		this.isBtnDadosCadastraisSalvarDesativado = true;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = false;
-		if (this.dadosCadastraisAtual != null) {
+		try {
 			if (dadosCadastraisAtual.getId() == 0) {
 				this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
 				for (EmpresaCadastroEntity dadoCadastral : this.empresaSelecionada.getCadastros()) {
@@ -582,7 +586,12 @@ public class CadastroEmpresaMB implements Serializable {
 					}
 				}
 				this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
-				this.empresaSelecionada.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
+				if (fotografiaEmpresa.length > 0) {
+					long idFotoDelete = this.empresaSelecionada.getEmpresaFotoFachada().getIdEmpresaFoto();
+					this.empresaSelecionada.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
+					EmpresaFoto fotoAntiga = this.empresaFotoFachada.read(idFotoDelete);
+					this.empresaFotoFachada.delete(fotoAntiga);
+				}
 				this.empresaSelecionada = this.pessoaJuridicaFachada.update(this.empresaSelecionada);
 				this.exibirImagemFachadaEmpresa();
 				this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
@@ -601,6 +610,8 @@ public class CadastroEmpresaMB implements Serializable {
 				this.exibirImagemFachadaEmpresa();
 				this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
 			}
+		} catch (Exception exc) {
+			exc.printStackTrace();
 		}
 	}
 
