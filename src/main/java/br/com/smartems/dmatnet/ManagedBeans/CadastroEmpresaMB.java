@@ -587,10 +587,10 @@ public class CadastroEmpresaMB implements Serializable {
 				}
 				this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
 				if (fotografiaEmpresa.length > 0) {
-					long idFotoDelete = this.empresaSelecionada.getEmpresaFotoFachada().getIdEmpresaFoto();
+					EmpresaFoto fotoAntiga = this.empresaSelecionada.getEmpresaFotoFachada();
+					this.empresaSelecionada.setEmpresaFotoFachada(new EmpresaFoto());
 					this.empresaSelecionada.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
-					EmpresaFoto fotoAntiga = this.empresaFotoFachada.read(idFotoDelete);
-					this.empresaFotoFachada.delete(fotoAntiga);
+					this.empresaFotoFachada.create(fotoAntiga);
 				}
 				this.empresaSelecionada = this.pessoaJuridicaFachada.update(this.empresaSelecionada);
 				this.exibirImagemFachadaEmpresa();

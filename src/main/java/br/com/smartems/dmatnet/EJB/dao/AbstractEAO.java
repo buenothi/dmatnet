@@ -2,7 +2,7 @@ package br.com.smartems.dmatnet.EJB.dao;
 
 import java.util.List;
 
-import javax.ejb.LocalBean;
+import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 
 @Stateless
-@LocalBean
+@Local
 @SuppressWarnings("unchecked")
 public abstract class AbstractEAO <T, PK> implements IAbstractDAO<T, PK>{
 
