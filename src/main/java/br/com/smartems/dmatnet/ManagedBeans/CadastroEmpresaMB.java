@@ -539,7 +539,7 @@ public class CadastroEmpresaMB implements Serializable {
 	public void onSelectionEmpresa(SelectEvent evt) {
 		this.separarDadosCadastraisAtualDoHistorico((EmpresaEntity) evt.getObject());
 		this.fachadaEmpresa = null;
-		this.exibirImagemFachadaEmpresa();
+		this.exibirImagemFachadaEmpresa(this.empresaSelecionada.getEmpresaFotoFachada());
 	}
 
 	// action dos botões dados cadastrais da empresa
@@ -585,9 +585,9 @@ public class CadastroEmpresaMB implements Serializable {
 				if (fotografiaEmpresa.length > 0) {
 					this.empresaSelecionada.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
 				}
-				this.empresaSelecionada = this.pessoaJuridicaFachada.update(this.empresaSelecionada);
-				this.exibirImagemFachadaEmpresa();
+				this.pessoaJuridicaFachada.update(this.empresaSelecionada);
 				this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
+				this.fachadaEmpresa = null;
 				if (this.empresaSelecionada.getCadastros().remove(dadosCadastraisAtual)) {
 					this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
 				} else {
@@ -600,7 +600,7 @@ public class CadastroEmpresaMB implements Serializable {
 					this.empresaSelecionada.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
 				}
 				this.empresaSelecionada = this.pessoaJuridicaFachada.update(this.empresaSelecionada);
-				this.exibirImagemFachadaEmpresa();
+				this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
 				this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
 			}
 		} catch (Exception exc) {
@@ -662,10 +662,10 @@ public class CadastroEmpresaMB implements Serializable {
 
 	}
 
-	public void exibirImagemFachadaEmpresa() {
+	public void exibirImagemFachadaEmpresa(EmpresaFoto fotoFachada) {
 		InputStream stream = null;
 		try {
-			stream = new ByteArrayInputStream(this.empresaSelecionada.getEmpresaFotoFachada().getFotoFachada());
+			stream = new ByteArrayInputStream(fotoFachada.getFotoFachada());
 			this.fachadaEmpresa = new DefaultStreamedContent(stream, "image/jpeg");
 		} catch (NullPointerException e) {
 			e.printStackTrace();
