@@ -24,7 +24,6 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.DualListModel;
 
-import br.com.smartems.dmatnet.EJB.Facade.EmpresaFotoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.EmpresaGrupoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.EstadoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.PessoaJuridicaFacadeLocal;
@@ -56,9 +55,6 @@ public class CadastroEmpresaMB implements Serializable {
 
 	@EJB
 	private StringsUtilitarios stringUtils;
-
-	@EJB
-	private EmpresaFotoFacadeLocal empresaFotoFachada;
 
 	private EmpresaGrupoEntity grupoSelecionado;
 	private EmpresaGrupoEntity grupoEmpresa;
@@ -587,10 +583,7 @@ public class CadastroEmpresaMB implements Serializable {
 				}
 				this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
 				if (fotografiaEmpresa.length > 0) {
-					EmpresaFoto fotoAntiga = this.empresaSelecionada.getEmpresaFotoFachada();
-					this.empresaSelecionada.setEmpresaFotoFachada(new EmpresaFoto());
 					this.empresaSelecionada.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
-					this.empresaFotoFachada.create(fotoAntiga);
 				}
 				this.empresaSelecionada = this.pessoaJuridicaFachada.update(this.empresaSelecionada);
 				this.exibirImagemFachadaEmpresa();
