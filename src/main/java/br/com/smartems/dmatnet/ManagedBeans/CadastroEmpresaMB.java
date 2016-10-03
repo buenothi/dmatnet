@@ -75,7 +75,6 @@ public class CadastroEmpresaMB implements Serializable {
 															// término
 	private EmpresaCadastroEntity dadosCadastraisAtual;
 	private List<EmpresaCadastroEntity> dadosCadastraisHistorico;
-	private byte[] fotografiaEmpresa;
 
 	private EnderecoEntity enderecoAtual;
 
@@ -169,14 +168,6 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setDadosCadastraisHistorico(List<EmpresaCadastroEntity> dadosCadastraisHistorico) {
 		this.dadosCadastraisHistorico = dadosCadastraisHistorico;
-	}
-
-	public byte[] getFotografiaEmpresa() {
-		return fotografiaEmpresa;
-	}
-
-	public void setFotografiaEmpresa(byte[] fotografiaEmpresa) {
-		this.fotografiaEmpresa = fotografiaEmpresa;
 	}
 
 	public EmpresaFAP getEmpresaFap() {
@@ -537,9 +528,12 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void onSelectionEmpresa(SelectEvent evt) {
-		this.separarDadosCadastraisAtualDoHistorico((EmpresaEntity) evt.getObject());
-		this.fachadaEmpresa = null;
-		this.exibirImagemFachadaEmpresa(this.empresaSelecionada.getEmpresaFotoFachada());
+		try {
+			this.separarDadosCadastraisAtualDoHistorico((EmpresaEntity) evt.getObject());
+			this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	// action dos botões dados cadastrais da empresa
@@ -549,6 +543,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisCancelarDesativado = false;
 		this.isBtnDadosCadastraisSalvarDesativado = false;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = true;
+		this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
 	}
 
 	public void cancelarDadosCadastraisEmpresa(ActionEvent e) {
@@ -557,6 +552,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisSalvarDesativado = true;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = false;
 		this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
+		this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
 		this.listarDadosCadastrais(this.empresaSelecionada);
 		if (this.empresaSelecionada.getCadastros().remove(dadosCadastraisAtual)) {
 			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
@@ -582,12 +578,11 @@ public class CadastroEmpresaMB implements Serializable {
 					}
 				}
 				this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
-				if (fotografiaEmpresa.length > 0) {
+				if (fotografiaFachadaEmpresa != null) {
 					this.empresaSelecionada.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
 				}
 				this.pessoaJuridicaFachada.update(this.empresaSelecionada);
 				this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
-				this.fachadaEmpresa = null;
 				if (this.empresaSelecionada.getCadastros().remove(dadosCadastraisAtual)) {
 					this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
 				} else {
@@ -635,6 +630,7 @@ public class CadastroEmpresaMB implements Serializable {
 	public void separarDadosCadastraisAtualDoHistorico(EmpresaEntity empresa) {
 		this.dadosCadastraisAtual = new EmpresaCadastroEntity();
 		this.empresaSelecionada = pessoaJuridicaFachada.read(empresa.getIdPessoa());
+		this.fotografiaFachadaEmpresa = this.empresaSelecionada.getEmpresaFotoFachada();
 		this.listarDadosCadastrais(this.empresaSelecionada);
 		if (this.empresaSelecionada.getCadastros().remove(dadosCadastraisAtual)) {
 			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
@@ -663,11 +659,10 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void exibirImagemFachadaEmpresa(EmpresaFoto fotoFachada) {
-		InputStream stream = null;
 		try {
-			stream = new ByteArrayInputStream(fotoFachada.getFotoFachada());
-			this.fachadaEmpresa = new DefaultStreamedContent(stream, "image/jpeg");
-		} catch (NullPointerException e) {
+			InputStream stream = new ByteArrayInputStream(fotoFachada.getFotoFachada());
+			this.fachadaEmpresa = new DefaultStreamedContent(stream, "image/png");
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

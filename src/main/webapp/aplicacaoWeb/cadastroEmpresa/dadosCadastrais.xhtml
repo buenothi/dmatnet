@@ -161,11 +161,11 @@
 							<p:outputLabel value="#{msgs.FachadaEmpresa}:" />
 						</p:column>
 						<p:column>
-							<p:commandButton id="btnFachada"
-								icon="fa fa-photo" />
+							<p:commandButton id="btnFachada" icon="fa fa-photo" type="button" />
 							<p:overlayPanel id="imagePanel" for="btnFachada"
-								hideEffect="fade">
-								<p:graphicImage id="imageFachadEmpresa" value="#{cadastroEmpresaMB.fachadaEmpresa}" height="100" cache="false"/>
+								hideEffect="fade" appendToBody="true">
+								<p:graphicImage value="#{cadastroEmpresaMB.fachadaEmpresa}"
+									height="100" cache="false" />
 							</p:overlayPanel>
 						</p:column>
 					</p:row>
@@ -269,13 +269,14 @@
 			<p:dialog header="#{msgs.FachadaEmpresa}"
 				widgetVar="dlgFachadaEmpresa" closable="true" resizable="false"
 				width="500" modal="false">
-				<p:graphicImage  value="#{cadastroEmpresaMB.fachadaEmpresa}" height="180" cache="false" />
+				<p:graphicImage value="#{cadastroEmpresaMB.fachadaEmpresa}"
+					height="180" cache="false" />
 				<p:fileUpload style="height: 100%" mode="advanced"
 					dragDropSupport="true" sizeLimit="10000000"
 					allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
 					rendered="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}"
-					fileUploadListener="#{cadastroEmpresaMB.gravarImagemFachada}" 
-					update="formModulos"/>
+					fileUploadListener="#{cadastroEmpresaMB.gravarImagemFachada}"
+					update="formModulos" />
 			</p:dialog>
 
 		</p:tab>
