@@ -161,12 +161,13 @@
 							<p:outputLabel value="#{msgs.FachadaEmpresa}:" />
 						</p:column>
 						<p:column>
-							<p:commandButton id="btnFachada" icon="fa fa-photo" type="button" />
-							<p:overlayPanel id="imagePanel" for="btnFachada"
+							<p:commandButton id="btnFachada" icon="fa fa-photo" type="button"
+								onclick="PF('dlgFachadaEmpresa').show()" />
+							<!-- 							<p:overlayPanel id="imagePanel" for="btnFachada"
 								hideEffect="fade" appendToBody="true">
 								<p:graphicImage value="#{cadastroEmpresaMB.fachadaEmpresa}"
 									height="100" cache="false" />
-							</p:overlayPanel>
+							</p:overlayPanel> -->
 						</p:column>
 					</p:row>
 
@@ -227,56 +228,63 @@
 						onclick="PF('dlgCodigoESocial').show()" />
 				</p:panelGrid>
 
-				<p:dialog header="#{msgs.CodigosESocial}"
-					widgetVar="dlgCodigoESocial" closable="true" resizable="false"
-					width="700" modal="true">
 
-					<p:panelGrid columns="4" styleClass="tabelaSemBorda">
-						<p:outputLabel value="#{msgs.CodClassificacaoTributaria}:" />
-						<p:outputLabel
-							value="#{cadastroEmpresaMB.dadosCadastraisAtual.codClassificacaoTributaria}" />
-
-						<p:outputLabel value="#{msgs.CodNaturezaJuridica}:" />
-						<p:outputLabel
-							value="#{cadastroEmpresaMB.dadosCadastraisAtual.codNaturezaJuridica}" />
-
-						<p:outputLabel value="#{msgs.CodIndicativoCooperativa}:" />
-						<p:outputLabel
-							value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoCooperativa}" />
-
-						<p:outputLabel value="#{msgs.CodIndicativoConstrucao}:" />
-						<p:outputLabel
-							value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoConstrucao}" />
-
-						<p:outputLabel value="#{msgs.CodIndicativoDesoneracaoFolha}:" />
-						<p:outputLabel
-							value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoDesoneracaoFolha}" />
-
-						<p:outputLabel value="#{msgs.CodIndicativoRegEletronico}:" />
-						<p:outputLabel
-							value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoRegEletronico}" />
-					</p:panelGrid>
-
-					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-						<p:outputLabel value="#{msgs.MultiplasRubricas}:" />
-						<p:outputLabel
-							value="#{cadastroEmpresaMB.dadosCadastraisAtual.multiplasTabRubricas}" />
-					</p:panelGrid>
-				</p:dialog>
 
 			</h:panelGroup>
 
+			<p:dialog header="#{msgs.CodigosESocial}"
+				widgetVar="dlgCodigoESocial" closable="true" resizable="false"
+				width="700" modal="true">
+
+				<p:panelGrid columns="4" styleClass="tabelaSemBorda">
+					<p:outputLabel value="#{msgs.CodClassificacaoTributaria}:" />
+					<p:outputLabel
+						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codClassificacaoTributaria}" />
+
+					<p:outputLabel value="#{msgs.CodNaturezaJuridica}:" />
+					<p:outputLabel
+						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codNaturezaJuridica}" />
+
+					<p:outputLabel value="#{msgs.CodIndicativoCooperativa}:" />
+					<p:outputLabel
+						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoCooperativa}" />
+
+					<p:outputLabel value="#{msgs.CodIndicativoConstrucao}:" />
+					<p:outputLabel
+						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoConstrucao}" />
+
+					<p:outputLabel value="#{msgs.CodIndicativoDesoneracaoFolha}:" />
+					<p:outputLabel
+						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoDesoneracaoFolha}" />
+
+					<p:outputLabel value="#{msgs.CodIndicativoRegEletronico}:" />
+					<p:outputLabel
+						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoRegEletronico}" />
+				</p:panelGrid>
+
+				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+					<p:outputLabel value="#{msgs.MultiplasRubricas}:" />
+					<p:outputLabel
+						value="#{cadastroEmpresaMB.dadosCadastraisAtual.multiplasTabRubricas}" />
+				</p:panelGrid>
+			</p:dialog>
 			<p:dialog header="#{msgs.FachadaEmpresa}"
-				widgetVar="dlgFachadaEmpresa" closable="true" resizable="false"
-				width="500" modal="false">
-				<p:graphicImage value="#{cadastroEmpresaMB.fachadaEmpresa}"
-					height="180" cache="false" />
-				<p:fileUpload style="height: 100%" mode="advanced"
-					dragDropSupport="true" sizeLimit="10000000"
-					allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
-					rendered="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}"
-					fileUploadListener="#{cadastroEmpresaMB.gravarImagemFachada}"
-					update="formModulos" />
+				widgetVar="dlgFachadaEmpresa" closable="true" resizable="false" 
+				modal="false">
+				<p:panelGrid columns="1" styleClass="tabelaSemBorda">
+					<p:graphicImage value="#{cadastroEmpresaMB.fachadaEmpresa}"
+						height="180" cache="false"
+						style="margin-left:10%;margin-right:10%;" />
+					<p:outputLabel value="#{msgs.FachadaEmpresa}: #{cadastroEmpresaMB.empresaSelecionada.nome}"
+						converter="stringConverter" style="margin-left:10%;margin-right:10%;
+							font-family: sans-serif;font-size: 9pt;"/>
+					<p:fileUpload style="height: 100%" mode="advanced"
+						dragDropSupport="true" sizeLimit="10000000"
+						allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+						rendered="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}"
+						fileUploadListener="#{cadastroEmpresaMB.gravarImagemFachada}"
+						update="formModulos" />
+				</p:panelGrid>
 			</p:dialog>
 
 		</p:tab>
