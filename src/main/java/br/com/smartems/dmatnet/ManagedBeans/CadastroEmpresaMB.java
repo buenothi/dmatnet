@@ -553,12 +553,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = false;
 		this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
 		this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
-		this.listarDadosCadastrais(this.empresaSelecionada);
-		if (this.empresaSelecionada.getCadastros().remove(dadosCadastraisAtual)) {
-			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
-		} else {
-			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
-		}
+		this.separarDadosCadastraisAtualDoHistorico(this.empresaSelecionada);
 	}
 
 	public void salvarDadosCadastraisEmpresa(ActionEvent evt) {
@@ -577,17 +572,15 @@ public class CadastroEmpresaMB implements Serializable {
 						dadoCadastral.setDataFimCadastro(calendar.getTime());
 					}
 				}
+				if (this.empresaFap != null) {
+					this.dadosCadastraisAtual.setEmpresaFAP(this.empresaFap);
+				}
 				this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
 				if (fotografiaFachadaEmpresa != null) {
 					this.empresaSelecionada.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
 				}
 				this.pessoaJuridicaFachada.update(this.empresaSelecionada);
 				this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
-				if (this.empresaSelecionada.getCadastros().remove(dadosCadastraisAtual)) {
-					this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
-				} else {
-					this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
-				}
 			} else {
 				this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
 				if (this.fotografiaFachadaEmpresa != null) {
@@ -632,6 +625,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.empresaSelecionada = pessoaJuridicaFachada.read(empresa.getIdPessoa());
 		this.fotografiaFachadaEmpresa = this.empresaSelecionada.getEmpresaFotoFachada();
 		this.listarDadosCadastrais(this.empresaSelecionada);
+		this.exibirImagemFachadaEmpresa(fotografiaFachadaEmpresa);
 		if (this.empresaSelecionada.getCadastros().remove(dadosCadastraisAtual)) {
 			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
 		} else {

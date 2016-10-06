@@ -27,10 +27,6 @@ public class EmpresaDadosComplementares implements Serializable {
 	@JoinColumn(name="dadosComplamentares_ID")
 	private List<EmpresaInfoComplementarLimiteRemSubteto> infoLimiteRemSubtetos;
 	
-	@OneToOne
-	@PrimaryKeyJoinColumn
-	private EmpresaCadastroEntity cadastroEmpresa;
-	
 	private static final long serialVersionUID = 1L;
 
 	

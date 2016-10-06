@@ -36,10 +36,6 @@ public class EmpresaDadosIsencao implements Serializable{
 	private String telCelularResponsavel;	
 	private String email;
 	
-	@OneToOne
-	@PrimaryKeyJoinColumn
-	private EmpresaCadastroEntity empresaCadastro;
-	
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -159,12 +155,4 @@ public class EmpresaDadosIsencao implements Serializable{
 		this.email = email.toLowerCase();
 	}
 
-	public EmpresaCadastroEntity getEmpresaCadastro() {
-		return empresaCadastro;
-	}
-
-	public void setEmpresaCadastro(EmpresaCadastroEntity empresaCadastro) {
-		this.empresaCadastro = empresaCadastro;
-	}
-	
 }

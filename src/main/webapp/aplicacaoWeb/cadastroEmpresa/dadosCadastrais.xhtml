@@ -97,7 +97,9 @@
 
 						<p:column>
 							<h:panelGroup>
-								<p:inputMask mask="9,999" maxlength="250" size="5" />
+								<p:inputMask mask="9.999" maxlength="250" size="5"
+									value="#{cadastroEmpresaMB.empresaFap.valorFAP}"
+									converter="javax.faces.Double" />
 								<p:commandButton value="#{msgs.ProcessoFAP}" />
 							</h:panelGroup>
 						</p:column>
@@ -215,7 +217,7 @@
 						<p:column>
 							<h:panelGroup>
 								<p:outputLabel
-									value="#{cadastroEmpresaMB.empresaFap.numProcessoFAP}" />
+									value="#{cadastroEmpresaMB.dadosCadastraisAtual.empresaFAP.valorFAP}   " />
 								<p:commandButton value="#{msgs.ProcessoFAP}" />
 							</h:panelGroup>
 						</p:column>
@@ -269,15 +271,17 @@
 				</p:panelGrid>
 			</p:dialog>
 			<p:dialog header="#{msgs.FachadaEmpresa}"
-				widgetVar="dlgFachadaEmpresa" closable="true" resizable="false" 
+				widgetVar="dlgFachadaEmpresa" closable="true" resizable="false"
 				modal="false">
 				<p:panelGrid columns="1" styleClass="tabelaSemBorda">
 					<p:graphicImage value="#{cadastroEmpresaMB.fachadaEmpresa}"
 						height="180" cache="false"
 						style="margin-left:10%;margin-right:10%;" />
-					<p:outputLabel value="#{msgs.FachadaEmpresa}: #{cadastroEmpresaMB.empresaSelecionada.nome}"
-						converter="stringConverter" style="margin-left:10%;margin-right:10%;
-							font-family: sans-serif;font-size: 9pt;"/>
+					<p:outputLabel
+						value="#{msgs.FachadaEmpresa}: #{cadastroEmpresaMB.empresaSelecionada.nome}"
+						converter="stringConverter"
+						style="margin-left:10%;margin-right:10%;
+							font-family: sans-serif;font-size: 9pt;" />
 					<p:fileUpload style="height: 100%" mode="advanced"
 						dragDropSupport="true" sizeLimit="10000000"
 						allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
@@ -289,16 +293,16 @@
 
 		</p:tab>
 
-		<p:tab title="#{msgs.EmpresaDadosIsencao}">
+		<p:tab title="#{msgs.EmpresaDadosIsencao} (esocial)">
 		</p:tab>
 
-		<p:tab title="#{msgs.OrganismoInternacional}">
+		<p:tab title="#{msgs.OrganismoInternacional} (esocial)">
 		</p:tab>
 
-		<p:tab title="#{msgs.EmpresaSoftwareHouse}">
+		<p:tab title="#{msgs.EmpresaSoftwareHouse} (esocial)">
 		</p:tab>
 
-		<p:tab title="#{msgs.EmpresaDadosComplementares}">
+		<p:tab title="#{msgs.EmpresaDadosComplementares} (esocial)">
 		</p:tab>
 
 		<p:tab title="#{msgs.Historico}">
@@ -378,7 +382,7 @@
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
-					<p:column headerText="#{msgs.RazaoSocial}" width="300">
+					<p:column headerText="#{msgs.RazaoSocial}" width="210">
 						<p:cellEditor>
 							<f:facet name="output">
 								<p:outputLabel value="#{cadastro.razaoSocial}"
@@ -389,6 +393,23 @@
 							<f:facet name="input">
 								<p:inputText value="#{cadastro.razaoSocial}"
 									style="font-size: 9pt; width: 100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.FAP}" width="90">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.empresaFAP.valorFAP}"
+									style="font-size: 9pt;">
+									<f:converter converterId="javax.faces.Double" />
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputMask mask="9.999"
+									value="#{cadastro.empresaFAP.valorFAP}"
+									style="font-size: 9pt; width: 100%"
+									converter="javax.faces.Double">
+								</p:inputMask>
 							</f:facet>
 						</p:cellEditor>
 					</p:column>

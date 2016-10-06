@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,57 +18,65 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="tbl_EmpresaCadastro")
+@Table(name = "tbl_EmpresaCadastro")
 public class EmpresaCadastroEntity implements Serializable {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private long idEventoEsocial;//identificador para o eSocial
+	private long idEventoEsocial;// identificador para o eSocial
 	private int tipoEvento;
 	private int processoEnvioDados;
 	private String versaoApp;
 	private int tipoInscricao;
 	private String numCNPJ;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataInicioCadastro;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataFimCadastro;
-	
+
 	private String razaoSocial;
-	private int codClassificacaoTributaria; //conforme tabela 8 do eSocial
-	private int codNaturezaJuridica; //conforme tabela 25 do eSocial
+	private int codClassificacaoTributaria; // conforme tabela 8 do eSocial
+	private int codNaturezaJuridica; // conforme tabela 25 do eSocial
 	private int codIndicativoCooperativa;
 	private int codIndicativoConstrucao;
 	private int codIndicativoDesoneracaoFolha;
 	private int codIndicativoRegEletronico;
 	private boolean multiplasTabRubricas;
-	
-	@OneToOne(mappedBy="empresaCadastro")
+
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
+			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
+	@JoinColumn(name = "empresaFAP_ID")
 	private EmpresaFAP empresaFAP;
-	
-	@OneToOne(mappedBy="empresaCadastro")
+
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
+			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
+	@JoinColumn(name = "empresaDadosIsencao_ID")
 	private EmpresaDadosIsencao empresaDadosIsencao;
-	
-	@OneToOne(mappedBy="empresaCadastro")
+
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
+			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
+	@JoinColumn(name = "organismoInternacional_ID")
 	private EmpresaOrganismoInternacional organismoInternacional;
-	
-	@OneToMany
-	@JoinColumn(name="empresaCadastro_ID")
+
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
+			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
+	@JoinColumn(name = "empresaSoftwareHouse_ID")
 	private List<EmpresaSoftwareHouse> empresaSoftwareHouse;
-	
-	@OneToOne(mappedBy="cadastroEmpresa")
+
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
+			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
+	@JoinColumn(name = "dadosComplementares_ID")
 	private EmpresaDadosComplementares dadosComplementares;
-		
-	
+
 	private static final long serialVersionUID = 1L;
 
 	public EmpresaCadastroEntity() {
 		super();
 	}
-	
+
 	public long getId() {
 		return id;
 	}
@@ -120,7 +130,7 @@ public class EmpresaCadastroEntity implements Serializable {
 	}
 
 	public void setNumCNPJ(String numCNPJ) {
-		
+
 		this.numCNPJ = numCNPJ;
 	}
 
@@ -243,5 +253,5 @@ public class EmpresaCadastroEntity implements Serializable {
 	public void setDadosComplementares(EmpresaDadosComplementares dadosComplementares) {
 		this.dadosComplementares = dadosComplementares;
 	}
-	
+
 }

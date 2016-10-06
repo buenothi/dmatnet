@@ -12,10 +12,6 @@ public class EmpresaOrganismoInternacional implements Serializable {
 	private long idEmpresaOrgInternacional;
 	private boolean isAcordoInternacional;
 	
-	@OneToOne
-	@PrimaryKeyJoinColumn
-	private EmpresaCadastroEntity empresaCadastro;
-	
 	private static final long serialVersionUID = 1L;
 
 	
@@ -37,14 +33,6 @@ public class EmpresaOrganismoInternacional implements Serializable {
 
 	public void setAcordoInternacional(boolean isAcordoInternacional) {
 		this.isAcordoInternacional = isAcordoInternacional;
-	}
-
-	public EmpresaCadastroEntity getEmpresaCadastro() {
-		return empresaCadastro;
-	}
-
-	public void setEmpresaCadastro(EmpresaCadastroEntity empresaCadastro) {
-		this.empresaCadastro = empresaCadastro;
 	}
 
 }
