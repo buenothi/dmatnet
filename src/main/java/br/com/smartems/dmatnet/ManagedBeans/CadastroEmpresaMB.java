@@ -101,6 +101,7 @@ public class CadastroEmpresaMB implements Serializable {
 	// botões referentes à Edição do Cadastro de Dados Cadastrais da Empresa
 
 	private boolean isBtnDadosCadastraisEditarDesativado = false;
+	private boolean isDadosCadastraisEditarRender = false;
 	private boolean isBtnDadosCadastraisCancelarDesativado = true;
 	private boolean isBtnDadosCadastraisSalvarDesativado = true;
 	private boolean isBtnDadosCadastraisNovaEmpresaDesativado = false;
@@ -372,6 +373,14 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisEditarDesativado = isBtnDadosCadastraisEditarDesativado;
 	}
 
+	public boolean isDadosCadastraisEditarRender() {
+		return isDadosCadastraisEditarRender;
+	}
+
+	public void setDadosCadastraisEditarRender(boolean isDadosCadastraisEditarRender) {
+		this.isDadosCadastraisEditarRender = isDadosCadastraisEditarRender;
+	}
+
 	public boolean isBtnDadosCadastraisCancelarDesativado() {
 		return isBtnDadosCadastraisCancelarDesativado;
 	}
@@ -540,6 +549,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void editarDadosCadastraisEmpresa(ActionEvent e) {
 		this.isBtnDadosCadastraisEditarDesativado = true;
+		this.isDadosCadastraisEditarRender = true;
 		this.isBtnDadosCadastraisCancelarDesativado = false;
 		this.isBtnDadosCadastraisSalvarDesativado = false;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = true;
@@ -548,6 +558,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void cancelarDadosCadastraisEmpresa(ActionEvent e) {
 		this.isBtnDadosCadastraisEditarDesativado = false;
+		this.isDadosCadastraisEditarRender = false;
 		this.isBtnDadosCadastraisCancelarDesativado = true;
 		this.isBtnDadosCadastraisSalvarDesativado = true;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = false;
@@ -558,6 +569,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void salvarDadosCadastraisEmpresa(ActionEvent evt) {
 		this.isBtnDadosCadastraisEditarDesativado = false;
+		this.isDadosCadastraisEditarRender = false;
 		this.isBtnDadosCadastraisCancelarDesativado = true;
 		this.isBtnDadosCadastraisSalvarDesativado = true;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = false;
@@ -598,6 +610,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void novoDadosCadastraisEmpresa(ActionEvent e) {
 		this.isBtnDadosCadastraisEditarDesativado = true;
+		this.isDadosCadastraisEditarRender = true;
 		this.isBtnDadosCadastraisCancelarDesativado = false;
 		this.isBtnDadosCadastraisSalvarDesativado = false;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = true;
@@ -630,6 +643,13 @@ public class CadastroEmpresaMB implements Serializable {
 			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
 		} else {
 			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
+		}
+		if (this.dadosCadastraisAtual.getId() == 0) {
+			this.isBtnDadosCadastraisEditarDesativado = true;
+			this.isDadosCadastraisEditarRender = false;
+		} else {
+			this.isBtnDadosCadastraisEditarDesativado = false;
+			this.isDadosCadastraisEditarRender = false;
 		}
 	}
 

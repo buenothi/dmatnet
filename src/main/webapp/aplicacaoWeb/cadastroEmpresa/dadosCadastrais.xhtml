@@ -28,7 +28,7 @@
 		<p:tab id="tabDadosBasicos" title="#{msgs.DadosBasicos}">
 			<h:panelGroup id="pngCadEmpresaEditar" layout="block"
 				styleClass="formulario"
-				rendered="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}">
+				rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
 				<p:panelGrid id="pngEditarDadoCadastrais"
 					styleClass="tabelaSemBorda">
 					<p:row>
@@ -97,7 +97,7 @@
 
 						<p:column>
 							<h:panelGroup>
-								<p:inputMask mask="9.999" maxlength="250" size="5"
+								<p:inputMask mask="9.9999" maxlength="250" size="5"
 									value="#{cadastroEmpresaMB.empresaFap.valorFAP}"
 									converter="javax.faces.Double" />
 								<p:commandButton value="#{msgs.ProcessoFAP}" />
