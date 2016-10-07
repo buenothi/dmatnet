@@ -6,7 +6,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -18,6 +20,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.persistence.NoResultException;
 
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
@@ -609,6 +612,19 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void novoDadosCadastraisEmpresa(ActionEvent e) {
+		Map<String, Object> options = new HashMap<String, Object>();
+		options.put("modal", true);
+		options.put("resizable", false);
+		options.put("width", 400);
+		options.put("height", 120);
+		options.put("contentWidth", "200px");
+		options.put("contentHeight", "100%");
+		options.put("headerElement", "customheader");
+
+		RequestContext.getCurrentInstance().openDialog("cadastroEmpresa/dialogoNovoCadastroEmpresa", options, null);
+	}
+
+	public void novoDadosCadastraisEmpresaEmBranco() {
 		this.isBtnDadosCadastraisEditarDesativado = true;
 		this.isDadosCadastraisEditarRender = true;
 		this.isBtnDadosCadastraisCancelarDesativado = false;
