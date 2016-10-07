@@ -615,9 +615,9 @@ public class CadastroEmpresaMB implements Serializable {
 		Map<String, Object> options = new HashMap<String, Object>();
 		options.put("modal", true);
 		options.put("resizable", false);
-		options.put("width", 400);
+		options.put("width", 640);
 		options.put("height", 120);
-		options.put("contentWidth", "200px");
+		options.put("contentWidth", "100%");
 		options.put("contentHeight", "100%");
 		options.put("headerElement", "customheader");
 

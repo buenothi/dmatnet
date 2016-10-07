@@ -2,21 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:h="http://java.sun.com/jsf/html">
-
-<h:head>
-	<h:outputStylesheet library="css" name="stylesPrincipal.css" />
-</h:head>
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
 
 <h:body>
-	<p:panelGrid columns="1" styleClass="tabelaSemBorda" >
-		<p:outputLabel value="#{msgs.MsgNovoCadastroDadosEmpresa}" />
+	<p:panelGrid columns="1" styleClass="tabelaSemBorda">
+		<p:outputLabel value="#{msgs.MsgNovoCadastroDadosEmpresa}"/>
 		<p:panelGrid columns="2">
-			<p:commandButton value="#{msgs.Sim}" />
-			<p:commandButton value="#{msgs.Nao}" />
+			<p:commandButton value="#{msgs.Sim}"/>
+			<p:commandButton value="#{msgs.Nao}"/>
 		</p:panelGrid>
 	</p:panelGrid>
 </h:body>
-
 </html>
