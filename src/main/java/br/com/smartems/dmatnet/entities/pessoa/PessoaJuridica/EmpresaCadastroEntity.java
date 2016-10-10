@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "tbl_EmpresaCadastro")
-public class EmpresaCadastroEntity implements Serializable {
+public class EmpresaCadastroEntity implements Serializable, Cloneable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -252,6 +252,11 @@ public class EmpresaCadastroEntity implements Serializable {
 
 	public void setDadosComplementares(EmpresaDadosComplementares dadosComplementares) {
 		this.dadosComplementares = dadosComplementares;
+	}
+	
+	@Override
+	public EmpresaCadastroEntity clone() throws CloneNotSupportedException {
+		return (EmpresaCadastroEntity) super.clone();
 	}
 
 }

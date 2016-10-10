@@ -315,3 +315,7 @@ a:LINK {
 	height: 370px;
 	min-height: 370px;
 }
+
+.bodyDialogo {
+	min-width: 290px;
+}

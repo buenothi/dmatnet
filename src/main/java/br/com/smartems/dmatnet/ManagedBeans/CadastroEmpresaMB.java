@@ -6,9 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -20,7 +18,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.persistence.NoResultException;
 
-import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
@@ -611,31 +608,31 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 	}
 
-	public void novoDadosCadastraisEmpresa(ActionEvent e) {
-		Map<String, Object> options = new HashMap<String, Object>();
-		options.put("modal", true);
-		options.put("resizable", false);
-		options.put("width", 640);
-		options.put("height", 120);
-		options.put("contentWidth", "100%");
-		options.put("contentHeight", "100%");
-		options.put("headerElement", "customheader");
-
-		RequestContext.getCurrentInstance().openDialog("cadastroEmpresa/dialogoNovoCadastroEmpresa", options, null);
+	public void novoDadosCadastraisEmpresaEmBranco(ActionEvent e) {
+		this.novoDadosCadastraisEmpresa();
 	}
 
-	public void novoDadosCadastraisEmpresaEmBranco() {
+	public void novoDadosCadastraisEmpresaPreenchido(ActionEvent e) {
+		this.novoDadosCadastraisEmpresa();
+		try {
+			this.dadosCadastraisAtual = this.dadosCadastraisAnterior.clone();
+			this.dadosCadastraisAtual.setId(0);
+		} catch (CloneNotSupportedException e1) {
+			e1.printStackTrace();
+		}
+		
+	}
+	
+	public void novoDadosCadastraisEmpresa() {
 		this.isBtnDadosCadastraisEditarDesativado = true;
 		this.isDadosCadastraisEditarRender = true;
 		this.isBtnDadosCadastraisCancelarDesativado = false;
 		this.isBtnDadosCadastraisSalvarDesativado = false;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = true;
-		if (this.dadosCadastraisAtual != null || this.dadosCadastraisAtual.getId() != 0) {
-			this.dadosCadastraisAnterior = this.dadosCadastraisAtual;
-		}
+		this.dadosCadastraisAnterior = this.dadosCadastraisAtual;
 		this.dadosCadastraisAtual = new EmpresaCadastroEntity();
 	}
-
+	
 	public void onRowEditDadosCadastraisEmpresa(RowEditEvent e) {
 
 	}

@@ -9,13 +9,20 @@
 	<h:outputStylesheet library="css" name="stylesPrincipal.css" />
 </h:head>
 
-<h:body>
-	<p:panelGrid columns="1" styleClass="tabelaSemBorda" >
-		<p:outputLabel value="#{msgs.MsgNovoCadastroDadosEmpresa}" />
-		<p:panelGrid columns="2">
-			<p:commandButton value="#{msgs.Sim}" />
-			<p:commandButton value="#{msgs.Nao}" />
-		</p:panelGrid>
+<h:body styleClass="bodyDialogo">
+	<p:panelGrid columns="1" styleClass="tabelaSemBorda">
+		<h:form>
+			<p:outputLabel value="#{msgs.MsgNovoCadastroDadosEmpresa}" />
+			<p:panelGrid columns="2">
+				<p:commandButton value="#{msgs.Sim}" icon="ui-icon-check"
+					type="button"
+					actionListener="#{cadastroEmpresaMB.novoDadosCadastraisEmpresaEmBranco}">
+				</p:commandButton>
+				<p:commandButton value="#{msgs.Nao}" icon="ui-icon-close"
+					type="button"
+					actionListener="#{cadastroEmpresaMB.novoDadosCadastraisEmpresaPreenchido}" />
+			</p:panelGrid>
+		</h:form>
 	</p:panelGrid>
 </h:body>
 

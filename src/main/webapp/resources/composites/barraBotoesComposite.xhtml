@@ -40,6 +40,8 @@
 	<composite:attribute name="messageConfirma"/>
 	<composite:attribute name="headerConfirma"/>
 	<composite:attribute name="objetoConfirma"/>
+	
+	<composite:attribute name="renderSpacer"/>
 
 </composite:interface>
 
@@ -80,7 +82,7 @@
 		</p:commandButton>
 	</h:panelGroup>
 
-	<p:spacer height="10px" width="100%" />
+	<p:spacer height="10px" width="100%" rendered="#{cc.attrs.renderSpacer}"/>
 
 </composite:implementation>
 </html>

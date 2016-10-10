@@ -9,20 +9,28 @@
 
 <ui:composition>
 
-	<dmat:barraBotoesComposite id="barraBotoesDadosCadastrais"
-		disabledEditar="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}"
-		actionListenerEditar="#{cadastroEmpresaMB.editarDadosCadastraisEmpresa}"
-		updateEditar="formModulos"
-		disabledCancelar="#{cadastroEmpresaMB.btnDadosCadastraisCancelarDesativado}"
-		actionListenerCancelar="#{cadastroEmpresaMB.cancelarDadosCadastraisEmpresa}"
-		updateCancelar="formModulos"
-		disabledSalvar="#{cadastroEmpresaMB.btnDadosCadastraisSalvarDesativado}"
-		actionListenerSalvar="#{cadastroEmpresaMB.salvarDadosCadastraisEmpresa}"
-		updateSalvar="formModulos"
-		labelNovo="#{msgs.NovoEmpresaDadosCadastrais}"
-		disabledNovo="#{cadastroEmpresaMB.btnDadosCadastraisNovaEmpresaDesativado}"
-		actionListenerNovo="#{cadastroEmpresaMB.novoDadosCadastraisEmpresa}"
-		updateNovo="formModulos" renderedBtnNovo="true" />
+	<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+
+		<dmat:barraBotoesComposite id="barraBotoesDadosCadastrais"
+			disabledEditar="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}"
+			actionListenerEditar="#{cadastroEmpresaMB.editarDadosCadastraisEmpresa}"
+			updateEditar="formModulos"
+			disabledCancelar="#{cadastroEmpresaMB.btnDadosCadastraisCancelarDesativado}"
+			actionListenerCancelar="#{cadastroEmpresaMB.cancelarDadosCadastraisEmpresa}"
+			updateCancelar="formModulos"
+			disabledSalvar="#{cadastroEmpresaMB.btnDadosCadastraisSalvarDesativado}"
+			actionListenerSalvar="#{cadastroEmpresaMB.salvarDadosCadastraisEmpresa}"
+			updateSalvar="formModulos" renderedBtnNovo="false"
+			renderSpacer="false" />
+
+		<p:commandButton styleClass="botoes" icon="fa fa-plus"
+			value="#{msgs.NovoEmpresaDadosCadastrais}"
+			onclick="PF('dlgPerguntaDadosCadastrais').show()"
+			disabled="#{cadastroEmpresaMB.btnDadosCadastraisNovaEmpresaDesativado}" />
+
+		<p:spacer height="10px" width="100%" />
+
+	</p:panelGrid>
 
 	<p:accordionPanel id="acpDadosCadastrais">
 		<p:tab id="tabDadosBasicos" title="#{msgs.DadosBasicos}">
@@ -97,7 +105,7 @@
 
 						<p:column>
 							<h:panelGroup>
-								<p:inputMask mask="9.9999" maxlength="250" size="5"
+								<p:inputMask mask="9.9999" maxlength="250" size="6"
 									value="#{cadastroEmpresaMB.empresaFap.valorFAP}"
 									converter="javax.faces.Double" />
 								<p:commandButton value="#{msgs.ProcessoFAP}" />
@@ -288,6 +296,23 @@
 						rendered="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}"
 						fileUploadListener="#{cadastroEmpresaMB.gravarImagemFachada}"
 						update="formModulos" />
+				</p:panelGrid>
+			</p:dialog>
+
+			<p:dialog widgetVar="dlgPerguntaDadosCadastrais" resizable="false"
+				modal="true">
+				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+					<p:outputLabel value="#{msgs.MsgNovoCadastroDadosEmpresa}" />
+					<p:spacer height="10px" width="100%" />
+				</p:panelGrid>
+				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+					<p:commandButton value="#{msgs.Sim}" icon="ui-icon-check"
+						actionListener="#{cadastroEmpresaMB.novoDadosCadastraisEmpresaPreenchido}"
+						update="formModulos" onclick="PF('dlgPerguntaDadosCadastrais').hide()">
+					</p:commandButton>
+					<p:commandButton value="#{msgs.Nao}" icon="ui-icon-close"
+						actionListener="#{cadastroEmpresaMB.novoDadosCadastraisEmpresaEmBranco}" 
+						update="formModulos" onclick="PF('dlgPerguntaDadosCadastrais').hide()"/>
 				</p:panelGrid>
 			</p:dialog>
 
