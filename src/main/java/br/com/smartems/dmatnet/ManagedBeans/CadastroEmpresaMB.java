@@ -585,7 +585,10 @@ public class CadastroEmpresaMB implements Serializable {
 					}
 				}
 				if (this.empresaFap != null) {
-					this.dadosCadastraisAtual.setEmpresaFAP(this.empresaFap);
+					EmpresaFAP novoFap = new EmpresaFAP();
+					novoFap = this.empresaFap.clone();
+					novoFap.setIdEmpresaFAP(0);
+					this.dadosCadastraisAtual.setEmpresaFAP(novoFap);
 				}
 				this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
 				if (fotografiaFachadaEmpresa != null) {
@@ -616,6 +619,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.novoDadosCadastraisEmpresa();
 		try {
 			this.dadosCadastraisAtual = this.dadosCadastraisAnterior.clone();
+			this.empresaFap = this.dadosCadastraisAtual.getEmpresaFAP();
 			this.dadosCadastraisAtual.setId(0);
 		} catch (CloneNotSupportedException e1) {
 			e1.printStackTrace();

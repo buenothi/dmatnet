@@ -11,17 +11,17 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbl_EmpresaFoto")
-public class EmpresaFoto implements Serializable {
+public class EmpresaFoto implements Serializable, Cloneable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idEmpresaFoto;
-	
+
 	@Lob
 	private byte[] fotoFachada;
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	public EmpresaFoto() {
 	}
 
@@ -39,6 +39,11 @@ public class EmpresaFoto implements Serializable {
 
 	public void setFotoFachada(byte[] fotoFachada) {
 		this.fotoFachada = fotoFachada;
+	}
+
+	@Override
+	public EmpresaFoto clone() throws CloneNotSupportedException {
+		return (EmpresaFoto) super.clone();
 	}
 
 }
