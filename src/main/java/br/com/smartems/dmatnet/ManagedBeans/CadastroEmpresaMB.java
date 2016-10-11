@@ -554,6 +554,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisSalvarDesativado = false;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = true;
 		this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
+		this.empresaFap = this.dadosCadastraisAtual.getEmpresaFAP();
 	}
 
 	public void cancelarDadosCadastraisEmpresa(ActionEvent e) {
@@ -587,7 +588,7 @@ public class CadastroEmpresaMB implements Serializable {
 				if (this.empresaFap != null) {
 					EmpresaFAP novoFap = new EmpresaFAP();
 					novoFap = this.empresaFap.clone();
-					novoFap.setIdEmpresaFAP(0) ;
+					novoFap.setIdEmpresaFAP(0);
 					this.dadosCadastraisAtual.setEmpresaFAP(novoFap);
 				}
 				this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
@@ -677,7 +678,7 @@ public class CadastroEmpresaMB implements Serializable {
 				dataMaisRecente = empresa.getCadastros().get(0).getDataInicioCadastro();
 				this.dadosCadastraisAtual = empresa.getCadastros().get(0);
 				for (EmpresaCadastroEntity dadoCadastral : empresa.getCadastros()) {
-					if (dadoCadastral.getDataInicioCadastro().after(dataMaisRecente)) {
+					if (dadoCadastral.getDataInicioCadastro().after(dataMaisRecente) && dadoCadastral.getDataFimCadastro() == null) {
 						dataMaisRecente = dadoCadastral.getDataInicioCadastro();
 						dadosCadastraisAtual = dadoCadastral;
 					}
