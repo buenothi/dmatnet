@@ -587,9 +587,9 @@ public class CadastroEmpresaMB implements Serializable {
 				if (this.empresaFap != null) {
 					EmpresaFAP novoFap = new EmpresaFAP();
 					novoFap = this.empresaFap.clone();
-					novoFap.setIdEmpresaFAP(0);
+					novoFap.setIdEmpresaFAP(0) ;
 					this.dadosCadastraisAtual.setEmpresaFAP(novoFap);
-				}ui
+				}
 				this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
 				if (fotografiaFachadaEmpresa != null) {
 					this.empresaSelecionada.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
