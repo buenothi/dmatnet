@@ -26,6 +26,11 @@
 				<p:outputLabel value="#{msgs.NomeFantasia}:" />
 				<p:inputText size="25" value="#{cadastroEmpresaMB.empresa.nome}" />
 				<p:spacer />
+				<p:outputLabel value="#{msgs.FachadaEmpresa}:" />
+				<p:commandButton value="#{msgs.FachadaEmpresa}"
+					actionListener="#{cadastroEmpresaMB.exibirImagemFachadaEmpresa(cadastroEmpresaMB.empresa.empresaFotoFachada)}"
+					oncomplete="PF('dlgFachadaEmpresa').show()" icon="fa fa-photo" update="formCriarEmpresa"/>
+				<p:spacer />
 				<p:outputLabel value="#{msgs.EmpresaGrupo}:" />
 				<p:selectOneMenu style="width:220px"
 					value="#{cadastroEmpresaMB.empresa.grupo}"
@@ -37,9 +42,23 @@
 						itemLabel="#{grupos.nomeGrupo}" />
 				</p:selectOneMenu>
 				<p:commandButton onclick="PF('dlgGrupo').show()" icon="fa fa-group"
-					value="#{msgs.EmpresaGrupoCriar}"/>
+					value="#{msgs.EmpresaGrupoCriar}" />
 			</p:panelGrid>
 		</h:panelGroup>
+		<p:dialog header="#{msgs.FachadaEmpresa}"
+			widgetVar="dlgFachadaEmpresa" closable="true" resizable="false"
+			modal="false">
+			<p:panelGrid columns="1" styleClass="tabelaSemBorda">
+				<p:graphicImage value="#{cadastroEmpresaMB.fachadaEmpresa}"
+					height="180" cache="false"
+					style="margin-left:10%;margin-right:10%;" />
+				<p:fileUpload style="height: 100%" mode="advanced"
+					dragDropSupport="true" sizeLimit="10000000"
+					allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+					fileUploadListener="#{cadastroEmpresaMB.gravarImagemFachada}"
+					update="formModulos" />
+			</p:panelGrid>
+		</p:dialog>
 	</h:form>
 </ui:composition>
 </html>

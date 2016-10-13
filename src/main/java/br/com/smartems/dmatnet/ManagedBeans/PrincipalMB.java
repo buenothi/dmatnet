@@ -42,5 +42,5 @@ public class PrincipalMB implements Serializable {
 		this.classMenuBotaoHome = "menuBotaoSelecionado";
 		this.isRenderizarCadastroEmpresa = false;
 	}
-	
+
 }

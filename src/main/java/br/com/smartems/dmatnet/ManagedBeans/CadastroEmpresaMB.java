@@ -487,6 +487,9 @@ public class CadastroEmpresaMB implements Serializable {
 		if (this.empresa != null) {
 			if (this.empresa.getIdPessoa() == 0) {
 				this.empresa.setUsuarioCriador(this.usuarioMB.getUsuarioLogado());
+				if (fotografiaFachadaEmpresa != null) {
+					this.empresa.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
+				}
 				this.pessoaJuridicaFachada.create(this.empresa);
 				this.initEmpresa();
 				FacesMessage msg = new FacesMessage("Sucesso",
@@ -496,6 +499,9 @@ public class CadastroEmpresaMB implements Serializable {
 			} else {
 				this.empresa.setUsuarioCriador(this.usuarioMB.getUsuarioLogado());
 				this.empresa.getCadastros().add(dadosCadastraisAtual);
+				if (fotografiaFachadaEmpresa != null) {
+					this.empresa.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
+				}
 				this.pessoaJuridicaFachada.update(this.empresa);
 				this.initEmpresa();
 				FacesMessage msg = new FacesMessage("Sucesso",
@@ -539,7 +545,6 @@ public class CadastroEmpresaMB implements Serializable {
 	public void onSelectionEmpresa(SelectEvent evt) {
 		try {
 			this.separarDadosCadastraisAtualDoHistorico((EmpresaEntity) evt.getObject());
-			this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -575,7 +580,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisSalvarDesativado = true;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = false;
 		try {
-			if (dadosCadastraisAtual.getId() == 0) {
+			if (dadosCadastraisAtual.getId() == 0 && dadosCadastraisAtual.getNumCNPJ().isEmpty()) {
 				this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
 				for (EmpresaCadastroEntity dadoCadastral : this.empresaSelecionada.getCadastros()) {
 					if (dadoCadastral.getId() == this.dadosCadastraisAnterior.getId()) {
@@ -592,17 +597,10 @@ public class CadastroEmpresaMB implements Serializable {
 					this.dadosCadastraisAtual.setEmpresaFAP(novoFap);
 				}
 				this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
-				if (fotografiaFachadaEmpresa != null) {
-					this.empresaSelecionada.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
-				}
 				this.pessoaJuridicaFachada.update(this.empresaSelecionada);
 				this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
 			} else {
 				this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
-				if (this.fotografiaFachadaEmpresa != null) {
-					this.empresaSelecionada.setEmpresaFotoFachada(null);
-					this.empresaSelecionada.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
-				}
 				this.empresaSelecionada = this.pessoaJuridicaFachada.update(this.empresaSelecionada);
 				this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
 				this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
@@ -649,6 +647,7 @@ public class CadastroEmpresaMB implements Serializable {
 	public void gravarImagemFachada(FileUploadEvent evt) {
 		fotografiaFachadaEmpresa = new EmpresaFoto();
 		fotografiaFachadaEmpresa.setFotoFachada(evt.getFile().getContents());
+		this.exibirImagemFachadaEmpresa(fotografiaFachadaEmpresa);
 	}
 
 	public void separarDadosCadastraisAtualDoHistorico(EmpresaEntity empresa) {
