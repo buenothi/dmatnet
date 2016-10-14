@@ -580,7 +580,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisSalvarDesativado = true;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = false;
 		try {
-			if (dadosCadastraisAtual.getId() == 0 && dadosCadastraisAtual.getNumCNPJ().isEmpty()) {
+			if (dadosCadastraisAtual.getId() == 0) {
 				this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
 				for (EmpresaCadastroEntity dadoCadastral : this.empresaSelecionada.getCadastros()) {
 					if (dadoCadastral.getId() == this.dadosCadastraisAnterior.getId()) {
