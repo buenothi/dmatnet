@@ -112,20 +112,6 @@
 			rendered="#{principalMB.renderizarCadastroEmpresa}">
 			<ui:include src="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml" />
 		</p:panel>
-		<p:dialog header="#{msgs.FachadaEmpresa}" id="dlgFachadaEmpresa"
-			widgetVar="dlgFachadaEmpresa" closable="true" resizable="false"
-			modal="false">
-			<p:panelGrid columns="1" styleClass="tabelaSemBorda">
-				<p:graphicImage value="#{cadastroEmpresaMB.fachadaEmpresa}"
-					height="180" cache="false"
-					style="margin-left:10%;margin-right:10%;" />
-				<p:fileUpload style="height: 100%" mode="advanced"
-					dragDropSupport="true" sizeLimit="10000000"
-					allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
-					fileUploadListener="#{cadastroEmpresaMB.gravarImagemFachada}"
-					update="formModulos" />
-			</p:panelGrid>
-		</p:dialog>
 	</h:form>
 
 	<p:dialog id="dlgSelecionarEmpresa" widgetVar="dlgSelecionarEmpresa"
@@ -150,6 +136,23 @@
 		<ui:include src="/aplicacaoWeb/cadastroEmpresa/criarEmpresa.xhtml" />
 	</p:dialog>
 
+	<p:dialog header="#{msgs.FachadaEmpresa}" id="dlgFachadaEmpresa"
+		widgetVar="dlgFachadaEmpresa" closable="true" resizable="false"
+		modal="false">
+		<h:form id="formFachadaEmpresa">
+			<p:panelGrid columns="1" styleClass="tabelaSemBorda">
+				<p:graphicImage id="gpiFachadaEmpresa"
+					value="#{cadastroEmpresaMB.fachadaEmpresa}" height="180"
+					cache="false" style="margin-left:10%;margin-right:10%;" />
+				<p:fileUpload style="height: 100%" mode="advanced"
+					dragDropSupport="true" sizeLimit="10000000"
+					allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+					fileUploadListener="#{cadastroEmpresaMB.gravarImagemFachada}"
+					update="formFachadaEmpresa:gpiFachadaEmpresa" />
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+
 	<p:ajaxStatus onstart="PF('statusDialog').show()"
 		onsuccess="PF('statusDialog').hide()" />
 
@@ -158,7 +161,6 @@
 		showEffect="fade" hideEffect="fade">
 		<h:graphicImage name="images/16.gif" />
 	</p:dialog>
-
 
 
 	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
