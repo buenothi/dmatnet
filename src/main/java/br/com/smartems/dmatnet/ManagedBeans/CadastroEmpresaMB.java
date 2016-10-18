@@ -484,7 +484,7 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void salvarCadastroEmpresa(ActionEvent e) {
-		if (this.empresa != null) {
+		try {
 			if (this.empresa.getIdPessoa() == 0) {
 				this.empresa.setUsuarioCriador(this.usuarioMB.getUsuarioLogado());
 				if (fotografiaFachadaEmpresa != null) {
@@ -510,6 +510,8 @@ public class CadastroEmpresaMB implements Serializable {
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 				this.empresa = null;
 			}
+		} catch (Exception exc) {
+			exc.printStackTrace();
 		}
 	}
 
