@@ -9,7 +9,7 @@
 
 <ui:composition>
 
-	<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+	<h:panelGroup>
 
 		<dmat:barraBotoesComposite id="barraBotoesDadosCadastrais"
 			disabledEditar="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}"
@@ -29,8 +29,8 @@
 			disabled="#{cadastroEmpresaMB.btnDadosCadastraisNovaEmpresaDesativado}" />
 
 		<p:spacer height="10px" width="100%" />
-
-	</p:panelGrid>
+		
+	</h:panelGroup>
 
 	<p:accordionPanel id="acpDadosCadastrais">
 		<p:tab id="tabDadosBasicos" title="#{msgs.DadosBasicos}">
@@ -263,11 +263,13 @@
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 					<p:commandButton value="#{msgs.Sim}" icon="ui-icon-check"
 						actionListener="#{cadastroEmpresaMB.novoDadosCadastraisEmpresaPreenchido}"
-						update="formModulos" onclick="PF('dlgPerguntaDadosCadastrais').hide()">
+						update="formModulos"
+						onclick="PF('dlgPerguntaDadosCadastrais').hide()">
 					</p:commandButton>
 					<p:commandButton value="#{msgs.Nao}" icon="ui-icon-close"
-						actionListener="#{cadastroEmpresaMB.novoDadosCadastraisEmpresaEmBranco}" 
-						update="formModulos" onclick="PF('dlgPerguntaDadosCadastrais').hide()"/>
+						actionListener="#{cadastroEmpresaMB.novoDadosCadastraisEmpresaEmBranco}"
+						update="formModulos"
+						onclick="PF('dlgPerguntaDadosCadastrais').hide()" />
 				</p:panelGrid>
 			</p:dialog>
 
