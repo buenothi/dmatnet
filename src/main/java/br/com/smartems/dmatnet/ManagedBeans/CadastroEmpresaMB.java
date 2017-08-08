@@ -649,6 +649,7 @@ public class CadastroEmpresaMB implements Serializable {
 	public void gravarImagemFachada(FileUploadEvent evt) {
 		fotografiaFachadaEmpresa = new EmpresaFoto();
 		fotografiaFachadaEmpresa.setFotoFachada(evt.getFile().getContents());
+		this.empresa.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
 		this.exibirImagemFachadaEmpresa(fotografiaFachadaEmpresa);
 	}
 
