@@ -498,7 +498,9 @@ public class CadastroEmpresaMB implements Serializable {
 				this.empresa = null;
 			} else {
 				this.empresa.setUsuarioCriador(this.usuarioMB.getUsuarioLogado());
-				this.empresa.getCadastros().add(dadosCadastraisAtual);
+				if (dadosCadastraisAtual != null) {
+					this.empresa.getCadastros().add(dadosCadastraisAtual);
+				}
 				if (fotografiaFachadaEmpresa != null) {
 					this.empresa.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
 				}
@@ -625,9 +627,9 @@ public class CadastroEmpresaMB implements Serializable {
 		} catch (CloneNotSupportedException e1) {
 			e1.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public void novoDadosCadastraisEmpresa() {
 		this.isBtnDadosCadastraisEditarDesativado = true;
 		this.isDadosCadastraisEditarRender = true;
@@ -637,7 +639,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.dadosCadastraisAnterior = this.dadosCadastraisAtual;
 		this.dadosCadastraisAtual = new EmpresaCadastroEntity();
 	}
-	
+
 	public void onRowEditDadosCadastraisEmpresa(RowEditEvent e) {
 
 	}
@@ -680,7 +682,8 @@ public class CadastroEmpresaMB implements Serializable {
 				dataMaisRecente = empresa.getCadastros().get(0).getDataInicioCadastro();
 				this.dadosCadastraisAtual = empresa.getCadastros().get(0);
 				for (EmpresaCadastroEntity dadoCadastral : empresa.getCadastros()) {
-					if (dadoCadastral.getDataInicioCadastro().after(dataMaisRecente) && dadoCadastral.getDataFimCadastro() == null) {
+					if (dadoCadastral.getDataInicioCadastro().after(dataMaisRecente)
+							&& dadoCadastral.getDataFimCadastro() == null) {
 						dataMaisRecente = dadoCadastral.getDataInicioCadastro();
 						dadosCadastraisAtual = dadoCadastral;
 					}
