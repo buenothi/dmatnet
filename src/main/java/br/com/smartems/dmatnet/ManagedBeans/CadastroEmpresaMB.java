@@ -101,7 +101,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	// botões referentes à Edição do Cadastro de Dados Cadastrais da Empresa
 
-	private boolean isBtnDadosCadastraisEditarDesativado = false;
+	private boolean isBtnDadosCadastraisEditarDesativado = true;
 	private boolean isDadosCadastraisEditarRender = false;
 	private boolean isBtnDadosCadastraisCancelarDesativado = true;
 	private boolean isBtnDadosCadastraisSalvarDesativado = true;
@@ -492,7 +492,8 @@ public class CadastroEmpresaMB implements Serializable {
 		this.initEmpresa();
 		this.exibirImagemFachadaEmpresa(this.empresa.getEmpresaFotoFachada());
 		FacesMessage msg = new FacesMessage("Cancelado",
-				stringUtils.formatarTextoParaLeitura("A empresa \" " + this.empresa.getNome().toString()) + " \" não foi alterada");
+				stringUtils.formatarTextoParaLeitura("A empresa \" " + this.empresa.getNome().toString())
+						+ " \" não foi alterada");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
@@ -580,18 +581,17 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void cancelarDadosCadastraisEmpresa(ActionEvent e) {
-		this.isBtnDadosCadastraisEditarDesativado = false;
 		this.isDadosCadastraisEditarRender = false;
 		this.isBtnDadosCadastraisCancelarDesativado = true;
 		this.isBtnDadosCadastraisSalvarDesativado = true;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = false;
 		this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
 		this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
+		this.dadosCadastraisAtual = null;
 		this.separarDadosCadastraisAtualDoHistorico(this.empresaSelecionada);
 	}
 
 	public void salvarDadosCadastraisEmpresa(ActionEvent evt) {
-		this.isBtnDadosCadastraisEditarDesativado = false;
 		this.isDadosCadastraisEditarRender = false;
 		this.isBtnDadosCadastraisCancelarDesativado = true;
 		this.isBtnDadosCadastraisSalvarDesativado = true;
@@ -644,7 +644,6 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void novoDadosCadastraisEmpresa() {
-		this.isBtnDadosCadastraisEditarDesativado = true;
 		this.isDadosCadastraisEditarRender = true;
 		this.isBtnDadosCadastraisCancelarDesativado = false;
 		this.isBtnDadosCadastraisSalvarDesativado = false;
@@ -669,7 +668,6 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void separarDadosCadastraisAtualDoHistorico(EmpresaEntity empresa) {
-		this.dadosCadastraisAtual = new EmpresaCadastroEntity();
 		this.empresaSelecionada = pessoaJuridicaFachada.read(empresa.getIdPessoa());
 		this.fotografiaFachadaEmpresa = this.empresaSelecionada.getEmpresaFotoFachada();
 		this.listarDadosCadastrais(this.empresaSelecionada);
@@ -679,12 +677,13 @@ public class CadastroEmpresaMB implements Serializable {
 		} else {
 			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
 		}
-		if (this.dadosCadastraisAtual.getId() == 0) {
-			this.isBtnDadosCadastraisEditarDesativado = true;
-			this.isDadosCadastraisEditarRender = false;
-		} else {
-			this.isBtnDadosCadastraisEditarDesativado = false;
-			this.isDadosCadastraisEditarRender = false;
+		try {
+			if (!this.dadosCadastraisAtual.equals(null)) {
+				this.isBtnDadosCadastraisEditarDesativado = false;
+				this.isDadosCadastraisEditarRender = false;
+			}
+		} catch (NullPointerException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -692,6 +691,7 @@ public class CadastroEmpresaMB implements Serializable {
 		Date dataMaisRecente;
 		try {
 			if (!empresa.getCadastros().isEmpty()) {
+				this.dadosCadastraisAtual = new EmpresaCadastroEntity();
 				dataMaisRecente = empresa.getCadastros().get(0).getDataInicioCadastro();
 				this.dadosCadastraisAtual = empresa.getCadastros().get(0);
 				for (EmpresaCadastroEntity dadoCadastral : empresa.getCadastros()) {
