@@ -97,6 +97,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private boolean isBtnGrupoNovoDesativado = false;
 	private boolean isBtnGrupoExcluirDesativado = true;
 	private boolean isBtnSelecionarGrupo = true;
+	private boolean isBtnSalvarEmpresasNoGrupo = true;
 
 	// botões referentes à Edição do Cadastro de Dados Cadastrais da Empresa
 
@@ -361,6 +362,14 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnSelecionarGrupo = isBtnSelecionarGrupo;
 	}
 
+	public boolean isBtnSalvarEmpresasNoGrupo() {
+		return isBtnSalvarEmpresasNoGrupo;
+	}
+
+	public void setBtnSalvarEmpresasNoGrupo(boolean isBtnSalvarEmpresasNoGrupo) {
+		this.isBtnSalvarEmpresasNoGrupo = isBtnSalvarEmpresasNoGrupo;
+	}
+
 	public void setBtnGrupoNovaEmpresaDesativado(boolean isBtnGrupoNovoDesativado) {
 		this.isBtnGrupoNovoDesativado = isBtnGrupoNovoDesativado;
 	}
@@ -480,7 +489,11 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void cancelarCadastroEmpresa(ActionEvent e) {
-
+		this.initEmpresa();
+		this.exibirImagemFachadaEmpresa(this.empresa.getEmpresaFotoFachada());
+		FacesMessage msg = new FacesMessage("Cancelado",
+				stringUtils.formatarTextoParaLeitura("A empresa \" " + this.empresa.getNome().toString()) + " \" não foi alterada");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 	public void salvarCadastroEmpresa(ActionEvent e) {
@@ -815,6 +828,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnGrupoEditarDesativado = false;
 		this.isBtnSelecionarGrupo = false;
 		this.isBtnGrupoExcluirDesativado = false;
+		this.isBtnSalvarEmpresasNoGrupo = false;
 		this.grupoSelecionado = (EmpresaGrupoEntity) evt.getObject();
 		this.empresasNaoAtribuidasGrupo = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
 		if (this.empresasAtribuidas == null) {

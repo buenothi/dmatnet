@@ -89,7 +89,7 @@
 										icon="fa fa-save"
 										actionListener="#{cadastroEmpresaMB.salvarEmpresasNoGrupoSelecionado}"
 										update="formSelecionarEmpresa, formGrupoEmpresa:tbvEditarGrupo:pngEmpresasPorGrupo,
-											growlPrincipal" />
+											growlPrincipal" disabled="#{cadastroEmpresaMB.btnSalvarEmpresasNoGrupo}"/>
 									<p:commandButton value="#{msgs.Cancelar}" icon="fa fa-remove"
 										actionListener="#{cadastroEmpresaMB.cancelarEmpresasNoGrupoSelecionado}"
 										update="formSelecionarEmpresa, formGrupoEmpresa:tbvEditarGrupo:pngEmpresasPorGrupo" />
