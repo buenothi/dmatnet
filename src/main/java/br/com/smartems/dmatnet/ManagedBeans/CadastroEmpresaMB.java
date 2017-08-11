@@ -6,7 +6,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -18,8 +20,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.persistence.NoResultException;
 
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.event.RowEditEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.DualListModel;
@@ -535,7 +537,12 @@ public class CadastroEmpresaMB implements Serializable {
 		if (this.empresa != null) {
 			this.pessoaJuridicaFachada.delete(empresa);
 			this.initEmpresa();
-			this.empresa = null;
+			try {
+				this.empresa = null;
+				this.empresaSelecionada = null;
+			} catch (NullPointerException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
@@ -644,20 +651,24 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void novoDadosCadastraisEmpresa() {
+		this.isBtnDadosCadastraisEditarDesativado = true;
 		this.isDadosCadastraisEditarRender = true;
 		this.isBtnDadosCadastraisCancelarDesativado = false;
 		this.isBtnDadosCadastraisSalvarDesativado = false;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = true;
 		this.dadosCadastraisAnterior = this.dadosCadastraisAtual;
 		this.dadosCadastraisAtual = new EmpresaCadastroEntity();
-	}
-
-	public void onRowEditDadosCadastraisEmpresa(RowEditEvent e) {
-
-	}
-
-	public void onRowCancelDadosCadastraisEmpresa(RowEditEvent e) {
-
+		if (this.dadosCadastraisAnterior.getId() >= 1) {
+			Map<String, Object> options = new HashMap<String, Object>();
+			options.put("resizable", false);
+			options.put("modal", true);
+			options.put("showHeader", false);
+			options.put("showEffect", "fade");			
+			options.put("hideEffect", "fade");			
+			options.put("width", "300px");			
+			RequestContext.getCurrentInstance().openDialog("cadastroEmpresa/dialogPerguntaDadosCadastrais", options, null);
+		} else {
+		}
 	}
 
 	public void gravarImagemFachada(FileUploadEvent evt) {
@@ -684,11 +695,14 @@ public class CadastroEmpresaMB implements Serializable {
 			}
 		} catch (NullPointerException e) {
 			e.printStackTrace();
+			this.isBtnDadosCadastraisEditarDesativado = true;
+			this.isDadosCadastraisEditarRender = false;
 		}
 	}
 
 	public void listarDadosCadastrais(EmpresaEntity empresa) {
 		Date dataMaisRecente;
+		this.dadosCadastraisAtual = null;
 		try {
 			if (!empresa.getCadastros().isEmpty()) {
 				this.dadosCadastraisAtual = new EmpresaCadastroEntity();
