@@ -662,10 +662,11 @@ public class CadastroEmpresaMB implements Serializable {
 			Map<String, Object> options = new HashMap<String, Object>();
 			options.put("resizable", false);
 			options.put("modal", true);
-			options.put("showHeader", false);
+			options.put("showHeader", true);
 			options.put("showEffect", "fade");			
 			options.put("hideEffect", "fade");			
-			options.put("width", "300px");			
+			options.put("width", "300px");		
+			options.put("height", "80px");
 			RequestContext.getCurrentInstance().openDialog("cadastroEmpresa/dialogPerguntaDadosCadastrais", options, null);
 		} else {
 		}
