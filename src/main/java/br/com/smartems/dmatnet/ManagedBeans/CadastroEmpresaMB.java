@@ -6,9 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -635,41 +633,43 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void novoDadosCadastraisEmpresaEmBranco(ActionEvent e) {
-		this.novoDadosCadastraisEmpresa();
+		this.dadosCadastraisAtual = new EmpresaCadastroEntity();
+		this.dadosCadastraisTrocaStatusBotoes();
+		RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').hide()");
 	}
 
 	public void novoDadosCadastraisEmpresaPreenchido(ActionEvent e) {
-		this.novoDadosCadastraisEmpresa();
 		try {
 			this.dadosCadastraisAtual = this.dadosCadastraisAnterior.clone();
+			this.listarDadosCadastrais(empresaSelecionada);
 			this.empresaFap = this.dadosCadastraisAtual.getEmpresaFAP();
 			this.dadosCadastraisAtual.setId(0);
-		} catch (CloneNotSupportedException e1) {
+		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
-
+		this.dadosCadastraisTrocaStatusBotoes();
+		RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').hide()");
 	}
 
 	public void novoDadosCadastraisEmpresa() {
+		try {
+			if (this.dadosCadastraisAtual.getId() >= 1) {
+				RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').show()");
+			} else {
+				this.dadosCadastraisTrocaStatusBotoes();
+			}
+		} catch (NullPointerException e) {
+			this.dadosCadastraisTrocaStatusBotoes();
+			e.printStackTrace();
+		}
+	}
+
+	public void dadosCadastraisTrocaStatusBotoes() {
 		this.isBtnDadosCadastraisEditarDesativado = true;
 		this.isDadosCadastraisEditarRender = true;
 		this.isBtnDadosCadastraisCancelarDesativado = false;
 		this.isBtnDadosCadastraisSalvarDesativado = false;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = true;
-		this.dadosCadastraisAnterior = this.dadosCadastraisAtual;
-		this.dadosCadastraisAtual = new EmpresaCadastroEntity();
-		if (this.dadosCadastraisAnterior.getId() >= 1) {
-			Map<String, Object> options = new HashMap<String, Object>();
-			options.put("resizable", false);
-			options.put("modal", true);
-			options.put("showHeader", true);
-			options.put("showEffect", "fade");			
-			options.put("hideEffect", "fade");			
-			options.put("width", "300px");		
-			options.put("height", "80px");
-			RequestContext.getCurrentInstance().openDialog("cadastroEmpresa/dialogPerguntaDadosCadastrais", options, null);
-		} else {
-		}
 	}
 
 	public void gravarImagemFachada(FileUploadEvent evt) {
