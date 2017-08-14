@@ -276,7 +276,7 @@
 					emptyMessage="#{msgs.ListaHistoricoDadosCadastrais}"
 					value="#{cadastroEmpresaMB.dadosCadastraisHistorico}"
 					paginatorAlwaysVisible="false" var="cadastro"
-					sortBy="#{cadastro.dataInicioCadastro}" sortOrder="descending"
+					sortBy="#{cadastro.id}" sortOrder="descending"
 					editable="true" rowKey="#{cadastro.id}">
 
 					<p:column headerText="#{msgs.DataCadastro}" width="100">

@@ -605,11 +605,19 @@ public class CadastroEmpresaMB implements Serializable {
 			if (dadosCadastraisAtual.getId() == 0) {
 				this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
 				for (EmpresaCadastroEntity dadoCadastral : this.empresaSelecionada.getCadastros()) {
-					if (dadoCadastral.getId() == this.dadosCadastraisAnterior.getId()) {
-						Calendar calendar = Calendar.getInstance();
-						calendar.setTime(this.dadosCadastraisAtual.getDataInicioCadastro());
-						calendar.add(Calendar.DAY_OF_MONTH, -1);
-						dadoCadastral.setDataFimCadastro(calendar.getTime());
+					try {
+						if (dadoCadastral.getId() == this.dadosCadastraisAnterior.getId()) {
+							Calendar calendar = Calendar.getInstance();
+							calendar.setTime(this.dadosCadastraisAtual.getDataInicioCadastro());
+							calendar.add(Calendar.DAY_OF_MONTH, -1);
+							if (calendar.getTime().compareTo(dadoCadastral.getDataInicioCadastro()) <= 0) {
+								dadoCadastral.setDataFimCadastro(dadoCadastral.getDataInicioCadastro());
+							} else {
+								dadoCadastral.setDataFimCadastro(calendar.getTime());
+							}
+						}
+					} catch (NullPointerException e) {
+						e.printStackTrace();
 					}
 				}
 				if (this.empresaFap != null) {
@@ -633,20 +641,25 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void novoDadosCadastraisEmpresaEmBranco(ActionEvent e) {
+		try {
+			this.dadosCadastraisAnterior = this.dadosCadastraisAtual.clone();
+		} catch (CloneNotSupportedException e1) {
+			e1.printStackTrace();
+		}
 		this.dadosCadastraisAtual = new EmpresaCadastroEntity();
+		this.dadosCadastraisAtual.setId(0);
 		this.dadosCadastraisTrocaStatusBotoes();
 		RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').hide()");
 	}
 
 	public void novoDadosCadastraisEmpresaPreenchido(ActionEvent e) {
 		try {
-			this.dadosCadastraisAtual = this.dadosCadastraisAnterior.clone();
-			this.listarDadosCadastrais(empresaSelecionada);
-			this.empresaFap = this.dadosCadastraisAtual.getEmpresaFAP();
-			this.dadosCadastraisAtual.setId(0);
-		} catch (Exception e1) {
+			this.dadosCadastraisAnterior = this.dadosCadastraisAtual.clone();
+		} catch (CloneNotSupportedException e1) {
 			e1.printStackTrace();
 		}
+		this.empresaFap = this.dadosCadastraisAtual.getEmpresaFAP();
+		this.dadosCadastraisAtual.setId(0);
 		this.dadosCadastraisTrocaStatusBotoes();
 		RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').hide()");
 	}
