@@ -532,8 +532,9 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void excluirCadastroEmpresa(EmpresaEntity empresa) {
+		EmpresaEntity empresaDeletada = pessoaJuridicaFachada.read(empresa.getIdPessoa());
 		if (this.empresa != null) {
-			this.pessoaJuridicaFachada.delete(empresa);
+			this.pessoaJuridicaFachada.delete(empresaDeletada);
 			this.initEmpresa();
 			try {
 				this.empresa = null;
@@ -542,7 +543,6 @@ public class CadastroEmpresaMB implements Serializable {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	public void novoCadastroEmpresa(ActionEvent e) {

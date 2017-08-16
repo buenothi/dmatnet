@@ -17,9 +17,10 @@
 	<h:form>
 		<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
 
-		<p:dialog header="#{msgs.BemVindo}" widgetVar="dlgLogin"
+		<p:dialog id="dlgLogin" header="#{msgs.BemVindo}" widgetVar="dlgLogin"
 			draggable="false" closable="false" resizable="false"
 			responsive="true">
+			<p:focus context="dlgLogin" />
 			<h:panelGrid columns="2">
 				<h:graphicImage value="/resources/images/Logo SMARTEMS.jpg" />
 				<h:panelGrid columns="2" cellpadding="5px">

@@ -30,12 +30,20 @@
 					styleClass="botoesWebApp"
 					onclick="PF('dlgSelecionarEmpresa').show()" />
 			</h:panelGrid>
-			<h:panelGrid class="usuarioLogado" columns="1">
-				<h:outputFormat value="#{usuarioMB.usuarioLogado.nome}"
-					converter="stringConverter" />
-				<h:outputFormat value="#{usuarioMB.usuarioLogado.grupo.nomeGrupo}"
-					converter="stringConverter" />
+			<h:panelGrid class="usuarioLogado" columns="2">
+				<h:panelGrid columns="1">
+					<h:outputFormat value="#{usuarioMB.usuarioLogado.nome}"
+						converter="stringConverter" />
+					<h:outputFormat value="#{usuarioMB.usuarioLogado.grupo.nomeGrupo}"
+						converter="stringConverter" />
+				</h:panelGrid>
+				<p:menuButton value="">
+					<p:menuitem value="#{msgs.ConfUsuario}" icon="fa fa-user" />
+					<p:separator />
+					<p:menuitem value="#{msgs.Sair}" icon="ui-icon-extlink" />
+				</p:menuButton>
 			</h:panelGrid>
+
 		</h:form>
 	</div>
 
@@ -153,18 +161,19 @@
 		</h:form>
 	</p:dialog>
 
-	<p:dialog widgetVar="dlgPerguntaDadosCadastrais" header="#{msgs.Confirmar}"
-		closable="true" resizable="false" modal="true">
+	<p:dialog widgetVar="dlgPerguntaDadosCadastrais"
+		header="#{msgs.Confirmar}" closable="true" resizable="false"
+		modal="true">
 		<p:panelGrid columns="1" styleClass="tabelaSemBorda">
 			<p:outputLabel value="#{msgs.MsgNovoCadastroDadosEmpresa}" />
 		</p:panelGrid>
 		<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 			<p:commandButton value="#{msgs.Sim}" icon="ui-icon-check"
-				actionListener="#{cadastroEmpresaMB.novoDadosCadastraisEmpresaPreenchido}" 
-				update="formModulos"/>
+				actionListener="#{cadastroEmpresaMB.novoDadosCadastraisEmpresaPreenchido}"
+				update="formModulos" />
 			<p:commandButton value="#{msgs.Nao}" icon="ui-icon-close"
-				actionListener="#{cadastroEmpresaMB.novoDadosCadastraisEmpresaEmBranco}" 
-				update="formModulos"/>
+				actionListener="#{cadastroEmpresaMB.novoDadosCadastraisEmpresaEmBranco}"
+				update="formModulos" />
 		</p:panelGrid>
 	</p:dialog>
 
