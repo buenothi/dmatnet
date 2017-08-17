@@ -3,6 +3,8 @@ package br.com.smartems.dmatnet.entities.pessoa;
 import java.io.Serializable;
 import java.lang.String;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import br.com.smartems.dmatnet.entities.cidades.CidadeEntity;
 import br.com.smartems.dmatnet.entities.cidades.EstadoEntity;
@@ -14,7 +16,13 @@ public class EnderecoEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idEndereco;
+	
+	@NotNull
+	@Size(min = 3)
 	private String enderecoTipo;//conforme tabela 20 do eSocial
+	
+	@NotNull
+	@Size(min = 3)
 	private String logradouroNome;
 	private int logradouroNumero;
 	private String logradouroComplemento;

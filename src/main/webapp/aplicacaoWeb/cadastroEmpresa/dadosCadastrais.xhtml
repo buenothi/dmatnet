@@ -14,13 +14,13 @@
 		<dmat:barraBotoesComposite id="barraBotoesDadosCadastrais"
 			disabledEditar="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}"
 			actionListenerEditar="#{cadastroEmpresaMB.editarDadosCadastraisEmpresa}"
-			updateEditar="formModulos"
+			updateEditar="formSelecionarEmpresa, formModulos, growlPrincipal"
 			disabledCancelar="#{cadastroEmpresaMB.btnDadosCadastraisCancelarDesativado}"
 			actionListenerCancelar="#{cadastroEmpresaMB.cancelarDadosCadastraisEmpresa}"
-			updateCancelar="formModulos"
+			updateCancelar="formSelecionarEmpresa, formModulos, growlPrincipal"
 			disabledSalvar="#{cadastroEmpresaMB.btnDadosCadastraisSalvarDesativado}"
 			actionListenerSalvar="#{cadastroEmpresaMB.salvarDadosCadastraisEmpresa}"
-			updateSalvar="formModulos" renderedBtnNovo="false"
+			updateSalvar="formSelecionarEmpresa, formModulos, growlPrincipal" renderedBtnNovo="false"
 			renderSpacer="false" />
 
 		<p:commandButton styleClass="botoes" icon="fa fa-plus"

@@ -15,6 +15,8 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @MappedSuperclass
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -24,6 +26,8 @@ public abstract class AbstractPessoaEntity implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idPessoa;
 	
+	@NotNull
+	@Size(min = 3)
 	private String nome;
 	
 	@OneToMany(cascade={CascadeType.ALL})
@@ -55,7 +59,7 @@ public abstract class AbstractPessoaEntity implements Serializable {
 	public void setIdPessoa(long idPessoa) {
 		this.idPessoa = idPessoa;
 	}
-
+	
 	public String getNome() {
 		return nome;
 	}

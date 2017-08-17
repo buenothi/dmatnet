@@ -11,6 +11,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "tbl_estados")
@@ -23,7 +25,12 @@ public class EstadoEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	@NotNull
+	@Size(min = 3)
 	private String estadoSigla;
+	
+	@NotNull
+	@Size(min = 3)
 	private String estadoNome;
 
 	@OneToMany(mappedBy = "estado")

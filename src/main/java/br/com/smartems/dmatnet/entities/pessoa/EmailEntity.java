@@ -1,8 +1,13 @@
 package br.com.smartems.dmatnet.entities.pessoa;
 
 import java.io.Serializable;
-import java.lang.String;
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="tbl_email")
@@ -11,6 +16,8 @@ public class EmailEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idEmail;
+	
+	@Pattern(regexp = ".+@.+\\.[a-z]+")
 	private String nomeEmail;
 	private String tipoEmail;
 	private static final long serialVersionUID = 1L;

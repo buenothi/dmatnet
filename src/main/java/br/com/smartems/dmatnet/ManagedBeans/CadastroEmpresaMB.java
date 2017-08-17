@@ -602,36 +602,45 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisSalvarDesativado = true;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = false;
 		try {
-			if (dadosCadastraisAtual.getId() == 0) {
-				this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
-				for (EmpresaCadastroEntity dadoCadastral : this.empresaSelecionada.getCadastros()) {
-					try {
-						if (dadoCadastral.getId() == this.dadosCadastraisAnterior.getId()) {
-							Calendar calendar = Calendar.getInstance();
-							calendar.setTime(this.dadosCadastraisAtual.getDataInicioCadastro());
-							calendar.add(Calendar.DAY_OF_MONTH, -1);
-							if (calendar.getTime().compareTo(dadoCadastral.getDataInicioCadastro()) <= 0) {
-								dadoCadastral.setDataFimCadastro(dadoCadastral.getDataInicioCadastro());
-							} else {
-								dadoCadastral.setDataFimCadastro(calendar.getTime());
+			if (dadosCadastraisAtual.getDataInicioCadastro()
+					.compareTo(dadosCadastraisAnterior.getDataInicioCadastro()) >= 0) {
+				if (dadosCadastraisAtual.getId() == 0) {
+					this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
+					for (EmpresaCadastroEntity dadoCadastral : this.empresaSelecionada.getCadastros()) {
+						try {
+							if (dadoCadastral.getId() == this.dadosCadastraisAnterior.getId()) {
+								Calendar calendar = Calendar.getInstance();
+								calendar.setTime(this.dadosCadastraisAtual.getDataInicioCadastro());
+								calendar.add(Calendar.DAY_OF_MONTH, -1);
+								if (calendar.getTime().compareTo(dadoCadastral.getDataInicioCadastro()) <= 0) {
+									dadoCadastral.setDataFimCadastro(dadoCadastral.getDataInicioCadastro());
+								} else {
+									dadoCadastral.setDataFimCadastro(calendar.getTime());
+								}
 							}
+						} catch (NullPointerException e) {
+							e.printStackTrace();
 						}
-					} catch (NullPointerException e) {
-						e.printStackTrace();
 					}
+					if (this.empresaFap != null) {
+						EmpresaFAP novoFap = new EmpresaFAP();
+						novoFap = this.empresaFap.clone();
+						novoFap.setIdEmpresaFAP(0);
+						this.dadosCadastraisAtual.setEmpresaFAP(novoFap);
+					}
+					this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
+					this.pessoaJuridicaFachada.update(this.empresaSelecionada);
+					this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
+				} else {
+					this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
+					this.empresaSelecionada = this.pessoaJuridicaFachada.update(this.empresaSelecionada);
+					this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
+					this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
 				}
-				if (this.empresaFap != null) {
-					EmpresaFAP novoFap = new EmpresaFAP();
-					novoFap = this.empresaFap.clone();
-					novoFap.setIdEmpresaFAP(0);
-					this.dadosCadastraisAtual.setEmpresaFAP(novoFap);
-				}
-				this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
-				this.pessoaJuridicaFachada.update(this.empresaSelecionada);
-				this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
 			} else {
-				this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
-				this.empresaSelecionada = this.pessoaJuridicaFachada.update(this.empresaSelecionada);
+				FacesMessage msg = new FacesMessage("Erro",
+						"A data de início do Cadastro deverá ser igual superior à data de início do cadastro anterior");
+				FacesContext.getCurrentInstance().addMessage(null, msg);
 				this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
 				this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
 			}
