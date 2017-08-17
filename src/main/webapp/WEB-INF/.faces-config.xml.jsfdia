@@ -15,7 +15,7 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#aplicacaoWeb#principal.xhtml"
-  PATH="/aplicacaoWeb/principal.xhtml" SHAPE="256,145,0,0" model-entity="JSFProcessGroup">
+  PATH="/aplicacaoWeb/principal.xhtml" SHAPE="208,280,50,73" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#aplicacaoWeb#principal.xhtml:0" NAME="item"
    PATH="/aplicacaoWeb/principal.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
@@ -27,10 +27,12 @@
    <PROCESS-ITEM-OUTPUT ID="home::#aplicacaoWeb#principal.xhtml"
     NAME="output1" PATH="/aplicacaoWeb/principal.xhtml"
     TARGET="rules:#aplicacaoWeb#principal.xhtml" TITLE="home" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="logout::#index.xhtml" NAME="output2"
+    PATH="/index.xhtml" TARGET="rules:#index.xhtml" TITLE="logout" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM
   NAME="rules:#aplicacaoWeb#cadastroEmpresa#cadastroEmpresa.xhtml"
   PATH="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml"
-  SHAPE="480,129,0,0" model-entity="JSFProcessGroup"/>
+  SHAPE="416,120,50,25" model-entity="JSFProcessGroup"/>
 </PROCESS>

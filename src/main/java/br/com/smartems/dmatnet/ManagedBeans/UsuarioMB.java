@@ -8,6 +8,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.primefaces.context.RequestContext;
 
@@ -84,6 +86,13 @@ public class UsuarioMB implements Serializable {
 		}
 
 		context.addCallbackParam("logado", isLogado);
+	}
+	
+	public String logout() {
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return "logout";
 	}
 
 	public String navegar() {
