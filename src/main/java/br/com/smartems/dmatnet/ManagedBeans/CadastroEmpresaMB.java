@@ -607,20 +607,17 @@ public class CadastroEmpresaMB implements Serializable {
 				if (dadosCadastraisAtual.getId() == 0) {
 					this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
 					for (EmpresaCadastroEntity dadoCadastral : this.empresaSelecionada.getCadastros()) {
-						try {
-							if (dadoCadastral.getId() == this.dadosCadastraisAnterior.getId()) {
-								Calendar calendar = Calendar.getInstance();
-								calendar.setTime(this.dadosCadastraisAtual.getDataInicioCadastro());
-								calendar.add(Calendar.DAY_OF_MONTH, -1);
-								if (calendar.getTime().compareTo(dadoCadastral.getDataInicioCadastro()) <= 0) {
-									dadoCadastral.setDataFimCadastro(dadoCadastral.getDataInicioCadastro());
-								} else {
-									dadoCadastral.setDataFimCadastro(calendar.getTime());
-								}
+						if (dadoCadastral.getId() == this.dadosCadastraisAnterior.getId()) {
+							Calendar calendar = Calendar.getInstance();
+							calendar.setTime(this.dadosCadastraisAtual.getDataInicioCadastro());
+							calendar.add(Calendar.DAY_OF_MONTH, -1);
+							if (calendar.getTime().compareTo(dadoCadastral.getDataInicioCadastro()) <= 0) {
+								dadoCadastral.setDataFimCadastro(dadoCadastral.getDataInicioCadastro());
+							} else {
+								dadoCadastral.setDataFimCadastro(calendar.getTime());
 							}
-						} catch (NullPointerException e) {
-							e.printStackTrace();
 						}
+
 					}
 					if (this.empresaFap != null) {
 						EmpresaFAP novoFap = new EmpresaFAP();
@@ -644,6 +641,12 @@ public class CadastroEmpresaMB implements Serializable {
 				this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
 				this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
 			}
+		} catch (NullPointerException exc) {
+			exc.printStackTrace();
+			this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
+			this.empresaSelecionada = this.pessoaJuridicaFachada.update(this.empresaSelecionada);
+			this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
+			this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
 		} catch (Exception exc) {
 			exc.printStackTrace();
 		}
