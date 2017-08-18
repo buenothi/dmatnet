@@ -96,7 +96,7 @@
 
 						<p:column>
 							<h:panelGroup>
-								<p:inputMask mask="9.9999" maxlength="250" size="6"
+								<p:inputNumber maxlength="250" size="6" decimalPlaces="4"
 									value="#{cadastroEmpresaMB.empresaFap.valorFAP}"
 									converter="javax.faces.Double" />
 								<p:commandButton value="#{msgs.ProcessoFAP}" />
