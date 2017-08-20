@@ -37,11 +37,11 @@
 					<h:outputFormat value="#{usuarioMB.usuarioLogado.grupo.nomeGrupo}"
 						converter="stringConverter" />
 				</h:panelGrid>
-				<p:menuButton value="+">
+				<p:splitButton value="#{msgs.Sair}" icon="ui-icon-extlink"
+					action="#{usuarioMB.logout}" >
 					<p:menuitem value="#{msgs.ConfUsuario}" icon="fa fa-user" />
-					<p:separator />
-					<p:menuitem value="#{msgs.Sair}" icon="ui-icon-extlink" action="#{usuarioMB.logout}"/>
-				</p:menuButton>
+				</p:splitButton>
+
 			</h:panelGrid>
 
 		</h:form>
