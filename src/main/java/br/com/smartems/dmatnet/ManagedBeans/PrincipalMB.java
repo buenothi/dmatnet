@@ -6,6 +6,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
 
+import org.primefaces.context.RequestContext;
+
 @ManagedBean
 @SessionScoped
 public class PrincipalMB implements Serializable {
@@ -41,6 +43,10 @@ public class PrincipalMB implements Serializable {
 		this.classMenuBotaoCadEmpresa = "menuBotao";
 		this.classMenuBotaoHome = "menuBotaoSelecionado";
 		this.isRenderizarCadastroEmpresa = false;
+	}
+	
+	public void sairAplicacao(ActionEvent evt) {
+		RequestContext.getCurrentInstance().execute("PF('dlgSairAplicacao').show()");
 	}
 
 }
