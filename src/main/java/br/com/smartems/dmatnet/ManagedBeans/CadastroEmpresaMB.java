@@ -512,12 +512,10 @@ public class CadastroEmpresaMB implements Serializable {
 				this.empresa = null;
 			} else {
 				this.empresa.setUsuarioCriador(this.usuarioMB.getUsuarioLogado());
-				if (dadosCadastraisAtual != null) {
-					this.empresa.getCadastros().add(dadosCadastraisAtual);
-				}
 				if (fotografiaFachadaEmpresa != null) {
 					this.empresa.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
 				}
+				this.atribuirEmpresaFAP(this.empresaFap);
 				this.pessoaJuridicaFachada.update(this.empresa);
 				this.initEmpresa();
 				FacesMessage msg = new FacesMessage("Sucesso",
@@ -619,12 +617,7 @@ public class CadastroEmpresaMB implements Serializable {
 						}
 
 					}
-					if (this.empresaFap != null) {
-						EmpresaFAP novoFap = new EmpresaFAP();
-						novoFap = this.empresaFap.clone();
-						novoFap.setIdEmpresaFAP(0);
-						this.dadosCadastraisAtual.setEmpresaFAP(novoFap);
-					}
+					this.atribuirEmpresaFAP(this.empresaFap);
 					this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
 					this.pessoaJuridicaFachada.update(this.empresaSelecionada);
 					this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
@@ -643,12 +636,26 @@ public class CadastroEmpresaMB implements Serializable {
 			}
 		} catch (NullPointerException exc) {
 			exc.printStackTrace();
+			this.atribuirEmpresaFAP(this.empresaFap);
 			this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
 			this.empresaSelecionada = this.pessoaJuridicaFachada.update(this.empresaSelecionada);
 			this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
 			this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
 		} catch (Exception exc) {
 			exc.printStackTrace();
+		}
+	}
+
+	public void atribuirEmpresaFAP(EmpresaFAP empresaFap) {
+		if (empresaFap != null) {
+			EmpresaFAP novoFap = new EmpresaFAP();
+			try {
+				novoFap = empresaFap.clone();
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}
+			novoFap.setIdEmpresaFAP(0);
+			this.dadosCadastraisAtual.setEmpresaFAP(novoFap);
 		}
 	}
 
