@@ -116,7 +116,8 @@
 							<h:panelGroup>
 								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 									<p:inputNumber maxlength="250" size="5" decimalPlaces="4"
-										value="#{cadastroEmpresaMB.empresaFap.valorFAP}" minValue="0.5" maxValue="2" />
+										value="#{cadastroEmpresaMB.empresaFap.valorFAP}"
+										minValue="0.5" maxValue="2" />
 									<p:commandButton value="#{msgs.ProcessoFAP}" />
 								</p:panelGrid>
 							</h:panelGroup>
@@ -277,6 +278,32 @@
 		</p:tab>
 
 		<p:tab title="#{msgs.EmpresaDadosIsencao} (esocial)">
+			<h:panelGroup id="pngEmpDadosIsencaoEditar" layout="block"
+				styleClass="formulario"
+				rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
+				<p:panelGrid id="pngEditarDadosIsencao"
+					styleClass="tabelaSemBorda">
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.siglaMinisterio}" />
+						</p:column>
+						<p:column>
+							<p:inputText maxlength="2" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+
+			</h:panelGroup>
+
+			<h:panelGroup id="pngEmpDadosIsencaoExibir" layout="block"
+				styleClass="formulario"
+				rendered="#{cadastroEmpresaMB.btnDadosCadastraisCancelarDesativado}">
+				<p:panelGrid styleClass="tabelaSemBorda">
+				</p:panelGrid>
+
+
+			</h:panelGroup>
+
 		</p:tab>
 
 		<p:tab title="#{msgs.OrganismoInternacional} (esocial)">
