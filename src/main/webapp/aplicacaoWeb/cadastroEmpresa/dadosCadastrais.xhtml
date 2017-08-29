@@ -281,14 +281,90 @@
 			<h:panelGroup id="pngEmpDadosIsencaoEditar" layout="block"
 				styleClass="formulario"
 				rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
-				<p:panelGrid id="pngEditarDadosIsencao"
-					styleClass="tabelaSemBorda">
+				<p:panelGrid id="pngEditarDadosIsencao" styleClass="tabelaSemBorda">
 					<p:row>
 						<p:column>
-							<p:outputLabel value="#{msgs.siglaMinisterio}" />
+							<p:outputLabel value="#{msgs.siglaMinisterio}:" />
 						</p:column>
 						<p:column>
-							<p:inputText maxlength="2" />
+							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+								<p:inputText maxlength="2" size="2" />
+							</p:panelGrid>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.numeroCertificado}:" />
+						</p:column>
+						<p:column>
+							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+								<p:inputNumber size="13" />
+							</p:panelGrid>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.dataEmissaoCertificado}:" />
+						</p:column>
+						<p:column>
+							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+								<p:calendar id="calDataEmissaoCertificado" locale="pt"
+									showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
+									mask="true" size="8" required="true"
+									label="#{msgs.dataEmissaoCertificado}" />
+								<p:message for="calDataEmissaoCertificado" />
+							</p:panelGrid>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.dataVencimentoCertificado}:" />
+						</p:column>
+						<p:column>
+							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+								<p:calendar id="calDataVencimentoCertificado" locale="pt"
+									showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
+									mask="true" size="8" required="true"
+									label="#{msgs.dataVencimentoCertificado}" />
+								<p:message for="calDataVencimentoCertificado" />
+							</p:panelGrid>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.numeroProtocolo}:" />
+						</p:column>
+						<p:column>
+							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+								<p:inputNumber size="13" />
+							</p:panelGrid>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.dataRenovacaoCertificado}:" />
+						</p:column>
+						<p:column>
+							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+								<p:calendar id="calDataRenovacaoCertificado" locale="pt"
+									showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
+									mask="true" size="8" required="true"
+									label="#{msgs.dataRenovacaoCertificado}" />
+								<p:message for="calDataRenovacaoCertificado" />
+							</p:panelGrid>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.dataDOU}:" />
+						</p:column>
+						<p:column>
+							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+								<p:calendar id="calDataDOU" locale="pt" showOn="button"
+									showButtonPanel="true" pattern="dd/MM/yyyy" mask="true"
+									size="8" required="true" label="#{msgs.dataDOU}}" />
+								<p:message for="calDataDOU" />
+							</p:panelGrid>
 						</p:column>
 					</p:row>
 				</p:panelGrid>
