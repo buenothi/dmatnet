@@ -374,7 +374,63 @@
 			<h:panelGroup id="pngEmpDadosIsencaoExibir" layout="block"
 				styleClass="formulario"
 				rendered="#{cadastroEmpresaMB.btnDadosCadastraisCancelarDesativado}">
-				<p:panelGrid styleClass="tabelaSemBorda">
+				<p:panelGrid id="pngEditarDadosExibir" styleClass="tabelaSemBorda">
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.siglaMinisterio}:" />
+						</p:column>
+						<p:column>
+							<p:outputLabel value="" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.numeroCertificado}:" />
+						</p:column>
+						<p:column>
+							<p:outputLabel value="" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.dataEmissaoCertificado}:" />
+						</p:column>
+						<p:column>
+							<p:outputLabel value="" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.dataVencimentoCertificado}:" />
+						</p:column>
+						<p:column>
+							<p:outputLabel value="" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.numeroProtocolo}:" />
+						</p:column>
+						<p:column>
+							<p:outputLabel value="" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.dataRenovacaoCertificado}:" />
+						</p:column>
+						<p:column>
+							<p:outputLabel value="" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.dataDOU}:" />
+						</p:column>
+						<p:column>
+							<p:outputLabel value="" />
+						</p:column>
+					</p:row>
 				</p:panelGrid>
 
 
