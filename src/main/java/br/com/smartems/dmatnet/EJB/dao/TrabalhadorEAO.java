@@ -11,7 +11,6 @@ public class TrabalhadorEAO extends AbstractEAO<TrabalhadorEntity, Long> {
        
     public TrabalhadorEAO() {
         super(TrabalhadorEntity.class);
-        // TODO Auto-generated constructor stub
     }
 
 }
