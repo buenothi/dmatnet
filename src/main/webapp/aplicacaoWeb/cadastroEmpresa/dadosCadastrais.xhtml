@@ -30,6 +30,12 @@
 			actionListener="#{cadastroEmpresaMB.novoDadosCadastraisEmpresa}"
 			update="formModulos" />
 
+		<p:commandButton styleClass="botoes" icon="fa fa-print"
+			value="#{msgs.Imprimir}"
+			disabled="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}"
+			actionListener="#{cadastroEmpresaMB.imprimirDadosCadastrais}"
+			update="formModulos" />
+
 		<p:spacer height="10px" width="100%" />
 
 	</h:panelGroup>

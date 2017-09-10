@@ -754,6 +754,10 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 
 	}
+	
+	public void imprimirDadosCadastrais(ActionEvent evt) {
+		
+	}
 
 	public void exibirImagemFachadaEmpresa(EmpresaFoto fotoFachada) {
 		try {
