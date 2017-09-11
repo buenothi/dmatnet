@@ -36,6 +36,11 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaGrupoEntity
 import br.com.smartems.dmatnet.util.StringsUtilitarios;
 import br.com.smartems.dmatnet.util.filtrosCollection.Filter;
 import br.com.smartems.dmatnet.util.filtrosCollection.FiltroEmpresa;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @ManagedBean
 @SessionScoped
@@ -754,9 +759,19 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 
 	}
-	
+
 	public void imprimirDadosCadastrais(ActionEvent evt) {
-		
+		JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(
+				empresasDisponiveis);
+		try {
+			String reportPath = FacesContext.getCurrentInstance().getExternalContext()
+					.getRealPath("/report/CadastroEmpresa.jasper");
+			JasperPrint jasperPrint = JasperFillManager.fillReport(reportPath, null,
+					beanCollectionDataSource);
+			JasperExportManager.exportReportToPdfFile(jasperPrint, "c:/rert/Relatorio_de_Clientes.pdf");
+		} catch (JRException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void exibirImagemFachadaEmpresa(EmpresaFoto fotoFachada) {
