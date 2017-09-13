@@ -31,7 +31,7 @@
 			update="formModulos" />
 
 		<p:commandButton styleClass="botoes" icon="fa fa-print"
-			value="#{msgs.Imprimir}"
+			value="#{msgs.Imprimir}" immediate="false" ajax="false"
 			disabled="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}"
 			actionListener="#{cadastroEmpresaMB.imprimirDadosCadastrais}"
 			update="formModulos" />
