@@ -56,7 +56,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	@EJB
 	private StringsUtilitarios stringUtils;
-	
+
 	@EJB
 	private ReportUtil reportUtil;
 
@@ -504,30 +504,21 @@ public class CadastroEmpresaMB implements Serializable {
 	public void salvarCadastroEmpresa(ActionEvent e) {
 		try {
 			if (this.empresa.getIdPessoa() == 0) {
-				this.empresa.setUsuarioCriador(this.usuarioMB.getUsuarioLogado());
-				if (fotografiaFachadaEmpresa != null) {
-					this.empresa.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
-				}
-				this.pessoaJuridicaFachada.create(this.empresa);
-				this.initEmpresa();
+				this.pessoaJuridicaFachada.salvarNovoCadastroEmpresa(this.empresa, this.fotografiaFachadaEmpresa,
+						this.usuarioMB.getUsuarioLogado());
 				FacesMessage msg = new FacesMessage("Sucesso",
 						stringUtils.formatarTextoParaLeitura(this.empresa.getNome().toString()) + " Salvo com Sucesso");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
-				this.empresa = null;
 			} else {
-				this.empresa.setUsuarioCriador(this.usuarioMB.getUsuarioLogado());
-				if (fotografiaFachadaEmpresa != null) {
-					this.empresa.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
-				}
-				this.atribuirEmpresaFAP(this.empresaFap);
-				this.pessoaJuridicaFachada.update(this.empresa);
-				this.initEmpresa();
+				this.pessoaJuridicaFachada.alterarCadastroEmpresa(this.empresa, fotografiaFachadaEmpresa,
+						this.usuarioMB.getUsuarioLogado(), this.empresaFap, this.dadosCadastraisAtual);
 				FacesMessage msg = new FacesMessage("Sucesso",
 						stringUtils.formatarTextoParaLeitura(this.empresa.getNome().toString())
 								+ " Atualizado com Sucesso");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
-				this.empresa = null;
 			}
+			this.initEmpresa();
+			this.empresa = null;
 		} catch (Exception exc) {
 			exc.printStackTrace();
 		}

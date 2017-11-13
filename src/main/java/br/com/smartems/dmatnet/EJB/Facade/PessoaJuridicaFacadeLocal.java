@@ -5,10 +5,20 @@ import java.util.List;
 import javax.ejb.Local;
 
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFoto;
 
 @Local
 public interface PessoaJuridicaFacadeLocal extends AbstractFacade<EmpresaEntity> {
 
 	public List<EmpresaEntity> listarEmpresas(UsuarioEntity usuarioLogado);
+
+	public void salvarNovoCadastroEmpresa(EmpresaEntity empresa, EmpresaFoto fotografiaFachada,
+			UsuarioEntity usuarioLogado);
+
+	public void alterarCadastroEmpresa(EmpresaEntity empresa, EmpresaFoto fotografiaFachada,
+			UsuarioEntity usuarioLogado, EmpresaFAP fap, EmpresaCadastroEntity dadosCadastraisAtual);
+
 }

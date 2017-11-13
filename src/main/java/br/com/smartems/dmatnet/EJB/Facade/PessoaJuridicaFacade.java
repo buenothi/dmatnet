@@ -7,16 +7,19 @@ import javax.ejb.Stateless;
 
 import br.com.smartems.dmatnet.EJB.dao.PessoaJuridicaEAO;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFoto;
 
 @Stateless
 public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 
 	@EJB
 	private PessoaJuridicaEAO pessoaJuridicaEAO;
-	
-    public PessoaJuridicaFacade() {
-    }
+
+	public PessoaJuridicaFacade() {
+	}
 
 	@Override
 	public EmpresaEntity read(long pk) {
@@ -46,6 +49,16 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 	@Override
 	public List<EmpresaEntity> listarEmpresas(UsuarioEntity usuarioLogado) {
 		return pessoaJuridicaEAO.listarEmpresas(usuarioLogado);
+	}
+
+	public void salvarNovoCadastroEmpresa(EmpresaEntity empresa, EmpresaFoto fotografiaFachada,
+			UsuarioEntity usuarioLogado) {
+		pessoaJuridicaEAO.salvarNovoCadastroEmpresa(empresa, fotografiaFachada, usuarioLogado);
+	}
+
+	public void alterarCadastroEmpresa(EmpresaEntity empresa, EmpresaFoto fotografiaFachada,
+			UsuarioEntity usuarioLogado, EmpresaFAP fap, EmpresaCadastroEntity dadosCadastraisAtual) {
+		pessoaJuridicaEAO.alterarCadastroEmpresa(empresa, fotografiaFachada, usuarioLogado, fap, dadosCadastraisAtual);
 	}
 
 }
