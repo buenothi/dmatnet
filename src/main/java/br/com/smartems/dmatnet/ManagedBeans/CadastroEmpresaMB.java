@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -597,31 +596,10 @@ public class CadastroEmpresaMB implements Serializable {
 		try {
 			if (dadosCadastraisAtual.getDataInicioCadastro()
 					.compareTo(dadosCadastraisAnterior.getDataInicioCadastro()) >= 0) {
-				if (dadosCadastraisAtual.getId() == 0) {
-					this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
-					for (EmpresaCadastroEntity dadoCadastral : this.empresaSelecionada.getCadastros()) {
-						if (dadoCadastral.getId() == this.dadosCadastraisAnterior.getId()) {
-							Calendar calendar = Calendar.getInstance();
-							calendar.setTime(this.dadosCadastraisAtual.getDataInicioCadastro());
-							calendar.add(Calendar.DAY_OF_MONTH, -1);
-							if (calendar.getTime().compareTo(dadoCadastral.getDataInicioCadastro()) <= 0) {
-								dadoCadastral.setDataFimCadastro(dadoCadastral.getDataInicioCadastro());
-							} else {
-								dadoCadastral.setDataFimCadastro(calendar.getTime());
-							}
-						}
-
-					}
-					this.atribuirEmpresaFAP(this.empresaFap);
-					this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
-					this.pessoaJuridicaFachada.update(this.empresaSelecionada);
-					this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
-				} else {
-					this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
-					this.empresaSelecionada = this.pessoaJuridicaFachada.update(this.empresaSelecionada);
-					this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
-					this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
-				}
+				this.pessoaJuridicaFachada.salvarDadosCadastraisEmpresa(this.dadosCadastraisAtual,
+						this.dadosCadastraisAnterior, this.empresaFap, this.empresaSelecionada);
+				 this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
+				 this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
 			} else {
 				FacesMessage msg = new FacesMessage("Erro",
 						"A data de início do Cadastro deverá ser igual superior à data de início do cadastro anterior");

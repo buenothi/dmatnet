@@ -20,5 +20,8 @@ public interface PessoaJuridicaFacadeLocal extends AbstractFacade<EmpresaEntity>
 
 	public void alterarCadastroEmpresa(EmpresaEntity empresa, EmpresaFoto fotografiaFachada,
 			UsuarioEntity usuarioLogado, EmpresaFAP fap, EmpresaCadastroEntity dadosCadastraisAtual);
+	
+	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
+			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap, EmpresaEntity empresaSelecionada);
 
 }

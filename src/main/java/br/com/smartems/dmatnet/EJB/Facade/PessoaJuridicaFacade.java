@@ -60,5 +60,10 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 			UsuarioEntity usuarioLogado, EmpresaFAP fap, EmpresaCadastroEntity dadosCadastraisAtual) {
 		pessoaJuridicaEAO.alterarCadastroEmpresa(empresa, fotografiaFachada, usuarioLogado, fap, dadosCadastraisAtual);
 	}
+	
+	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
+			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap, EmpresaEntity empresaSelecionada) {
+		pessoaJuridicaEAO.salvarDadosCadastraisEmpresa(dadosCadastraisAtual, dadosCadastraisAnterior, empresaFap, empresaSelecionada);
+	}
 
 }

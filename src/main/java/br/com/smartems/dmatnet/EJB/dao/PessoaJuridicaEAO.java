@@ -1,5 +1,6 @@
 package br.com.smartems.dmatnet.EJB.dao;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -75,6 +76,45 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 			novoFap.setIdEmpresaFAP(0);
 			dadosCadastraisAtual.setEmpresaFAP(novoFap);
 		}
+	}
+
+	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
+			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap, EmpresaEntity empresaSelecionada) {
+		if (dadosCadastraisAtual.getId() == 0) {
+			empresaSelecionada = pessoaJuridicaFachada.read(empresaSelecionada.getIdPessoa());
+			for (EmpresaCadastroEntity dadoCadastral : empresaSelecionada.getCadastros()) {
+				if (dadoCadastral.getId() == dadosCadastraisAnterior.getId()) {
+					Calendar calendar = Calendar.getInstance();
+					calendar.setTime(dadosCadastraisAtual.getDataInicioCadastro());
+					calendar.add(Calendar.DAY_OF_MONTH, -1);
+					if (calendar.getTime().compareTo(dadoCadastral.getDataInicioCadastro()) <= 0) {
+						dadoCadastral.setDataFimCadastro(dadoCadastral.getDataInicioCadastro());
+					} else {
+						dadoCadastral.setDataFimCadastro(calendar.getTime());
+					}
+				}
+			}
+			dadosCadastraisAtual.setEmpresaFAP(this.atribuirEmpresaFAP(empresaFap));
+			empresaSelecionada.getCadastros().add(dadosCadastraisAtual);
+			this.pessoaJuridicaFachada.update(empresaSelecionada);
+		} else {
+			empresaSelecionada.getCadastros().add(dadosCadastraisAtual);
+			empresaSelecionada = this.pessoaJuridicaFachada.update(empresaSelecionada);
+		}
+	}
+	
+	public EmpresaFAP atribuirEmpresaFAP(EmpresaFAP empresaFap) {
+		EmpresaFAP novoFap = new EmpresaFAP();
+		if (empresaFap != null) {
+			try {
+				novoFap = empresaFap.clone();
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}
+			novoFap.setIdEmpresaFAP(0);
+			return novoFap;
+		}
+		return null;
 	}
 
 }
