@@ -4,7 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -501,11 +500,11 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void salvarCadastroEmpresa(ActionEvent e) {
+		if (this.fotografiaFachadaEmpresa == null) {
+			this.fotografiaFachadaEmpresa = new EmpresaFoto();
+		}
 		try {
 			if (this.empresa.getIdPessoa() == 0) {
-				if (this.fotografiaFachadaEmpresa == null) {
-					this.fotografiaFachadaEmpresa = new EmpresaFoto();
-				}
 				this.pessoaJuridicaFachada.salvarNovoCadastroEmpresa(this.empresa, this.fotografiaFachadaEmpresa,
 						this.usuarioMB.getUsuarioLogado());
 				FacesMessage msg = new FacesMessage("Sucesso",
@@ -520,24 +519,18 @@ public class CadastroEmpresaMB implements Serializable {
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 			}
 			this.initEmpresa();
-			this.empresa = null;
 		} catch (Exception exc) {
 			exc.printStackTrace();
 		}
 	}
 
 	public void excluirCadastroEmpresa(EmpresaEntity empresa) {
-		EmpresaEntity empresaDeletada = pessoaJuridicaFachada.read(empresa.getIdPessoa());
-		if (this.empresa != null) {
-			this.pessoaJuridicaFachada.delete(empresaDeletada);
-			this.initEmpresa();
-			try {
-				this.empresa = null;
-				this.empresaSelecionada = null;
-			} catch (NullPointerException e) {
-				e.printStackTrace();
-			}
+		try {
+			this.pessoaJuridicaFachada.excluirCadastroEmpresa(empresa);
+		} catch (NullPointerException e) {
+			e.printStackTrace();
 		}
+		this.initEmpresa();
 	}
 
 	public void novoCadastroEmpresa(ActionEvent e) {
@@ -619,6 +612,7 @@ public class CadastroEmpresaMB implements Serializable {
 			this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
 			this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
 		} catch (Exception exc) {
+			this.fotografiaFachadaEmpresa = null;
 			exc.printStackTrace();
 		}
 	}
@@ -691,7 +685,7 @@ public class CadastroEmpresaMB implements Serializable {
 	public void separarDadosCadastraisAtualDoHistorico(EmpresaEntity empresa) {
 		this.empresaSelecionada = pessoaJuridicaFachada.read(empresa.getIdPessoa());
 		this.fotografiaFachadaEmpresa = this.empresaSelecionada.getEmpresaFotoFachada();
-		this.listarDadosCadastrais(this.empresaSelecionada);
+		this.selecionarDadoCadastralAtual(this.empresaSelecionada);
 		this.exibirImagemFachadaEmpresa(fotografiaFachadaEmpresa);
 		if (this.empresaSelecionada.getCadastros().remove(dadosCadastraisAtual)) {
 			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
@@ -710,22 +704,10 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 	}
 
-	public void listarDadosCadastrais(EmpresaEntity empresa) {
-		Date dataMaisRecente;
+	public void selecionarDadoCadastralAtual(EmpresaEntity empresa) {
 		this.dadosCadastraisAtual = null;
 		try {
-			if (!empresa.getCadastros().isEmpty()) {
-				this.dadosCadastraisAtual = new EmpresaCadastroEntity();
-				dataMaisRecente = empresa.getCadastros().get(0).getDataInicioCadastro();
-				this.dadosCadastraisAtual = empresa.getCadastros().get(0);
-				for (EmpresaCadastroEntity dadoCadastral : empresa.getCadastros()) {
-					if (dadoCadastral.getDataInicioCadastro().after(dataMaisRecente)
-							&& dadoCadastral.getDataFimCadastro() == null) {
-						dataMaisRecente = dadoCadastral.getDataInicioCadastro();
-						dadosCadastraisAtual = dadoCadastral;
-					}
-				}
-			}
+			this.dadosCadastraisAtual = this.pessoaJuridicaFachada.selecionarDadoCadastralAtual(empresa);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -733,7 +715,7 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void imprimirDadosCadastrais(ActionEvent evt) {
-		reportUtil.GerarRelatorio(empresasDisponiveis, "/report/CadastroEmpresa.jasper", "dadosClientes");
+		pessoaJuridicaFachada.imprimirDadosCadastrais(this.empresasDisponiveis);
 	}
 
 	public void exibirImagemFachadaEmpresa(EmpresaFoto fotoFachada) {
@@ -953,6 +935,28 @@ public class CadastroEmpresaMB implements Serializable {
 	@PostConstruct
 	public void initEmpresa() {
 		try {
+
+			// neste ponto as variáveis devem ser limpas
+			this.empresa = null;
+			this.fotografiaFachadaEmpresa = null;
+			this.grupoSelecionado = null;
+			this.grupoEmpresa = null;
+			this.empresaSelecionada = null;
+			this.empresa = null;
+			this.empresaFap = null;
+			this.fotografiaFachadaEmpresa = null;
+			this.fachadaEmpresa = null;
+			this.empresasDisponiveis = null;
+			this.empresasNaoAtribuidasGrupo = null;
+			this.empresasAtribuidas = null;
+			this.empresasFiltradas = null;
+			this.dadosCadastraisAnterior = null;
+			this.dadosCadastraisAtual = null;
+			this.dadosCadastraisHistorico = null;
+			this.enderecoAtual = null;
+			this.empresas = null;
+			this.grupos = null;
+
 			this.grupos = empresaGrupoFachada.listarGrupoEmpresas(usuarioMB.getUsuarioLogado());
 			this.empresasDisponiveis = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
 			if (this.empresasAtribuidas == null || this.empresasAtribuidas.isEmpty()) {

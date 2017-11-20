@@ -61,9 +61,24 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 		pessoaJuridicaEAO.alterarCadastroEmpresa(empresa, fotografiaFachada, usuarioLogado, fap, dadosCadastraisAtual);
 	}
 	
-	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
-			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap, EmpresaEntity empresaSelecionada) {
-		pessoaJuridicaEAO.salvarDadosCadastraisEmpresa(dadosCadastraisAtual, dadosCadastraisAnterior, empresaFap, empresaSelecionada);
+
+	public void excluirCadastroEmpresa(EmpresaEntity empresa) {
+		pessoaJuridicaEAO.excluirCadastroEmpresa(empresa);
 	}
 
+	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
+			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap, EmpresaEntity empresaSelecionada)
+			throws CloneNotSupportedException {
+		pessoaJuridicaEAO.salvarDadosCadastraisEmpresa(dadosCadastraisAtual, dadosCadastraisAnterior, empresaFap,
+				empresaSelecionada);
+	}
+	
+	public void imprimirDadosCadastrais(List<EmpresaEntity> empresasDisponiveis) {
+		pessoaJuridicaEAO.imprimirDadosCadastrais(empresasDisponiveis);
+	}
+	
+	public EmpresaCadastroEntity selecionarDadoCadastralAtual(EmpresaEntity empresa) throws Exception {
+		return pessoaJuridicaEAO.selecionarDadoCadastralAtual(empresa);
+	}
+	
 }

@@ -1,8 +1,10 @@
 package br.com.smartems.dmatnet.EJB.dao;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -15,6 +17,7 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEnt
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFoto;
+import br.com.smartems.dmatnet.util.ReportUtil;
 
 @Stateless
 @Local
@@ -27,12 +30,17 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		super(EmpresaEntity.class);
 	}
 
+	@EJB
+	private ReportUtil reportUtil;
+
 	@SuppressWarnings("unchecked")
 	public List<EmpresaEntity> listarEmpresas(UsuarioEntity usuarioLogado) throws NoResultException {
 		Query query = entityManager.createNamedQuery("Empresa.listarEmpresasPorUsuario", EmpresaEntity.class);
 		query.setParameter("idUsuario", usuarioLogado.getIdPessoa());
 		return (List<EmpresaEntity>) query.getResultList();
 	}
+
+	// Empresa
 
 	public void salvarNovoCadastroEmpresa(EmpresaEntity empresa, EmpresaFoto fotografiaFachada,
 			UsuarioEntity usuarioLogado) {
@@ -60,7 +68,7 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		this.update(empresa);
 	}
 
-	public void atribuirEmpresaFAP(EmpresaFAP empresaFap, EmpresaCadastroEntity dadosCadastraisAtual) {
+	private void atribuirEmpresaFAP(EmpresaFAP empresaFap, EmpresaCadastroEntity dadosCadastraisAtual) {
 		if (empresaFap != null) {
 			EmpresaFAP novoFap = new EmpresaFAP();
 			try {
@@ -73,13 +81,30 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		}
 	}
 
+	private EmpresaFAP retornarEmpresaFAP(EmpresaFAP empresaFap) throws CloneNotSupportedException {
+		EmpresaFAP novoFap = new EmpresaFAP();
+		if (empresaFap != null) {
+			novoFap = empresaFap.clone();
+			novoFap.setIdEmpresaFAP(0);
+			return novoFap;
+		}
+		return null;
+	}
+
+	public void excluirCadastroEmpresa(EmpresaEntity empresa) throws NullPointerException {
+		EmpresaEntity empresaDeletada = this.read(empresa.getIdPessoa());
+		this.delete(empresaDeletada);
+	}
+
+	// Dados Cadastrais da Empresa
+
 	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
-			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap, EmpresaEntity empresaSelecionada) {
+			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap, EmpresaEntity empresaSelecionada)
+			throws CloneNotSupportedException {
 		if (dadosCadastraisAtual.getId() == 0) {
 			EmpresaEntity novaEmpresaSelecionada = this.read(empresaSelecionada.getIdPessoa());
 			for (EmpresaCadastroEntity dadoCadastral : novaEmpresaSelecionada.getCadastros()) {
-				if (dadoCadastral.getId
-						() == dadosCadastraisAnterior.getId()) {
+				if (dadoCadastral.getId() == dadosCadastraisAnterior.getId()) {
 					Calendar calendar = Calendar.getInstance();
 					calendar.setTime(dadosCadastraisAtual.getDataInicioCadastro());
 					calendar.add(Calendar.DAY_OF_MONTH, -1);
@@ -90,7 +115,7 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 					}
 				}
 			}
-			dadosCadastraisAtual.setEmpresaFAP(this.atribuirEmpresaFAP(empresaFap));
+			dadosCadastraisAtual.setEmpresaFAP(this.retornarEmpresaFAP(empresaFap));
 			novaEmpresaSelecionada.getCadastros().add(dadosCadastraisAtual);
 			this.update(novaEmpresaSelecionada);
 		} else {
@@ -98,19 +123,26 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 			empresaSelecionada = this.update(empresaSelecionada);
 		}
 	}
-	
-	public EmpresaFAP atribuirEmpresaFAP(EmpresaFAP empresaFap) {
-		EmpresaFAP novoFap = new EmpresaFAP();
-		if (empresaFap != null) {
-			try {
-				novoFap = empresaFap.clone();
-			} catch (CloneNotSupportedException e) {
-				e.printStackTrace();
+
+	public void imprimirDadosCadastrais(List<EmpresaEntity> empresasDisponiveis) {
+		reportUtil.GerarRelatorio(empresasDisponiveis, "/report/CadastroEmpresa.jasper", "dadosClientes");
+	}
+
+	public EmpresaCadastroEntity selecionarDadoCadastralAtual(EmpresaEntity empresa) throws Exception {
+		Date dataMaisRecente;
+		EmpresaCadastroEntity dadosCadastraisAtual = new EmpresaCadastroEntity();
+		if (!empresa.getCadastros().isEmpty()) {
+			dataMaisRecente = empresa.getCadastros().get(0).getDataInicioCadastro();
+			dadosCadastraisAtual = empresa.getCadastros().get(0);
+			for (EmpresaCadastroEntity dadoCadastral : empresa.getCadastros()) {
+				if (dadoCadastral.getDataInicioCadastro().compareTo(dataMaisRecente) >= 0
+						&& dadoCadastral.getDataFimCadastro() == null) {
+					dataMaisRecente = dadoCadastral.getDataInicioCadastro();
+					dadosCadastraisAtual = dadoCadastral;
+				}
 			}
-			novoFap.setIdEmpresaFAP(0);
-			return novoFap;
 		}
-		return null;
+		return dadosCadastraisAtual;
 	}
 
 }

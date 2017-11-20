@@ -21,7 +21,14 @@ public interface PessoaJuridicaFacadeLocal extends AbstractFacade<EmpresaEntity>
 	public void alterarCadastroEmpresa(EmpresaEntity empresa, EmpresaFoto fotografiaFachada,
 			UsuarioEntity usuarioLogado, EmpresaFAP fap, EmpresaCadastroEntity dadosCadastraisAtual);
 	
+	public void excluirCadastroEmpresa(EmpresaEntity empresa);
+
 	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
-			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap, EmpresaEntity empresaSelecionada);
+			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap, EmpresaEntity empresaSelecionada)
+			throws CloneNotSupportedException;
+	
+	public void imprimirDadosCadastrais(List<EmpresaEntity> empresasDisponiveis);
+	
+	public EmpresaCadastroEntity selecionarDadoCadastralAtual(EmpresaEntity empresa) throws Exception;
 
 }
