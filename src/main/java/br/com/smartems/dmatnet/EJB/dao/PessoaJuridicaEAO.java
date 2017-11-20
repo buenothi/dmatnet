@@ -86,9 +86,8 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		if (empresaFap != null) {
 			novoFap = empresaFap.clone();
 			novoFap.setIdEmpresaFAP(0);
-			return novoFap;
 		}
-		return null;
+		return novoFap;
 	}
 
 	public void excluirCadastroEmpresa(EmpresaEntity empresa) throws NullPointerException {
