@@ -929,16 +929,10 @@ public class CadastroEmpresaMB implements Serializable {
 			// neste ponto as variáveis devem ser limpas
 			this.empresa = null;
 			this.fotografiaFachadaEmpresa = null;
-			this.grupoSelecionado = null;
-			this.grupoEmpresa = null;
-			this.empresaSelecionada = null;
 			this.empresa = null;
 			this.empresaFap = null;
-			this.fotografiaFachadaEmpresa = null;
 			this.fachadaEmpresa = null;
 			this.empresasDisponiveis = null;
-			this.empresasNaoAtribuidasGrupo = null;
-			this.empresasAtribuidas = null;
 			this.empresasFiltradas = null;
 			this.dadosCadastraisAnterior = null;
 			this.dadosCadastraisAtual = null;

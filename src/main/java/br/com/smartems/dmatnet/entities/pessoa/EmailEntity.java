@@ -10,39 +10,38 @@ import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
 @Entity
-@Table(name="tbl_email")
+@Table(name = "tbl_email")
 public class EmailEntity implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idEmail;
-	
-	@Pattern(regexp = ".+@.+\\.[a-z]+")
+
+	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
 	private String nomeEmail;
 	private String tipoEmail;
 	private static final long serialVersionUID = 1L;
 
-	
 	public EmailEntity() {
 		super();
-	}   
-	
+	}
+
 	public long getIdEmail() {
 		return this.idEmail;
 	}
 
 	public void setIdEmail(long idEmail) {
 		this.idEmail = idEmail;
-	}   
-	
+	}
+
 	public String getNomeEmail() {
 		return this.nomeEmail;
 	}
 
 	public void setNomeEmail(String nomeEmail) {
 		this.nomeEmail = nomeEmail.toUpperCase();
-	}   
-	
+	}
+
 	public String getTipoEmail() {
 		return this.tipoEmail;
 	}
@@ -89,5 +88,5 @@ public class EmailEntity implements Serializable {
 			return false;
 		return true;
 	}
-   
+
 }
