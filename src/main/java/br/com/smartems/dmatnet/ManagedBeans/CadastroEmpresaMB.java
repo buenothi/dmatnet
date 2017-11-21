@@ -685,14 +685,12 @@ public class CadastroEmpresaMB implements Serializable {
 	public void separarDadosCadastraisAtualDoHistorico(EmpresaEntity empresa) {
 		this.empresaSelecionada = pessoaJuridicaFachada.read(empresa.getIdPessoa());
 		this.fotografiaFachadaEmpresa = this.empresaSelecionada.getEmpresaFotoFachada();
-		this.selecionarDadoCadastralAtual(this.empresaSelecionada);
 		this.exibirImagemFachadaEmpresa(fotografiaFachadaEmpresa);
-		if (this.empresaSelecionada.getCadastros().remove(dadosCadastraisAtual)) {
-			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
-		} else {
-			this.dadosCadastraisHistorico = this.getEmpresaSelecionada().getCadastros();
-		}
 		try {
+			this.dadosCadastraisAtual = this.pessoaJuridicaFachada
+					.selecionarDadosCadastraisAtual(this.empresaSelecionada);
+			this.dadosCadastraisHistorico = pessoaJuridicaFachada
+					.selecionarDadosCadastraisHistorico(this.dadosCadastraisAtual, this.empresaSelecionada);
 			if (!this.dadosCadastraisAtual.equals(null)) {
 				this.isBtnDadosCadastraisEditarDesativado = false;
 				this.isDadosCadastraisEditarRender = false;
@@ -701,17 +699,9 @@ public class CadastroEmpresaMB implements Serializable {
 			e.printStackTrace();
 			this.isBtnDadosCadastraisEditarDesativado = true;
 			this.isDadosCadastraisEditarRender = false;
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
-	}
-
-	public void selecionarDadoCadastralAtual(EmpresaEntity empresa) {
-		this.dadosCadastraisAtual = null;
-		try {
-			this.dadosCadastraisAtual = this.pessoaJuridicaFachada.selecionarDadoCadastralAtual(empresa);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	public void imprimirDadosCadastrais(ActionEvent evt) {

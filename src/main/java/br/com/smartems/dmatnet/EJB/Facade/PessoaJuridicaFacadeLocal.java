@@ -29,6 +29,9 @@ public interface PessoaJuridicaFacadeLocal extends AbstractFacade<EmpresaEntity>
 	
 	public void imprimirDadosCadastrais(List<EmpresaEntity> empresasDisponiveis);
 	
-	public EmpresaCadastroEntity selecionarDadoCadastralAtual(EmpresaEntity empresa) throws Exception;
+	public EmpresaCadastroEntity selecionarDadosCadastraisAtual(EmpresaEntity empresa) throws Exception;
+	
+	public List<EmpresaCadastroEntity> selecionarDadosCadastraisHistorico(
+			EmpresaCadastroEntity dadosCadastraisAtual, EmpresaEntity empresaSelecionada) throws Exception;
 
 }

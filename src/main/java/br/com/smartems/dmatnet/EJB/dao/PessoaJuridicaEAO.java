@@ -1,5 +1,6 @@
 package br.com.smartems.dmatnet.EJB.dao;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -127,7 +128,7 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		reportUtil.GerarRelatorio(empresasDisponiveis, "/report/CadastroEmpresa.jasper", "dadosClientes");
 	}
 
-	public EmpresaCadastroEntity selecionarDadoCadastralAtual(EmpresaEntity empresa) throws Exception {
+	public EmpresaCadastroEntity selecionarDadosCadastraisAtual(EmpresaEntity empresa) throws Exception {
 		Date dataMaisRecente;
 		EmpresaCadastroEntity dadosCadastraisAtual = new EmpresaCadastroEntity();
 		if (!empresa.getCadastros().isEmpty()) {
@@ -142,6 +143,14 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 			}
 		}
 		return dadosCadastraisAtual;
+	}
+
+	public List<EmpresaCadastroEntity> selecionarDadosCadastraisHistorico(
+			EmpresaCadastroEntity dadosCadastraisAtual, EmpresaEntity empresaSelecionada) throws Exception {
+		List<EmpresaCadastroEntity> dadosCadastraisHistorico = new ArrayList<EmpresaCadastroEntity>();
+		empresaSelecionada.getCadastros().remove(dadosCadastraisAtual);
+		dadosCadastraisHistorico = empresaSelecionada.getCadastros();
+		return dadosCadastraisHistorico;
 	}
 
 }

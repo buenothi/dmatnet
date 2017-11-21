@@ -77,8 +77,16 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 		pessoaJuridicaEAO.imprimirDadosCadastrais(empresasDisponiveis);
 	}
 	
-	public EmpresaCadastroEntity selecionarDadoCadastralAtual(EmpresaEntity empresa) throws Exception {
-		return pessoaJuridicaEAO.selecionarDadoCadastralAtual(empresa);
+	public EmpresaCadastroEntity selecionarDadosCadastraisAtual(EmpresaEntity empresa) throws Exception {
+		return pessoaJuridicaEAO.selecionarDadosCadastraisAtual(empresa);
 	}
+
+	@Override
+	public List<EmpresaCadastroEntity> selecionarDadosCadastraisHistorico(
+			EmpresaCadastroEntity dadosCadastraisAtual, EmpresaEntity empresaSelecionada) throws Exception {
+		return pessoaJuridicaEAO.selecionarDadosCadastraisHistorico(dadosCadastraisAtual, empresaSelecionada);
+	}
+	
+	
 	
 }
