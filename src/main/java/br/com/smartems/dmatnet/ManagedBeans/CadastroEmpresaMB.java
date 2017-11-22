@@ -33,8 +33,6 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFoto;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaGrupoEntity;
 import br.com.smartems.dmatnet.util.ReportUtil;
 import br.com.smartems.dmatnet.util.StringsUtilitarios;
-import br.com.smartems.dmatnet.util.filtrosCollection.Filter;
-import br.com.smartems.dmatnet.util.filtrosCollection.FiltroEmpresa;
 
 @ManagedBean
 @SessionScoped
@@ -565,12 +563,17 @@ public class CadastroEmpresaMB implements Serializable {
 	// }
 
 	public void filtrarEmpresa(ActionEvent e) {
-		if (!this.nomeEmpresaProcurada.isEmpty()) {
-			this.initEmpresa();
-			this.filtrarEmpresas();
-			this.empresasDisponiveis = this.empresasFiltradas;
-		} else {
-			this.initEmpresa();
+		try {
+			if (!this.nomeEmpresaProcurada.isEmpty()) {
+				this.initEmpresa();
+				this.empresasFiltradas = this.pessoaJuridicaFachada.filtrarEmpresas(nomeEmpresaProcurada,
+						this.empresasDisponiveis);
+				this.empresasDisponiveis = this.empresasFiltradas;
+			} else {
+				this.initEmpresa();
+			}
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
 		}
 	}
 
@@ -942,19 +945,6 @@ public class CadastroEmpresaMB implements Serializable {
 			}
 		}
 		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
-	}
-
-	// filtros para buscas diversas
-
-	public void filtrarEmpresas() {
-		Filter<EmpresaEntity> filtroEmpresa = new FiltroEmpresa();
-		if (this.nomeEmpresaProcurada != null) {
-			this.empresasFiltradas = new ArrayList<EmpresaEntity>();
-			for (EmpresaEntity empresa : this.empresasDisponiveis)
-				if (filtroEmpresa.match(empresa, this.nomeEmpresaProcurada))
-					this.empresasFiltradas.add(empresa);
-
-		}
 	}
 
 	@PostConstruct

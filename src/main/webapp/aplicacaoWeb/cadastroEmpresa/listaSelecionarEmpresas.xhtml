@@ -10,19 +10,25 @@
 <ui:composition>
 	<h:form id="formSelecionarEmpresa">
 		<h:panelGrid columns="1">
-			<p:outputLabel value="#{msgs.TextoSelecionarEmpresa}"/>
+			<p:outputLabel value="#{msgs.TextoSelecionarEmpresa}" />
 			<p:spacer width="100%" height="5px" />
-			<p:commandButton icon="fa fa-plus" value="#{msgs.NovaEmpresa}"
-				onclick="PF('dlgCriarEmpresa').show()"
-				actionListener="#{cadastroEmpresaMB.novoCadastroEmpresa}"
-				update="formCriarEmpresa, formModulos" />
+			<h:panelGrid columns="3" styleClass="tabelaSemBorda">
+				<p:commandButton icon="fa fa-plus" value="#{msgs.NovaEmpresa}"
+					onclick="PF('dlgCriarEmpresa').show()"
+					actionListener="#{cadastroEmpresaMB.novoCadastroEmpresa}"
+					update="formCriarEmpresa, formModulos" />
+				<p:spacer width="10px" height="100%" />
+				<p:commandButton onclick="PF('dlgGrupo').show()" icon="fa fa-group"
+					value="#{msgs.EmpresaGrupoCriar}" />
+			</h:panelGrid>
 		</h:panelGrid>
 
 		<p:spacer width="100%" height="10px" />
 
 		<h:panelGrid columns="2" style="width:100%">
 			<p:inputText id="iptBuscarEmpresa" style="width: 705px"
-				value="#{cadastroEmpresaMB.nomeEmpresaProcurada}" placeholder="#{msgs.DigiteEmpresa}" />
+				value="#{cadastroEmpresaMB.nomeEmpresaProcurada}"
+				placeholder="#{msgs.DigiteEmpresa}" />
 			<h:panelGroup>
 				<p:commandButton icon="fa fa-search"
 					style="font-size:10pt;height:31px"
@@ -50,11 +56,12 @@
 				update="formSuperior, formSelecionarEmpresa:dtbEmpresas, growlPrincipal, formModulos" />
 
 			<p:column headerText="#{msgs.Nome}">
-				<h:outputText value="#{empresa.nome}" converter="stringConverter"/>
+				<h:outputText value="#{empresa.nome}" converter="stringConverter" />
 			</p:column>
 
 			<p:column headerText="#{msgs.EmpresaGrupo}">
-				<h:outputText value="#{empresa.grupo.nomeGrupo}" converter="stringConverter"/>
+				<h:outputText value="#{empresa.grupo.nomeGrupo}"
+					converter="stringConverter" />
 			</p:column>
 
 			<p:column width="55">

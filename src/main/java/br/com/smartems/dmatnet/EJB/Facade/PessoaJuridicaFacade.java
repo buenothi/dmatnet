@@ -60,10 +60,14 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 			UsuarioEntity usuarioLogado, EmpresaFAP fap, EmpresaCadastroEntity dadosCadastraisAtual) {
 		pessoaJuridicaEAO.alterarCadastroEmpresa(empresa, fotografiaFachada, usuarioLogado, fap, dadosCadastraisAtual);
 	}
-	
 
 	public void excluirCadastroEmpresa(EmpresaEntity empresa) {
 		pessoaJuridicaEAO.excluirCadastroEmpresa(empresa);
+	}
+
+	public List<EmpresaEntity> filtrarEmpresas(String nomeEmpresaProcurada, List<EmpresaEntity> empresasDisponiveis)
+			throws NullPointerException {
+		return pessoaJuridicaEAO.filtrarEmpresas(nomeEmpresaProcurada, empresasDisponiveis);
 	}
 
 	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
@@ -72,21 +76,19 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 		pessoaJuridicaEAO.salvarDadosCadastraisEmpresa(dadosCadastraisAtual, dadosCadastraisAnterior, empresaFap,
 				empresaSelecionada);
 	}
-	
+
 	public void imprimirDadosCadastrais(List<EmpresaEntity> empresasDisponiveis) {
 		pessoaJuridicaEAO.imprimirDadosCadastrais(empresasDisponiveis);
 	}
-	
+
 	public EmpresaCadastroEntity selecionarDadosCadastraisAtual(EmpresaEntity empresa) throws Exception {
 		return pessoaJuridicaEAO.selecionarDadosCadastraisAtual(empresa);
 	}
 
 	@Override
-	public List<EmpresaCadastroEntity> selecionarDadosCadastraisHistorico(
-			EmpresaCadastroEntity dadosCadastraisAtual, EmpresaEntity empresaSelecionada) throws Exception {
+	public List<EmpresaCadastroEntity> selecionarDadosCadastraisHistorico(EmpresaCadastroEntity dadosCadastraisAtual,
+			EmpresaEntity empresaSelecionada) throws Exception {
 		return pessoaJuridicaEAO.selecionarDadosCadastraisHistorico(dadosCadastraisAtual, empresaSelecionada);
 	}
-	
-	
-	
+
 }

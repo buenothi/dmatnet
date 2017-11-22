@@ -19,6 +19,8 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFoto;
 import br.com.smartems.dmatnet.util.ReportUtil;
+import br.com.smartems.dmatnet.util.filtrosCollection.Filter;
+import br.com.smartems.dmatnet.util.filtrosCollection.FiltroEmpresa;
 
 @Stateless
 @Local
@@ -96,6 +98,18 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		this.delete(empresaDeletada);
 	}
 
+	public List<EmpresaEntity> filtrarEmpresas(String nomeEmpresaProcurada, List<EmpresaEntity> empresasDisponiveis)
+			throws NullPointerException {
+		Filter<EmpresaEntity> filtroEmpresa = new FiltroEmpresa();
+		List<EmpresaEntity> empresasFiltradas = new ArrayList<EmpresaEntity>();
+		if (nomeEmpresaProcurada != null) {
+			for (EmpresaEntity empresa : empresasDisponiveis)
+				if (filtroEmpresa.match(empresa, nomeEmpresaProcurada))
+					empresasFiltradas.add(empresa);
+		}
+		return empresasFiltradas;
+	}
+
 	// Dados Cadastrais da Empresa
 
 	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
@@ -145,8 +159,8 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		return dadosCadastraisAtual;
 	}
 
-	public List<EmpresaCadastroEntity> selecionarDadosCadastraisHistorico(
-			EmpresaCadastroEntity dadosCadastraisAtual, EmpresaEntity empresaSelecionada) throws Exception {
+	public List<EmpresaCadastroEntity> selecionarDadosCadastraisHistorico(EmpresaCadastroEntity dadosCadastraisAtual,
+			EmpresaEntity empresaSelecionada) throws Exception {
 		List<EmpresaCadastroEntity> dadosCadastraisHistorico = new ArrayList<EmpresaCadastroEntity>();
 		empresaSelecionada.getCadastros().remove(dadosCadastraisAtual);
 		dadosCadastraisHistorico = empresaSelecionada.getCadastros();
