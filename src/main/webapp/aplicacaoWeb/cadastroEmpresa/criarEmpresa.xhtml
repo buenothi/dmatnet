@@ -47,6 +47,10 @@
 						actionListener="#{cadastroEmpresaMB.exibirImagemFachadaEmpresa(cadastroEmpresaMB.empresa.empresaFotoFachada)}"
 						oncomplete="PF('dlgFachadaEmpresa').show()" icon="fa fa-photo"
 						update="dlgFachadaEmpresa" />
+					<p:commandButton value="#{msgs.ExcluirFachada}"
+						actionListener="#{cadastroEmpresaMB.excluirImagemFachadaEmpresa}"
+						oncomplete="PF('dlgFachadaEmpresa').show()" icon="fa fa-trash"
+						update="dlgFachadaEmpresa" disabled="#{cadastroEmpresaMB.btnExcluirFotoFachada}"/>
 				</p:panelGrid>
 
 				<p:outputLabel value="#{msgs.EmpresaGrupo}:" />

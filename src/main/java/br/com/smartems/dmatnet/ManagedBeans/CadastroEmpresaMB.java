@@ -88,6 +88,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private boolean isListaEmpresa = false;
 	private int tipoPessoaJuridicaSelecionada;
 	private String nomeEmpresaProcurada;
+	private boolean isBtnExcluirFotoFachada = true;
 
 	// botões referentes à Edição do Cadastro de Grupo Empresa
 
@@ -302,6 +303,24 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public boolean isListaEmpresa() {
 		return isListaEmpresa;
+	}
+
+	public boolean isBtnExcluirFotoFachada() {
+		try {
+			if (this.empresa.getEmpresaFotoFachada().getFotoFachada().length <= 0) {
+				isBtnExcluirFotoFachada = true;
+			} else {
+				isBtnExcluirFotoFachada = false;
+			}
+		} catch (NullPointerException e) {
+			isBtnExcluirFotoFachada = true;
+			e.printStackTrace();
+		}
+		return isBtnExcluirFotoFachada;
+	}
+
+	public void setBtnExcluirFotoFachada(boolean isBtnExcluirFotoFachada) {
+		this.isBtnExcluirFotoFachada = isBtnExcluirFotoFachada;
 	}
 
 	public boolean isBtnGrupoEditarDesativado() {
@@ -537,6 +556,14 @@ public class CadastroEmpresaMB implements Serializable {
 		this.empresa = new EmpresaEntity();
 	}
 
+	// private void alterarStatusBotaoExcluirEmpresa(){
+	// if(this.empresa.getEmpresaFotoFachada().getFotoFachada().length <= 0){
+	// isBtnExcluirFotoFachada = true;
+	// } else {
+	// isBtnExcluirFotoFachada = false;
+	// }
+	// }
+
 	public void filtrarEmpresa(ActionEvent e) {
 		if (!this.nomeEmpresaProcurada.isEmpty()) {
 			this.initEmpresa();
@@ -712,6 +739,14 @@ public class CadastroEmpresaMB implements Serializable {
 		try {
 			InputStream stream = new ByteArrayInputStream(fotoFachada.getFotoFachada());
 			this.fachadaEmpresa = new DefaultStreamedContent(stream, "image/png");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void excluirImagemFachadaEmpresa(ActionEvent evt) {
+		try {
+			this.fachadaEmpresa = null;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
