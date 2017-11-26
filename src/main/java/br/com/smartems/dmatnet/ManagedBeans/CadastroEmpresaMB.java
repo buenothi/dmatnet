@@ -554,14 +554,6 @@ public class CadastroEmpresaMB implements Serializable {
 		this.empresa = new EmpresaEntity();
 	}
 
-	// private void alterarStatusBotaoExcluirEmpresa(){
-	// if(this.empresa.getEmpresaFotoFachada().getFotoFachada().length <= 0){
-	// isBtnExcluirFotoFachada = true;
-	// } else {
-	// isBtnExcluirFotoFachada = false;
-	// }
-	// }
-
 	public void filtrarEmpresa(ActionEvent e) {
 		try {
 			if (!this.nomeEmpresaProcurada.isEmpty()) {
