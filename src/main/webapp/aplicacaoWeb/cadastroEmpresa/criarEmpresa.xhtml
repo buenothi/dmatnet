@@ -25,32 +25,45 @@
 		<p:spacer width="100%" height="10px" />
 		<h:panelGroup id="pngCadastroNovaEmpresa">
 			<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-				<p:outputLabel value="#{msgs.DataCadastro}:" />
+				<p:outputLabel value="#{msgs.DataCadastro}*:" />
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-					<p:calendar id="calDataCadastro" locale="pt" showOn="button" showButtonPanel="true"
-						pattern="dd/MM/yyyy" mask="true" size="8"
+					<p:calendar id="calDataCadastro" locale="pt" showOn="button"
+						showButtonPanel="true" pattern="dd/MM/yyyy" mask="true" size="8"
 						value="#{cadastroEmpresaMB.empresa.cadastroPessoa}"
 						required="true" label="#{msgs.DataCadastro}" />
-						<p:message for="calDataCadastro" />
+					<p:message for="calDataCadastro" />
 				</p:panelGrid>
 
 				<p:outputLabel value="#{msgs.NomeFantasia}*:" />
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-					<p:inputText id="iptNomeFantasia" size="25" value="#{cadastroEmpresaMB.empresa.nome}"
-						required="true" label="#{msgs.NomeFantasia}" />
-						<p:message for="iptNomeFantasia" />
+					<p:inputText id="iptNomeFantasia" size="25"
+						value="#{cadastroEmpresaMB.empresa.nome}" required="true"
+						label="#{msgs.NomeFantasia}" />
+					<p:message for="iptNomeFantasia" />
 				</p:panelGrid>
 
-				<p:outputLabel value="#{msgs.FachadaEmpresa}*:" />
+				<p:outputLabel value="#{msgs.FachadaEmpresa}:" />
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 					<p:commandButton value="#{msgs.FachadaEmpresa}"
 						actionListener="#{cadastroEmpresaMB.exibirImagemFachadaEmpresa(cadastroEmpresaMB.empresa.empresaFotoFachada)}"
 						oncomplete="PF('dlgFachadaEmpresa').show()" icon="fa fa-photo"
 						update="dlgFachadaEmpresa" />
-					<p:commandButton value="#{msgs.ExcluirFachada}"
+					<p:commandButton
 						actionListener="#{cadastroEmpresaMB.excluirImagemFachadaEmpresa}"
-						oncomplete="PF('dlgFachadaEmpresa').show()" icon="fa fa-trash"
-						update="dlgFachadaEmpresa" disabled="#{cadastroEmpresaMB.btnExcluirFotoFachada}"/>
+						icon="fa fa-trash" update="@this, dlgFachadaEmpresa"
+						disabled="#{cadastroEmpresaMB.btnExcluirFotoFachada}" />
+				</p:panelGrid>
+
+				<p:outputLabel value="#{msgs.Logotipo}:" />
+				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+					<p:commandButton value="#{msgs.Logotipo}"
+						actionListener="#{cadastroEmpresaMB.exibirImagemFachadaEmpresa(cadastroEmpresaMB.empresa.empresaFotoFachada)}"
+						oncomplete="PF('dlgFachadaEmpresa').show()" icon="fa fa-photo"
+						update="dlgFachadaEmpresa" />
+					<p:commandButton
+						actionListener="#{cadastroEmpresaMB.excluirImagemFachadaEmpresa}"
+						icon="fa fa-trash" update="@this, dlgFachadaEmpresa"
+						disabled="#{cadastroEmpresaMB.btnExcluirFotoFachada}" />
 				</p:panelGrid>
 
 				<p:outputLabel value="#{msgs.EmpresaGrupo}:" />
