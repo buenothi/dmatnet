@@ -11,6 +11,7 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEnt
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFoto;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaLogotipo;
 
 @Stateless
 public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
@@ -52,13 +53,15 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 	}
 
 	public void salvarNovoCadastroEmpresa(EmpresaEntity empresa, EmpresaFoto fotografiaFachada,
-			UsuarioEntity usuarioLogado) {
-		pessoaJuridicaEAO.salvarNovoCadastroEmpresa(empresa, fotografiaFachada, usuarioLogado);
+			EmpresaLogotipo empresaLogotipo, UsuarioEntity usuarioLogado) {
+		pessoaJuridicaEAO.salvarNovoCadastroEmpresa(empresa, fotografiaFachada, empresaLogotipo, usuarioLogado);
 	}
 
 	public void alterarCadastroEmpresa(EmpresaEntity empresa, EmpresaFoto fotografiaFachada,
-			UsuarioEntity usuarioLogado, EmpresaFAP fap, EmpresaCadastroEntity dadosCadastraisAtual) {
-		pessoaJuridicaEAO.alterarCadastroEmpresa(empresa, fotografiaFachada, usuarioLogado, fap, dadosCadastraisAtual);
+			EmpresaLogotipo empresaLogotipo, UsuarioEntity usuarioLogado, EmpresaFAP fap,
+			EmpresaCadastroEntity dadosCadastraisAtual) {
+		pessoaJuridicaEAO.alterarCadastroEmpresa(empresa, fotografiaFachada, empresaLogotipo, usuarioLogado, fap,
+				dadosCadastraisAtual);
 	}
 
 	public void excluirCadastroEmpresa(EmpresaEntity empresa) {

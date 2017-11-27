@@ -151,12 +151,29 @@
 			<p:panelGrid columns="1" styleClass="tabelaSemBorda">
 				<p:graphicImage id="gpiFachadaEmpresa"
 					value="#{cadastroEmpresaMB.fachadaEmpresa}" height="180"
-					cache="false" style="margin-left:10%;margin-right:10%;" />
+					cache="false"/>
 				<p:fileUpload style="height: 100%" mode="advanced"
 					dragDropSupport="true" sizeLimit="10000000"
 					allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
 					fileUploadListener="#{cadastroEmpresaMB.gravarImagemFachada}"
-					update="formFachadaEmpresa:gpiFachadaEmpresa" />
+					update="@this, formCriarEmpresa, formFachadaEmpresa:gpiFachadaEmpresa" />
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+	
+	<p:dialog header="#{msgs.Logotipo}" id="dlgLogotipo"
+		widgetVar="dlgLogotipo" closable="true" resizable="false"
+		modal="false" fitViewport="true" responsive="true" >
+		<h:form id="formLogotipo">
+			<p:panelGrid columns="1" styleClass="tabelaSemBorda">
+				<p:graphicImage id="gpiLogotipo"
+					value="#{cadastroEmpresaMB.logotipo}" height="180"
+					cache="false"/>
+				<p:fileUpload style="height: 100%" mode="advanced"
+					dragDropSupport="true" sizeLimit="10000000"
+					allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+					fileUploadListener="#{cadastroEmpresaMB.gravarLogotipo}"
+					update="@this, formCriarEmpresa, formLogotipo:gpiLogotipo" />
 			</p:panelGrid>
 		</h:form>
 	</p:dialog>

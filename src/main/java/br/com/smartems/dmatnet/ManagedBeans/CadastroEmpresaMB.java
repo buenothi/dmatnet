@@ -31,6 +31,7 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFoto;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaGrupoEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaLogotipo;
 import br.com.smartems.dmatnet.util.ReportUtil;
 import br.com.smartems.dmatnet.util.StringsUtilitarios;
 
@@ -64,6 +65,8 @@ public class CadastroEmpresaMB implements Serializable {
 	private EmpresaFAP empresaFap;
 	private EmpresaFoto fotografiaFachadaEmpresa;
 	private DefaultStreamedContent fachadaEmpresa;
+	private EmpresaLogotipo empresaLogotipo;
+	private DefaultStreamedContent logotipo;
 
 	private List<EmpresaEntity> empresasDisponiveis;
 	private List<EmpresaEntity> empresasNaoAtribuidasGrupo;
@@ -87,6 +90,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private int tipoPessoaJuridicaSelecionada;
 	private String nomeEmpresaProcurada;
 	private boolean isBtnExcluirFotoFachada = true;
+	private boolean isBtnExcluirFotoLogotipo = true;
 
 	// botões referentes à Edição do Cadastro de Grupo Empresa
 
@@ -190,6 +194,22 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setFachadaEmpresa(DefaultStreamedContent fachadaEmpresa) {
 		this.fachadaEmpresa = fachadaEmpresa;
+	}
+
+	public EmpresaLogotipo getEmpresaLogotipo() {
+		return empresaLogotipo;
+	}
+
+	public void setEmpresaLogotipo(EmpresaLogotipo empresaLogotipo) {
+		this.empresaLogotipo = empresaLogotipo;
+	}
+
+	public DefaultStreamedContent getLogotipo() {
+		return logotipo;
+	}
+
+	public void setLogotipo(DefaultStreamedContent logotipo) {
+		this.logotipo = logotipo;
 	}
 
 	public String tipoInscricaoPJ(int tipoInscricao) {
@@ -319,6 +339,24 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setBtnExcluirFotoFachada(boolean isBtnExcluirFotoFachada) {
 		this.isBtnExcluirFotoFachada = isBtnExcluirFotoFachada;
+	}
+	
+	public boolean isBtnExcluirFotoLogotipo() {
+		try {
+			if (this.empresa.getEmpresaLogotipo().getLogotipo().length <= 0) {
+				isBtnExcluirFotoLogotipo = true;
+			} else {
+				isBtnExcluirFotoLogotipo = false;
+			}
+		} catch (NullPointerException e) {
+			isBtnExcluirFotoLogotipo = true;
+			e.printStackTrace();
+		}
+		return isBtnExcluirFotoLogotipo;
+	}
+
+	public void setBtnExcluirFotoLogotipo(boolean isBtnExcluirFotoLogotipo) {
+		this.isBtnExcluirFotoLogotipo = isBtnExcluirFotoLogotipo;
 	}
 
 	public boolean isBtnGrupoEditarDesativado() {
@@ -509,7 +547,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void cancelarCadastroEmpresa(ActionEvent e) {
 		this.initEmpresa();
-		this.exibirImagemFachadaEmpresa(this.empresa.getEmpresaFotoFachada());
+		this.exibirImagem(this.empresa.getEmpresaFotoFachada());
 		FacesMessage msg = new FacesMessage("Cancelado",
 				stringUtils.formatarTextoParaLeitura("A empresa \" " + this.empresa.getNome().toString())
 						+ " \" não foi alterada");
@@ -523,13 +561,13 @@ public class CadastroEmpresaMB implements Serializable {
 		try {
 			if (this.empresa.getIdPessoa() == 0) {
 				this.pessoaJuridicaFachada.salvarNovoCadastroEmpresa(this.empresa, this.fotografiaFachadaEmpresa,
-						this.usuarioMB.getUsuarioLogado());
+						this.empresaLogotipo, this.usuarioMB.getUsuarioLogado());
 				FacesMessage msg = new FacesMessage("Sucesso",
 						stringUtils.formatarTextoParaLeitura(this.empresa.getNome().toString()) + " Salvo com Sucesso");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 			} else {
 				this.pessoaJuridicaFachada.alterarCadastroEmpresa(this.empresa, fotografiaFachadaEmpresa,
-						this.usuarioMB.getUsuarioLogado(), this.empresaFap, this.dadosCadastraisAtual);
+						this.empresaLogotipo, this.usuarioMB.getUsuarioLogado(), this.empresaFap, this.dadosCadastraisAtual);
 				FacesMessage msg = new FacesMessage("Sucesso",
 						stringUtils.formatarTextoParaLeitura(this.empresa.getNome().toString())
 								+ " Atualizado com Sucesso");
@@ -591,7 +629,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisCancelarDesativado = false;
 		this.isBtnDadosCadastraisSalvarDesativado = false;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = true;
-		this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
+		this.exibirImagem(this.fotografiaFachadaEmpresa);
 		this.empresaFap = this.dadosCadastraisAtual.getEmpresaFAP();
 	}
 
@@ -601,7 +639,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisSalvarDesativado = true;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = false;
 		this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
-		this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
+		this.exibirImagem(this.fotografiaFachadaEmpresa);
 		this.dadosCadastraisAtual = null;
 		this.separarDadosCadastraisAtualDoHistorico(this.empresaSelecionada);
 	}
@@ -616,13 +654,13 @@ public class CadastroEmpresaMB implements Serializable {
 					.compareTo(dadosCadastraisAnterior.getDataInicioCadastro()) >= 0) {
 				this.pessoaJuridicaFachada.salvarDadosCadastraisEmpresa(this.dadosCadastraisAtual,
 						this.dadosCadastraisAnterior, this.empresaFap, this.empresaSelecionada);
-				this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
+				this.exibirImagem(this.fotografiaFachadaEmpresa);
 				this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
 			} else {
 				FacesMessage msg = new FacesMessage("Erro",
 						"A data de início do Cadastro deverá ser igual ou superior à data de início do cadastro anterior");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
-				this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
+				this.exibirImagem(this.fotografiaFachadaEmpresa);
 				this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
 
 			}
@@ -631,7 +669,7 @@ public class CadastroEmpresaMB implements Serializable {
 			this.atribuirEmpresaFAP(this.empresaFap);
 			this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
 			this.empresaSelecionada = this.pessoaJuridicaFachada.update(this.empresaSelecionada);
-			this.exibirImagemFachadaEmpresa(this.fotografiaFachadaEmpresa);
+			this.exibirImagem(this.fotografiaFachadaEmpresa);
 			this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
 		} catch (Exception exc) {
 			this.fotografiaFachadaEmpresa = null;
@@ -701,13 +739,20 @@ public class CadastroEmpresaMB implements Serializable {
 		fotografiaFachadaEmpresa = new EmpresaFoto();
 		fotografiaFachadaEmpresa.setFotoFachada(evt.getFile().getContents());
 		this.empresa.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
-		this.exibirImagemFachadaEmpresa(fotografiaFachadaEmpresa);
+		this.exibirImagem(fotografiaFachadaEmpresa);
+	}
+
+	public void gravarLogotipo(FileUploadEvent evt) {
+		empresaLogotipo = new EmpresaLogotipo();
+		empresaLogotipo.setLogotipo(evt.getFile().getContents());
+		this.empresa.setEmpresaLogotipo(empresaLogotipo);
+		this.exibirImagem(empresaLogotipo);
 	}
 
 	public void separarDadosCadastraisAtualDoHistorico(EmpresaEntity empresa) {
 		this.empresaSelecionada = pessoaJuridicaFachada.read(empresa.getIdPessoa());
 		this.fotografiaFachadaEmpresa = this.empresaSelecionada.getEmpresaFotoFachada();
-		this.exibirImagemFachadaEmpresa(fotografiaFachadaEmpresa);
+		this.exibirImagem(fotografiaFachadaEmpresa);
 		try {
 			this.dadosCadastraisAtual = this.pessoaJuridicaFachada
 					.selecionarDadosCadastraisAtual(this.empresaSelecionada);
@@ -730,18 +775,37 @@ public class CadastroEmpresaMB implements Serializable {
 		pessoaJuridicaFachada.imprimirDadosCadastrais(this.empresasDisponiveis);
 	}
 
-	public void exibirImagemFachadaEmpresa(EmpresaFoto fotoFachada) {
-		try {
-			InputStream stream = new ByteArrayInputStream(fotoFachada.getFotoFachada());
-			this.fachadaEmpresa = new DefaultStreamedContent(stream, "image/png");
-		} catch (Exception e) {
-			e.printStackTrace();
+	public void exibirImagem(Serializable imagem) {
+		if (imagem instanceof EmpresaFoto) {
+			try {
+				InputStream stream = new ByteArrayInputStream(((EmpresaFoto) imagem).getFotoFachada());
+				this.fachadaEmpresa = new DefaultStreamedContent(stream, "image/png");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (imagem instanceof EmpresaLogotipo) {
+			try {
+				InputStream stream = new ByteArrayInputStream(((EmpresaLogotipo) imagem).getLogotipo());
+				this.logotipo = new DefaultStreamedContent(stream, "image/png");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
 	public void excluirImagemFachadaEmpresa(ActionEvent evt) {
 		try {
 			this.fachadaEmpresa = null;
+			this.empresa.getEmpresaFotoFachada().setFotoFachada(null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void excluirImagemLogotipo(ActionEvent evt) {
+		try {
+			this.logotipo = null;
+			this.empresa.getEmpresaLogotipo().setLogotipo(null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -949,6 +1013,7 @@ public class CadastroEmpresaMB implements Serializable {
 			this.empresa = null;
 			this.empresaFap = null;
 			this.fachadaEmpresa = null;
+			this.logotipo = null;
 			this.empresasDisponiveis = null;
 			this.empresasFiltradas = null;
 			this.dadosCadastraisAnterior = null;

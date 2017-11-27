@@ -45,7 +45,7 @@
 				<p:outputLabel value="#{msgs.FachadaEmpresa}:" />
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 					<p:commandButton value="#{msgs.FachadaEmpresa}"
-						actionListener="#{cadastroEmpresaMB.exibirImagemFachadaEmpresa(cadastroEmpresaMB.empresa.empresaFotoFachada)}"
+						actionListener="#{cadastroEmpresaMB.exibirImagem(cadastroEmpresaMB.empresa.empresaFotoFachada)}"
 						oncomplete="PF('dlgFachadaEmpresa').show()" icon="fa fa-photo"
 						update="dlgFachadaEmpresa" />
 					<p:commandButton
@@ -57,13 +57,13 @@
 				<p:outputLabel value="#{msgs.Logotipo}:" />
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 					<p:commandButton value="#{msgs.Logotipo}"
-						actionListener="#{cadastroEmpresaMB.exibirImagemFachadaEmpresa(cadastroEmpresaMB.empresa.empresaFotoFachada)}"
-						oncomplete="PF('dlgFachadaEmpresa').show()" icon="fa fa-photo"
-						update="dlgFachadaEmpresa" />
+						actionListener="#{cadastroEmpresaMB.exibirImagem(cadastroEmpresaMB.empresa.empresaFotoFachada)}"
+						oncomplete="PF('dlgLogotipo').show()" icon="fa fa-photo"
+						update="dlgLogotipo" />
 					<p:commandButton
-						actionListener="#{cadastroEmpresaMB.excluirImagemFachadaEmpresa}"
-						icon="fa fa-trash" update="@this, dlgFachadaEmpresa"
-						disabled="#{cadastroEmpresaMB.btnExcluirFotoFachada}" />
+						actionListener="#{cadastroEmpresaMB.excluirImagemLogotipo}"
+						icon="fa fa-trash" update="@this, dlgLogotipo"
+						disabled="#{cadastroEmpresaMB.btnExcluirFotoLogotipo}" />
 				</p:panelGrid>
 
 				<p:outputLabel value="#{msgs.EmpresaGrupo}:" />

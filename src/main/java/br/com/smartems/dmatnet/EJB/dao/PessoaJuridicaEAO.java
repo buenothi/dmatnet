@@ -18,6 +18,7 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEnt
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFoto;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaLogotipo;
 import br.com.smartems.dmatnet.util.ReportUtil;
 import br.com.smartems.dmatnet.util.filtrosCollection.Filter;
 import br.com.smartems.dmatnet.util.filtrosCollection.FiltroEmpresa;
@@ -46,12 +47,15 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 	// Empresa
 
 	public void salvarNovoCadastroEmpresa(EmpresaEntity empresa, EmpresaFoto fotografiaFachada,
-			UsuarioEntity usuarioLogado) {
+			EmpresaLogotipo empresaLogotipo, UsuarioEntity usuarioLogado) {
 		try {
 			if (empresa.getIdPessoa() == 0) {
 				empresa.setUsuarioCriador(usuarioLogado);
 				if (fotografiaFachada != null) {
 					empresa.setEmpresaFotoFachada(fotografiaFachada);
+				}
+				if (empresaLogotipo != null) {
+					empresa.setEmpresaLogotipo(empresaLogotipo);
 				}
 				this.create(empresa);
 				empresa = null;
@@ -62,10 +66,14 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 	}
 
 	public void alterarCadastroEmpresa(EmpresaEntity empresa, EmpresaFoto fotografiaFachada,
-			UsuarioEntity usuarioLogado, EmpresaFAP fap, EmpresaCadastroEntity dadosCadastraisAtual) {
+			EmpresaLogotipo empresaLogotipo, UsuarioEntity usuarioLogado, EmpresaFAP fap,
+			EmpresaCadastroEntity dadosCadastraisAtual) {
 		empresa.setUsuarioCriador(usuarioLogado);
 		if (fotografiaFachada != null) {
 			empresa.setEmpresaFotoFachada(fotografiaFachada);
+		}
+		if (empresaLogotipo != null) {
+			empresa.setEmpresaLogotipo(empresaLogotipo);
 		}
 		this.atribuirEmpresaFAP(fap, dadosCadastraisAtual);
 		this.update(empresa);

@@ -9,6 +9,7 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEnt
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFoto;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaLogotipo;
 
 @Local
 public interface PessoaJuridicaFacadeLocal extends AbstractFacade<EmpresaEntity> {
@@ -16,10 +17,10 @@ public interface PessoaJuridicaFacadeLocal extends AbstractFacade<EmpresaEntity>
 	public List<EmpresaEntity> listarEmpresas(UsuarioEntity usuarioLogado);
 
 	public void salvarNovoCadastroEmpresa(EmpresaEntity empresa, EmpresaFoto fotografiaFachada,
-			UsuarioEntity usuarioLogado);
+			EmpresaLogotipo empresaLogotipo, UsuarioEntity usuarioLogado);
 
 	public void alterarCadastroEmpresa(EmpresaEntity empresa, EmpresaFoto fotografiaFachada,
-			UsuarioEntity usuarioLogado, EmpresaFAP fap, EmpresaCadastroEntity dadosCadastraisAtual);
+			EmpresaLogotipo empresaLogotipo, UsuarioEntity usuarioLogado, EmpresaFAP fap, EmpresaCadastroEntity dadosCadastraisAtual);
 
 	public void excluirCadastroEmpresa(EmpresaEntity empresa);
 

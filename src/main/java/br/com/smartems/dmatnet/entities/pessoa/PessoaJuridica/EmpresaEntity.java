@@ -30,11 +30,13 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 	@JoinColumn(name = "grupo_ID")
 	private EmpresaGrupoEntity grupo;
 
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
+			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "empresa_ID")
 	private List<EmpresaCadastroEntity> cadastros;
 
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
+			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "empresa_ID")
 	private List<LocalTrabalhoEntity> locais;
 
@@ -49,6 +51,11 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "empresaFoto_ID")
 	private EmpresaFoto empresaFotoFachada;
+
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
+			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
+	@JoinColumn(name = "empresaLogotipo_ID")
+	private EmpresaLogotipo empresaLogotipo;
 
 	private String tipoEstabelecimento;
 
@@ -120,6 +127,14 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 
 	public void setEmpresaFotoFachada(EmpresaFoto empresaFotoFachada) {
 		this.empresaFotoFachada = empresaFotoFachada;
+	}
+
+	public EmpresaLogotipo getEmpresaLogotipo() {
+		return empresaLogotipo;
+	}
+
+	public void setEmpresaLogotipo(EmpresaLogotipo empresaLogotipo) {
+		this.empresaLogotipo = empresaLogotipo;
 	}
 
 }
