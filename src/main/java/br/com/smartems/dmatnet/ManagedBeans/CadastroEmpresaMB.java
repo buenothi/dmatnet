@@ -340,7 +340,7 @@ public class CadastroEmpresaMB implements Serializable {
 	public void setBtnExcluirFotoFachada(boolean isBtnExcluirFotoFachada) {
 		this.isBtnExcluirFotoFachada = isBtnExcluirFotoFachada;
 	}
-	
+
 	public boolean isBtnExcluirFotoLogotipo() {
 		try {
 			if (this.empresa.getEmpresaLogotipo().getLogotipo().length <= 0) {
@@ -556,12 +556,6 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void salvarCadastroEmpresa(ActionEvent e) {
-		if (this.fotografiaFachadaEmpresa == null) {
-			this.fotografiaFachadaEmpresa = new EmpresaFoto();
-		}
-		if (this.empresaLogotipo == null) {
-			this.empresaLogotipo = new EmpresaLogotipo();
-		}
 		try {
 			if (this.empresa.getIdPessoa() == 0) {
 				this.pessoaJuridicaFachada.salvarNovoCadastroEmpresa(this.empresa, this.fotografiaFachadaEmpresa,
@@ -570,8 +564,8 @@ public class CadastroEmpresaMB implements Serializable {
 						stringUtils.formatarTextoParaLeitura(this.empresa.getNome().toString()) + " Salvo com Sucesso");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 			} else {
-				this.pessoaJuridicaFachada.alterarCadastroEmpresa(this.empresa, fotografiaFachadaEmpresa,
-						this.empresaLogotipo, this.usuarioMB.getUsuarioLogado(), this.empresaFap, this.dadosCadastraisAtual);
+				this.pessoaJuridicaFachada.alterarCadastroEmpresa(this.empresa, this.usuarioMB.getUsuarioLogado(),
+						this.empresaFap, this.dadosCadastraisAtual);
 				FacesMessage msg = new FacesMessage("Sucesso",
 						stringUtils.formatarTextoParaLeitura(this.empresa.getNome().toString())
 								+ " Atualizado com Sucesso");
@@ -805,7 +799,7 @@ public class CadastroEmpresaMB implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void excluirImagemLogotipo(ActionEvent evt) {
 		try {
 			this.logotipo = null;

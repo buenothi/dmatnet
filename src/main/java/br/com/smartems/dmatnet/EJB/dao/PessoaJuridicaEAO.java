@@ -65,16 +65,9 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		}
 	}
 
-	public void alterarCadastroEmpresa(EmpresaEntity empresa, EmpresaFoto fotografiaFachada,
-			EmpresaLogotipo empresaLogotipo, UsuarioEntity usuarioLogado, EmpresaFAP fap,
+	public void alterarCadastroEmpresa(EmpresaEntity empresa, UsuarioEntity usuarioLogado, EmpresaFAP fap,
 			EmpresaCadastroEntity dadosCadastraisAtual) {
 		empresa.setUsuarioCriador(usuarioLogado);
-		if (fotografiaFachada != null) {
-			empresa.setEmpresaFotoFachada(fotografiaFachada);
-		}
-		if (empresaLogotipo != null) {
-			empresa.setEmpresaLogotipo(empresaLogotipo);
-		}
 		this.atribuirEmpresaFAP(fap, dadosCadastraisAtual);
 		this.update(empresa);
 	}
