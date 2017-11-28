@@ -548,6 +548,7 @@ public class CadastroEmpresaMB implements Serializable {
 	public void cancelarCadastroEmpresa(ActionEvent e) {
 		this.initEmpresa();
 		this.exibirImagem(this.empresa.getEmpresaFotoFachada());
+		this.exibirImagem(this.empresa.getEmpresaLogotipo());
 		FacesMessage msg = new FacesMessage("Cancelado",
 				stringUtils.formatarTextoParaLeitura("A empresa \" " + this.empresa.getNome().toString())
 						+ " \" não foi alterada");
@@ -557,6 +558,9 @@ public class CadastroEmpresaMB implements Serializable {
 	public void salvarCadastroEmpresa(ActionEvent e) {
 		if (this.fotografiaFachadaEmpresa == null) {
 			this.fotografiaFachadaEmpresa = new EmpresaFoto();
+		}
+		if (this.empresaLogotipo == null) {
+			this.empresaLogotipo = new EmpresaLogotipo();
 		}
 		try {
 			if (this.empresa.getIdPessoa() == 0) {
@@ -778,15 +782,15 @@ public class CadastroEmpresaMB implements Serializable {
 	public void exibirImagem(Serializable imagem) {
 		if (imagem instanceof EmpresaFoto) {
 			try {
-				InputStream stream = new ByteArrayInputStream(((EmpresaFoto) imagem).getFotoFachada());
-				this.fachadaEmpresa = new DefaultStreamedContent(stream, "image/png");
+				InputStream streamFachada = new ByteArrayInputStream(((EmpresaFoto) imagem).getFotoFachada());
+				this.fachadaEmpresa = new DefaultStreamedContent(streamFachada, "image/png");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else if (imagem instanceof EmpresaLogotipo) {
 			try {
-				InputStream stream = new ByteArrayInputStream(((EmpresaLogotipo) imagem).getLogotipo());
-				this.logotipo = new DefaultStreamedContent(stream, "image/png");
+				InputStream streamLogotipo = new ByteArrayInputStream(((EmpresaLogotipo) imagem).getLogotipo());
+				this.logotipo = new DefaultStreamedContent(streamLogotipo, "image/png");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
