@@ -11,7 +11,8 @@
 	<h:form id="formCriarEmpresa">
 		<h:panelGroup>
 			<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-				<p:commandButton id="btnSalvarEmpresa" icon="fa fa-save" value="#{msgs.Salvar}"
+				<p:commandButton id="btnSalvarEmpresa" icon="fa fa-save"
+					value="#{msgs.Salvar}"
 					actionListener="#{cadastroEmpresaMB.salvarCadastroEmpresa}"
 					update="formSelecionarEmpresa, formModulos, formCriarEmpresa, growlPrincipal"
 					disabled="#{cadastroEmpresaMB.btnEmpresaSalvarAlteracoes}" />
@@ -46,7 +47,7 @@
 				</p:panelGrid>
 
 				<p:outputLabel value="#{msgs.FachadaEmpresa}:" />
-				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+				<p:panelGrid columns="3" styleClass="tabelaSemBorda">
 					<p:commandButton value="#{msgs.FachadaEmpresa}"
 						actionListener="#{cadastroEmpresaMB.exibirImagem(cadastroEmpresaMB.empresa.empresaFotoFachada)}"
 						oncomplete="PF('dlgFachadaEmpresa').show()" icon="fa fa-photo"
@@ -55,10 +56,12 @@
 						actionListener="#{cadastroEmpresaMB.excluirImagemFachadaEmpresa}"
 						icon="fa fa-trash" update="@this, dlgFachadaEmpresa"
 						disabled="#{cadastroEmpresaMB.btnExcluirFotoFachada}" />
+					<p:outputLabel id="oplFachadaAlterada" style="color:red;font-size:small" value="#{msgs.MensagemFoto}"
+						rendered="#{cadastroEmpresaMB.fotoAlterada}" />
 				</p:panelGrid>
 
 				<p:outputLabel value="#{msgs.Logotipo}:" />
-				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+				<p:panelGrid columns="3" styleClass="tabelaSemBorda">
 					<p:commandButton value="#{msgs.Logotipo}"
 						actionListener="#{cadastroEmpresaMB.exibirImagem(cadastroEmpresaMB.empresa.empresaLogotipo)}"
 						oncomplete="PF('dlgLogotipo').show()" icon="fa fa-photo"
@@ -67,6 +70,8 @@
 						actionListener="#{cadastroEmpresaMB.excluirImagemLogotipo}"
 						icon="fa fa-trash" update="@this, dlgLogotipo"
 						disabled="#{cadastroEmpresaMB.btnExcluirFotoLogotipo}" />
+					<p:outputLabel id="oplLogoAlterado" style="color:red;font-size:small" value="#{msgs.MensagemLogo}"
+						rendered="#{cadastroEmpresaMB.logoAlterado}" />
 				</p:panelGrid>
 
 				<p:outputLabel value="#{msgs.EmpresaGrupo}:" />

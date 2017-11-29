@@ -64,8 +64,10 @@ public class CadastroEmpresaMB implements Serializable {
 	private EmpresaEntity empresa;
 	private EmpresaFAP empresaFap;
 	private EmpresaFoto fotografiaFachadaEmpresa;
+	private EmpresaFoto fotografiaFachadaAntiga;
 	private DefaultStreamedContent fachadaEmpresa;
 	private EmpresaLogotipo empresaLogotipo;
+	private EmpresaLogotipo empresaLogotipoAntigo;
 	private DefaultStreamedContent logotipo;
 
 	private List<EmpresaEntity> empresasDisponiveis;
@@ -92,6 +94,8 @@ public class CadastroEmpresaMB implements Serializable {
 	private boolean isBtnEmpresaSalvarAlteracoes = true;
 	private boolean isBtnExcluirFotoFachada = true;
 	private boolean isBtnExcluirFotoLogotipo = true;
+	private boolean isFotoAlterada = false;
+	private boolean isLogoAlterado = false;
 
 	// botões referentes à Edição do Cadastro de Grupo Empresa
 
@@ -374,6 +378,40 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setBtnExcluirFotoLogotipo(boolean isBtnExcluirFotoLogotipo) {
 		this.isBtnExcluirFotoLogotipo = isBtnExcluirFotoLogotipo;
+	}
+
+	public boolean isFotoAlterada() {
+		try {
+			if (this.fotografiaFachadaAntiga.equals(this.empresa.getEmpresaFotoFachada())) {
+				this.isFotoAlterada = false;
+			} else {
+				this.isFotoAlterada = true;
+			}
+		} catch (NullPointerException e) {
+			this.isFotoAlterada = false;
+		}
+		return isFotoAlterada;
+	}
+
+	public void setFotoAlterada(boolean isFotoAlterada) {
+		this.isFotoAlterada = isFotoAlterada;
+	}
+
+	public boolean isLogoAlterado() {
+		try {
+			if (this.empresaLogotipoAntigo.equals(this.empresa.getEmpresaLogotipo())) {
+				this.isLogoAlterado = false;
+			} else {
+				this.isLogoAlterado = true;
+			}
+		} catch (NullPointerException e) {
+			this.isLogoAlterado = false;
+		}
+		return isLogoAlterado;
+	}
+
+	public void setLogoAlterado(boolean isLogoAlterado) {
+		this.isLogoAlterado = isLogoAlterado;
 	}
 
 	public boolean isBtnGrupoEditarDesativado() {
@@ -753,6 +791,11 @@ public class CadastroEmpresaMB implements Serializable {
 	public void gravarImagemFachada(FileUploadEvent evt) {
 		fotografiaFachadaEmpresa = new EmpresaFoto();
 		fotografiaFachadaEmpresa.setFotoFachada(evt.getFile().getContents());
+		try {
+			this.fotografiaFachadaAntiga = this.empresa.getEmpresaFotoFachada().clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
 		this.empresa.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
 		this.exibirImagem(fotografiaFachadaEmpresa);
 	}
@@ -760,6 +803,11 @@ public class CadastroEmpresaMB implements Serializable {
 	public void gravarLogotipo(FileUploadEvent evt) {
 		empresaLogotipo = new EmpresaLogotipo();
 		empresaLogotipo.setLogotipo(evt.getFile().getContents());
+		try {
+			this.empresaLogotipoAntigo = this.empresa.getEmpresaLogotipo().clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
 		this.empresa.setEmpresaLogotipo(empresaLogotipo);
 		this.exibirImagem(empresaLogotipo);
 	}
@@ -1029,6 +1077,8 @@ public class CadastroEmpresaMB implements Serializable {
 			this.empresaFap = null;
 			this.fachadaEmpresa = null;
 			this.logotipo = null;
+			this.fotografiaFachadaAntiga = null;
+			this.empresaLogotipoAntigo = null;
 			this.empresasDisponiveis = null;
 			this.empresasFiltradas = null;
 			this.dadosCadastraisAnterior = null;
