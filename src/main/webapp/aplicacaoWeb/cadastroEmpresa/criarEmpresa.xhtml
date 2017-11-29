@@ -15,7 +15,9 @@
 					value="#{msgs.Salvar}"
 					actionListener="#{cadastroEmpresaMB.salvarCadastroEmpresa}"
 					update="formSelecionarEmpresa, formModulos, formCriarEmpresa, growlPrincipal"
-					disabled="#{cadastroEmpresaMB.btnEmpresaSalvarAlteracoes}" />
+					disabled="#{cadastroEmpresaMB.btnEmpresaSalvarAlteracoes}">
+					<p:resetInput target="formCriarEmpresa" />
+				</p:commandButton>
 				<p:commandButton icon="fa fa-remove" value="#{msgs.Cancelar}"
 					actionListener="#{cadastroEmpresaMB.cancelarCadastroEmpresa}"
 					update="formSelecionarEmpresa, formModulos, formCriarEmpresa, growlPrincipal"
@@ -56,7 +58,8 @@
 						actionListener="#{cadastroEmpresaMB.excluirImagemFachadaEmpresa}"
 						icon="fa fa-trash" update="@this, dlgFachadaEmpresa"
 						disabled="#{cadastroEmpresaMB.btnExcluirFotoFachada}" />
-					<p:outputLabel id="oplFachadaAlterada" style="color:red;font-size:small" value="#{msgs.MensagemFoto}"
+					<p:outputLabel id="oplFachadaAlterada"
+						style="color:red;font-size:small" value="#{msgs.MensagemFoto}"
 						rendered="#{cadastroEmpresaMB.fotoAlterada}" />
 				</p:panelGrid>
 
@@ -70,7 +73,8 @@
 						actionListener="#{cadastroEmpresaMB.excluirImagemLogotipo}"
 						icon="fa fa-trash" update="@this, dlgLogotipo"
 						disabled="#{cadastroEmpresaMB.btnExcluirFotoLogotipo}" />
-					<p:outputLabel id="oplLogoAlterado" style="color:red;font-size:small" value="#{msgs.MensagemLogo}"
+					<p:outputLabel id="oplLogoAlterado"
+						style="color:red;font-size:small" value="#{msgs.MensagemLogo}"
 						rendered="#{cadastroEmpresaMB.logoAlterado}" />
 				</p:panelGrid>
 
