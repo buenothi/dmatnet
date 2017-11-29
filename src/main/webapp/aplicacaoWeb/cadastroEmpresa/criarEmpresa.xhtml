@@ -11,9 +11,10 @@
 	<h:form id="formCriarEmpresa">
 		<h:panelGroup>
 			<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-				<p:commandButton icon="fa fa-save" value="#{msgs.Salvar}"
+				<p:commandButton id="btnSalvarEmpresa" icon="fa fa-save" value="#{msgs.Salvar}"
 					actionListener="#{cadastroEmpresaMB.salvarCadastroEmpresa}"
-					update="formSelecionarEmpresa, formModulos, formCriarEmpresa, growlPrincipal" />
+					update="formSelecionarEmpresa, formModulos, formCriarEmpresa, growlPrincipal"
+					disabled="#{cadastroEmpresaMB.btnEmpresaSalvarAlteracoes}" />
 				<p:commandButton icon="fa fa-remove" value="#{msgs.Cancelar}"
 					actionListener="#{cadastroEmpresaMB.cancelarCadastroEmpresa}"
 					update="formSelecionarEmpresa, formModulos, formCriarEmpresa, growlPrincipal"
@@ -38,7 +39,9 @@
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 					<p:inputText id="iptNomeFantasia" size="25"
 						value="#{cadastroEmpresaMB.empresa.nome}" required="true"
-						label="#{msgs.NomeFantasia}" />
+						label="#{msgs.NomeFantasia}">
+						<p:ajax event="blur" update="formCriarEmpresa:btnSalvarEmpresa" />
+					</p:inputText>
 					<p:message for="iptNomeFantasia" />
 				</p:panelGrid>
 

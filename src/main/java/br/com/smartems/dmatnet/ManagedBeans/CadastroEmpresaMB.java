@@ -89,6 +89,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private boolean isListaEmpresa = false;
 	private int tipoPessoaJuridicaSelecionada;
 	private String nomeEmpresaProcurada;
+	private boolean isBtnEmpresaSalvarAlteracoes = true;
 	private boolean isBtnExcluirFotoFachada = true;
 	private boolean isBtnExcluirFotoLogotipo = true;
 
@@ -321,6 +322,22 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public boolean isListaEmpresa() {
 		return isListaEmpresa;
+	}
+
+	public boolean isBtnEmpresaSalvarAlteracoes() {
+		try {
+			if (this.empresa.getNome().length() > 0) {
+				isBtnEmpresaSalvarAlteracoes = false;
+			}
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+			isBtnEmpresaSalvarAlteracoes = true;
+		}
+		return isBtnEmpresaSalvarAlteracoes;
+	}
+
+	public void setBtnEmpresaSalvarAlteracoes(boolean isBtnEmpresaSalvarAlteracoes) {
+		this.isBtnEmpresaSalvarAlteracoes = isBtnEmpresaSalvarAlteracoes;
 	}
 
 	public boolean isBtnExcluirFotoFachada() {
