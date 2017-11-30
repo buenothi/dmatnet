@@ -805,7 +805,7 @@ public class CadastroEmpresaMB implements Serializable {
 		empresaLogotipo.setLogotipo(evt.getFile().getContents());
 		try {
 			this.empresaLogotipoAntigo = this.empresa.getEmpresaLogotipo().clone();
-		} catch (CloneNotSupportedException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		this.empresa.setEmpresaLogotipo(empresaLogotipo);
