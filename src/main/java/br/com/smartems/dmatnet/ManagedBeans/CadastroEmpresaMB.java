@@ -41,6 +41,9 @@ public class CadastroEmpresaMB implements Serializable {
 
 	@ManagedProperty(value = "#{usuarioMB}")
 	private UsuarioMB usuarioMB;
+	
+	@ManagedProperty(value = "#{principalMB}")
+	private PrincipalMB principalMB;
 
 	@EJB
 	private PessoaJuridicaFacadeLocal pessoaJuridicaFachada;
@@ -96,6 +99,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private boolean isBtnExcluirFotoLogotipo = true;
 	private boolean isFotoAlterada = false;
 	private boolean isLogoAlterado = false;
+	private boolean isBtnModuloDadosCadastrais = true;
 
 	// botões referentes à Edição do Cadastro de Grupo Empresa
 
@@ -136,6 +140,14 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setUsuarioMB(UsuarioMB usuarioMB) {
 		this.usuarioMB = usuarioMB;
+	}
+
+	public PrincipalMB getPrincipalMB() {
+		return principalMB;
+	}
+
+	public void setPrincipalMB(PrincipalMB principalMB) {
+		this.principalMB = principalMB;
 	}
 
 	public EmpresaEntity getEmpresa() {
@@ -412,6 +424,24 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setLogoAlterado(boolean isLogoAlterado) {
 		this.isLogoAlterado = isLogoAlterado;
+	}
+
+	public boolean isBtnModuloDadosCadastrais() {
+		try {
+			if (this.empresaSelecionada.getIdPessoa() > 0){
+				this.isBtnModuloDadosCadastrais = false;
+			} else {
+				this.isBtnModuloDadosCadastrais = true;
+			}
+		} catch (Exception e) {
+			this.isBtnModuloDadosCadastrais = false;
+			e.printStackTrace();
+		}
+		return isBtnModuloDadosCadastrais;
+	}
+
+	public void setBtnModuloDadosCadastrais(boolean isBtnModuloDadosCadastrais) {
+		this.isBtnModuloDadosCadastrais = isBtnModuloDadosCadastrais;
 	}
 
 	public boolean isBtnGrupoEditarDesativado() {

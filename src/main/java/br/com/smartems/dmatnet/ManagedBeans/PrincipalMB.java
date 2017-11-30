@@ -14,6 +14,7 @@ public class PrincipalMB implements Serializable {
 
 	private String classMenuBotaoCadEmpresa = "menuBotao";
 	private String classMenuBotaoHome = "menuBotaoSelecionado";
+	private String classMenuBotaoCadEmpresaDesativado = "menuBotaoDesativado";
 	private boolean isRenderizarCadastroEmpresa = false;
 
 	private static final long serialVersionUID = 1L;
@@ -27,6 +28,14 @@ public class PrincipalMB implements Serializable {
 
 	public String getClassMenuBotaoHome() {
 		return classMenuBotaoHome;
+	}
+
+	public String getClassMenuBotaoCadEmpresaDesativado() {
+		return classMenuBotaoCadEmpresaDesativado;
+	}
+
+	public void setClassMenuBotaoCadEmpresaDesativado(String classMenuBotaoCadEmpresaDesativado) {
+		this.classMenuBotaoCadEmpresaDesativado = classMenuBotaoCadEmpresaDesativado;
 	}
 
 	public boolean isRenderizarCadastroEmpresa() {

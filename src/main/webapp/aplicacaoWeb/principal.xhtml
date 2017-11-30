@@ -47,7 +47,7 @@
 		</h:form>
 	</div>
 
-	<h:form>
+	<h:form id="formLateral">
 		<div id="lateral">
 			<p:commandLink actionListener="#{principalMB.exibirHome}"
 				update="@this formModulos btnCadastroEmpresa">
@@ -62,7 +62,7 @@
 			</p:commandLink>
 
 			<p:commandLink actionListener="#{principalMB.exibirCadastroEmpresa}"
-				update="formModulos @this btnHome">
+				update="formModulos @this btnHome" disabled="#{cadastroEmpresaMB.btnModuloDadosCadastrais}" >
 				<h:panelGroup id="btnCadastroEmpresa" layout="block"
 					styleClass="#{principalMB.classMenuBotaoCadEmpresa}">
 					<div id="logoCadEmpresa" class="logosMenu" />
