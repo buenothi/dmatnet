@@ -793,7 +793,7 @@ public class CadastroEmpresaMB implements Serializable {
 		fotografiaFachadaEmpresa.setFotoFachada(evt.getFile().getContents());
 		try {
 			this.fotografiaFachadaAntiga = this.empresa.getEmpresaFotoFachada().clone();
-		} catch (CloneNotSupportedException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		this.empresa.setEmpresaFotoFachada(fotografiaFachadaEmpresa);
