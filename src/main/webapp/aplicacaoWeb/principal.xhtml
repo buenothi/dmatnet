@@ -62,7 +62,8 @@
 			</p:commandLink>
 
 			<p:commandLink actionListener="#{principalMB.exibirCadastroEmpresa}"
-				update="formModulos @this btnHome" disabled="#{cadastroEmpresaMB.btnModuloDadosCadastrais}" >
+				update="formModulos @this btnHome"
+				disabled="#{cadastroEmpresaMB.btnModuloDadosCadastrais}">
 				<h:panelGroup id="btnCadastroEmpresa" layout="block"
 					styleClass="#{principalMB.classMenuBotaoCadEmpresa}">
 					<div id="logoCadEmpresa" class="logosMenu" />
@@ -153,10 +154,14 @@
 					value="#{cadastroEmpresaMB.fachadaEmpresa}" height="180"
 					cache="false" />
 				<p:fileUpload style="height: 100%" mode="advanced"
-					dragDropSupport="true" sizeLimit="10000000"
-					allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+					label="#{msgs.SelecionarImagem}" uploadLabel="#{msgs.Upload}"
+					cancelLabel="#{msgs.Cancelar}" dragDropSupport="true"
+					sizeLimit="1048576" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
 					fileUploadListener="#{cadastroEmpresaMB.gravarImagemFachada}"
-					update="@this, formCriarEmpresa, formFachadaEmpresa:gpiFachadaEmpresa, formCriarEmpresa:oplFachadaAlterada" />
+					update="@this, formCriarEmpresa, formFachadaEmpresa:gpiFachadaEmpresa, formCriarEmpresa:oplFachadaAlterada"
+					fileLimitMessage="#{msgs.LimiteArquivoImagem}"
+					invalidSizeMessage="#{msgs.LimiteArquivoImagem}"
+					invalidFileMessage="#{msgs.ImagemInvalida}" />
 			</p:panelGrid>
 		</h:form>
 	</p:dialog>
@@ -169,10 +174,14 @@
 				<p:graphicImage id="gpiLogotipo"
 					value="#{cadastroEmpresaMB.logotipo}" height="180" cache="false" />
 				<p:fileUpload style="height: 100%" mode="advanced"
-					dragDropSupport="true" sizeLimit="10000000"
-					allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+					label="#{msgs.SelecionarImagem}" uploadLabel="#{msgs.Upload}"
+					cancelLabel="#{msgs.Cancelar}" dragDropSupport="true"
+					sizeLimit="1048576" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
 					fileUploadListener="#{cadastroEmpresaMB.gravarLogotipo}"
-					update="@this, formCriarEmpresa, formLogotipo:gpiLogotipo, formCriarEmpresa:oplLogoAlterado" />
+					update="@this, formCriarEmpresa, formLogotipo:gpiLogotipo, formCriarEmpresa:oplLogoAlterado"
+					fileLimitMessage="#{msgs.LimiteArquivoImagem}"
+					invalidSizeMessage="#{msgs.LimiteArquivoImagem}"
+					invalidFileMessage="#{msgs.ImagemInvalida}" />
 			</p:panelGrid>
 		</h:form>
 	</p:dialog>
