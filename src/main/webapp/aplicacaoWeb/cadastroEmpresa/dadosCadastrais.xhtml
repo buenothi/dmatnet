@@ -315,8 +315,7 @@
 							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 								<p:calendar id="calDataEmissaoCertificado" locale="pt"
 									showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
-									mask="true" size="8"
-									label="#{msgs.dataEmissaoCertificado}" />
+									mask="true" size="8" label="#{msgs.dataEmissaoCertificado}" />
 								<p:message for="calDataEmissaoCertificado" />
 							</p:panelGrid>
 						</p:column>
@@ -329,8 +328,7 @@
 							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 								<p:calendar id="calDataVencimentoCertificado" locale="pt"
 									showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
-									mask="true" size="8"
-									label="#{msgs.dataVencimentoCertificado}" />
+									mask="true" size="8" label="#{msgs.dataVencimentoCertificado}" />
 								<p:message for="calDataVencimentoCertificado" />
 							</p:panelGrid>
 						</p:column>
@@ -353,8 +351,7 @@
 							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 								<p:calendar id="calDataRenovacaoCertificado" locale="pt"
 									showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
-									mask="true" size="8"
-									label="#{msgs.dataRenovacaoCertificado}" />
+									mask="true" size="8" label="#{msgs.dataRenovacaoCertificado}" />
 								<p:message for="calDataRenovacaoCertificado" />
 							</p:panelGrid>
 						</p:column>
@@ -452,6 +449,38 @@
 		</p:tab>
 
 		<p:tab title="#{msgs.OrganismoInternacional} (esocial)">
+			<h:panelGroup id="pngEmpOrganismoIntExibir" layout="block"
+				styleClass="formulario" rendered="false">
+				<p:panelGrid id="pngEditarOrgInt" styleClass="tabelaSemBorda">
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.IndAcordoIsenMulta}:" />
+						</p:column>
+						<p:column>
+							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+								<p:selectBooleanButton id="sBBAcordoInt" onLabel="#{msgs.Sim}"
+									offLabel="#{msgs.Nao}" onIcon="ui-icon-check"
+									offIcon="ui-icon-close" style="width:60px" />
+							</p:panelGrid>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</h:panelGroup>
+
+			<h:panelGroup id="pngEmpOrgIntEditar" layout="block"
+				styleClass="formulario" rendered="false">
+				<p:panelGrid id="pngExibirOrgInt" styleClass="tabelaSemBorda">
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.IndAcordoIsenMulta}:" />
+						</p:column>
+						<p:column>
+							<p:outputLabel value="" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</h:panelGroup>
+
 		</p:tab>
 
 		<p:tab title="#{msgs.EmpresaSoftwareHouse} (esocial)">
