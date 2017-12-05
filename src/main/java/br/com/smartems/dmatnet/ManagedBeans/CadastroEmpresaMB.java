@@ -120,7 +120,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private boolean isBtnDadosCadastraisCancelarDesativado = true;
 	private boolean isBtnDadosCadastraisSalvarDesativado = true;
 	private boolean isBtnDadosCadastraisNovaEmpresaDesativado = false;
-
+	
 	// botões referentes à Edição do Endereço da Empresa
 
 	private boolean isBtnEnderecoEditarDesativado = false;

@@ -449,12 +449,14 @@
 		</p:tab>
 
 		<p:tab title="#{msgs.OrganismoInternacional} (esocial)">
-			<h:panelGroup id="pngEmpOrganismoIntExibir" layout="block"
-				styleClass="formulario" rendered="false">
+
+			<h:panelGroup id="pngEmpOrgIntEditar" layout="block"
+				styleClass="formulario"
+				rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
 				<p:panelGrid id="pngEditarOrgInt" styleClass="tabelaSemBorda">
 					<p:row>
 						<p:column>
-							<p:outputLabel value="#{msgs.IndAcordoIsenMulta}:" />
+							<p:outputLabel value="#{msgs.IndAcordoIsenMulta}" />
 						</p:column>
 						<p:column>
 							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
@@ -467,15 +469,135 @@
 				</p:panelGrid>
 			</h:panelGroup>
 
-			<h:panelGroup id="pngEmpOrgIntEditar" layout="block"
-				styleClass="formulario" rendered="false">
+			<h:panelGroup id="pngEmpOrganismoIntExibir" layout="block"
+				styleClass="formulario"
+				rendered="#{cadastroEmpresaMB.btnDadosCadastraisCancelarDesativado}">
 				<p:panelGrid id="pngExibirOrgInt" styleClass="tabelaSemBorda">
 					<p:row>
 						<p:column>
-							<p:outputLabel value="#{msgs.IndAcordoIsenMulta}:" />
+							<p:outputLabel value="#{msgs.IndAcordoIsenMulta}" />
 						</p:column>
 						<p:column>
 							<p:outputLabel value="" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+
+			</h:panelGroup>
+
+
+		</p:tab>
+
+		<p:tab title="#{msgs.EmpresaSoftwareHouse} (esocial)">
+
+			<h:panelGroup id="pngEmpresaSoftwareHouseEditar" layout="block"
+				styleClass="formulario"
+				rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
+				
+				<p:panelGrid id="pngExibirSoftwareHouse" styleClass="tabelaSemBorda">
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.CnpjSoftwareHouse}:" />
+						</p:column>
+						<p:column>
+							<p:inputMask id="ipmInscricaoSoftwareHouse"
+								converter="cnpjCpfConverter" mask="99.999.999/9999-99" value=""
+								label="#{msgs.Inscricao}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.nmRazaoSoftwareHouse}:" />
+						</p:column>
+						<p:column>
+							<p:inputText id="iptRazaoSocialSoftwareHouse" maxlength="250"
+								size="62" label="#{msgs.nmRazaoSoftwareHouse}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.nmContatoSoftwareHouse}:" />
+						</p:column>
+						<p:column>
+							<p:inputText id="iptContatoSoftwareHouse" maxlength="250"
+								size="62" label="#{msgs.nmContatoSoftwareHouse}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.telSoftwareHouse}:" />
+						</p:column>
+						<p:column>
+							<p:inputMask id="ipmTelSoftwareHouse" maxlength="13" size="13"
+								mask="+99(99)99999-9999" value=""
+								label="#{msgs.telSoftwareHouse}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.emailSoftwareHouse}:" />
+						</p:column>
+						<p:column>
+							<p:inputText id="iptEmailSoftwareHouse" maxlength="250"
+								size="62" label="#{msgs.emailSoftwareHouse}" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				
+			</h:panelGroup>
+
+			<h:panelGroup id="pngEmpresaSoftwareHouseExibir" layout="block"
+				styleClass="formulario"
+				rendered="#{cadastroEmpresaMB.btnDadosCadastraisCancelarDesativado}">
+				<p:panelGrid id="pngEditarSoftwareHouse" styleClass="tabelaSemBorda">
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.CnpjSoftwareHouse}:" />
+						</p:column>
+						<p:column>
+							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+								<p:outputLabel value="" />
+							</p:panelGrid>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.nmRazaoSoftwareHouse}:" />
+						</p:column>
+						<p:column>
+							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+								<p:outputLabel value="" />
+							</p:panelGrid>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.nmContatoSoftwareHouse}:" />
+						</p:column>
+						<p:column>
+							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+								<p:outputLabel value="" />
+							</p:panelGrid>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.telSoftwareHouse}:" />
+						</p:column>
+						<p:column>
+							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+								<p:outputLabel value="" />
+							</p:panelGrid>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.emailSoftwareHouse}:" />
+						</p:column>
+						<p:column>
+							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+								<p:outputLabel value="" />
+							</p:panelGrid>
 						</p:column>
 					</p:row>
 				</p:panelGrid>
@@ -483,10 +605,41 @@
 
 		</p:tab>
 
-		<p:tab title="#{msgs.EmpresaSoftwareHouse} (esocial)">
-		</p:tab>
-
 		<p:tab title="#{msgs.EmpresaDadosComplementares} (esocial)">
+
+			<h:panelGroup id="pngInfoComplementaresEditar" layout="block"
+				styleClass="formulario"
+				rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
+				<p:panelGrid id="pngExibirInfoComplementares"
+					styleClass="tabelaSemBorda">
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.IndicativoSitPessoaJuridica}:" />
+						</p:column>
+						<p:column>
+							<p:selectOneMenu style="width:200px"/>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</h:panelGroup>
+
+			<h:panelGroup id="pngInfoComplementaresExibir" layout="block"
+				styleClass="formulario"
+				rendered="#{cadastroEmpresaMB.btnDadosCadastraisCancelarDesativado}">
+				<p:panelGrid id="pngEditarInfoComplementares"
+					styleClass="tabelaSemBorda">
+					<p:row>
+						<p:column>
+							<p:outputLabel value="#{msgs.IndicativoSitPessoaJuridica}:" />
+						</p:column>
+						<p:column>
+							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+								<p:outputLabel value="" />
+							</p:panelGrid>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</h:panelGroup>
 		</p:tab>
 
 		<p:tab title="#{msgs.Historico}">
