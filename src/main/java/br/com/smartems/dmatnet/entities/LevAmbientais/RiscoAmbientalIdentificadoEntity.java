@@ -36,7 +36,7 @@ public class RiscoAmbientalIdentificadoEntity extends RiscoAmbientalEntity imple
 	@JoinTable(name="tbl_riscoambientalidentificadomedidasadm_jointable",
 			joinColumns=@JoinColumn(name="riscoIdentificado_ID"),
 			inverseJoinColumns=@JoinColumn(name="medidasAdm_ID"))
-	private List<MedidasAdministrativasEntity> medidasAdministrativas;
+	private List<MedidasAdministrativasEntity> medidasAdm;
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -86,11 +86,11 @@ public class RiscoAmbientalIdentificadoEntity extends RiscoAmbientalEntity imple
 	}
 
 	public List<MedidasAdministrativasEntity> getMedidasAdministrativas() {
-		return medidasAdministrativas;
+		return medidasAdm;
 	}
 
-	public void setMedidasAdministrativas(List<MedidasAdministrativasEntity> medidasAdministrativas) {
-		this.medidasAdministrativas = medidasAdministrativas;
+	public void setMedidasAdministrativas(List<MedidasAdministrativasEntity> medidasAdm) {
+		this.medidasAdm = medidasAdm;
 	}
    
 }

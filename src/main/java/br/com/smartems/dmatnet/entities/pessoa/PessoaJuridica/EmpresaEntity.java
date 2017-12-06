@@ -36,7 +36,7 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 	private List<EmpresaCadastroEntity> cadastros;
 
 	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
-			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
+			CascadeType.MERGE }, orphanRemoval = true)
 	@JoinColumn(name = "empresa_ID")
 	private List<LocalTrabalhoEntity> locais;
 

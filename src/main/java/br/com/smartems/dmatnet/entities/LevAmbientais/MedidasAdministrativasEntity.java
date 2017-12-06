@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Table(name="tbl_MedidasAdministrativas")
 public class MedidasAdministrativasEntity extends AbstractMedidaControleEntity implements Serializable {
 
-	@ManyToMany(mappedBy="medidasAdministrativas")
+	@ManyToMany(mappedBy="medidasAdm")
 	private List<RiscoAmbientalIdentificadoEntity>riscosAmbientais;
 	
 	private static final long serialVersionUID = 1L;
