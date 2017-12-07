@@ -293,7 +293,8 @@
 						</p:column>
 						<p:column>
 							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-								<p:inputText maxlength="2" size="2" />
+								<p:inputText maxlength="2" size="2"
+									value="#{cadastroEmpresaMB.empresaDadosIsencao.siglaMinisterio}" />
 							</p:panelGrid>
 						</p:column>
 					</p:row>
@@ -303,7 +304,8 @@
 						</p:column>
 						<p:column>
 							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-								<p:inputNumber size="13" />
+								<p:inputNumber size="13"
+									value="#{cadastroEmpresaMB.empresaDadosIsencao.numCertificado}" />
 							</p:panelGrid>
 						</p:column>
 					</p:row>
@@ -315,7 +317,8 @@
 							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 								<p:calendar id="calDataEmissaoCertificado" locale="pt"
 									showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
-									mask="true" size="8" label="#{msgs.dataEmissaoCertificado}" />
+									mask="true" size="8" label="#{msgs.dataEmissaoCertificado}"
+									value="#{cadastroEmpresaMB.empresaDadosIsencao.dataEmissaoCertificado}" />
 								<p:message for="calDataEmissaoCertificado" />
 							</p:panelGrid>
 						</p:column>
@@ -328,7 +331,8 @@
 							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 								<p:calendar id="calDataVencimentoCertificado" locale="pt"
 									showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
-									mask="true" size="8" label="#{msgs.dataVencimentoCertificado}" />
+									mask="true" size="8" label="#{msgs.dataVencimentoCertificado}"
+									value="#{cadastroEmpresaMB.empresaDadosIsencao.dataVencimentoCertificado}" />
 								<p:message for="calDataVencimentoCertificado" />
 							</p:panelGrid>
 						</p:column>
@@ -339,7 +343,8 @@
 						</p:column>
 						<p:column>
 							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-								<p:inputNumber size="13" />
+								<p:inputNumber size="13"
+									value="#{cadastroEmpresaMB.empresaDadosIsencao.numProtocoloRenovacao}" />
 							</p:panelGrid>
 						</p:column>
 					</p:row>
@@ -351,7 +356,8 @@
 							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 								<p:calendar id="calDataRenovacaoCertificado" locale="pt"
 									showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
-									mask="true" size="8" label="#{msgs.dataRenovacaoCertificado}" />
+									mask="true" size="8" label="#{msgs.dataRenovacaoCertificado}"
+									value="#{cadastroEmpresaMB.empresaDadosIsencao.dataRenovacao}" />
 								<p:message for="calDataRenovacaoCertificado" />
 							</p:panelGrid>
 						</p:column>
@@ -364,7 +370,8 @@
 							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 								<p:calendar id="calDataDOU" locale="pt" showOn="button"
 									showButtonPanel="true" pattern="dd/MM/yyyy" mask="true"
-									size="8" label="#{msgs.dataDOU}}" />
+									size="8" label="#{msgs.dataDOU}}"
+									value="#{cadastroEmpresaMB.empresaDadosIsencao.dataDOU}" />
 								<p:message for="calDataDOU" />
 							</p:panelGrid>
 						</p:column>
@@ -375,7 +382,8 @@
 						</p:column>
 						<p:column>
 							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-								<p:inputNumber size="13" />
+								<p:inputNumber size="13"
+									value="#{cadastroEmpresaMB.empresaDadosIsencao.paginaDOU}" />
 							</p:panelGrid>
 						</p:column>
 					</p:row>
@@ -392,7 +400,8 @@
 							<p:outputLabel value="#{msgs.siglaMinisterio}:" />
 						</p:column>
 						<p:column>
-							<p:outputLabel value="" />
+							<p:outputLabel
+								value="#{cadastroEmpresaMB.dadosCadastraisAtual.empresaDadosIsencao.siglaMinisterio}" />
 						</p:column>
 					</p:row>
 					<p:row>
@@ -400,7 +409,8 @@
 							<p:outputLabel value="#{msgs.numeroCertificado}:" />
 						</p:column>
 						<p:column>
-							<p:outputLabel value="" />
+							<p:outputLabel
+								value="#{cadastroEmpresaMB.dadosCadastraisAtual.empresaDadosIsencao.numCertificado}" />
 						</p:column>
 					</p:row>
 					<p:row>
@@ -408,7 +418,8 @@
 							<p:outputLabel value="#{msgs.dataEmissaoCertificado}:" />
 						</p:column>
 						<p:column>
-							<p:outputLabel value="" />
+							<p:outputLabel
+								value="#{cadastroEmpresaMB.dadosCadastraisAtual.empresaDadosIsencao.dataEmissaoCertificado}" />
 						</p:column>
 					</p:row>
 					<p:row>
@@ -416,7 +427,8 @@
 							<p:outputLabel value="#{msgs.dataVencimentoCertificado}:" />
 						</p:column>
 						<p:column>
-							<p:outputLabel value="" />
+							<p:outputLabel
+								value="#{cadastroEmpresaMB.dadosCadastraisAtual.empresaDadosIsencao.dataVencimentoCertificado}" />
 						</p:column>
 					</p:row>
 					<p:row>
@@ -424,7 +436,8 @@
 							<p:outputLabel value="#{msgs.numeroProtocolo}:" />
 						</p:column>
 						<p:column>
-							<p:outputLabel value="" />
+							<p:outputLabel
+								value="#{cadastroEmpresaMB.dadosCadastraisAtual.empresaDadosIsencao.numProtocoloRenovacao}" />
 						</p:column>
 					</p:row>
 					<p:row>
@@ -432,7 +445,8 @@
 							<p:outputLabel value="#{msgs.dataRenovacaoCertificado}:" />
 						</p:column>
 						<p:column>
-							<p:outputLabel value="" />
+							<p:outputLabel
+								value="#{cadastroEmpresaMB.dadosCadastraisAtual.empresaDadosIsencao.dataRenovacao}" />
 						</p:column>
 					</p:row>
 					<p:row>
@@ -440,7 +454,8 @@
 							<p:outputLabel value="#{msgs.dataDOU}:" />
 						</p:column>
 						<p:column>
-							<p:outputLabel value="" />
+							<p:outputLabel
+								value="#{cadastroEmpresaMB.dadosCadastraisAtual.empresaDadosIsencao.dataDOU}" />
 						</p:column>
 					</p:row>
 					<p:row>
@@ -448,7 +463,8 @@
 							<p:outputLabel value="#{msgs.pagDOU}:" />
 						</p:column>
 						<p:column>
-							<p:outputLabel value="" />
+							<p:outputLabel
+								value="#{cadastroEmpresaMB.dadosCadastraisAtual.empresaDadosIsencao.paginaDOU}" />
 						</p:column>
 					</p:row>
 				</p:panelGrid>
@@ -488,7 +504,8 @@
 							<p:outputLabel value="#{msgs.IndAcordoIsenMulta}" />
 						</p:column>
 						<p:column>
-							<p:outputLabel value="" />
+							<p:outputLabel
+								value="" />
 						</p:column>
 					</p:row>
 				</p:panelGrid>
@@ -503,7 +520,7 @@
 			<h:panelGroup id="pngEmpresaSoftwareHouseEditar" layout="block"
 				styleClass="formulario"
 				rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
-				
+
 				<p:panelGrid id="pngExibirSoftwareHouse" styleClass="tabelaSemBorda">
 					<p:row>
 						<p:column>
@@ -511,7 +528,7 @@
 						</p:column>
 						<p:column>
 							<p:inputMask id="ipmInscricaoSoftwareHouse"
-								converter="cnpjCpfConverter" mask="99.999.999/9999-99" 
+								converter="cnpjCpfConverter" mask="99.999.999/9999-99"
 								label="#{msgs.Inscricao}" />
 						</p:column>
 					</p:row>
@@ -539,8 +556,7 @@
 						</p:column>
 						<p:column>
 							<p:inputMask id="ipmTelSoftwareHouse" maxlength="13" size="13"
-								mask="+99(99)99999-9999" 
-								label="#{msgs.telSoftwareHouse}" />
+								mask="+99(99)99999-9999" label="#{msgs.telSoftwareHouse}" />
 						</p:column>
 					</p:row>
 					<p:row>
@@ -548,12 +564,12 @@
 							<p:outputLabel value="#{msgs.emailSoftwareHouse}:" />
 						</p:column>
 						<p:column>
-							<p:inputText id="iptEmailSoftwareHouse" maxlength="250"
-								size="62" label="#{msgs.emailSoftwareHouse}" />
+							<p:inputText id="iptEmailSoftwareHouse" maxlength="250" size="62"
+								label="#{msgs.emailSoftwareHouse}" />
 						</p:column>
 					</p:row>
 				</p:panelGrid>
-				
+
 			</h:panelGroup>
 
 			<h:panelGroup id="pngEmpresaSoftwareHouseExibir" layout="block"
@@ -627,7 +643,7 @@
 							<p:outputLabel value="#{msgs.IndicativoSitPessoaJuridica}:" />
 						</p:column>
 						<p:column>
-							<p:selectOneMenu style="width:200px"/>
+							<p:selectOneMenu style="width:200px" />
 						</p:column>
 					</p:row>
 				</p:panelGrid>

@@ -27,6 +27,7 @@ import br.com.smartems.dmatnet.EJB.Facade.EstadoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.PessoaJuridicaFacadeLocal;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaDadosIsencao;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFoto;
@@ -41,7 +42,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	@ManagedProperty(value = "#{usuarioMB}")
 	private UsuarioMB usuarioMB;
-	
+
 	@ManagedProperty(value = "#{principalMB}")
 	private PrincipalMB principalMB;
 
@@ -66,6 +67,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private EmpresaEntity empresaSelecionada;
 	private EmpresaEntity empresa;
 	private EmpresaFAP empresaFap;
+	private EmpresaDadosIsencao empresaDadosIsencao;
 	private EmpresaFoto fotografiaFachadaEmpresa;
 	private EmpresaFoto fotografiaFachadaAntiga;
 	private DefaultStreamedContent fachadaEmpresa;
@@ -120,7 +122,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private boolean isBtnDadosCadastraisCancelarDesativado = true;
 	private boolean isBtnDadosCadastraisSalvarDesativado = true;
 	private boolean isBtnDadosCadastraisNovaEmpresaDesativado = false;
-	
+
 	// botões referentes à Edição do Endereço da Empresa
 
 	private boolean isBtnEnderecoEditarDesativado = false;
@@ -203,6 +205,17 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setEmpresaFap(EmpresaFAP empresaFap) {
 		this.empresaFap = empresaFap;
+	}
+
+	public EmpresaDadosIsencao getEmpresaDadosIsencao() {
+		if (this.empresaDadosIsencao == null) {
+			this.empresaDadosIsencao = new EmpresaDadosIsencao();
+		}
+		return empresaDadosIsencao;
+	}
+
+	public void setEmpresaDadosIsencao(EmpresaDadosIsencao empresaDadosIsencao) {
+		this.empresaDadosIsencao = empresaDadosIsencao;
 	}
 
 	public DefaultStreamedContent getFachadaEmpresa() {
@@ -428,7 +441,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public boolean isBtnModuloDadosCadastrais() {
 		try {
-			if (this.empresaSelecionada.getIdPessoa() > 0){
+			if (this.empresaSelecionada.getIdPessoa() > 0) {
 				this.isBtnModuloDadosCadastrais = false;
 			} else {
 				this.isBtnModuloDadosCadastrais = true;
@@ -650,7 +663,7 @@ public class CadastroEmpresaMB implements Serializable {
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 			} else {
 				this.pessoaJuridicaFachada.alterarCadastroEmpresa(this.empresa, this.usuarioMB.getUsuarioLogado(),
-						this.empresaFap, this.dadosCadastraisAtual);
+						this.empresaFap, this.empresaDadosIsencao, this.dadosCadastraisAtual);
 				FacesMessage msg = new FacesMessage("Sucesso",
 						stringUtils.formatarTextoParaLeitura(this.empresa.getNome().toString())
 								+ " Atualizado com Sucesso");
@@ -714,6 +727,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = true;
 		this.exibirImagem(this.fotografiaFachadaEmpresa);
 		this.empresaFap = this.dadosCadastraisAtual.getEmpresaFAP();
+		this.empresaDadosIsencao = this.dadosCadastraisAtual.getEmpresaDadosIsencao();
 	}
 
 	public void cancelarDadosCadastraisEmpresa(ActionEvent e) {
@@ -736,7 +750,8 @@ public class CadastroEmpresaMB implements Serializable {
 			if (dadosCadastraisAnterior == null || dadosCadastraisAtual.getDataInicioCadastro()
 					.compareTo(dadosCadastraisAnterior.getDataInicioCadastro()) >= 0) {
 				this.pessoaJuridicaFachada.salvarDadosCadastraisEmpresa(this.dadosCadastraisAtual,
-						this.dadosCadastraisAnterior, this.empresaFap, this.empresaSelecionada);
+						this.dadosCadastraisAnterior, this.empresaFap, this.empresaDadosIsencao,
+						this.empresaSelecionada);
 				this.exibirImagem(this.fotografiaFachadaEmpresa);
 				this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
 			} else {
@@ -750,6 +765,7 @@ public class CadastroEmpresaMB implements Serializable {
 		} catch (NullPointerException exc) {
 			exc.printStackTrace();
 			this.atribuirEmpresaFAP(this.empresaFap);
+			this.atribuirEmpresaDadosIsencao(this.empresaDadosIsencao);
 			this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
 			this.empresaSelecionada = this.pessoaJuridicaFachada.update(this.empresaSelecionada);
 			this.exibirImagem(this.fotografiaFachadaEmpresa);
@@ -760,7 +776,7 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 	}
 
-	public void atribuirEmpresaFAP(EmpresaFAP empresaFap) {
+	private void atribuirEmpresaFAP(EmpresaFAP empresaFap) {
 		if (empresaFap != null) {
 			EmpresaFAP novoFap = new EmpresaFAP();
 			try {
@@ -770,6 +786,19 @@ public class CadastroEmpresaMB implements Serializable {
 			}
 			novoFap.setIdEmpresaFAP(0);
 			this.dadosCadastraisAtual.setEmpresaFAP(novoFap);
+		}
+	}
+	
+	private void atribuirEmpresaDadosIsencao(EmpresaDadosIsencao empresaDadosIsencao) {
+		if (empresaDadosIsencao != null) {
+			EmpresaDadosIsencao novoDadosIsencao = new EmpresaDadosIsencao();
+			try {
+				novoDadosIsencao = empresaDadosIsencao.clone();
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}
+			novoDadosIsencao.setIdEmpresaDadosIsencao(0);
+			this.dadosCadastraisAtual.setEmpresaDadosIsencao(novoDadosIsencao);
 		}
 	}
 
@@ -792,6 +821,7 @@ public class CadastroEmpresaMB implements Serializable {
 			e1.printStackTrace();
 		}
 		this.empresaFap = this.dadosCadastraisAtual.getEmpresaFAP();
+		this.empresaDadosIsencao = this.dadosCadastraisAtual.getEmpresaDadosIsencao();
 		this.dadosCadastraisAtual.setId(0);
 		this.dadosCadastraisTrocaStatusBotoes();
 		RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').hide()");
@@ -1105,6 +1135,7 @@ public class CadastroEmpresaMB implements Serializable {
 			this.fotografiaFachadaEmpresa = null;
 			this.empresa = null;
 			this.empresaFap = null;
+			this.empresaDadosIsencao = null;
 			this.fachadaEmpresa = null;
 			this.logotipo = null;
 			this.fotografiaFachadaAntiga = null;

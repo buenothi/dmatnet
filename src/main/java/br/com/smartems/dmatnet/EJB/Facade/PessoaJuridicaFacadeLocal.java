@@ -6,6 +6,7 @@ import javax.ejb.Local;
 
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaDadosIsencao;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFoto;
@@ -20,7 +21,7 @@ public interface PessoaJuridicaFacadeLocal extends AbstractFacade<EmpresaEntity>
 			EmpresaLogotipo empresaLogotipo, UsuarioEntity usuarioLogado);
 
 	public void alterarCadastroEmpresa(EmpresaEntity empresa, UsuarioEntity usuarioLogado, EmpresaFAP fap,
-			EmpresaCadastroEntity dadosCadastraisAtual);
+			EmpresaDadosIsencao empresaDadosIsencao, EmpresaCadastroEntity dadosCadastraisAtual);
 
 	public void excluirCadastroEmpresa(EmpresaEntity empresa);
 
@@ -28,7 +29,8 @@ public interface PessoaJuridicaFacadeLocal extends AbstractFacade<EmpresaEntity>
 			throws NullPointerException;
 
 	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
-			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap, EmpresaEntity empresaSelecionada)
+			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap,
+			EmpresaDadosIsencao empresaDadosIsencao, EmpresaEntity empresaSelecionada)
 			throws CloneNotSupportedException;
 
 	public void imprimirDadosCadastrais(List<EmpresaEntity> empresasDisponiveis);

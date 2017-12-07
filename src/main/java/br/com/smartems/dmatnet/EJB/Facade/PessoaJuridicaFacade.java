@@ -8,6 +8,7 @@ import javax.ejb.Stateless;
 import br.com.smartems.dmatnet.EJB.dao.PessoaJuridicaEAO;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaDadosIsencao;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFoto;
@@ -58,8 +59,9 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 	}
 
 	public void alterarCadastroEmpresa(EmpresaEntity empresa, UsuarioEntity usuarioLogado, EmpresaFAP fap,
-			EmpresaCadastroEntity dadosCadastraisAtual) {
-		pessoaJuridicaEAO.alterarCadastroEmpresa(empresa, usuarioLogado, fap, dadosCadastraisAtual);
+			EmpresaDadosIsencao empresaDadosIsencao, EmpresaCadastroEntity dadosCadastraisAtual) {
+		pessoaJuridicaEAO.alterarCadastroEmpresa(empresa, usuarioLogado, fap, empresaDadosIsencao,
+				dadosCadastraisAtual);
 	}
 
 	public void excluirCadastroEmpresa(EmpresaEntity empresa) {
@@ -72,10 +74,11 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 	}
 
 	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
-			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap, EmpresaEntity empresaSelecionada)
+			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap,
+			EmpresaDadosIsencao empresaDadosIsencao, EmpresaEntity empresaSelecionada)
 			throws CloneNotSupportedException {
 		pessoaJuridicaEAO.salvarDadosCadastraisEmpresa(dadosCadastraisAtual, dadosCadastraisAnterior, empresaFap,
-				empresaSelecionada);
+				empresaDadosIsencao, empresaSelecionada);
 	}
 
 	public void imprimirDadosCadastrais(List<EmpresaEntity> empresasDisponiveis) {
