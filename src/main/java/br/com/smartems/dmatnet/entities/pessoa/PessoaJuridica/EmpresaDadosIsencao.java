@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="tbl_empresaDadosIsencao")
-public class EmpresaDadosIsencao implements Serializable{
+public class EmpresaDadosIsencao implements Serializable, Cloneable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

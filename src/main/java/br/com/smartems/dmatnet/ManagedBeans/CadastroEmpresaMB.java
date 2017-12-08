@@ -788,7 +788,7 @@ public class CadastroEmpresaMB implements Serializable {
 			this.dadosCadastraisAtual.setEmpresaFAP(novoFap);
 		}
 	}
-	
+
 	private void atribuirEmpresaDadosIsencao(EmpresaDadosIsencao empresaDadosIsencao) {
 		if (empresaDadosIsencao != null) {
 			EmpresaDadosIsencao novoDadosIsencao = new EmpresaDadosIsencao();
@@ -881,8 +881,11 @@ public class CadastroEmpresaMB implements Serializable {
 					.selecionarDadosCadastraisAtual(this.empresaSelecionada);
 			this.dadosCadastraisHistorico = pessoaJuridicaFachada
 					.selecionarDadosCadastraisHistorico(this.dadosCadastraisAtual, this.empresaSelecionada);
-			if (!this.dadosCadastraisAtual.equals(null)) {
+			if (this.dadosCadastraisAtual.getId() != 0) {
 				this.isBtnDadosCadastraisEditarDesativado = false;
+				this.isDadosCadastraisEditarRender = false;
+			} else {
+				this.isBtnDadosCadastraisEditarDesativado = true;
 				this.isDadosCadastraisEditarRender = false;
 			}
 		} catch (NullPointerException e) {
