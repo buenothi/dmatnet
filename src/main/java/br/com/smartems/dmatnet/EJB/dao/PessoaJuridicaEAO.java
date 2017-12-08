@@ -20,6 +20,7 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFoto;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaLogotipo;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaOrganismoInternacional;
 import br.com.smartems.dmatnet.util.ReportUtil;
 import br.com.smartems.dmatnet.util.filtrosCollection.Filter;
 import br.com.smartems.dmatnet.util.filtrosCollection.FiltroEmpresa;
@@ -67,10 +68,11 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 	}
 
 	public void alterarCadastroEmpresa(EmpresaEntity empresa, UsuarioEntity usuarioLogado, EmpresaFAP fap,
-			EmpresaDadosIsencao empresaDadosIsencao, EmpresaCadastroEntity dadosCadastraisAtual) {
+			EmpresaDadosIsencao empresaDadosIsencao, EmpresaOrganismoInternacional empresaOrgI8n, EmpresaCadastroEntity dadosCadastraisAtual) {
 		empresa.setUsuarioCriador(usuarioLogado);
 		this.atribuirEmpresaFAP(fap, dadosCadastraisAtual);
 		this.atribuirEmpresaDadosIsencao(empresaDadosIsencao, dadosCadastraisAtual);
+		this.atribuirEmpresaOrgI8n(empresaOrgI8n, dadosCadastraisAtual);
 		this.update(empresa);
 	}
 
@@ -121,6 +123,30 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		return novoDadosIsencao;
 	}
 
+	private void atribuirEmpresaOrgI8n(EmpresaOrganismoInternacional empresaOrgI8n,
+			EmpresaCadastroEntity dadosCadastraisAtual) {
+		if (empresaOrgI8n != null) {
+			EmpresaOrganismoInternacional novoEmpresaOrgI8n = new EmpresaOrganismoInternacional();
+			try {
+				novoEmpresaOrgI8n = empresaOrgI8n.clone();
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}
+			novoEmpresaOrgI8n.setIdEmpresaOrgInternacional(0);
+			dadosCadastraisAtual.setOrganismoInternacional(novoEmpresaOrgI8n);
+		}
+	}
+
+	private EmpresaOrganismoInternacional retornarEmpresaOrgI8n(EmpresaOrganismoInternacional empresaOrgI8n)
+			throws CloneNotSupportedException {
+		EmpresaOrganismoInternacional novoOrgI8n = new EmpresaOrganismoInternacional();
+		if (empresaOrgI8n != null) {
+			novoOrgI8n = empresaOrgI8n.clone();
+			novoOrgI8n.setIdEmpresaOrgInternacional(0);
+		}
+		return novoOrgI8n;
+	}
+
 	public void excluirCadastroEmpresa(EmpresaEntity empresa) throws NullPointerException {
 		EmpresaEntity empresaDeletada = this.read(empresa.getIdPessoa());
 		this.delete(empresaDeletada);
@@ -142,8 +168,8 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 
 	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
 			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap,
-			EmpresaDadosIsencao empresaDadosIsencao, EmpresaEntity empresaSelecionada)
-			throws CloneNotSupportedException {
+			EmpresaDadosIsencao empresaDadosIsencao, EmpresaOrganismoInternacional empresaOrgI8n,
+			EmpresaEntity empresaSelecionada) throws CloneNotSupportedException {
 		if (dadosCadastraisAtual.getId() == 0) {
 			EmpresaEntity novaEmpresaSelecionada = this.read(empresaSelecionada.getIdPessoa());
 			for (EmpresaCadastroEntity dadoCadastral : novaEmpresaSelecionada.getCadastros()) {
@@ -159,6 +185,7 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 				}
 			}
 			dadosCadastraisAtual.setEmpresaFAP(this.retornarEmpresaFAP(empresaFap));
+			dadosCadastraisAtual.setEmpresaDadosIsencao(this.retornarEmpresaDadosIsencao(empresaDadosIsencao));
 			dadosCadastraisAtual.setEmpresaDadosIsencao(this.retornarEmpresaDadosIsencao(empresaDadosIsencao));
 			novaEmpresaSelecionada.getCadastros().add(dadosCadastraisAtual);
 			this.update(novaEmpresaSelecionada);

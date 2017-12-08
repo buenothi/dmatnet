@@ -33,6 +33,7 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFoto;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaGrupoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaLogotipo;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaOrganismoInternacional;
 import br.com.smartems.dmatnet.util.ReportUtil;
 import br.com.smartems.dmatnet.util.StringsUtilitarios;
 
@@ -68,6 +69,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private EmpresaEntity empresa;
 	private EmpresaFAP empresaFap;
 	private EmpresaDadosIsencao empresaDadosIsencao;
+	private EmpresaOrganismoInternacional empresaOrgI8n;
 	private EmpresaFoto fotografiaFachadaEmpresa;
 	private EmpresaFoto fotografiaFachadaAntiga;
 	private DefaultStreamedContent fachadaEmpresa;
@@ -216,6 +218,17 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setEmpresaDadosIsencao(EmpresaDadosIsencao empresaDadosIsencao) {
 		this.empresaDadosIsencao = empresaDadosIsencao;
+	}
+
+	public EmpresaOrganismoInternacional getEmpresaOrgI8n() {
+		if (this.empresaOrgI8n == null) {
+			this.empresaOrgI8n = new EmpresaOrganismoInternacional();
+		}
+		return empresaOrgI8n;
+	}
+
+	public void setEmpresaOrgI8n(EmpresaOrganismoInternacional empresaOrgI8n) {
+		this.empresaOrgI8n = empresaOrgI8n;
 	}
 
 	public DefaultStreamedContent getFachadaEmpresa() {
