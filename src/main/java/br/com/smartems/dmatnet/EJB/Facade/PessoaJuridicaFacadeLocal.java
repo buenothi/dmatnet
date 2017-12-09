@@ -11,6 +11,7 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFoto;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaLogotipo;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaOrganismoInternacional;
 
 @Local
 public interface PessoaJuridicaFacadeLocal extends AbstractFacade<EmpresaEntity> {
@@ -21,7 +22,8 @@ public interface PessoaJuridicaFacadeLocal extends AbstractFacade<EmpresaEntity>
 			EmpresaLogotipo empresaLogotipo, UsuarioEntity usuarioLogado);
 
 	public void alterarCadastroEmpresa(EmpresaEntity empresa, UsuarioEntity usuarioLogado, EmpresaFAP fap,
-			EmpresaDadosIsencao empresaDadosIsencao, EmpresaCadastroEntity dadosCadastraisAtual);
+			EmpresaDadosIsencao empresaDadosIsencao, EmpresaOrganismoInternacional empresaOrgI8n,
+			EmpresaCadastroEntity dadosCadastraisAtual);
 
 	public void excluirCadastroEmpresa(EmpresaEntity empresa);
 
@@ -30,8 +32,8 @@ public interface PessoaJuridicaFacadeLocal extends AbstractFacade<EmpresaEntity>
 
 	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
 			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap,
-			EmpresaDadosIsencao empresaDadosIsencao, EmpresaEntity empresaSelecionada)
-			throws CloneNotSupportedException;
+			EmpresaDadosIsencao empresaDadosIsencao, EmpresaOrganismoInternacional empresOrgI8n,
+			EmpresaEntity empresaSelecionada) throws CloneNotSupportedException;
 
 	public void imprimirDadosCadastrais(List<EmpresaEntity> empresasDisponiveis);
 

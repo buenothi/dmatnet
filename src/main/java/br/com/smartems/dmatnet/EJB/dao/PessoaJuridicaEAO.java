@@ -186,7 +186,7 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 			}
 			dadosCadastraisAtual.setEmpresaFAP(this.retornarEmpresaFAP(empresaFap));
 			dadosCadastraisAtual.setEmpresaDadosIsencao(this.retornarEmpresaDadosIsencao(empresaDadosIsencao));
-			dadosCadastraisAtual.setEmpresaDadosIsencao(this.retornarEmpresaDadosIsencao(empresaDadosIsencao));
+			dadosCadastraisAtual.setOrganismoInternacional(this.retornarEmpresaOrgI8n(empresaOrgI8n));
 			novaEmpresaSelecionada.getCadastros().add(dadosCadastraisAtual);
 			this.update(novaEmpresaSelecionada);
 		} else {
