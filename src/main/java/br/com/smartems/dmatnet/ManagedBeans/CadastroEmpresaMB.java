@@ -128,6 +128,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private boolean isBtnDadosCadastraisCancelarDesativado = true;
 	private boolean isBtnDadosCadastraisSalvarDesativado = true;
 	private boolean isBtnDadosCadastraisNovaEmpresaDesativado = false;
+	private String textoTipoInscricaoPJ;
 
 	// botões referentes à Edição do Endereço da Empresa
 
@@ -174,6 +175,19 @@ public class CadastroEmpresaMB implements Serializable {
 			this.empresaSelecionada = new EmpresaEntity();
 		}
 		return empresaSelecionada;
+	}
+	
+	public String getTextoTipoInscricaoPJ() {
+		if(this.dadosCadastraisAtual.getTipoInscricao() == 1) {
+			textoTipoInscricaoPJ = "CNPJ";
+		} else {
+			textoTipoInscricaoPJ = "CPF";
+		}
+		return textoTipoInscricaoPJ;
+	}
+
+	public void setTextoTipoInscricaoPJ(String textoTipoInscricaoPJ) {
+		this.textoTipoInscricaoPJ = textoTipoInscricaoPJ;
 	}
 
 	public void setEmpresaSelecionada(EmpresaEntity empresaSelecionada) {

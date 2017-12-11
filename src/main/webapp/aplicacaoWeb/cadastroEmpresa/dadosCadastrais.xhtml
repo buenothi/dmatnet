@@ -189,7 +189,7 @@
 
 						<p:column>
 							<p:outputLabel
-								value="#{cadastroEmpresaMB.dadosCadastraisAtual.tipoInscricao}" />
+								value="#{cadastroEmpresaMB.textoTipoInscricaoPJ}" />
 						</p:column>
 					</p:row>
 
@@ -526,12 +526,10 @@
 		</p:tab>
 
 		<p:tab title="#{msgs.EmpresaSoftwareHouse} (esocial)">
-			<h:panelGroup
+			<h:panelGroup style="padding:0 0 8px 4px" layout="block"
 				rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
-				<p:spacer height="3px" width="100%" />
-				<p:commandButton value="Inserir Empresa Software" icon="fa fa-plus"
-					onclick="PF('dlgEmpresaSoftware').show()" />
-				<p:spacer height="5px" width="100%" />
+				<p:commandButton value="#{msgs.Adicionar}" icon="fa fa-plus"
+					onclick="PF('dlgEmpresaSoftware').show()"/>
 			</h:panelGroup>
 			<h:panelGrid id="pngExibirSoftwareHouse" styleClass="tabelaSemBorda">
 
@@ -542,7 +540,7 @@
 					paginatorAlwaysVisible="false" var="empresaSoftware"
 					sortBy="#{empresaSoftware.idEmpresaSoftwareHouse}"
 					sortOrder="descending" editable="true"
-					rowKey="#{empresaSoftware.idEmpresaSoftwareHouse}">label
+					rowKey="#{empresaSoftware.idEmpresaSoftwareHouse}">
 
 					<p:column headerText="#{msgs.CnpjSoftwareHouse}" width="100">
 						<p:cellEditor>
@@ -619,10 +617,70 @@
 
 			</h:panelGrid>
 
-			<p:dialog widgetVar="dlgEmpresaSoftware" modal="true"
-				draggable="true" closable="true" resizable="false" showHeader="true"
+			<p:dialog header="#{msgs.TituloInserirEmpresaSoftware}"
+				widgetVar="dlgEmpresaSoftware" modal="true" draggable="true"
+				closable="true" resizable="false" showHeader="true"
 				showEffect="fade" hideEffect="fade">
-				teste
+				<h:panelGroup id="pngInserirEmpresaSoftware" layout="block"
+					styleClass="formulario">
+					<p:commandButton value="#{msgs.Adicionar}" icon="fa fa-plus"
+						onclick="PF('dlgEmpresaSoftware').show()" />
+					<p:spacer height="5px" width="100%" />
+					<p:panelGrid styleClass="tabelaSemBorda">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.CnpjSoftwareHouse}:" />
+							</p:column>
+							<p:column>
+								<p:inputMask id="ipmInsInscricaoEmpresaSoft"
+									converter="cnpjCpfConverter"
+									mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}"
+									value="#{cadastroEmpresaMB.empresaSoftwareHouse.numCNPJ}"
+									style="font-size: 9pt;" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.nmRazaoSoftwareHouse}:" />
+							</p:column>
+							<p:column>
+								<p:inputText
+									value="#{cadastroEmpresaMB.empresaSoftwareHouse.razaoSocial}"
+									style="font-size: 9pt; width: 100%" maxlength="250" size="62" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.nmContatoSoftwareHouse}:" />
+							</p:column>
+							<p:column>
+								<p:inputText
+									value="#{cadastroEmpresaMB.empresaSoftwareHouse.nomeContato}"
+									style="font-size: 9pt; width: 100%" maxlength="250" size="62" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.telSoftwareHouse}:" />
+							</p:column>
+							<p:column>
+								<p:inputMask id="ipmTelEmpreSoft" mask="+ 99 (99) 9999-9999"
+									value="#{cadastroEmpresaMB.empresaSoftwareHouse.telFixo}"
+									style="font-size: 9pt;" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.emailSoftwareHouse}:" />
+							</p:column>
+							<p:column>
+								<p:inputText
+									value="#{cadastroEmpresaMB.empresaSoftwareHouse.email}"
+									style="font-size: 9pt; width: 100%" maxlength="250" size="62" />
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</h:panelGroup>
 			</p:dialog>
 
 		</p:tab>
