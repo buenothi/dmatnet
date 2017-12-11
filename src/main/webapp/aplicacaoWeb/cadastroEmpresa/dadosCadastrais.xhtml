@@ -523,122 +523,107 @@
 
 			</h:panelGroup>
 
-
 		</p:tab>
 
 		<p:tab title="#{msgs.EmpresaSoftwareHouse} (esocial)">
-
-			<h:panelGroup id="pngEmpresaSoftwareHouseEditar" layout="block"
-				styleClass="formulario"
+			<h:panelGroup
 				rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
-
-				<p:panelGrid id="pngExibirSoftwareHouse" styleClass="tabelaSemBorda">
-					<p:row>
-						<p:column>
-							<p:outputLabel value="#{msgs.CnpjSoftwareHouse}:" />
-						</p:column>
-						<p:column>
-							<p:inputMask id="ipmInscricaoSoftwareHouse"
-								converter="cnpjCpfConverter" mask="99.999.999/9999-99"
-								label="#{msgs.Inscricao}" />
-						</p:column>
-					</p:row>
-					<p:row>
-						<p:column>
-							<p:outputLabel value="#{msgs.nmRazaoSoftwareHouse}:" />
-						</p:column>
-						<p:column>
-							<p:inputText id="iptRazaoSocialSoftwareHouse" maxlength="250"
-								size="62" label="#{msgs.nmRazaoSoftwareHouse}" />
-						</p:column>
-					</p:row>
-					<p:row>
-						<p:column>
-							<p:outputLabel value="#{msgs.nmContatoSoftwareHouse}:" />
-						</p:column>
-						<p:column>
-							<p:inputText id="iptContatoSoftwareHouse" maxlength="250"
-								size="62" label="#{msgs.nmContatoSoftwareHouse}" />
-						</p:column>
-					</p:row>
-					<p:row>
-						<p:column>
-							<p:outputLabel value="#{msgs.telSoftwareHouse}:" />
-						</p:column>
-						<p:column>
-							<p:inputMask id="ipmTelSoftwareHouse" maxlength="13" size="13"
-								mask="+99(99)99999-9999" label="#{msgs.telSoftwareHouse}" />
-						</p:column>
-					</p:row>
-					<p:row>
-						<p:column>
-							<p:outputLabel value="#{msgs.emailSoftwareHouse}:" />
-						</p:column>
-						<p:column>
-							<p:inputText id="iptEmailSoftwareHouse" maxlength="250" size="62"
-								label="#{msgs.emailSoftwareHouse}" />
-						</p:column>
-					</p:row>
-				</p:panelGrid>
-
+				<p:spacer height="3px" width="100%" />
+				<p:commandButton value="Inserir Empresa Software" icon="fa fa-plus"
+					onclick="PF('dlgEmpresaSoftware').show()" />
+				<p:spacer height="5px" width="100%" />
 			</h:panelGroup>
+			<h:panelGrid id="pngExibirSoftwareHouse" styleClass="tabelaSemBorda">
 
-			<h:panelGroup id="pngEmpresaSoftwareHouseExibir" layout="block"
-				styleClass="formulario"
-				rendered="#{cadastroEmpresaMB.btnDadosCadastraisCancelarDesativado}">
-				<p:panelGrid id="pngEditarSoftwareHouse" styleClass="tabelaSemBorda">
-					<p:row>
-						<p:column>
-							<p:outputLabel value="#{msgs.CnpjSoftwareHouse}:" />
-						</p:column>
-						<p:column>
-							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-								<p:outputLabel value="" />
-							</p:panelGrid>
-						</p:column>
-					</p:row>
-					<p:row>
-						<p:column>
-							<p:outputLabel value="#{msgs.nmRazaoSoftwareHouse}:" />
-						</p:column>
-						<p:column>
-							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-								<p:outputLabel value="" />
-							</p:panelGrid>
-						</p:column>
-					</p:row>
-					<p:row>
-						<p:column>
-							<p:outputLabel value="#{msgs.nmContatoSoftwareHouse}:" />
-						</p:column>
-						<p:column>
-							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-								<p:outputLabel value="" />
-							</p:panelGrid>
-						</p:column>
-					</p:row>
-					<p:row>
-						<p:column>
-							<p:outputLabel value="#{msgs.telSoftwareHouse}:" />
-						</p:column>
-						<p:column>
-							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-								<p:outputLabel value="" />
-							</p:panelGrid>
-						</p:column>
-					</p:row>
-					<p:row>
-						<p:column>
-							<p:outputLabel value="#{msgs.emailSoftwareHouse}:" />
-						</p:column>
-						<p:column>
-							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-								<p:outputLabel value="" />
-							</p:panelGrid>
-						</p:column>
-					</p:row>
-				</p:panelGrid>
-			</h:panelGroup>
+				<p:dataTable paginator="true" rows="10" scrollable="true"
+					styleClass="dataTable"
+					emptyMessage="#{msgs.ListaEmpresaSoftwareVazio}"
+					value="#{cadastroEmpresaMB.empresasSoftwareHouse}"
+					paginatorAlwaysVisible="false" var="empresaSoftware"
+					sortBy="#{empresaSoftware.idEmpresaSoftwareHouse}"
+					sortOrder="descending" editable="true"
+					rowKey="#{empresaSoftware.idEmpresaSoftwareHouse}">label
+
+					<p:column headerText="#{msgs.CnpjSoftwareHouse}" width="100">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{empresaSoftware.numCNPJ}"
+									style="font-size: 9pt;" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputMask id="ipmInscricaoEmpresaSoft"
+									converter="cnpjCpfConverter"
+									mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}"
+									value="#{empresaSoftware.numCNPJ}" style="font-size: 9pt;" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.nmRazaoSoftwareHouse}" width="100">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{empresaSoftware.razaoSocial}"
+									style="font-size: 9pt;" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{empresaSoftware.razaoSocial}"
+									style="font-size: 9pt; width: 100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.nmContatoSoftwareHouse}" width="100">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{empresaSoftware.nomeContato}"
+									style="font-size: 9pt;" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{empresaSoftware.nomeContato}"
+									style="font-size: 9pt; width: 100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.telSoftwareHouse}" width="100">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{empresaSoftware.telFixo}"
+									style="font-size: 9pt;" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputMask id="ipmTelEmpreSoft" mask="+ 99 (99) 9999-9999"
+									value="#{empresaSoftware.telFixo}" style="font-size: 9pt;" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.Email}" width="100">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{empresaSoftware.email}"
+									style="font-size: 9pt;" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{empresaSoftware.email}"
+									style="font-size: 9pt; width: 100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column style="width:55px"
+						rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
+						<p:rowEditor />
+					</p:column>
+					<p:column style="width:55px"
+						rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
+						<p:commandButton icon="fa fa-trash" />
+					</p:column>
+
+				</p:dataTable>
+
+			</h:panelGrid>
+
+			<p:dialog widgetVar="dlgEmpresaSoftware" modal="true"
+				draggable="true" closable="true" resizable="false" showHeader="true"
+				showEffect="fade" hideEffect="fade">
+				teste
+			</p:dialog>
 
 		</p:tab>
 
@@ -675,6 +660,7 @@
 							</p:panelGrid>
 						</p:column>
 					</p:row>
+
 				</p:panelGrid>
 			</h:panelGroup>
 		</p:tab>
@@ -806,6 +792,194 @@
 					</p:column>
 					<p:column headerText="#{msgs.CodIndicativoCooperativa}" width="90">
 						<p:cellEditor>
+							<p:dataTable paginator="true" rows="10" scrollable="true"
+								styleClass="dataTable"
+								emptyMessage="#{msgs.ListaHistoricoDadosCadastrais}"
+								value="#{cadastroEmpresaMB.dadosCadastraisHistorico}"
+								paginatorAlwaysVisible="false" var="cadastro"
+								sortBy="#{cadastro.id}" sortOrder="descending" editable="true"
+								rowKey="#{cadastro.id}">
+
+								<p:column headerText="#{msgs.DataCadastro}" width="100">
+									<p:cellEditor>
+										<f:facet name="output">
+											<p:outputLabel value="#{cadastro.dataInicioCadastro}"
+												style="font-size: 9pt;">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+											</p:outputLabel>
+										</f:facet>
+										<f:facet name="input">
+											<p:calendar value="#{cadastro.dataInicioCadastro}"
+												locale="pt" showOn="button" showButtonPanel="true"
+												pattern="dd/MM/yyyy" mask="true" size="8" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
+								<p:column headerText="#{msgs.DataTermino}" width="100">
+									<p:cellEditor>
+										<f:facet name="output">
+											<p:outputLabel value="#{cadastro.dataFimCadastro}"
+												style="font-size: 9pt;">
+												<f:convertDateTime pattern="dd/MM/yyyy" />
+											</p:outputLabel>
+										</f:facet>
+										<f:facet name="input">
+											<p:calendar value="#{cadastro.dataFimCadastro}" locale="pt"
+												showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
+												mask="true" size="8" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
+								<p:column headerText="#{msgs.TipoInscricao}" width="80">
+									<p:cellEditor>
+										<f:facet name="output">
+											<p:outputLabel value="#{cadastro.tipoInscricao}"
+												style="font-size: 9pt;" />
+										</f:facet>
+										<f:facet name="input">
+											<p:selectOneMenu style="width:100%; font-size: 9pt;"
+												value="#{cadastro.tipoInscricao}">
+												<f:selectItem itemValue="1" itemLabel="CNPJ" />
+												<f:selectItem itemValue="2" itemLabel="CPF" />
+											</p:selectOneMenu>
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
+								<p:column headerText="#{msgs.Inscricao}" width="160">
+									<p:cellEditor>
+										<f:facet name="output">
+											<p:outputLabel value="#{cadastro.numCNPJ}"
+												style="font-size: 9pt;">
+												<f:converter converterId="cnpjCpfConverter" />
+											</p:outputLabel>
+										</f:facet>
+										<f:facet name="input">
+											<p:inputMask id="ipmInscricao" converter="cnpjCpfConverter"
+												mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}"
+												value="#{cadastro.numCNPJ}" style="font-size: 9pt;" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
+								<p:column headerText="#{msgs.RazaoSocial}" width="210">
+									<p:cellEditor>
+										<f:facet name="output">
+											<p:outputLabel value="#{cadastro.razaoSocial}"
+												style="font-size: 9pt;">
+												<f:converter converterId="stringConverter" />
+											</p:outputLabel>
+										</f:facet>
+										<f:facet name="input">
+											<p:inputText value="#{cadastro.razaoSocial}"
+												style="font-size: 9pt; width: 100%" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
+								<p:column headerText="#{msgs.FAP}" width="90">
+									<p:cellEditor>
+										<f:facet name="output">
+											<p:outputLabel value="#{cadastro.empresaFAP.valorFAP}"
+												style="font-size: 9pt;">
+												<f:converter converterId="javax.faces.Double" />
+											</p:outputLabel>
+										</f:facet>
+										<f:facet name="input">
+											<p:inputMask mask="9.999"
+												value="#{cadastro.empresaFAP.valorFAP}"
+												style="font-size: 9pt; width: 100%"
+												converter="javax.faces.Double">
+											</p:inputMask>
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
+								<p:column headerText="#{msgs.CodClassificacaoTributaria}"
+									width="90">
+									<p:cellEditor>
+										<f:facet name="output">
+											<p:outputLabel value="#{cadastro.codClassificacaoTributaria}"
+												style="font-size: 9pt;" />
+										</f:facet>
+										<f:facet name="input">
+											<p:selectOneMenu style="font-size: 9pt;" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
+								<p:column headerText="#{msgs.CodNaturezaJuridica}" width="90">
+									<p:cellEditor>
+										<f:facet name="output">
+											<p:outputLabel value="#{cadastro.codNaturezaJuridica}"
+												style="font-size: 9pt;" />
+										</f:facet>
+										<f:facet name="input">
+											<p:selectOneMenu value="#{cadastro.codNaturezaJuridica}"
+												style="font-size: 9pt;" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
+								<p:column headerText="#{msgs.CodIndicativoCooperativa}"
+									width="90">
+									<p:cellEditor>
+										<f:facet name="output">
+											<p:outputLabel value="#{cadastro.codIndicativoCooperativa}"
+												style="font-size: 9pt;" />
+										</f:facet>
+										<f:facet name="input">
+											<p:selectOneMenu value="#{cadastro.codIndicativoCooperativa}"
+												style="font-size: 9pt;" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
+								<p:column headerText="#{msgs.CodIndicativoConstrucao}"
+									width="90">
+									<p:cellEditor>
+										<f:facet name="output">
+											<p:outputLabel value="#{cadastro.codIndicativoConstrucao}"
+												style="font-size: 9pt;" />
+										</f:facet>
+										<f:facet name="input">
+											<p:selectOneMenu value="#{cadastro.codIndicativoConstrucao}"
+												style="font-size: 9pt;" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
+								<p:column headerText="#{msgs.CodIndicativoDesoneracaoFolha}"
+									width="90">
+									<p:cellEditor>
+										<f:facet name="output">
+											<p:outputLabel
+												value="#{cadastro.codIndicativoDesoneracaoFolha}"
+												style="font-size: 9pt;" />
+										</f:facet>
+										<f:facet name="input">
+											<p:selectOneMenu
+												value="#{cadastro.codIndicativoDesoneracaoFolha}"
+												style="font-size: 9pt;" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
+								<p:column headerText="#{msgs.CodIndicativoRegEletronico}"
+									width="90">
+									<p:cellEditor>
+										<f:facet name="output">
+											<p:outputLabel value="#{cadastro.codIndicativoRegEletronico}"
+												style="font-size: 9pt;" />
+										</f:facet>
+										<f:facet name="input">
+											<p:selectOneMenu
+												value="#{cadastro.codIndicativoRegEletronico}"
+												style="font-size: 9pt;" />
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
+
+								<p:column style="width:55px">
+									<p:rowEditor />
+								</p:column>
+
+								<p:column style="width:55px">
+									<p:commandButton icon="fa fa-trash" />
+								</p:column>
+
+							</p:dataTable>
 							<f:facet name="output">
 								<p:outputLabel value="#{cadastro.codIndicativoCooperativa}"
 									style="font-size: 9pt;" />
@@ -856,11 +1030,13 @@
 						</p:cellEditor>
 					</p:column>
 
-					<p:column style="width:55px">
+					<p:column style="width:55px"
+						rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
 						<p:rowEditor />
 					</p:column>
 
-					<p:column style="width:55px">
+					<p:column style="width:55px"
+						rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
 						<p:commandButton icon="fa fa-trash" />
 					</p:column>
 

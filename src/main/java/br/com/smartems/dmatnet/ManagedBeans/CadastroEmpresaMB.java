@@ -34,6 +34,7 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFoto;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaGrupoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaLogotipo;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaOrganismoInternacional;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaSoftwareHouse;
 import br.com.smartems.dmatnet.util.ReportUtil;
 import br.com.smartems.dmatnet.util.StringsUtilitarios;
 
@@ -70,6 +71,8 @@ public class CadastroEmpresaMB implements Serializable {
 	private EmpresaFAP empresaFap;
 	private EmpresaDadosIsencao empresaDadosIsencao;
 	private EmpresaOrganismoInternacional empresaOrgI8n;
+	private EmpresaSoftwareHouse empresaSoftwareHouse;
+	private List<EmpresaSoftwareHouse> empresasSoftwareHouse;
 	private String empresaOrgI8nString;
 	private EmpresaFoto fotografiaFachadaEmpresa;
 	private EmpresaFoto fotografiaFachadaAntiga;
@@ -248,6 +251,28 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setEmpresaOrgI8nString(String empresaOrgI8nString) {
 		this.empresaOrgI8nString = empresaOrgI8nString;
+	}
+	
+	public EmpresaSoftwareHouse getEmpresaSoftwareHouse() {
+		if (this.empresaSoftwareHouse == null) {
+			this.empresaSoftwareHouse = new EmpresaSoftwareHouse();
+		}
+		return empresaSoftwareHouse;
+	}
+
+	public void setEmpresaSoftwareHouse(EmpresaSoftwareHouse empresaSoftwareHouse) {
+		this.empresaSoftwareHouse = empresaSoftwareHouse;
+	}
+
+	public List<EmpresaSoftwareHouse> getEmpresasSoftwareHouse() {
+		if (this.empresasSoftwareHouse == null) {
+			this.empresasSoftwareHouse = new ArrayList<EmpresaSoftwareHouse>();
+		}
+		return empresasSoftwareHouse;
+	}
+
+	public void setEmpresasSoftwareHouse(List<EmpresaSoftwareHouse> empresasSoftwareHouse) {
+		this.empresasSoftwareHouse = empresasSoftwareHouse;
 	}
 
 	public DefaultStreamedContent getFachadaEmpresa() {
