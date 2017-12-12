@@ -14,6 +14,7 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFoto;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaLogotipo;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaOrganismoInternacional;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaSoftwareHouse;
 
 @Stateless
 public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
@@ -77,10 +78,11 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 
 	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
 			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap,
-			EmpresaDadosIsencao empresaDadosIsencao, EmpresaOrganismoInternacional empresaOrgI8n, EmpresaEntity empresaSelecionada)
-			throws CloneNotSupportedException {
+			EmpresaDadosIsencao empresaDadosIsencao, EmpresaOrganismoInternacional empresaOrgI8n,
+			List<EmpresaSoftwareHouse> empresasSoftwareHouse, EmpresaEntity empresaSelecionada)
+			throws Exception {
 		pessoaJuridicaEAO.salvarDadosCadastraisEmpresa(dadosCadastraisAtual, dadosCadastraisAnterior, empresaFap,
-				empresaDadosIsencao, empresaOrgI8n, empresaSelecionada);
+				empresaDadosIsencao, empresaOrgI8n, empresasSoftwareHouse, empresaSelecionada);
 	}
 
 	public void imprimirDadosCadastrais(List<EmpresaEntity> empresasDisponiveis) {

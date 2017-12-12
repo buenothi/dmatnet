@@ -188,8 +188,7 @@
 						</p:column>
 
 						<p:column>
-							<p:outputLabel
-								value="#{cadastroEmpresaMB.textoTipoInscricaoPJ}" />
+							<p:outputLabel value="#{cadastroEmpresaMB.textoTipoInscricaoPJ}" />
 						</p:column>
 					</p:row>
 
@@ -529,7 +528,7 @@
 			<h:panelGroup style="padding:0 0 8px 4px" layout="block"
 				rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
 				<p:commandButton value="#{msgs.Adicionar}" icon="fa fa-plus"
-					onclick="PF('dlgEmpresaSoftware').show()"/>
+					onclick="PF('dlgEmpresaSoftware').show()" />
 			</h:panelGroup>
 			<h:panelGrid id="pngExibirSoftwareHouse" styleClass="tabelaSemBorda">
 
@@ -624,9 +623,15 @@
 				<h:panelGroup id="pngInserirEmpresaSoftware" layout="block"
 					styleClass="formulario">
 					<p:commandButton value="#{msgs.Adicionar}" icon="fa fa-plus"
-						onclick="PF('dlgEmpresaSoftware').show()" />
+						onclick="PF('dlgEmpresaSoftware').show()"
+						actionListener="#{cadastroEmpresaMB.novoCadastroEmpresaSoftware}"
+						update="formModulos:formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais">
+						<p:resetInput
+							target="formModulos:formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:pngInserirEmpresaSoftware" />
+					</p:commandButton>
 					<p:spacer height="5px" width="100%" />
-					<p:panelGrid styleClass="tabelaSemBorda">
+					<p:panelGrid id="frmNovaEmpresaSoftware"
+						styleClass="tabelaSemBorda">
 						<p:row>
 							<p:column>
 								<p:outputLabel value="#{msgs.CnpjSoftwareHouse}:" />

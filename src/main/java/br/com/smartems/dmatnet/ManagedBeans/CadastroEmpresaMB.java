@@ -176,9 +176,9 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 		return empresaSelecionada;
 	}
-	
+
 	public String getTextoTipoInscricaoPJ() {
-		if(this.dadosCadastraisAtual.getTipoInscricao() == 1) {
+		if (this.dadosCadastraisAtual.getTipoInscricao() == 1) {
 			textoTipoInscricaoPJ = "CNPJ";
 		} else {
 			textoTipoInscricaoPJ = "CPF";
@@ -266,7 +266,7 @@ public class CadastroEmpresaMB implements Serializable {
 	public void setEmpresaOrgI8nString(String empresaOrgI8nString) {
 		this.empresaOrgI8nString = empresaOrgI8nString;
 	}
-	
+
 	public EmpresaSoftwareHouse getEmpresaSoftwareHouse() {
 		if (this.empresaSoftwareHouse == null) {
 			this.empresaSoftwareHouse = new EmpresaSoftwareHouse();
@@ -823,7 +823,7 @@ public class CadastroEmpresaMB implements Serializable {
 					.compareTo(dadosCadastraisAnterior.getDataInicioCadastro()) >= 0) {
 				this.pessoaJuridicaFachada.salvarDadosCadastraisEmpresa(this.dadosCadastraisAtual,
 						this.dadosCadastraisAnterior, this.empresaFap, this.empresaDadosIsencao, this.empresaOrgI8n,
-						this.empresaSelecionada);
+						this.empresasSoftwareHouse, this.empresaSelecionada);
 				this.exibirImagem(this.fotografiaFachadaEmpresa);
 				this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
 			} else {
@@ -933,6 +933,14 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisCancelarDesativado = false;
 		this.isBtnDadosCadastraisSalvarDesativado = false;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = true;
+	}
+	
+	public void novoCadastroEmpresaSoftware (ActionEvent evt) {
+		try {
+			this.empresasSoftwareHouse.add(this.empresaSoftwareHouse);
+		}catch (NullPointerException np) {
+			np.printStackTrace();
+		}
 	}
 
 	public void gravarImagemFachada(FileUploadEvent evt) {
