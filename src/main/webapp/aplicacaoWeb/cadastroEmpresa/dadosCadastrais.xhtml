@@ -545,7 +545,9 @@
 						<p:cellEditor>
 							<f:facet name="output">
 								<p:outputLabel value="#{empresaSoftware.numCNPJ}"
-									style="font-size: 9pt;" />
+									style="font-size: 9pt;">
+									<f:converter converterId="cnpjCpfConverter" />
+								</p:outputLabel>
 							</f:facet>
 							<f:facet name="input">
 								<p:inputMask id="ipmInscricaoEmpresaSoft"
