@@ -24,7 +24,7 @@ public interface PessoaJuridicaFacadeLocal extends AbstractFacade<EmpresaEntity>
 
 	public void alterarCadastroEmpresa(EmpresaEntity empresa, UsuarioEntity usuarioLogado, EmpresaFAP fap,
 			EmpresaDadosIsencao empresaDadosIsencao, EmpresaOrganismoInternacional empresaOrgI8n,
-			EmpresaCadastroEntity dadosCadastraisAtual);
+			List<EmpresaSoftwareHouse> enoresasSoftware, EmpresaCadastroEntity dadosCadastraisAtual);
 
 	public void excluirCadastroEmpresa(EmpresaEntity empresa);
 
@@ -34,8 +34,7 @@ public interface PessoaJuridicaFacadeLocal extends AbstractFacade<EmpresaEntity>
 	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
 			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap,
 			EmpresaDadosIsencao empresaDadosIsencao, EmpresaOrganismoInternacional empresOrgI8n,
-			List<EmpresaSoftwareHouse> empresasSoftwareHouse, EmpresaEntity empresaSelecionada)
-			throws Exception;
+			List<EmpresaSoftwareHouse> empresasSoftwareHouse, EmpresaEntity empresaSelecionada) throws Exception;
 
 	public void imprimirDadosCadastrais(List<EmpresaEntity> empresasDisponiveis);
 

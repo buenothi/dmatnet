@@ -734,7 +734,8 @@ public class CadastroEmpresaMB implements Serializable {
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 			} else {
 				this.pessoaJuridicaFachada.alterarCadastroEmpresa(this.empresa, this.usuarioMB.getUsuarioLogado(),
-						this.empresaFap, this.empresaDadosIsencao, this.empresaOrgI8n, this.dadosCadastraisAtual);
+						this.empresaFap, this.empresaDadosIsencao, this.empresaOrgI8n, this.empresasSoftwareHouse,
+						this.dadosCadastraisAtual);
 				FacesMessage msg = new FacesMessage("Sucesso",
 						stringUtils.formatarTextoParaLeitura(this.empresa.getNome().toString())
 								+ " Atualizado com Sucesso");
@@ -934,11 +935,11 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisSalvarDesativado = false;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = true;
 	}
-	
-	public void novoCadastroEmpresaSoftware (ActionEvent evt) {
+
+	public void novoCadastroEmpresaSoftware(ActionEvent evt) {
 		try {
 			this.empresasSoftwareHouse.add(this.empresaSoftwareHouse);
-		}catch (NullPointerException np) {
+		} catch (NullPointerException np) {
 			np.printStackTrace();
 		}
 	}
