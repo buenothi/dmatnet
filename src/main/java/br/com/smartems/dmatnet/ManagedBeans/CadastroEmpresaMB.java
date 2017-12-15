@@ -978,6 +978,7 @@ public class CadastroEmpresaMB implements Serializable {
 			this.dadosCadastraisHistorico = pessoaJuridicaFachada
 					.selecionarDadosCadastraisHistorico(this.dadosCadastraisAtual, this.empresaSelecionada);
 			this.empresasSoftwareHouse = this.dadosCadastraisAtual.getEmpresaSoftwareHouse();
+			this.empresaOrgI8n = this.dadosCadastraisAtual.getOrganismoInternacional();
 			if (this.dadosCadastraisAtual.getId() != 0) {
 				this.isBtnDadosCadastraisEditarDesativado = false;
 				this.isDadosCadastraisEditarRender = false;

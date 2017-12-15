@@ -648,7 +648,9 @@
 						</p:row>
 						<p:row>
 							<p:column>
-								<p:outputLabel value="#{msgs.nmRazaoSoftwareHouse}:" />
+								<p:outputLabel value="#{msgs.nmRazaoSoftwareHouse}:">
+									<f:converter converterId="cnpjCpfConverter" />
+								</p:outputLabel>
 							</p:column>
 							<p:column>
 								<p:inputText
