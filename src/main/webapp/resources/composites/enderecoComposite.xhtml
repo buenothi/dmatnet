@@ -8,6 +8,10 @@
 	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
 
 <composite:interface>
+	<composite:attribute name="dataCadastro" />
+	<composite:editableValueHolder name="dataCadastroInput" 
+		targets="form:dataCadastro"/>
+	
 	<composite:attribute name="logradouroTipo" />
 
 	<composite:attribute name="logradouroNome" />
@@ -76,9 +80,8 @@
 		labelNovo="#{msgs.NovoEndereco}"
 		disabledNovo="#{cc.attrs.disabledNovo}"
 		actionListenerNovo="#{cc.attrs.actionListenerNovo}"
-		updateNovo="#{cc.attrs.updateNovo}" 
-		renderedBtnNovo="true"
-		renderSpacer="true"/>
+		updateNovo="#{cc.attrs.updateNovo}" renderedBtnNovo="true"
+		renderSpacer="true" />
 	<p:accordionPanel id="acpEndereco">
 		<p:tab id="tabEndereco" title="#{msgs.Endereco}">
 			<h:panelGroup id="pngEnderecoEditar" layout="block"
@@ -86,6 +89,11 @@
 				rendered="#{cc.attrs.disabledEditar}">
 				<p:panelGrid id="tblEndereco" columns="2"
 					styleClass="tabelaSemBorda">
+					<p:outputLabel value="#{msgs.DataCadastro}" />
+					<p:calendar id="calDataInicio" locale="pt" showOn="button"
+						showButtonPanel="true" pattern="dd/MM/yyyy" mask="true" size="8"
+						value="#{cc.attrs.dataCadastro}"
+						required="true" label="#{msgs.DataCadastro}" />
 					<p:outputLabel value="#{msgs.Logradouro}" />
 					<h:panelGrid columns="2">
 						<p:selectOneMenu id="listLogradouroTipo" style="width: 100px">
@@ -152,6 +160,8 @@
 				styleClass="formularioEnderecoExibir"
 				rendered="#{cc.attrs.disabledCancelar}">
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+					<p:outputLabel value="#{msgs.DataCadastro}" />
+					<p:outputLabel value="#{cc.attrs.dataCadastro}" />
 					<p:outputLabel value="#{msgs.Logradouro}:" />
 					<h:panelGrid columns="2">
 						<p:outputLabel id="logradouroTipoExibir"

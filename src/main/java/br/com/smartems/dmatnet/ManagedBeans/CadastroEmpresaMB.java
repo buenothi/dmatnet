@@ -784,6 +784,7 @@ public class CadastroEmpresaMB implements Serializable {
 	public void onSelectionEmpresa(SelectEvent evt) {
 		try {
 			this.separarDadosCadastraisAtualDoHistorico((EmpresaEntity) evt.getObject());
+			this.separarEnderecoAtualDoHistorico((EnderecoEntity) evt.getObject());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1063,6 +1064,10 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnEnderecoCancelarDesativado = false;
 		this.isBtnEnderecoSalvarDesativado = false;
 		this.isBtnEnderecoNovoDesativado = true;
+	}
+	
+	public void separarEnderecoAtualDoHistorico(EnderecoEntity endereco) {
+		
 	}
 
 	// action dos botões de grupos-empresa
