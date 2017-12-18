@@ -29,7 +29,6 @@
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.CodigoIndicadorDesoneracaoFolha</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.CodigoOpcaoRegistroEletronico</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaDadosComplementares</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaDadosIsencao</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP</class>

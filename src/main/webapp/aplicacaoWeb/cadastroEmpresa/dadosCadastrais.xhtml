@@ -541,7 +541,7 @@
 					sortOrder="descending" editable="true"
 					rowKey="#{empresaSoftware.idEmpresaSoftwareHouse}">
 
-					<p:column headerText="#{msgs.CnpjSoftwareHouse}" width="100">
+					<p:column headerText="#{msgs.CnpjSoftwareHouse}" width="160">
 						<p:cellEditor>
 							<f:facet name="output">
 								<p:outputLabel value="#{empresaSoftware.numCNPJ}"
@@ -557,7 +557,7 @@
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
-					<p:column headerText="#{msgs.nmRazaoSoftwareHouse}" width="100">
+					<p:column headerText="#{msgs.nmRazaoSoftwareHouse}" >
 						<p:cellEditor>
 							<f:facet name="output">
 								<p:outputLabel value="#{empresaSoftware.razaoSocial}"
@@ -569,7 +569,7 @@
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
-					<p:column headerText="#{msgs.nmContatoSoftwareHouse}" width="100">
+					<p:column headerText="#{msgs.nmContatoSoftwareHouse}" width="160">
 						<p:cellEditor>
 							<f:facet name="output">
 								<p:outputLabel value="#{empresaSoftware.nomeContato}"
@@ -581,7 +581,7 @@
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
-					<p:column headerText="#{msgs.telSoftwareHouse}" width="100">
+					<p:column headerText="#{msgs.telSoftwareHouse}" width="160">
 						<p:cellEditor>
 							<f:facet name="output">
 								<p:outputLabel value="#{empresaSoftware.telFixo}"
@@ -593,7 +593,7 @@
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
-					<p:column headerText="#{msgs.Email}" width="100">
+					<p:column headerText="#{msgs.Email}" width="270">
 						<p:cellEditor>
 							<f:facet name="output">
 								<p:outputLabel value="#{empresaSoftware.email}"
@@ -692,44 +692,6 @@
 				</h:panelGroup>
 			</p:dialog>
 
-		</p:tab>
-
-		<p:tab title="#{msgs.EmpresaDadosComplementares} (esocial)">
-
-			<h:panelGroup id="pngInfoComplementaresEditar" layout="block"
-				styleClass="formulario"
-				rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
-				<p:panelGrid id="pngExibirInfoComplementares"
-					styleClass="tabelaSemBorda">
-					<p:row>
-						<p:column>
-							<p:outputLabel value="#{msgs.IndicativoSitPessoaJuridica}:" />
-						</p:column>
-						<p:column>
-							<p:selectOneMenu style="width:200px" />
-						</p:column>
-					</p:row>
-				</p:panelGrid>
-			</h:panelGroup>
-
-			<h:panelGroup id="pngInfoComplementaresExibir" layout="block"
-				styleClass="formulario"
-				rendered="#{cadastroEmpresaMB.btnDadosCadastraisCancelarDesativado}">
-				<p:panelGrid id="pngEditarInfoComplementares"
-					styleClass="tabelaSemBorda">
-					<p:row>
-						<p:column>
-							<p:outputLabel value="#{msgs.IndicativoSitPessoaJuridica}:" />
-						</p:column>
-						<p:column>
-							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-								<p:outputLabel value="" />
-							</p:panelGrid>
-						</p:column>
-					</p:row>
-
-				</p:panelGrid>
-			</h:panelGroup>
 		</p:tab>
 
 		<p:tab title="#{msgs.Historico}">

@@ -66,11 +66,6 @@ public class EmpresaCadastroEntity implements Serializable, Cloneable {
 	@JoinColumn(name = "empresaSoftwareHouse_ID")
 	private List<EmpresaSoftwareHouse> empresaSoftwareHouse;
 
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
-			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
-	@JoinColumn(name = "dadosComplementares_ID")
-	private EmpresaDadosComplementares dadosComplementares;
-
 	private static final long serialVersionUID = 1L;
 
 	public EmpresaCadastroEntity() {
@@ -245,14 +240,6 @@ public class EmpresaCadastroEntity implements Serializable, Cloneable {
 	public void setEmpresaSoftwareHouse(List<EmpresaSoftwareHouse> empresaSoftwareHouse) {
 		this.empresaSoftwareHouse = empresaSoftwareHouse;
 	}
-
-	public EmpresaDadosComplementares getDadosComplementares() {
-		return dadosComplementares;
-	}
-
-	public void setDadosComplementares(EmpresaDadosComplementares dadosComplementares) {
-		this.dadosComplementares = dadosComplementares;
-	}
 	
 	@Override
 	public EmpresaCadastroEntity clone() throws CloneNotSupportedException {
@@ -269,7 +256,6 @@ public class EmpresaCadastroEntity implements Serializable, Cloneable {
 		result = prime * result + codIndicativoDesoneracaoFolha;
 		result = prime * result + codIndicativoRegEletronico;
 		result = prime * result + codNaturezaJuridica;
-		result = prime * result + ((dadosComplementares == null) ? 0 : dadosComplementares.hashCode());
 		result = prime * result + ((dataFimCadastro == null) ? 0 : dataFimCadastro.hashCode());
 		result = prime * result + ((dataInicioCadastro == null) ? 0 : dataInicioCadastro.hashCode());
 		result = prime * result + ((empresaDadosIsencao == null) ? 0 : empresaDadosIsencao.hashCode());
@@ -308,11 +294,6 @@ public class EmpresaCadastroEntity implements Serializable, Cloneable {
 		if (codIndicativoRegEletronico != other.codIndicativoRegEletronico)
 			return false;
 		if (codNaturezaJuridica != other.codNaturezaJuridica)
-			return false;
-		if (dadosComplementares == null) {
-			if (other.dadosComplementares != null)
-				return false;
-		} else if (!dadosComplementares.equals(other.dadosComplementares))
 			return false;
 		if (dataFimCadastro == null) {
 			if (other.dataFimCadastro != null)
