@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
+
+<ui:composition>
+
+	<h:panelGroup>
+		<dmat:enderecoComposite id="dmatEnderecoEmpresa"
+			dataCadastro="#{cadastroEmpresaMB.enderecoAtual.dataInicioCadastro}"
+			logradouroTipo="#{cadastroEmpresaMB.enderecoAtual.logradouroTipo}"
+			logradouroNome="#{cadastroEmpresaMB.enderecoAtual.logradouroNome}"
+			logradouroNumero="#{cadastroEmpresaMB.enderecoAtual.logradouroNumero}"
+			logradouroComplemento="#{cadastroEmpresaMB.enderecoAtual.logradouroComplemento}"
+			bairro="#{cadastroEmpresaMB.enderecoAtual.bairro}"
+			cep="#{cadastroEmpresaMB.enderecoAtual.cep}"
+			caixaPostal="#{cadastroEmpresaMB.enderecoAtual.caixaPostal}"
+			cidade="#{cadastroEmpresaMB.enderecoAtual.cidade}"
+			estado="#{cadastroEmpresaMB.enderecoAtual.estado}"
+			ajaxComponentRender="formModulos:formCadEmpresa:tbwCadastroEmpresa:dmatEnderecoEmpresa:acpEndereco:listCidade"
+			disabledEditar="#{cadastroEmpresaMB.btnEnderecoEditarDesativado}"
+			actionListenerEditar="#{cadastroEmpresaMB.editarEnderecoEmpresa}"
+			updateEditar="formModulos"
+			disabledCancelar="#{cadastroEmpresaMB.btnEnderecoCancelarDesativado}"
+			actionListenerCancelar="#{cadastroEmpresaMB.cancelarEnderecoEmpresa}"
+			updateCancelar="formModulos"
+			disabledSalvar="#{cadastroEmpresaMB.btnEnderecoSalvarDesativado}"
+			actionListenerSalvar="#{cadastroEmpresaMB.salvarEnderecoEmpresa}"
+			updateSalvar="formModulos"
+			disabledNovo="#{cadastroEmpresaMB.btnEnderecoNovoDesativado}"
+			actionListenerNovo="#{cadastroEmpresaMB.novoEnderecoEmpresa}"
+			updateNovo="formModulos" />
+	</h:panelGroup>
+	
+</ui:composition>
+</html>
