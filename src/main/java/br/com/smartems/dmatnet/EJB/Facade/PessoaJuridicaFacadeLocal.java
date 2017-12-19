@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaDadosIsencao;
@@ -41,6 +42,11 @@ public interface PessoaJuridicaFacadeLocal extends AbstractFacade<EmpresaEntity>
 	public EmpresaCadastroEntity selecionarDadosCadastraisAtual(EmpresaEntity empresa) throws Exception;
 
 	public List<EmpresaCadastroEntity> selecionarDadosCadastraisHistorico(EmpresaCadastroEntity dadosCadastraisAtual,
+			EmpresaEntity empresaSelecionada) throws Exception;
+
+	public EnderecoEntity selecionarEnderecoAtual(EmpresaEntity empresa) throws Exception;
+
+	public List<EnderecoEntity> selecionarEnderecoHistorico(EnderecoEntity enderecoAtual,
 			EmpresaEntity empresaSelecionada) throws Exception;
 
 }
