@@ -247,11 +247,12 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 	
 	public EnderecoEntity selecionarEnderecoAtual(EmpresaEntity empresa) throws Exception {
 		Date dataMaisRecente;
+		EmpresaEntity empresaNova = this.read(empresa.getIdPessoa());
 		EnderecoEntity enderecoAtual = new EnderecoEntity();
-		if (!empresa.getCadastros().isEmpty()) {
-			dataMaisRecente = empresa.getCadastros().get(0).getDataInicioCadastro();
-			enderecoAtual = empresa.getEnderecos().get(0);
-			for (EnderecoEntity endereco : empresa.getEnderecos()) {
+		if (!empresaNova.getCadastros().isEmpty()) {
+			dataMaisRecente = empresaNova.getCadastros().get(0).getDataInicioCadastro();
+			enderecoAtual = empresaNova.getEnderecos().get(0);
+			for (EnderecoEntity endereco : empresaNova.getEnderecos()) {
 				if (endereco.getDataInicioCadastro().compareTo(dataMaisRecente) >= 0
 						&& endereco.getDataFimCadastro() == null) {
 					dataMaisRecente = endereco.getDataInicioCadastro();
@@ -264,8 +265,9 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 
 	public List<EnderecoEntity> selecionarEnderecoHistorico(EnderecoEntity enderecoAtual,
 			EmpresaEntity empresaSelecionada) throws Exception {
+		EmpresaEntity empresaNova = this.read(empresaSelecionada.getIdPessoa());
 		List<EnderecoEntity> enderecoHistorico = new ArrayList<EnderecoEntity>();
-		empresaSelecionada.getEnderecos().remove(enderecoAtual);
+		empresaNova.getEnderecos().remove(enderecoAtual);
 		enderecoHistorico = empresaSelecionada.getEnderecos();
 		return enderecoHistorico;
 	}
