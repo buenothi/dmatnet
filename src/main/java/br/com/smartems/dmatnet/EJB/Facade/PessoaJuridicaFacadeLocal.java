@@ -44,6 +44,9 @@ public interface PessoaJuridicaFacadeLocal extends AbstractFacade<EmpresaEntity>
 	public List<EmpresaCadastroEntity> selecionarDadosCadastraisHistorico(EmpresaCadastroEntity dadosCadastraisAtual,
 			EmpresaEntity empresaSelecionada) throws Exception;
 
+	public void salvarEnderecoEmpresa(EnderecoEntity enderecoAtual, EnderecoEntity enderecoAnterior,
+			EmpresaEntity empresaSelecionada);
+
 	public EnderecoEntity selecionarEnderecoAtual(EmpresaEntity empresa) throws Exception;
 
 	public List<EnderecoEntity> selecionarEnderecoHistorico(EnderecoEntity enderecoAtual,

@@ -557,7 +557,7 @@
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
-					<p:column headerText="#{msgs.nmRazaoSoftwareHouse}" >
+					<p:column headerText="#{msgs.nmRazaoSoftwareHouse}">
 						<p:cellEditor>
 							<f:facet name="output">
 								<p:outputLabel value="#{empresaSoftware.razaoSocial}"
@@ -1074,5 +1074,22 @@
 		</p:tab>
 
 	</p:accordionPanel>
+
+	<p:dialog widgetVar="dlgPerguntaDadosCadastrais"
+		header="#{msgs.Confirmar}" closable="true" resizable="false"
+		modal="true">
+		<p:panelGrid columns="1" styleClass="tabelaSemBorda">
+			<p:outputLabel value="#{msgs.MsgNovoCadastroDadosEmpresa}" />
+		</p:panelGrid>
+		<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+			<p:commandButton value="#{msgs.Sim}" icon="ui-icon-check"
+				actionListener="#{cadastroEmpresaMB.novoDadosCadastraisEmpresaPreenchido}"
+				update="formModulos" />
+			<p:commandButton value="#{msgs.Nao}" icon="ui-icon-close"
+				actionListener="#{cadastroEmpresaMB.novoDadosCadastraisEmpresaEmBranco}"
+				update="formModulos" />
+		</p:panelGrid>
+	</p:dialog>
+
 </ui:composition>
 </html>

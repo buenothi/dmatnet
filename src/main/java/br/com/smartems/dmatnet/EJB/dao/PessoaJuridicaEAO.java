@@ -126,7 +126,7 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		}
 		return novoDadosIsencao;
 	}
-	
+
 	private void atribuirEmpresaOrgI8n(EmpresaOrganismoInternacional empresaOrgI8n,
 			EmpresaCadastroEntity dadosCadastraisAtual) {
 		if (empresaOrgI8n != null) {
@@ -242,9 +242,33 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		dadosCadastraisHistorico = empresaSelecionada.getCadastros();
 		return dadosCadastraisHistorico;
 	}
-	
-	//regras de negócio do endereço
-	
+
+	// regras de negócio do endereço
+
+	public void salvarEnderecoEmpresa(EnderecoEntity enderecoAtual, EnderecoEntity enderecoAnterior,
+			EmpresaEntity empresaSelecionada) {
+		if (enderecoAtual.getIdEndereco() == 0) {
+			EmpresaEntity novaEmpresaSelecionada = this.read(empresaSelecionada.getIdPessoa());
+			for (EnderecoEntity enderecoEmpresa : novaEmpresaSelecionada.getEnderecos()) {
+				if (enderecoEmpresa.getIdEndereco() == enderecoAnterior.getIdEndereco()) {
+					Calendar calendar = Calendar.getInstance();
+					calendar.setTime(enderecoAtual.getDataInicioCadastro());
+					calendar.add(Calendar.DAY_OF_MONTH, -1);
+					if (calendar.getTime().compareTo(enderecoEmpresa.getDataInicioCadastro()) <= 0) {
+						enderecoEmpresa.setDataFimCadastro(enderecoEmpresa.getDataInicioCadastro());
+					} else {
+						enderecoEmpresa.setDataFimCadastro(calendar.getTime());
+					}
+				}
+			}
+			novaEmpresaSelecionada.getEnderecos().add(enderecoAtual);
+			this.update(novaEmpresaSelecionada);
+		} else {
+			empresaSelecionada.getEnderecos().add(enderecoAtual);
+			empresaSelecionada = this.update(empresaSelecionada);
+		}
+	}
+
 	public EnderecoEntity selecionarEnderecoAtual(EmpresaEntity empresa) throws Exception {
 		Date dataMaisRecente;
 		EmpresaEntity empresaNova = this.read(empresa.getIdPessoa());

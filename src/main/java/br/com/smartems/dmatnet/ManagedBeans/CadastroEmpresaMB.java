@@ -95,7 +95,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private EnderecoEntity enderecoAnterior;
 	private EnderecoEntity enderecoAtual;
 	private List<EnderecoEntity> enderecoHistorico;
-	
+
 	private DualListModel<EmpresaEntity> empresas;
 	private List<EmpresaGrupoEntity> grupos;
 
@@ -859,16 +859,13 @@ public class CadastroEmpresaMB implements Serializable {
 				this.pessoaJuridicaFachada.salvarDadosCadastraisEmpresa(this.dadosCadastraisAtual,
 						this.dadosCadastraisAnterior, this.empresaFap, this.empresaDadosIsencao, this.empresaOrgI8n,
 						this.empresasSoftwareHouse, this.empresaSelecionada);
-				this.exibirImagem(this.fotografiaFachadaEmpresa);
-				this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
 			} else {
 				FacesMessage msg = new FacesMessage("Erro",
 						"A data de início do Cadastro deverá ser igual ou superior à data de início do cadastro anterior");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
-				this.exibirImagem(this.fotografiaFachadaEmpresa);
-				this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
-
 			}
+			this.exibirImagem(this.fotografiaFachadaEmpresa);
+			this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
 		} catch (NullPointerException exc) {
 			exc.printStackTrace();
 			this.atribuirEmpresaFAP(this.empresaFap);
@@ -935,7 +932,7 @@ public class CadastroEmpresaMB implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void novoDadosCadastraisEmpresaEmBranco(ActionEvent e) {
 		try {
 			this.dadosCadastraisAnterior = this.dadosCadastraisAtual.clone();
@@ -1013,12 +1010,11 @@ public class CadastroEmpresaMB implements Serializable {
 					.selecionarDadosCadastraisHistorico(this.dadosCadastraisAtual, this.empresaSelecionada);
 			this.empresasSoftwareHouse = this.dadosCadastraisAtual.getEmpresaSoftwareHouse();
 			this.empresaOrgI8n = this.dadosCadastraisAtual.getOrganismoInternacional();
+			this.isDadosCadastraisEditarRender = false;
 			if (this.dadosCadastraisAtual.getId() != 0) {
 				this.isBtnDadosCadastraisEditarDesativado = false;
-				this.isDadosCadastraisEditarRender = false;
 			} else {
 				this.isBtnDadosCadastraisEditarDesativado = true;
-				this.isDadosCadastraisEditarRender = false;
 			}
 		} catch (NullPointerException e) {
 			e.printStackTrace();
@@ -1077,6 +1073,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnEnderecoCancelarDesativado = false;
 		this.isBtnEnderecoSalvarDesativado = false;
 		this.isBtnEnderecoNovoDesativado = true;
+		this.exibirImagem(this.fotografiaFachadaEmpresa);
 	}
 
 	public void cancelarEnderecoEmpresa(ActionEvent e) {
@@ -1090,14 +1087,30 @@ public class CadastroEmpresaMB implements Serializable {
 		this.separarEnderecoAtualDoHistorico(this.empresaSelecionada);
 	}
 
-	public void salvarEnderecoEmpresa(ActionEvent e) {
+	public void salvarEnderecoEmpresa(ActionEvent evt) {
 		this.isEnderecoEditarRender = false;
 		this.isBtnEnderecoCancelarDesativado = true;
 		this.isBtnEnderecoSalvarDesativado = true;
 		this.isBtnEnderecoNovoDesativado = false;
-		
-		this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
-		this.exibirImagem(this.fotografiaFachadaEmpresa);
+		try {
+			if (enderecoAnterior == null
+					|| enderecoAtual.getDataInicioCadastro().compareTo(enderecoAnterior.getDataInicioCadastro()) >= 0) {
+				this.pessoaJuridicaFachada.salvarEnderecoEmpresa(this.enderecoAtual, this.enderecoAnterior,
+						this.empresaSelecionada);
+			} else {
+				FacesMessage msg = new FacesMessage("Erro",
+						"A data de início do Endereço deverá ser igual ou superior à data de início do endereço anterior");
+				FacesContext.getCurrentInstance().addMessage(null, msg);
+			}
+		} catch (NullPointerException e) {
+			this.empresaSelecionada.getEnderecos().add(this.enderecoAtual);
+			this.empresaSelecionada = this.pessoaJuridicaFachada.update(this.empresaSelecionada);
+			this.exibirImagem(this.fotografiaFachadaEmpresa);
+			this.separarEnderecoAtualDoHistorico(empresaSelecionada);
+		} catch (Exception exc) {
+			this.fotografiaFachadaEmpresa = null;
+			exc.printStackTrace();
+		}
 	}
 
 	public void novoEnderecoEmpresa(ActionEvent evt) {
@@ -1105,6 +1118,8 @@ public class CadastroEmpresaMB implements Serializable {
 			if (this.enderecoAtual.getIdEndereco() >= 1) {
 				RequestContext.getCurrentInstance().execute("PF('dlgPerguntaEnderecoEmpresa').show()");
 			} else {
+				this.enderecoAtual = new EnderecoEntity();
+				this.enderecoAtual.setIdEndereco(0);
 				this.enderecoEmpresaTrocaBotoes();
 			}
 		} catch (NullPointerException e) {
@@ -1139,7 +1154,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.dadosCadastraisTrocaStatusBotoes();
 		RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').hide()");
 	}
-	
+
 	public void enderecoEmpresaTrocaBotoes() {
 		this.isBtnEnderecoEditarDesativado = true;
 		this.isEnderecoEditarRender = true;
@@ -1147,24 +1162,24 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnEnderecoSalvarDesativado = false;
 		this.isBtnEnderecoNovoDesativado = true;
 	}
-	
+
 	public void separarEnderecoAtualDoHistorico(EmpresaEntity empresa) {
 		this.empresaSelecionada = pessoaJuridicaFachada.read(empresa.getIdPessoa());
 		this.fotografiaFachadaEmpresa = this.empresaSelecionada.getEmpresaFotoFachada();
 		this.exibirImagem(fotografiaFachadaEmpresa);
 		try {
-			this.enderecoAtual = this.pessoaJuridicaFachada
-					.selecionarEnderecoAtual(this.empresaSelecionada);
-			this.enderecoHistorico = pessoaJuridicaFachada
-					.selecionarEnderecoHistorico(this.enderecoAtual, this.empresaSelecionada);
+			this.enderecoAtual = this.pessoaJuridicaFachada.selecionarEnderecoAtual(this.empresaSelecionada);
+			this.enderecoHistorico = pessoaJuridicaFachada.selecionarEnderecoHistorico(this.enderecoAtual,
+					this.empresaSelecionada);
 			this.isEnderecoEditarRender = false;
 			if (this.enderecoAtual.getIdEndereco() != 0) {
-				this.isBtnEnderecoEditarDesativado = true;
-			} else {
 				this.isBtnEnderecoEditarDesativado = false;
+			} else {
+				this.isBtnEnderecoEditarDesativado = true;
 			}
 		} catch (NullPointerException e) {
 			e.printStackTrace();
+			this.isBtnEnderecoEditarDesativado = true;
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
