@@ -626,6 +626,15 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public boolean isBtnDadosCadastraisEditarDesativado() {
+		try {
+			if (this.enderecoAtual.getIdEndereco() != 0) {
+				this.isBtnDadosCadastraisEditarDesativado = false;
+			} else {
+				this.isBtnDadosCadastraisEditarDesativado = true;
+			}
+		} catch (NullPointerException e) {
+			this.isBtnDadosCadastraisEditarDesativado = true;
+		}
 		return isBtnDadosCadastraisEditarDesativado;
 	}
 
@@ -666,6 +675,15 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public boolean isBtnEnderecoEditarDesativado() {
+		try {
+			if (this.enderecoAtual.getIdEndereco() != 0) {
+				this.isBtnEnderecoEditarDesativado = false;
+			} else {
+				this.isBtnEnderecoEditarDesativado = true;
+			}
+		} catch (NullPointerException e) {
+			this.isBtnEnderecoEditarDesativado = true;
+		}
 		return isBtnEnderecoEditarDesativado;
 	}
 
@@ -1011,15 +1029,8 @@ public class CadastroEmpresaMB implements Serializable {
 			this.empresasSoftwareHouse = this.dadosCadastraisAtual.getEmpresaSoftwareHouse();
 			this.empresaOrgI8n = this.dadosCadastraisAtual.getOrganismoInternacional();
 			this.isDadosCadastraisEditarRender = false;
-			if (this.dadosCadastraisAtual.getId() != 0) {
-				this.isBtnDadosCadastraisEditarDesativado = false;
-			} else {
-				this.isBtnDadosCadastraisEditarDesativado = true;
-			}
 		} catch (NullPointerException e) {
 			e.printStackTrace();
-			this.isBtnDadosCadastraisEditarDesativado = true;
-			this.isDadosCadastraisEditarRender = false;
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -1172,14 +1183,8 @@ public class CadastroEmpresaMB implements Serializable {
 			this.enderecoHistorico = pessoaJuridicaFachada.selecionarEnderecoHistorico(this.enderecoAtual,
 					this.empresaSelecionada);
 			this.isEnderecoEditarRender = false;
-			if (this.enderecoAtual.getIdEndereco() != 0) {
-				this.isBtnEnderecoEditarDesativado = false;
-			} else {
-				this.isBtnEnderecoEditarDesativado = true;
-			}
 		} catch (NullPointerException e) {
 			e.printStackTrace();
-			this.isBtnEnderecoEditarDesativado = true;
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
