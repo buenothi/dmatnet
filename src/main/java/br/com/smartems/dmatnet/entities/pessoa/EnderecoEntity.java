@@ -13,7 +13,7 @@ import br.com.smartems.dmatnet.entities.cidades.EstadoEntity;
 
 @Entity
 @Table(name="tbl_endereco")
-public class EnderecoEntity implements Serializable {
+public class EnderecoEntity implements Serializable, Cloneable {
  
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -29,8 +29,8 @@ public class EnderecoEntity implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataFimCadastro;
 	
-	@NotNull
-	@Size(min = 3)
+//	@NotNull
+//	@Size(min = 3)
 	private String logradouroNome;
 	private int logradouroNumero;
 	private String logradouroComplemento;
@@ -171,5 +171,106 @@ public class EnderecoEntity implements Serializable {
 		return serialVersionUID;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((bairro == null) ? 0 : bairro.hashCode());
+		result = prime * result + ((caixaPostal == null) ? 0 : caixaPostal.hashCode());
+		result = prime * result + ((cep == null) ? 0 : cep.hashCode());
+		result = prime * result + ((cidade == null) ? 0 : cidade.hashCode());
+		result = prime * result + ((dataFimCadastro == null) ? 0 : dataFimCadastro.hashCode());
+		result = prime * result + ((dataInicioCadastro == null) ? 0 : dataInicioCadastro.hashCode());
+		result = prime * result + ((enderecoTipo == null) ? 0 : enderecoTipo.hashCode());
+		result = prime * result + ((estado == null) ? 0 : estado.hashCode());
+		result = prime * result + (int) (idEndereco ^ (idEndereco >>> 32));
+		result = prime * result + ((logradouroComplemento == null) ? 0 : logradouroComplemento.hashCode());
+		result = prime * result + ((logradouroNome == null) ? 0 : logradouroNome.hashCode());
+		result = prime * result + logradouroNumero;
+		result = prime * result + ((logradouroPais == null) ? 0 : logradouroPais.hashCode());
+		result = prime * result + ((logradouroTipo == null) ? 0 : logradouroTipo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EnderecoEntity other = (EnderecoEntity) obj;
+		if (bairro == null) {
+			if (other.bairro != null)
+				return false;
+		} else if (!bairro.equals(other.bairro))
+			return false;
+		if (caixaPostal == null) {
+			if (other.caixaPostal != null)
+				return false;
+		} else if (!caixaPostal.equals(other.caixaPostal))
+			return false;
+		if (cep == null) {
+			if (other.cep != null)
+				return false;
+		} else if (!cep.equals(other.cep))
+			return false;
+		if (cidade == null) {
+			if (other.cidade != null)
+				return false;
+		} else if (!cidade.equals(other.cidade))
+			return false;
+		if (dataFimCadastro == null) {
+			if (other.dataFimCadastro != null)
+				return false;
+		} else if (!dataFimCadastro.equals(other.dataFimCadastro))
+			return false;
+		if (dataInicioCadastro == null) {
+			if (other.dataInicioCadastro != null)
+				return false;
+		} else if (!dataInicioCadastro.equals(other.dataInicioCadastro))
+			return false;
+		if (enderecoTipo == null) {
+			if (other.enderecoTipo != null)
+				return false;
+		} else if (!enderecoTipo.equals(other.enderecoTipo))
+			return false;
+		if (estado == null) {
+			if (other.estado != null)
+				return false;
+		} else if (!estado.equals(other.estado))
+			return false;
+		if (idEndereco != other.idEndereco)
+			return false;
+		if (logradouroComplemento == null) {
+			if (other.logradouroComplemento != null)
+				return false;
+		} else if (!logradouroComplemento.equals(other.logradouroComplemento))
+			return false;
+		if (logradouroNome == null) {
+			if (other.logradouroNome != null)
+				return false;
+		} else if (!logradouroNome.equals(other.logradouroNome))
+			return false;
+		if (logradouroNumero != other.logradouroNumero)
+			return false;
+		if (logradouroPais == null) {
+			if (other.logradouroPais != null)
+				return false;
+		} else if (!logradouroPais.equals(other.logradouroPais))
+			return false;
+		if (logradouroTipo == null) {
+			if (other.logradouroTipo != null)
+				return false;
+		} else if (!logradouroTipo.equals(other.logradouroTipo))
+			return false;
+		return true;
+	}
+
+	@Override
+	public EnderecoEntity clone() throws CloneNotSupportedException {
+		return (EnderecoEntity) super.clone();
+	}
 
 }
