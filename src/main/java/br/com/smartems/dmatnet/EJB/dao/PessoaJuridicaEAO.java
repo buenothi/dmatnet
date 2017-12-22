@@ -265,7 +265,7 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 			this.update(novaEmpresaSelecionada);
 		} else {
 			empresaSelecionada.getEnderecos().add(enderecoAtual);
-			empresaSelecionada = this.update(empresaSelecionada);
+			this.update(empresaSelecionada);
 		}
 	}
 

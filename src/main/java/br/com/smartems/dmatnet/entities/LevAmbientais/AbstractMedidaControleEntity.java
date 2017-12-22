@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.lang.String;
 import javax.persistence.*;
 
-@MappedSuperclass
+@Entity
+@Table(name="tbl_MedidasDeControle")
 @Inheritance(strategy=InheritanceType.JOINED)
 public abstract class AbstractMedidaControleEntity implements Serializable {
 	   
