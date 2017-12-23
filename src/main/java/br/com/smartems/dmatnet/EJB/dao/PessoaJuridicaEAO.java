@@ -2,6 +2,7 @@ package br.com.smartems.dmatnet.EJB.dao;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -219,11 +220,9 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 	}
 
 	public EmpresaCadastroEntity selecionarDadosCadastraisAtual(EmpresaEntity empresa) throws Exception {
-		Date dataMaisRecente;
+		Date dataMaisRecente = ((List<EmpresaCadastroEntity>) empresa.getCadastros()).get(0).getDataInicioCadastro();
 		EmpresaCadastroEntity dadosCadastraisAtual = new EmpresaCadastroEntity();
 		if (!empresa.getCadastros().isEmpty()) {
-			dataMaisRecente = empresa.getCadastros().get(0).getDataInicioCadastro();
-			dadosCadastraisAtual = empresa.getCadastros().get(0);
 			for (EmpresaCadastroEntity dadoCadastral : empresa.getCadastros()) {
 				if (dadoCadastral.getDataInicioCadastro().compareTo(dataMaisRecente) >= 0
 						&& dadoCadastral.getDataFimCadastro() == null) {
@@ -235,9 +234,9 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		return dadosCadastraisAtual;
 	}
 
-	public List<EmpresaCadastroEntity> selecionarDadosCadastraisHistorico(EmpresaCadastroEntity dadosCadastraisAtual,
+	public Collection<EmpresaCadastroEntity> selecionarDadosCadastraisHistorico(EmpresaCadastroEntity dadosCadastraisAtual,
 			EmpresaEntity empresaSelecionada) throws Exception {
-		List<EmpresaCadastroEntity> dadosCadastraisHistorico = new ArrayList<EmpresaCadastroEntity>();
+		Collection<EmpresaCadastroEntity> dadosCadastraisHistorico = new ArrayList<EmpresaCadastroEntity>();
 		empresaSelecionada.getCadastros().remove(dadosCadastraisAtual);
 		dadosCadastraisHistorico = empresaSelecionada.getCadastros();
 		return dadosCadastraisHistorico;
@@ -270,12 +269,10 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 	}
 
 	public EnderecoEntity selecionarEnderecoAtual(EmpresaEntity empresa) throws Exception {
-		Date dataMaisRecente;
+		Date dataMaisRecente = new Date();
 		EmpresaEntity empresaNova = this.read(empresa.getIdPessoa());
 		EnderecoEntity enderecoAtual = new EnderecoEntity();
 		if (!empresaNova.getCadastros().isEmpty()) {
-			dataMaisRecente = empresaNova.getCadastros().get(0).getDataInicioCadastro();
-			enderecoAtual = empresaNova.getEnderecos().get(0);
 			for (EnderecoEntity endereco : empresaNova.getEnderecos()) {
 				if (endereco.getDataInicioCadastro().compareTo(dataMaisRecente) >= 0
 						&& endereco.getDataFimCadastro() == null) {
@@ -287,10 +284,10 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		return enderecoAtual;
 	}
 
-	public List<EnderecoEntity> selecionarEnderecoHistorico(EnderecoEntity enderecoAtual,
+	public Collection<EnderecoEntity> selecionarEnderecoHistorico(EnderecoEntity enderecoAtual,
 			EmpresaEntity empresaSelecionada) throws Exception {
 		EmpresaEntity empresaNova = this.read(empresaSelecionada.getIdPessoa());
-		List<EnderecoEntity> enderecoHistorico = new ArrayList<EnderecoEntity>();
+		Collection<EnderecoEntity> enderecoHistorico = new ArrayList<EnderecoEntity>();
 		empresaNova.getEnderecos().remove(enderecoAtual);
 		enderecoHistorico = empresaSelecionada.getEnderecos();
 		return enderecoHistorico;

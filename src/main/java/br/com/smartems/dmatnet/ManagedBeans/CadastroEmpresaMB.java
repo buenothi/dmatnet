@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -90,11 +91,11 @@ public class CadastroEmpresaMB implements Serializable {
 															// adicionar data de
 															// término
 	private EmpresaCadastroEntity dadosCadastraisAtual;
-	private List<EmpresaCadastroEntity> dadosCadastraisHistorico;
+	private Collection<EmpresaCadastroEntity> dadosCadastraisHistorico;
 
 	private EnderecoEntity enderecoAnterior;
 	private EnderecoEntity enderecoAtual;
-	private List<EnderecoEntity> enderecoHistorico;
+	private Collection<EnderecoEntity> enderecoHistorico;
 
 	private DualListModel<EmpresaEntity> empresas;
 	private List<EmpresaGrupoEntity> grupos;
@@ -208,7 +209,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.dadosCadastraisAtual = dadosCadastraisAtual;
 	}
 
-	public List<EmpresaCadastroEntity> getDadosCadastraisHistorico() {
+	public Collection<EmpresaCadastroEntity> getDadosCadastraisHistorico() {
 		if (this.dadosCadastraisHistorico == null) {
 			this.dadosCadastraisHistorico = new ArrayList<EmpresaCadastroEntity>();
 		}
@@ -346,7 +347,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.enderecoAnterior = enderecoAnterior;
 	}
 
-	public List<EnderecoEntity> getEnderecoHistorico() {
+	public Collection<EnderecoEntity> getEnderecoHistorico() {
 		if (this.enderecoHistorico == null) {
 			this.enderecoHistorico = new ArrayList<EnderecoEntity>();
 		}

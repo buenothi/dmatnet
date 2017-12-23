@@ -1,6 +1,7 @@
 package br.com.smartems.dmatnet.entities.pessoa;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -32,20 +33,17 @@ public abstract class AbstractPessoaEntity implements Serializable {
 	@Size(min = 3)
 	private String nome;
 
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
-			CascadeType.MERGE }, orphanRemoval = true)
-	@JoinColumn(name="PESSOA_ID")
-	private List<EnderecoEntity> enderecos;
-
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
-			CascadeType.MERGE }, orphanRemoval = true)
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE }, orphanRemoval = true)
 	@JoinColumn(name = "PESSOA_ID")
-	private List<TelefoneEntity> telefones;
+	private Collection<EnderecoEntity> enderecos;
 
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
-			CascadeType.MERGE }, orphanRemoval = true)
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE }, orphanRemoval = true)
 	@JoinColumn(name = "PESSOA_ID")
-	private List<EmailEntity> emails;
+	private Collection<TelefoneEntity> telefones;
+
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE }, orphanRemoval = true)
+	@JoinColumn(name = "PESSOA_ID")
+	private Collection<EmailEntity> emails;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastroPessoa;
@@ -72,15 +70,15 @@ public abstract class AbstractPessoaEntity implements Serializable {
 		this.nome = nome.toUpperCase();
 	}
 
-	public List<EnderecoEntity> getEnderecos() {
+	public Collection<EnderecoEntity> getEnderecos() {
 		return enderecos;
 	}
 
-	public void setEnderecos(List<EnderecoEntity> enderecos) {
+	public void setEnderecos(Collection<EnderecoEntity> enderecos) {
 		this.enderecos = enderecos;
 	}
 
-	public List<TelefoneEntity> getTelefones() {
+	public Collection<TelefoneEntity> getTelefones() {
 		return telefones;
 	}
 
@@ -88,7 +86,7 @@ public abstract class AbstractPessoaEntity implements Serializable {
 		this.telefones = telefones;
 	}
 
-	public List<EmailEntity> getEmails() {
+	public Collection<EmailEntity> getEmails() {
 		return emails;
 	}
 

@@ -1,6 +1,7 @@
 package br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -42,7 +43,7 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 	@JoinTable(name="tbl_usuarioEmpresas_joinTable",
 		joinColumns=@JoinColumn(name="usuario_ID"),
 		inverseJoinColumns=@JoinColumn(name="empresa_ID"))
-	private List<EmpresaEntity> empresasGerenciadas;
+	private Collection<EmpresaEntity> empresasGerenciadas;
 	
 	@ManyToMany(mappedBy="usuarios")
 	private List<EmpresaGrupoEntity> gruposGerenciados;
@@ -80,11 +81,11 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 		this.grupo = grupo;
 	}
 
-	public List<EmpresaEntity> getEmpresasGerenciadas() {
+	public Collection<EmpresaEntity> getEmpresasGerenciadas() {
 		return empresasGerenciadas;
 	}
 
-	public void setEmpresasGerenciadas(List<EmpresaEntity> empresasGerenciadas) {
+	public void setEmpresasGerenciadas(Collection<EmpresaEntity> empresasGerenciadas) {
 		this.empresasGerenciadas = empresasGerenciadas;
 	}
 
