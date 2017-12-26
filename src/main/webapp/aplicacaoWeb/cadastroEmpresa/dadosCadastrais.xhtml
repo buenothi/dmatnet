@@ -119,14 +119,12 @@
 						</p:column>
 
 						<p:column>
-							<h:panelGroup>
-								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-									<p:inputNumber maxlength="250" size="5" decimalPlaces="4"
-										value="#{cadastroEmpresaMB.empresaFap.valorFAP}"
-										minValue="0.5" maxValue="2" />
-									<p:commandButton value="#{msgs.ProcessoFAP}" />
-								</p:panelGrid>
-							</h:panelGroup>
+							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+								<p:inputNumber size="5" decimalPlaces="4"
+									value="#{cadastroEmpresaMB.empresaFap.valorFAP}" minValue="0.5"
+									maxValue="2" />
+								<p:commandButton value="#{msgs.ProcessoFAP}" />
+							</p:panelGrid>
 						</p:column>
 					</p:row>
 

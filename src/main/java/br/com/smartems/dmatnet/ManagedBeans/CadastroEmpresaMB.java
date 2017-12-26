@@ -73,7 +73,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private EmpresaDadosIsencao empresaDadosIsencao;
 	private EmpresaOrganismoInternacional empresaOrgI8n;
 	private EmpresaSoftwareHouse empresaSoftwareHouse;
-	private List<EmpresaSoftwareHouse> empresasSoftwareHouse;
+	private Collection<EmpresaSoftwareHouse> empresasSoftwareHouse;
 	private String empresaOrgI8nString;
 	private EmpresaFoto fotografiaFachadaEmpresa;
 	private EmpresaFoto fotografiaFachadaAntiga;
@@ -282,7 +282,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.empresaSoftwareHouse = empresaSoftwareHouse;
 	}
 
-	public List<EmpresaSoftwareHouse> getEmpresasSoftwareHouse() {
+	public Collection<EmpresaSoftwareHouse> getEmpresasSoftwareHouse() {
 		if (this.empresasSoftwareHouse == null) {
 			this.empresasSoftwareHouse = new ArrayList<EmpresaSoftwareHouse>();
 		}
@@ -845,6 +845,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.empresaFap = this.dadosCadastraisAtual.getEmpresaFAP();
 		this.empresaDadosIsencao = this.dadosCadastraisAtual.getEmpresaDadosIsencao();
 		this.empresaOrgI8n = this.dadosCadastraisAtual.getOrganismoInternacional();
+		this.empresasSoftwareHouse = this.dadosCadastraisAtual.getEmpresaSoftwareHouse();
 	}
 
 	public void cancelarDadosCadastraisEmpresa(ActionEvent e) {

@@ -64,7 +64,7 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 
 	public void alterarCadastroEmpresa(EmpresaEntity empresa, UsuarioEntity usuarioLogado, EmpresaFAP fap,
 			EmpresaDadosIsencao empresaDadosIsencao, EmpresaOrganismoInternacional empresaOrgI8n,
-			List<EmpresaSoftwareHouse> empresasSoftware, EmpresaCadastroEntity dadosCadastraisAtual) {
+			Collection<EmpresaSoftwareHouse> empresasSoftware, EmpresaCadastroEntity dadosCadastraisAtual) {
 		pessoaJuridicaEAO.alterarCadastroEmpresa(empresa, usuarioLogado, fap, empresaDadosIsencao, empresaOrgI8n,
 				empresasSoftware, dadosCadastraisAtual);
 	}
@@ -81,7 +81,7 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
 			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap,
 			EmpresaDadosIsencao empresaDadosIsencao, EmpresaOrganismoInternacional empresaOrgI8n,
-			List<EmpresaSoftwareHouse> empresasSoftwareHouse, EmpresaEntity empresaSelecionada) throws Exception {
+			Collection<EmpresaSoftwareHouse> empresasSoftwareHouse, EmpresaEntity empresaSelecionada) throws Exception {
 		pessoaJuridicaEAO.salvarDadosCadastraisEmpresa(dadosCadastraisAtual, dadosCadastraisAnterior, empresaFap,
 				empresaDadosIsencao, empresaOrgI8n, empresasSoftwareHouse, empresaSelecionada);
 	}
