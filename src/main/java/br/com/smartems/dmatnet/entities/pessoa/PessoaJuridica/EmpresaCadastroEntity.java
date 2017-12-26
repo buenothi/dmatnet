@@ -46,23 +46,19 @@ public class EmpresaCadastroEntity implements Serializable, Cloneable {
 	private int codIndicativoRegEletronico;
 	private boolean multiplasTabRubricas;
 
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
-			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "empresaFAP_ID")
 	private EmpresaFAP empresaFAP;
 
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
-			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "empresaDadosIsencao_ID")
 	private EmpresaDadosIsencao empresaDadosIsencao;
 
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
-			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "organismoInternacional_ID")
 	private EmpresaOrganismoInternacional organismoInternacional;
 
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
-			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE }, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "empresaSoftwareHouse_ID")
 	private Collection<EmpresaSoftwareHouse> empresaSoftwareHouse;
 
@@ -240,7 +236,7 @@ public class EmpresaCadastroEntity implements Serializable, Cloneable {
 	public void setEmpresaSoftwareHouse(Collection<EmpresaSoftwareHouse> empresaSoftwareHouse) {
 		this.empresaSoftwareHouse = empresaSoftwareHouse;
 	}
-	
+
 	@Override
 	public EmpresaCadastroEntity clone() throws CloneNotSupportedException {
 		return (EmpresaCadastroEntity) super.clone();

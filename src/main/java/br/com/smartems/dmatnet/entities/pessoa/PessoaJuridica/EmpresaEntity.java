@@ -31,8 +31,7 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 	@JoinColumn(name = "grupo_ID")
 	private EmpresaGrupoEntity grupo;
 
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
-			CascadeType.MERGE, CascadeType.REFRESH}, orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToMany(cascade = { CascadeType.ALL}, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "empresa_ID")
 	private Collection<EmpresaCadastroEntity> cadastros;
 
