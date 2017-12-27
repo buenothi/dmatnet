@@ -133,7 +133,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	// botões referentes à Edição do Endereço da Empresa
 
-	private boolean isBtnEnderecoEditarDesativado = true;
+	private boolean isBtnEnderecoEditarDesativado = false;
 	private boolean isEnderecoEditarRender = false;
 	private boolean isBtnEnderecoCancelarDesativado = true;
 	private boolean isBtnEnderecoSalvarDesativado = true;
@@ -1073,10 +1073,6 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnEnderecoCancelarDesativado = true;
 		this.isBtnEnderecoSalvarDesativado = true;
 		this.isBtnEnderecoNovoDesativado = false;
-		this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
-		this.exibirImagem(this.fotografiaFachadaEmpresa);
-		this.enderecoAtual = null;
-		this.separarEnderecoAtualDoHistorico(this.empresaSelecionada);
 	}
 
 	public void salvarEnderecoEmpresa(ActionEvent e) {
@@ -1088,7 +1084,6 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void novoEnderecoEmpresa(ActionEvent e) {
 		this.isBtnEnderecoEditarDesativado = true;
-		this.isEnderecoEditarRender = true;
 		this.isBtnEnderecoCancelarDesativado = false;
 		this.isBtnEnderecoSalvarDesativado = false;
 		this.isBtnEnderecoNovoDesativado = true;
