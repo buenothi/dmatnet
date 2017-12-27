@@ -1154,12 +1154,15 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void novoEnderecoEmpresaPreenchido(ActionEvent e) {
 		try {
-			this.enderecoAnterior = this.enderecoAtual.clone();
+			this.dadosCadastraisAnterior = this.dadosCadastraisAtual.clone();
 		} catch (CloneNotSupportedException e1) {
 			e1.printStackTrace();
 		}
-		this.enderecoAtual.setIdEndereco(0);
-		this.enderecoEmpresaTrocaBotoes();
+		this.empresaFap = this.dadosCadastraisAtual.getEmpresaFAP();
+		this.empresaDadosIsencao = this.dadosCadastraisAtual.getEmpresaDadosIsencao();
+		this.empresaOrgI8n = this.dadosCadastraisAtual.getOrganismoInternacional();
+		this.dadosCadastraisAtual.setId(0);
+		this.dadosCadastraisTrocaStatusBotoes();
 		RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').hide()");
 	}
 
