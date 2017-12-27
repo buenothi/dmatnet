@@ -2,6 +2,7 @@ package dmatnet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -58,6 +59,8 @@ public class GerarUsuarioMaster extends HttpServlet {
 
 				um.setNome("Thiago Gonçalves Bueno");
 				um.setSenha("Tgb6878");
+				
+				um.setDataCadastroPessoa(new Date(System.currentTimeMillis()));
 				
 				um.setGrupo(grupo);
 

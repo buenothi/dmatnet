@@ -15,46 +15,21 @@
 
 		<h:panelGroup layout="block" styleClass="tabsConteiner">
 			<p:tabView id="tbwCadastroEmpresa">
-				<p:tab id="tabDadosCadastrais" title="#{msgs.DadosCadastrais}">
+				<p:tab id="tabDadosCadastrais" title="#{msgs.DadosCadastrais}"
+					disabled="#{cadastroEmpresaMB.tabDadosCadastraisDesativado}">
 					<ui:include
-						src="/aplicacaoWeb/cadastroEmpresa/dadosCadastrais.xhtml"/>
+						src="/aplicacaoWeb/cadastroEmpresa/dadosCadastrais.xhtml" />
 				</p:tab>
-				<p:tab id="tabEndereco" title="#{msgs.Endereco}">
-					<dmat:enderecoComposite id="dmatEnderecoEmpresa"
-						logradouroTipo="#{cadastroEmpresaMB.enderecoAtual.logradouroTipo}"
-						logradouroNome="#{cadastroEmpresaMB.enderecoAtual.logradouroNome}"
-						logradouroNumero="#{cadastroEmpresaMB.enderecoAtual.logradouroNumero}"
-						logradouroComplemento="#{cadastroEmpresaMB.enderecoAtual.logradouroComplemento}"
-						bairro="#{cadastroEmpresaMB.enderecoAtual.bairro}"
-						cep="#{cadastroEmpresaMB.enderecoAtual.cep}"
-						caixaPostal="#{cadastroEmpresaMB.enderecoAtual.caixaPostal}"
-						cidade="#{cadastroEmpresaMB.enderecoAtual.cidade}"
-						estado="#{cadastroEmpresaMB.enderecoAtual.estado}"
-						ajaxComponentRender="formModulos:formCadEmpresa:tbwCadastroEmpresa:dmatEnderecoEmpresa:acpEndereco:listCidade" 
-						
-						disabledEditar="#{cadastroEmpresaMB.btnEnderecoEditarDesativado}"
-						actionListenerEditar="#{cadastroEmpresaMB.editarEnderecoEmpresa}"
-						updateEditar="formModulos"
-						
-						disabledCancelar="#{cadastroEmpresaMB.btnEnderecoCancelarDesativado}"
-						actionListenerCancelar="#{cadastroEmpresaMB.cancelarEnderecoEmpresa}"
-						updateCancelar="formModulos"
-						
-						disabledSalvar="#{cadastroEmpresaMB.btnEnderecoSalvarDesativado}"
-						actionListenerSalvar="#{cadastroEmpresaMB.salvarEnderecoEmpresa}"
-						updateSalvar="formModulos"
-						
-						disabledNovo="#{cadastroEmpresaMB.btnEnderecoNovoDesativado}"
-						actionListenerNovo="#{cadastroEmpresaMB.novoEnderecoEmpresa}"
-						updateNovo="formModulos"
-						/>
+				<p:tab id="tabEndereco" title="#{msgs.Endereco}" disabled="#{cadastroEmpresaMB.tabEnderecoDesativado}">
+					<ui:include
+						src="/aplicacaoWeb/cadastroEmpresa/enderecoEmpresa.xhtml" />
 				</p:tab>
-				<p:tab title="#{msgs.ContatoUsuario}">
+				<p:tab title="#{msgs.ContatoUsuario}" disabled="#{cadastroEmpresaMB.tabContatoDesativado}">
 					<ui:include
 						src="/aplicacaoWeb/cadastroEmpresa/contatoEmpresa.xhtml" />
 				</p:tab>
-				<p:tab title="#{msgs.Empregados}"></p:tab>
-				<p:tab title="#{msgs.Estabelecimentos}"></p:tab>
+				<p:tab title="#{msgs.Empregados}" disabled="#{cadastroEmpresaMB.tabEmpregadosDesativado}"></p:tab>
+				<p:tab title="#{msgs.Estabelecimentos}" disabled="#{cadastroEmpresaMB.tabEstabelecimentosDesativado}"></p:tab>
 			</p:tabView>
 		</h:panelGroup>
 	</h:form>

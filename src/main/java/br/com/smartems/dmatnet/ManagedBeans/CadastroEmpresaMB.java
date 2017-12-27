@@ -97,6 +97,14 @@ public class CadastroEmpresaMB implements Serializable {
 	private DualListModel<EmpresaEntity> empresas;
 	private List<EmpresaGrupoEntity> grupos;
 
+	// barra das tabs em cadastro de empresa
+	
+	private boolean isTabDadosCadastraisDesativado = false;
+	private boolean isTabEnderecoDesativado = false;
+	private boolean isTabContatoDesativado = false;
+	private boolean isTabEmpregadosDesativado = false;
+	private boolean isTabEstabelecimentosDesativado = false;
+	
 	// botões referentes à Edição do Cadastro de Empresa
 
 	private boolean isListaEmpresa = false;
@@ -108,7 +116,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private boolean isFotoAlterada = false;
 	private boolean isLogoAlterado = false;
 	private boolean isBtnModuloDadosCadastrais = true;
-
+	
 	// botões referentes à Edição do Cadastro de Grupo Empresa
 
 	private boolean isBtnGrupoEditarDesativado = true;
@@ -398,6 +406,46 @@ public class CadastroEmpresaMB implements Serializable {
 		this.grupos = grupos;
 	}
 
+	public boolean isTabDadosCadastraisDesativado() {
+		return isTabDadosCadastraisDesativado;
+	}
+
+	public void setTabDadosCadastraisDesativado(boolean isTabDadosCadastraisDesativado) {
+		this.isTabDadosCadastraisDesativado = isTabDadosCadastraisDesativado;
+	}
+
+	public boolean isTabEnderecoDesativado() {
+		return isTabEnderecoDesativado;
+	}
+
+	public void setTabEnderecoDesativado(boolean isTabEnderecoDesativado) {
+		this.isTabEnderecoDesativado = isTabEnderecoDesativado;
+	}
+
+	public boolean isTabContatoDesativado() {
+		return isTabContatoDesativado;
+	}
+
+	public void setTabContatoDesativado(boolean isTabContatoDesativado) {
+		this.isTabContatoDesativado = isTabContatoDesativado;
+	}
+
+	public boolean isTabEmpregadosDesativado() {
+		return isTabEmpregadosDesativado;
+	}
+
+	public void setTabEmpregadosDesativado(boolean isTabEmpregadosDesativado) {
+		this.isTabEmpregadosDesativado = isTabEmpregadosDesativado;
+	}
+
+	public boolean isTabEstabelecimentosDesativado() {
+		return isTabEstabelecimentosDesativado;
+	}
+
+	public void setTabEstabelecimentosDesativado(boolean isTabEstabelecimentosDesativado) {
+		this.isTabEstabelecimentosDesativado = isTabEstabelecimentosDesativado;
+	}
+
 	public EmpresaGrupoEntity getGrupoSelecionado() {
 		if (this.grupoSelecionado == null) {
 			this.grupoSelecionado = new EmpresaGrupoEntity();
@@ -528,6 +576,8 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnModuloDadosCadastrais = isBtnModuloDadosCadastrais;
 	}
 
+	
+	
 	public boolean isBtnGrupoEditarDesativado() {
 		return isBtnGrupoEditarDesativado;
 	}
@@ -797,6 +847,11 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisCancelarDesativado = false;
 		this.isBtnDadosCadastraisSalvarDesativado = false;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = true;
+		this.isTabDadosCadastraisDesativado = false;
+		this.isTabEnderecoDesativado = true;
+		this.isTabContatoDesativado = true;
+		this.isTabEmpregadosDesativado = true;
+		this.isTabEstabelecimentosDesativado = true;
 		this.exibirImagem(this.fotografiaFachadaEmpresa);
 		this.empresaFap = this.dadosCadastraisAtual.getEmpresaFAP();
 		this.empresaDadosIsencao = this.dadosCadastraisAtual.getEmpresaDadosIsencao();
@@ -808,6 +863,11 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisCancelarDesativado = true;
 		this.isBtnDadosCadastraisSalvarDesativado = true;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = false;
+		this.isTabDadosCadastraisDesativado = false;
+		this.isTabEnderecoDesativado = false;
+		this.isTabContatoDesativado = false;
+		this.isTabEmpregadosDesativado = false;
+		this.isTabEstabelecimentosDesativado = false;
 		this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
 		this.exibirImagem(this.fotografiaFachadaEmpresa);
 		this.dadosCadastraisAtual = null;
@@ -819,6 +879,11 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisCancelarDesativado = true;
 		this.isBtnDadosCadastraisSalvarDesativado = true;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = false;
+		this.isTabDadosCadastraisDesativado = false;
+		this.isTabEnderecoDesativado = false;
+		this.isTabContatoDesativado = false;
+		this.isTabEmpregadosDesativado = false;
+		this.isTabEstabelecimentosDesativado = false;
 		try {
 			if (dadosCadastraisAnterior == null || dadosCadastraisAtual.getDataInicioCadastro()
 					.compareTo(dadosCadastraisAnterior.getDataInicioCadastro()) >= 0) {
@@ -934,6 +999,11 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnDadosCadastraisCancelarDesativado = false;
 		this.isBtnDadosCadastraisSalvarDesativado = false;
 		this.isBtnDadosCadastraisNovaEmpresaDesativado = true;
+		this.isTabDadosCadastraisDesativado = false;
+		this.isTabEnderecoDesativado = true;
+		this.isTabContatoDesativado = true;
+		this.isTabEmpregadosDesativado = true;
+		this.isTabEstabelecimentosDesativado = true;
 	}
 
 	public void novoCadastroEmpresaSoftware(ActionEvent evt) {
