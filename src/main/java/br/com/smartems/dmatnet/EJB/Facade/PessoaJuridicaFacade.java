@@ -1,6 +1,5 @@
 package br.com.smartems.dmatnet.EJB.Facade;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -94,7 +93,7 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 		return pessoaJuridicaEAO.selecionarDadosCadastraisAtual(empresa);
 	}
 
-	public Collection<EmpresaCadastroEntity> selecionarDadosCadastraisHistorico(EmpresaCadastroEntity dadosCadastraisAtual,
+	public List<EmpresaCadastroEntity> selecionarDadosCadastraisHistorico(EmpresaCadastroEntity dadosCadastraisAtual,
 			EmpresaEntity empresaSelecionada) throws Exception {
 		return pessoaJuridicaEAO.selecionarDadosCadastraisHistorico(dadosCadastraisAtual, empresaSelecionada);
 	}
@@ -108,7 +107,7 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 		return pessoaJuridicaEAO.selecionarEnderecoAtual(empresa);
 	}
 
-	public Collection<EnderecoEntity> selecionarEnderecoHistorico(EnderecoEntity enderecoAtual,
+	public List<EnderecoEntity> selecionarEnderecoHistorico(EnderecoEntity enderecoAtual,
 			EmpresaEntity empresaSelecionada) throws Exception {
 		return pessoaJuridicaEAO.selecionarEnderecoHistorico(enderecoAtual, empresaSelecionada);
 	}

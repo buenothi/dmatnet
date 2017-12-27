@@ -1,7 +1,7 @@
 package br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -34,7 +34,7 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
 			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "empresa_ID")
-	private Collection<EmpresaCadastroEntity> cadastros;
+	private List<EmpresaCadastroEntity> cadastros;
 
 	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
 			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
@@ -42,7 +42,7 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 	private Set<LocalTrabalhoEntity> locais;
 
 	@ManyToMany(mappedBy = "empresasGerenciadas")
-	private Collection<UsuarioEntity> usuarios;
+	private List<UsuarioEntity> usuarios;
 
 	@ManyToOne
 	@JoinColumn(name = "usuarioCriador_ID")
@@ -82,11 +82,11 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 		this.grupo = grupo;
 	}
 
-	public Collection<EmpresaCadastroEntity> getCadastros() {
+	public List<EmpresaCadastroEntity> getCadastros() {
 		return cadastros;
 	}
 
-	public void setCadastros(Collection<EmpresaCadastroEntity> cadastros) {
+	public void setCadastros(List<EmpresaCadastroEntity> cadastros) {
 		this.cadastros = cadastros;
 	}
 
@@ -106,11 +106,11 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 		this.tipoEstabelecimento = tipoEstabelecimento;
 	}
 
-	public Collection<UsuarioEntity> getUsuarios() {
+	public List<UsuarioEntity> getUsuarios() {
 		return usuarios;
 	}
 
-	public void setUsuarios(Collection<UsuarioEntity> usuarios) {
+	public void setUsuarios(List<UsuarioEntity> usuarios) {
 		this.usuarios = usuarios;
 	}
 
