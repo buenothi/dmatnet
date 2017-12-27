@@ -186,6 +186,22 @@
 		</h:form>
 	</p:dialog>
 
+	<p:dialog widgetVar="dlgPerguntaDadosCadastrais"
+		header="#{msgs.Confirmar}" closable="true" resizable="false"
+		modal="true">
+		<p:panelGrid columns="1" styleClass="tabelaSemBorda">
+			<p:outputLabel value="#{msgs.MsgNovoCadastroDadosEmpresa}" />
+		</p:panelGrid>
+		<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+			<p:commandButton value="#{msgs.Sim}" icon="ui-icon-check"
+				actionListener="#{cadastroEmpresaMB.novoDadosCadastraisEmpresaPreenchido}"
+				update="formModulos" />
+			<p:commandButton value="#{msgs.Nao}" icon="ui-icon-close"
+				actionListener="#{cadastroEmpresaMB.novoDadosCadastraisEmpresaEmBranco}"
+				update="formModulos" />
+		</p:panelGrid>
+	</p:dialog>
+
 	<p:dialog widgetVar="dlgSairAplicacao"
 		header="#{msgs.TituloSairAplicacao}" closable="true" resizable="false"
 		modal="true">
@@ -208,6 +224,7 @@
 		showEffect="fade" hideEffect="fade">
 		<h:graphicImage name="images/16.gif" />
 	</p:dialog>
+
 
 	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 		<p:commandButton value="#{msgs.Sim}" type="button"

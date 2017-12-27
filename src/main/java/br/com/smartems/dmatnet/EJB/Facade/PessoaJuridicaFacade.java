@@ -97,16 +97,11 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 			EmpresaEntity empresaSelecionada) throws Exception {
 		return pessoaJuridicaEAO.selecionarDadosCadastraisHistorico(dadosCadastraisAtual, empresaSelecionada);
 	}
-
-	public void salvarEnderecoEmpresa(EnderecoEntity enderecoAtual, EnderecoEntity enderecoAnterior,
-			EmpresaEntity empresaSelecionada) {
-		pessoaJuridicaEAO.salvarEnderecoEmpresa(enderecoAtual, enderecoAnterior, empresaSelecionada);
-	}
-
+	
 	public EnderecoEntity selecionarEnderecoAtual(EmpresaEntity empresa) throws Exception {
 		return pessoaJuridicaEAO.selecionarEnderecoAtual(empresa);
 	}
-
+	
 	public List<EnderecoEntity> selecionarEnderecoHistorico(EnderecoEntity enderecoAtual,
 			EmpresaEntity empresaSelecionada) throws Exception {
 		return pessoaJuridicaEAO.selecionarEnderecoHistorico(enderecoAtual, empresaSelecionada);

@@ -1,17 +1,12 @@
 package br.com.smartems.dmatnet.entities.pessoa;
 
 import java.io.Serializable;
+import java.lang.String;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import br.com.smartems.dmatnet.entities.cidades.CidadeEntity;
 import br.com.smartems.dmatnet.entities.cidades.EstadoEntity;
@@ -24,8 +19,8 @@ public class EnderecoEntity implements Serializable, Cloneable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idEndereco;
 	
-//	@NotNull
-//	@Size(min = 3)
+	@NotNull
+	@Size(min = 3)
 	private String enderecoTipo;//conforme tabela 20 do eSocial
 	
 	@Temporal(TemporalType.TIMESTAMP)

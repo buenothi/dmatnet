@@ -19,36 +19,34 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @MappedSuperclass
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy=InheritanceType.JOINED)
 public abstract class AbstractPessoaEntity implements Serializable {
-
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long idPessoa;
-
+	
 	@NotNull
 	@Size(min = 3)
 	private String nome;
-
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
-			CascadeType.MERGE }, orphanRemoval = true)
+	
+	@OneToMany(cascade={CascadeType.ALL})
 	@JoinColumn(name="PESSOA_ID")
 	private List<EnderecoEntity> enderecos;
-
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
-			CascadeType.MERGE }, orphanRemoval = true)
-	@JoinColumn(name = "PESSOA_ID")
+	
+	@OneToMany(cascade={CascadeType.ALL})
+	@JoinColumn(name="PESSOA_ID")
 	private List<TelefoneEntity> telefones;
-
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
-			CascadeType.MERGE }, orphanRemoval = true)
-	@JoinColumn(name = "PESSOA_ID")
+	
+	@OneToMany(cascade={CascadeType.ALL})
+	@JoinColumn(name="PESSOA_ID")
 	private List<EmailEntity> emails;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastroPessoa;
-
+	
 	private static final long serialVersionUID = 1L;
+	
 
 	public AbstractPessoaEntity() {
 		super();
@@ -61,7 +59,7 @@ public abstract class AbstractPessoaEntity implements Serializable {
 	public void setIdPessoa(long idPessoa) {
 		this.idPessoa = idPessoa;
 	}
-
+	
 	public String getNome() {
 		return nome;
 	}
@@ -92,7 +90,7 @@ public abstract class AbstractPessoaEntity implements Serializable {
 
 	public void setEmails(List<EmailEntity> emails) {
 		this.emails = emails;
-	}
+	}	
 
 	public Date getCadastroPessoa() {
 		return dataCadastroPessoa;
@@ -138,5 +136,5 @@ public abstract class AbstractPessoaEntity implements Serializable {
 			return false;
 		return true;
 	}
-
+	
 }
