@@ -2,8 +2,6 @@ package br.com.smartems.dmatnet.entities.pessoa;
 
 import java.io.Serializable;
 import java.lang.String;
-import java.util.Date;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -22,12 +20,6 @@ public class EnderecoEntity implements Serializable {
 	@NotNull
 	@Size(min = 3)
 	private String enderecoTipo;//conforme tabela 20 do eSocial
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataInicioCadastro;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataFimCadastro;
 	
 	@NotNull
 	@Size(min = 3)
@@ -70,22 +62,6 @@ public class EnderecoEntity implements Serializable {
 
 	public void setEnderecoTipo(String enderecoTipo) {
 		this.enderecoTipo = enderecoTipo;
-	}
-
-	public Date getDataInicioCadastro() {
-		return dataInicioCadastro;
-	}
-
-	public void setDataInicioCadastro(Date dataInicioCadastro) {
-		this.dataInicioCadastro = dataInicioCadastro;
-	}
-
-	public Date getDataFimCadastro() {
-		return dataFimCadastro;
-	}
-
-	public void setDataFimCadastro(Date dataFimCadastro) {
-		this.dataFimCadastro = dataFimCadastro;
 	}
 
 	public String getLogradouroNome() {

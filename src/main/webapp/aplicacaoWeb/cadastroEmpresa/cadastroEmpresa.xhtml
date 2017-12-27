@@ -20,8 +20,34 @@
 						src="/aplicacaoWeb/cadastroEmpresa/dadosCadastrais.xhtml"/>
 				</p:tab>
 				<p:tab id="tabEndereco" title="#{msgs.Endereco}">
-					<ui:include
-						src="/aplicacaoWeb/cadastroEmpresa/endereco.xhtml"/>
+					<dmat:enderecoComposite id="dmatEnderecoEmpresa"
+						logradouroTipo="#{cadastroEmpresaMB.enderecoAtual.logradouroTipo}"
+						logradouroNome="#{cadastroEmpresaMB.enderecoAtual.logradouroNome}"
+						logradouroNumero="#{cadastroEmpresaMB.enderecoAtual.logradouroNumero}"
+						logradouroComplemento="#{cadastroEmpresaMB.enderecoAtual.logradouroComplemento}"
+						bairro="#{cadastroEmpresaMB.enderecoAtual.bairro}"
+						cep="#{cadastroEmpresaMB.enderecoAtual.cep}"
+						caixaPostal="#{cadastroEmpresaMB.enderecoAtual.caixaPostal}"
+						cidade="#{cadastroEmpresaMB.enderecoAtual.cidade}"
+						estado="#{cadastroEmpresaMB.enderecoAtual.estado}"
+						ajaxComponentRender="formModulos:formCadEmpresa:tbwCadastroEmpresa:dmatEnderecoEmpresa:acpEndereco:listCidade" 
+						
+						disabledEditar="#{cadastroEmpresaMB.btnEnderecoEditarDesativado}"
+						actionListenerEditar="#{cadastroEmpresaMB.editarEnderecoEmpresa}"
+						updateEditar="formModulos"
+						
+						disabledCancelar="#{cadastroEmpresaMB.btnEnderecoCancelarDesativado}"
+						actionListenerCancelar="#{cadastroEmpresaMB.cancelarEnderecoEmpresa}"
+						updateCancelar="formModulos"
+						
+						disabledSalvar="#{cadastroEmpresaMB.btnEnderecoSalvarDesativado}"
+						actionListenerSalvar="#{cadastroEmpresaMB.salvarEnderecoEmpresa}"
+						updateSalvar="formModulos"
+						
+						disabledNovo="#{cadastroEmpresaMB.btnEnderecoNovoDesativado}"
+						actionListenerNovo="#{cadastroEmpresaMB.novoEnderecoEmpresa}"
+						updateNovo="formModulos"
+						/>
 				</p:tab>
 				<p:tab title="#{msgs.ContatoUsuario}">
 					<ui:include
