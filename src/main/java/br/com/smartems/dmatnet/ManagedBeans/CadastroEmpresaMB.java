@@ -92,7 +92,6 @@ public class CadastroEmpresaMB implements Serializable {
 	private EmpresaCadastroEntity dadosCadastraisAtual;
 	private List<EmpresaCadastroEntity> dadosCadastraisHistorico;
 
-	private EnderecoEntity enderecoAnterior;
 	private EnderecoEntity enderecoAtual;
 	private List<EnderecoEntity> enderecoHistorico;
 	
@@ -333,17 +332,6 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setEnderecoAtual(EnderecoEntity enderecoAtual) {
 		this.enderecoAtual = enderecoAtual;
-	}
-
-	public EnderecoEntity getEnderecoAnterior() {
-		if (this.enderecoAnterior == null) {
-			this.enderecoAnterior = new EnderecoEntity();
-		}
-		return enderecoAnterior;
-	}
-
-	public void setEnderecoAnterior(EnderecoEntity enderecoAnterior) {
-		this.enderecoAnterior = enderecoAnterior;
 	}
 
 	public List<EnderecoEntity> getEnderecoHistorico() {
@@ -923,19 +911,6 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 	}
 
-	public void novoDadosCadastraisEmpresa() {
-		try {
-			if (this.dadosCadastraisAtual.getId() >= 1) {
-				RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').show()");
-			} else {
-				this.dadosCadastraisTrocaStatusBotoes();
-			}
-		} catch (NullPointerException e) {
-			this.dadosCadastraisTrocaStatusBotoes();
-			e.printStackTrace();
-		}
-	}
-	
 	public void novoDadosCadastraisEmpresaEmBranco(ActionEvent e) {
 		try {
 			this.dadosCadastraisAnterior = this.dadosCadastraisAtual.clone();
@@ -960,6 +935,19 @@ public class CadastroEmpresaMB implements Serializable {
 		this.dadosCadastraisAtual.setId(0);
 		this.dadosCadastraisTrocaStatusBotoes();
 		RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').hide()");
+	}
+
+	public void novoDadosCadastraisEmpresa() {
+		try {
+			if (this.dadosCadastraisAtual.getId() >= 1) {
+				RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').show()");
+			} else {
+				this.dadosCadastraisTrocaStatusBotoes();
+			}
+		} catch (NullPointerException e) {
+			this.dadosCadastraisTrocaStatusBotoes();
+			e.printStackTrace();
+		}
 	}
 
 	public void dadosCadastraisTrocaStatusBotoes() {
@@ -1080,6 +1068,7 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void cancelarEnderecoEmpresa(ActionEvent e) {
+		this.isBtnEnderecoEditarDesativado = false;
 		this.isEnderecoEditarRender = false;
 		this.isBtnEnderecoCancelarDesativado = true;
 		this.isBtnEnderecoSalvarDesativado = true;
@@ -1091,56 +1080,13 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void salvarEnderecoEmpresa(ActionEvent e) {
-		this.isEnderecoEditarRender = false;
+		this.isBtnEnderecoEditarDesativado = false;
 		this.isBtnEnderecoCancelarDesativado = true;
 		this.isBtnEnderecoSalvarDesativado = true;
 		this.isBtnEnderecoNovoDesativado = false;
-		
-		this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
-		this.exibirImagem(this.fotografiaFachadaEmpresa);
 	}
 
-	public void novoEnderecoEmpresa(ActionEvent evt) {
-		try {
-			if (this.enderecoAtual.getIdEndereco() >= 1) {
-				RequestContext.getCurrentInstance().execute("PF('dlgPerguntaEnderecoEmpresa').show()");
-			} else {
-				this.enderecoEmpresaTrocaBotoes();
-			}
-		} catch (NullPointerException e) {
-			this.enderecoEmpresaTrocaBotoes();
-			e.printStackTrace();
-		}
-
-	}
-
-	public void novoEnderecoEmpresaEmBranco(ActionEvent e) {
-		try {
-			this.enderecoAnterior = this.enderecoAtual.clone();
-		} catch (CloneNotSupportedException e1) {
-			e1.printStackTrace();
-		}
-		this.enderecoAtual = new EnderecoEntity();
-		this.enderecoAtual.setIdEndereco(0);
-		this.enderecoEmpresaTrocaBotoes();
-		RequestContext.getCurrentInstance().execute("PF('dlgPerguntaEnderecoEmpresa').hide()");
-	}
-
-	public void novoEnderecoEmpresaPreenchido(ActionEvent e) {
-		try {
-			this.dadosCadastraisAnterior = this.dadosCadastraisAtual.clone();
-		} catch (CloneNotSupportedException e1) {
-			e1.printStackTrace();
-		}
-		this.empresaFap = this.dadosCadastraisAtual.getEmpresaFAP();
-		this.empresaDadosIsencao = this.dadosCadastraisAtual.getEmpresaDadosIsencao();
-		this.empresaOrgI8n = this.dadosCadastraisAtual.getOrganismoInternacional();
-		this.dadosCadastraisAtual.setId(0);
-		this.dadosCadastraisTrocaStatusBotoes();
-		RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').hide()");
-	}
-	
-	public void enderecoEmpresaTrocaBotoes() {
+	public void novoEnderecoEmpresa(ActionEvent e) {
 		this.isBtnEnderecoEditarDesativado = true;
 		this.isEnderecoEditarRender = true;
 		this.isBtnEnderecoCancelarDesativado = false;
@@ -1157,14 +1103,17 @@ public class CadastroEmpresaMB implements Serializable {
 					.selecionarEnderecoAtual(this.empresaSelecionada);
 			this.enderecoHistorico = pessoaJuridicaFachada
 					.selecionarEnderecoHistorico(this.enderecoAtual, this.empresaSelecionada);
-			this.isEnderecoEditarRender = false;
 			if (this.enderecoAtual.getIdEndereco() != 0) {
-				this.isBtnEnderecoEditarDesativado = true;
-			} else {
 				this.isBtnEnderecoEditarDesativado = false;
+				this.isEnderecoEditarRender = false;
+			} else {
+				this.isBtnEnderecoEditarDesativado = true;
+				this.isEnderecoEditarRender = false;
 			}
 		} catch (NullPointerException e) {
 			e.printStackTrace();
+			this.isBtnEnderecoEditarDesativado = true;
+			this.isDadosCadastraisEditarRender = false;
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
