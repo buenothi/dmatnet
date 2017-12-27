@@ -13,7 +13,6 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaDadosIsencao;
@@ -126,7 +125,7 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		}
 		return novoDadosIsencao;
 	}
-	
+
 	private void atribuirEmpresaOrgI8n(EmpresaOrganismoInternacional empresaOrgI8n,
 			EmpresaCadastroEntity dadosCadastraisAtual) {
 		if (empresaOrgI8n != null) {
@@ -181,7 +180,7 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		return empresasFiltradas;
 	}
 
-	// regras de negócio de Dados Cadastrais
+	// Dados Cadastrais da Empresa
 
 	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
 			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap,
@@ -241,33 +240,6 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		empresaSelecionada.getCadastros().remove(dadosCadastraisAtual);
 		dadosCadastraisHistorico = empresaSelecionada.getCadastros();
 		return dadosCadastraisHistorico;
-	}
-	
-	//regras de negócio do endereço
-	
-	public EnderecoEntity selecionarEnderecoAtual(EmpresaEntity empresa) throws Exception {
-		Date dataMaisRecente;
-		EnderecoEntity enderecoAtual = new EnderecoEntity();
-		if (!empresa.getCadastros().isEmpty()) {
-			dataMaisRecente = empresa.getCadastros().get(0).getDataInicioCadastro();
-			enderecoAtual = empresa.getEnderecos().get(0);
-			for (EnderecoEntity endereco : empresa.getEnderecos()) {
-				if (endereco.getDataInicioCadastro().compareTo(dataMaisRecente) >= 0
-						&& endereco.getDataFimCadastro() == null) {
-					dataMaisRecente = endereco.getDataInicioCadastro();
-					enderecoAtual = endereco;
-				}
-			}
-		}
-		return enderecoAtual;
-	}
-
-	public List<EnderecoEntity> selecionarEnderecoHistorico(EnderecoEntity enderecoAtual,
-			EmpresaEntity empresaSelecionada) throws Exception {
-		List<EnderecoEntity> enderecoHistorico = new ArrayList<EnderecoEntity>();
-		empresaSelecionada.getEnderecos().remove(enderecoAtual);
-		enderecoHistorico = empresaSelecionada.getEnderecos();
-		return enderecoHistorico;
 	}
 
 }

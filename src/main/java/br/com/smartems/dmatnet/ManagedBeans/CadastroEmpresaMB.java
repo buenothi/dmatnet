@@ -93,8 +93,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private List<EmpresaCadastroEntity> dadosCadastraisHistorico;
 
 	private EnderecoEntity enderecoAtual;
-	private List<EnderecoEntity> enderecoHistorico;
-	
+
 	private DualListModel<EmpresaEntity> empresas;
 	private List<EmpresaGrupoEntity> grupos;
 
@@ -134,7 +133,6 @@ public class CadastroEmpresaMB implements Serializable {
 	// botões referentes à Edição do Endereço da Empresa
 
 	private boolean isBtnEnderecoEditarDesativado = false;
-	private boolean isEnderecoEditarRender = false;
 	private boolean isBtnEnderecoCancelarDesativado = true;
 	private boolean isBtnEnderecoSalvarDesativado = true;
 	private boolean isBtnEnderecoNovoDesativado = false;
@@ -332,17 +330,6 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setEnderecoAtual(EnderecoEntity enderecoAtual) {
 		this.enderecoAtual = enderecoAtual;
-	}
-
-	public List<EnderecoEntity> getEnderecoHistorico() {
-		if (this.enderecoHistorico == null) {
-			this.enderecoHistorico = new ArrayList<EnderecoEntity>();
-		}
-		return enderecoHistorico;
-	}
-
-	public void setEnderecoHistorico(List<EnderecoEntity> enderecoHistorico) {
-		this.enderecoHistorico = enderecoHistorico;
 	}
 
 	public List<EmpresaEntity> getEmpresasDisponiveis() {
@@ -677,14 +664,6 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnEnderecoSalvarDesativado = isBtnEnderecoSalvarDesativado;
 	}
 
-	public boolean isEnderecoEditarRender() {
-		return isEnderecoEditarRender;
-	}
-
-	public void setEnderecoEditarRender(boolean isEnderecoEditarRender) {
-		this.isEnderecoEditarRender = isEnderecoEditarRender;
-	}
-
 	public boolean isBtnEnderecoNovoDesativado() {
 		return isBtnEnderecoNovoDesativado;
 	}
@@ -805,7 +784,7 @@ public class CadastroEmpresaMB implements Serializable {
 	public void onSelectionEmpresa(SelectEvent evt) {
 		try {
 			this.separarDadosCadastraisAtualDoHistorico((EmpresaEntity) evt.getObject());
-			this.separarEnderecoAtualDoHistorico((EmpresaEntity) evt.getObject());
+			this.separarEnderecoAtualDoHistorico((EnderecoEntity) evt.getObject());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1061,7 +1040,6 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void editarEnderecoEmpresa(ActionEvent e) {
 		this.isBtnEnderecoEditarDesativado = true;
-		this.isEnderecoEditarRender = true;
 		this.isBtnEnderecoCancelarDesativado = false;
 		this.isBtnEnderecoSalvarDesativado = false;
 		this.isBtnEnderecoNovoDesativado = true;
@@ -1069,7 +1047,6 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void cancelarEnderecoEmpresa(ActionEvent e) {
 		this.isBtnEnderecoEditarDesativado = false;
-		this.isEnderecoEditarRender = false;
 		this.isBtnEnderecoCancelarDesativado = true;
 		this.isBtnEnderecoSalvarDesativado = true;
 		this.isBtnEnderecoNovoDesativado = false;
@@ -1089,29 +1066,8 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnEnderecoNovoDesativado = true;
 	}
 	
-	public void separarEnderecoAtualDoHistorico(EmpresaEntity empresa) {
-		this.empresaSelecionada = pessoaJuridicaFachada.read(empresa.getIdPessoa());
-		this.fotografiaFachadaEmpresa = this.empresaSelecionada.getEmpresaFotoFachada();
-		this.exibirImagem(fotografiaFachadaEmpresa);
-		try {
-			this.enderecoAtual = this.pessoaJuridicaFachada
-					.selecionarEnderecoAtual(this.empresaSelecionada);
-			this.enderecoHistorico = pessoaJuridicaFachada
-					.selecionarEnderecoHistorico(this.enderecoAtual, this.empresaSelecionada);
-			if (this.enderecoAtual.getIdEndereco() != 0) {
-				this.isBtnEnderecoEditarDesativado = false;
-				this.isEnderecoEditarRender = false;
-			} else {
-				this.isBtnEnderecoEditarDesativado = true;
-				this.isEnderecoEditarRender = false;
-			}
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-			this.isBtnEnderecoEditarDesativado = true;
-			this.isDadosCadastraisEditarRender = false;
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
+	public void separarEnderecoAtualDoHistorico(EnderecoEntity endereco) {
+		
 	}
 
 	// action dos botões de grupos-empresa
