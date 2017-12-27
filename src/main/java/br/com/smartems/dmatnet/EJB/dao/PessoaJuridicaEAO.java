@@ -72,7 +72,7 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 
 	public void alterarCadastroEmpresa(EmpresaEntity empresa, UsuarioEntity usuarioLogado, EmpresaFAP fap,
 			EmpresaDadosIsencao empresaDadosIsencao, EmpresaOrganismoInternacional empresaOrgI8n,
-			Collection<EmpresaSoftwareHouse> empresasSoftware, EmpresaCadastroEntity dadosCadastraisAtual) {
+			List<EmpresaSoftwareHouse> empresasSoftware, EmpresaCadastroEntity dadosCadastraisAtual) {
 		empresa.setUsuarioCriador(usuarioLogado);
 		this.atribuirEmpresaFAP(fap, dadosCadastraisAtual);
 		this.atribuirEmpresaDadosIsencao(empresaDadosIsencao, dadosCadastraisAtual);
@@ -152,10 +152,10 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		return novoOrgI8n;
 	}
 
-	private void atribuirEmpresaSoftware(Collection<EmpresaSoftwareHouse> empresasSoftware,
+	private void atribuirEmpresaSoftware(List<EmpresaSoftwareHouse> empresasSoftware,
 			EmpresaCadastroEntity dadosCadastraisAtual) {
 		if (empresasSoftware != null) {
-			Collection<EmpresaSoftwareHouse> novoEmpresasSoftware = new ArrayList<>(empresasSoftware);
+			List<EmpresaSoftwareHouse> novoEmpresasSoftware = new ArrayList<>(empresasSoftware);
 			try {
 				novoEmpresasSoftware = empresasSoftware;
 			} catch (Exception e) {
@@ -187,7 +187,7 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
 			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap,
 			EmpresaDadosIsencao empresaDadosIsencao, EmpresaOrganismoInternacional empresaOrgI8n,
-			Collection<EmpresaSoftwareHouse> empresasSoftwareHouse, EmpresaEntity empresaSelecionada) throws Exception {
+			List<EmpresaSoftwareHouse> empresasSoftwareHouse, EmpresaEntity empresaSelecionada) throws Exception {
 		if (dadosCadastraisAtual.getId() == 0) {
 			EmpresaEntity novaEmpresaSelecionada = this.read(empresaSelecionada.getIdPessoa());
 			for (EmpresaCadastroEntity dadoCadastral : novaEmpresaSelecionada.getCadastros()) {
@@ -209,8 +209,9 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 			novaEmpresaSelecionada.getCadastros().add(dadosCadastraisAtual);
 			this.update(novaEmpresaSelecionada);
 		} else {
-			((List<EmpresaCadastroEntity>) empresaSelecionada.getCadastros()).add(dadosCadastraisAtual);
-			this.update(empresaSelecionada);
+			dadosCadastraisAtual.setEmpresaSoftwareHouse(empresasSoftwareHouse);
+			empresaSelecionada.getCadastros().add(dadosCadastraisAtual);
+			empresaSelecionada = this.update(empresaSelecionada);
 		}
 	}
 
