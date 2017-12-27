@@ -11,17 +11,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tbl_usuariosGrupo")
+@Table(name = "tbl_usuariosGrupo")
 public class UsuariosGrupoEntity implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idGrupo;
 	private String nomeGrupo;
-	
-	@OneToMany(mappedBy="grupo")
+
+	@OneToMany(mappedBy = "grupo")
 	private List<UsuarioEntity> usuarios;
-	
+
 	private static final long serialVersionUID = 1L;
 
 	public UsuariosGrupoEntity() {
@@ -84,5 +84,9 @@ public class UsuariosGrupoEntity implements Serializable {
 	public String toString() {
 		return "UsuariosGrupoEntity [nomeGrupo=" + nomeGrupo + "]";
 	}
-    
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 }

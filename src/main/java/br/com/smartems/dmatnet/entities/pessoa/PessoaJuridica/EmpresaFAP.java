@@ -62,16 +62,15 @@ public class EmpresaFAP implements Serializable, Cloneable {
 		return (EmpresaFAP) super.clone();
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (int) (idEmpresaFAP ^ (idEmpresaFAP >>> 32));
-		result = prime * result + ((numProcessoFAP == null) ? 0 : numProcessoFAP.hashCode());
-		result = prime * result + tipoProcessoFAP;
-		long temp;
-		temp = Double.doubleToLongBits(valorFAP);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
 
@@ -85,15 +84,6 @@ public class EmpresaFAP implements Serializable, Cloneable {
 			return false;
 		EmpresaFAP other = (EmpresaFAP) obj;
 		if (idEmpresaFAP != other.idEmpresaFAP)
-			return false;
-		if (numProcessoFAP == null) {
-			if (other.numProcessoFAP != null)
-				return false;
-		} else if (!numProcessoFAP.equals(other.numProcessoFAP))
-			return false;
-		if (tipoProcessoFAP != other.tipoProcessoFAP)
-			return false;
-		if (Double.doubleToLongBits(valorFAP) != Double.doubleToLongBits(other.valorFAP))
 			return false;
 		return true;
 	}

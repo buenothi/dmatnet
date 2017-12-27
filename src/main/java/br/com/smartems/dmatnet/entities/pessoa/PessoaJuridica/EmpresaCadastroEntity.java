@@ -240,7 +240,7 @@ public class EmpresaCadastroEntity implements Serializable, Cloneable {
 	public void setEmpresaSoftwareHouse(List<EmpresaSoftwareHouse> empresaSoftwareHouse) {
 		this.empresaSoftwareHouse = empresaSoftwareHouse;
 	}
-	
+
 	@Override
 	public EmpresaCadastroEntity clone() throws CloneNotSupportedException {
 		return (EmpresaCadastroEntity) super.clone();
@@ -250,27 +250,7 @@ public class EmpresaCadastroEntity implements Serializable, Cloneable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + codClassificacaoTributaria;
-		result = prime * result + codIndicativoConstrucao;
-		result = prime * result + codIndicativoCooperativa;
-		result = prime * result + codIndicativoDesoneracaoFolha;
-		result = prime * result + codIndicativoRegEletronico;
-		result = prime * result + codNaturezaJuridica;
-		result = prime * result + ((dataFimCadastro == null) ? 0 : dataFimCadastro.hashCode());
-		result = prime * result + ((dataInicioCadastro == null) ? 0 : dataInicioCadastro.hashCode());
-		result = prime * result + ((empresaDadosIsencao == null) ? 0 : empresaDadosIsencao.hashCode());
-		result = prime * result + ((empresaFAP == null) ? 0 : empresaFAP.hashCode());
-		result = prime * result + ((empresaSoftwareHouse == null) ? 0 : empresaSoftwareHouse.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + (int) (idEventoEsocial ^ (idEventoEsocial >>> 32));
-		result = prime * result + (multiplasTabRubricas ? 1231 : 1237);
-		result = prime * result + ((numCNPJ == null) ? 0 : numCNPJ.hashCode());
-		result = prime * result + ((organismoInternacional == null) ? 0 : organismoInternacional.hashCode());
-		result = prime * result + processoEnvioDados;
-		result = prime * result + ((razaoSocial == null) ? 0 : razaoSocial.hashCode());
-		result = prime * result + tipoEvento;
-		result = prime * result + tipoInscricao;
-		result = prime * result + ((versaoApp == null) ? 0 : versaoApp.hashCode());
 		return result;
 	}
 
@@ -283,76 +263,13 @@ public class EmpresaCadastroEntity implements Serializable, Cloneable {
 		if (getClass() != obj.getClass())
 			return false;
 		EmpresaCadastroEntity other = (EmpresaCadastroEntity) obj;
-		if (codClassificacaoTributaria != other.codClassificacaoTributaria)
-			return false;
-		if (codIndicativoConstrucao != other.codIndicativoConstrucao)
-			return false;
-		if (codIndicativoCooperativa != other.codIndicativoCooperativa)
-			return false;
-		if (codIndicativoDesoneracaoFolha != other.codIndicativoDesoneracaoFolha)
-			return false;
-		if (codIndicativoRegEletronico != other.codIndicativoRegEletronico)
-			return false;
-		if (codNaturezaJuridica != other.codNaturezaJuridica)
-			return false;
-		if (dataFimCadastro == null) {
-			if (other.dataFimCadastro != null)
-				return false;
-		} else if (!dataFimCadastro.equals(other.dataFimCadastro))
-			return false;
-		if (dataInicioCadastro == null) {
-			if (other.dataInicioCadastro != null)
-				return false;
-		} else if (!dataInicioCadastro.equals(other.dataInicioCadastro))
-			return false;
-		if (empresaDadosIsencao == null) {
-			if (other.empresaDadosIsencao != null)
-				return false;
-		} else if (!empresaDadosIsencao.equals(other.empresaDadosIsencao))
-			return false;
-		if (empresaFAP == null) {
-			if (other.empresaFAP != null)
-				return false;
-		} else if (!empresaFAP.equals(other.empresaFAP))
-			return false;
-		if (empresaSoftwareHouse == null) {
-			if (other.empresaSoftwareHouse != null)
-				return false;
-		} else if (!empresaSoftwareHouse.equals(other.empresaSoftwareHouse))
-			return false;
 		if (id != other.id)
 			return false;
-		if (idEventoEsocial != other.idEventoEsocial)
-			return false;
-		if (multiplasTabRubricas != other.multiplasTabRubricas)
-			return false;
-		if (numCNPJ == null) {
-			if (other.numCNPJ != null)
-				return false;
-		} else if (!numCNPJ.equals(other.numCNPJ))
-			return false;
-		if (organismoInternacional == null) {
-			if (other.organismoInternacional != null)
-				return false;
-		} else if (!organismoInternacional.equals(other.organismoInternacional))
-			return false;
-		if (processoEnvioDados != other.processoEnvioDados)
-			return false;
-		if (razaoSocial == null) {
-			if (other.razaoSocial != null)
-				return false;
-		} else if (!razaoSocial.equals(other.razaoSocial))
-			return false;
-		if (tipoEvento != other.tipoEvento)
-			return false;
-		if (tipoInscricao != other.tipoInscricao)
-			return false;
-		if (versaoApp == null) {
-			if (other.versaoApp != null)
-				return false;
-		} else if (!versaoApp.equals(other.versaoApp))
-			return false;
 		return true;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }

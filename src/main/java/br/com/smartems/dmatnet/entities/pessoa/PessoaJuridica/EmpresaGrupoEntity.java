@@ -74,4 +74,30 @@ public class EmpresaGrupoEntity implements Serializable {
 		this.usuarios = usuarios;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (idGrupo ^ (idGrupo >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EmpresaGrupoEntity other = (EmpresaGrupoEntity) obj;
+		if (idGrupo != other.idGrupo)
+			return false;
+		return true;
+	}
+
 }

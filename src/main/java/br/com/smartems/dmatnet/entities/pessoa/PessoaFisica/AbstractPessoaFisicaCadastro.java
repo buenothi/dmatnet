@@ -8,39 +8,38 @@ import javax.persistence.*;
 public abstract class AbstractPessoaFisicaCadastro implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idPessoaCadastro;
 	private char sexo;
 	private int racaCor;
 	private int estadoCivil;
 	private int grauInstrucao;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataInicioCadastro;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataFimCadastro;
-	
+
 	private long codMunicipioNascimento;
 	private String ufNascimento;
-	private long paisNascimento; //conforme tabela 6 do eSocial
-	private long nacionalidade; //conforme tabela 6 do eSocial
+	private long paisNascimento; // conforme tabela 6 do eSocial
+	private long nacionalidade; // conforme tabela 6 do eSocial
 	private String nomeMae;
 	private String nomePai;
-	
+
 	@Embedded
-	private PessoaFisicaDocumentosEntity documentos; 
-	
+	private PessoaFisicaDocumentosEntity documentos;
+
 	private static final long serialVersionUID = 1L;
 
-	
 	public AbstractPessoaFisicaCadastro() {
 		super();
 	}
-	
+
 	public long getIdPessoaCadastro() {
 		return idPessoaCadastro;
 	}
@@ -96,7 +95,7 @@ public abstract class AbstractPessoaFisicaCadastro implements Serializable {
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-	
+
 	public Date getDataInicioCadastro() {
 		return dataInicioCadastro;
 	}
@@ -172,5 +171,27 @@ public abstract class AbstractPessoaFisicaCadastro implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (idPessoaCadastro ^ (idPessoaCadastro >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AbstractPessoaFisicaCadastro other = (AbstractPessoaFisicaCadastro) obj;
+		if (idPessoaCadastro != other.idPessoaCadastro)
+			return false;
+		return true;
+	}
+
 }

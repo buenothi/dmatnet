@@ -103,5 +103,9 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 	public void setGruposGerenciados(List<EmpresaGrupoEntity> gruposGerenciados) {
 		this.gruposGerenciados = gruposGerenciados;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	
 }

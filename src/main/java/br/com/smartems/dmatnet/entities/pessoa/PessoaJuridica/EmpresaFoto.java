@@ -1,7 +1,6 @@
 package br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,11 +46,14 @@ public class EmpresaFoto implements Serializable, Cloneable {
 		return (EmpresaFoto) super.clone();
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Arrays.hashCode(fotoFachada);
 		result = prime * result + (int) (idEmpresaFoto ^ (idEmpresaFoto >>> 32));
 		return result;
 	}
@@ -65,8 +67,6 @@ public class EmpresaFoto implements Serializable, Cloneable {
 		if (getClass() != obj.getClass())
 			return false;
 		EmpresaFoto other = (EmpresaFoto) obj;
-		if (!Arrays.equals(fotoFachada, other.fotoFachada))
-			return false;
 		if (idEmpresaFoto != other.idEmpresaFoto)
 			return false;
 		return true;

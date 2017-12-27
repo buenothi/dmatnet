@@ -77,5 +77,9 @@ public class TrabalhadorEstrangeiroEntity implements Serializable {
 	public void setTrabalhador(TrabalhadorCadastroEntity trabalhador) {
 		this.trabalhador = trabalhador;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	
 }

@@ -19,29 +19,28 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.AbstractPessoaFisica
 @Table(name = "tbl_trabalhador")
 public class TrabalhadorEntity extends AbstractPessoaFisicaEntity implements Serializable {
 
-	private long codESocialEmpregado;//código atribuído ao empregado para atendimento do eSocial
-	
+	private long codESocialEmpregado;// código atribuído ao empregado para atendimento do eSocial
+
 	@Temporal(TemporalType.DATE)
 	private Date dataAdmissao;
 
 	@Temporal(TemporalType.DATE)
 	private Date dataDesligamento;
 
-	@OneToMany(cascade={CascadeType.ALL})
-	@JoinColumn(name="trabalhador_ID")
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "trabalhador_ID")
 	private List<TrabalhadorCadastroEntity> cadastrosTrabalhador;
-	
-	@OneToMany(cascade={CascadeType.ALL})
-	@JoinColumn(name="trabalhador_ID")
+
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "trabalhador_ID")
 	private List<ClassificacaoFuncionalEntity> classificacoesFuncionais;
-	
+
 	private static final long serialVersionUID = 1L;
 
 	public TrabalhadorEntity() {
 		super();
 	}
-	
-	
+
 	public long getCodESocialEmpregado() {
 		return codESocialEmpregado;
 	}
@@ -81,5 +80,9 @@ public class TrabalhadorEntity extends AbstractPessoaFisicaEntity implements Ser
 	public void setClassificacoesFuncionais(List<ClassificacaoFuncionalEntity> classificacoesFuncionais) {
 		this.classificacoesFuncionais = classificacoesFuncionais;
 	}
-	
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 }

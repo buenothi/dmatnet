@@ -6,11 +6,11 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name="tbl_empresaDadosComplementares")
+@Table(name = "tbl_empresaDadosComplementares")
 public class EmpresaDadosComplementares implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idEmpresaDadosComplementares;
 	private int codSitucaoPJ;
 	private int codSituacaoPF;
@@ -22,14 +22,13 @@ public class EmpresaDadosComplementares implements Serializable {
 	private double percAliquotaSeguradoRPPS;
 	private double percAliquotaEnteFederativoRPPS;
 	private double percAliquotaSuplementar;
-	
+
 	@OneToMany
-	@JoinColumn(name="dadosComplamentares_ID")
+	@JoinColumn(name = "dadosComplamentares_ID")
 	private List<EmpresaInfoComplementarLimiteRemSubteto> infoLimiteRemSubtetos;
-	
+
 	private static final long serialVersionUID = 1L;
 
-	
 	public EmpresaDadosComplementares() {
 		super();
 	}
@@ -129,5 +128,31 @@ public class EmpresaDadosComplementares implements Serializable {
 	public void setInfoLimiteRemSubtetos(List<EmpresaInfoComplementarLimiteRemSubteto> infoLimiteRemSubtetos) {
 		this.infoLimiteRemSubtetos = infoLimiteRemSubtetos;
 	}
-	
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (idEmpresaDadosComplementares ^ (idEmpresaDadosComplementares >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EmpresaDadosComplementares other = (EmpresaDadosComplementares) obj;
+		if (idEmpresaDadosComplementares != other.idEmpresaDadosComplementares)
+			return false;
+		return true;
+	}
+
 }

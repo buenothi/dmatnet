@@ -138,4 +138,8 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 		this.empresaLogotipo = empresaLogotipo;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 }

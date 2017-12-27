@@ -50,6 +50,10 @@ public class EmailEntity implements Serializable {
 		this.tipoEmail = tipoEmail.toUpperCase();
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public String toString() {
 		return "EmailEntity [nomeEmail=" + nomeEmail + ", tipoEmail=" + tipoEmail + "]";
@@ -61,7 +65,6 @@ public class EmailEntity implements Serializable {
 		int result = 1;
 		result = prime * result + (int) (idEmail ^ (idEmail >>> 32));
 		result = prime * result + ((nomeEmail == null) ? 0 : nomeEmail.hashCode());
-		result = prime * result + ((tipoEmail == null) ? 0 : tipoEmail.hashCode());
 		return result;
 	}
 
@@ -80,11 +83,6 @@ public class EmailEntity implements Serializable {
 			if (other.nomeEmail != null)
 				return false;
 		} else if (!nomeEmail.equals(other.nomeEmail))
-			return false;
-		if (tipoEmail == null) {
-			if (other.tipoEmail != null)
-				return false;
-		} else if (!tipoEmail.equals(other.tipoEmail))
 			return false;
 		return true;
 	}
