@@ -1108,31 +1108,60 @@ public class CadastroEmpresaMB implements Serializable {
 	// action dos botões de endereco empresa
 
 	public void editarEnderecoEmpresa(ActionEvent e) {
+		
 		this.isBtnEnderecoEditarDesativado = true;
 		this.isBtnEnderecoCancelarDesativado = false;
 		this.isBtnEnderecoSalvarDesativado = false;
 		this.isBtnEnderecoNovoDesativado = true;
+		
+		this.isTabDadosCadastraisDesativado = true;
+		this.isTabEnderecoDesativado = false;
+		this.isTabContatoDesativado = true;
+		this.isTabEmpregadosDesativado = true;
+		this.isTabEstabelecimentosDesativado = true;
 	}
 
 	public void cancelarEnderecoEmpresa(ActionEvent e) {
+		
 		this.isBtnEnderecoEditarDesativado = false;
 		this.isBtnEnderecoCancelarDesativado = true;
 		this.isBtnEnderecoSalvarDesativado = true;
 		this.isBtnEnderecoNovoDesativado = false;
+		
+		this.isTabDadosCadastraisDesativado = false;
+		this.isTabEnderecoDesativado = false;
+		this.isTabContatoDesativado = false;
+		this.isTabEmpregadosDesativado = false;
+		this.isTabEstabelecimentosDesativado = false;
+		
 	}
 
 	public void salvarEnderecoEmpresa(ActionEvent e) {
+		
 		this.isBtnEnderecoEditarDesativado = false;
 		this.isBtnEnderecoCancelarDesativado = true;
 		this.isBtnEnderecoSalvarDesativado = true;
 		this.isBtnEnderecoNovoDesativado = false;
+		
+		this.isTabDadosCadastraisDesativado = false;
+		this.isTabEnderecoDesativado = false;
+		this.isTabContatoDesativado = false;
+		this.isTabEmpregadosDesativado = false;
+		this.isTabEstabelecimentosDesativado = false;
 	}
 
 	public void novoEnderecoEmpresa(ActionEvent e) {
+		
 		this.isBtnEnderecoEditarDesativado = true;
 		this.isBtnEnderecoCancelarDesativado = false;
 		this.isBtnEnderecoSalvarDesativado = false;
 		this.isBtnEnderecoNovoDesativado = true;
+		
+		this.isTabDadosCadastraisDesativado = true;
+		this.isTabEnderecoDesativado = false;
+		this.isTabContatoDesativado = true;
+		this.isTabEmpregadosDesativado = true;
+		this.isTabEstabelecimentosDesativado = true;
 	}
 
 	// action dos botões de grupos-empresa
