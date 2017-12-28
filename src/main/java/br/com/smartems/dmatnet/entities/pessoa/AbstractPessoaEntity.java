@@ -1,6 +1,7 @@
 package br.com.smartems.dmatnet.entities.pessoa;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public abstract class AbstractPessoaEntity implements Serializable {
 
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "PESSOA_ID")
-	private List<EnderecoEntity> enderecos;
+	private Collection<EnderecoEntity> enderecos;
 
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "PESSOA_ID")
@@ -69,11 +70,11 @@ public abstract class AbstractPessoaEntity implements Serializable {
 		this.nome = nome.toUpperCase();
 	}
 
-	public List<EnderecoEntity> getEnderecos() {
+	public Collection<EnderecoEntity> getEnderecos() {
 		return enderecos;
 	}
 
-	public void setEnderecos(List<EnderecoEntity> enderecos) {
+	public void setEnderecos(Collection<EnderecoEntity> enderecos) {
 		this.enderecos = enderecos;
 	}
 

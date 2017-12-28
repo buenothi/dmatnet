@@ -2,6 +2,8 @@ package br.com.smartems.dmatnet.entities.pessoa;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.util.Date;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -17,18 +19,20 @@ public class EnderecoEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idEndereco;
 
-	@NotNull
-	@Size(min = 3)
+//	@NotNull
+//	@Size(min = 3)
 	private String enderecoTipo;// conforme tabela 20 do eSocial
 
-	@NotNull
-	@Size(min = 3)
+//	@NotNull
+//	@Size(min = 3)
 	private String logradouroNome;
 	private int logradouroNumero;
 	private String logradouroComplemento;
 	private String bairro;
 	private String cep;
 	private String caixaPostal;
+	private Date dataInicioEndereco;
+	private Date dataTerminoEndereco;
 
 	@ManyToOne
 	@JoinColumn(name = "CIDADE_ID")
@@ -109,6 +113,22 @@ public class EnderecoEntity implements Serializable {
 
 	public void setCaixaPostal(String caixaPostal) {
 		this.caixaPostal = caixaPostal;
+	}
+
+	public Date getDataInicioEndereco() {
+		return dataInicioEndereco;
+	}
+
+	public void setDataInicioEndereco(Date dataInicioEndereco) {
+		this.dataInicioEndereco = dataInicioEndereco;
+	}
+
+	public Date getDataFimEndereco() {
+		return dataTerminoEndereco;
+	}
+
+	public void setDataFimEndereco(Date dataTerminoEndereco) {
+		this.dataTerminoEndereco = dataTerminoEndereco;
 	}
 
 	public CidadeEntity getCidade() {

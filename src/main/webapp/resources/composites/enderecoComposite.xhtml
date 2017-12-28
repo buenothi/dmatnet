@@ -8,6 +8,10 @@
 	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
 
 <composite:interface>
+	<composite:attribute name="dataCadastro" />
+	<composite:editableValueHolder name="logradouroDataInput"
+		targets="form:logradouroData" />
+
 	<composite:attribute name="logradouroTipo" />
 
 	<composite:attribute name="logradouroNome" />
@@ -39,6 +43,9 @@
 	<composite:editableValueHolder name="estadoInput" targets="form:estado" />
 
 	<composite:attribute name="ajaxComponentRender" />
+	<composite:attribute name="ajaxComponentRenderHistorico" />
+
+	<composite:attribute name="enderecoHistorico" />
 
 	<composite:attribute name="disabledEditar" />
 	<composite:attribute name="actionListenerEditar"
@@ -76,9 +83,8 @@
 		labelNovo="#{msgs.NovoEndereco}"
 		disabledNovo="#{cc.attrs.disabledNovo}"
 		actionListenerNovo="#{cc.attrs.actionListenerNovo}"
-		updateNovo="#{cc.attrs.updateNovo}" 
-		renderedBtnNovo="true"
-		renderSpacer="true"/>
+		updateNovo="#{cc.attrs.updateNovo}" renderedBtnNovo="true"
+		renderSpacer="true" />
 	<p:accordionPanel id="acpEndereco">
 		<p:tab id="tabEndereco" title="#{msgs.Endereco}">
 			<h:panelGroup id="pngEnderecoEditar" layout="block"
@@ -86,7 +92,14 @@
 				rendered="#{cc.attrs.disabledEditar}">
 				<p:panelGrid id="tblEndereco" columns="2"
 					styleClass="tabelaSemBorda">
-					<p:outputLabel value="#{msgs.Logradouro}" />
+					<p:outputLabel value="#{msgs.DataCadastro}:" />
+					<p:calendar id="calDataInicio" locale="pt" showOn="button"
+						showButtonPanel="true" pattern="dd/MM/yyyy" mask="true" size="8"
+						value="#{cc.attrs.dataCadastro}" required="true"
+						label="#{msgs.DataCadastro}">
+						<p:message for="calDataInicio" />
+					</p:calendar>
+					<p:outputLabel value="#{msgs.Logradouro}:" />
 					<h:panelGrid columns="2">
 						<p:selectOneMenu id="listLogradouroTipo" style="width: 100px">
 							<f:selectItem itemLabel="Rua" />
@@ -97,33 +110,33 @@
 							style="width: 290px" value="#{cc.attrs.logradouroNome}" />
 					</h:panelGrid>
 
-					<p:outputLabel value="#{msgs.Numero}" />
+					<p:outputLabel value="#{msgs.Numero}:" />
 					<h:panelGrid columns="4">
 						<p:inputText id="logradouroNumero" maxlength="10"
 							style="width: 100px" value="#{cc.attrs.logradouroNumero}" />
 						<p:spacer height="14" />
-						<p:outputLabel value="#{msgs.Complemento}" />
+						<p:outputLabel value="#{msgs.Complemento}:" />
 						<p:inputText id="logradouroComplemento" maxlength="250"
 							style="width: 180px" value="#{cc.attrs.logradouroComplemento}" />
 					</h:panelGrid>
 
-					<p:outputLabel value="#{msgs.Bairro}" />
+					<p:outputLabel value="#{msgs.Bairro}:" />
 					<h:panelGrid>
 						<p:inputText id="bairro" maxlength="250" style="width: 393px"
 							value="#{cc.attrs.bairro}" />
 					</h:panelGrid>
 
-					<p:outputLabel value="#{msgs.CEP}" />
+					<p:outputLabel value="#{msgs.CEP}:" />
 					<h:panelGrid columns="4">
 						<p:inputMask id="cep" mask="99999-999" maxlength="8" size="8"
 							value="#{cc.attrs.cep}" />
 						<p:spacer height="15" />
-						<p:outputLabel value="#{msgs.CaixaPostal}" />
+						<p:outputLabel value="#{msgs.CaixaPostal}:" />
 						<p:inputText id="caixaPostal" maxlength="8" style="width: 200px"
 							value="#{cc.attrs.caixaPostal}" />
 					</h:panelGrid>
 
-					<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}" />
+					<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}:" />
 					<h:panelGrid id="tblCidadeEstado" columns="2">
 						<p:selectOneMenu id="listEstado" panelStyle="width:150px"
 							effect="fade" style="width:60px" value="#{cc.attrs.estado}"
@@ -152,6 +165,9 @@
 				styleClass="formularioEnderecoExibir"
 				rendered="#{cc.attrs.disabledCancelar}">
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+					<p:outputLabel value="#{msgs.DataCadastro}:" />
+					<p:outputLabel value="#{cc.attrs.dataCadastro}" />
+
 					<p:outputLabel value="#{msgs.Logradouro}:" />
 					<h:panelGrid columns="2">
 						<p:outputLabel id="logradouroTipoExibir"
@@ -194,29 +210,178 @@
 		</p:tab>
 
 		<p:tab id="tabEnderecoHistorico" title="#{msgs.Historico}">
-			<p:dataTable scrollable="true" styleClass="dataTable">
+			<p:dataTable scrollable="true" styleClass="dataTable"
+				paginator="true" rows="10"
+				emptyMessage="#{msgs.ListaHistoricoEndereco}"
+				value="#{cc.attrs.enderecoHistorico}" paginatorAlwaysVisible="false"
+				var="endereco" sortBy="endereco.idEndereco" sortOrder="descending"
+				editable="true" rowKey="endereco.idEndereco">
 				<f:facet name="header">#{msgs.Historico}</f:facet>
+
 				<p:column headerText="#{msgs.DataCadastro}" width="110">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{endereco.dataInicioEndereco}"
+								style="font-size: 9pt;">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</p:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							<p:calendar value="#{endereco.dataInicioEndereco}" locale="pt"
+								showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
+								mask="true" size="8" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="#{msgs.DataTermino}" width="110">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{endereco.dataFimEndereco}"
+								style="font-size: 9pt;">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</p:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							<p:calendar value="#{endereco.dataTerminoEndereco}" locale="pt"
+								showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
+								mask="true" size="8" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="#{msgs.Logradouro}" width="180">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{endereco.enderecoTipo}"
+								style="font-size: 9pt;">
+							</p:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{endereco.enderecoTipo}"
+								style="font-size: 9pt; width: 100%" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="#{msgs.Endereco}" width="300">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{endereco.logradouroNome}"
+								style="font-size: 9pt;">
+							</p:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{endereco.logradouroNome}"
+								style="font-size: 9pt; width: 100%" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="#{msgs.Numero}" width="60">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{endereco.logradouroNumero}"
+								style="font-size: 9pt;">
+							</p:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{endereco.logradouroNumero}"
+								style="font-size: 9pt; width: 100%" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="#{msgs.Complemento}" width="110">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{endereco.logradouroComplemento}"
+								style="font-size: 9pt;">
+							</p:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{endereco.logradouroComplemento}"
+								style="font-size: 9pt; width: 100%" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="#{msgs.Bairro}" width="180">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{endereco.bairro}" style="font-size: 9pt;">
+							</p:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{endereco.bairro}"
+								style="font-size: 9pt; width: 100%" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="#{msgs.CEP}" width="110">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{endereco.cep}" style="font-size: 9pt;">
+							</p:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							<p:inputMask id="cep" mask="99999-999" maxlength="8" size="8"
+								value="#{endereco.cep}" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="#{msgs.CaixaPostal}" width="110">
-				</p:column>
-				<p:column headerText="#{msgs.Cidade}" width="180">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{endereco.caixaPostal}"
+								style="font-size: 9pt;">
+							</p:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{endereco.caixaPostal}"
+								style="font-size: 9pt; width: 100%" />
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 				<p:column headerText="#{msgs.Estado}" width="60">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{endereco.estado}" style="font-size: 9pt;">
+							</p:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu id="listEstado" panelStyle="width:150px"
+								effect="fade" style="width:60px" value="#{endereco.estado}"
+								converter="estadoConverter" immediate="true">
+								<p:ajax event="change" listener="#{estadoMB.onSelectionEstado}"
+									update="#{cc.attrs.ajaxComponentRenderHistorico}" />
+								<f:selectItem itemLabel="UF" noSelectionOption="true" />
+								<f:selectItems value="#{estadoMB.estados}" var="estado"
+									itemLabel="#{estado.estadoSigla}" itemValue="#{estado}" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msgs.Cidade}" width="180">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{endereco.cidade}" style="font-size: 9pt;">
+							</p:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu id="listCidade" panelStyle="width:180px"
+								effect="fade" style="width:333px" value="#{endereco.cidade}"
+								converter="cidadeConverter" immediate="true" filter="true"
+								filterMatchMode="startsWith">
+								<f:selectItem itemLabel="Selecionar a Cidade"
+									noSelectionOption="true" />
+								<f:selectItems value="#{estadoMB.cidadesPorEstado}" var="cidade"
+									itemLabel="#{cidade.cidadeNome}" itemValue="#{cidade}" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column style="width:55px">
+					<p:rowEditor />
+				</p:column>
+
+				<p:column style="width:55px">
+					<p:commandButton icon="fa fa-trash" />
 				</p:column>
 			</p:dataTable>
 		</p:tab>
