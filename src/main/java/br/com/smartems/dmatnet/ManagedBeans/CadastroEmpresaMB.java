@@ -93,6 +93,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private List<EmpresaCadastroEntity> dadosCadastraisHistorico;
 
 	private EnderecoEntity enderecoAtual;
+	private List<EnderecoEntity> enderecosHistorico;
 
 	private DualListModel<EmpresaEntity> empresas;
 	private List<EmpresaGrupoEntity> grupos;
@@ -338,6 +339,14 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setEnderecoAtual(EnderecoEntity enderecoAtual) {
 		this.enderecoAtual = enderecoAtual;
+	}
+
+	public List<EnderecoEntity> getEnderecosHistorico() {
+		return enderecosHistorico;
+	}
+
+	public void setEnderecosHistorico(List<EnderecoEntity> enderecosHistorico) {
+		this.enderecosHistorico = enderecosHistorico;
 	}
 
 	public List<EmpresaEntity> getEmpresasDisponiveis() {

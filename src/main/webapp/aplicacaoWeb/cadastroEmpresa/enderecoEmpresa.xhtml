@@ -33,7 +33,9 @@
 			updateSalvar="formModulos"
 			disabledNovo="#{cadastroEmpresaMB.btnEnderecoNovoDesativado}"
 			actionListenerNovo="#{cadastroEmpresaMB.novoEnderecoEmpresa}"
-			updateNovo="formModulos" />
+			updateNovo="formModulos"
+			dataCadastro="#{cadastroEmpresaMB.enderecoAtual.dataInicioEndereco}"
+			enderecoHistorico="#{cadastroEmpresaMB.enderecosHistorico}" />
 
 	</h:panelGroup>
 

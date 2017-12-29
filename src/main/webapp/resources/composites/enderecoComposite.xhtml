@@ -376,11 +376,11 @@
 					</p:cellEditor>
 				</p:column>
 
-				<p:column style="width:55px">
+				<p:column style="width:55px" rendered="#{cc.attrs.disabledEditar}">
 					<p:rowEditor />
 				</p:column>
 
-				<p:column style="width:55px">
+				<p:column style="width:55px" rendered="#{cc.attrs.disabledEditar}">
 					<p:commandButton icon="fa fa-trash" />
 				</p:column>
 			</p:dataTable>
