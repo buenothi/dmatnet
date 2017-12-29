@@ -94,6 +94,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	private EnderecoEntity enderecoAtual;
 	private List<EnderecoEntity> enderecosHistorico;
+	private EnderecoEntity enderecoAnterior;
 
 	private DualListModel<EmpresaEntity> empresas;
 	private List<EmpresaGrupoEntity> grupos;
@@ -347,6 +348,14 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setEnderecosHistorico(List<EnderecoEntity> enderecosHistorico) {
 		this.enderecosHistorico = enderecosHistorico;
+	}
+
+	public EnderecoEntity getEnderecoAnterior() {
+		return enderecoAnterior;
+	}
+
+	public void setEnderecoAnterior(EnderecoEntity enderecoAnterior) {
+		this.enderecoAnterior = enderecoAnterior;
 	}
 
 	public List<EmpresaEntity> getEmpresasDisponiveis() {
@@ -1157,6 +1166,9 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isTabContatoDesativado = false;
 		this.isTabEmpregadosDesativado = false;
 		this.isTabEstabelecimentosDesativado = false;
+		
+		
+		
 	}
 
 	public void novoEnderecoEmpresa(ActionEvent e) {

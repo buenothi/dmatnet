@@ -13,6 +13,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaDadosIsencao;
@@ -242,4 +243,54 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		return dadosCadastraisHistorico;
 	}
 
+	// Endereços da Empresa
+
+	public void salvarEnderecoEmpresa(EmpresaEntity empresaSelecionada, EnderecoEntity enderecoAtual,
+			EnderecoEntity enderecoAnterior) throws Exception {
+		if (enderecoAtual.getIdEndereco() == 0) {
+			EmpresaEntity novaEmpresaSelecionada = this.read(empresaSelecionada.getIdPessoa());
+			for (EnderecoEntity endereco : novaEmpresaSelecionada.getEnderecos()) {
+				if (endereco.getIdEndereco() == enderecoAnterior.getIdEndereco()) {
+					Calendar calendar = Calendar.getInstance();
+					calendar.setTime(enderecoAtual.getDataInicioEndereco());
+					calendar.add(Calendar.DAY_OF_MONTH, -1);
+					if (calendar.getTime().compareTo(endereco.getDataInicioEndereco()) <= 0) {
+						endereco.setDataFimEndereco(endereco.getDataInicioEndereco());
+					} else {
+						endereco.setDataFimEndereco(calendar.getTime());
+					}
+				}
+			}
+			novaEmpresaSelecionada.getEnderecos().add(enderecoAtual);
+			this.update(novaEmpresaSelecionada);
+		} else {
+			empresaSelecionada.getEnderecos().add(enderecoAtual);
+			empresaSelecionada = this.update(empresaSelecionada);
+		}
+	}
+
+	public EnderecoEntity selecionarEnderecoAtual(EmpresaEntity empresa) throws Exception {
+		Date dataMaisRecente;
+		EnderecoEntity enderecoAtual = new EnderecoEntity();
+		if (!empresa.getCadastros().isEmpty()) {
+			dataMaisRecente = empresa.getCadastros().get(0).getDataInicioCadastro();
+			enderecoAtual = (EnderecoEntity) ((List<EnderecoEntity>) empresa.getEnderecos()).get(0);
+			for (EnderecoEntity endereco : empresa.getEnderecos()) {
+				if (endereco.getDataInicioEndereco().compareTo(dataMaisRecente) >= 0
+						&& endereco.getDataFimEndereco() == null) {
+					dataMaisRecente = endereco.getDataInicioEndereco();
+					enderecoAtual = endereco;
+				}
+			}
+		}
+		return enderecoAtual;
+	}
+
+	public List<EnderecoEntity> selecionarEnderecosHistorico(EnderecoEntity enderecoAtual,
+			EmpresaEntity empresaSelecionada) throws Exception {
+		List<EnderecoEntity> enderecosHistorico = new ArrayList<EnderecoEntity>();
+		empresaSelecionada.getEnderecos().remove(enderecoAtual);
+		enderecosHistorico = (List<EnderecoEntity>) empresaSelecionada.getEnderecos();
+		return enderecosHistorico;
+	}
 }

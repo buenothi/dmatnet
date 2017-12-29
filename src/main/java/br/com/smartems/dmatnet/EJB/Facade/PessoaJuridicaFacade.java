@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.com.smartems.dmatnet.EJB.dao.PessoaJuridicaEAO;
+import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaDadosIsencao;
@@ -92,10 +93,23 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 		return pessoaJuridicaEAO.selecionarDadosCadastraisAtual(empresa);
 	}
 
-	@Override
 	public List<EmpresaCadastroEntity> selecionarDadosCadastraisHistorico(EmpresaCadastroEntity dadosCadastraisAtual,
 			EmpresaEntity empresaSelecionada) throws Exception {
 		return pessoaJuridicaEAO.selecionarDadosCadastraisHistorico(dadosCadastraisAtual, empresaSelecionada);
 	}
 
+	public void salvarEnderecoEmpresa(EmpresaEntity empresaSelecionada, EnderecoEntity enderecoAtual,
+			EnderecoEntity enderecoAnterior) throws Exception {
+		pessoaJuridicaEAO.salvarEnderecoEmpresa(empresaSelecionada, enderecoAtual, enderecoAnterior);
+	}
+
+	public EnderecoEntity selecionarEnderecoAtual(EmpresaEntity empresa) throws Exception {
+		return pessoaJuridicaEAO.selecionarEnderecoAtual(empresa);
+	}
+	
+	public List<EnderecoEntity> selecionarEnderecosHistorico(EnderecoEntity enderecoAtual,
+			EmpresaEntity empresaSelecionada) throws Exception {
+		return pessoaJuridicaEAO.selecionarEnderecosHistorico(enderecoAtual, empresaSelecionada);
+	}
+	
 }
