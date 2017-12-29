@@ -51,6 +51,7 @@
 	<composite:attribute name="actionListenerEditar"
 		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
 	<composite:attribute name="updateEditar" />
+	<composite:attribute name="enderecoEditarRender" />
 
 	<composite:attribute name="disabledCancelar" />
 	<composite:attribute name="actionListenerCancelar"
@@ -89,13 +90,13 @@
 		<p:tab id="tabEndereco" title="#{msgs.Endereco}">
 			<h:panelGroup id="pngEnderecoEditar" layout="block"
 				styleClass="formularioEnderecoEditar"
-				rendered="#{cc.attrs.disabledEditar}">
+				rendered="#{cc.attrs.enderecoEditarRender}">
 				<p:panelGrid id="tblEndereco" columns="2"
 					styleClass="tabelaSemBorda">
 					<p:outputLabel value="#{msgs.DataCadastro}:" />
 					<p:calendar id="calDataInicio" locale="pt" showOn="button"
 						showButtonPanel="true" pattern="dd/MM/yyyy" mask="true" size="8"
-						value="#{cc.attrs.dataCadastro}" required="true"
+						value="#{cc.attrs.dataCadastro}"
 						label="#{msgs.DataCadastro}">
 						<p:message for="calDataInicio" />
 					</p:calendar>
