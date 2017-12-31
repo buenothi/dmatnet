@@ -21,13 +21,9 @@ public class EnderecoEntity implements Serializable, Cloneable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idEndereco;
-
-	// @NotNull
-	// @Size(min = 3)
+	
 	private String enderecoTipo;// conforme tabela 20 do eSocial
 
-	// @NotNull
-	// @Size(min = 3)
 	private String logradouroNome;
 	private int logradouroNumero;
 	private String logradouroComplemento;

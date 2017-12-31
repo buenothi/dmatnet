@@ -1,12 +1,13 @@
 package br.com.smartems.dmatnet.entities.pessoa;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,9 +34,10 @@ public abstract class AbstractPessoaEntity implements Serializable {
 	@Size(min = 3)
 	private String nome;
 
-	@OneToMany(cascade = { CascadeType.ALL })
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
+			CascadeType.MERGE }, fetch = FetchType.EAGER)
 	@JoinColumn(name = "PESSOA_ID")
-	private Collection<EnderecoEntity> enderecos;
+	private Set<EnderecoEntity> enderecos;
 
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "PESSOA_ID")
@@ -70,11 +72,11 @@ public abstract class AbstractPessoaEntity implements Serializable {
 		this.nome = nome.toUpperCase();
 	}
 
-	public Collection<EnderecoEntity> getEnderecos() {
+	public Set<EnderecoEntity> getEnderecos() {
 		return enderecos;
 	}
 
-	public void setEnderecos(Collection<EnderecoEntity> enderecos) {
+	public void setEnderecos(Set<EnderecoEntity> enderecos) {
 		this.enderecos = enderecos;
 	}
 

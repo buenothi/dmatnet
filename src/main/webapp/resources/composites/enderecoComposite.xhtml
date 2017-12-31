@@ -96,8 +96,7 @@
 					<p:outputLabel value="#{msgs.DataCadastro}:" />
 					<p:calendar id="calDataInicio" locale="pt" showOn="button"
 						showButtonPanel="true" pattern="dd/MM/yyyy" mask="true" size="8"
-						value="#{cc.attrs.dataCadastro}"
-						label="#{msgs.DataCadastro}">
+						value="#{cc.attrs.dataCadastro}" label="#{msgs.DataCadastro}">
 						<p:message for="calDataInicio" />
 					</p:calendar>
 					<p:outputLabel value="#{msgs.Logradouro}:" />
@@ -167,8 +166,9 @@
 				rendered="#{cc.attrs.disabledCancelar}">
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 					<p:outputLabel value="#{msgs.DataCadastro}:" />
-					<p:outputLabel value="#{cc.attrs.dataCadastro}" />
-
+					<p:outputLabel value="#{cc.attrs.dataCadastro}">
+						<f:convertDateTime type="both" pattern="dd/MM/YYYY" />
+					</p:outputLabel>
 					<p:outputLabel value="#{msgs.Logradouro}:" />
 					<h:panelGrid columns="2">
 						<p:outputLabel id="logradouroTipoExibir"

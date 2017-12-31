@@ -3,7 +3,9 @@ package dmatnet;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -90,7 +92,7 @@ public class GerarUsuarioMaster extends HttpServlet {
 				enderecoComercial.setCep("01311000");
 				enderecoComercial.setLogradouroNome("Paulista");
 
-				List<EnderecoEntity> enderecos = new ArrayList<>();
+				Set<EnderecoEntity> enderecos = new HashSet<>();
 				enderecos.add(enderecoComercial);
 
 				um.setEnderecos(enderecos);

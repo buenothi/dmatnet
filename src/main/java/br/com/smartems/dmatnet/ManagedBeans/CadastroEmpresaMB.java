@@ -351,14 +351,6 @@ public class CadastroEmpresaMB implements Serializable {
 		this.enderecosHistorico = enderecosHistorico;
 	}
 
-	public EnderecoEntity getEnderecoAnterior() {
-		return enderecoAnterior;
-	}
-
-	public void setEnderecoAnterior(EnderecoEntity enderecoAnterior) {
-		this.enderecoAnterior = enderecoAnterior;
-	}
-
 	public List<EmpresaEntity> getEmpresasDisponiveis() {
 		if (this.empresasDisponiveis == null) {
 			this.empresasDisponiveis = new ArrayList<EmpresaEntity>();
@@ -859,6 +851,7 @@ public class CadastroEmpresaMB implements Serializable {
 	public void onSelectionEmpresa(SelectEvent evt) {
 		try {
 			this.separarDadosCadastraisAtualDoHistorico((EmpresaEntity) evt.getObject());
+			this.separarEnderecoAtualDoHistorico((EmpresaEntity) evt.getObject());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1204,7 +1197,42 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void novoEnderecoEmpresa(ActionEvent e) {
+		try {
+			if (this.enderecoAtual.getIdEndereco() >= 1) {
+				RequestContext.getCurrentInstance().execute("PF('dlgPerguntaEndereco').show()");
+			} else {
+				this.enderecoTrocaStatusBotoes();
+			}
+		} catch (NullPointerException exc) {
+			this.enderecoTrocaStatusBotoes();
+			exc.printStackTrace();
+		}
+	}
 
+	public void novoEnderecoEmpresaEmBranco(ActionEvent e) {
+		try {
+			this.enderecoAnterior = this.enderecoAtual.clone();
+		} catch (CloneNotSupportedException e1) {
+			e1.printStackTrace();
+		}
+		this.enderecoAtual = new EnderecoEntity();
+		this.enderecoAtual.setIdEndereco(0);
+		this.enderecoTrocaStatusBotoes();
+		RequestContext.getCurrentInstance().execute("PF('dlgPerguntaEndereco').hide()");
+	}
+
+	public void novoEnderecoEmpresaPreenchido(ActionEvent e) {
+		try {
+			this.dadosCadastraisAnterior = this.dadosCadastraisAtual.clone();
+		} catch (CloneNotSupportedException e1) {
+			e1.printStackTrace();
+		}
+		this.enderecoAtual.setIdEndereco(0);
+		this.enderecoTrocaStatusBotoes();
+		RequestContext.getCurrentInstance().execute("PF('dlgPerguntaEndereco').hide()");
+	}
+
+	public void enderecoTrocaStatusBotoes() {
 		this.isBtnEnderecoEditarDesativado = true;
 		this.isBtnEnderecoCancelarDesativado = false;
 		this.isBtnEnderecoSalvarDesativado = false;
@@ -1223,10 +1251,9 @@ public class CadastroEmpresaMB implements Serializable {
 		this.fotografiaFachadaEmpresa = this.empresaSelecionada.getEmpresaFotoFachada();
 		this.exibirImagem(fotografiaFachadaEmpresa);
 		try {
-			this.enderecoAtual = this.pessoaJuridicaFachada
-					.selecionarEnderecoAtual(this.empresaSelecionada);
-			this.enderecosHistorico = pessoaJuridicaFachada
-					.selecionarEnderecosHistorico(this.enderecoAtual, this.empresaSelecionada);
+			this.enderecoAtual = this.pessoaJuridicaFachada.selecionarEnderecoAtual(this.empresaSelecionada);
+			this.enderecosHistorico = pessoaJuridicaFachada.selecionarEnderecosHistorico(this.enderecoAtual,
+					this.empresaSelecionada);
 			if (this.enderecoAtual.getIdEndereco() != 0) {
 				this.isBtnEnderecoEditarDesativado = false;
 			} else {
@@ -1427,6 +1454,8 @@ public class CadastroEmpresaMB implements Serializable {
 			this.dadosCadastraisAtual = null;
 			this.dadosCadastraisHistorico = null;
 			this.enderecoAtual = null;
+			this.enderecoAnterior = null;
+			this.enderecosHistorico = null;
 			this.empresas = null;
 			this.grupos = null;
 
