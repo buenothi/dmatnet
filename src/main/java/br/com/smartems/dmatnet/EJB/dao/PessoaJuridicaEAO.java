@@ -293,8 +293,14 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 	public List<EnderecoEntity> selecionarEnderecosHistorico(EnderecoEntity enderecoAtual,
 			EmpresaEntity empresaSelecionada) throws Exception {
 		List<EnderecoEntity> enderecosHistorico = new ArrayList<EnderecoEntity>();
-		empresaSelecionada.getEnderecos().remove(enderecoAtual);
-		enderecosHistorico = (List<EnderecoEntity>) empresaSelecionada.getEnderecos();
+		if (!empresaSelecionada.getEnderecos().isEmpty()) {
+			empresaSelecionada.getEnderecos().remove(enderecoAtual);
+			List<EnderecoEntity> listaEnderecoProvisoria = new ArrayList<EnderecoEntity>();
+			for (EnderecoEntity endereco : empresaSelecionada.getEnderecos()) {
+				listaEnderecoProvisoria.add(endereco);
+			}	
+			enderecosHistorico = listaEnderecoProvisoria;
+		}
 		return enderecosHistorico;
 	}
 }

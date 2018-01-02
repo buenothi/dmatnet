@@ -1223,7 +1223,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void novoEnderecoEmpresaPreenchido(ActionEvent e) {
 		try {
-			this.dadosCadastraisAnterior = this.dadosCadastraisAtual.clone();
+			this.enderecoAnterior = this.enderecoAtual.clone();
 		} catch (CloneNotSupportedException e1) {
 			e1.printStackTrace();
 		}

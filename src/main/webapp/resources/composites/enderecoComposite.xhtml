@@ -140,18 +140,18 @@
 					<h:panelGrid id="tblCidadeEstado" columns="2">
 						<p:selectOneMenu id="listEstado" panelStyle="width:150px"
 							effect="fade" style="width:60px" value="#{cc.attrs.estado}"
-							converter="estadoConverter" immediate="true">
+							converter="estadoConverter" immediate="true" >
 							<p:ajax event="change" listener="#{estadoMB.onSelectionEstado}"
 								update="#{cc.attrs.ajaxComponentRender}" />
-							<f:selectItem itemLabel="UF" noSelectionOption="true" />
+							<f:selectItem itemLabel="#{cc.attrs.estado.estadoSigla}" noSelectionOption="true" />
 							<f:selectItems value="#{estadoMB.estados}" var="estado"
 								itemLabel="#{estado.estadoSigla}" itemValue="#{estado}" />
 						</p:selectOneMenu>
 						<p:selectOneMenu id="listCidade" panelStyle="width:180px"
 							effect="fade" style="width:333px" value="#{cc.attrs.cidade}"
 							converter="cidadeConverter" immediate="true" filter="true"
-							filterMatchMode="startsWith">
-							<f:selectItem itemLabel="Selecionar a Cidade"
+							filterMatchMode="startsWith" >
+							<f:selectItem itemLabel="#{cc.attrs.cidade.cidadeNome}"
 								noSelectionOption="true" />
 							<f:selectItems value="#{estadoMB.cidadesPorEstado}" var="cidade"
 								itemLabel="#{cidade.cidadeNome}" itemValue="#{cidade}" />
@@ -243,7 +243,7 @@
 							</p:outputLabel>
 						</f:facet>
 						<f:facet name="input">
-							<p:calendar value="#{endereco.dataTerminoEndereco}" locale="pt"
+							<p:calendar value="#{endereco.dataFimEndereco}" locale="pt"
 								showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
 								mask="true" size="8" />
 						</f:facet>

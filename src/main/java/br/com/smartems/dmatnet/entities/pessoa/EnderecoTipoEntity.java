@@ -15,6 +15,8 @@ public class EnderecoTipoEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idNomeLogradouro;
+	
+	private String siglaLogradouro;
 
 	private String nomeLogradouro;
 
@@ -30,6 +32,14 @@ public class EnderecoTipoEntity implements Serializable {
 
 	public void setIdNomeLogradouro(int idNomeLogradouro) {
 		this.idNomeLogradouro = idNomeLogradouro;
+	}
+
+	public String getSiglaLogradouro() {
+		return siglaLogradouro;
+	}
+
+	public void setSiglaLogradouro(String siglaLogradouro) {
+		this.siglaLogradouro = siglaLogradouro;
 	}
 
 	public String getNomeLogradouro() {
@@ -50,6 +60,7 @@ public class EnderecoTipoEntity implements Serializable {
 		int result = 1;
 		result = prime * result + idNomeLogradouro;
 		result = prime * result + ((nomeLogradouro == null) ? 0 : nomeLogradouro.hashCode());
+		result = prime * result + ((siglaLogradouro == null) ? 0 : siglaLogradouro.hashCode());
 		return result;
 	}
 
@@ -68,6 +79,11 @@ public class EnderecoTipoEntity implements Serializable {
 			if (other.nomeLogradouro != null)
 				return false;
 		} else if (!nomeLogradouro.equals(other.nomeLogradouro))
+			return false;
+		if (siglaLogradouro == null) {
+			if (other.siglaLogradouro != null)
+				return false;
+		} else if (!siglaLogradouro.equals(other.siglaLogradouro))
 			return false;
 		return true;
 	}
