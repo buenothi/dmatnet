@@ -243,6 +243,15 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		return dadosCadastraisHistorico;
 	}
 
+	public EmpresaCadastroEntity excluirDadoCadastral(EmpresaCadastroEntity dadoCadastral,
+			EmpresaEntity empresaSelecionada) {
+		EmpresaCadastroEntity dadoCadastralExcluido = new EmpresaCadastroEntity();
+		
+		//continuar com a função de exclusão aqui!!!
+		
+		return dadoCadastralExcluido;
+	}
+
 	// Endereços da Empresa
 
 	public void salvarEnderecoEmpresa(EmpresaEntity empresaSelecionada, EnderecoEntity enderecoAtual,
@@ -298,7 +307,7 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 			List<EnderecoEntity> listaEnderecoProvisoria = new ArrayList<EnderecoEntity>();
 			for (EnderecoEntity endereco : empresaSelecionada.getEnderecos()) {
 				listaEnderecoProvisoria.add(endereco);
-			}	
+			}
 			enderecosHistorico = listaEnderecoProvisoria;
 		}
 		return enderecosHistorico;
