@@ -22,7 +22,12 @@
 			disabledSalvar="#{cadastroEmpresaMB.btnDadosCadastraisSalvarDesativado}"
 			actionListenerSalvar="#{cadastroEmpresaMB.salvarDadosCadastraisEmpresa}"
 			updateSalvar="formSelecionarEmpresa, formModulos, growlPrincipal"
-			renderedBtnNovo="false" renderSpacer="false" />
+			renderedBtnNovo="false" renderSpacer="false"
+			disabledExcluir="#{cadastroEmpresaMB.btnDadosCadastraisExcluirDesativado}"
+			actionListenerExcluir="#{cadastroEmpresaMB.excluirDadosCadastraisEmpresa}"
+			updateExcluir="formSelecionarEmpresa, formModulos, growlPrincipal"
+			renderedBtnExcluir="#{cadastroEmpresaMB.btnDadosCadastraisExcluirRender}"
+			labelExcluir="#{msgs.Excluir}" />
 
 		<p:commandButton styleClass="botoes" icon="fa fa-plus"
 			value="#{msgs.NovoEmpresaDadosCadastrais}"
