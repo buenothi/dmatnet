@@ -1072,7 +1072,15 @@
 
 					<p:column style="width:55px"
 						rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
-						<p:commandButton icon="fa fa-trash" />
+						<p:commandButton icon="fa fa-trash"
+							actionListener="#{cadastroEmpresaMB.excluirDadosCadastraisDoHistoricoEmpresa(cadastro)}"
+							update="formSelecionarEmpresa, formModulos, growlPrincipal">
+							<f:setPropertyActionListener value="#{cadastro}"
+								target="#{cadastroEmpresaMB.dadosCadastraisExcluir}" />
+							<p:confirm header="#{msgs.Confirmar}" 
+								message="#{msgs.DeletarDadosCadastrais}"
+								icon="ui-icon-alert"/>
+						</p:commandButton>
 					</p:column>
 
 				</p:dataTable>

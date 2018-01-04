@@ -97,6 +97,11 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 			EmpresaEntity empresaSelecionada) throws Exception {
 		return pessoaJuridicaEAO.selecionarDadosCadastraisHistorico(dadosCadastraisAtual, empresaSelecionada);
 	}
+	
+	public void excluirDadoCadastral(EmpresaCadastroEntity dadoCadastral,
+			EmpresaEntity empresaSelecionada) throws Exception {
+		pessoaJuridicaEAO.excluirDadoCadastral(dadoCadastral, empresaSelecionada);
+	}
 
 	public void salvarEnderecoEmpresa(EmpresaEntity empresaSelecionada, EnderecoEntity enderecoAtual,
 			EnderecoEntity enderecoAnterior) throws Exception {

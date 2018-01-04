@@ -243,13 +243,12 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		return dadosCadastraisHistorico;
 	}
 
-	public EmpresaCadastroEntity excluirDadoCadastral(EmpresaCadastroEntity dadoCadastral,
-			EmpresaEntity empresaSelecionada) {
-		EmpresaCadastroEntity dadoCadastralExcluido = new EmpresaCadastroEntity();
-		
-		//continuar com a função de exclusão aqui!!!
-		
-		return dadoCadastralExcluido;
+	public void excluirDadoCadastral(EmpresaCadastroEntity dadoCadastral,
+			EmpresaEntity empresaSelecionada) throws Exception {
+		EmpresaEntity empresaSelecionadaAtual  = this.read(empresaSelecionada.getIdPessoa());
+		if (empresaSelecionadaAtual.getCadastros().remove(dadoCadastral)) {
+			this.update(empresaSelecionadaAtual);
+		}
 	}
 
 	// Endereços da Empresa
