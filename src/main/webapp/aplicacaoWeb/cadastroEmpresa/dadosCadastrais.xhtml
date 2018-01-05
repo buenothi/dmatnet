@@ -46,7 +46,7 @@
 
 	</h:panelGroup>
 
-	<p:accordionPanel id="acpDadosCadastrais">
+	<p:accordionPanel id="acpDadosCadastrais" rendered="#{cadastroEmpresaMB.dadosCadastraisRendered}">
 		<p:tab id="tabDadosBasicos" title="#{msgs.DadosBasicos}">
 			<h:panelGroup id="pngCadEmpresaEditar" layout="block"
 				styleClass="formulario"
@@ -1088,6 +1088,8 @@
 		</p:tab>
 
 	</p:accordionPanel>
+	
+	<p:outputLabel value="#{msgs.DadosCadastraisInexistente}" rendered="#{cadastroEmpresaMB.textoDadosCadastraisInexistentes}"/>
 
 	<p:dialog widgetVar="dlgPerguntaDadosCadastrais"
 		header="#{msgs.Confirmar}" closable="true" resizable="false"

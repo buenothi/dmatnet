@@ -134,6 +134,8 @@ public class CadastroEmpresaMB implements Serializable {
 
 	// botões referentes à Edição do Cadastro de Dados Cadastrais da Empresa
 
+	private boolean isDadosCadastraisRendered = true;
+	private boolean isTextoDadosCadastraisInexistentes = false;
 	private boolean isBtnDadosCadastraisEditarDesativado = true;
 	private boolean isDadosCadastraisEditarRender = false;
 	private boolean isBtnDadosCadastraisCancelarDesativado = true;
@@ -670,12 +672,33 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnGrupoNovoDesativado = isBtnGrupoNovoDesativado;
 	}
 
+	public boolean isDadosCadastraisRendered() {
+		return isDadosCadastraisRendered;
+	}
+
+	public void setDadosCadastraisRendered(boolean isDadosCadastraisRendered) {
+		this.isDadosCadastraisRendered = isDadosCadastraisRendered;
+	}
+
 	public boolean isBtnDadosCadastraisEditarDesativado() {
 		return isBtnDadosCadastraisEditarDesativado;
 	}
 
 	public void setBtnDadosCadastraisEditarDesativado(boolean isBtnDadosCadastraisEditarDesativado) {
 		this.isBtnDadosCadastraisEditarDesativado = isBtnDadosCadastraisEditarDesativado;
+	}
+	
+	public boolean isTextoDadosCadastraisInexistentes() {
+		if(this.isDadosCadastraisRendered) {
+			isTextoDadosCadastraisInexistentes = false;
+		} else {
+			isTextoDadosCadastraisInexistentes = true;
+		}
+		return isTextoDadosCadastraisInexistentes;
+	}
+
+	public void setTextoDadosCadastraisInexistentes(boolean isTextoDadosCadastraisInexistentes) {
+		this.isTextoDadosCadastraisInexistentes = isTextoDadosCadastraisInexistentes;
 	}
 
 	public boolean isDadosCadastraisEditarRender() {
@@ -1041,6 +1064,7 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void novoDadosCadastraisEmpresa() {
+		this.isDadosCadastraisRendered = true;
 		try {
 			if (this.dadosCadastraisAtual.getId() >= 1) {
 				RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').show()");
@@ -1115,9 +1139,11 @@ public class CadastroEmpresaMB implements Serializable {
 			if (this.dadosCadastraisAtual.getId() != 0) {
 				this.isBtnDadosCadastraisEditarDesativado = false;
 				this.isBtnDadosCadastraisExcluirDesativado = false;
+				this.isDadosCadastraisRendered = true;
 			} else {
 				this.isBtnDadosCadastraisEditarDesativado = true;
 				this.isBtnDadosCadastraisExcluirDesativado = true;
+				this.isDadosCadastraisRendered = false;
 			}
 			this.isDadosCadastraisEditarRender = false;
 		} catch (NullPointerException e) {
