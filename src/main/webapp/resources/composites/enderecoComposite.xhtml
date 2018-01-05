@@ -68,6 +68,12 @@
 		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
 	<composite:attribute name="updateNovo" />
 
+	<composite:attribute name="disabledExcluir" />
+	<composite:attribute name="actionListenerExcluir"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="updateExcluir" />
+	<composite:attribute name="renderedBtnExcluir" />
+
 </composite:interface>
 
 <composite:implementation>
@@ -85,8 +91,15 @@
 		disabledNovo="#{cc.attrs.disabledNovo}"
 		actionListenerNovo="#{cc.attrs.actionListenerNovo}"
 		updateNovo="#{cc.attrs.updateNovo}" renderedBtnNovo="true"
-		renderSpacer="true" />
-	<p:accordionPanel id="acpEndereco">
+		renderSpacer="true" 
+		disabledExcluir="#{cc.attrs.disabledExcluir}"
+		actionListenerExcluir="#{cc.attrs.actionListenerExcluir}"
+		updateExcluir="#{cc.attrs.updateExcluir}"
+		renderedBtnExcluir="#{cc.attrs.renderedBtnExcluir}"
+		labelExcluir="" headerConfirma="#{msgs.Confirmar}"
+		messageConfirma=""/>
+		
+	<p:accordionPanel id="acpEndereco" rendered="#{cadastroEmpresaMB.enderecoRendered}">
 		<p:tab id="tabEndereco" title="#{msgs.Endereco}">
 			<h:panelGroup id="pngEnderecoEditar" layout="block"
 				styleClass="formularioEnderecoEditar"

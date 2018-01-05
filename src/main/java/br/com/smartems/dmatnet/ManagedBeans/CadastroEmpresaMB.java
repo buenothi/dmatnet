@@ -147,6 +147,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	// botões referentes à Edição do Endereço da Empresa
 
+	private boolean isEnderecoRendered = true;
 	private boolean isBtnEnderecoEditarDesativado = false;
 	private boolean isEnderecoEditarRender = false;
 	private boolean isBtnEnderecoCancelarDesativado = true;
@@ -752,6 +753,14 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setBtnDadosCadastraisExcluirRender(boolean isBtnDadosCadastraisExcluirRender) {
 		this.isBtnDadosCadastraisExcluirRender = isBtnDadosCadastraisExcluirRender;
+	}
+
+	public boolean isEnderecoRendered() {
+		return isEnderecoRendered;
+	}
+
+	public void setEnderecoRendered(boolean isEnderecoRendered) {
+		this.isEnderecoRendered = isEnderecoRendered;
 	}
 
 	public boolean isBtnEnderecoEditarDesativado() {
