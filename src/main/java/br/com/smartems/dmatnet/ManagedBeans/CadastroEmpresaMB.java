@@ -1109,7 +1109,7 @@ public class CadastroEmpresaMB implements Serializable {
 		RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').hide()");
 	}
 
-	public void novoDadosCadastraisEmpresa() {
+	public void novoDadosCadastraisEmpresa(ActionEvent evt) {
 		this.isDadosCadastraisRendered = true;
 		try {
 			if (this.dadosCadastraisAtual.getId() >= 1) {

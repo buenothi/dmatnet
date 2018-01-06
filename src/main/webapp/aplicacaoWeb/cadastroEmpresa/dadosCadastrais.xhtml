@@ -22,19 +22,17 @@
 			disabledSalvar="#{cadastroEmpresaMB.btnDadosCadastraisSalvarDesativado}"
 			actionListenerSalvar="#{cadastroEmpresaMB.salvarDadosCadastraisEmpresa}"
 			updateSalvar="formSelecionarEmpresa, formModulos, growlPrincipal"
-			renderedBtnNovo="false" renderSpacer="false"
+			renderedBtnNovo="true" labelNovo="#{msgs.NovoEmpresaDadosCadastrais}"
+			disabledNovo="#{cadastroEmpresaMB.btnDadosCadastraisNovaEmpresaDesativado}"
+			actionListenerNovo="#{cadastroEmpresaMB.novoDadosCadastraisEmpresa}"
+			updateNovo="formModulos"
+			renderSpacer="false"
 			disabledExcluir="#{cadastroEmpresaMB.btnDadosCadastraisExcluirDesativado}"
 			actionListenerExcluir="#{cadastroEmpresaMB.excluirDadosCadastraisEmpresa}"
 			updateExcluir="formSelecionarEmpresa, formModulos, growlPrincipal"
 			renderedBtnExcluir="#{cadastroEmpresaMB.btnDadosCadastraisExcluirRender}"
 			labelExcluir="#{msgs.Excluir}" headerConfirma="#{msgs.Confirmar}"
 			messageConfirma="#{msgs.DeletarDadosCadastrais}" />
-
-		<p:commandButton styleClass="botoes" icon="fa fa-plus"
-			value="#{msgs.NovoEmpresaDadosCadastrais}"
-			disabled="#{cadastroEmpresaMB.btnDadosCadastraisNovaEmpresaDesativado}"
-			actionListener="#{cadastroEmpresaMB.novoDadosCadastraisEmpresa}"
-			update="formModulos" />
 
 		<p:commandButton styleClass="botoes" icon="fa fa-print"
 			value="#{msgs.Imprimir}" immediate="false" ajax="false"
