@@ -311,4 +311,12 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		}
 		return enderecosHistorico;
 	}
+	
+	public void excluirEnderecoEmpresa(EnderecoEntity endereco,
+			EmpresaEntity empresaSelecionada) throws Exception {
+		EmpresaEntity empresaSelecionadaAtual  = this.read(empresaSelecionada.getIdPessoa());
+		if (empresaSelecionadaAtual.getEnderecos().remove(endereco)) {
+			this.update(empresaSelecionadaAtual);
+		}
+	}
 }

@@ -73,6 +73,9 @@
 		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
 	<composite:attribute name="updateExcluir" />
 	<composite:attribute name="renderedBtnExcluir" />
+	<composite:attribute name="messageConfirmaExcluir" />
+	<composite:attribute name="messageLabelExcluir" />
+	<composite:attribute name="messageHeaderExcluir" />
 
 </composite:interface>
 
@@ -96,8 +99,8 @@
 		actionListenerExcluir="#{cc.attrs.actionListenerExcluir}"
 		updateExcluir="#{cc.attrs.updateExcluir}"
 		renderedBtnExcluir="#{cc.attrs.renderedBtnExcluir}"
-		labelExcluir="" headerConfirma="#{msgs.Confirmar}"
-		messageConfirma=""/>
+		labelExcluir="#{cc.attrs.messageLabelExcluir}" headerConfirma="#{cc.attrs.messageHeaderExcluir}"
+		messageConfirma="#{cc.attrs.messageConfirmaExcluir}"/>
 		
 	<p:accordionPanel id="acpEndereco" rendered="#{cadastroEmpresaMB.enderecoRendered}">
 		<p:tab id="tabEndereco" title="#{msgs.Endereco}">

@@ -117,4 +117,9 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 		return pessoaJuridicaEAO.selecionarEnderecosHistorico(enderecoAtual, empresaSelecionada);
 	}
 	
+	public void excluirEnderecoEmpresa(EnderecoEntity endereco,
+			EmpresaEntity empresaSelecionada) throws Exception{
+		pessoaJuridicaEAO.excluirEnderecoEmpresa(endereco, empresaSelecionada);
+	}
+	
 }

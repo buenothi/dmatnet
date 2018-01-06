@@ -148,11 +148,14 @@ public class CadastroEmpresaMB implements Serializable {
 	// botões referentes à Edição do Endereço da Empresa
 
 	private boolean isEnderecoRendered = true;
+	private boolean isTextoEnderecosEmpresaInexistentes = false;
 	private boolean isBtnEnderecoEditarDesativado = false;
 	private boolean isEnderecoEditarRender = false;
 	private boolean isBtnEnderecoCancelarDesativado = true;
 	private boolean isBtnEnderecoSalvarDesativado = true;
 	private boolean isBtnEnderecoNovoDesativado = false;
+	private boolean isBtnEnderecoEmpresaExcluirDesativado = false;
+	private boolean isBtnEnderecoEmpresaExcluirRender = false;
 
 	private String mascaraPessoaJuridica = "99.999.999/9999-99";
 
@@ -767,6 +770,19 @@ public class CadastroEmpresaMB implements Serializable {
 		return isBtnEnderecoEditarDesativado;
 	}
 
+	public boolean isTextoEnderecosEmpresaInexistentes() {
+		if(this.isEnderecoRendered) {
+			isTextoEnderecosEmpresaInexistentes = false;
+		} else {
+			isTextoEnderecosEmpresaInexistentes = true;
+		}
+		return isTextoEnderecosEmpresaInexistentes;
+	}
+
+	public void setTextoEnderecosEmpresaInexistentes(boolean isTextoEnderecosEmpresaInexistentes) {
+		this.isTextoEnderecosEmpresaInexistentes = isTextoEnderecosEmpresaInexistentes;
+	}
+
 	public void setBtnEnderecoEditarDesativado(boolean isBtnEnderecoEditarDesativado) {
 		this.isBtnEnderecoEditarDesativado = isBtnEnderecoEditarDesativado;
 	}
@@ -801,6 +817,27 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setBtnEnderecoNovoDesativado(boolean isBtnEnderecoNovoDesativado) {
 		this.isBtnEnderecoNovoDesativado = isBtnEnderecoNovoDesativado;
+	}
+
+	public boolean isBtnEnderecoEmpresaExcluirDesativado() {
+		return isBtnEnderecoEmpresaExcluirDesativado;
+	}
+
+	public void setBtnEnderecoEmpresaExcluirDesativado(boolean isBtnEnderecoEmpresaExcluirDesativado) {
+		this.isBtnEnderecoEmpresaExcluirDesativado = isBtnEnderecoEmpresaExcluirDesativado;
+	}
+
+	public boolean isBtnEnderecoEmpresaExcluirRender() {
+		if (usuarioMB.getUsuarioLogado().getGrupo().getNomeGrupo().equals("MASTER")) {
+			this.isBtnEnderecoEmpresaExcluirRender = true;
+		} else {
+			this.isBtnEnderecoEmpresaExcluirRender = false;
+		}
+		return isBtnEnderecoEmpresaExcluirRender;
+	}
+
+	public void setBtnEnderecoEmpresaExcluirRender(boolean isBtnEnderecoEmpresaExcluirRender) {
+		this.isBtnEnderecoEmpresaExcluirRender = isBtnEnderecoEmpresaExcluirRender;
 	}
 
 	public void setTipoPessoaJuridicaSelecionada(int tipoPessoaJuridicaSelecionada) {
@@ -1246,6 +1283,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnEnderecoSalvarDesativado = false;
 		this.isBtnEnderecoNovoDesativado = true;
 		this.isEnderecoEditarRender = true;
+		this.isBtnEnderecoEmpresaExcluirDesativado = true;
 
 		this.isTabDadosCadastraisDesativado = true;
 		this.isTabEnderecoDesativado = false;
@@ -1261,6 +1299,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnEnderecoSalvarDesativado = true;
 		this.isBtnEnderecoNovoDesativado = false;
 		this.isEnderecoEditarRender = false;
+		this.isBtnEnderecoEmpresaExcluirDesativado = false;
 
 		this.isTabDadosCadastraisDesativado = false;
 		this.isTabEnderecoDesativado = false;
@@ -1282,6 +1321,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnEnderecoSalvarDesativado = true;
 		this.isBtnEnderecoNovoDesativado = false;
 		this.isEnderecoEditarRender = false;
+		this.isBtnEnderecoEmpresaExcluirDesativado = false;
 
 		this.isTabDadosCadastraisDesativado = false;
 		this.isTabEnderecoDesativado = false;
@@ -1316,6 +1356,7 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void novoEnderecoEmpresa(ActionEvent e) {
+		this.isEnderecoRendered = true; 
 		try {
 			if (this.enderecoAtual.getIdEndereco() >= 1) {
 				RequestContext.getCurrentInstance().execute("PF('dlgPerguntaEndereco').show()");
@@ -1350,13 +1391,14 @@ public class CadastroEmpresaMB implements Serializable {
 		this.enderecoTrocaStatusBotoes();
 		RequestContext.getCurrentInstance().execute("PF('dlgPerguntaEndereco').hide()");
 	}
-
+	
 	public void enderecoTrocaStatusBotoes() {
 		this.isBtnEnderecoEditarDesativado = true;
+		this.isEnderecoEditarRender = true;
 		this.isBtnEnderecoCancelarDesativado = false;
 		this.isBtnEnderecoSalvarDesativado = false;
 		this.isBtnEnderecoNovoDesativado = true;
-		this.isEnderecoEditarRender = true;
+		this.isBtnEnderecoEmpresaExcluirDesativado = true;
 
 		this.isTabDadosCadastraisDesativado = true;
 		this.isTabEnderecoDesativado = false;
@@ -1375,14 +1417,28 @@ public class CadastroEmpresaMB implements Serializable {
 					this.empresaSelecionada);
 			if (this.enderecoAtual.getIdEndereco() != 0) {
 				this.isBtnEnderecoEditarDesativado = false;
+				this.isBtnEnderecoEmpresaExcluirDesativado = false;
+				this.isEnderecoRendered = true;
 			} else {
 				this.isBtnEnderecoEditarDesativado = true;
+				this.isBtnEnderecoEmpresaExcluirDesativado = true;
+				this.isEnderecoRendered = false;
 			}
 			this.isEnderecoEditarRender = false;
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 			this.isBtnEnderecoEditarDesativado = true;
 			this.isEnderecoEditarRender = false;
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	public void excluirEnderecoEmpresa(ActionEvent e) {
+		try {
+			pessoaJuridicaFachada.excluirEnderecoEmpresa(this.enderecoAtual, this.empresaSelecionada);
+			this.exibirImagem(this.fotografiaFachadaEmpresa);
+			this.separarEnderecoAtualDoHistorico(empresaSelecionada);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
