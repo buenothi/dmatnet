@@ -32,17 +32,24 @@
 	<composite:attribute name="updateNovo" />
 	<composite:attribute name="renderedBtnNovo" />
 
+	<composite:attribute name="labelImprimir" />
+	<composite:attribute name="disabledImprimir" />
+	<composite:attribute name="actionListenerImprimir"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="updateImprimir" />
+	<composite:attribute name="renderedBtnImprimir" />
+
 	<composite:attribute name="labelExcluir" />
 	<composite:attribute name="disabledExcluir" />
 	<composite:attribute name="actionListenerExcluir"
 		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
 	<composite:attribute name="updateExcluir" />
 	<composite:attribute name="renderedBtnExcluir" />
-	<composite:attribute name="messageConfirma"/>
-	<composite:attribute name="headerConfirma"/>
-	<composite:attribute name="objetoConfirma"/>
-	
-	<composite:attribute name="renderSpacer"/>
+	<composite:attribute name="messageConfirma" />
+	<composite:attribute name="headerConfirma" />
+	<composite:attribute name="objetoConfirma" />
+
+	<composite:attribute name="renderSpacer" />
 
 </composite:interface>
 
@@ -59,10 +66,9 @@
 			styleClass="botoes" icon="fa fa-remove"
 			disabled="#{cc.attrs.disabledCancelar}"
 			actionListener="#{cc.attrs.actionListenerCancelar}"
-			update="#{cc.attrs.updateCancelar}" 
-			process="@this">
-				<p:resetInput target="#{cc.attrs.resetCancelar}"/>
-			</p:commandButton>
+			update="#{cc.attrs.updateCancelar}" process="@this">
+			<p:resetInput target="#{cc.attrs.resetCancelar}" />
+		</p:commandButton>
 		<p:commandButton id="btnSalvar" value="#{msgs.Salvar}"
 			styleClass="botoes" icon="fa fa-save"
 			disabled="#{cc.attrs.disabledSalvar}"
@@ -74,8 +80,14 @@
 			rendered="#{cc.attrs.renderedBtnNovo}"
 			actionListener="#{cc.attrs.actionListenerNovo}"
 			update="#{cc.attrs.updateNovo}" />
+		<p:commandButton id="btnImprimirObjeto"
+			value="#{cc.attrs.labelImprimir}" styleClass="botoes"
+			icon="fa fa-print" disabled="#{cc.attrs.disabledImprimir}"
+			rendered="#{cc.attrs.renderedBtnImprimir}"
+			actionListener="#{cc.attrs.actionListenerImprimir}"
+			update="#{cc.attrs.updateImprimir}" immediate="false" ajax="false" />
 		<p:commandButton id="btnExcluirObjeto" style="color:#CD0000"
-			value="#{cc.attrs.labelExcluir}" styleClass="botoes" 
+			value="#{cc.attrs.labelExcluir}" styleClass="botoes"
 			icon="fa fa-trash" disabled="#{cc.attrs.disabledExcluir}"
 			rendered="#{cc.attrs.renderedBtnExcluir}"
 			actionListener="#{cc.attrs.actionListenerExcluir}"
@@ -86,7 +98,8 @@
 		</p:commandButton>
 	</h:panelGroup>
 
-	<p:spacer height="10px" width="100%" rendered="#{cc.attrs.renderSpacer}"/>
+	<p:spacer height="10px" width="100%"
+		rendered="#{cc.attrs.renderSpacer}" />
 
 </composite:implementation>
 </html>
