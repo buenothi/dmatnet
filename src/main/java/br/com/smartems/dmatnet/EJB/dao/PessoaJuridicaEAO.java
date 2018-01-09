@@ -263,9 +263,9 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 					calendar.setTime(enderecoAtual.getDataInicioEndereco());
 					calendar.add(Calendar.DAY_OF_MONTH, -1);
 					if (calendar.getTime().compareTo(endereco.getDataInicioEndereco()) <= 0) {
-						endereco.setDataFimEndereco(endereco.getDataInicioEndereco());
+						endereco.setDataTerminoEndereco(endereco.getDataInicioEndereco());
 					} else {
-						endereco.setDataFimEndereco(calendar.getTime());
+						endereco.setDataTerminoEndereco(calendar.getTime());
 					}
 				}
 			}
@@ -289,7 +289,7 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 			enderecoAtual = listaEnderecoProvisoria.get(0);
 			for (EnderecoEntity endereco : empresa.getEnderecos()) {
 				if (endereco.getDataInicioEndereco().compareTo(dataMaisRecente) >= 0
-						&& endereco.getDataFimEndereco() == null) {
+						&& endereco.getDataTerminoEndereco() == null) {
 					dataMaisRecente = endereco.getDataInicioEndereco();
 					enderecoAtual = endereco;
 				}

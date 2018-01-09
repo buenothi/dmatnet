@@ -22,7 +22,9 @@ public class EnderecoEntity implements Serializable, Cloneable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idEndereco;
 	
-	private String enderecoTipo;// conforme tabela 20 do eSocial
+	@ManyToOne
+	@JoinColumn(name = "LOGRADOURO_ID")
+	private EnderecoTipoEntity logradouro;// conforme tabela 20 do eSocial
 
 	private String logradouroNome;
 	private int logradouroNumero;
@@ -58,12 +60,12 @@ public class EnderecoEntity implements Serializable, Cloneable {
 		this.idEndereco = idEndereco;
 	}
 
-	public String getEnderecoTipo() {
-		return enderecoTipo;
+	public EnderecoTipoEntity getLogradouro() {
+		return logradouro;
 	}
 
-	public void setEnderecoTipo(String enderecoTipo) {
-		this.enderecoTipo = enderecoTipo;
+	public void setLogradouro(EnderecoTipoEntity logradouro) {
+		this.logradouro = logradouro;
 	}
 
 	public String getLogradouroNome() {
@@ -122,11 +124,11 @@ public class EnderecoEntity implements Serializable, Cloneable {
 		this.dataInicioEndereco = dataInicioEndereco;
 	}
 
-	public Date getDataFimEndereco() {
+	public Date getDataTerminoEndereco() {
 		return dataTerminoEndereco;
 	}
 
-	public void setDataFimEndereco(Date dataTerminoEndereco) {
+	public void setDataTerminoEndereco(Date dataTerminoEndereco) {
 		this.dataTerminoEndereco = dataTerminoEndereco;
 	}
 

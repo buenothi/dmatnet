@@ -11,7 +11,8 @@
 
 	<h:panelGroup>
 		<dmat:enderecoComposite id="dmatEnderecoEmpresa"
-			logradouroTipo="#{cadastroEmpresaMB.enderecoAtual.logradouroTipo}"
+			logradouroTipo="#{cadastroEmpresaMB.enderecoAtual.logradouro.nomeLogradouro}"
+			logradouro="#{cadastroEmpresaMB.enderecoAtual.logradouro}"
 			logradouroNome="#{cadastroEmpresaMB.enderecoAtual.logradouroNome}"
 			logradouroNumero="#{cadastroEmpresaMB.enderecoAtual.logradouroNumero}"
 			logradouroComplemento="#{cadastroEmpresaMB.enderecoAtual.logradouroComplemento}"
@@ -20,22 +21,29 @@
 			caixaPostal="#{cadastroEmpresaMB.enderecoAtual.caixaPostal}"
 			cidade="#{cadastroEmpresaMB.enderecoAtual.cidade}"
 			estado="#{cadastroEmpresaMB.enderecoAtual.estado}"
+			
 			ajaxComponentRender="formModulos:formCadEmpresa:tbwCadastroEmpresa:dmatEnderecoEmpresa:acpEndereco:listCidade"
+			
 			disabledEditar="#{cadastroEmpresaMB.btnEnderecoEditarDesativado}"
 			actionListenerEditar="#{cadastroEmpresaMB.editarEnderecoEmpresa}"
 			enderecoEditarRender="#{cadastroEmpresaMB.enderecoEditarRender}"
 			updateEditar="formModulos"
+			
 			disabledCancelar="#{cadastroEmpresaMB.btnEnderecoCancelarDesativado}"
 			actionListenerCancelar="#{cadastroEmpresaMB.cancelarEnderecoEmpresa}"
 			updateCancelar="formModulos"
+			
 			disabledSalvar="#{cadastroEmpresaMB.btnEnderecoSalvarDesativado}"
 			actionListenerSalvar="#{cadastroEmpresaMB.salvarEnderecoEmpresa}"
 			updateSalvar="formModulos"
+			
 			disabledNovo="#{cadastroEmpresaMB.btnEnderecoNovoDesativado}"
 			actionListenerNovo="#{cadastroEmpresaMB.novoEnderecoEmpresa}"
 			updateNovo="formModulos"
+			
 			dataCadastro="#{cadastroEmpresaMB.enderecoAtual.dataInicioEndereco}"
-			enderecoHistorico="#{cadastroEmpresaMB.enderecosHistorico}" 
+			enderecoHistorico="#{cadastroEmpresaMB.enderecosHistorico}"
+			 
 			disabledExcluir="#{cadastroEmpresaMB.btnEnderecoEmpresaExcluirDesativado}"
 			actionListenerExcluir="#{cadastroEmpresaMB.excluirEnderecoEmpresa}"
 			updateExcluir="formModulos"

@@ -9,21 +9,21 @@ import javax.faces.convert.FacesConverter;
 
 import br.com.smartems.dmatnet.entities.cidades.CidadeEntity;
 
-@FacesConverter("cidadeConverter")
+@FacesConverter("logradouroConverter")
 public class CidadeConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
-		if(value != null && value.trim().length() > 0) {
-            try {
-                return (CidadeEntity) uic.getAttributes().get(value);
-            } catch(NumberFormatException e) {
-                throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Not a valid CidadeEntity."));
-            }
-        }
-        else {
-            return null;
-        }
+		if (value != null && value.trim().length() > 0) {
+			try {
+				return (CidadeEntity) uic.getAttributes().get(value);
+			} catch (NumberFormatException e) {
+				throw new ConverterException(
+						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Not a valid CidadeEntity."));
+			}
+		} else {
+			return null;
+		}
 	}
 
 	@Override
