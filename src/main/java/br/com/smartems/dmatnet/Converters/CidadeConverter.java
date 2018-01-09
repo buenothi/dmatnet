@@ -9,7 +9,7 @@ import javax.faces.convert.FacesConverter;
 
 import br.com.smartems.dmatnet.entities.cidades.CidadeEntity;
 
-@FacesConverter("logradouroConverter")
+@FacesConverter("cidadeConverter")
 public class CidadeConverter implements Converter {
 
 	@Override
