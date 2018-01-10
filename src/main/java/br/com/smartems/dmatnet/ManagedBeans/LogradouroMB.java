@@ -1,0 +1,52 @@
+package br.com.smartems.dmatnet.ManagedBeans;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.persistence.NoResultException;
+
+import br.com.smartems.dmatnet.EJB.Facade.LogradourosFacadeLocal;
+import br.com.smartems.dmatnet.entities.pessoa.EnderecoTipoEntity;
+
+@ManagedBean
+@ViewScoped
+public class LogradouroMB implements Serializable {
+	
+	@EJB
+	private LogradourosFacadeLocal logradouroFachada;
+	
+	private List<EnderecoTipoEntity> logradouros;
+ 
+	private static final long serialVersionUID = 1L;
+
+	public List<EnderecoTipoEntity> getLogradouros() {
+		if (this.logradouros == null){
+			this.logradouros = new ArrayList<EnderecoTipoEntity>();
+		}
+		return logradouros;
+	}
+
+	public void setLogradouros(List<EnderecoTipoEntity> logradouros) {
+		this.logradouros = logradouros;
+	}
+	
+	@PostConstruct
+	public void initLogradouroMB() {
+		try {
+			try {
+				this.logradouros = logradouroFachada.findAll();
+			} catch (NoResultException nre) {
+				nre.printStackTrace();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+}

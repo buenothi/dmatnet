@@ -124,6 +124,8 @@
 							converter="logradouroConverter">
 							<f:selectItem itemLabel="#{cc.attrs.logradouro.nomeLogradouro}"
 								noSelectionOption="true" />
+							<f:selectItems value="#{logradouroMB.logradouros}" var="logradouro"
+								itemLabel="#{logradouro.nomeLogradouro}" itemValue="#{logradouro}" />
 						</p:selectOneMenu>
 						<p:inputText id="logradouroNome" maxlength="250"
 							style="width: 290px" value="#{cc.attrs.logradouroNome}" />
