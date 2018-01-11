@@ -121,11 +121,13 @@
 					<h:panelGrid columns="2">
 						<p:selectOneMenu id="listLogradouroTipo" style="width: 100px"
 							effect="fade" value="#{cc.attrs.logradouro}"
-							converter="logradouroConverter">
+							converter="logradouroConverter" filter="true"
+							filterMatchMode="startsWith">
 							<f:selectItem itemLabel="#{cc.attrs.logradouro.nomeLogradouro}"
 								noSelectionOption="true" />
-							<f:selectItems value="#{logradouroMB.logradouros}" var="logradouro"
-								itemLabel="#{logradouro.nomeLogradouro}" itemValue="#{logradouro}" />
+							<f:selectItems value="#{logradouroMB.logradouros}"
+								var="logradouro" itemLabel="#{logradouro.nomeLogradouro}"
+								itemValue="#{logradouro}" />
 						</p:selectOneMenu>
 						<p:inputText id="logradouroNome" maxlength="250"
 							style="width: 290px" value="#{cc.attrs.logradouroNome}" />
@@ -192,40 +194,44 @@
 						<f:convertDateTime type="both" pattern="dd/MM/YYYY" />
 					</p:outputLabel>
 					<p:outputLabel value="#{msgs.Logradouro}:" />
-					<h:panelGrid columns="2">
+					<h:panelGrid columns="3">
 						<p:outputLabel id="logradouroTipoExibir"
-							value="#{cc.attrs.logradouroTipo}" />
+							value="#{cc.attrs.logradouroTipo}" converter="stringConverter" />
+							<p:spacer width="3" />
 						<p:outputLabel id="logradouroNomeExibir"
-							value="#{cc.attrs.logradouroNome}" />
+							value="#{cc.attrs.logradouroNome}" converter="stringConverter" />
 					</h:panelGrid>
 
 					<p:outputLabel value="#{msgs.Numero}:" />
-					<h:panelGrid columns="4">
+					<h:panelGrid columns="3">
 						<p:outputLabel id="logradouroNumeroExibir"
 							value="#{cc.attrs.logradouroNumero}" />
 						<p:spacer height="14" />
 						<p:outputLabel id="logradouroComplementoExibir"
-							value="#{cc.attrs.logradouroComplemento}" />
+							converter="stringConverter"
+							value="#{msgs.Complemento}: #{cc.attrs.logradouroComplemento}" />
 					</h:panelGrid>
 
 					<p:outputLabel value="#{msgs.Bairro}:" />
 					<h:panelGrid>
-						<p:outputLabel id="bairroExibir" value="#{cc.attrs.bairro}" />
+						<p:outputLabel id="bairroExibir" value="#{cc.attrs.bairro}"
+							converter="stringConverter" />
 					</h:panelGrid>
 
 					<p:outputLabel value="#{msgs.CEP}:" />
 					<h:panelGrid columns="4">
 						<p:outputLabel id="cepExibir" value="#{cc.attrs.cep}" />
 						<p:spacer height="15" />
-						<p:outputLabel value="#{msgs.CaixaPostal}:" />
-						<p:outputLabel id="caixaPostalExibir"
-							value="#{cc.attrs.caixaPostal}" />
+						<p:outputLabel id="caixaPostalExibir" converter="stringConverter"
+							value="#{msgs.CaixaPostal}: #{cc.attrs.caixaPostal}" />
 					</h:panelGrid>
 
 					<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}:" />
 					<h:panelGrid columns="2" cellspacing="13">
-						<p:outputLabel id="estadoExibir" value="#{cc.attrs.estado}" />
-						<p:outputLabel id="cidadeExibir" value="#{cc.attrs.cidade}" />
+						<p:outputLabel id="estadoExibir" value="#{cc.attrs.estado}"
+							converter="stringConverter" />
+						<p:outputLabel id="cidadeExibir" value="#{cc.attrs.cidade}"
+							converter="stringConverter" />
 					</h:panelGrid>
 				</p:panelGrid>
 
@@ -259,13 +265,13 @@
 				<p:column headerText="#{msgs.DataTermino}" width="110">
 					<p:cellEditor>
 						<f:facet name="output">
-							<p:outputLabel value="#{endereco.dataFimEndereco}"
+							<p:outputLabel value="#{endereco.dataTerminoEndereco}"
 								style="font-size: 9pt;">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</p:outputLabel>
 						</f:facet>
 						<f:facet name="input">
-							<p:calendar value="#{endereco.dataFimEndereco}" locale="pt"
+							<p:calendar value="#{endereco.dataTerminoEndereco}" locale="pt"
 								showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
 								mask="true" size="8" />
 						</f:facet>
@@ -274,12 +280,12 @@
 				<p:column headerText="#{msgs.Logradouro}" width="180">
 					<p:cellEditor>
 						<f:facet name="output">
-							<p:outputLabel value="#{endereco.enderecoTipo}"
-								style="font-size: 9pt;">
+							<p:outputLabel value="#{endereco.logradouro.nomeLogradouro}"
+								style="font-size: 9pt;" converter="stringConverter">
 							</p:outputLabel>
 						</f:facet>
 						<f:facet name="input">
-							<p:inputText value="#{endereco.enderecoTipo}"
+							<p:inputText value="#{endereco.logradouro.nomeLogradouro}"
 								style="font-size: 9pt; width: 100%" />
 						</f:facet>
 					</p:cellEditor>
@@ -288,7 +294,7 @@
 					<p:cellEditor>
 						<f:facet name="output">
 							<p:outputLabel value="#{endereco.logradouroNome}"
-								style="font-size: 9pt;">
+								style="font-size: 9pt;" converter="stringConverter">
 							</p:outputLabel>
 						</f:facet>
 						<f:facet name="input">
@@ -314,7 +320,7 @@
 					<p:cellEditor>
 						<f:facet name="output">
 							<p:outputLabel value="#{endereco.logradouroComplemento}"
-								style="font-size: 9pt;">
+								style="font-size: 9pt;" converter="stringConverter">
 							</p:outputLabel>
 						</f:facet>
 						<f:facet name="input">
@@ -326,7 +332,8 @@
 				<p:column headerText="#{msgs.Bairro}" width="180">
 					<p:cellEditor>
 						<f:facet name="output">
-							<p:outputLabel value="#{endereco.bairro}" style="font-size: 9pt;">
+							<p:outputLabel value="#{endereco.bairro}" style="font-size: 9pt;"
+								converter="stringConverter">
 							</p:outputLabel>
 						</f:facet>
 						<f:facet name="input">
@@ -351,7 +358,7 @@
 					<p:cellEditor>
 						<f:facet name="output">
 							<p:outputLabel value="#{endereco.caixaPostal}"
-								style="font-size: 9pt;">
+								style="font-size: 9pt;" converter="stringConverter">
 							</p:outputLabel>
 						</f:facet>
 						<f:facet name="input">
@@ -382,7 +389,8 @@
 				<p:column headerText="#{msgs.Cidade}" width="180">
 					<p:cellEditor>
 						<f:facet name="output">
-							<p:outputLabel value="#{endereco.cidade}" style="font-size: 9pt;">
+							<p:outputLabel value="#{endereco.cidade}" style="font-size: 9pt;"
+								converter="stringConverter">
 							</p:outputLabel>
 						</f:facet>
 						<f:facet name="input">
