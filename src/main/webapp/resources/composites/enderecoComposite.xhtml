@@ -197,7 +197,7 @@
 					<h:panelGrid columns="3">
 						<p:outputLabel id="logradouroTipoExibir"
 							value="#{cc.attrs.logradouroTipo}" converter="stringConverter" />
-							<p:spacer width="3" />
+						<p:spacer width="3" />
 						<p:outputLabel id="logradouroNomeExibir"
 							value="#{cc.attrs.logradouroNome}" converter="stringConverter" />
 					</h:panelGrid>
@@ -228,10 +228,8 @@
 
 					<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}:" />
 					<h:panelGrid columns="2" cellspacing="13">
-						<p:outputLabel id="estadoExibir" value="#{cc.attrs.estado}"
-							converter="stringConverter" />
-						<p:outputLabel id="cidadeExibir" value="#{cc.attrs.cidade}"
-							converter="stringConverter" />
+						<p:outputLabel id="estadoExibir" value="#{cc.attrs.estado}" />
+						<p:outputLabel id="cidadeExibir" value="#{cc.attrs.cidade}" />
 					</h:panelGrid>
 				</p:panelGrid>
 
