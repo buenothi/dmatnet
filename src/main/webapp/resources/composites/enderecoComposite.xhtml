@@ -163,20 +163,18 @@
 					<h:panelGrid id="tblCidadeEstado" columns="2">
 						<p:selectOneMenu id="listEstado" panelStyle="width:150px"
 							effect="fade" style="width:60px" value="#{cc.attrs.estado}"
-							converter="estadoConverter" immediate="true">
+							converter="estadoConverter">
 							<p:ajax event="change" listener="#{estadoMB.onSelectionEstado}"
 								update="#{cc.attrs.ajaxComponentRender}" />
-							<f:selectItem itemLabel="#{cc.attrs.estado.estadoSigla}"
-								noSelectionOption="true" />
+							<f:selectItem itemLabel="#{cc.attrs.estado.estadoSigla}" />
 							<f:selectItems value="#{estadoMB.estados}" var="estado"
 								itemLabel="#{estado.estadoSigla}" itemValue="#{estado}" />
 						</p:selectOneMenu>
 						<p:selectOneMenu id="listCidade" panelStyle="width:180px"
 							effect="fade" style="width:333px" value="#{cc.attrs.cidade}"
-							converter="cidadeConverter" immediate="true" filter="true"
+							converter="cidadeConverter" filter="true"
 							filterMatchMode="startsWith">
-							<f:selectItem itemLabel="#{cc.attrs.cidade.cidadeNome}"
-								noSelectionOption="true" />
+							<f:selectItem itemLabel="#{cc.attrs.cidade.cidadeNome}" />
 							<f:selectItems value="#{estadoMB.cidadesPorEstado}" var="cidade"
 								itemLabel="#{cidade.cidadeNome}" itemValue="#{cidade}" />
 						</p:selectOneMenu>
@@ -227,8 +225,9 @@
 					</h:panelGrid>
 
 					<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}:" />
-					<h:panelGrid columns="2" cellspacing="13">
+					<h:panelGrid columns="3">
 						<p:outputLabel id="estadoExibir" value="#{cc.attrs.estado}" />
+						<p:spacer width="15" />
 						<p:outputLabel id="cidadeExibir" value="#{cc.attrs.cidade}" />
 					</h:panelGrid>
 				</p:panelGrid>
