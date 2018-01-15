@@ -8,6 +8,8 @@
 	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
 
 <composite:interface>
+	<composite:attribute name="enderecoRendered" />
+
 	<composite:attribute name="dataCadastro" />
 	<composite:editableValueHolder name="logradouroDataInput"
 		targets="form:logradouroData" />
@@ -73,8 +75,9 @@
 	<composite:attribute name="actionListenerExcluir"
 		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
 	<composite:attribute name="actionListenerExcluirEnderecoDoHistorico"
-		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
-	<composite:attribute name="enderecoExcluirTarget" />
+		method-signature="void excluirEnderecoHistorico(br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity)" />
+	<composite:attribute name="enderecoExcluirTarget"
+		type="br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity" />
 	<composite:attribute name="updateExcluir" />
 	<composite:attribute name="renderedBtnExcluir" />
 	<composite:attribute name="messageConfirmaExcluir" />
@@ -107,7 +110,7 @@
 		messageConfirma="#{cc.attrs.messageConfirmaExcluir}" />
 
 	<p:accordionPanel id="acpEndereco"
-		rendered="#{cadastroEmpresaMB.enderecoRendered}">
+		rendered="#{cc.attrs.enderecoRendered}">
 		<p:tab id="tabEndereco" title="#{msgs.Endereco}">
 			<h:panelGroup id="pngEnderecoEditar" layout="block"
 				styleClass="formularioEnderecoEditar"
@@ -241,188 +244,193 @@
 		</p:tab>
 
 		<p:tab id="tabEnderecoHistorico" title="#{msgs.Historico}">
-			<p:dataTable scrollable="true" styleClass="dataTable"
-				paginator="true" rows="10"
-				emptyMessage="#{msgs.ListaHistoricoEndereco}"
-				value="#{cc.attrs.enderecoHistorico}" paginatorAlwaysVisible="false"
-				var="endereco" sortBy="endereco.idEndereco" sortOrder="descending"
-				editable="true" rowKey="endereco.idEndereco">
-				<f:facet name="header">#{msgs.Historico}</f:facet>
+			<h:panelGrid columns="2" cellpadding="10">
+				<p:dataTable scrollable="true" styleClass="dataTable"
+					paginator="true" rows="10"
+					emptyMessage="#{msgs.ListaHistoricoEndereco}"
+					value="#{cc.attrs.enderecoHistorico}"
+					paginatorAlwaysVisible="false" var="endereco"
+					sortBy="#{endereco.idEndereco}" sortOrder="descending"
+					editable="true" rowKey="#{endereco.idEndereco}">
 
-				<p:column headerText="#{msgs.DataCadastro}" width="110">
-					<p:cellEditor>
-						<f:facet name="output">
-							<p:outputLabel value="#{endereco.dataInicioEndereco}"
-								style="font-size: 9pt;">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</p:outputLabel>
-						</f:facet>
-						<f:facet name="input">
-							<p:calendar value="#{endereco.dataInicioEndereco}" locale="pt"
-								showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
-								mask="true" size="8" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msgs.DataTermino}" width="110">
-					<p:cellEditor>
-						<f:facet name="output">
-							<p:outputLabel value="#{endereco.dataTerminoEndereco}"
-								style="font-size: 9pt;">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</p:outputLabel>
-						</f:facet>
-						<f:facet name="input">
-							<p:calendar value="#{endereco.dataTerminoEndereco}" locale="pt"
-								showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
-								mask="true" size="8" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msgs.Logradouro}" width="180">
-					<p:cellEditor>
-						<f:facet name="output">
-							<p:outputLabel value="#{endereco.logradouro.nomeLogradouro}"
-								style="font-size: 9pt;" converter="stringConverter">
-							</p:outputLabel>
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{endereco.logradouro.nomeLogradouro}"
-								style="font-size: 9pt; width: 100%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msgs.Endereco}" width="300">
-					<p:cellEditor>
-						<f:facet name="output">
-							<p:outputLabel value="#{endereco.logradouroNome}"
-								style="font-size: 9pt;" converter="stringConverter">
-							</p:outputLabel>
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{endereco.logradouroNome}"
-								style="font-size: 9pt; width: 100%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msgs.Numero}" width="60">
-					<p:cellEditor>
-						<f:facet name="output">
-							<p:outputLabel value="#{endereco.logradouroNumero}"
-								style="font-size: 9pt;">
-							</p:outputLabel>
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{endereco.logradouroNumero}"
-								style="font-size: 9pt; width: 100%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msgs.Complemento}" width="110">
-					<p:cellEditor>
-						<f:facet name="output">
-							<p:outputLabel value="#{endereco.logradouroComplemento}"
-								style="font-size: 9pt;" converter="stringConverter">
-							</p:outputLabel>
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{endereco.logradouroComplemento}"
-								style="font-size: 9pt; width: 100%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msgs.Bairro}" width="180">
-					<p:cellEditor>
-						<f:facet name="output">
-							<p:outputLabel value="#{endereco.bairro}" style="font-size: 9pt;"
-								converter="stringConverter">
-							</p:outputLabel>
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{endereco.bairro}"
-								style="font-size: 9pt; width: 100%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msgs.CEP}" width="110">
-					<p:cellEditor>
-						<f:facet name="output">
-							<p:outputLabel value="#{endereco.cep}" style="font-size: 9pt;">
-							</p:outputLabel>
-						</f:facet>
-						<f:facet name="input">
-							<p:inputMask id="cep" mask="99999-999" maxlength="8" size="8"
-								value="#{endereco.cep}" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msgs.CaixaPostal}" width="110">
-					<p:cellEditor>
-						<f:facet name="output">
-							<p:outputLabel value="#{endereco.caixaPostal}"
-								style="font-size: 9pt;" converter="stringConverter">
-							</p:outputLabel>
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{endereco.caixaPostal}"
-								style="font-size: 9pt; width: 100%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msgs.Estado}" width="60">
-					<p:cellEditor>
-						<f:facet name="output">
-							<p:outputLabel value="#{endereco.estado}" style="font-size: 9pt;">
-							</p:outputLabel>
-						</f:facet>
-						<f:facet name="input">
-							<p:selectOneMenu id="listEstado" panelStyle="width:150px"
-								effect="fade" style="width:60px" value="#{endereco.estado}"
-								converter="estadoConverter" immediate="true">
-								<p:ajax event="change" listener="#{estadoMB.onSelectionEstado}"
-									update="#{cc.attrs.ajaxComponentRenderHistorico}" />
-								<f:selectItem itemLabel="UF" noSelectionOption="true" />
-								<f:selectItems value="#{estadoMB.estados}" var="estado"
-									itemLabel="#{estado.estadoSigla}" itemValue="#{estado}" />
-							</p:selectOneMenu>
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msgs.Cidade}" width="180">
-					<p:cellEditor>
-						<f:facet name="output">
-							<p:outputLabel value="#{endereco.cidade}" style="font-size: 9pt;"
-								converter="stringConverter">
-							</p:outputLabel>
-						</f:facet>
-						<f:facet name="input">
-							<p:selectOneMenu id="listCidade" panelStyle="width:180px"
-								effect="fade" style="width:333px" value="#{endereco.cidade}"
-								converter="cidadeConverter" immediate="true" filter="true"
-								filterMatchMode="startsWith">
-								<f:selectItem itemLabel="Selecionar a Cidade"
-									noSelectionOption="true" />
-								<f:selectItems value="#{estadoMB.cidadesPorEstado}" var="cidade"
-									itemLabel="#{cidade.cidadeNome}" itemValue="#{cidade}" />
-							</p:selectOneMenu>
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
+					<p:column headerText="#{msgs.DataCadastro}" width="110">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{endereco.dataInicioEndereco}"
+									style="font-size: 9pt;">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:calendar value="#{endereco.dataInicioEndereco}" locale="pt"
+									showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
+									mask="true" size="8" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.DataTermino}" width="110">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{endereco.dataTerminoEndereco}"
+									style="font-size: 9pt;">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:calendar value="#{endereco.dataTerminoEndereco}" locale="pt"
+									showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
+									mask="true" size="8" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.Logradouro}" width="180">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{endereco.logradouro.nomeLogradouro}"
+									style="font-size: 9pt;" converter="stringConverter">
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{endereco.logradouro.nomeLogradouro}"
+									style="font-size: 9pt; width: 100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.Endereco}" width="300">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{endereco.logradouroNome}"
+									style="font-size: 9pt;" converter="stringConverter">
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{endereco.logradouroNome}"
+									style="font-size: 9pt; width: 100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.Numero}" width="60">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{endereco.logradouroNumero}"
+									style="font-size: 9pt;">
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{endereco.logradouroNumero}"
+									style="font-size: 9pt; width: 100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.Complemento}" width="110">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{endereco.logradouroComplemento}"
+									style="font-size: 9pt;" converter="stringConverter">
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{endereco.logradouroComplemento}"
+									style="font-size: 9pt; width: 100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.Bairro}" width="180">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{endereco.bairro}"
+									style="font-size: 9pt;" converter="stringConverter">
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{endereco.bairro}"
+									style="font-size: 9pt; width: 100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.CEP}" width="110">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{endereco.cep}" style="font-size: 9pt;">
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputMask id="cep" mask="99999-999" maxlength="8" size="8"
+									value="#{endereco.cep}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.CaixaPostal}" width="110">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{endereco.caixaPostal}"
+									style="font-size: 9pt;" converter="stringConverter">
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{endereco.caixaPostal}"
+									style="font-size: 9pt; width: 100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.Estado}" width="60">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{endereco.estado}"
+									style="font-size: 9pt;">
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:selectOneMenu id="listEstado" panelStyle="width:150px"
+									effect="fade" style="width:60px" value="#{endereco.estado}"
+									converter="estadoConverter" immediate="true">
+									<p:ajax event="change" listener="#{estadoMB.onSelectionEstado}"
+										update="#{cc.attrs.ajaxComponentRenderHistorico}" />
+									<f:selectItem itemLabel="UF" noSelectionOption="true" />
+									<f:selectItems value="#{estadoMB.estados}" var="estado"
+										itemLabel="#{estado.estadoSigla}" itemValue="#{estado}" />
+								</p:selectOneMenu>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.Cidade}" width="180">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{endereco.cidade}"
+									style="font-size: 9pt;" converter="stringConverter">
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:selectOneMenu id="listCidade" panelStyle="width:180px"
+									effect="fade" style="width:333px" value="#{endereco.cidade}"
+									converter="cidadeConverter" immediate="true" filter="true"
+									filterMatchMode="startsWith">
+									<f:selectItem itemLabel="Selecionar a Cidade"
+										noSelectionOption="true" />
+									<f:selectItems value="#{estadoMB.cidadesPorEstado}"
+										var="cidade" itemLabel="#{cidade.cidadeNome}"
+										itemValue="#{cidade}" />
+								</p:selectOneMenu>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
 
-				<p:column style="width:55px" rendered="#{cc.attrs.disabledEditar}">
-					<p:rowEditor />
-				</p:column>
+					<p:column style="width:55px" rendered="#{cc.attrs.disabledEditar}">
+						<p:rowEditor />
+					</p:column>
 
-				<p:column style="width:55px" rendered="#{cc.attrs.disabledEditar}">
-					<p:commandButton icon="fa fa-trash"
-						actionListener="#{cc.attrs.actionListenerExcluir}">
-						<f:setPropertyActionListener value="#{endereco}"
-							target="#{cc.attrs.enderecoExcluirTarget}" />
-						<p:confirm header="#{msgs.Confirmar}"
-							message="#{msgs.DeletarEnderecoEmpresa}" icon="ui-icon-alert" />
-					</p:commandButton>
-				</p:column>
-			</p:dataTable>
+					<p:column style="width:55px" rendered="#{cc.attrs.disabledEditar}">
+						<p:commandButton icon="fa fa-trash"
+							actionListener="#{cadastroEmpresaMB.excluirEnderecoDoHistoricoEmpresa(endereco)}"
+							update="#{cc.attrs.updateExcluir}">
+							<f:setPropertyActionListener value="#{endereco}"
+								target="#{cadastroEmpresaMB.enderecoExcluir}" />
+							<p:confirm header="#{msgs.Confirmar}"
+								message="#{msgs.DeletarEnderecoEmpresa}" icon="ui-icon-alert" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</h:panelGrid>
 		</p:tab>
 
 	</p:accordionPanel>

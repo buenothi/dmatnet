@@ -1457,8 +1457,8 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void excluirEnderecoDoHistoricoEmpresa(EnderecoEntity endereco) {
+		System.out.println("teste excluir endereço do histórico");
 		try {
-			System.out.println("teste excluir endereço do histórico");
 			pessoaJuridicaFachada.excluirEnderecoEmpresa(endereco, this.empresaSelecionada);
 
 			this.isBtnEnderecoEditarDesativado = false;
