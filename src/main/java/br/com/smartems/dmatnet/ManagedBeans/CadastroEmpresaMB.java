@@ -93,9 +93,13 @@ public class CadastroEmpresaMB implements Serializable {
 	private EmpresaCadastroEntity dadosCadastraisExcluir;
 	private List<EmpresaCadastroEntity> dadosCadastraisHistorico;
 
+	private EnderecoEntity enderecoAnterior; 	// é utilizado para
+												// adicionar data de
+												// término
+
 	private EnderecoEntity enderecoAtual;
+	private EnderecoEntity enderecoExcluir;
 	private List<EnderecoEntity> enderecosHistorico;
-	private EnderecoEntity enderecoAnterior;
 
 	private DualListModel<EmpresaEntity> empresas;
 	private List<EmpresaGrupoEntity> grupos;
@@ -358,6 +362,14 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setEnderecoAtual(EnderecoEntity enderecoAtual) {
 		this.enderecoAtual = enderecoAtual;
+	}
+
+	public EnderecoEntity getEnderecoExcluir() {
+		return enderecoExcluir;
+	}
+
+	public void setEnderecoExcluir(EnderecoEntity enderecoExcluir) {
+		this.enderecoExcluir = enderecoExcluir;
 	}
 
 	public List<EnderecoEntity> getEnderecosHistorico() {
@@ -691,9 +703,9 @@ public class CadastroEmpresaMB implements Serializable {
 	public void setBtnDadosCadastraisEditarDesativado(boolean isBtnDadosCadastraisEditarDesativado) {
 		this.isBtnDadosCadastraisEditarDesativado = isBtnDadosCadastraisEditarDesativado;
 	}
-	
+
 	public boolean isTextoDadosCadastraisInexistentes() {
-		if(this.isDadosCadastraisRendered) {
+		if (this.isDadosCadastraisRendered) {
 			isTextoDadosCadastraisInexistentes = false;
 		} else {
 			isTextoDadosCadastraisInexistentes = true;
@@ -771,7 +783,7 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public boolean isTextoEnderecosEmpresaInexistentes() {
-		if(this.isEnderecoRendered) {
+		if (this.isEnderecoRendered) {
 			isTextoEnderecosEmpresaInexistentes = false;
 		} else {
 			isTextoEnderecosEmpresaInexistentes = true;
@@ -1210,7 +1222,7 @@ public class CadastroEmpresaMB implements Serializable {
 			e1.printStackTrace();
 		}
 	}
-	
+
 	public void excluirDadosCadastraisDoHistoricoEmpresa(EmpresaCadastroEntity dadosCadastrais) {
 		try {
 			pessoaJuridicaFachada.excluirDadoCadastral(dadosCadastrais, this.empresaSelecionada);
@@ -1356,7 +1368,7 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void novoEnderecoEmpresa(ActionEvent e) {
-		this.isEnderecoRendered = true; 
+		this.isEnderecoRendered = true;
 		try {
 			if (this.enderecoAtual.getIdEndereco() >= 1) {
 				RequestContext.getCurrentInstance().execute("PF('dlgPerguntaEndereco').show()");
@@ -1391,7 +1403,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.enderecoTrocaStatusBotoes();
 		RequestContext.getCurrentInstance().execute("PF('dlgPerguntaEndereco').hide()");
 	}
-	
+
 	public void enderecoTrocaStatusBotoes() {
 		this.isBtnEnderecoEditarDesativado = true;
 		this.isEnderecoEditarRender = true;
@@ -1433,12 +1445,37 @@ public class CadastroEmpresaMB implements Serializable {
 			e1.printStackTrace();
 		}
 	}
-	
+
 	public void excluirEnderecoEmpresa(ActionEvent e) {
 		try {
 			pessoaJuridicaFachada.excluirEnderecoEmpresa(this.enderecoAtual, this.empresaSelecionada);
 			this.exibirImagem(this.fotografiaFachadaEmpresa);
 			this.separarEnderecoAtualDoHistorico(empresaSelecionada);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	public void excluirEnderecoDoHistoricoEmpresa(EnderecoEntity endereco) {
+		try {
+			System.out.println("teste excluir endereço do histórico");
+			pessoaJuridicaFachada.excluirEnderecoEmpresa(endereco, this.empresaSelecionada);
+
+			this.isBtnEnderecoEditarDesativado = false;
+			this.isBtnEnderecoCancelarDesativado = true;
+			this.isBtnEnderecoSalvarDesativado = true;
+			this.isBtnEnderecoNovoDesativado = false;
+			this.isEnderecoEditarRender = false;
+			this.isBtnEnderecoEmpresaExcluirDesativado = false;
+
+			this.isTabDadosCadastraisDesativado = false;
+			this.isTabEnderecoDesativado = false;
+			this.isTabContatoDesativado = false;
+			this.isTabEmpregadosDesativado = false;
+			this.isTabEstabelecimentosDesativado = false;
+
+			this.exibirImagem(this.fotografiaFachadaEmpresa);
+			this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}

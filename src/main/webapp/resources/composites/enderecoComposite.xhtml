@@ -72,6 +72,9 @@
 	<composite:attribute name="disabledExcluir" />
 	<composite:attribute name="actionListenerExcluir"
 		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="actionListenerExcluirEnderecoDoHistorico"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="enderecoExcluirTarget" />
 	<composite:attribute name="updateExcluir" />
 	<composite:attribute name="renderedBtnExcluir" />
 	<composite:attribute name="messageConfirmaExcluir" />
@@ -167,6 +170,7 @@
 							<p:ajax event="change" listener="#{estadoMB.onSelectionEstado}"
 								update="#{cc.attrs.ajaxComponentRender}" />
 							<f:selectItem itemLabel="#{cc.attrs.estado.estadoSigla}" />
+							<f:selectItem itemLabel="--------------" noSelectionOption="true" />
 							<f:selectItems value="#{estadoMB.estados}" var="estado"
 								itemLabel="#{estado.estadoSigla}" itemValue="#{estado}" />
 						</p:selectOneMenu>
@@ -175,6 +179,7 @@
 							converter="cidadeConverter" filter="true"
 							filterMatchMode="startsWith">
 							<f:selectItem itemLabel="#{cc.attrs.cidade.cidadeNome}" />
+							<f:selectItem itemLabel="--------------" noSelectionOption="true" />
 							<f:selectItems value="#{estadoMB.cidadesPorEstado}" var="cidade"
 								itemLabel="#{cidade.cidadeNome}" itemValue="#{cidade}" />
 						</p:selectOneMenu>
@@ -409,7 +414,13 @@
 				</p:column>
 
 				<p:column style="width:55px" rendered="#{cc.attrs.disabledEditar}">
-					<p:commandButton icon="fa fa-trash" />
+					<p:commandButton icon="fa fa-trash"
+						actionListener="#{cc.attrs.actionListenerExcluir}">
+						<f:setPropertyActionListener value="#{endereco}"
+							target="#{cc.attrs.enderecoExcluirTarget}" />
+						<p:confirm header="#{msgs.Confirmar}"
+							message="#{msgs.DeletarEnderecoEmpresa}" icon="ui-icon-alert" />
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 		</p:tab>
