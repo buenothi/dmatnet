@@ -74,9 +74,9 @@
 	<composite:attribute name="disabledExcluir" />
 	<composite:attribute name="actionListenerExcluir"
 		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
-	<composite:attribute name="actionListenerExcluirEnderecoDoHistorico"
+	<composite:attribute name="actionListenerExcluirEnderecoHistorico"
 		method-signature="void excluirEnderecoHistorico(br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity)" />
-	<composite:attribute name="enderecoExcluirTarget"
+	<composite:attribute name="enderecoHistoricoExcluir"
 		type="br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity" />
 	<composite:attribute name="updateExcluir" />
 	<composite:attribute name="renderedBtnExcluir" />
@@ -422,7 +422,7 @@
 					<p:column style="width:55px" rendered="#{cc.attrs.disabledEditar}">
 						<p:commandButton icon="fa fa-trash"
 							actionListener="#{cadastroEmpresaMB.excluirEnderecoDoHistoricoEmpresa(endereco)}"
-							update="#{cc.attrs.updateExcluir}">
+							update="#{cc.attrs.updateExcluir}" immediate="true">
 							<f:setPropertyActionListener value="#{endereco}"
 								target="#{cadastroEmpresaMB.enderecoExcluir}" />
 							<p:confirm header="#{msgs.Confirmar}"
