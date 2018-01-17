@@ -21,6 +21,8 @@
 		caixaPostal="#{cadastroEmpresaMB.enderecoAtual.caixaPostal}"
 		cidade="#{cadastroEmpresaMB.enderecoAtual.cidade}"
 		estado="#{cadastroEmpresaMB.enderecoAtual.estado}"
+		dataCadastro="#{cadastroEmpresaMB.enderecoAtual.dataInicioEndereco}"
+		enderecoHistorico="#{cadastroEmpresaMB.enderecosHistorico}"
 		ajaxComponentRender="formModulos:formCadEmpresa:tbwCadastroEmpresa:dmatEnderecoEmpresa:acpEndereco:listCidade"
 		disabledEditar="#{cadastroEmpresaMB.btnEnderecoEditarDesativado}"
 		actionListenerEditar="#{cadastroEmpresaMB.editarEnderecoEmpresa}"
@@ -35,15 +37,24 @@
 		disabledNovo="#{cadastroEmpresaMB.btnEnderecoNovoDesativado}"
 		actionListenerNovo="#{cadastroEmpresaMB.novoEnderecoEmpresa}"
 		updateNovo="formModulos"
-		dataCadastro="#{cadastroEmpresaMB.enderecoAtual.dataInicioEndereco}"
-		enderecoHistorico="#{cadastroEmpresaMB.enderecosHistorico}"
 		disabledExcluir="#{cadastroEmpresaMB.btnEnderecoEmpresaExcluirDesativado}"
 		actionListenerExcluir="#{cadastroEmpresaMB.excluirEnderecoEmpresa}"
 		updateExcluir="formModulos"
 		renderedBtnExcluir="#{cadastroEmpresaMB.btnEnderecoEmpresaExcluirRender}"
 		messageConfirmaExcluir="#{msgs.DeletarEnderecoEmpresa}"
 		messageHeaderExcluir="#{msgs.Confirmar}"
-		messageLabelExcluir="#{msgs.Excluir}"/>
+		messageLabelExcluir="#{msgs.Excluir}">
+
+		<p:commandButton icon="fa fa-trash"
+			actionListener="#{cadastroEmpresaMB.excluirEnderecoDoHistoricoEmpresa(endereco)}"
+			update="formModulos" immediate="true">
+			<f:setPropertyActionListener value="#{endereco}"
+				target="#{cadastroEmpresaMB.enderecoExcluir}" />
+			<p:confirm header="#{msgs.Confirmar}"
+				message="#{msgs.DeletarEnderecoEmpresa}" icon="ui-icon-alert" />
+		</p:commandButton>
+		
+	</dmat:enderecoComposite>
 
 	<p:outputLabel value="#{msgs.EnderecoInexistente}"
 		rendered="#{cadastroEmpresaMB.textoEnderecosEmpresaInexistentes}" />
