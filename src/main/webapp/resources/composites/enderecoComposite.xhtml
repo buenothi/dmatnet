@@ -165,8 +165,8 @@
 					<h:panelGrid id="tblCidadeEstado" columns="2">
 						<p:selectOneMenu id="listEstado" panelStyle="width:150px"
 							effect="fade" style="width:60px" value="#{cc.attrs.estado}"
-							converter="estadoConverter">
-							<p:ajax event="change" listener="#{estadoMB.onSelectionEstado}"
+							converter="estadoConverter" immediate="true" >
+							<p:ajax event="itemSelect" listener="#{estadoMB.onSelectionEstado}"
 								update="#{cc.attrs.ajaxComponentRender}" />
 							<f:selectItem itemLabel="#{cc.attrs.estado.estadoSigla}" />
 							<f:selectItem itemLabel="--------------" noSelectionOption="true" />
@@ -175,7 +175,7 @@
 						</p:selectOneMenu>
 						<p:selectOneMenu id="listCidade" panelStyle="width:180px"
 							effect="fade" style="width:333px" value="#{cc.attrs.cidade}"
-							converter="cidadeConverter" filter="true"
+							converter="cidadeConverter" filter="true" 
 							filterMatchMode="startsWith">
 							<f:selectItem itemLabel="#{cc.attrs.cidade.cidadeNome}" />
 							<f:selectItem itemLabel="--------------" noSelectionOption="true" />

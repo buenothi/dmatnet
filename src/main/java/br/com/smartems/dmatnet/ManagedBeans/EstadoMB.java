@@ -36,13 +36,13 @@ public class EstadoMB implements Serializable {
 	}
 
 	public void setEstados(List<EstadoEntity> estados) {
-		if (this.estadoSelecionado == null) {
-			this.estadoSelecionado = new EstadoEntity();
-		}
 		this.estados = estados;
 	}
 
 	public EstadoEntity getEstadoSelecionado() {
+		if (this.estadoSelecionado == null) {
+			this.estadoSelecionado = new EstadoEntity();
+		}
 		return estadoSelecionado;
 	}
 
@@ -63,7 +63,11 @@ public class EstadoMB implements Serializable {
 
 	public void onSelectionEstado(AjaxBehaviorEvent evt) {
 		this.estadoSelecionado = ((EstadoEntity) evt.getComponent().getAttributes().get("value"));
-		this.cidadesPorEstado = this.estadoFachada.listarCidadesPorEstado(estadoSelecionado);
+		this.cidadesPorEstado = this.estadoFachada.listarCidadesPorEstado(this.estadoSelecionado);
+	}
+	
+	public void onValueChangeEstado(EstadoEntity estado) {
+		this.cidadesPorEstado = this.estadoFachada.listarCidadesPorEstado(estado);
 	}
 
 	@PostConstruct

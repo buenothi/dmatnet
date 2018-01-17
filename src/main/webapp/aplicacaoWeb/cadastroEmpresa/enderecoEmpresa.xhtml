@@ -23,20 +23,25 @@
 		estado="#{cadastroEmpresaMB.enderecoAtual.estado}"
 		dataCadastro="#{cadastroEmpresaMB.enderecoAtual.dataInicioEndereco}"
 		enderecoHistorico="#{cadastroEmpresaMB.enderecosHistorico}"
-		ajaxComponentRender="formModulos:formCadEmpresa:tbwCadastroEmpresa:dmatEnderecoEmpresa:acpEndereco:listCidade"
+		ajaxComponentRender="@this, formModulos:formCadEmpresa:tbwCadastroEmpresa:dmatEnderecoEmpresa:acpEndereco:listCidade"
+		
 		disabledEditar="#{cadastroEmpresaMB.btnEnderecoEditarDesativado}"
 		actionListenerEditar="#{cadastroEmpresaMB.editarEnderecoEmpresa}"
 		enderecoEditarRender="#{cadastroEmpresaMB.enderecoEditarRender}"
 		updateEditar="formModulos"
+		
 		disabledCancelar="#{cadastroEmpresaMB.btnEnderecoCancelarDesativado}"
 		actionListenerCancelar="#{cadastroEmpresaMB.cancelarEnderecoEmpresa}"
 		updateCancelar="formModulos"
+		
 		disabledSalvar="#{cadastroEmpresaMB.btnEnderecoSalvarDesativado}"
 		actionListenerSalvar="#{cadastroEmpresaMB.salvarEnderecoEmpresa}"
 		updateSalvar="formModulos"
+		
 		disabledNovo="#{cadastroEmpresaMB.btnEnderecoNovoDesativado}"
 		actionListenerNovo="#{cadastroEmpresaMB.novoEnderecoEmpresa}"
 		updateNovo="formModulos"
+		
 		disabledExcluir="#{cadastroEmpresaMB.btnEnderecoEmpresaExcluirDesativado}"
 		actionListenerExcluir="#{cadastroEmpresaMB.excluirEnderecoEmpresa}"
 		updateExcluir="formModulos"
