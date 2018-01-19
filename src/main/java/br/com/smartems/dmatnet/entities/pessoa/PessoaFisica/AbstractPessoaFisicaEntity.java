@@ -11,6 +11,8 @@ public abstract class AbstractPessoaFisicaEntity extends AbstractPessoaEntity im
 	
 	private int genero;
 	
+	private PessoaFisicaDocumentosEntity documentosPessoais;
+	
 	private static final long serialVersionUID = 1L;
 	
 	public AbstractPessoaFisicaEntity() {
@@ -23,6 +25,42 @@ public abstract class AbstractPessoaFisicaEntity extends AbstractPessoaEntity im
 
 	public void setGenero(int genero) {
 		this.genero = genero;
+	}
+
+	public PessoaFisicaDocumentosEntity getDocumentosPessoais() {
+		return documentosPessoais;
+	}
+
+	public void setDocumentosPessoais(PessoaFisicaDocumentosEntity documentosPessoais) {
+		this.documentosPessoais = documentosPessoais;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((documentosPessoais == null) ? 0 : documentosPessoais.hashCode());
+		result = prime * result + genero;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AbstractPessoaFisicaEntity other = (AbstractPessoaFisicaEntity) obj;
+		if (documentosPessoais == null) {
+			if (other.documentosPessoais != null)
+				return false;
+		} else if (!documentosPessoais.equals(other.documentosPessoais))
+			return false;
+		if (genero != other.genero)
+			return false;
+		return true;
 	}
 
 }

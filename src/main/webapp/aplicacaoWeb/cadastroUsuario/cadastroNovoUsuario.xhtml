@@ -8,11 +8,12 @@
 	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
 
 <ui:composition>
-	<p:wizard>
+	<p:wizard backLabel="#{msgs.Voltar}" nextLabel="#{msgs.Avancar}">
+
 		<p:tab title="#{msgs.DadosUsuario}">
 			<p:panelGrid id="dadosUsuario" columns="2"
 				styleClass="tabelaSemBorda">
-				<p:outputLabel value="Data Cadastro" />
+				<p:outputLabel value="#{msgs.DataCadastro}" />
 				<p:calendar locale="pt" showOn="button" showButtonPanel="true"
 					pattern="dd/MM/yyyy" mask="true" size="8" />
 
@@ -26,69 +27,108 @@
 				</p:selectOneRadio>
 			</p:panelGrid>
 		</p:tab>
-		<p:tab title="#{msgs.Endereco}">
-			<h:panelGroup id="pngEnderecoEditar" layout="block"
-				styleClass="formularioEnderecoEditar">
-				<p:panelGrid id="tblEndereco" columns="2"
-					styleClass="tabelaSemBorda">
-					<p:outputLabel value="#{msgs.Logradouro}" />
-					<h:panelGrid columns="2">
-						<p:selectOneMenu id="listLogradouroTipo" style="width: 100px">
-							<f:selectItem itemLabel="Rua" />
-							<f:selectItem itemLabel="Avenida" />
-							<f:selectItem itemLabel="Alameda" />
-						</p:selectOneMenu>
-						<p:inputText id="logradouroNome" maxlength="250"
-							style="width: 290px" />
-					</h:panelGrid>
 
-					<p:outputLabel value="#{msgs.Numero}" />
-					<h:panelGrid columns="4">
-						<p:inputText id="logradouroNumero" maxlength="10"
-							style="width: 100px" />
-						<p:spacer height="14" />
-						<p:outputLabel value="#{msgs.Complemento}" />
-						<p:inputText id="logradouroComplemento" maxlength="250"
-							style="width: 180px" />
-					</h:panelGrid>
+		<p:tab title="#{msgs.DocumentosPessoaFisica}">
+			<p:tabView>
+				<p:tab title="RIC">
+					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+						<p:outputLabel value="#{msgs.NumeroRic}" />
+						<p:inputNumber />
+						<p:outputLabel value="#{msgs.OrgExpedidorRic}" />
+						<p:inputText />
+						<p:outputLabel value="#{msgs.DataExpedicaoRic}" />
+						<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+							pattern="dd/MM/yyyy" mask="true" size="8" />
+					</p:panelGrid>
+				</p:tab>
 
-					<p:outputLabel value="#{msgs.Bairro}" />
-					<h:panelGrid>
-						<p:inputText id="bairro" maxlength="250" style="width: 393px"/>
-					</h:panelGrid>
+				<p:tab title="RG">
+					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+						<p:outputLabel value="#{msgs.NumeroRG}" />
+						<p:inputNumber />
+						<p:outputLabel value="#{msgs.OrgExpedidorRG}" />
+						<p:inputText />
+						<p:outputLabel value="#{msgs.DataExpedicaoRG}" />
+						<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+							pattern="dd/MM/yyyy" mask="true" size="8" />
+					</p:panelGrid>
+				</p:tab>
 
-					<p:outputLabel value="#{msgs.CEP}" />
-					<h:panelGrid columns="4">
-						<p:inputMask id="cep" mask="99999-999" maxlength="8" size="8"/>
-						<p:spacer height="15" />
-						<p:outputLabel value="#{msgs.CaixaPostal}" />
-						<p:inputText id="caixaPostal" maxlength="8" style="width: 200px" />
-					</h:panelGrid>
+				<p:tab title="CPF">
+					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+						<p:outputLabel value="#{msgs.NumeroCPF}" />
+						<p:inputNumber />
+					</p:panelGrid>
+				</p:tab>
 
-					<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}" />
-					<h:panelGrid id="tblCidadeEstado" columns="2">
-						<p:selectOneMenu id="listEstado" panelStyle="width:150px"
-							effect="fade" style="width:60px" converter="estadoConverter" immediate="true">
-							<p:ajax event="change" listener="#{estadoMB.onSelectionEstado}" />
-							<f:selectItem itemLabel="UF" noSelectionOption="true" />
-							<f:selectItems value="#{estadoMB.estados}" var="estado"
-								itemLabel="#{estado.estadoSigla}" itemValue="#{estado}" />
-						</p:selectOneMenu>
-						<p:selectOneMenu id="listCidade" panelStyle="width:180px"
-							effect="fade" style="width:333px" 
-							converter="cidadeConverter" immediate="true" filter="true"
-							filterMatchMode="startsWith">
-							<f:selectItem itemLabel="Selecionar a Cidade"
-								noSelectionOption="true" />
-							<f:selectItems value="#{estadoMB.cidadesPorEstado}" var="cidade"
-								itemLabel="#{cidade.cidadeNome}" itemValue="#{cidade}" />
-						</p:selectOneMenu>
-					</h:panelGrid>
-				</p:panelGrid>
+				<p:tab title="RNE">
+					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+						<p:outputLabel value="#{msgs.NumeroRNE}" />
+						<p:inputNumber />
+						<p:outputLabel value="#{msgs.OrgExpedidorRNE}" />
+						<p:inputText />
+						<p:outputLabel value="#{msgs.DataExpedicaoRNE}" />
+						<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+							pattern="dd/MM/yyyy" mask="true" size="8" />
+					</p:panelGrid>
+				</p:tab>
 
-			</h:panelGroup>
+				<p:tab title="CNH">
+					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+						<p:outputLabel value="#{msgs.NumeroCNH}" />
+						<p:inputNumber />
+						<p:outputLabel value="#{msgs.UFCNH}" />
+						<p:inputText />
+						<p:outputLabel value="#{msgs.DataExpedicaoCNH}" />
+						<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+							pattern="dd/MM/yyyy" mask="true" size="8" />
+						<p:outputLabel value="#{msgs.DataValidadeCNH}" />
+						<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+							pattern="dd/MM/yyyy" mask="true" size="8" />
+						<p:outputLabel value="#{msgs.DataPrimeiraCNH}" />
+						<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+							pattern="dd/MM/yyyy" mask="true" size="8" />
+						<p:outputLabel value="#{msgs.CategoriaCNH}" />
+						<p:inputText />
+					</p:panelGrid>
+				</p:tab>
+
+			</p:tabView>
 		</p:tab>
-		<p:tab title="#{msgs.ContatoUsuario}"></p:tab>
+
+		<p:tab title="#{msgs.Endereco}">
+			<dmat:enderecoComposite />
+		</p:tab>
+
+		<p:tab title="#{msgs.ContatoUsuario}">
+			<p:tabView>
+				<p:tab title="#{msgs.Telefone}">
+					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+						<p:outputLabel value="#{msgs.Telefone}" />
+						<p:inputText />
+
+						<p:outputLabel value="#{msgs.TelefoneTipo}" />
+						<p:inputText />
+					</p:panelGrid>
+				</p:tab>
+
+				<p:tab title="#{msgs.Endereco}">
+					<dmat:enderecoComposite>
+					</dmat:enderecoComposite>
+				</p:tab>
+
+				<p:tab title="#{msgs.Email}">
+					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+						<p:outputLabel value="#{msgs.Email}" />
+						<p:inputText />
+
+						<p:outputLabel value="#{msgs.EmailTipo}" />
+						<p:inputText />
+					</p:panelGrid>
+				</p:tab>
+			</p:tabView>
+		</p:tab>
+
 	</p:wizard>
 </ui:composition>
 </html>

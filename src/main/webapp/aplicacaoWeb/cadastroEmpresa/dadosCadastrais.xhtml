@@ -15,29 +15,21 @@
 			disabledEditar="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}"
 			actionListenerEditar="#{cadastroEmpresaMB.editarDadosCadastraisEmpresa}"
 			updateEditar="formSelecionarEmpresa, formModulos, growlPrincipal"
-			
 			disabledCancelar="#{cadastroEmpresaMB.btnDadosCadastraisCancelarDesativado}"
 			actionListenerCancelar="#{cadastroEmpresaMB.cancelarDadosCadastraisEmpresa}"
 			updateCancelar="formSelecionarEmpresa, formModulos, growlPrincipal"
 			resetCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:pngEditarDadoCadastrais"
-			
 			disabledSalvar="#{cadastroEmpresaMB.btnDadosCadastraisSalvarDesativado}"
 			actionListenerSalvar="#{cadastroEmpresaMB.salvarDadosCadastraisEmpresa}"
 			updateSalvar="formSelecionarEmpresa, formModulos, growlPrincipal"
-			
 			renderedBtnNovo="true" labelNovo="#{msgs.NovoEmpresaDadosCadastrais}"
 			disabledNovo="#{cadastroEmpresaMB.btnDadosCadastraisNovaEmpresaDesativado}"
 			actionListenerNovo="#{cadastroEmpresaMB.novoDadosCadastraisEmpresa}"
-			updateNovo="formModulos"
-			
-			renderSpacer="false"
-		
+			updateNovo="formModulos" renderSpacer="false"
 			disabledImprimir="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}"
 			actionListenerImprimir="#{cadastroEmpresaMB.imprimirDadosCadastrais}"
-			labelImprimir="#{msgs.Imprimir}"
-			updateImprimir="formModulos"
+			labelImprimir="#{msgs.Imprimir}" updateImprimir="formModulos"
 			renderedBtnImprimir="true"
-			
 			disabledExcluir="#{cadastroEmpresaMB.btnDadosCadastraisExcluirDesativado}"
 			actionListenerExcluir="#{cadastroEmpresaMB.excluirDadosCadastraisEmpresa}"
 			updateExcluir="formSelecionarEmpresa, formModulos, growlPrincipal"
@@ -49,7 +41,8 @@
 
 	</h:panelGroup>
 
-	<p:accordionPanel id="acpDadosCadastrais" rendered="#{cadastroEmpresaMB.dadosCadastraisRendered}">
+	<p:accordionPanel id="acpDadosCadastrais"
+		rendered="#{cadastroEmpresaMB.dadosCadastraisRendered}">
 		<p:tab id="tabDadosBasicos" title="#{msgs.DadosBasicos}">
 			<h:panelGroup id="pngCadEmpresaEditar" layout="block"
 				styleClass="formulario"
@@ -141,38 +134,6 @@
 
 				</p:panelGrid>
 
-				<p:panelGrid columns="4" styleClass="tabelaSemBorda">
-					<p:outputLabel value="#{msgs.CodClassificacaoTributaria}" />
-					<p:selectOneMenu />
-
-					<p:outputLabel value="#{msgs.CodNaturezaJuridica}" />
-					<p:selectOneMenu
-						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codNaturezaJuridica}" />
-
-					<p:outputLabel value="#{msgs.CodIndicativoCooperativa}" />
-					<p:selectOneMenu
-						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoCooperativa}" />
-
-					<p:outputLabel value="#{msgs.CodIndicativoConstrucao}" />
-					<p:selectOneMenu
-						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoConstrucao}" />
-
-					<p:outputLabel value="#{msgs.CodIndicativoDesoneracaoFolha}" />
-					<p:selectOneMenu
-						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoDesoneracaoFolha}" />
-
-					<p:outputLabel value="#{msgs.CodIndicativoRegEletronico}" />
-					<p:selectOneMenu
-						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoRegEletronico}" />
-				</p:panelGrid>
-
-				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-					<p:outputLabel value="#{msgs.MultiplasRubricas}" />
-					<p:selectBooleanButton id="value2" onLabel="#{msgs.Sim}"
-						offLabel="#{msgs.Nao}" onIcon="ui-icon-check"
-						offIcon="ui-icon-close" style="width:120px" />
-				</p:panelGrid>
-
 			</h:panelGroup>
 
 			<h:panelGroup id="pngCadEmpresaExibir" layout="block"
@@ -242,51 +203,7 @@
 					</p:row>
 				</p:panelGrid>
 
-				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-					<p:commandButton value="#{msgs.CodigosESocial}"
-						onclick="PF('dlgCodigoESocial').show()" />
-				</p:panelGrid>
-
-
-
 			</h:panelGroup>
-
-			<p:dialog header="#{msgs.CodigosESocial}"
-				widgetVar="dlgCodigoESocial" closable="true" resizable="false"
-				width="700" modal="true">
-
-				<p:panelGrid columns="4" styleClass="tabelaSemBorda">
-					<p:outputLabel value="#{msgs.CodClassificacaoTributaria}:" />
-					<p:outputLabel
-						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codClassificacaoTributaria}" />
-
-					<p:outputLabel value="#{msgs.CodNaturezaJuridica}:" />
-					<p:outputLabel
-						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codNaturezaJuridica}" />
-
-					<p:outputLabel value="#{msgs.CodIndicativoCooperativa}:" />
-					<p:outputLabel
-						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoCooperativa}" />
-
-					<p:outputLabel value="#{msgs.CodIndicativoConstrucao}:" />
-					<p:outputLabel
-						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoConstrucao}" />
-
-					<p:outputLabel value="#{msgs.CodIndicativoDesoneracaoFolha}:" />
-					<p:outputLabel
-						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoDesoneracaoFolha}" />
-
-					<p:outputLabel value="#{msgs.CodIndicativoRegEletronico}:" />
-					<p:outputLabel
-						value="#{cadastroEmpresaMB.dadosCadastraisAtual.codIndicativoRegEletronico}" />
-				</p:panelGrid>
-
-				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-					<p:outputLabel value="#{msgs.MultiplasRubricas}:" />
-					<p:outputLabel
-						value="#{cadastroEmpresaMB.dadosCadastraisAtual.multiplasTabRubricas}" />
-				</p:panelGrid>
-			</p:dialog>
 
 		</p:tab>
 
@@ -804,269 +721,115 @@
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
-					<p:column headerText="#{msgs.CodClassificacaoTributaria}"
-						width="90">
-						<p:cellEditor>
-							<f:facet name="output">
-								<p:outputLabel value="#{cadastro.codClassificacaoTributaria}"
-									style="font-size: 9pt;" />
-							</f:facet>
-							<f:facet name="input">
-								<p:selectOneMenu style="font-size: 9pt;" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="#{msgs.CodNaturezaJuridica}" width="90">
-						<p:cellEditor>
-							<f:facet name="output">
-								<p:outputLabel value="#{cadastro.codNaturezaJuridica}"
-									style="font-size: 9pt;" />
-							</f:facet>
-							<f:facet name="input">
-								<p:selectOneMenu value="#{cadastro.codNaturezaJuridica}"
-									style="font-size: 9pt;" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="#{msgs.CodIndicativoCooperativa}" width="90">
-						<p:cellEditor>
-							<p:dataTable paginator="true" rows="10" scrollable="true"
-								styleClass="dataTable"
-								emptyMessage="#{msgs.ListaHistoricoDadosCadastrais}"
-								value="#{cadastroEmpresaMB.dadosCadastraisHistorico}"
-								paginatorAlwaysVisible="false" var="cadastro"
-								sortBy="#{cadastro.id}" sortOrder="descending" editable="true"
-								rowKey="#{cadastro.id}">
+					<p:dataTable paginator="true" rows="10" scrollable="true"
+						styleClass="dataTable"
+						emptyMessage="#{msgs.ListaHistoricoDadosCadastrais}"
+						value="#{cadastroEmpresaMB.dadosCadastraisHistorico}"
+						paginatorAlwaysVisible="false" var="cadastro"
+						sortBy="#{cadastro.id}" sortOrder="descending" editable="true"
+						rowKey="#{cadastro.id}">
 
-								<p:column headerText="#{msgs.DataCadastro}" width="100">
-									<p:cellEditor>
-										<f:facet name="output">
-											<p:outputLabel value="#{cadastro.dataInicioCadastro}"
-												style="font-size: 9pt;">
-												<f:convertDateTime pattern="dd/MM/yyyy" />
-											</p:outputLabel>
-										</f:facet>
-										<f:facet name="input">
-											<p:calendar value="#{cadastro.dataInicioCadastro}"
-												locale="pt" showOn="button" showButtonPanel="true"
-												pattern="dd/MM/yyyy" mask="true" size="8" />
-										</f:facet>
-									</p:cellEditor>
-								</p:column>
-								<p:column headerText="#{msgs.DataTermino}" width="100">
-									<p:cellEditor>
-										<f:facet name="output">
-											<p:outputLabel value="#{cadastro.dataFimCadastro}"
-												style="font-size: 9pt;">
-												<f:convertDateTime pattern="dd/MM/yyyy" />
-											</p:outputLabel>
-										</f:facet>
-										<f:facet name="input">
-											<p:calendar value="#{cadastro.dataFimCadastro}" locale="pt"
-												showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
-												mask="true" size="8" />
-										</f:facet>
-									</p:cellEditor>
-								</p:column>
-								<p:column headerText="#{msgs.TipoInscricao}" width="80">
-									<p:cellEditor>
-										<f:facet name="output">
-											<p:outputLabel value="#{cadastro.tipoInscricao}"
-												style="font-size: 9pt;" />
-										</f:facet>
-										<f:facet name="input">
-											<p:selectOneMenu style="width:100%; font-size: 9pt;"
-												value="#{cadastro.tipoInscricao}">
-												<f:selectItem itemValue="1" itemLabel="CNPJ" />
-												<f:selectItem itemValue="2" itemLabel="CPF" />
-											</p:selectOneMenu>
-										</f:facet>
-									</p:cellEditor>
-								</p:column>
-								<p:column headerText="#{msgs.Inscricao}" width="160">
-									<p:cellEditor>
-										<f:facet name="output">
-											<p:outputLabel value="#{cadastro.numCNPJ}"
-												style="font-size: 9pt;">
-												<f:converter converterId="cnpjCpfConverter" />
-											</p:outputLabel>
-										</f:facet>
-										<f:facet name="input">
-											<p:inputMask id="ipmInscricao" converter="cnpjCpfConverter"
-												mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}"
-												value="#{cadastro.numCNPJ}" style="font-size: 9pt;" />
-										</f:facet>
-									</p:cellEditor>
-								</p:column>
-								<p:column headerText="#{msgs.RazaoSocial}" width="210">
-									<p:cellEditor>
-										<f:facet name="output">
-											<p:outputLabel value="#{cadastro.razaoSocial}"
-												style="font-size: 9pt;">
-												<f:converter converterId="stringConverter" />
-											</p:outputLabel>
-										</f:facet>
-										<f:facet name="input">
-											<p:inputText value="#{cadastro.razaoSocial}"
-												style="font-size: 9pt; width: 100%" />
-										</f:facet>
-									</p:cellEditor>
-								</p:column>
-								<p:column headerText="#{msgs.FAP}" width="90">
-									<p:cellEditor>
-										<f:facet name="output">
-											<p:outputLabel value="#{cadastro.empresaFAP.valorFAP}"
-												style="font-size: 9pt;">
-												<f:converter converterId="javax.faces.Double" />
-											</p:outputLabel>
-										</f:facet>
-										<f:facet name="input">
-											<p:inputMask mask="9.999"
-												value="#{cadastro.empresaFAP.valorFAP}"
-												style="font-size: 9pt; width: 100%"
-												converter="javax.faces.Double">
-											</p:inputMask>
-										</f:facet>
-									</p:cellEditor>
-								</p:column>
-								<p:column headerText="#{msgs.CodClassificacaoTributaria}"
-									width="90">
-									<p:cellEditor>
-										<f:facet name="output">
-											<p:outputLabel value="#{cadastro.codClassificacaoTributaria}"
-												style="font-size: 9pt;" />
-										</f:facet>
-										<f:facet name="input">
-											<p:selectOneMenu style="font-size: 9pt;" />
-										</f:facet>
-									</p:cellEditor>
-								</p:column>
-								<p:column headerText="#{msgs.CodNaturezaJuridica}" width="90">
-									<p:cellEditor>
-										<f:facet name="output">
-											<p:outputLabel value="#{cadastro.codNaturezaJuridica}"
-												style="font-size: 9pt;" />
-										</f:facet>
-										<f:facet name="input">
-											<p:selectOneMenu value="#{cadastro.codNaturezaJuridica}"
-												style="font-size: 9pt;" />
-										</f:facet>
-									</p:cellEditor>
-								</p:column>
-								<p:column headerText="#{msgs.CodIndicativoCooperativa}"
-									width="90">
-									<p:cellEditor>
-										<f:facet name="output">
-											<p:outputLabel value="#{cadastro.codIndicativoCooperativa}"
-												style="font-size: 9pt;" />
-										</f:facet>
-										<f:facet name="input">
-											<p:selectOneMenu value="#{cadastro.codIndicativoCooperativa}"
-												style="font-size: 9pt;" />
-										</f:facet>
-									</p:cellEditor>
-								</p:column>
-								<p:column headerText="#{msgs.CodIndicativoConstrucao}"
-									width="90">
-									<p:cellEditor>
-										<f:facet name="output">
-											<p:outputLabel value="#{cadastro.codIndicativoConstrucao}"
-												style="font-size: 9pt;" />
-										</f:facet>
-										<f:facet name="input">
-											<p:selectOneMenu value="#{cadastro.codIndicativoConstrucao}"
-												style="font-size: 9pt;" />
-										</f:facet>
-									</p:cellEditor>
-								</p:column>
-								<p:column headerText="#{msgs.CodIndicativoDesoneracaoFolha}"
-									width="90">
-									<p:cellEditor>
-										<f:facet name="output">
-											<p:outputLabel
-												value="#{cadastro.codIndicativoDesoneracaoFolha}"
-												style="font-size: 9pt;" />
-										</f:facet>
-										<f:facet name="input">
-											<p:selectOneMenu
-												value="#{cadastro.codIndicativoDesoneracaoFolha}"
-												style="font-size: 9pt;" />
-										</f:facet>
-									</p:cellEditor>
-								</p:column>
-								<p:column headerText="#{msgs.CodIndicativoRegEletronico}"
-									width="90">
-									<p:cellEditor>
-										<f:facet name="output">
-											<p:outputLabel value="#{cadastro.codIndicativoRegEletronico}"
-												style="font-size: 9pt;" />
-										</f:facet>
-										<f:facet name="input">
-											<p:selectOneMenu
-												value="#{cadastro.codIndicativoRegEletronico}"
-												style="font-size: 9pt;" />
-										</f:facet>
-									</p:cellEditor>
-								</p:column>
+						<p:column headerText="#{msgs.DataCadastro}" width="100">
+							<p:cellEditor>
+								<f:facet name="output">
+									<p:outputLabel value="#{cadastro.dataInicioCadastro}"
+										style="font-size: 9pt;">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</p:outputLabel>
+								</f:facet>
+								<f:facet name="input">
+									<p:calendar value="#{cadastro.dataInicioCadastro}" locale="pt"
+										showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
+										mask="true" size="8" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.DataTermino}" width="100">
+							<p:cellEditor>
+								<f:facet name="output">
+									<p:outputLabel value="#{cadastro.dataFimCadastro}"
+										style="font-size: 9pt;">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</p:outputLabel>
+								</f:facet>
+								<f:facet name="input">
+									<p:calendar value="#{cadastro.dataFimCadastro}" locale="pt"
+										showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
+										mask="true" size="8" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.TipoInscricao}" width="80">
+							<p:cellEditor>
+								<f:facet name="output">
+									<p:outputLabel value="#{cadastro.tipoInscricao}"
+										style="font-size: 9pt;" />
+								</f:facet>
+								<f:facet name="input">
+									<p:selectOneMenu style="width:100%; font-size: 9pt;"
+										value="#{cadastro.tipoInscricao}">
+										<f:selectItem itemValue="1" itemLabel="CNPJ" />
+										<f:selectItem itemValue="2" itemLabel="CPF" />
+									</p:selectOneMenu>
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.Inscricao}" width="160">
+							<p:cellEditor>
+								<f:facet name="output">
+									<p:outputLabel value="#{cadastro.numCNPJ}"
+										style="font-size: 9pt;">
+										<f:converter converterId="cnpjCpfConverter" />
+									</p:outputLabel>
+								</f:facet>
+								<f:facet name="input">
+									<p:inputMask id="ipmInscricao" converter="cnpjCpfConverter"
+										mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}"
+										value="#{cadastro.numCNPJ}" style="font-size: 9pt;" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.RazaoSocial}" width="210">
+							<p:cellEditor>
+								<f:facet name="output">
+									<p:outputLabel value="#{cadastro.razaoSocial}"
+										style="font-size: 9pt;">
+										<f:converter converterId="stringConverter" />
+									</p:outputLabel>
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{cadastro.razaoSocial}"
+										style="font-size: 9pt; width: 100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.FAP}" width="90">
+							<p:cellEditor>
+								<f:facet name="output">
+									<p:outputLabel value="#{cadastro.empresaFAP.valorFAP}"
+										style="font-size: 9pt;">
+										<f:converter converterId="javax.faces.Double" />
+									</p:outputLabel>
+								</f:facet>
+								<f:facet name="input">
+									<p:inputMask mask="9.999"
+										value="#{cadastro.empresaFAP.valorFAP}"
+										style="font-size: 9pt; width: 100%"
+										converter="javax.faces.Double">
+									</p:inputMask>
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
 
-								<p:column style="width:55px">
-									<p:rowEditor />
-								</p:column>
+						<p:column style="width:55px">
+							<p:rowEditor />
+						</p:column>
 
-								<p:column style="width:55px">
-									<p:commandButton icon="fa fa-trash" />
-								</p:column>
+						<p:column style="width:55px">
+							<p:commandButton icon="fa fa-trash" />
+						</p:column>
 
-							</p:dataTable>
-							<f:facet name="output">
-								<p:outputLabel value="#{cadastro.codIndicativoCooperativa}"
-									style="font-size: 9pt;" />
-							</f:facet>
-							<f:facet name="input">
-								<p:selectOneMenu value="#{cadastro.codIndicativoCooperativa}"
-									style="font-size: 9pt;" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="#{msgs.CodIndicativoConstrucao}" width="90">
-						<p:cellEditor>
-							<f:facet name="output">
-								<p:outputLabel value="#{cadastro.codIndicativoConstrucao}"
-									style="font-size: 9pt;" />
-							</f:facet>
-							<f:facet name="input">
-								<p:selectOneMenu value="#{cadastro.codIndicativoConstrucao}"
-									style="font-size: 9pt;" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="#{msgs.CodIndicativoDesoneracaoFolha}"
-						width="90">
-						<p:cellEditor>
-							<f:facet name="output">
-								<p:outputLabel value="#{cadastro.codIndicativoDesoneracaoFolha}"
-									style="font-size: 9pt;" />
-							</f:facet>
-							<f:facet name="input">
-								<p:selectOneMenu
-									value="#{cadastro.codIndicativoDesoneracaoFolha}"
-									style="font-size: 9pt;" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="#{msgs.CodIndicativoRegEletronico}"
-						width="90">
-						<p:cellEditor>
-							<f:facet name="output">
-								<p:outputLabel value="#{cadastro.codIndicativoRegEletronico}"
-									style="font-size: 9pt;" />
-							</f:facet>
-							<f:facet name="input">
-								<p:selectOneMenu value="#{cadastro.codIndicativoRegEletronico}"
-									style="font-size: 9pt;" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
+					</p:dataTable>
 
 					<p:column style="width:55px"
 						rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
@@ -1080,19 +843,18 @@
 							update="formSelecionarEmpresa, formModulos, growlPrincipal">
 							<f:setPropertyActionListener value="#{cadastro}"
 								target="#{cadastroEmpresaMB.dadosCadastraisExcluir}" />
-							<p:confirm header="#{msgs.Confirmar}" 
-								message="#{msgs.DeletarDadosCadastrais}"
-								icon="ui-icon-alert"/>
+							<p:confirm header="#{msgs.Confirmar}"
+								message="#{msgs.DeletarDadosCadastrais}" icon="ui-icon-alert" />
 						</p:commandButton>
 					</p:column>
-
 				</p:dataTable>
 			</h:panelGrid>
 		</p:tab>
 
 	</p:accordionPanel>
-	
-	<p:outputLabel value="#{msgs.DadosCadastraisInexistente}" rendered="#{cadastroEmpresaMB.textoDadosCadastraisInexistentes}"/>
+
+	<p:outputLabel value="#{msgs.DadosCadastraisInexistente}"
+		rendered="#{cadastroEmpresaMB.textoDadosCadastraisInexistentes}" />
 
 	<p:dialog widgetVar="dlgPerguntaDadosCadastrais"
 		header="#{msgs.Confirmar}" closable="true" resizable="false"

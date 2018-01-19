@@ -13,7 +13,7 @@
 			onclick="PF('dlgCriarUsuario').show()"/>
 	</h:panelGroup>
 	
-	<p:spacer height="10px" width="100%" />
+	<p:spacer height="1px" width="100%" />
 	
 	<h:panelGroup layout="block" styleClass="pdialogDivEsquerda">
 		<h:panelGrid columns="2">
@@ -21,29 +21,37 @@
 			<p:commandButton icon="fa fa-search"
 				style="font-size:10pt;height:31px" />
 		</h:panelGrid>
-		<p:dataList paginator="true" rows="10">
+		<p:dataList paginator="true" rows="10" paginatorAlwaysVisible="false" emptyMessage="#{msgs.ListaUsuariosVazia}">
 		</p:dataList>
 	</h:panelGroup>
 
 	<h:panelGroup layout="block" styleClass="pdialogDivDireita">
 		<p:tabView id="tbwCadastroUsuario">
+		
 			<p:tab title="#{msgs.DadosUsuario}">
 				<ui:include src="/aplicacaoWeb/cadastroUsuario/dadosUsuario.xhtml" />
 			</p:tab>
+			
+			<p:tab title="#{msgs.DocumentosPessoaFisica}">
+				
+			</p:tab>
+			
 			<p:tab title="#{msgs.Endereco}">
 				<ui:include
 					src="/aplicacaoWeb/cadastroUsuario/enderecoUsuario.xhtml" />
 			</p:tab>
+			
 			<p:tab title="#{msgs.Contatos}">
 				<ui:include src="/aplicacaoWeb/cadastroUsuario/contatosUsuario.xhtml" />
 			</p:tab>
+			
 		</p:tabView>
 	</h:panelGroup>
 	
-	<p:dialog widgetVar="dlgCriarUsuario" resizable="false"
+	<p:dialog widgetVar="dlgCriarUsuario" resizable="false" 
 		modal="true" width="830" header="#{msgs.NovoUsuario}"
-		responsive="true" style="padding:10px"
-		showEffect="fade" hideEffect="fade">
+		responsive="true" style="padding:10px" 
+		showEffect="fade" hideEffect="fade" >
 		<ui:include src="/aplicacaoWeb/cadastroUsuario/cadastroNovoUsuario.xhtml" />
 	</p:dialog>
 

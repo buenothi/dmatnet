@@ -38,13 +38,6 @@ public class EmpresaCadastroEntity implements Serializable, Cloneable {
 	private Date dataFimCadastro;
 
 	private String razaoSocial;
-	private int codClassificacaoTributaria; // conforme tabela 8 do eSocial
-	private int codNaturezaJuridica; // conforme tabela 25 do eSocial
-	private int codIndicativoCooperativa;
-	private int codIndicativoConstrucao;
-	private int codIndicativoDesoneracaoFolha;
-	private int codIndicativoRegEletronico;
-	private boolean multiplasTabRubricas;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
 			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
@@ -151,62 +144,6 @@ public class EmpresaCadastroEntity implements Serializable, Cloneable {
 
 	public void setRazaoSocial(String razaoSocial) {
 		this.razaoSocial = razaoSocial.toUpperCase();
-	}
-
-	public int getCodClassificacaoTributaria() {
-		return codClassificacaoTributaria;
-	}
-
-	public void setCodClassificacaoTributaria(int codClassificacaoTributaria) {
-		this.codClassificacaoTributaria = codClassificacaoTributaria;
-	}
-
-	public int getCodNaturezaJuridica() {
-		return codNaturezaJuridica;
-	}
-
-	public void setCodNaturezaJuridica(int codNaturezaJuridica) {
-		this.codNaturezaJuridica = codNaturezaJuridica;
-	}
-
-	public int getCodIndicativoCooperativa() {
-		return codIndicativoCooperativa;
-	}
-
-	public void setCodIndicativoCooperativa(int codIndicativoCooperativa) {
-		this.codIndicativoCooperativa = codIndicativoCooperativa;
-	}
-
-	public int getCodIndicativoConstrucao() {
-		return codIndicativoConstrucao;
-	}
-
-	public void setCodIndicativoConstrucao(int codIndicativoConstrucao) {
-		this.codIndicativoConstrucao = codIndicativoConstrucao;
-	}
-
-	public int getCodIndicativoDesoneracaoFolha() {
-		return codIndicativoDesoneracaoFolha;
-	}
-
-	public void setCodIndicativoDesoneracaoFolha(int codIndicativoDesoneracaoFolha) {
-		this.codIndicativoDesoneracaoFolha = codIndicativoDesoneracaoFolha;
-	}
-
-	public int getCodIndicativoRegEletronico() {
-		return codIndicativoRegEletronico;
-	}
-
-	public void setCodIndicativoRegEletronico(int codIndicativoRegEletronico) {
-		this.codIndicativoRegEletronico = codIndicativoRegEletronico;
-	}
-
-	public boolean isMultiplasTabRubricas() {
-		return multiplasTabRubricas;
-	}
-
-	public void setMultiplasTabRubricas(boolean multiplasTabRubricas) {
-		this.multiplasTabRubricas = multiplasTabRubricas;
 	}
 
 	public EmpresaFAP getEmpresaFAP() {
