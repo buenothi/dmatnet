@@ -27,7 +27,6 @@
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaDadosIsencao</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaInfoComplementarLimiteRemSubteto</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaOrganismoInternacional</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaSoftwareHouse</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.NaturezaJuridica</class>

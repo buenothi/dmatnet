@@ -157,10 +157,10 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 			List<EmpresaSoftwareHouse> novoEmpresasSoftware = new ArrayList<>(empresasSoftware);
 			try {
 				novoEmpresasSoftware = empresasSoftware;
+				dadosCadastraisAtual.setEmpresaSoftwareHouse(novoEmpresasSoftware);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			dadosCadastraisAtual.setEmpresaSoftwareHouse(novoEmpresasSoftware);
 		}
 	}
 
