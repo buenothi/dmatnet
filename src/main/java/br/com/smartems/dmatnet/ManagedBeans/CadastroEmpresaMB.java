@@ -93,7 +93,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private EmpresaCadastroEntity dadosCadastraisExcluir;
 	private List<EmpresaCadastroEntity> dadosCadastraisHistorico;
 
-	private EnderecoEntity enderecoAnterior; 	// é utilizado para
+	private EnderecoEntity enderecoAnterior; // é utilizado para
 												// adicionar data de
 												// término
 
@@ -1592,13 +1592,17 @@ public class CadastroEmpresaMB implements Serializable {
 				this.pessoaJuridicaFachada.update(empresa);
 			}
 		}
-		if (!this.empresas.getSource().isEmpty()) {
-			for (EmpresaEntity empresa : this.empresas.getSource()) {
-				if (empresa.getGrupo().equals(this.grupoSelecionado)) {
-					empresa.setGrupo(null);
-					this.pessoaJuridicaFachada.update(empresa);
+		try {
+			if (!this.empresas.getSource().isEmpty()) {
+				for (EmpresaEntity empresa : this.empresas.getSource()) {
+					if (empresa.getGrupo().equals(this.grupoSelecionado)) {
+						empresa.setGrupo(null);
+						this.pessoaJuridicaFachada.update(empresa);
+					}
 				}
 			}
+		} catch (NullPointerException npe) {
+			
 		}
 		this.initEmpresa();
 		if (this.empresasAtribuidas == null) {
