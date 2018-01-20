@@ -99,7 +99,7 @@ public class GerarUsuarioMaster extends HttpServlet {
 				em.persist(grupo);
 				em.persist(um);
 
-				response.getWriter().append("O usuário Master \"" + um.getNome() + "\" criado com sucesso");
+				response.getWriter().append("O usuário Master criado com sucesso");
 				
 			} else {
 				response.getWriter().append("Usuário Master já cadastrado!");
