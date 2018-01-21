@@ -1602,7 +1602,12 @@ public class CadastroEmpresaMB implements Serializable {
 				}
 			}
 		} catch (NullPointerException npe) {
-			
+			if (!this.empresas.getTarget().isEmpty()) {
+				for (EmpresaEntity empresa : this.empresas.getTarget()) {
+					empresa.setGrupo(null) ;
+					this.pessoaJuridicaFachada.update(empresa);
+				}
+			}
 		}
 		this.initEmpresa();
 		if (this.empresasAtribuidas == null) {
