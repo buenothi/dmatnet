@@ -1589,10 +1589,40 @@ public class CadastroEmpresaMB implements Serializable {
 
 		if (!this.empresas.getTarget().isEmpty()) {
 			for (EmpresaEntity empresa : this.empresas.getTarget()) {
-				empresa.setGrupo(this.grupoSelecionado);
-				this.pessoaJuridicaFachada.update(empresa);
+				try {
+					if (!empresa.getGrupo().equals(this.grupoSelecionado)) {
+						empresa.setGrupo(this.grupoSelecionado);
+						this.pessoaJuridicaFachada.update(empresa);
+					}
+				} catch (NullPointerException npe) {
+					npe.printStackTrace();
+					empresa.setGrupo(this.grupoSelecionado);
+					this.pessoaJuridicaFachada.update(empresa);
+				}
 			}
-			
+			if (this.empresasAtribuidas == null) {
+				this.empresasAtribuidas = new ArrayList<>();
+			}
+			this.empresasNaoAtribuidasGrupo = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
+			this.grupoSelecionado = this.empresaGrupoFachada.read(this.grupoSelecionado.getIdGrupo());
+			this.empresasAtribuidas = this.grupoSelecionado.getEmpresas();
+			for (EmpresaEntity empresa : this.empresasAtribuidas) {
+				if (this.empresasNaoAtribuidasGrupo.contains(empresa)) {
+					this.empresasNaoAtribuidasGrupo.remove(empresa);
+				}
+			}
+			this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
+		}
+
+		for (EmpresaEntity empresa : this.empresas.getSource()) {
+			try {
+				if (empresa.getGrupo().equals(this.grupoSelecionado)) {
+					empresa.setGrupo(null);
+					this.pessoaJuridicaFachada.update(empresa);
+				}
+			} catch (NullPointerException npe) {
+				npe.printStackTrace();
+			}
 		}
 
 		this.initEmpresa();
@@ -1607,22 +1637,8 @@ public class CadastroEmpresaMB implements Serializable {
 				this.empresasNaoAtribuidasGrupo.remove(empresa);
 			}
 		}
-		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
 		
-		try {
-			for (EmpresaEntity empresa : this.empresas.getSource()) {
-				if (empresa.getGrupo().equals(this.grupoSelecionado)) {
-					empresa.setGrupo(null);
-					this.pessoaJuridicaFachada.update(empresa);
-				}
-			}
-		} catch (NullPointerException npe) {
-			npe.printStackTrace();
-			for (EmpresaEntity empresa : this.empresas.getTarget()) {
-				empresa.setGrupo(null);
-				this.pessoaJuridicaFachada.update(empresa);
-			}
-		}
+		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
 
 		FacesMessage msg = new FacesMessage("Sucesso",
 				stringUtils.formatarTextoParaLeitura(this.grupoSelecionado.getNomeGrupo()) + " Alterado com Sucesso");
