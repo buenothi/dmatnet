@@ -97,8 +97,9 @@
 		</p:tab>
 
 		<p:tab title="#{msgs.Endereco}">
-			<dmat:enderecoComposite />
-		</p:tab>
+				<dmat:enderecoComposite>
+				</dmat:enderecoComposite>
+			</p:tab>
 
 		<p:tab title="#{msgs.ContatoUsuario}">
 			<p:tabView>
@@ -110,11 +111,6 @@
 						<p:outputLabel value="#{msgs.TelefoneTipo}" />
 						<p:inputText />
 					</p:panelGrid>
-				</p:tab>
-
-				<p:tab title="#{msgs.Endereco}">
-					<dmat:enderecoComposite>
-					</dmat:enderecoComposite>
 				</p:tab>
 
 				<p:tab title="#{msgs.Email}">

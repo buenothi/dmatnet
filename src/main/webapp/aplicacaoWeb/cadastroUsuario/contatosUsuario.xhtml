@@ -23,6 +23,7 @@
 		renderSpacer="true"/>
 
 	<p:tabView>
+	
 		<p:tab title="#{msgs.Telefones}">
 			<p:dataTable id="dtbTelefones" editable="true" style="width:500px;">
 				<p:column headerText="#{msgs.Telefone}">
@@ -50,120 +51,7 @@
 				</p:column>
 			</p:dataTable>
 		</p:tab>
-		<p:tab title="#{msgs.Endereco}">
-			<p:dataTable id="dtbEnderecos" editable="true">
-				<p:column headerText="#{msgs.DataCadastro}" width="110">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msgs.DataTermino}" width="110">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msgs.Logradouro}" width="180">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msgs.Endereco}" width="300">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msgs.Numero}" width="60">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msgs.Complemento}" width="110">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msgs.Bairro}" width="180">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msgs.CEP}" width="110">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msgs.CaixaPostal}" width="110">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msgs.Cidade}" width="180">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-				<p:column headerText="#{msgs.Estado}" width="60">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText style="width:100%" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-			</p:dataTable>
-		</p:tab>
+
 		<p:tab title="#{msgs.Email}">
 			<p:dataTable id="dtbEmais" editable="true" style="width:500px;">
 				<p:column headerText="#{msgs.Email}">
