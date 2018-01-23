@@ -8,137 +8,150 @@
 	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
 
 <ui:composition>
-	<p:wizard id="wzdUsuario" backLabel="#{msgs.Voltar}"
-		nextLabel="#{msgs.Avancar}">
+	<p:wizard id="wzdUsuario" widgetVar="wzdUsuario"
+		backLabel="#{msgs.Voltar}" nextLabel="#{msgs.Avancar}">
 
 		<p:tab title="#{msgs.DadosUsuario}">
-			<p:panelGrid id="dadosUsuario" columns="2"
-				styleClass="tabelaSemBorda">
-				<p:outputLabel value="#{msgs.DataCadastro}" />
-				<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-					pattern="dd/MM/yyyy" mask="true" size="8" />
+			<p:panel header="#{msgs.DadosUsuario}" closable="false">
+				<p:panelGrid id="dadosUsuario" columns="2"
+					styleClass="tabelaSemBorda">
+					<p:outputLabel value="#{msgs.DataCadastro}" />
+					<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+						pattern="dd/MM/yyyy" mask="true" size="8" />
 
-				<p:outputLabel value="#{msgs.Nome}" />
-				<p:inputText />
+					<p:outputLabel value="#{msgs.Nome}" />
+					<p:inputText />
 
-				<p:outputLabel value="#{msgs.Genero}" />
-				<p:selectOneRadio>
-					<f:selectItem itemLabel="#{msgs.Masculino}" itemValue="1" />
-					<f:selectItem itemLabel="#{msgs.Feminino}" itemValue="2" />
-				</p:selectOneRadio>
-			</p:panelGrid>
+					<p:outputLabel value="#{msgs.Genero}" />
+					<p:selectOneRadio>
+						<f:selectItem itemLabel="#{msgs.Masculino}" itemValue="1" />
+						<f:selectItem itemLabel="#{msgs.Feminino}" itemValue="2" />
+					</p:selectOneRadio>
+				</p:panelGrid>
+			</p:panel>
 		</p:tab>
 
 		<p:tab title="#{msgs.DocumentosPessoaFisica}">
-			<p:tabView>
-				<p:tab title="RIC">
-					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-						<p:outputLabel value="#{msgs.NumeroRic}" />
-						<p:inputNumber />
-						<p:outputLabel value="#{msgs.OrgExpedidorRic}" />
-						<p:inputText />
-						<p:outputLabel value="#{msgs.DataExpedicaoRic}" />
-						<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-							pattern="dd/MpanelM/yyyy" mask="true" size="8" />
-					</p:panelGrid>
-				</p:tab>
+			<p:panel header="#{msgs.DocumentosPessoaFisica}" closable="false">
+				<p:tabView>
+					<p:tab title="RIC">
+						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+							<p:outputLabel value="#{msgs.NumeroRic}" />
+							<p:inputNumber />
+							<p:outputLabel value="#{msgs.OrgExpedidorRic}" />
+							<p:inputText />
+							<p:outputLabel value="#{msgs.DataExpedicaoRic}" />
+							<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+								pattern="dd/MM/yyyy" mask="true" size="8" />
+						</p:panelGrid>
+					</p:tab>
 
-				<p:tab title="RG">
-					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-						<p:outputLabel value="#{msgs.NumeroRG}" />
-						<p:inputNumber />
-						<p:outputLabel value="#{msgs.OrgExpedidorRG}" />
-						<p:inputText />
-						<p:outputLabel value="#{msgs.DataExpedicaoRG}" />
-						<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-							pattern="dd/MM/yyyy" mask="true" size="8" />
-					</p:panelGrid>
-				</p:tab>
+					<p:tab title="RG">
+						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+							<p:outputLabel value="#{msgs.NumeroRG}" />
+							<p:inputNumber />
+							<p:outputLabel value="#{msgs.OrgExpedidorRG}" />
+							<p:inputText />
+							<p:outputLabel value="#{msgs.DataExpedicaoRG}" />
+							<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+								pattern="dd/MM/yyyy" mask="true" size="8" />
+						</p:panelGrid>
+					</p:tab>
 
-				<p:tab title="CPF">
-					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-						<p:outputLabel value="#{msgs.NumeroCPF}" />
-						<p:inputNumber />
-					</p:panelGrid>
-				</p:tab>
+					<p:tab title="CPF">
+						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+							<p:outputLabel value="#{msgs.NumeroCPF}" />
+							<p:inputNumber />
+						</p:panelGrid>
+					</p:tab>
 
-				<p:tab title="RNE">
-					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-						<p:outputLabel value="#{msgs.NumeroRNE}" />
-						<p:inputNumber />
-						<p:outputLabel value="#{msgs.OrgExpedidorRNE}" />
-						<p:inputText />
-						<p:outputLabel value="#{msgs.DataExpedicaoRNE}" />
-						<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-							pattern="dd/MM/yyyy" mask="true" size="8" />
-					</p:panelGrid>
-				</p:tab>
+					<p:tab title="RNE">
+						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+							<p:outputLabel value="#{msgs.NumeroRNE}" />
+							<p:inputNumber />
+							<p:outputLabel value="#{msgs.OrgExpedidorRNE}" />
+							<p:inputText />
+							<p:outputLabel value="#{msgs.DataExpedicaoRNE}" />
+							<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+								pattern="dd/MM/yyyy" mask="true" size="8" />
+						</p:panelGrid>
+					</p:tab>
 
-				<p:tab title="CNH">
-					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-						<p:outputLabel value="#{msgs.NumeroCNH}" />
-						<p:inputNumber />
-						<p:outputLabel value="#{msgs.UFCNH}" />
-						<p:inputText />
-						<p:outputLabel value="#{msgs.DataExpedicaoCNH}" />
-						<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-							pattern="dd/MM/yyyy" mask="true" size="8" />
-						<p:outputLabel value="#{msgs.DataValidadeCNH}" />
-						<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-							pattern="dd/MM/yyyy" mask="true" size="8" />
-						<p:outputLabel value="#{msgs.DataPrimeiraCNH}" />
-						<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-							pattern="dd/MM/yyyy" mask="true" size="8" />
-						<p:outputLabel value="#{msgs.CategoriaCNH}" />
-						<p:inputText />
-					</p:panelGrid>
-				</p:tab>
-
-			</p:tabView>
+					<p:tab title="CNH">
+						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+							<p:outputLabel value="#{msgs.NumeroCNH}" />
+							<p:inputNumber />
+							<p:outputLabel value="#{msgs.UFCNH}" />
+							<p:inputText />
+							<p:outputLabel value="#{msgs.DataExpedicaoCNH}" />
+							<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+								pattern="dd/MM/yyyy" mask="true" size="8" />
+							<p:outputLabel value="#{msgs.DataValidadeCNH}" />
+							<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+								pattern="dd/MM/yyyy" mask="true" size="8" />
+							<p:outputLabel value="#{msgs.DataPrimeiraCNH}" />
+							<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+								pattern="dd/MM/yyyy" mask="true" size="8" />
+							<p:outputLabel value="#{msgs.CategoriaCNH}" />
+							<p:inputText />
+						</p:panelGrid>
+					</p:tab>
+				</p:tabView>
+			</p:panel>
 		</p:tab>
 
 		<p:tab title="#{msgs.Endereco}">
-			<dmat:enderecoComposite>
-			</dmat:enderecoComposite>
+			<p:panel header="#{msgs.Endereco}" closable="false">
+				<dmat:enderecoComposite>
+				</dmat:enderecoComposite>
+			</p:panel>
 		</p:tab>
 
 		<p:tab title="#{msgs.ContatoUsuario}">
-			<p:tabView>
-				<p:tab title="#{msgs.Telefone}">
-					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-						<p:outputLabel value="#{msgs.Telefone}" />
-						<p:inputText />
+			<p:panel header="#{msgs.ContatoUsuario}" closable="false">
+				<p:tabView>
+					<p:tab title="#{msgs.Telefone}">
+						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+							<p:outputLabel value="#{msgs.Telefone}" />
+							<p:inputText />
 
-						<p:outputLabel value="#{msgs.TelefoneTipo}" />
-						<p:inputText />
-					</p:panelGrid>
-				</p:tab>
+							<p:outputLabel value="#{msgs.TelefoneTipo}" />
+							<p:inputText />
+						</p:panelGrid>
+					</p:tab>
 
-				<p:tab title="#{msgs.Email}">
-					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-						<p:outputLabel value="#{msgs.Email}" />
-						<p:inputText />
+					<p:tab title="#{msgs.Email}">
+						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+							<p:outputLabel value="#{msgs.Email}" />
+							<p:inputText />
 
-						<p:outputLabel value="#{msgs.EmailTipo}" />
-						<p:inputText />
-					</p:panelGrid>
-				</p:tab>
-			</p:tabView>
+							<p:outputLabel value="#{msgs.EmailTipo}" />
+							<p:inputText />
+						</p:panelGrid>
+					</p:tab>
+				</p:tabView>
+			</p:panel>
 		</p:tab>
 
 		<p:tab title="#{msgs.Salvar}">
-			<p:spacer height="20px" width="100%" />
-			<p:outputLabel value="#{msgs.UltimaEtapaCadastroUsuario}" />
-			<p:spacer height="10px" width="100%" />
-			<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-				<p:commandButton value="#{msgs.Salvar}"
-					onclick="PF('dlgCriarUsuario').hide()">
-					<p:ajax update="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario" resetValues="true" />
-				</p:commandButton>
-				<p:commandButton value="#{msgs.Cancelar}"
-					onclick="PF('dlgCriarUsuario').hide()" />
-			</p:panelGrid>
-			<p:spacer height="10px" width="100%" />
+			<p:panel header="#{msgs.Salvar}" closable="false">
+				<p:spacer height="20px" width="100%" />
+				<p:outputLabel value="#{msgs.UltimaEtapaCadastroUsuario}" />
+				<p:spacer height="10px" width="100%" />
+				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+					<p:commandButton value="#{msgs.Salvar}"
+						onclick="PF('dlgCriarUsuario').hide()">
+						<p:ajax
+							update="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
+							resetValues="true" 
+							oncomplete="PF('wzdUsuario').loadStep(PF('wzdUsuario').cfg.steps[0], true);"/>
+					</p:commandButton>
+					<p:commandButton value="#{msgs.Cancelar}"
+						onclick="PF('dlgCriarUsuario').hide()"
+						oncomplete="PF('wzdUsuario').loadStep(PF('wzdUsuario').cfg.steps[0], true);" />
+				</p:panelGrid>
+				<p:spacer height="10px" width="100%" />
+			</p:panel>
 		</p:tab>
 
 	</p:wizard>

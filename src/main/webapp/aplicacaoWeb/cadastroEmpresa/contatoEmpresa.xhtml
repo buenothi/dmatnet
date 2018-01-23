@@ -6,8 +6,11 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition>
-	<h:panelGroup id="pngCadastroUsuarioEmpresa" layout="block" class="formulario">
-		<ui:include src="/aplicacaoWeb/cadastroUsuario/cadastroUsuario.xhtml" />
-	</h:panelGroup>
+	<p:panel header="#{msgs.ContatoUsuario}" closable="false">
+		<h:panelGroup id="pngCadastroUsuarioEmpresa" layout="block"
+			class="formulario">
+			<ui:include src="/aplicacaoWeb/cadastroUsuario/cadastroUsuario.xhtml" />
+		</h:panelGroup>
+	</p:panel>
 </ui:composition>
 </html>

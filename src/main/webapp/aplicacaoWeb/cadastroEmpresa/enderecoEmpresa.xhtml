@@ -9,60 +9,58 @@
 
 <ui:composition>
 
-	<dmat:enderecoComposite id="dmatEnderecoEmpresa"
-		enderecoRendered="#{cadastroEmpresaMB.enderecoRendered}"
-		logradouroTipo="#{cadastroEmpresaMB.enderecoAtual.logradouro.nomeLogradouro}"
-		logradouro="#{cadastroEmpresaMB.enderecoAtual.logradouro}"
-		logradouroNome="#{cadastroEmpresaMB.enderecoAtual.logradouroNome}"
-		logradouroNumero="#{cadastroEmpresaMB.enderecoAtual.logradouroNumero}"
-		logradouroComplemento="#{cadastroEmpresaMB.enderecoAtual.logradouroComplemento}"
-		bairro="#{cadastroEmpresaMB.enderecoAtual.bairro}"
-		cep="#{cadastroEmpresaMB.enderecoAtual.cep}"
-		caixaPostal="#{cadastroEmpresaMB.enderecoAtual.caixaPostal}"
-		cidade="#{cadastroEmpresaMB.enderecoAtual.cidade}"
-		estado="#{cadastroEmpresaMB.enderecoAtual.estado}"
-		dataCadastro="#{cadastroEmpresaMB.enderecoAtual.dataInicioEndereco}"
-		enderecoHistorico="#{cadastroEmpresaMB.enderecosHistorico}"
-		ajaxComponentRender="@this, formModulos:formCadEmpresa:tbwCadastroEmpresa:dmatEnderecoEmpresa:acpEndereco:listCidade"
-		
-		disabledEditar="#{cadastroEmpresaMB.btnEnderecoEditarDesativado}"
-		actionListenerEditar="#{cadastroEmpresaMB.editarEnderecoEmpresa}"
-		enderecoEditarRender="#{cadastroEmpresaMB.enderecoEditarRender}"
-		updateEditar="formModulos"
-		
-		disabledCancelar="#{cadastroEmpresaMB.btnEnderecoCancelarDesativado}"
-		actionListenerCancelar="#{cadastroEmpresaMB.cancelarEnderecoEmpresa}"
-		updateCancelar="formModulos"
-		
-		disabledSalvar="#{cadastroEmpresaMB.btnEnderecoSalvarDesativado}"
-		actionListenerSalvar="#{cadastroEmpresaMB.salvarEnderecoEmpresa}"
-		updateSalvar="formModulos"
-		
-		disabledNovo="#{cadastroEmpresaMB.btnEnderecoNovoDesativado}"
-		actionListenerNovo="#{cadastroEmpresaMB.novoEnderecoEmpresa}"
-		updateNovo="formModulos"
-		
-		disabledExcluir="#{cadastroEmpresaMB.btnEnderecoEmpresaExcluirDesativado}"
-		actionListenerExcluir="#{cadastroEmpresaMB.excluirEnderecoEmpresa}"
-		updateExcluir="formModulos"
-		renderedBtnExcluir="#{cadastroEmpresaMB.btnEnderecoEmpresaExcluirRender}"
-		messageConfirmaExcluir="#{msgs.DeletarEnderecoEmpresa}"
-		messageHeaderExcluir="#{msgs.Confirmar}"
-		messageLabelExcluir="#{msgs.Excluir}">
+	<p:panel header="#{msgs.Endereco}" closable="false">
+		<dmat:enderecoComposite id="dmatEnderecoEmpresa"
+			enderecoRendered="#{cadastroEmpresaMB.enderecoRendered}"
+			logradouroTipo="#{cadastroEmpresaMB.enderecoAtual.logradouro.nomeLogradouro}"
+			logradouro="#{cadastroEmpresaMB.enderecoAtual.logradouro}"
+			logradouroNome="#{cadastroEmpresaMB.enderecoAtual.logradouroNome}"
+			logradouroNumero="#{cadastroEmpresaMB.enderecoAtual.logradouroNumero}"
+			logradouroComplemento="#{cadastroEmpresaMB.enderecoAtual.logradouroComplemento}"
+			bairro="#{cadastroEmpresaMB.enderecoAtual.bairro}"
+			cep="#{cadastroEmpresaMB.enderecoAtual.cep}"
+			caixaPostal="#{cadastroEmpresaMB.enderecoAtual.caixaPostal}"
+			cidade="#{cadastroEmpresaMB.enderecoAtual.cidade}"
+			estado="#{cadastroEmpresaMB.enderecoAtual.estado}"
+			dataCadastro="#{cadastroEmpresaMB.enderecoAtual.dataInicioEndereco}"
+			enderecoHistorico="#{cadastroEmpresaMB.enderecosHistorico}"
+			ajaxComponentRender="@this, formModulos:formCadEmpresa:tbwCadastroEmpresa:dmatEnderecoEmpresa:acpEndereco:listCidade"
+			disabledEditar="#{cadastroEmpresaMB.btnEnderecoEditarDesativado}"
+			actionListenerEditar="#{cadastroEmpresaMB.editarEnderecoEmpresa}"
+			enderecoEditarRender="#{cadastroEmpresaMB.enderecoEditarRender}"
+			updateEditar="formModulos"
+			disabledCancelar="#{cadastroEmpresaMB.btnEnderecoCancelarDesativado}"
+			actionListenerCancelar="#{cadastroEmpresaMB.cancelarEnderecoEmpresa}"
+			updateCancelar="formModulos"
+			disabledSalvar="#{cadastroEmpresaMB.btnEnderecoSalvarDesativado}"
+			actionListenerSalvar="#{cadastroEmpresaMB.salvarEnderecoEmpresa}"
+			updateSalvar="formModulos"
+			disabledNovo="#{cadastroEmpresaMB.btnEnderecoNovoDesativado}"
+			actionListenerNovo="#{cadastroEmpresaMB.novoEnderecoEmpresa}"
+			updateNovo="formModulos"
+			disabledExcluir="#{cadastroEmpresaMB.btnEnderecoEmpresaExcluirDesativado}"
+			actionListenerExcluir="#{cadastroEmpresaMB.excluirEnderecoEmpresa}"
+			updateExcluir="formModulos"
+			renderedBtnExcluir="#{cadastroEmpresaMB.btnEnderecoEmpresaExcluirRender}"
+			messageConfirmaExcluir="#{msgs.DeletarEnderecoEmpresa}"
+			messageHeaderExcluir="#{msgs.Confirmar}"
+			messageLabelExcluir="#{msgs.Excluir}">
 
-		<p:commandButton icon="fa fa-trash"
-			actionListener="#{cadastroEmpresaMB.excluirEnderecoDoHistoricoEmpresa(endereco)}"
-			update="formModulos" immediate="true">
-			<f:setPropertyActionListener value="#{endereco}"
-				target="#{cadastroEmpresaMB.enderecoExcluir}" />
-			<p:confirm header="#{msgs.Confirmar}"
-				message="#{msgs.DeletarEnderecoEmpresa}" icon="ui-icon-alert" />
-		</p:commandButton>
-		
-	</dmat:enderecoComposite>
+			<p:commandButton icon="fa fa-trash"
+				actionListener="#{cadastroEmpresaMB.excluirEnderecoDoHistoricoEmpresa(endereco)}"
+				update="formModulos" immediate="true">
+				<f:setPropertyActionListener value="#{endereco}"
+					target="#{cadastroEmpresaMB.enderecoExcluir}" />
+				<p:confirm header="#{msgs.Confirmar}"
+					message="#{msgs.DeletarEnderecoEmpresa}" icon="ui-icon-alert" />
+			</p:commandButton>
 
-	<p:outputLabel value="#{msgs.EnderecoInexistente}"
-		rendered="#{cadastroEmpresaMB.textoEnderecosEmpresaInexistentes}" />
+		</dmat:enderecoComposite>
+
+		<p:outputLabel value="#{msgs.EnderecoInexistente}"
+			rendered="#{cadastroEmpresaMB.textoEnderecosEmpresaInexistentes}" />
+
+	</p:panel>
 
 	<p:dialog widgetVar="dlgPerguntaEndereco" header="#{msgs.Confirmar}"
 		closable="true" resizable="false" modal="true">
