@@ -1600,18 +1600,7 @@ public class CadastroEmpresaMB implements Serializable {
 					this.pessoaJuridicaFachada.update(empresa);
 				}
 			}
-			if (this.empresasAtribuidas == null) {
-				this.empresasAtribuidas = new ArrayList<>();
-			}
-			this.empresasNaoAtribuidasGrupo = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());
-			this.grupoSelecionado = this.empresaGrupoFachada.read(this.grupoSelecionado.getIdGrupo());
-			this.empresasAtribuidas = this.grupoSelecionado.getEmpresas();
-			for (EmpresaEntity empresa : this.empresasAtribuidas) {
-				if (this.empresasNaoAtribuidasGrupo.contains(empresa)) {
-					this.empresasNaoAtribuidasGrupo.remove(empresa);
-				}
-			}
-			this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
+			this.redefinirListaEmpresasNoGrupo();
 		}
 
 		for (EmpresaEntity empresa : this.empresas.getSource()) {
@@ -1625,6 +1614,14 @@ public class CadastroEmpresaMB implements Serializable {
 			}
 		}
 
+		this.redefinirListaEmpresasNoGrupo();
+
+		FacesMessage msg = new FacesMessage("Sucesso",
+				stringUtils.formatarTextoParaLeitura(this.grupoSelecionado.getNomeGrupo()) + " Alterado com Sucesso");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+	
+	private void redefinirListaEmpresasNoGrupo() {
 		this.initEmpresa();
 		if (this.empresasAtribuidas == null) {
 			this.empresasAtribuidas = new ArrayList<>();
@@ -1639,10 +1636,6 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 		
 		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
-
-		FacesMessage msg = new FacesMessage("Sucesso",
-				stringUtils.formatarTextoParaLeitura(this.grupoSelecionado.getNomeGrupo()) + " Alterado com Sucesso");
-		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
 	public void cancelarEmpresasNoGrupoSelecionado(ActionEvent evt) {
