@@ -225,10 +225,11 @@ a:LINK {
 	position: relative;
 	overflow: auto;
 	font-size: 10pt;
+	min-width: 1000px;
 }
 
 .painelConteudo {
-	padding: 5px 5px 5px 5px;
+	padding: 100px 5px 5px 5px;
 	width: 100%;
 	background-color: white;
 	height: 100%;
@@ -318,4 +319,8 @@ a:LINK {
 
 .bodyDialogo {
 	min-width: 290px;
+}
+
+.top-aligned-columns td {
+	vertical-align: top;
 }
