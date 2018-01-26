@@ -17,13 +17,14 @@
 					styleClass="tabelaSemBorda">
 					<p:outputLabel value="#{msgs.DataCadastro}" />
 					<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-						pattern="dd/MM/yyyy" mask="true" size="8" />
+						pattern="dd/MM/yyyy" mask="true" size="8"
+						value="#{cadastroEmpresaMB.usuarioNovo.dataCadastroPessoa}" />
 
 					<p:outputLabel value="#{msgs.Nome}" />
-					<p:inputText />
+					<p:inputText value="#{cadastroEmpresaMB.usuarioNovo.nome}" />
 
 					<p:outputLabel value="#{msgs.Genero}" />
-					<p:selectOneRadio>
+					<p:selectOneRadio value="#{cadastroEmpresaMB.usuarioNovo.genero}" >
 						<f:selectItem itemLabel="#{msgs.Masculino}" itemValue="1" />
 						<f:selectItem itemLabel="#{msgs.Feminino}" itemValue="2" />
 					</p:selectOneRadio>
@@ -143,8 +144,8 @@
 						onclick="PF('dlgCriarUsuario').hide()">
 						<p:ajax
 							update="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
-							resetValues="true" 
-							oncomplete="PF('wzdUsuario').loadStep(PF('wzdUsuario').cfg.steps[0], true);"/>
+							resetValues="true"
+							oncomplete="PF('wzdUsuario').loadStep(PF('wzdUsuario').cfg.steps[0], true);" />
 					</p:commandButton>
 					<p:commandButton value="#{msgs.Cancelar}"
 						onclick="PF('dlgCriarUsuario').hide()"

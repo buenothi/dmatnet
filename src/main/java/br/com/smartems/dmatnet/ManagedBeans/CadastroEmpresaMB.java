@@ -26,6 +26,7 @@ import br.com.smartems.dmatnet.EJB.Facade.EmpresaGrupoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.EstadoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.PessoaJuridicaFacadeLocal;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaDadosIsencao;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
@@ -89,6 +90,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private EmpresaCadastroEntity dadosCadastraisAnterior; // é utilizado para
 															// adicionar data de
 															// término
+	
 	private EmpresaCadastroEntity dadosCadastraisAtual;
 	private EmpresaCadastroEntity dadosCadastraisExcluir;
 	private List<EmpresaCadastroEntity> dadosCadastraisHistorico;
@@ -103,6 +105,10 @@ public class CadastroEmpresaMB implements Serializable {
 
 	private DualListModel<EmpresaEntity> empresas;
 	private List<EmpresaGrupoEntity> grupos;
+	
+	private UsuarioEntity usuarioAtual;
+	private UsuarioEntity usuarioNovo;
+	private UsuarioEntity usuarioExcluir;
 
 	// barra das tabs em cadastro de empresa
 
@@ -444,6 +450,33 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setGrupos(List<EmpresaGrupoEntity> grupos) {
 		this.grupos = grupos;
+	}
+
+	public UsuarioEntity getUsuarioAtual() {
+		if (this.usuarioAtual == null) {
+			this.usuarioAtual = new UsuarioEntity();
+		}
+		return usuarioAtual;
+	}
+
+	public void setUsuarioAtual(UsuarioEntity usuarioAtual) {
+		this.usuarioAtual = usuarioAtual;
+	}
+
+	public UsuarioEntity getUsuarioNovo() {
+		return usuarioNovo;
+	}
+
+	public void setUsuarioNovo(UsuarioEntity usuarioNovo) {
+		this.usuarioNovo = usuarioNovo;
+	}
+
+	public UsuarioEntity getUsuarioExcluir() {
+		return usuarioExcluir;
+	}
+
+	public void setUsuarioExcluir(UsuarioEntity usuarioExcluir) {
+		this.usuarioExcluir = usuarioExcluir;
 	}
 
 	public boolean isTabDadosCadastraisDesativado() {
@@ -1659,6 +1692,20 @@ public class CadastroEmpresaMB implements Serializable {
 			}
 		}
 		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
+	}
+	
+	// action dos botões de usuário empresa
+	
+	public void salvarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
+		
+	}
+	
+	public void editarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
+		
+	}
+	
+	public void cancelarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
+		
 	}
 
 	@PostConstruct
