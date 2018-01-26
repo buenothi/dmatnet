@@ -4,9 +4,9 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -572,7 +572,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public Set<EmpresaGrupoEntity> getGruposGerenciados() {
 		if (this.gruposGerenciados == null) {
-			this.gruposGerenciados = new HashSet<EmpresaGrupoEntity>();
+			this.gruposGerenciados = new TreeSet<EmpresaGrupoEntity>();
 		}
 		return gruposGerenciados;
 	}
@@ -583,7 +583,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public Set<EmpresaEntity> getEmpresasGerenciadas() {
 		if (this.empresasGerenciadas == null) {
-			this.empresasGerenciadas = new HashSet<EmpresaEntity>();
+			this.empresasGerenciadas = new TreeSet<EmpresaEntity>();
 		}
 		return empresasGerenciadas;
 	}

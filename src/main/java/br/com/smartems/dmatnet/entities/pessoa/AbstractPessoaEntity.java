@@ -18,8 +18,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "tbl_Pessoa")
@@ -30,8 +28,6 @@ public abstract class AbstractPessoaEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idPessoa;
 
-	@NotNull
-	@Size(min = 3)
 	private String nome;
 
 	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
