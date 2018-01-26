@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbl_usuariosGrupo")
-public class UsuariosGrupoEntity implements Serializable {
+public class UsuarioGrupoEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class UsuariosGrupoEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public UsuariosGrupoEntity() {
+	public UsuarioGrupoEntity() {
 		super();
 	}
 
@@ -69,7 +69,7 @@ public class UsuariosGrupoEntity implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UsuariosGrupoEntity other = (UsuariosGrupoEntity) obj;
+		UsuarioGrupoEntity other = (UsuarioGrupoEntity) obj;
 		if (idGrupo != other.idGrupo)
 			return false;
 		if (nomeGrupo == null) {

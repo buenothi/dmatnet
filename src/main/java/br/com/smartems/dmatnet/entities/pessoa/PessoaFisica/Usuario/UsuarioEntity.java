@@ -26,7 +26,7 @@ import br.com.smartems.dmatnet.util.CriptografiaString;
 	@NamedQuery(name="Usuario.listarUsuariosFilhos", 
 			query="SELECT u FROM UsuarioEntity u WHERE u.idUsuarioPai=:idUsuarioPai"),
 	@NamedQuery(name="Usuario.listarUsuariosMaster", 
-			query="SELECT u, g FROM UsuarioEntity u, UsuariosGrupoEntity g WHERE g.nomeGrupo = 'MASTER'")
+			query="SELECT u, g FROM UsuarioEntity u, UsuarioGrupoEntity g WHERE g.nomeGrupo = 'MASTER'")
 })
 public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Serializable {
 
@@ -36,7 +36,7 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 
 	@ManyToOne
 	@JoinColumn(name="usuarioGrupo_ID")
-	private UsuariosGrupoEntity grupo;
+	private UsuarioGrupoEntity grupo;
 	
 	@ManyToMany
 	@JoinTable(name="tbl_usuarioEmpresas_joinTable",
@@ -72,11 +72,11 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 		this.senha = senhaCriptografada.obterHashString(senha);
 	}
 
-	public UsuariosGrupoEntity getGrupo() {
+	public UsuarioGrupoEntity getGrupo() {
 		return grupo;
 	}
 
-	public void setGrupo(UsuariosGrupoEntity grupo) {
+	public void setGrupo(UsuarioGrupoEntity grupo) {
 		this.grupo = grupo;
 	}
 

@@ -4,7 +4,9 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -25,7 +27,10 @@ import org.primefaces.model.DualListModel;
 import br.com.smartems.dmatnet.EJB.Facade.EmpresaGrupoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.EstadoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.PessoaJuridicaFacadeLocal;
+import br.com.smartems.dmatnet.entities.pessoa.EmailEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
+import br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.PessoaFisicaDocumentosEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaDadosIsencao;
@@ -90,7 +95,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private EmpresaCadastroEntity dadosCadastraisAnterior; // é utilizado para
 															// adicionar data de
 															// término
-	
+
 	private EmpresaCadastroEntity dadosCadastraisAtual;
 	private EmpresaCadastroEntity dadosCadastraisExcluir;
 	private List<EmpresaCadastroEntity> dadosCadastraisHistorico;
@@ -105,10 +110,18 @@ public class CadastroEmpresaMB implements Serializable {
 
 	private DualListModel<EmpresaEntity> empresas;
 	private List<EmpresaGrupoEntity> grupos;
-	
+
 	private UsuarioEntity usuarioAtual;
 	private UsuarioEntity usuarioNovo;
 	private UsuarioEntity usuarioExcluir;
+	private PessoaFisicaDocumentosEntity documentosPessoaisUsuario;
+	private EnderecoEntity enderecoUsuarioAtual;
+	private EnderecoEntity enderecoUsuarioExcluir;
+	private List<EnderecoEntity> enderecosUsuarioHistorico;
+	private List<TelefoneEntity> telefonesUsuario;
+	private List<EmailEntity> emailsUsuario;
+	private Set<EmpresaGrupoEntity> gruposGerenciados;
+	private Set<EmpresaEntity> empresasGerenciadas;
 
 	// barra das tabs em cadastro de empresa
 
@@ -464,6 +477,10 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public UsuarioEntity getUsuarioNovo() {
+		if (this.usuarioNovo == null) {
+			this.usuarioNovo = new UsuarioEntity();
+		}
+
 		return usuarioNovo;
 	}
 
@@ -477,6 +494,102 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setUsuarioExcluir(UsuarioEntity usuarioExcluir) {
 		this.usuarioExcluir = usuarioExcluir;
+	}
+
+	public EmpresaGrupoFacadeLocal getEmpresaGrupoFachada() {
+		return empresaGrupoFachada;
+	}
+
+	public void setEmpresaGrupoFachada(EmpresaGrupoFacadeLocal empresaGrupoFachada) {
+		this.empresaGrupoFachada = empresaGrupoFachada;
+	}
+
+	public PessoaFisicaDocumentosEntity getDocumentosPessoaisUsuario() {
+		if (this.documentosPessoaisUsuario == null) {
+			this.documentosPessoaisUsuario = new PessoaFisicaDocumentosEntity();
+		}
+		return documentosPessoaisUsuario;
+	}
+
+	public void setDocumentosPessoaisUsuario(PessoaFisicaDocumentosEntity documentosPessoaisUsuario) {
+		this.documentosPessoaisUsuario = documentosPessoaisUsuario;
+	}
+
+	public EnderecoEntity getEnderecoUsuarioAtual() {
+		if (this.enderecoUsuarioAtual == null) {
+			this.enderecoUsuarioAtual = new EnderecoEntity();
+		}
+		return enderecoUsuarioAtual;
+	}
+
+	public void setEnderecoUsuarioAtual(EnderecoEntity enderecoUsuarioAtual) {
+		this.enderecoUsuarioAtual = enderecoUsuarioAtual;
+	}
+
+	public EnderecoEntity getEnderecoUsuarioExcluir() {
+		if (this.enderecoUsuarioExcluir == null) {
+			this.enderecoUsuarioExcluir = new EnderecoEntity();
+		}
+		return enderecoUsuarioExcluir;
+	}
+
+	public void setEnderecoUsuarioExcluir(EnderecoEntity enderecoUsuarioExcluir) {
+		this.enderecoUsuarioExcluir = enderecoUsuarioExcluir;
+	}
+
+	public List<EnderecoEntity> getEnderecosUsuarioHistorico() {
+		if (this.enderecosUsuarioHistorico == null) {
+			this.enderecosUsuarioHistorico = new ArrayList<EnderecoEntity>();
+		}
+		return enderecosUsuarioHistorico;
+	}
+
+	public void setEnderecosUsuarioHistorico(List<EnderecoEntity> enderecosUsuarioHistorico) {
+		this.enderecosUsuarioHistorico = enderecosUsuarioHistorico;
+	}
+
+	public List<TelefoneEntity> getTelefonesUsuario() {
+		if (this.telefonesUsuario == null) {
+			this.telefonesUsuario = new  ArrayList<TelefoneEntity>();
+		}
+		return telefonesUsuario;
+	}
+
+	public void setTelefonesUsuario(List<TelefoneEntity> telefonesUsuario) {
+		this.telefonesUsuario = telefonesUsuario;
+	}
+
+	public List<EmailEntity> getEmailsUsuario() {
+		if (this.emailsUsuario == null) {
+			this.emailsUsuario = new ArrayList<EmailEntity>();
+		}
+		return emailsUsuario;
+	}
+
+	public void setEmailsUsuario(List<EmailEntity> emailsUsuario) {
+		this.emailsUsuario = emailsUsuario;
+	}
+
+	public Set<EmpresaGrupoEntity> getGruposGerenciados() {
+		if (this.gruposGerenciados == null) {
+			this.gruposGerenciados = new HashSet<EmpresaGrupoEntity>();
+		}
+		return gruposGerenciados;
+	}
+
+	public void setGruposGerenciados(Set<EmpresaGrupoEntity> gruposGerenciados) {
+		this.gruposGerenciados = gruposGerenciados;
+	}
+
+	public Set<EmpresaEntity> getEmpresasGerenciadas() {
+		if (this.empresasGerenciadas == null) {
+			this.empresasGerenciadas = new HashSet<EmpresaEntity>();
+		}
+		return empresasGerenciadas;
+	}
+
+	public void setEmpresasGerenciadas(Set<EmpresaEntity> empresasGerenciadas) {
+		this.empresasGerenciadas = empresasGerenciadas;
 	}
 
 	public boolean isTabDadosCadastraisDesativado() {
@@ -1653,7 +1766,7 @@ public class CadastroEmpresaMB implements Serializable {
 				stringUtils.formatarTextoParaLeitura(this.grupoSelecionado.getNomeGrupo()) + " Alterado com Sucesso");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
-	
+
 	private void redefinirListaEmpresasNoGrupo() {
 		this.initEmpresa();
 		if (this.empresasAtribuidas == null) {
@@ -1667,7 +1780,7 @@ public class CadastroEmpresaMB implements Serializable {
 				this.empresasNaoAtribuidasGrupo.remove(empresa);
 			}
 		}
-		
+
 		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
 	}
 
@@ -1693,19 +1806,19 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
 	}
-	
+
 	// action dos botões de usuário empresa
-	
+
 	public void salvarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
-		
+
 	}
-	
+
 	public void editarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
-		
+
 	}
-	
+
 	public void cancelarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
-		
+
 	}
 
 	@PostConstruct

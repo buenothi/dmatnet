@@ -22,7 +22,7 @@ import br.com.smartems.dmatnet.entities.pessoa.EmailEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
-import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuariosGrupoEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioGrupoEntity;
 
 @WebServlet("/GerarUsuarioMaster")
 public class GerarUsuarioMaster extends HttpServlet {
@@ -44,7 +44,7 @@ public class GerarUsuarioMaster extends HttpServlet {
 			throws ServletException, IOException {
 		
 		UsuarioEntity um = new UsuarioEntity();
-		UsuariosGrupoEntity grupo = new UsuariosGrupoEntity();
+		UsuarioGrupoEntity grupo = new UsuarioGrupoEntity();
 		
 		List<UsuarioEntity> usuarios = new ArrayList<UsuarioEntity>();
 

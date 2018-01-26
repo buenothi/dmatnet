@@ -21,7 +21,7 @@
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEstrangeiroEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuariosGrupoEntity</class>
+		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioGrupoEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.AbstractPessoaJuridicaEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaDadosIsencao</class>

@@ -24,7 +24,7 @@
 					<p:inputText value="#{cadastroEmpresaMB.usuarioNovo.nome}" />
 
 					<p:outputLabel value="#{msgs.Genero}" />
-					<p:selectOneRadio value="#{cadastroEmpresaMB.usuarioNovo.genero}" >
+					<p:selectOneRadio value="#{cadastroEmpresaMB.usuarioNovo.genero}">
 						<f:selectItem itemLabel="#{msgs.Masculino}" itemValue="1" />
 						<f:selectItem itemLabel="#{msgs.Feminino}" itemValue="2" />
 					</p:selectOneRadio>
@@ -38,63 +38,79 @@
 					<p:tab title="RIC">
 						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 							<p:outputLabel value="#{msgs.NumeroRic}" />
-							<p:inputNumber />
+							<p:inputNumber
+								value="#{cadastroEmpresaMB.usuarioNovo.documentosPessoais.numRic}" />
 							<p:outputLabel value="#{msgs.OrgExpedidorRic}" />
-							<p:inputText />
+							<p:inputText
+								value="#{cadastroEmpresaMB.usuarioNovo.documentosPessoais.ricOrgExpedidor}" />
 							<p:outputLabel value="#{msgs.DataExpedicaoRic}" />
 							<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-								pattern="dd/MM/yyyy" mask="true" size="8" />
+								pattern="dd/MM/yyyy" mask="true" size="8"
+								value="#{cadastroEmpresaMB.usuarioNovo.documentosPessoais.ricDataExpedicao}" />
 						</p:panelGrid>
 					</p:tab>
 
 					<p:tab title="RG">
 						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 							<p:outputLabel value="#{msgs.NumeroRG}" />
-							<p:inputNumber />
+							<p:inputNumber
+								value="#{cadastroEmpresaMB.usuarioNovo.documentosPessoais.numRG}" />
 							<p:outputLabel value="#{msgs.OrgExpedidorRG}" />
-							<p:inputText />
+							<p:inputText
+								value="#{cadastroEmpresaMB.usuarioNovo.documentosPessoais.rgOrgExpedidor}" />
 							<p:outputLabel value="#{msgs.DataExpedicaoRG}" />
 							<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-								pattern="dd/MM/yyyy" mask="true" size="8" />
+								pattern="dd/MM/yyyy" mask="true" size="8"
+								value="#{cadastroEmpresaMB.usuarioNovo.documentosPessoais.rgOrgExpedidor}" />
 						</p:panelGrid>
 					</p:tab>
 
 					<p:tab title="CPF">
 						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 							<p:outputLabel value="#{msgs.NumeroCPF}" />
-							<p:inputNumber />
+							<p:inputNumber
+								value="#{cadastroEmpresaMB.usuarioNovo.documentosPessoais.numCPF}" />
 						</p:panelGrid>
 					</p:tab>
 
 					<p:tab title="RNE">
 						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 							<p:outputLabel value="#{msgs.NumeroRNE}" />
-							<p:inputNumber />
+							<p:inputNumber
+								value="#{cadastroEmpresaMB.usuarioNovo.documentosPessoais.numRNE}" />
 							<p:outputLabel value="#{msgs.OrgExpedidorRNE}" />
-							<p:inputText />
+							<p:inputText
+								value="#{cadastroEmpresaMB.usuarioNovo.documentosPessoais.rneOrgExpedidor}" />
 							<p:outputLabel value="#{msgs.DataExpedicaoRNE}" />
 							<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-								pattern="dd/MM/yyyy" mask="true" size="8" />
+								pattern="dd/MM/yyyy" mask="true" size="8"
+								value="#{cadastroEmpresaMB.usuarioNovo.documentosPessoais.rneOrgExpedidor}" />
 						</p:panelGrid>
 					</p:tab>
 
 					<p:tab title="CNH">
 						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 							<p:outputLabel value="#{msgs.NumeroCNH}" />
-							<p:inputNumber />
+							<p:inputNumber
+								value="#{cadastroEmpresaMB.usuarioNovo.documentosPessoais.numCNH}" />
 							<p:outputLabel value="#{msgs.UFCNH}" />
-							<p:inputText />
+							<p:inputText
+								value="#{cadastroEmpresaMB.usuarioNovo.documentosPessoais.cnhUf}" />
 							<p:outputLabel value="#{msgs.DataExpedicaoCNH}" />
 							<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-								pattern="dd/MM/yyyy" mask="true" size="8" />
+								pattern="dd/MM/yyyy" mask="true" size="8"
+								value="#{cadastroEmpresaMB.usuarioNovo.documentosPessoais.cnhDataExpedicao}" />
 							<p:outputLabel value="#{msgs.DataValidadeCNH}" />
 							<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-								pattern="dd/MM/yyyy" mask="true" size="8" />
+								pattern="dd/MM/yyyy" mask="true" size="8"
+								value="#{cadastroEmpresaMB.usuarioNovo.documentosPessoais.cnhValidade}" />
 							<p:outputLabel value="#{msgs.DataPrimeiraCNH}" />
 							<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-								pattern="dd/MM/yyyy" mask="true" size="8" />
+								pattern="dd/MM/yyyy" mask="true" size="8"
+								value="#{cadastroEmpresaMB.usuarioNovo.documentosPessoais.cnhPrimeiraEmissao}" />
 							<p:outputLabel value="#{msgs.CategoriaCNH}" />
-							<p:inputText />
+							<p:inputText
+								value="#{cadastroEmpresaMB.usuarioNovo.documentosPessoais.cnhCategoria}" />
 						</p:panelGrid>
 					</p:tab>
 				</p:tabView>
