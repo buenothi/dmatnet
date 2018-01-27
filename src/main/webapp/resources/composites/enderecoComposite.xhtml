@@ -253,7 +253,7 @@
 						<p:cellEditor>
 							<f:facet name="output">
 								<p:outputLabel value="#{endereco.dataInicioEndereco}"
-									style="font-size: 9pt;">
+									>
 									<f:convertDateTime pattern="dd/MM/yyyy" />
 								</p:outputLabel>
 							</f:facet>
@@ -268,7 +268,7 @@
 						<p:cellEditor>
 							<f:facet name="output">
 								<p:outputLabel value="#{endereco.dataTerminoEndereco}"
-									style="font-size: 9pt;">
+									>
 									<f:convertDateTime pattern="dd/MM/yyyy" />
 								</p:outputLabel>
 							</f:facet>
@@ -279,16 +279,16 @@
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
-					<p:column headerText="#{msgs.Logradouro}" width="180">
+					<p:column headerText="#{msgs.Logradouro}" width="100">
 						<p:cellEditor>
 							<f:facet name="output">
 								<p:outputLabel value="#{endereco.logradouro.nomeLogradouro}"
-									style="font-size: 9pt;" converter="stringConverter">
+									converter="stringConverter">
 								</p:outputLabel>
 							</f:facet>
 							<f:facet name="input">
 								<p:inputText value="#{endereco.logradouro.nomeLogradouro}"
-									style="font-size: 9pt; width: 100%" />
+									style="width: 100%" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -296,12 +296,12 @@
 						<p:cellEditor>
 							<f:facet name="output">
 								<p:outputLabel value="#{endereco.logradouroNome}"
-									style="font-size: 9pt;" converter="stringConverter">
+									converter="stringConverter">
 								</p:outputLabel>
 							</f:facet>
 							<f:facet name="input">
 								<p:inputText value="#{endereco.logradouroNome}"
-									style="font-size: 9pt; width: 100%" />
+									style="width: 100%" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -309,12 +309,12 @@
 						<p:cellEditor>
 							<f:facet name="output">
 								<p:outputLabel value="#{endereco.logradouroNumero}"
-									style="font-size: 9pt;">
+									>
 								</p:outputLabel>
 							</f:facet>
 							<f:facet name="input">
 								<p:inputText value="#{endereco.logradouroNumero}"
-									style="font-size: 9pt; width: 100%" />
+									style="width: 100%" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -322,12 +322,12 @@
 						<p:cellEditor>
 							<f:facet name="output">
 								<p:outputLabel value="#{endereco.logradouroComplemento}"
-									style="font-size: 9pt;" converter="stringConverter">
+									converter="stringConverter">
 								</p:outputLabel>
 							</f:facet>
 							<f:facet name="input">
 								<p:inputText value="#{endereco.logradouroComplemento}"
-									style="font-size: 9pt; width: 100%" />
+									style="width: 100%" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -335,19 +335,19 @@
 						<p:cellEditor>
 							<f:facet name="output">
 								<p:outputLabel value="#{endereco.bairro}"
-									style="font-size: 9pt;" converter="stringConverter">
+									converter="stringConverter">
 								</p:outputLabel>
 							</f:facet>
 							<f:facet name="input">
 								<p:inputText value="#{endereco.bairro}"
-									style="font-size: 9pt; width: 100%" />
+									style="width: 100%" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
 					<p:column headerText="#{msgs.CEP}" width="110">
 						<p:cellEditor>
 							<f:facet name="output">
-								<p:outputLabel value="#{endereco.cep}" style="font-size: 9pt;">
+								<p:outputLabel value="#{endereco.cep}">
 								</p:outputLabel>
 							</f:facet>
 							<f:facet name="input">
@@ -360,12 +360,12 @@
 						<p:cellEditor>
 							<f:facet name="output">
 								<p:outputLabel value="#{endereco.caixaPostal}"
-									style="font-size: 9pt;" converter="stringConverter">
+									converter="stringConverter">
 								</p:outputLabel>
 							</f:facet>
 							<f:facet name="input">
 								<p:inputText value="#{endereco.caixaPostal}"
-									style="font-size: 9pt; width: 100%" />
+									style="width: 100%" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -373,7 +373,7 @@
 						<p:cellEditor>
 							<f:facet name="output">
 								<p:outputLabel value="#{endereco.estado}"
-									style="font-size: 9pt;">
+									>
 								</p:outputLabel>
 							</f:facet>
 							<f:facet name="input">
@@ -393,7 +393,7 @@
 						<p:cellEditor>
 							<f:facet name="output">
 								<p:outputLabel value="#{endereco.cidade}"
-									style="font-size: 9pt;" converter="stringConverter">
+									converter="stringConverter">
 								</p:outputLabel>
 							</f:facet>
 							<f:facet name="input">

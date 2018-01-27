@@ -9,7 +9,7 @@
 
 <ui:composition>
 
-	<p:panel header="#{msgs.DadosCadastrais}" closable="false" >
+	<p:panel header="#{msgs.DadosCadastrais}" closable="false">
 
 		<dmat:barraBotoesComposite id="barraBotoesDadosCadastrais"
 			disabledEditar="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}"
@@ -142,7 +142,7 @@
 						<p:row>
 							<p:column>
 								<p:outputLabel value="#{msgs.DataCadastro}:" />
-							</p:column>
+							</p:column>Number
 							<p:column>
 								<p:outputLabel
 									value="#{cadastroEmpresaMB.dadosCadastraisAtual.dataInicioCadastro}">
@@ -164,7 +164,7 @@
 						<p:row>
 							<p:column>
 								<p:outputLabel value="#{msgs.Inscricao}:" />
-							</p:column>
+							</p:column>Number
 
 							<p:column>
 								<p:outputLabel
@@ -469,8 +469,7 @@
 						<p:column headerText="#{msgs.CnpjSoftwareHouse}" width="160">
 							<p:cellEditor>
 								<f:facet name="output">
-									<p:outputLabel value="#{empresaSoftware.numCNPJ}"
-										style="font-size: 9pt;">
+									<p:outputLabel value="#{empresaSoftware.numCNPJ}">
 										<f:converter converterId="cnpjCpfConverter" />
 									</p:outputLabel>
 								</f:facet>
@@ -478,55 +477,51 @@
 									<p:inputMask id="ipmInscricaoEmpresaSoft"
 										converter="cnpjCpfConverter"
 										mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}"
-										value="#{empresaSoftware.numCNPJ}" style="font-size: 9pt;" />
+										value="#{empresaSoftware.numCNPJ}" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
 						<p:column headerText="#{msgs.nmRazaoSoftwareHouse}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<p:outputLabel value="#{empresaSoftware.razaoSocial}"
-										style="font-size: 9pt;" />
+									<p:outputLabel value="#{empresaSoftware.razaoSocial}" />
 								</f:facet>
 								<f:facet name="input">
 									<p:inputText value="#{empresaSoftware.razaoSocial}"
-										style="font-size: 9pt; width: 100%" />
+										style="width: 100%" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
 						<p:column headerText="#{msgs.nmContatoSoftwareHouse}" width="160">
 							<p:cellEditor>
 								<f:facet name="output">
-									<p:outputLabel value="#{empresaSoftware.nomeContato}"
-										style="font-size: 9pt;" />
+									<p:outputLabel value="#{empresaSoftware.nomeContato}" />
 								</f:facet>
 								<f:facet name="input">
 									<p:inputText value="#{empresaSoftware.nomeContato}"
-										style="font-size: 9pt; width: 100%" />
+										style="width: 100%" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
 						<p:column headerText="#{msgs.telSoftwareHouse}" width="160">
 							<p:cellEditor>
 								<f:facet name="output">
-									<p:outputLabel value="#{empresaSoftware.telFixo}"
-										style="font-size: 9pt;" />
+									<p:outputLabel value="#{empresaSoftware.telFixo}" />
 								</f:facet>
 								<f:facet name="input">
 									<p:inputMask id="ipmTelEmpreSoft" mask="+ 99 (99) 9999-9999"
-										value="#{empresaSoftware.telFixo}" style="font-size: 9pt;" />
+										value="#{empresaSoftware.telFixo}" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
 						<p:column headerText="#{msgs.Email}" width="270">
 							<p:cellEditor>
 								<f:facet name="output">
-									<p:outputLabel value="#{empresaSoftware.email}"
-										style="font-size: 9pt;" />
+									<p:outputLabel value="#{empresaSoftware.email}" />
 								</f:facet>
 								<f:facet name="input">
 									<p:inputText value="#{empresaSoftware.email}"
-										style="font-size: 9pt; width: 100%" />
+										style="width: 100%" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
@@ -567,8 +562,7 @@
 									<p:inputMask id="ipmInsInscricaoEmpresaSoft"
 										converter="cnpjCpfConverter"
 										mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}"
-										value="#{cadastroEmpresaMB.empresaSoftwareHouse.numCNPJ}"
-										style="font-size: 9pt;" />
+										value="#{cadastroEmpresaMB.empresaSoftwareHouse.numCNPJ}" />
 								</p:column>
 							</p:row>
 							<p:row>
@@ -580,7 +574,7 @@
 								<p:column>
 									<p:inputText
 										value="#{cadastroEmpresaMB.empresaSoftwareHouse.razaoSocial}"
-										style="font-size: 9pt; width: 100%" maxlength="250" size="62" />
+										style="width: 100%" maxlength="250" size="62" />
 								</p:column>
 							</p:row>
 							<p:row>
@@ -590,7 +584,7 @@
 								<p:column>
 									<p:inputText
 										value="#{cadastroEmpresaMB.empresaSoftwareHouse.nomeContato}"
-										style="font-size: 9pt; width: 100%" maxlength="250" size="62" />
+										style="width: 100%" maxlength="250" size="62" />
 								</p:column>
 							</p:row>
 							<p:row>
@@ -599,8 +593,7 @@
 								</p:column>
 								<p:column>
 									<p:inputMask id="ipmTelEmpreSoft" mask="+ 99 (99) 9999-9999"
-										value="#{cadastroEmpresaMB.empresaSoftwareHouse.telFixo}"
-										style="font-size: 9pt;" />
+										value="#{cadastroEmpresaMB.empresaSoftwareHouse.telFixo}" />
 								</p:column>
 							</p:row>
 							<p:row>
@@ -610,7 +603,7 @@
 								<p:column>
 									<p:inputText
 										value="#{cadastroEmpresaMB.empresaSoftwareHouse.email}"
-										style="font-size: 9pt; width: 100%" maxlength="250" size="62" />
+										style="width: 100%" maxlength="250" size="62" />
 								</p:column>
 							</p:row>
 						</p:panelGrid>
@@ -632,8 +625,7 @@
 						<p:column headerText="#{msgs.DataCadastro}" width="100">
 							<p:cellEditor>
 								<f:facet name="output">
-									<p:outputLabel value="#{cadastro.dataInicioCadastro}"
-										style="font-size: 9pt;">
+									<p:outputLabel value="#{cadastro.dataInicioCadastro}">
 										<f:convertDateTime pattern="dd/MM/yyyy" />
 									</p:outputLabel>
 								</f:facet>
@@ -647,8 +639,7 @@
 						<p:column headerText="#{msgs.DataTermino}" width="100">
 							<p:cellEditor>
 								<f:facet name="output">
-									<p:outputLabel value="#{cadastro.dataFimCadastro}"
-										style="font-size: 9pt;">
+									<p:outputLabel value="#{cadastro.dataFimCadastro}">
 										<f:convertDateTime pattern="dd/MM/yyyy" />
 									</p:outputLabel>
 								</f:facet>
@@ -662,11 +653,10 @@
 						<p:column headerText="#{msgs.TipoInscricao}" width="80">
 							<p:cellEditor>
 								<f:facet name="output">
-									<p:outputLabel value="#{cadastro.tipoInscricao}"
-										style="font-size: 9pt;" />
+									<p:outputLabel value="#{cadastro.tipoInscricao}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:selectOneMenu style="width:100%; font-size: 9pt;"
+									<p:selectOneMenu style="width:100%;"
 										value="#{cadastro.tipoInscricao}">
 										<f:selectItem itemValue="1" itemLabel="CNPJ" />
 										<f:selectItem itemValue="2" itemLabel="CPF" />
@@ -677,44 +667,40 @@
 						<p:column headerText="#{msgs.Inscricao}" width="160">
 							<p:cellEditor>
 								<f:facet name="output">
-									<p:outputLabel value="#{cadastro.numCNPJ}"
-										style="font-size: 9pt;">
+									<p:outputLabel value="#{cadastro.numCNPJ}">
 										<f:converter converterId="cnpjCpfConverter" />
 									</p:outputLabel>
 								</f:facet>
 								<f:facet name="input">
 									<p:inputMask id="ipmInscricao" converter="cnpjCpfConverter"
 										mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}"
-										value="#{cadastro.numCNPJ}" style="font-size: 9pt;" />
+										value="#{cadastro.numCNPJ}" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
 						<p:column headerText="#{msgs.RazaoSocial}" width="210">
 							<p:cellEditor>
 								<f:facet name="output">
-									<p:outputLabel value="#{cadastro.razaoSocial}"
-										style="font-size: 9pt;">
+									<p:outputLabel value="#{cadastro.razaoSocial}">
 										<f:converter converterId="stringConverter" />
 									</p:outputLabel>
 								</f:facet>
 								<f:facet name="input">
 									<p:inputText value="#{cadastro.razaoSocial}"
-										style="font-size: 9pt; width: 100%" />
+										style="width: 100%" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
 						<p:column headerText="#{msgs.FAP}" width="90">
 							<p:cellEditor>
 								<f:facet name="output">
-									<p:outputLabel value="#{cadastro.empresaFAP.valorFAP}"
-										style="font-size: 9pt;">
+									<p:outputLabel value="#{cadastro.empresaFAP.valorFAP}">
 										<f:converter converterId="javax.faces.Double" />
 									</p:outputLabel>
 								</f:facet>
 								<f:facet name="input">
 									<p:inputMask mask="9.999"
-										value="#{cadastro.empresaFAP.valorFAP}"
-										style="font-size: 9pt; width: 100%"
+										value="#{cadastro.empresaFAP.valorFAP}" style="width: 100%"
 										converter="javax.faces.Double">
 									</p:inputMask>
 								</f:facet>
@@ -731,8 +717,7 @@
 							<p:column headerText="#{msgs.DataCadastro}" width="100">
 								<p:cellEditor>
 									<f:facet name="output">
-										<p:outputLabel value="#{cadastro.dataInicioCadastro}"
-											style="font-size: 9pt;">
+										<p:outputLabel value="#{cadastro.dataInicioCadastro}">
 											<f:convertDateTime pattern="dd/MM/yyyy" />
 										</p:outputLabel>
 									</f:facet>
@@ -746,8 +731,7 @@
 							<p:column headerText="#{msgs.DataTermino}" width="100">
 								<p:cellEditor>
 									<f:facet name="output">
-										<p:outputLabel value="#{cadastro.dataFimCadastro}"
-											style="font-size: 9pt;">
+										<p:outputLabel value="#{cadastro.dataFimCadastro}">
 											<f:convertDateTime pattern="dd/MM/yyyy" />
 										</p:outputLabel>
 									</f:facet>
@@ -761,11 +745,10 @@
 							<p:column headerText="#{msgs.TipoInscricao}" width="80">
 								<p:cellEditor>
 									<f:facet name="output">
-										<p:outputLabel value="#{cadastro.tipoInscricao}"
-											style="font-size: 9pt;" />
+										<p:outputLabel value="#{cadastro.tipoInscricao}" />
 									</f:facet>
 									<f:facet name="input">
-										<p:selectOneMenu style="width:100%; font-size: 9pt;"
+										<p:selectOneMenu style="width:100%"
 											value="#{cadastro.tipoInscricao}">
 											<f:selectItem itemValue="1" itemLabel="CNPJ" />
 											<f:selectItem itemValue="2" itemLabel="CPF" />
@@ -776,44 +759,40 @@
 							<p:column headerText="#{msgs.Inscricao}" width="160">
 								<p:cellEditor>
 									<f:facet name="output">
-										<p:outputLabel value="#{cadastro.numCNPJ}"
-											style="font-size: 9pt;">
+										<p:outputLabel value="#{cadastro.numCNPJ}">
 											<f:converter converterId="cnpjCpfConverter" />
 										</p:outputLabel>
 									</f:facet>
 									<f:facet name="input">
 										<p:inputMask id="ipmInscricao" converter="cnpjCpfConverter"
 											mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}"
-											value="#{cadastro.numCNPJ}" style="font-size: 9pt;" />
+											value="#{cadastro.numCNPJ}" />
 									</f:facet>
 								</p:cellEditor>
 							</p:column>
 							<p:column headerText="#{msgs.RazaoSocial}" width="210">
 								<p:cellEditor>
 									<f:facet name="output">
-										<p:outputLabel value="#{cadastro.razaoSocial}"
-											style="font-size: 9pt;">
+										<p:outputLabel value="#{cadastro.razaoSocial}">
 											<f:converter converterId="stringConverter" />
 										</p:outputLabel>
 									</f:facet>
 									<f:facet name="input">
 										<p:inputText value="#{cadastro.razaoSocial}"
-											style="font-size: 9pt; width: 100%" />
+											style="width: 100%" />
 									</f:facet>
 								</p:cellEditor>
 							</p:column>
 							<p:column headerText="#{msgs.FAP}" width="90">
 								<p:cellEditor>
 									<f:facet name="output">
-										<p:outputLabel value="#{cadastro.empresaFAP.valorFAP}"
-											style="font-size: 9pt;">
+										<p:outputLabel value="#{cadastro.empresaFAP.valorFAP}">
 											<f:converter converterId="javax.faces.Double" />
 										</p:outputLabel>
 									</f:facet>
 									<f:facet name="input">
 										<p:inputMask mask="9.999"
-											value="#{cadastro.empresaFAP.valorFAP}"
-											style="font-size: 9pt; width: 100%"
+											value="#{cadastro.empresaFAP.valorFAP}" style="width: 100%"
 											converter="javax.faces.Double">
 										</p:inputMask>
 									</f:facet>
@@ -849,6 +828,8 @@
 					</p:dataTable>
 				</h:panelGrid>
 			</p:tab>
+			<p:selectOneListbox />
+
 
 		</p:accordionPanel>
 

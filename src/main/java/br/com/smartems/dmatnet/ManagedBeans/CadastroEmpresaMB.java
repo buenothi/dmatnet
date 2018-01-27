@@ -118,6 +118,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private EnderecoEntity enderecoUsuarioAtual;
 	private EnderecoEntity enderecoUsuarioExcluir;
 	private List<EnderecoEntity> enderecosUsuarioHistorico;
+	private TelefoneEntity telefoneUsuario;
 	private List<TelefoneEntity> telefonesUsuario;
 	private List<EmailEntity> emailsUsuario;
 	private Set<EmpresaGrupoEntity> gruposGerenciados;
@@ -546,6 +547,17 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setEnderecosUsuarioHistorico(List<EnderecoEntity> enderecosUsuarioHistorico) {
 		this.enderecosUsuarioHistorico = enderecosUsuarioHistorico;
+	}
+
+	public TelefoneEntity getTelefoneUsuario() {
+		if (this.telefoneUsuario == null) {
+			this.telefoneUsuario = new TelefoneEntity(); 
+		}
+		return telefoneUsuario;
+	}
+
+	public void setTelefoneUsuario(TelefoneEntity telefoneUsuario) {
+		this.telefoneUsuario = telefoneUsuario;
 	}
 
 	public List<TelefoneEntity> getTelefonesUsuario() {
@@ -1330,6 +1342,7 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void separarDadosCadastraisAtualDoHistorico(EmpresaEntity empresa) {
+		this.initEmpresa();
 		this.empresaSelecionada = pessoaJuridicaFachada.read(empresa.getIdPessoa());
 		this.fotografiaFachadaEmpresa = this.empresaSelecionada.getEmpresaFotoFachada();
 		this.exibirImagem(fotografiaFachadaEmpresa);

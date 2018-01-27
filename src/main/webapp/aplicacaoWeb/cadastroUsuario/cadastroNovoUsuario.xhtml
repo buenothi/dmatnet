@@ -129,14 +129,26 @@
 					<p:tab title="#{msgs.Telefone}">
 						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 							<p:outputLabel value="#{msgs.Telefone}" />
-							<p:inputText />
+							<p:inputMask id="ipmTelUsuario" mask="+ 99 (99) 9999-9999"
+								size="22" value="#{cadastroEmpresaMB.telefoneUsuario.numeroTelefone}"/>
 
 							<p:outputLabel value="#{msgs.TelefoneTipo}" />
-							<p:inputText />
+							<p:selectOneMenu style="width:100%" />
+
+							<p:spacer width="100%" height="5px" />
+
+							<p:toolbar>
+								<f:facet name="left">
+									<p:commandButton value="#{msgs.Adicionar}" />
+									<p:commandButton value="#{msgs.Cancelar}" />
+								</f:facet>
+							</p:toolbar>
 						</p:panelGrid>
+						
+						<p:spacer width="100%" height="2px" />
 
 						<p:dataTable paginator="true" rows="5" scrollable="true"
-							styleClass="dataTable" emptyMessage=""
+							styleClass="dataTable" emptyMessage="#{msgs.ListaContatoVazio}"
 							value="#{cadastroEmpresaMB.telefonesUsuario}"
 							paginatorAlwaysVisible="false" var="telefone"
 							sortBy="#{telefone.idTelefone}" sortOrder="descending"

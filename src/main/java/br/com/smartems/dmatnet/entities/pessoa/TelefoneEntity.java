@@ -12,7 +12,10 @@ public class TelefoneEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idTelefone;
 	private String numeroTelefone;
-	private String tipoTelefone;
+
+	@ManyToOne
+	@JoinColumn(name = "TELEFONETIPO_ID")
+	private TelefoneEntity tipoTelefone;
 	private static final long serialVersionUID = 1L;
 
 	public TelefoneEntity() {
@@ -35,12 +38,12 @@ public class TelefoneEntity implements Serializable {
 		this.numeroTelefone = numeroTelefone;
 	}
 
-	public String getTipoTelefone() {
+	public TelefoneEntity getTipoTelefone() {
 		return tipoTelefone;
 	}
 
-	public void setTipoTelefone(String tipoTelefone) {
-		this.tipoTelefone = tipoTelefone.toUpperCase();
+	public void setTipoTelefone(TelefoneEntity tipoTelefone) {
+		this.tipoTelefone = tipoTelefone;
 	}
 
 	public static long getSerialversionuid() {
