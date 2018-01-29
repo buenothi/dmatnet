@@ -15,7 +15,7 @@ public class TelefoneEntity implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "TELEFONETIPO_ID")
-	private TelefoneEntity tipoTelefone;
+	private TelefoneTipoEntity tipoTelefone;
 	private static final long serialVersionUID = 1L;
 
 	public TelefoneEntity() {
@@ -38,11 +38,14 @@ public class TelefoneEntity implements Serializable {
 		this.numeroTelefone = numeroTelefone;
 	}
 
-	public TelefoneEntity getTipoTelefone() {
+	public TelefoneTipoEntity getTipoTelefone() {
+		if (this.tipoTelefone == null) {
+			this.tipoTelefone = new TelefoneTipoEntity();
+		}
 		return tipoTelefone;
 	}
 
-	public void setTipoTelefone(TelefoneEntity tipoTelefone) {
+	public void setTipoTelefone(TelefoneTipoEntity tipoTelefone) {
 		this.tipoTelefone = tipoTelefone;
 	}
 

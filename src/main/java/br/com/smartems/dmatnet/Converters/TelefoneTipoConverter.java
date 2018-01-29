@@ -10,7 +10,7 @@ import javax.faces.convert.FacesConverter;
 import br.com.smartems.dmatnet.entities.pessoa.TelefoneTipoEntity;
 
 @FacesConverter("telefoneTipoConverter")
-public class telefoneTipoConverter implements Converter {
+public class TelefoneTipoConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent uic, String value) {
