@@ -129,14 +129,13 @@
 					<p:tab title="#{msgs.Telefone}">
 						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 							<p:outputLabel value="#{msgs.Telefone}" />
-							<p:inputMask id="ipmTelUsuario" mask="+ 99 (99) 9999-9999"
+							<p:inputMask id="ipmTel" mask="+ 99 (99) 9999-9999"
 								size="22"
 								value="#{cadastroEmpresaMB.telefoneUsuario.numeroTelefone}" />
-
 							<p:outputLabel value="#{msgs.TelefoneTipo}" />
 							<p:selectOneMenu style="width:100%"
 								value="#{cadastroEmpresaMB.telefoneUsuario.tipoTelefone}"
-								effect="fade" converter="telefoneTipoConverter" >
+								effect="fade" converter="telefoneTipoConverter">
 								<f:selectItems value="#{telefoneTipoMB.telefonesTipos}"
 									var="telefoneTipo" itemLabel="#{telefoneTipo.tipo}"
 									itemValue="#{telefoneTipo}" />
@@ -146,8 +145,13 @@
 
 							<p:toolbar>
 								<f:facet name="left">
-									<p:commandButton value="#{msgs.Adicionar}" />
-									<p:commandButton value="#{msgs.Cancelar}" />
+									<p:commandButton value="#{msgs.Adicionar}"
+										actionListener="#{cadastroEmpresaMB.adicionarTelefoneContato}"
+										update="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
+										immediate="false" />
+									<p:commandButton value="#{msgs.Cancelar}"
+										update="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
+										immediate="true" />
 								</f:facet>
 							</p:toolbar>
 						</p:panelGrid>
@@ -162,8 +166,31 @@
 							editable="true" rowKey="#{telefone.idTelefone}">
 
 							<p:column headerText="#{msgs.Telefone}">
+								<p:cellEditor>
+									<f:facet name="output">
+										<p:outputLabel value="#{telefone.numeroTelefone}" />
+									</f:facet>
+									<f:facet name="input">
+										<p:inputMask mask="+ 99 (99) 9999-9999"
+											value="#{telefone.numeroTelefone}" style="width: 100%">
+										</p:inputMask>
+									</f:facet>
+								</p:cellEditor>
 							</p:column>
 							<p:column headerText="#{msgs.TelefoneTipo}">
+								<p:cellEditor>
+									<f:facet name="output">
+										<p:outputLabel value="#{telefone.tipoTelefone.tipo}" />
+									</f:facet>
+									<f:facet name="input">
+										<p:selectOneMenu style="width:100%"
+											value="#{telefone.tipoTelefone}"
+											converter="telefoneTipoConverter" immediate="true">
+											<f:selectItems value="#{telefoneTipoMB.telefonesTipos}" var="telefoneTipo"
+												itemLabel="#{telefoneTipo.tipo}" itemValue="#{telefoneTipo}" />
+										</p:selectOneMenu>
+									</f:facet>
+								</p:cellEditor>
 							</p:column>
 
 							<p:column style="width:55px">
@@ -171,7 +198,14 @@
 							</p:column>
 
 							<p:column style="width:55px">
-								<p:commandButton icon="fa fa-trash" />
+								<p:commandButton icon="fa fa-trash"
+									actionListener="#{cadastroEmpresaMB.removerTelefoneContatoDaLista(telefone)}"
+									update="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario">
+									<f:setPropertyActionListener value="#{telefone}"
+										target="#{cadastroEmpresaMB.telefoneUsuarioExcluir}" />
+									<p:confirm header="#{msgs.Confirmar}" message=""
+										icon="ui-icon-alert" />
+								</p:commandButton>
 							</p:column>
 
 						</p:dataTable>
@@ -181,13 +215,13 @@
 					<p:tab title="#{msgs.Email}">
 						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 							<p:outputLabel value="#{msgs.Email}" />
-							<p:inputText  id="iptEmailUsuario" size="22"
+							<p:inputText id="iptEmailUsuario" size="22"
 								value="#{cadastroEmpresaMB.emailUsuario.nomeEmail}" />
 
 							<p:outputLabel value="#{msgs.TelefoneTipo}" />
 							<p:selectOneMenu style="width:100%"
 								value="#{cadastroEmpresaMB.emailUsuario.tipoEmail}"
-								effect="fade" converter="emailTipoConverter" >
+								effect="fade" converter="emailTipoConverter">
 								<f:selectItems value="#{emailTipoMB.emailsTipos}"
 									var="emailTipo" itemLabel="#{emailTipo.tipo}"
 									itemValue="#{emailTipo}" />

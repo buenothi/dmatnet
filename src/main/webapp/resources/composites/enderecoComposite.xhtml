@@ -165,8 +165,9 @@
 					<h:panelGrid id="tblCidadeEstado" columns="2">
 						<p:selectOneMenu id="listEstado" panelStyle="width:150px"
 							effect="fade" style="width:60px" value="#{cc.attrs.estado}"
-							converter="estadoConverter" immediate="true" >
-							<p:ajax event="itemSelect" listener="#{estadoMB.onSelectionEstado}"
+							converter="estadoConverter" immediate="true">
+							<p:ajax event="itemSelect"
+								listener="#{estadoMB.onSelectionEstado}"
 								update="#{cc.attrs.ajaxComponentRender}" />
 							<f:selectItem itemLabel="#{cc.attrs.estado.estadoSigla}" />
 							<f:selectItem itemLabel="--------------" noSelectionOption="true" />
@@ -175,7 +176,7 @@
 						</p:selectOneMenu>
 						<p:selectOneMenu id="listCidade" panelStyle="width:180px"
 							effect="fade" style="width:333px" value="#{cc.attrs.cidade}"
-							converter="cidadeConverter" filter="true" 
+							converter="cidadeConverter" filter="true"
 							filterMatchMode="startsWith">
 							<f:selectItem itemLabel="#{cc.attrs.cidade.cidadeNome}" />
 							<f:selectItem itemLabel="--------------" noSelectionOption="true" />
@@ -252,8 +253,7 @@
 					<p:column headerText="#{msgs.DataCadastro}" width="110">
 						<p:cellEditor>
 							<f:facet name="output">
-								<p:outputLabel value="#{endereco.dataInicioEndereco}"
-									>
+								<p:outputLabel value="#{endereco.dataInicioEndereco}">
 									<f:convertDateTime pattern="dd/MM/yyyy" />
 								</p:outputLabel>
 							</f:facet>
@@ -267,8 +267,7 @@
 					<p:column headerText="#{msgs.DataTermino}" width="110">
 						<p:cellEditor>
 							<f:facet name="output">
-								<p:outputLabel value="#{endereco.dataTerminoEndereco}"
-									>
+								<p:outputLabel value="#{endereco.dataTerminoEndereco}">
 									<f:convertDateTime pattern="dd/MM/yyyy" />
 								</p:outputLabel>
 							</f:facet>
@@ -308,8 +307,7 @@
 					<p:column headerText="#{msgs.Numero}" width="60">
 						<p:cellEditor>
 							<f:facet name="output">
-								<p:outputLabel value="#{endereco.logradouroNumero}"
-									>
+								<p:outputLabel value="#{endereco.logradouroNumero}">
 								</p:outputLabel>
 							</f:facet>
 							<f:facet name="input">
@@ -339,8 +337,7 @@
 								</p:outputLabel>
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{endereco.bairro}"
-									style="width: 100%" />
+								<p:inputText value="#{endereco.bairro}" style="width: 100%" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -364,16 +361,14 @@
 								</p:outputLabel>
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText value="#{endereco.caixaPostal}"
-									style="width: 100%" />
+								<p:inputText value="#{endereco.caixaPostal}" style="width: 100%" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
 					<p:column headerText="#{msgs.Estado}" width="60">
 						<p:cellEditor>
 							<f:facet name="output">
-								<p:outputLabel value="#{endereco.estado}"
-									>
+								<p:outputLabel value="#{endereco.estado}">
 								</p:outputLabel>
 							</f:facet>
 							<f:facet name="input">
@@ -416,10 +411,10 @@
 					</p:column>
 
 					<p:column style="width:55px" rendered="#{cc.attrs.disabledEditar}">
-					
-					<!-- insertChildren utilizado para inserir o botão de exclusão do histórico -->
-					
-						<composite:insertChildren/>
+
+						<!-- insertChildren utilizado para inserir o botão de exclusão do histórico -->
+
+						<composite:insertChildren />
 
 					</p:column>
 				</p:dataTable>

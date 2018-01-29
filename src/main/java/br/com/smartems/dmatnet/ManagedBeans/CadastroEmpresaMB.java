@@ -114,14 +114,20 @@ public class CadastroEmpresaMB implements Serializable {
 	private UsuarioEntity usuarioAtual;
 	private UsuarioEntity usuarioNovo;
 	private UsuarioEntity usuarioExcluir;
+
 	private PessoaFisicaDocumentosEntity documentosPessoaisUsuario;
+
 	private EnderecoEntity enderecoUsuarioAtual;
 	private EnderecoEntity enderecoUsuarioExcluir;
 	private List<EnderecoEntity> enderecosUsuarioHistorico;
+
 	private TelefoneEntity telefoneUsuario;
+	private TelefoneEntity telefoneUsuarioExcluir;
 	private List<TelefoneEntity> telefonesUsuario;
+
 	private EmailEntity emailUsuario;
 	private List<EmailEntity> emailsUsuario;
+
 	private Set<EmpresaGrupoEntity> gruposGerenciados;
 	private Set<EmpresaEntity> empresasGerenciadas;
 
@@ -552,7 +558,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public TelefoneEntity getTelefoneUsuario() {
 		if (this.telefoneUsuario == null) {
-			this.telefoneUsuario = new TelefoneEntity(); 
+			this.telefoneUsuario = new TelefoneEntity();
 		}
 		return telefoneUsuario;
 	}
@@ -561,9 +567,20 @@ public class CadastroEmpresaMB implements Serializable {
 		this.telefoneUsuario = telefoneUsuario;
 	}
 
+	public TelefoneEntity getTelefoneUsuarioExcluir() {
+		if (this.telefoneUsuarioExcluir == null) {
+			this.telefoneUsuarioExcluir = new TelefoneEntity();
+		}
+		return telefoneUsuarioExcluir;
+	}
+
+	public void setTelefoneUsuarioExcluir(TelefoneEntity telefoneUsuarioExcluir) {
+		this.telefoneUsuarioExcluir = telefoneUsuarioExcluir;
+	}
+
 	public List<TelefoneEntity> getTelefonesUsuario() {
 		if (this.telefonesUsuario == null) {
-			this.telefonesUsuario = new  ArrayList<TelefoneEntity>();
+			this.telefonesUsuario = new ArrayList<TelefoneEntity>();
 		}
 		return telefonesUsuario;
 	}
@@ -1833,6 +1850,22 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	// action dos botões de usuário empresa
+
+	public void adicionarTelefoneContato(ActionEvent evt) {
+		System.out.println(this.telefoneUsuario.getNumeroTelefone());
+		TelefoneEntity novoTelefone = new TelefoneEntity();
+		novoTelefone = this.telefoneUsuario;
+		this.telefonesUsuario.add(novoTelefone);
+		this.telefoneUsuario = null;
+	}
+
+	public void removerTelefoneContatoDaLista(TelefoneEntity telefoneUsuario) {
+		try {
+			this.telefonesUsuario.remove(telefoneUsuario);
+		} catch (IndexOutOfBoundsException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void salvarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
 

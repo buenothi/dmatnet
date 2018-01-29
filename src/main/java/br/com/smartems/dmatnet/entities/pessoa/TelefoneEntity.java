@@ -1,8 +1,14 @@
 package br.com.smartems.dmatnet.entities.pessoa;
 
 import java.io.Serializable;
-import java.lang.String;
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbl_telefone")
@@ -39,9 +45,6 @@ public class TelefoneEntity implements Serializable {
 	}
 
 	public TelefoneTipoEntity getTipoTelefone() {
-		if (this.tipoTelefone == null) {
-			this.tipoTelefone = new TelefoneTipoEntity();
-		}
 		return tipoTelefone;
 	}
 
@@ -51,12 +54,6 @@ public class TelefoneEntity implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-
-	@Override
-	public String toString() {
-		return "TelefoneEntity [idTelefone=" + idTelefone + ", numeroTelefone=" + numeroTelefone + ", tipoTelefone="
-				+ tipoTelefone + "]";
 	}
 
 	@Override
@@ -81,4 +78,8 @@ public class TelefoneEntity implements Serializable {
 		return true;
 	}
 
+	@Override
+	public TelefoneEntity clone() throws CloneNotSupportedException {
+		return (TelefoneEntity) super.clone();
+	}
 }
