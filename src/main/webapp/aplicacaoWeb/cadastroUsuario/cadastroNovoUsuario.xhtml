@@ -181,17 +181,50 @@
 					<p:tab title="#{msgs.Email}">
 						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 							<p:outputLabel value="#{msgs.Email}" />
-							<p:inputText />
+							<p:inputText  id="iptEmailUsuario" size="22"
+								value="#{cadastroEmpresaMB.emailUsuario.nomeEmail}" />
 
-							<p:outputLabel value="#{msgs.EmailTipo}" />
-							<p:inputText />
+							<p:outputLabel value="#{msgs.TelefoneTipo}" />
+							<p:selectOneMenu style="width:100%"
+								value="#{cadastroEmpresaMB.emailUsuario.tipoEmail}"
+								effect="fade" converter="emailTipoConverter" >
+								<f:selectItems value="#{emailTipoMB.emailsTipos}"
+									var="emailTipo" itemLabel="#{emailTipo.tipo}"
+									itemValue="#{emailTipo}" />
+							</p:selectOneMenu>
+
+							<p:spacer width="100%" height="5px" />
+
+							<p:toolbar>
+								<f:facet name="left">
+									<p:commandButton value="#{msgs.Adicionar}" />
+									<p:commandButton value="#{msgs.Cancelar}" />
+								</f:facet>
+							</p:toolbar>
 						</p:panelGrid>
+
+						<p:spacer width="100%" height="2px" />
+
 						<p:dataTable paginator="true" rows="5" scrollable="true"
-							styleClass="dataTable" emptyMessage=""
-							value="#{cadastroEmpresaMB.emailsUsuario}"
-							paginatorAlwaysVisible="false" var="email"
-							sortBy="#{email.idEmail}" sortOrder="descending" editable="true"
-							rowKey="#{email.idEmail}">
+							styleClass="dataTable" emptyMessage="#{msgs.ListaContatoVazio}"
+							value="#{cadastroEmpresaMB.telefonesUsuario}"
+							paginatorAlwaysVisible="false" var="telefone"
+							sortBy="#{telefone.idTelefone}" sortOrder="descending"
+							editable="true" rowKey="#{telefone.idTelefone}">
+
+							<p:column headerText="#{msgs.Telefone}">
+							</p:column>
+							<p:column headerText="#{msgs.TelefoneTipo}">
+							</p:column>
+
+							<p:column style="width:55px">
+								<p:rowEditor />
+							</p:column>
+
+							<p:column style="width:55px">
+								<p:commandButton icon="fa fa-trash" />
+							</p:column>
+
 						</p:dataTable>
 					</p:tab>
 				</p:tabView>

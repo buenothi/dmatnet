@@ -75,7 +75,6 @@ public class GerarUsuarioMaster extends HttpServlet {
 
 				EmailEntity emailPrincipal = new EmailEntity();
 				emailPrincipal.setNomeEmail("bueno_thiago@outlook.com");
-				emailPrincipal.setTipoEmail("comercial");
 				List<EmailEntity> emails = new ArrayList<>();
 				emails.add(emailPrincipal);
 

@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
@@ -19,7 +21,10 @@ public class EmailEntity implements Serializable {
 
 	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
 	private String nomeEmail;
-	private String tipoEmail;
+	
+	@ManyToOne
+	@JoinColumn(name = "EMAILTIPO_ID")
+	private EmailTipoEntity tipoEmail;
 	private static final long serialVersionUID = 1L;
 
 	public EmailEntity() {
@@ -42,12 +47,12 @@ public class EmailEntity implements Serializable {
 		this.nomeEmail = nomeEmail.toUpperCase();
 	}
 
-	public String getTipoEmail() {
-		return this.tipoEmail;
+	public EmailTipoEntity getTipoEmail() {
+		return tipoEmail;
 	}
 
-	public void setTipoEmail(String tipoEmail) {
-		this.tipoEmail = tipoEmail.toUpperCase();
+	public void setTipoEmail(EmailTipoEntity tipoEmail) {
+		this.tipoEmail = tipoEmail;
 	}
 
 	public static long getSerialversionuid() {

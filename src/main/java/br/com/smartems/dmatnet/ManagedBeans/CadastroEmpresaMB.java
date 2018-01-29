@@ -120,6 +120,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private List<EnderecoEntity> enderecosUsuarioHistorico;
 	private TelefoneEntity telefoneUsuario;
 	private List<TelefoneEntity> telefonesUsuario;
+	private EmailEntity emailUsuario;
 	private List<EmailEntity> emailsUsuario;
 	private Set<EmpresaGrupoEntity> gruposGerenciados;
 	private Set<EmpresaEntity> empresasGerenciadas;
@@ -569,6 +570,17 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setTelefonesUsuario(List<TelefoneEntity> telefonesUsuario) {
 		this.telefonesUsuario = telefonesUsuario;
+	}
+
+	public EmailEntity getEmailUsuario() {
+		if (this.emailUsuario == null) {
+			this.emailUsuario = new EmailEntity();
+		}
+		return emailUsuario;
+	}
+
+	public void setEmailUsuario(EmailEntity emailUsuario) {
+		this.emailUsuario = emailUsuario;
 	}
 
 	public List<EmailEntity> getEmailsUsuario() {
