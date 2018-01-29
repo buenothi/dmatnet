@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbl_telefoneTipo")
-public class TelefoneTipo implements Serializable {
+public class TelefoneTipoEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +18,7 @@ public class TelefoneTipo implements Serializable {
 	private String tipo;
 	private static final long serialVersionUID = 1L;
 
-	public TelefoneTipo() {
+	public TelefoneTipoEntity() {
 		super();
 	}
 

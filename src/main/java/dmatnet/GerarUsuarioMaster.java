@@ -68,7 +68,6 @@ public class GerarUsuarioMaster extends HttpServlet {
 
 				TelefoneEntity telefone = new TelefoneEntity();
 				telefone.setNumeroTelefone("11974802701");
-				telefone.setTipoTelefone("celular");
 				List<TelefoneEntity> telefones = new ArrayList<>();
 				telefones.add(telefone);
 
