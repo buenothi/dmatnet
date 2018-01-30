@@ -118,150 +118,188 @@
 
 		<p:tab title="#{msgs.Endereco}">
 			<p:panel header="#{msgs.Endereco}" closable="false">
-				<dmat:enderecoComposite>
+				<dmat:enderecoComposite id="dmatEnderecoContato"
+					enderecoRendered="true"
+					logradouroTipo="#{cadastroEmpresaMB.enderecoUsuarioAtual.logradouro.nomeLogradouro}"
+					logradouro="#{cadastroEmpresaMB.enderecoUsuarioAtual.logradouro}"
+					logradouroNome="#{cadastroEmpresaMB.enderecoUsuarioAtual.logradouroNome}"
+					logradouroNumero="#{cadastroEmpresaMB.enderecoUsuarioAtual.logradouroNumero}"
+					logradouroComplemento="#{cadastroEmpresaMB.enderecoUsuarioAtual.logradouroComplemento}"
+					bairro="#{cadastroEmpresaMB.enderecoUsuarioAtual.bairro}"
+					cep="#{cadastroEmpresaMB.enderecoUsuarioAtual.cep}"
+					caixaPostal="#{cadastroEmpresaMB.enderecoUsuarioAtual.caixaPostal}"
+					cidade="#{cadastroEmpresaMB.enderecoUsuarioAtual.cidade}"
+					estado="#{cadastroEmpresaMB.enderecoUsuarioAtual.estado}"
+					dataCadastro="#{cadastroEmpresaMB.enderecoUsuarioAtual.dataInicioEndereco}"
+					enderecoHistorico="#{cadastroEmpresaMB.enderecosUsuarioHistorico}"
+					ajaxComponentRender="@this"
+					disabledEditar="#{cadastroEmpresaMB.btnEnderecoUsuarioEditarDesativado}"
+					actionListenerEditar="#{cadastroEmpresaMB.editarEnderecoUsuario}"
+					enderecoEditarRender="#{cadastroEmpresaMB.enderecoUsuarioEditarRender}"
+					updateEditar="formModulos"
+					disabledCancelar="#{cadastroEmpresaMB.btnEnderecoUsuarioCancelarDesativado}"
+					actionListenerCancelar="#{cadastroEmpresaMB.cancelarEnderecoUsuario}"
+					updateCancelar="formModulos"
+					disabledSalvar="#{cadastroEmpresaMB.btnEnderecoUsuarioSalvarDesativado}"
+					actionListenerSalvar="#{cadastroEmpresaMB.salvarEnderecoUsuario}"
+					updateSalvar="formModulos"
+					disabledNovo="#{cadastroEmpresaMB.btnEnderecoUsuarioNovoDesativado}"
+					actionListenerNovo="#{cadastroEmpresaMB.novoEnderecoUsuario}"
+					updateNovo="formModulos"
+					disabledExcluir="#{cadastroEmpresaMB.btnEnderecoUsuarioExcluirDesativado}"
+					actionListenerExcluir="#{cadastroEmpresaMB.excluirEnderecoUsuario}"
+					updateExcluir="formModulos"
+					renderedBtnExcluir="#{cadastroEmpresaMB.btnEnderecoEmpresaExcluirRender}"
+					messageConfirmaExcluir="#{msgs.DeletarEnderecoUsuario}"
+					messageHeaderExcluir="#{msgs.Confirmar}"
+					messageLabelExcluir="#{msgs.Excluir}">
+
+					<p:commandButton icon="fa fa-trash"
+						actionListener="#{cadastroEmpresaMB.excluirEnderecoDoHistoricoUsuario(endereco)}"
+						update="formModulos" immediate="true">
+						<f:setPropertyActionListener value="#{endereco}"
+							target="#{cadastroEmpresaMB.enderecoUsuarioExcluir}" />
+						<p:confirm header="#{msgs.Confirmar}"
+							message="#{msgs.DeletarEnderecoEmpresa}" icon="ui-icon-alert" />
+					</p:commandButton>
 				</dmat:enderecoComposite>
 			</p:panel>
 		</p:tab>
 
 		<p:tab title="#{msgs.ContatoUsuario}">
-			<p:panel header="#{msgs.ContatoUsuario}" closable="false">
-				<p:tabView>
-					<p:tab title="#{msgs.Telefone}">
-						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-							<p:outputLabel value="#{msgs.Telefone}" />
-							<p:inputMask id="ipmTel" mask="+ 99 (99) 9999-9999"
-								size="22"
-								value="#{cadastroEmpresaMB.telefoneUsuario.numeroTelefone}" />
-							<p:outputLabel value="#{msgs.TelefoneTipo}" />
-							<p:selectOneMenu style="width:100%"
-								value="#{cadastroEmpresaMB.telefoneUsuario.tipoTelefone}"
-								effect="fade" converter="telefoneTipoConverter">
-								<f:selectItems value="#{telefoneTipoMB.telefonesTipos}"
-									var="telefoneTipo" itemLabel="#{telefoneTipo.tipo}"
-									itemValue="#{telefoneTipo}" />
-							</p:selectOneMenu>
+			<p:panel header="#{msgs.Telefone}" closable="false">
+				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+					<p:outputLabel value="#{msgs.Telefone}" />
+					<p:inputMask id="ipmTel" mask="+ 99 (99) 9999-9999" size="22"
+						value="#{cadastroEmpresaMB.telefoneUsuario.numeroTelefone}" />
+					<p:outputLabel value="#{msgs.TelefoneTipo}" />
+					<p:selectOneMenu style="width:100%"
+						value="#{cadastroEmpresaMB.telefoneUsuario.tipoTelefone}"
+						effect="fade" converter="telefoneTipoConverter">
+						<f:selectItems value="#{telefoneTipoMB.telefonesTipos}"
+							var="telefoneTipo" itemLabel="#{telefoneTipo.tipo}"
+							itemValue="#{telefoneTipo}" />
+					</p:selectOneMenu>
 
-							<p:spacer width="100%" height="5px" />
+					<p:spacer width="100%" height="5px" />
 
-							<p:toolbar>
-								<f:facet name="left">
-									<p:commandButton value="#{msgs.Adicionar}"
-										actionListener="#{cadastroEmpresaMB.adicionarTelefoneContato}"
-										update="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
-										immediate="false" />
-									<p:commandButton value="#{msgs.Cancelar}"
-										update="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
-										immediate="true" />
-								</f:facet>
-							</p:toolbar>
-						</p:panelGrid>
+					<p:toolbar>
+						<f:facet name="left">
+							<p:commandButton value="#{msgs.Adicionar}"
+								actionListener="#{cadastroEmpresaMB.adicionarTelefoneContato}"
+								update="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario" />
+							<p:commandButton value="#{msgs.Cancelar}"
+								update="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario" />
+						</f:facet>
+					</p:toolbar>
+				</p:panelGrid>
 
-						<p:spacer width="100%" height="2px" />
+				<p:spacer width="100%" height="2px" />
 
-						<p:dataTable paginator="true" rows="5" scrollable="true"
-							styleClass="dataTable" emptyMessage="#{msgs.ListaContatoVazio}"
-							value="#{cadastroEmpresaMB.telefonesUsuario}"
-							paginatorAlwaysVisible="false" var="telefone"
-							sortBy="#{telefone.idTelefone}" sortOrder="descending"
-							editable="true" rowKey="#{telefone.idTelefone}">
+				<p:dataTable paginator="true" rows="5" scrollable="true"
+					styleClass="dataTable" emptyMessage="#{msgs.ListaContatoVazio}"
+					value="#{cadastroEmpresaMB.telefonesUsuario}"
+					paginatorAlwaysVisible="false" var="telefone"
+					sortBy="#{telefone.idTelefone}" sortOrder="descending"
+					editable="true" rowKey="#{telefone.idTelefone}">
 
-							<p:column headerText="#{msgs.Telefone}">
-								<p:cellEditor>
-									<f:facet name="output">
-										<p:outputLabel value="#{telefone.numeroTelefone}" />
-									</f:facet>
-									<f:facet name="input">
-										<p:inputMask mask="+ 99 (99) 9999-9999"
-											value="#{telefone.numeroTelefone}" style="width: 100%">
-										</p:inputMask>
-									</f:facet>
-								</p:cellEditor>
-							</p:column>
-							<p:column headerText="#{msgs.TelefoneTipo}">
-								<p:cellEditor>
-									<f:facet name="output">
-										<p:outputLabel value="#{telefone.tipoTelefone.tipo}" />
-									</f:facet>
-									<f:facet name="input">
-										<p:selectOneMenu style="width:100%"
-											value="#{telefone.tipoTelefone}"
-											converter="telefoneTipoConverter" immediate="true">
-											<f:selectItems value="#{telefoneTipoMB.telefonesTipos}" var="telefoneTipo"
-												itemLabel="#{telefoneTipo.tipo}" itemValue="#{telefoneTipo}" />
-										</p:selectOneMenu>
-									</f:facet>
-								</p:cellEditor>
-							</p:column>
+					<p:column headerText="#{msgs.Telefone}">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{telefone.numeroTelefone}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputMask mask="+ 99 (99) 9999-9999"
+									value="#{telefone.numeroTelefone}" style="width: 100%">
+								</p:inputMask>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.TelefoneTipo}">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{telefone.tipoTelefone.tipo}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:selectOneMenu style="width:100%"
+									value="#{telefone.tipoTelefone}"
+									converter="telefoneTipoConverter" immediate="true">
+									<f:selectItems value="#{telefoneTipoMB.telefonesTipos}"
+										var="telefoneTipo" itemLabel="#{telefoneTipo.tipo}"
+										itemValue="#{telefoneTipo}" />
+								</p:selectOneMenu>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
 
-							<p:column style="width:55px">
-								<p:rowEditor />
-							</p:column>
+					<p:column style="width:55px">
+						<p:rowEditor />
+					</p:column>
 
-							<p:column style="width:55px">
-								<p:commandButton icon="fa fa-trash"
-									actionListener="#{cadastroEmpresaMB.removerTelefoneContatoDaLista(telefone)}"
-									update="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario">
-									<f:setPropertyActionListener value="#{telefone}"
-										target="#{cadastroEmpresaMB.telefoneUsuarioExcluir}" />
-									<p:confirm header="#{msgs.Confirmar}" message=""
-										icon="ui-icon-alert" />
-								</p:commandButton>
-							</p:column>
+					<p:column style="width:55px">
+						<p:commandButton icon="fa fa-trash"
+							actionListener="#{cadastroEmpresaMB.removerTelefoneContatoDaLista(telefone)}"
+							update="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario">
+							<f:setPropertyActionListener value="#{telefone}"
+								target="#{cadastroEmpresaMB.telefoneUsuarioExcluir}" />
+							<p:confirm header="#{msgs.Confirmar}" message=""
+								icon="ui-icon-alert" />
+						</p:commandButton>
+					</p:column>
 
-						</p:dataTable>
+				</p:dataTable>
+			</p:panel>
+		</p:tab>
 
-					</p:tab>
+		<p:tab title="#{msgs.Email}">
+			<p:message />
+			<p:panel header="#{msgs.Email}" closable="false">
+				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+					<p:outputLabel value="#{msgs.Email}" />
+					<p:inputText id="iptEmailUsuario" size="22"
+						value="#{cadastroEmpresaMB.emailUsuario.nomeEmail}" />
 
-					<p:tab title="#{msgs.Email}">
-						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-							<p:outputLabel value="#{msgs.Email}" />
-							<p:inputText id="iptEmailUsuario" size="22"
-								value="#{cadastroEmpresaMB.emailUsuario.nomeEmail}" />
+					<p:outputLabel value="#{msgs.TelefoneTipo}" />
+					<p:selectOneMenu style="width:100%"
+						value="#{cadastroEmpresaMB.emailUsuario.tipoEmail}" effect="fade"
+						converter="emailTipoConverter">
+						<f:selectItems value="#{emailTipoMB.emailsTipos}" var="emailTipo"
+							itemLabel="#{emailTipo.tipo}" itemValue="#{emailTipo}" />
+					</p:selectOneMenu>
 
-							<p:outputLabel value="#{msgs.TelefoneTipo}" />
-							<p:selectOneMenu style="width:100%"
-								value="#{cadastroEmpresaMB.emailUsuario.tipoEmail}"
-								effect="fade" converter="emailTipoConverter">
-								<f:selectItems value="#{emailTipoMB.emailsTipos}"
-									var="emailTipo" itemLabel="#{emailTipo.tipo}"
-									itemValue="#{emailTipo}" />
-							</p:selectOneMenu>
+					<p:spacer width="100%" height="5px" />
 
-							<p:spacer width="100%" height="5px" />
+					<p:toolbar>
+						<f:facet name="left">
+							<p:commandButton value="#{msgs.Adicionar}" />
+							<p:commandButton value="#{msgs.Cancelar}" />
+						</f:facet>
+					</p:toolbar>
+				</p:panelGrid>
 
-							<p:toolbar>
-								<f:facet name="left">
-									<p:commandButton value="#{msgs.Adicionar}" />
-									<p:commandButton value="#{msgs.Cancelar}" />
-								</f:facet>
-							</p:toolbar>
-						</p:panelGrid>
+				<p:spacer width="100%" height="2px" />
 
-						<p:spacer width="100%" height="2px" />
+				<p:dataTable paginator="true" rows="5" scrollable="true"
+					styleClass="dataTable" emptyMessage="#{msgs.ListaEmailVazio}"
+					value="#{cadastroEmpresaMB.emailsUsuario}"
+					paginatorAlwaysVisible="false" var="email"
+					sortBy="#{email.idEmail}" sortOrder="descending" editable="true"
+					rowKey="#{email.idEmail}">
 
-						<p:dataTable paginator="true" rows="5" scrollable="true"
-							styleClass="dataTable" emptyMessage="#{msgs.ListaContatoVazio}"
-							value="#{cadastroEmpresaMB.telefonesUsuario}"
-							paginatorAlwaysVisible="false" var="telefone"
-							sortBy="#{telefone.idTelefone}" sortOrder="descending"
-							editable="true" rowKey="#{telefone.idTelefone}">
+					<p:column headerText="#{msgs.Email}">
+					</p:column>
+					<p:column headerText="#{msgs.EmailTipo}">
+					</p:column>
 
-							<p:column headerText="#{msgs.Telefone}">
-							</p:column>
-							<p:column headerText="#{msgs.TelefoneTipo}">
-							</p:column>
+					<p:column style="width:55px">
+						<p:rowEditor />
+					</p:column>
 
-							<p:column style="width:55px">
-								<p:rowEditor />
-							</p:column>
+					<p:column style="width:55px">
+						<p:commandButton icon="fa fa-trash" />
+					</p:column>
 
-							<p:column style="width:55px">
-								<p:commandButton icon="fa fa-trash" />
-							</p:column>
-
-						</p:dataTable>
-					</p:tab>
-				</p:tabView>
+				</p:dataTable>
 			</p:panel>
 		</p:tab>
 

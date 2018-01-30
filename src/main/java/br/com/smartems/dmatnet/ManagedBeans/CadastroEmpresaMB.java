@@ -126,6 +126,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private List<TelefoneEntity> telefonesUsuario;
 
 	private EmailEntity emailUsuario;
+	private EmailEntity emailUsuarioExcluir;
 	private List<EmailEntity> emailsUsuario;
 
 	private Set<EmpresaGrupoEntity> gruposGerenciados;
@@ -187,6 +188,16 @@ public class CadastroEmpresaMB implements Serializable {
 	private boolean isBtnEnderecoNovoDesativado = false;
 	private boolean isBtnEnderecoEmpresaExcluirDesativado = false;
 	private boolean isBtnEnderecoEmpresaExcluirRender = false;
+
+	// botões referentes à Edição do Endereço do Usuário
+
+	private boolean isEnderecoUsuarioRendered = true;
+	private boolean isBtnEnderecoUsuarioEditarDesativado = false;
+	private boolean isBtnEnderecoUsuarioCancelarDesativado = true;
+	private boolean isBtnEnderecoUsuarioSalvarDesativado = true;
+	private boolean isBtnEnderecoUsuarioNovoDesativado = false;
+	private boolean isEnderecoUsuarioEditarRender = false;
+	private boolean isBtnEnderecoUsuarioExcluirDesativado = true;
 
 	private String mascaraPessoaJuridica = "99.999.999/9999-99";
 
@@ -598,6 +609,17 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setEmailUsuario(EmailEntity emailUsuario) {
 		this.emailUsuario = emailUsuario;
+	}
+
+	public EmailEntity getEmailUsuarioExcluir() {
+		if (this.emailUsuario == null) {
+			this.emailUsuario = new EmailEntity();
+		}
+		return emailUsuarioExcluir;
+	}
+
+	public void setEmailUsuarioExcluir(EmailEntity emailUsuarioExcluir) {
+		this.emailUsuarioExcluir = emailUsuarioExcluir;
 	}
 
 	public List<EmailEntity> getEmailsUsuario() {
@@ -1037,6 +1059,66 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setBtnEnderecoEmpresaExcluirRender(boolean isBtnEnderecoEmpresaExcluirRender) {
 		this.isBtnEnderecoEmpresaExcluirRender = isBtnEnderecoEmpresaExcluirRender;
+	}
+
+	public boolean isEnderecoUsuarioRendered() {
+		return isEnderecoUsuarioRendered;
+	}
+
+	public void setEnderecoUsuarioRendered(boolean isEnderecoUsuarioRendered) {
+		this.isEnderecoUsuarioRendered = isEnderecoUsuarioRendered;
+	}
+
+	public boolean isBtnEnderecoUsuarioEditarDesativado() {
+		return isBtnEnderecoUsuarioEditarDesativado;
+	}
+
+	public void setBtnEnderecoUsuarioEditarDesativado(boolean isBtnEnderecoUsuarioEditarDesativado) {
+		this.isBtnEnderecoUsuarioEditarDesativado = isBtnEnderecoUsuarioEditarDesativado;
+	}
+
+	public boolean isBtnEnderecoUsuarioCancelarDesativado() {
+		return isBtnEnderecoUsuarioCancelarDesativado;
+	}
+
+	public void setBtnEnderecoUsuarioCancelarDesativado(boolean isBtnEnderecoUsuarioCancelarDesativado) {
+		this.isBtnEnderecoUsuarioCancelarDesativado = isBtnEnderecoUsuarioCancelarDesativado;
+	}
+
+	public boolean isBtnEnderecoUsuarioSalvarDesativado() {
+		return isBtnEnderecoUsuarioSalvarDesativado;
+	}
+
+	public void setBtnEnderecoUsuarioSalvarDesativado(boolean isBtnEnderecoUsuarioSalvarDesativado) {
+		this.isBtnEnderecoUsuarioSalvarDesativado = isBtnEnderecoUsuarioSalvarDesativado;
+	}
+
+	public boolean isBtnEnderecoUsuarioNovoDesativado() {
+		return isBtnEnderecoUsuarioNovoDesativado;
+	}
+
+	public void setBtnEnderecoUsuarioNovoDesativado(boolean isBtnEnderecoUsuarioNovoDesativado) {
+		this.isBtnEnderecoUsuarioNovoDesativado = isBtnEnderecoUsuarioNovoDesativado;
+	}
+
+	public boolean isEnderecoUsuarioEditarRender() {
+		return isEnderecoUsuarioEditarRender;
+	}
+
+	public void setEnderecoUsuarioEditarRender(boolean isEnderecoUsuarioEditarRender) {
+		this.isEnderecoUsuarioEditarRender = isEnderecoUsuarioEditarRender;
+	}
+
+	public boolean isBtnEnderecoUsuarioExcluirDesativado() {
+		return isBtnEnderecoUsuarioExcluirDesativado;
+	}
+
+	public void setBtnEnderecoUsuarioExcluirDesativado(boolean isBtnEnderecoUsuarioExcluirDesativado) {
+		this.isBtnEnderecoUsuarioExcluirDesativado = isBtnEnderecoUsuarioExcluirDesativado;
+	}
+
+	public void setBtnGrupoNovoDesativado(boolean isBtnGrupoNovoDesativado) {
+		this.isBtnGrupoNovoDesativado = isBtnGrupoNovoDesativado;
 	}
 
 	public void setTipoPessoaJuridicaSelecionada(int tipoPessoaJuridicaSelecionada) {
@@ -1851,6 +1933,18 @@ public class CadastroEmpresaMB implements Serializable {
 
 	// action dos botões de usuário empresa
 
+	public void salvarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
+
+	}
+
+	public void editarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
+
+	}
+
+	public void cancelarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
+
+	}
+
 	public void adicionarTelefoneContato(ActionEvent evt) {
 		System.out.println(this.telefoneUsuario.getNumeroTelefone());
 		TelefoneEntity novoTelefone = new TelefoneEntity();
@@ -1867,16 +1961,52 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 	}
 
-	public void salvarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
+	public void editarEnderecoUsuario(ActionEvent evt) {
+		this.isBtnEnderecoUsuarioEditarDesativado = true;
+		this.isBtnEnderecoUsuarioCancelarDesativado = false;
+		this.isBtnEnderecoUsuarioSalvarDesativado = false;
+		this.isBtnEnderecoUsuarioNovoDesativado = true;
+		this.isEnderecoUsuarioEditarRender = true;
+		this.isBtnEnderecoUsuarioExcluirDesativado = true;
 
 	}
 
-	public void editarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
+	public void cancelarEnderecoUsuario(ActionEvent evt) {
+
+		this.isBtnEnderecoUsuarioEditarDesativado = false;
+		this.isBtnEnderecoUsuarioCancelarDesativado = true;
+		this.isBtnEnderecoUsuarioSalvarDesativado = true;
+		this.isBtnEnderecoUsuarioNovoDesativado = false;
+		this.isEnderecoUsuarioEditarRender = false;
+		this.isBtnEnderecoUsuarioExcluirDesativado = false;
 
 	}
 
-	public void cancelarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
+	public void salvarEnderecoUsuario(ActionEvent evt) {
 
+		this.isBtnEnderecoUsuarioEditarDesativado = false;
+		this.isBtnEnderecoUsuarioCancelarDesativado = true;
+		this.isBtnEnderecoUsuarioSalvarDesativado = true;
+		this.isBtnEnderecoUsuarioNovoDesativado = false;
+		this.isEnderecoUsuarioEditarRender = false;
+		this.isBtnEnderecoUsuarioExcluirDesativado = false;
+
+	}
+
+	public void novoEnderecoUsuario(ActionEvent evt) {
+
+		this.isEnderecoUsuarioRendered = true;
+
+	}
+	
+	public void excluirEnderecoUsuario(ActionEvent evt) {
+
+		this.isEnderecoUsuarioRendered = true;
+
+	}
+	
+	public void excluirEnderecoDoHistoricoUsuario(EnderecoEntity endereco) {
+		
 	}
 
 	@PostConstruct
