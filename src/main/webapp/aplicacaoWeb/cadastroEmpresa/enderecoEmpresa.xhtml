@@ -10,6 +10,7 @@
 <ui:composition>
 
 	<p:panel header="#{msgs.Endereco}" closable="false">
+		<p:messages id="msEnderecoEmpresa" showDetail="true" closable="true" />
 		<dmat:enderecoComposite id="dmatEnderecoEmpresa"
 			enderecoRendered="#{cadastroEmpresaMB.enderecoRendered}"
 			logradouroTipo="#{cadastroEmpresaMB.enderecoAtual.logradouro.nomeLogradouro}"
@@ -44,7 +45,7 @@
 			renderedBtnExcluir="#{cadastroEmpresaMB.btnEnderecoEmpresaExcluirRender}"
 			messageConfirmaExcluir="#{msgs.DeletarEnderecoEmpresa}"
 			messageHeaderExcluir="#{msgs.Confirmar}"
-			messageLabelExcluir="#{msgs.Excluir}">
+			messageLabelExcluir="#{msgs.Excluir}" renderedHistorico="true">
 
 			<p:commandButton icon="fa fa-trash"
 				actionListener="#{cadastroEmpresaMB.excluirEnderecoDoHistoricoEmpresa(endereco)}"

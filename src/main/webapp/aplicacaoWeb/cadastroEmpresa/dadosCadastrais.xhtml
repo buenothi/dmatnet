@@ -10,7 +10,7 @@
 <ui:composition>
 
 	<p:panel header="#{msgs.DadosCadastrais}" closable="false">
-
+		<p:messages id="msDadosCadastrais" showDetail="true" closable="true" />
 		<dmat:barraBotoesComposite id="barraBotoesDadosCadastrais"
 			disabledEditar="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}"
 			actionListenerEditar="#{cadastroEmpresaMB.editarDadosCadastraisEmpresa}"

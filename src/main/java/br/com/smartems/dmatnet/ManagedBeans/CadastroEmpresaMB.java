@@ -191,7 +191,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	// botões referentes à Edição do Endereço do Usuário
 
-	private boolean isEnderecoUsuarioRendered = true;
+	private boolean isEnderecoUsuarioRendered = false;
 	private boolean isBtnEnderecoUsuarioEditarDesativado = false;
 	private boolean isBtnEnderecoUsuarioCancelarDesativado = true;
 	private boolean isBtnEnderecoUsuarioSalvarDesativado = true;
@@ -1968,45 +1968,71 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isBtnEnderecoUsuarioNovoDesativado = true;
 		this.isEnderecoUsuarioEditarRender = true;
 		this.isBtnEnderecoUsuarioExcluirDesativado = true;
-
 	}
 
 	public void cancelarEnderecoUsuario(ActionEvent evt) {
-
 		this.isBtnEnderecoUsuarioEditarDesativado = false;
 		this.isBtnEnderecoUsuarioCancelarDesativado = true;
 		this.isBtnEnderecoUsuarioSalvarDesativado = true;
 		this.isBtnEnderecoUsuarioNovoDesativado = false;
 		this.isEnderecoUsuarioEditarRender = false;
 		this.isBtnEnderecoUsuarioExcluirDesativado = false;
-
+		this.renderizarEnderecoUsuario();
+		this.renderizarBtnEnderecoUsuarioExcluir();
 	}
 
 	public void salvarEnderecoUsuario(ActionEvent evt) {
-
 		this.isBtnEnderecoUsuarioEditarDesativado = false;
 		this.isBtnEnderecoUsuarioCancelarDesativado = true;
 		this.isBtnEnderecoUsuarioSalvarDesativado = true;
 		this.isBtnEnderecoUsuarioNovoDesativado = false;
 		this.isEnderecoUsuarioEditarRender = false;
 		this.isBtnEnderecoUsuarioExcluirDesativado = false;
-
+		this.renderizarEnderecoUsuario();
+		this.renderizarBtnEnderecoUsuarioExcluir();
 	}
 
 	public void novoEnderecoUsuario(ActionEvent evt) {
-
+		this.usuarioAtual = new UsuarioEntity();
 		this.isEnderecoUsuarioRendered = true;
-
+		this.isBtnEnderecoUsuarioEditarDesativado = true;
+		this.isBtnEnderecoUsuarioCancelarDesativado = false;
+		this.isBtnEnderecoUsuarioSalvarDesativado = false;
+		this.isBtnEnderecoUsuarioNovoDesativado = true;
+		this.isEnderecoUsuarioEditarRender = true;
+		this.isBtnEnderecoUsuarioExcluirDesativado = true;
 	}
-	
+
+	private void renderizarEnderecoUsuario() {
+		try {
+			if (this.usuarioAtual.getIdPessoa() > 0) {
+				this.isEnderecoUsuarioRendered = true;
+			} else {
+				this.isEnderecoUsuarioRendered = false;
+			}
+		} catch (NullPointerException excp) {
+			this.isEnderecoUsuarioRendered = false;
+		}
+	}
+
+	private void renderizarBtnEnderecoUsuarioExcluir() {
+		try {
+			if (this.usuarioAtual.getEnderecos().isEmpty()) {
+				this.isBtnEnderecoUsuarioExcluirDesativado = true;
+			} else {
+				this.isBtnEnderecoUsuarioExcluirDesativado = false;
+			}
+		} catch (NullPointerException excp) {
+			this.isBtnEnderecoUsuarioExcluirDesativado = true;
+		}
+	}
+
 	public void excluirEnderecoUsuario(ActionEvent evt) {
-
 		this.isEnderecoUsuarioRendered = true;
-
 	}
-	
+
 	public void excluirEnderecoDoHistoricoUsuario(EnderecoEntity endereco) {
-		
+
 	}
 
 	@PostConstruct

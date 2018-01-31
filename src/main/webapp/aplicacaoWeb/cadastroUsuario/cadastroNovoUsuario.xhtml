@@ -13,6 +13,7 @@
 
 		<p:tab title="#{msgs.DadosUsuario}">
 			<p:panel header="#{msgs.DadosUsuario}" closable="false">
+				<p:messages id="msDadosUsuarios" showDetail="true" closable="true" />
 				<p:panelGrid id="dadosUsuario" columns="2"
 					styleClass="tabelaSemBorda">
 					<p:outputLabel value="#{msgs.DataCadastro}" />
@@ -33,6 +34,7 @@
 
 		<p:tab title="#{msgs.DocumentosPessoaFisica}">
 			<p:panel header="#{msgs.DocumentosPessoaFisica}" closable="false">
+				<p:messages id="msDocumentosContato" showDetail="true" closable="true" />
 				<p:tabView>
 					<p:tab title="RIC">
 						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
@@ -118,8 +120,9 @@
 
 		<p:tab title="#{msgs.Endereco}">
 			<p:panel header="#{msgs.Endereco}" closable="false">
+				<p:messages id="msEndereco" showDetail="true" closable="true" />
 				<dmat:enderecoComposite id="dmatEnderecoContato"
-					enderecoRendered="true"
+					enderecoRendered="#{cadastroEmpresaMB.enderecoUsuarioRendered}"
 					logradouroTipo="#{cadastroEmpresaMB.enderecoUsuarioAtual.logradouro.nomeLogradouro}"
 					logradouro="#{cadastroEmpresaMB.enderecoUsuarioAtual.logradouro}"
 					logradouroNome="#{cadastroEmpresaMB.enderecoUsuarioAtual.logradouroNome}"
@@ -136,38 +139,31 @@
 					disabledEditar="#{cadastroEmpresaMB.btnEnderecoUsuarioEditarDesativado}"
 					actionListenerEditar="#{cadastroEmpresaMB.editarEnderecoUsuario}"
 					enderecoEditarRender="#{cadastroEmpresaMB.enderecoUsuarioEditarRender}"
-					updateEditar="formModulos"
+					updateEditar="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
 					disabledCancelar="#{cadastroEmpresaMB.btnEnderecoUsuarioCancelarDesativado}"
 					actionListenerCancelar="#{cadastroEmpresaMB.cancelarEnderecoUsuario}"
-					updateCancelar="formModulos"
+					updateCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
 					disabledSalvar="#{cadastroEmpresaMB.btnEnderecoUsuarioSalvarDesativado}"
 					actionListenerSalvar="#{cadastroEmpresaMB.salvarEnderecoUsuario}"
-					updateSalvar="formModulos"
+					updateSalvar="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
 					disabledNovo="#{cadastroEmpresaMB.btnEnderecoUsuarioNovoDesativado}"
 					actionListenerNovo="#{cadastroEmpresaMB.novoEnderecoUsuario}"
-					updateNovo="formModulos"
+					updateNovo="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
 					disabledExcluir="#{cadastroEmpresaMB.btnEnderecoUsuarioExcluirDesativado}"
 					actionListenerExcluir="#{cadastroEmpresaMB.excluirEnderecoUsuario}"
-					updateExcluir="formModulos"
+					updateExcluir="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
 					renderedBtnExcluir="#{cadastroEmpresaMB.btnEnderecoEmpresaExcluirRender}"
 					messageConfirmaExcluir="#{msgs.DeletarEnderecoUsuario}"
 					messageHeaderExcluir="#{msgs.Confirmar}"
 					messageLabelExcluir="#{msgs.Excluir}">
-
-					<p:commandButton icon="fa fa-trash"
-						actionListener="#{cadastroEmpresaMB.excluirEnderecoDoHistoricoUsuario(endereco)}"
-						update="formModulos" immediate="true">
-						<f:setPropertyActionListener value="#{endereco}"
-							target="#{cadastroEmpresaMB.enderecoUsuarioExcluir}" />
-						<p:confirm header="#{msgs.Confirmar}"
-							message="#{msgs.DeletarEnderecoEmpresa}" icon="ui-icon-alert" />
-					</p:commandButton>
+					
 				</dmat:enderecoComposite>
 			</p:panel>
 		</p:tab>
 
 		<p:tab title="#{msgs.ContatoUsuario}">
 			<p:panel header="#{msgs.Telefone}" closable="false">
+				<p:messages id="msContato" showDetail="true" closable="true" />
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 					<p:outputLabel value="#{msgs.Telefone}" />
 					<p:inputMask id="ipmTel" mask="+ 99 (99) 9999-9999" size="22"
@@ -252,8 +248,8 @@
 		</p:tab>
 
 		<p:tab title="#{msgs.Email}">
-			<p:message />
 			<p:panel header="#{msgs.Email}" closable="false">
+				<p:messages id="msEmail" showDetail="true" closable="true" />
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 					<p:outputLabel value="#{msgs.Email}" />
 					<p:inputText id="iptEmailUsuario" size="22"
