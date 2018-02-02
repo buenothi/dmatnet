@@ -12,4 +12,5 @@ public interface UsuarioFacadeLocal extends AbstractFacade<UsuarioEntity>{
 	public abstract UsuarioEntity logarUsuario(String login, String senha);
 	public abstract List<UsuarioEntity> listarUsuariosFilhos(UsuarioEntity usuarioPai);
 	public abstract String gerarNovaSenha(UsuarioEntity usuario);
+	public abstract UsuarioEntity salvarNovoUsuario(UsuarioEntity usuario);
 }

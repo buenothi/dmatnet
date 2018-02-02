@@ -59,4 +59,9 @@ public class UsuarioFacade implements UsuarioFacadeLocal {
 		return usuarioEAO.gerarNovaSenha(usuario);
 	}
 
+	@Override
+	public UsuarioEntity salvarNovoUsuario(UsuarioEntity usuario) {
+		return usuarioEAO.salvarNovoUsuario(usuario);
+	}
+
 }

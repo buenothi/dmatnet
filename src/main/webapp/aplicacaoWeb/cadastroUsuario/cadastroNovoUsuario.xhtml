@@ -34,7 +34,8 @@
 
 		<p:tab title="#{msgs.DocumentosPessoaFisica}">
 			<p:panel header="#{msgs.DocumentosPessoaFisica}" closable="false">
-				<p:messages id="msDocumentosContato" showDetail="true" closable="true" />
+				<p:messages id="msDocumentosContato" showDetail="true"
+					closable="true" />
 				<p:tabView>
 					<p:tab title="RIC">
 						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
@@ -156,7 +157,6 @@
 					messageConfirmaExcluir="#{msgs.DeletarEnderecoUsuario}"
 					messageHeaderExcluir="#{msgs.Confirmar}"
 					messageLabelExcluir="#{msgs.Excluir}">
-					
 				</dmat:enderecoComposite>
 			</p:panel>
 		</p:tab>
@@ -296,6 +296,11 @@
 					</p:column>
 
 				</p:dataTable>
+			</p:panel>
+		</p:tab>
+
+		<p:tab title="#{msgs.Empresas}">
+			<p:panel header="#{msgs.Empresas}" closable="false">
 			</p:panel>
 		</p:tab>
 
