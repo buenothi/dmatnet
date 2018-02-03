@@ -10,7 +10,8 @@
 <ui:composition>
 	<h:panelGroup>
 		<p:commandButton icon="fa fa-plus" value="#{msgs.NovoUsuario}"
-			onclick="PF('dlgCriarUsuario').show()" />
+			oncomplete="PF('dlgCriarUsuario').show()"
+			actionListener="#{cadastroEmpresaMB.novoUsuarioNaEmpresaSelecionada}" />
 	</h:panelGroup>
 
 	<p:spacer height="1px" width="100%" />
@@ -54,8 +55,9 @@
 	</h:panelGrid>
 
 	<p:dialog widgetVar="dlgCriarUsuario" resizable="false" modal="true"
-		width="1000" header="#{msgs.NovoUsuario}" responsive="false" 
-		style="padding:10px" showEffect="fade" hideEffect="fade">
+		width="1000" header="#{msgs.NovoUsuario}" responsive="false"
+		style="padding:10px" showEffect="fade" hideEffect="fade"
+		onHide="PF('wzdUsuario').loadStep(PF('wzdUsuario').cfg.steps[0], true);" >
 		<ui:include
 			src="/aplicacaoWeb/cadastroUsuario/cadastroNovoUsuario.xhtml" />
 	</p:dialog>

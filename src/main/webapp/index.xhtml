@@ -19,7 +19,7 @@
 
 		<p:dialog id="dlgLogin" header="#{msgs.BemVindo}" widgetVar="dlgLogin"
 			draggable="false" closable="false" resizable="false"
-			responsive="true" modal="true">
+			responsive="true" modal="false" showEffect="fade">
 			<p:focus context="dlgLogin" />
 			<h:panelGrid columns="2">
 				<h:graphicImage value="/resources/images/Logo SMARTEMS.jpg" />
@@ -37,6 +37,18 @@
 				</h:panelGrid>
 			</h:panelGrid>
 		</p:dialog>
+
+		<h:panelGroup layout="block"
+			style="position:absolute; right: 30px; bottom:30px">
+			<h:panelGrid columns="1">
+				<h:outputLabel value="developed by"
+					style="font-size:x-small; font-family:Sans-serif; color:white; font-weight: bold" />
+				<h:outputLink value="http://www.lifesafety.eng.br" target="_blank">
+					<h:graphicImage value="/resources/images/LFLogo.jpg" width="130" />
+				</h:outputLink>
+			</h:panelGrid>
+		</h:panelGroup>
+
 	</h:form>
 </h:body>
 </html>

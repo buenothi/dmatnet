@@ -131,7 +131,12 @@ public class CadastroEmpresaMB implements Serializable {
 
 	private Set<EmpresaGrupoEntity> gruposGerenciados;
 	private Set<EmpresaEntity> empresasGerenciadas;
-
+	
+	private DualListModel<EmpresaEntity> empresasUsuario;
+	private List<EmpresaEntity> empresasDisponiveisUsuario;
+	private List<EmpresaEntity> empresasAtribuidasUsuario;
+	
+	
 	// barra das tabs em cadastro de empresa
 
 	private boolean isTabDadosCadastraisDesativado = false;
@@ -653,6 +658,39 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setEmpresasGerenciadas(Set<EmpresaEntity> empresasGerenciadas) {
 		this.empresasGerenciadas = empresasGerenciadas;
+	}
+
+	public DualListModel<EmpresaEntity> getEmpresasUsuario() {
+		if (this.empresasUsuario == null) {
+			this.empresasUsuario = new DualListModel<EmpresaEntity>();
+		}
+		return empresasUsuario;
+	}
+
+	public void setEmpresasUsuario(DualListModel<EmpresaEntity> empresasUsuario) {
+		this.empresasUsuario = empresasUsuario;
+	}
+
+	public List<EmpresaEntity> getEmpresasDisponiveisUsuario() {
+		if (this.empresasDisponiveisUsuario == null) {
+			this.empresasDisponiveisUsuario = new ArrayList<EmpresaEntity>();
+		}
+		return empresasDisponiveisUsuario;
+	}
+
+	public void setEmpresasDisponiveisUsuario(List<EmpresaEntity> empresasDisponiveisUsuario) {
+		this.empresasDisponiveisUsuario = empresasDisponiveisUsuario;
+	}
+
+	public List<EmpresaEntity> getEmpresasAtribuidasUsuario() {
+		if (this.empresasAtribuidasUsuario == null) {
+			this.empresasAtribuidasUsuario = new ArrayList<EmpresaEntity>();
+		}
+		return empresasAtribuidasUsuario;
+	}
+
+	public void setEmpresasAtribuidasUsuario(List<EmpresaEntity> empresasAtribuidasUsuario) {
+		this.empresasAtribuidasUsuario = empresasAtribuidasUsuario;
 	}
 
 	public boolean isTabDadosCadastraisDesativado() {
@@ -1933,6 +1971,10 @@ public class CadastroEmpresaMB implements Serializable {
 
 	// action dos botões de usuário empresa
 
+	public void novoUsuarioNaEmpresaSelecionada(ActionEvent evt) {
+		this.usuarioNovo = new UsuarioEntity();
+	}
+	
 	public void salvarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
 
 	}
