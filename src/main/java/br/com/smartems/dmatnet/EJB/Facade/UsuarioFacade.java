@@ -7,7 +7,12 @@ import javax.ejb.Local;
 import javax.ejb.Stateless;
 
 import br.com.smartems.dmatnet.EJB.dao.UsuarioEAO;
+import br.com.smartems.dmatnet.entities.pessoa.EmailEntity;
+import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
+import br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.PessoaFisicaDocumentosEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 
 @Stateless
 @Local
@@ -15,9 +20,9 @@ public class UsuarioFacade implements UsuarioFacadeLocal {
 
 	@EJB
 	private UsuarioEAO usuarioEAO;
-	
-    public UsuarioFacade() {
-    }
+
+	public UsuarioFacade() {
+	}
 
 	@Override
 	public UsuarioEntity read(long pk) {
@@ -60,8 +65,10 @@ public class UsuarioFacade implements UsuarioFacadeLocal {
 	}
 
 	@Override
-	public UsuarioEntity salvarNovoUsuario(UsuarioEntity usuario) {
-		return usuarioEAO.salvarNovoUsuario(usuario);
+	public UsuarioEntity salvarNovoUsuario(UsuarioEntity usuario, PessoaFisicaDocumentosEntity documento,
+			EnderecoEntity endereço, List<EmailEntity> emails, List<TelefoneEntity> telefones,
+			List<EmpresaEntity> empresasAtribuidas) {
+		return usuarioEAO.salvarNovoUsuario(usuario, documento, endereço, emails, telefones, empresasAtribuidas);
 	}
 
 }

@@ -9,7 +9,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
+import br.com.smartems.dmatnet.entities.pessoa.EmailEntity;
+import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
+import br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.PessoaFisicaDocumentosEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.util.CriptografiaString;
 
 @Stateless
@@ -30,8 +35,8 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 
 	public UsuarioEntity logarUsuario(String login, String senha) throws NoResultException {
 		String senhaCriptograda = cs.obterHashString(senha);
-		this.usuario = (UsuarioEntity) entityManager.createNamedQuery("Usuario.logarUsuario").setParameter("login", login)
-				.setParameter("senha", senhaCriptograda).getSingleResult();
+		this.usuario = (UsuarioEntity) entityManager.createNamedQuery("Usuario.logarUsuario")
+				.setParameter("login", login).setParameter("senha", senhaCriptograda).getSingleResult();
 		return usuario;
 
 	}
@@ -58,7 +63,9 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 		return senha;
 	}
 
-	public UsuarioEntity salvarNovoUsuario(UsuarioEntity usuario) {
+	public UsuarioEntity salvarNovoUsuario(UsuarioEntity usuario, PessoaFisicaDocumentosEntity documento,
+			EnderecoEntity endereço, List<EmailEntity> emails, List<TelefoneEntity> telefones,
+			List<EmpresaEntity> empresasAtribuidas) {
 		try {
 			if (usuario.getIdPessoa() == 0) {
 				this.create(usuario);
