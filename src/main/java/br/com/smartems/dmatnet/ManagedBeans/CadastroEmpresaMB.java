@@ -27,6 +27,7 @@ import org.primefaces.model.DualListModel;
 import br.com.smartems.dmatnet.EJB.Facade.EmpresaGrupoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.EstadoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.PessoaJuridicaFacadeLocal;
+import br.com.smartems.dmatnet.EJB.Facade.UsuarioFacadeLocal;
 import br.com.smartems.dmatnet.entities.pessoa.EmailEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity;
@@ -59,6 +60,9 @@ public class CadastroEmpresaMB implements Serializable {
 
 	@EJB
 	private EmpresaGrupoFacadeLocal empresaGrupoFachada;
+
+	@EJB
+	private UsuarioFacadeLocal usuarioFachada;
 
 	@EJB
 	private EstadoFacadeLocal estadoFachada;
@@ -131,12 +135,11 @@ public class CadastroEmpresaMB implements Serializable {
 
 	private Set<EmpresaGrupoEntity> gruposGerenciados;
 	private Set<EmpresaEntity> empresasGerenciadas;
-	
+
 	private DualListModel<EmpresaEntity> empresasUsuario;
 	private List<EmpresaEntity> empresasDisponiveisUsuario;
 	private List<EmpresaEntity> empresasAtribuidasUsuario;
-	
-	
+
 	// barra das tabs em cadastro de empresa
 
 	private boolean isTabDadosCadastraisDesativado = false;
@@ -1974,9 +1977,11 @@ public class CadastroEmpresaMB implements Serializable {
 	public void novoUsuarioNaEmpresaSelecionada(ActionEvent evt) {
 		this.usuarioNovo = new UsuarioEntity();
 	}
-	
-	public void salvarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
 
+	public void salvarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
+		this.usuarioNovo = this.usuarioFachada.salvarNovoUsuario(this.usuarioNovo, this.usuarioAtual,
+				this.documentosPessoaisUsuario, this.enderecoUsuarioAtual, this.emailsUsuario, this.telefonesUsuario,
+				this.empresasAtribuidasUsuario);
 	}
 
 	public void editarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
@@ -1988,7 +1993,6 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void adicionarTelefoneContato(ActionEvent evt) {
-		System.out.println(this.telefoneUsuario.getNumeroTelefone());
 		TelefoneEntity novoTelefone = new TelefoneEntity();
 		novoTelefone = this.telefoneUsuario;
 		this.telefonesUsuario.add(novoTelefone);

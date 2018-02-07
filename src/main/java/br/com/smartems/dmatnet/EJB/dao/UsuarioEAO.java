@@ -1,6 +1,7 @@
 package br.com.smartems.dmatnet.EJB.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
@@ -63,11 +64,18 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 		return senha;
 	}
 
-	public UsuarioEntity salvarNovoUsuario(UsuarioEntity usuario, PessoaFisicaDocumentosEntity documento,
+	@SuppressWarnings("unchecked")
+	public UsuarioEntity salvarNovoUsuario(UsuarioEntity usuario, UsuarioEntity usuarioPai, PessoaFisicaDocumentosEntity documento,
 			EnderecoEntity endereço, List<EmailEntity> emails, List<TelefoneEntity> telefones,
 			List<EmpresaEntity> empresasAtribuidas) {
 		try {
 			if (usuario.getIdPessoa() == 0) {
+				usuario.setIdUsuarioPai(usuarioPai.getIdPessoa());
+				usuario.setDocumentosPessoais(documento);
+				usuario.getEnderecos().add(endereço);
+				usuario.setEmails(emails);
+				usuario.setTelefones(telefones);
+				usuario.setEmpresasGerenciadas((Set<EmpresaEntity>) empresasAtribuidas);
 				this.create(usuario);
 			}
 		} catch (Exception excp) {

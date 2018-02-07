@@ -65,10 +65,11 @@ public class UsuarioFacade implements UsuarioFacadeLocal {
 	}
 
 	@Override
-	public UsuarioEntity salvarNovoUsuario(UsuarioEntity usuario, PessoaFisicaDocumentosEntity documento,
-			EnderecoEntity endereço, List<EmailEntity> emails, List<TelefoneEntity> telefones,
-			List<EmpresaEntity> empresasAtribuidas) {
-		return usuarioEAO.salvarNovoUsuario(usuario, documento, endereço, emails, telefones, empresasAtribuidas);
+	public UsuarioEntity salvarNovoUsuario(UsuarioEntity usuario, UsuarioEntity usuarioPai,
+			PessoaFisicaDocumentosEntity documento, EnderecoEntity endereço, List<EmailEntity> emails,
+			List<TelefoneEntity> telefones, List<EmpresaEntity> empresasAtribuidas) {
+		return usuarioEAO.salvarNovoUsuario(usuario, usuarioPai, documento, endereço, emails, telefones,
+				empresasAtribuidas);
 	}
 
 }

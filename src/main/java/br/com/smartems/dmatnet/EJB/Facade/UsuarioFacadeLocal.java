@@ -20,7 +20,7 @@ public interface UsuarioFacadeLocal extends AbstractFacade<UsuarioEntity> {
 
 	public abstract String gerarNovaSenha(UsuarioEntity usuario);
 
-	public abstract UsuarioEntity salvarNovoUsuario(UsuarioEntity usuario, PessoaFisicaDocumentosEntity documento,
+	public abstract UsuarioEntity salvarNovoUsuario(UsuarioEntity usuario, UsuarioEntity usuarioPai, PessoaFisicaDocumentosEntity documento,
 			EnderecoEntity endereço, List<EmailEntity> emails, List<TelefoneEntity> telefones,
 			List<EmpresaEntity> empresasAtribuidas);
 }
