@@ -1979,7 +1979,7 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	public void salvarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
-		this.usuarioNovo = this.usuarioFachada.salvarNovoUsuario(this.usuarioNovo, this.usuarioAtual,
+		this.usuarioNovo = this.usuarioFachada.salvarNovoUsuario(this.usuarioNovo, this.usuarioMB.getUsuarioLogado(),
 				this.documentosPessoaisUsuario, this.enderecoUsuarioAtual, this.emailsUsuario, this.telefonesUsuario,
 				this.empresasAtribuidasUsuario);
 	}
