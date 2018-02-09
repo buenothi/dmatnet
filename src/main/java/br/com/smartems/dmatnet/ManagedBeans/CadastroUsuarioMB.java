@@ -1,8 +1,10 @@
 package br.com.smartems.dmatnet.ManagedBeans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -131,6 +133,9 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public EnderecoEntity getEnderecoUsuario() {
+		if (enderecoUsuario == null) {
+			this.enderecoUsuario = new EnderecoEntity();
+		}
 		return enderecoUsuario;
 	}
 
@@ -139,6 +144,9 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public UsuarioEntity getUsuarioAtual() {
+		if (usuarioAtual == null) {
+			this.usuarioAtual = new UsuarioEntity();
+		}
 		return usuarioAtual;
 	}
 
@@ -147,6 +155,9 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public UsuarioEntity getUsuarioNovo() {
+		if (usuarioNovo == null) {
+			this.usuarioNovo = new UsuarioEntity();
+		}
 		return usuarioNovo;
 	}
 
@@ -155,6 +166,9 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public UsuarioEntity getUsuarioExcluir() {
+		if (usuarioExcluir == null) {
+			this.usuarioExcluir = new UsuarioEntity();
+		}
 		return usuarioExcluir;
 	}
 
@@ -163,6 +177,9 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public PessoaFisicaDocumentosEntity getDocumentosPessoaisUsuario() {
+		if (documentosPessoaisUsuario == null) {
+			this.documentosPessoaisUsuario = new PessoaFisicaDocumentosEntity();
+		}
 		return documentosPessoaisUsuario;
 	}
 
@@ -171,6 +188,9 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public EnderecoEntity getEnderecoUsuarioAtual() {
+		if (enderecoUsuarioAtual == null) {
+			this.enderecoUsuarioAtual = new EnderecoEntity();
+		}
 		return enderecoUsuarioAtual;
 	}
 
@@ -183,10 +203,16 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public void setEnderecoUsuarioExcluir(EnderecoEntity enderecoUsuarioExcluir) {
+		if (enderecoUsuarioExcluir == null) {
+			this.enderecoUsuarioExcluir = new EnderecoEntity();
+		}
 		this.enderecoUsuarioExcluir = enderecoUsuarioExcluir;
 	}
 
 	public List<EnderecoEntity> getEnderecosUsuarioHistorico() {
+		if (enderecosUsuarioHistorico == null) {
+			this.enderecosUsuarioHistorico = new ArrayList<EnderecoEntity>();
+		}
 		return enderecosUsuarioHistorico;
 	}
 
@@ -195,6 +221,9 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public TelefoneEntity getTelefoneUsuario() {
+		if (telefoneUsuario == null) {
+			this.telefoneUsuario = new TelefoneEntity();
+		}
 		return telefoneUsuario;
 	}
 
@@ -203,6 +232,9 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public TelefoneEntity getTelefoneUsuarioExcluir() {
+		if (telefoneUsuarioExcluir == null) {
+			this.telefoneUsuarioExcluir = new TelefoneEntity();
+		}
 		return telefoneUsuarioExcluir;
 	}
 
@@ -211,6 +243,9 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public List<TelefoneEntity> getTelefonesUsuario() {
+		if (telefonesUsuario == null) {
+			this.telefonesUsuario = new ArrayList<TelefoneEntity>();
+		}
 		return telefonesUsuario;
 	}
 
@@ -219,6 +254,9 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public EmailEntity getEmailUsuario() {
+		if (emailUsuario == null) {
+			this.emailUsuario = new EmailEntity();
+		}
 		return emailUsuario;
 	}
 
@@ -227,6 +265,9 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public EmailEntity getEmailUsuarioExcluir() {
+		if (emailUsuarioExcluir == null) {
+			this.emailUsuarioExcluir = new EmailEntity();
+		}
 		return emailUsuarioExcluir;
 	}
 
@@ -235,6 +276,9 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public List<EmailEntity> getEmailsUsuario() {
+		if (emailsUsuario == null) {
+			this.emailsUsuario = new ArrayList<EmailEntity>();
+		}
 		return emailsUsuario;
 	}
 
@@ -243,6 +287,9 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public Set<EmpresaGrupoEntity> getGruposGerenciados() {
+		if (gruposGerenciados == null) {
+			this.gruposGerenciados = new TreeSet<EmpresaGrupoEntity>();
+		}
 		return gruposGerenciados;
 	}
 
@@ -251,6 +298,9 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public Set<EmpresaEntity> getEmpresasGerenciadas() {
+		if (empresasGerenciadas == null) {
+			this.empresasGerenciadas = new TreeSet<EmpresaEntity>();
+		}
 		return empresasGerenciadas;
 	}
 
@@ -259,6 +309,9 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public DualListModel<EmpresaEntity> getEmpresasUsuario() {
+		if (empresasUsuario == null) {
+			this.empresasUsuario = new DualListModel<EmpresaEntity>();
+		}
 		return empresasUsuario;
 	}
 
@@ -267,6 +320,9 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public List<EmpresaEntity> getEmpresasDisponiveisUsuario() {
+		if (empresasDisponiveisUsuario == null) {
+			this.empresasDisponiveisUsuario = new ArrayList<EmpresaEntity>();
+		}
 		return empresasDisponiveisUsuario;
 	}
 
@@ -275,6 +331,9 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public List<EmpresaEntity> getEmpresasAtribuidasUsuario() {
+		if (empresasAtribuidasUsuario == null) {
+			this.empresasAtribuidasUsuario = new ArrayList<EmpresaEntity>();
+		}
 		return empresasAtribuidasUsuario;
 	}
 
@@ -448,7 +507,8 @@ public class CadastroUsuarioMB implements Serializable {
 		return textoGenero;
 	}
 
-	// action dos botões Novo Usuário (cadastroNovoUsuario) dentro de dadosCadastrais
+	// action dos botões Novo Usuário (cadastroNovoUsuario) dentro de
+	// dadosCadastrais
 
 	public UsuarioFacadeLocal getUsuarioFachada() {
 		return usuarioFachada;
