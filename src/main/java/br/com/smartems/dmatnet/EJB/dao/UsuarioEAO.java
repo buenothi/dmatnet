@@ -65,14 +65,16 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 	}
 
 	@SuppressWarnings("unchecked")
-	public UsuarioEntity salvarNovoUsuario(UsuarioEntity usuario, UsuarioEntity usuarioPai, PessoaFisicaDocumentosEntity documento,
-			EnderecoEntity endereço, List<EmailEntity> emails, List<TelefoneEntity> telefones,
-			List<EmpresaEntity> empresasAtribuidas) {
+	public UsuarioEntity salvarNovoUsuario(UsuarioEntity usuario, UsuarioEntity usuarioPai,
+			PessoaFisicaDocumentosEntity documento, EnderecoEntity endereco, List<EmailEntity> emails,
+			List<TelefoneEntity> telefones, List<EmpresaEntity> empresasAtribuidas) {
 		try {
 			if (usuario.getIdPessoa() == 0) {
 				usuario.setIdUsuarioPai(usuarioPai.getIdPessoa());
 				usuario.setDocumentosPessoais(documento);
-				usuario.getEnderecos().add(endereço);
+				if (endereco != null) {
+					usuario.getEnderecos().add(endereco);
+				}
 				usuario.setEmails(emails);
 				usuario.setTelefones(telefones);
 				usuario.setEmpresasGerenciadas((Set<EmpresaEntity>) empresasAtribuidas);
