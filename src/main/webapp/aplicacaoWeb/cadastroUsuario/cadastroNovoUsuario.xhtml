@@ -22,7 +22,8 @@
 						value="#{cadastroUsuarioMB.usuarioNovo.dataCadastroPessoa}" />
 
 					<p:outputLabel value="#{msgs.Nome}" />
-					<p:inputText value="#{cadastroUsuarioMB.usuarioNovo.nome}" />
+					<p:inputText id="iptNomePessoa" size="22"
+						value="#{cadastroUsuarioMB.usuarioNovo.nome}" />
 
 					<p:outputLabel value="#{msgs.Genero}" />
 					<p:selectOneRadio value="#{cadastroUsuarioMB.usuarioNovo.genero}">
@@ -299,6 +300,18 @@
 								</p:column>
 
 							</p:dataTable>
+						</p:panel>
+					</p:tab>
+					<p:tab title="#{msgs.Login}">
+						<p:panel header="#{msgs.Login}" closable="false">
+							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+								<p:outputLabel value="#{msgs.Login}" />
+								<p:inputText id="iptLogin" size="22"
+									value="#{cadastroUsuarioMB.usuarioNovo.login}" />
+								<p:outputLabel value="#{msgs.Senha}" />
+								<p:commandButton id="btnGerarSenhaProvisoria"
+									value="#{msgs.BotaoGerarSenha}" />
+							</p:panelGrid>
 						</p:panel>
 					</p:tab>
 				</p:tabView>
