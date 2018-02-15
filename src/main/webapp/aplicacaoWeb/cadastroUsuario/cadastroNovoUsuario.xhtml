@@ -183,14 +183,20 @@
 										itemValue="#{emailTipo}" />
 								</p:selectOneMenu>
 
-								<p:spacer width="100%" height="5px" />
+								<p:outputLabel value="#{msgs.EmailPrincipal}" />
+								<p:selectBooleanButton
+									value="#{cadastroUsuarioMB.emailUsuario.emailPrincipal}"
+									onLabel="#{msgs.Sim}" offLabel="#{msgs.Nao}"
+									onIcon="ui-icon-check" offIcon="ui-icon-close" />
 
+								<p:spacer width="100%" height="5px" />
 								<p:toolbar>
 									<f:facet name="left">
 										<p:commandButton value="#{msgs.Adicionar}" />
 										<p:commandButton value="#{msgs.Cancelar}" />
 									</f:facet>
 								</p:toolbar>
+								
 							</p:panelGrid>
 
 							<p:spacer width="100%" height="2px" />

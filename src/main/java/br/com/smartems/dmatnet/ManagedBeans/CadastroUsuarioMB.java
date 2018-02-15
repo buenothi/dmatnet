@@ -546,6 +546,21 @@ public class CadastroUsuarioMB implements Serializable {
 			e.printStackTrace();
 		}
 	}
+	
+	public void adicionarEmailContato(ActionEvent evt) {
+		EmailEntity novoEmail = new EmailEntity();
+		novoEmail = this.emailUsuario;
+		this.emailsUsuario.add(novoEmail);
+		this.emailUsuario = null;
+	}
+	
+	public void removerEmailContatoDaLista(EmailEntity emailUsuario) {
+		try {
+			this.emailsUsuario.remove(emailUsuario);
+		} catch (IndexOutOfBoundsException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void editarEnderecoUsuario(ActionEvent evt) {
 		this.isBtnEnderecoUsuarioEditarDesativado = true;

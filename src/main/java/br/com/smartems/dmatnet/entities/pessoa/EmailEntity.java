@@ -21,7 +21,9 @@ public class EmailEntity implements Serializable {
 
 	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
 	private String nomeEmail;
-	
+
+	private boolean isEmailPrincipal;
+
 	@ManyToOne
 	@JoinColumn(name = "EMAILTIPO_ID")
 	private EmailTipoEntity tipoEmail;
@@ -45,6 +47,14 @@ public class EmailEntity implements Serializable {
 
 	public void setNomeEmail(String nomeEmail) {
 		this.nomeEmail = nomeEmail.toUpperCase();
+	}
+
+	public boolean isEmailPrincipal() {
+		return isEmailPrincipal;
+	}
+
+	public void setEmailPrincipal(boolean isEmailPrincipal) {
+		this.isEmailPrincipal = isEmailPrincipal;
 	}
 
 	public EmailTipoEntity getTipoEmail() {
