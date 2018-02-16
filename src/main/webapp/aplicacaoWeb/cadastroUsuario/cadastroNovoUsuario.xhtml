@@ -138,7 +138,7 @@
 					estado="#{cadastroUsuarioMB.enderecoUsuarioAtual.estado}"
 					dataCadastro="#{cadastroUsuarioMB.enderecoUsuarioAtual.dataInicioEndereco}"
 					enderecoHistorico="#{cadastroUsuarioMB.enderecosUsuarioHistorico}"
-					ajaxComponentRender="@this"
+					ajaxComponentRender="@this, formModulos:formCadEmpresa:tbwCadastroEmpresa:dmatEnderecoContato:acpEndereco:listCidade"
 					disabledEditar="#{cadastroUsuarioMB.btnEnderecoUsuarioEditarDesativado}"
 					actionListenerEditar="#{cadastroUsuarioMB.editarEnderecoUsuario}"
 					enderecoEditarRender="#{cadastroUsuarioMB.enderecoUsuarioEditarRender}"
@@ -174,7 +174,7 @@
 								<p:inputText id="iptEmailUsuario" size="22"
 									value="#{cadastroUsuarioMB.emailUsuario.nomeEmail}" />
 
-								<p:outputLabel value="#{msgs.TelefoneTipo}" />
+								<p:outputLabel value="#{msgs.EmailTipo}" />
 								<p:selectOneMenu style="width:100%"
 									value="#{cadastroUsuarioMB.emailUsuario.tipoEmail}"
 									effect="fade" converter="emailTipoConverter">
@@ -192,11 +192,14 @@
 								<p:spacer width="100%" height="5px" />
 								<p:toolbar>
 									<f:facet name="left">
-										<p:commandButton value="#{msgs.Adicionar}" />
-										<p:commandButton value="#{msgs.Cancelar}" />
+										<p:commandButton value="#{msgs.Adicionar}"
+											actionListener="#{cadastroUsuarioMB.adicionarEmailContato}"
+											update="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario" />
+										<p:commandButton value="#{msgs.Cancelar}"
+											update="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario" />
 									</f:facet>
 								</p:toolbar>
-								
+
 							</p:panelGrid>
 
 							<p:spacer width="100%" height="2px" />
@@ -209,8 +212,42 @@
 								rowKey="#{email.idEmail}">
 
 								<p:column headerText="#{msgs.Email}">
+									<p:cellEditor>
+										<f:facet name="output">
+											<p:outputLabel value="#{email.nomeEmail}" />
+										</f:facet>
+										<f:facet name="input">
+											<p:inputText value="#{email.nomeEmail}" />
+										</f:facet>
+									</p:cellEditor>
 								</p:column>
 								<p:column headerText="#{msgs.EmailTipo}">
+									<p:cellEditor>
+										<f:facet name="output">
+											<p:outputLabel value="#{email.tipoEmail.tipo}" />
+										</f:facet>
+										<f:facet name="input">
+											<p:selectOneMenu style="width:100%"
+												value="#{email.tipoEmail}" converter="emailTipoConverter"
+												immediate="true">
+												<f:selectItems value="#{emailTipoMB.emailsTipos}"
+													var="emailTipo" itemLabel="#{emailTipo.tipo}"
+													itemValue="#{emailTipo}" />
+											</p:selectOneMenu>
+										</f:facet>
+									</p:cellEditor>
+								</p:column>
+								<p:column headerText="#{msgs.EmailPrincipalTab}">
+									<p:cellEditor>
+										<f:facet name="output">
+											<p:outputLabel value="#{email.emailPrincipal}" />
+										</f:facet>
+										<f:facet name="input">
+											<p:selectBooleanButton value="#{email.emailPrincipal}"
+												onLabel="#{msgs.Sim}" offLabel="#{msgs.Nao}"
+												onIcon="ui-icon-check" offIcon="ui-icon-close" />
+										</f:facet>
+									</p:cellEditor>
 								</p:column>
 
 								<p:column style="width:55px">
@@ -224,6 +261,7 @@
 							</p:dataTable>
 						</p:panel>
 					</p:tab>
+
 					<p:tab title="#{msgs.Telefone}">
 						<p:panel header="#{msgs.Telefone}" closable="false">
 							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
