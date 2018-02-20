@@ -125,7 +125,9 @@
 			<p:panel header="#{msgs.Endereco}" closable="false">
 				<p:messages id="msEndereco" showDetail="true" closable="true" />
 				<dmat:enderecoComposite id="dmatEnderecoContato"
-					enderecoRendered="#{cadastroUsuarioMB.enderecoUsuarioRendered}"
+					enderecoRendered="true"
+					barraBotoesRendered="false"
+					renderedHistorico="false"
 					logradouroTipo="#{cadastroUsuarioMB.enderecoUsuarioAtual.logradouro.nomeLogradouro}"
 					logradouro="#{cadastroUsuarioMB.enderecoUsuarioAtual.logradouro}"
 					logradouroNome="#{cadastroUsuarioMB.enderecoUsuarioAtual.logradouroNome}"
@@ -141,9 +143,9 @@
 					ajaxComponentRender="@this, formModulos:formCadEmpresa:tbwCadastroEmpresa:dmatEnderecoContato:acpEndereco:listCidade"
 					disabledEditar="#{cadastroUsuarioMB.btnEnderecoUsuarioEditarDesativado}"
 					actionListenerEditar="#{cadastroUsuarioMB.editarEnderecoUsuario}"
-					enderecoEditarRender="#{cadastroUsuarioMB.enderecoUsuarioEditarRender}"
+					enderecoEditarRender="true"
 					updateEditar="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
-					disabledCancelar="#{cadastroUsuarioMB.btnEnderecoUsuarioCancelarDesativado}"
+					disabledCancelar="false"
 					actionListenerCancelar="#{cadastroUsuarioMB.cancelarEnderecoUsuario}"
 					updateCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
 					disabledSalvar="#{cadastroUsuarioMB.btnEnderecoUsuarioSalvarDesativado}"

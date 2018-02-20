@@ -564,7 +564,6 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void editarEnderecoUsuario(ActionEvent evt) {
 		this.isBtnEnderecoUsuarioEditarDesativado = true;
-		this.isBtnEnderecoUsuarioCancelarDesativado = false;
 		this.isBtnEnderecoUsuarioSalvarDesativado = false;
 		this.isBtnEnderecoUsuarioNovoDesativado = true;
 		this.isEnderecoUsuarioEditarRender = true;

@@ -9,6 +9,7 @@
 
 <composite:interface>
 	<composite:attribute name="enderecoRendered" />
+	<composite:attribute name="barraBotoesRendered" default="true"/>
 
 	<composite:attribute name="dataCadastro" />
 	<composite:editableValueHolder name="logradouroDataInput"
@@ -79,7 +80,7 @@
 	<composite:attribute name="messageConfirmaExcluir" />
 	<composite:attribute name="messageLabelExcluir" />
 	<composite:attribute name="messageHeaderExcluir" />
-	<composite:attribute name="renderedHistorico" />
+	<composite:attribute name="renderedHistorico" default="true"/>
 
 </composite:interface>
 
@@ -104,7 +105,8 @@
 		renderedBtnExcluir="#{cc.attrs.renderedBtnExcluir}"
 		labelExcluir="#{cc.attrs.messageLabelExcluir}"
 		headerConfirma="#{cc.attrs.messageHeaderExcluir}"
-		messageConfirma="#{cc.attrs.messageConfirmaExcluir}" />
+		messageConfirma="#{cc.attrs.messageConfirmaExcluir}" 
+		rendered="#{cc.attrs.barraBotoesRendered}"/>
 
 	<p:accordionPanel id="acpEndereco"
 		rendered="#{cc.attrs.enderecoRendered}">
@@ -241,7 +243,8 @@
 			</h:panelGroup>
 		</p:tab>
 
-		<p:tab id="tabEnderecoHistorico" title="#{msgs.Historico}" rendered="#{cc.attrs.renderedHistorico}">
+		<p:tab id="tabEnderecoHistorico" title="#{msgs.Historico}"
+			rendered="#{cc.attrs.renderedHistorico}">
 			<h:panelGrid columns="2" cellpadding="10">
 				<p:dataTable scrollable="true" styleClass="dataTable"
 					paginator="true" rows="10"

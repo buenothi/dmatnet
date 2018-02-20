@@ -72,9 +72,7 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 			if (usuario.getIdPessoa() == 0) {
 				usuario.setIdUsuarioPai(usuarioPai.getIdPessoa());
 				usuario.setDocumentosPessoais(documento);
-				if (endereco != null) {
-					usuario.getEnderecos().add(endereco);
-				}
+
 				usuario.setEmails(emails);
 				usuario.setTelefones(telefones);
 				usuario.setEmpresasGerenciadas((Set<EmpresaEntity>) empresasAtribuidas);
