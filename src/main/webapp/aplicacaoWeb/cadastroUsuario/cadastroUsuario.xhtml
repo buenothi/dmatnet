@@ -56,8 +56,9 @@
 
 	<p:dialog widgetVar="dlgCriarUsuario" resizable="false" modal="true"
 		width="1000" header="#{msgs.NovoUsuario}" style="padding:10px"
-		showEffect="fade" hideEffect="fade" position="300, 100" responsive="true"
-		onHide="PF('wzdUsuario').loadStep(PF('wzdUsuario').cfg.steps[0], true);">
+		showEffect="fade" hideEffect="fade" responsive="true" position="center"
+		onHide="PF('wzdUsuario').loadStep(PF('wzdUsuario').cfg.steps[0], true);"
+		onShow="PF('dlgCriarUsuario').initPosition()">
 		<ui:include
 			src="/aplicacaoWeb/cadastroUsuario/cadastroNovoUsuario.xhtml" />
 	</p:dialog>

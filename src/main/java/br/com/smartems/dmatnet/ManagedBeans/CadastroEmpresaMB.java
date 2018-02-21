@@ -109,8 +109,6 @@ public class CadastroEmpresaMB implements Serializable {
 	private DualListModel<EmpresaEntity> empresas;
 	private List<EmpresaGrupoEntity> grupos;
 
-	
-
 	// barra das tabs em cadastro de empresa
 
 	private boolean isTabDadosCadastraisDesativado = false;
@@ -173,6 +171,9 @@ public class CadastroEmpresaMB implements Serializable {
 	private String mascaraPessoaJuridica = "99.999.999/9999-99";
 
 	private static final long serialVersionUID = 1L;
+
+	public CadastroEmpresaMB() {
+	}
 
 	// inicio dos getters e setters
 
@@ -1308,7 +1309,6 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 	}
 
-	
 	// action dos botões de endereco empresa
 
 	public void editarEnderecoEmpresa(ActionEvent e) {
@@ -1683,8 +1683,6 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 		this.dualListEmpresasDisponiveis(this.empresasNaoAtribuidasGrupo, this.empresasAtribuidas);
 	}
-
-	
 
 	@PostConstruct
 	public void initEmpresa() {

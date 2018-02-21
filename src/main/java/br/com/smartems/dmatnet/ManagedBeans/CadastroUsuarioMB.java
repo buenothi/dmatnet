@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -33,7 +34,8 @@ public class CadastroUsuarioMB implements Serializable {
 	@ManagedProperty(value = "#{principalMB}")
 	private PrincipalMB principalMB;
 
-	private static final long serialVersionUID = 1L;
+	@ManagedProperty(value = "#{cadastroEmpresaMB}")
+	private CadastroEmpresaMB cadastroEmpresaMB;
 
 	@EJB
 	private UsuarioFacadeLocal usuarioFachada;
@@ -99,6 +101,11 @@ public class CadastroUsuarioMB implements Serializable {
 	private boolean isBtnEnderecoNovoDesativado;
 	private boolean isBtnEnderecoSalvarDesativado;
 
+	private static final long serialVersionUID = 1L;
+
+	public CadastroUsuarioMB() {
+	}
+
 	// início dos getters e setters
 
 	public UsuarioEntity getUsuario() {
@@ -122,6 +129,14 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void setPrincipalMB(PrincipalMB principalMB) {
 		this.principalMB = principalMB;
+	}
+
+	public CadastroEmpresaMB getCadastroEmpresaMB() {
+		return cadastroEmpresaMB;
+	}
+
+	public void setCadastroEmpresaMB(CadastroEmpresaMB cadastroEmpresaMB) {
+		this.cadastroEmpresaMB = cadastroEmpresaMB;
 	}
 
 	public void setUsuario(UsuarioEntity usuario) {
@@ -465,8 +480,6 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isBtnContatosSalvarDesativado = isBtnContatosSalvarDesativado;
 	}
 
-	// fim dos getters e setters
-
 	public boolean isBtnEnderecoCancelarDesativado() {
 		return isBtnEnderecoCancelarDesativado;
 	}
@@ -498,6 +511,8 @@ public class CadastroUsuarioMB implements Serializable {
 	public void setBtnEnderecoSalvarDesativado(boolean isBtnEnderecoSalvarDesativado) {
 		this.isBtnEnderecoSalvarDesativado = isBtnEnderecoSalvarDesativado;
 	}
+
+	// fim dos getters e setters
 
 	public String textoGenero(int genero) {
 		String textoGenero = "masculino";
@@ -546,14 +561,13 @@ public class CadastroUsuarioMB implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void adicionarEmailContato(ActionEvent evt) {
 		EmailEntity novoEmail = new EmailEntity();
 		novoEmail = this.emailUsuario;
 		this.emailsUsuario.add(novoEmail);
-		this.emailUsuario = null;
 	}
-	
+
 	public void removerEmailContatoDaLista(EmailEntity emailUsuario) {
 		try {
 			this.emailsUsuario.remove(emailUsuario);
@@ -635,6 +649,15 @@ public class CadastroUsuarioMB implements Serializable {
 
 	}
 
+	public void dualListEmpresasUsuario(List<EmpresaEntity> empresasDisponiveis,
+			List<EmpresaEntity> empresasAtribuidas) {
+		try {
+			this.empresasUsuario = new DualListModel<EmpresaEntity>(empresasDisponiveis, empresasAtribuidas);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	// action dos botões dentro de dadosUsuario
 
 	public void editarUsuario(ActionEvent evt) {
@@ -674,4 +697,15 @@ public class CadastroUsuarioMB implements Serializable {
 	public void salvarContatoUsuario(ActionEvent evt) {
 
 	}
+
+	@PostConstruct
+	public void initUsuario() {
+		try {
+			this.dualListEmpresasUsuario(this.cadastroEmpresaMB.getEmpresasDisponiveis(),
+					new ArrayList<EmpresaEntity>());
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

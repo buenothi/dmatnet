@@ -9,7 +9,9 @@
 
 <ui:composition>
 	<p:wizard id="wzdUsuario" widgetVar="wzdUsuario"
-		backLabel="#{msgs.Voltar}" nextLabel="#{msgs.Avancar}">
+		backLabel="#{msgs.Voltar}" nextLabel="#{msgs.Avancar}"
+		onnext="PF('dlgCriarUsuario').initPosition()"
+		onback="PF('dlgCriarUsuario').initPosition()">
 
 		<p:tab title="#{msgs.DadosUsuario}">
 			<p:panel header="#{msgs.DadosUsuario}" closable="false">
@@ -72,7 +74,7 @@
 					<p:tab title="CPF">
 						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 							<p:outputLabel value="#{msgs.NumeroCPF}" />
-							<p:inputNumber
+							<p:inputMask mask="999.999.999-99" converter="cnpjCpfConverter"
 								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.numCPF}" />
 						</p:panelGrid>
 					</p:tab>
@@ -98,7 +100,7 @@
 							<p:inputNumber
 								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.numCNH}" />
 							<p:outputLabel value="#{msgs.UFCNH}" />
-							<p:inputText
+							<p:inputText size="2"
 								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.cnhUf}" />
 							<p:outputLabel value="#{msgs.DataExpedicaoCNH}" />
 							<p:calendar locale="pt" showOn="button" showButtonPanel="true"
@@ -125,8 +127,7 @@
 			<p:panel header="#{msgs.Endereco}" closable="false">
 				<p:messages id="msEndereco" showDetail="true" closable="true" />
 				<dmat:enderecoComposite id="dmatEnderecoContato"
-					enderecoRendered="true"
-					barraBotoesRendered="false"
+					enderecoRendered="true" barraBotoesRendered="false"
 					renderedHistorico="false"
 					logradouroTipo="#{cadastroUsuarioMB.enderecoUsuarioAtual.logradouro.nomeLogradouro}"
 					logradouro="#{cadastroUsuarioMB.enderecoUsuarioAtual.logradouro}"
@@ -173,7 +174,7 @@
 						<p:panel header="#{msgs.Email}" closable="false">
 							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 								<p:outputLabel value="#{msgs.Email}" />
-								<p:inputText id="iptEmailUsuario" size="22"
+								<p:inputText id="iptEmailUsuario" size="22" immediate="true"
 									value="#{cadastroUsuarioMB.emailUsuario.nomeEmail}" />
 
 								<p:outputLabel value="#{msgs.EmailTipo}" />
