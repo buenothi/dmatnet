@@ -530,13 +530,15 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public void novoUsuarioNaEmpresaSelecionada(ActionEvent evt) {
-		this.usuarioNovo = new UsuarioEntity();
+		this.initUsuario();
 	}
 
 	public void salvarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
+		this.empresasAtribuidasUsuario = this.empresasUsuario.getTarget();
 		this.usuarioNovo = this.usuarioFachada.salvarNovoUsuario(this.usuarioNovo, this.usuarioMB.getUsuarioLogado(),
 				this.documentosPessoaisUsuario, this.enderecoUsuarioAtual, this.emailsUsuario, this.telefonesUsuario,
 				this.empresasAtribuidasUsuario);
+		this.initUsuario();
 	}
 
 	public void editarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
@@ -700,9 +702,38 @@ public class CadastroUsuarioMB implements Serializable {
 
 	@PostConstruct
 	public void initUsuario() {
+		
+		// neste ponto as variáveis devem ser limpas
+		
+		this.usuarioAtual = null;
+		this.usuarioNovo = null;
+		this.usuarioExcluir = null;
+
+		this.documentosPessoaisUsuario = null;
+
+		this.enderecoUsuarioAtual = null;
+		this.enderecoUsuarioExcluir = null;
+		this.enderecosUsuarioHistorico = null;
+
+		this.telefoneUsuario = null;
+		this.telefoneUsuarioExcluir = null;
+		this.telefonesUsuario = null;
+
+		this.emailUsuario = null;
+		this.emailUsuarioExcluir = null;
+		this.emailsUsuario = null;
+
+		this.gruposGerenciados = null;
+		this.empresasGerenciadas = null;
+
+		this.empresasUsuario = null;
+		this.empresasDisponiveisUsuario = null;
+		this.empresasAtribuidasUsuario = null;
+		
 		try {
+			this.empresasAtribuidasUsuario = new ArrayList<EmpresaEntity>();
 			this.dualListEmpresasUsuario(this.cadastroEmpresaMB.getEmpresasDisponiveis(),
-					new ArrayList<EmpresaEntity>());
+					this.empresasAtribuidasUsuario);
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}

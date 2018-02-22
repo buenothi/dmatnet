@@ -1,5 +1,6 @@
 package br.com.smartems.dmatnet.EJB.dao;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -64,7 +65,6 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 		return senha;
 	}
 
-	@SuppressWarnings("unchecked")
 	public UsuarioEntity salvarNovoUsuario(UsuarioEntity usuario, UsuarioEntity usuarioPai,
 			PessoaFisicaDocumentosEntity documento, EnderecoEntity endereco, List<EmailEntity> emails,
 			List<TelefoneEntity> telefones, List<EmpresaEntity> empresasAtribuidas) {
@@ -75,7 +75,12 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 
 				usuario.setEmails(emails);
 				usuario.setTelefones(telefones);
-				usuario.setEmpresasGerenciadas((Set<EmpresaEntity>) empresasAtribuidas);
+				try {
+					Set<EmpresaEntity> setEmpresas = new HashSet<EmpresaEntity>(empresasAtribuidas);
+					usuario.setEmpresasGerenciadas(setEmpresas);
+				} catch (NullPointerException npe) {
+					npe.printStackTrace();
+				}
 				this.create(usuario);
 			}
 		} catch (Exception excp) {
