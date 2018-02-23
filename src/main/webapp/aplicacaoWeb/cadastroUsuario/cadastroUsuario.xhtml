@@ -11,7 +11,8 @@
 	<h:panelGroup>
 		<p:commandButton icon="fa fa-plus" value="#{msgs.NovoUsuario}"
 			oncomplete="PF('dlgCriarUsuario').show()"
-			actionListener="#{cadastroUsuarioMB.novoUsuarioNaEmpresaSelecionada}" />
+			actionListener="#{cadastroUsuarioMB.novoUsuarioNaEmpresaSelecionada}"
+			update="formModulos" />
 	</h:panelGroup>
 
 	<p:spacer height="1px" width="100%" />
@@ -56,11 +57,15 @@
 
 	<p:dialog widgetVar="dlgCriarUsuario" resizable="false" modal="true"
 		width="1000" header="#{msgs.NovoUsuario}" style="padding:10px"
-		showEffect="fade" hideEffect="fade" responsive="true" position="center"
+		showEffect="fade" hideEffect="fade" responsive="true"
+		position="center"
 		onHide="PF('wzdUsuario').loadStep(PF('wzdUsuario').cfg.steps[0], true);"
-		onShow="PF('dlgCriarUsuario').initPosition()">
+		onShow="PF('dlgCriarUsuario').initPosition()"
+		rendered="#{cadastroUsuarioMB.dialogNovoUsuarioRendered}">
 		<ui:include
 			src="/aplicacaoWeb/cadastroUsuario/cadastroNovoUsuario.xhtml" />
+		<p:ajax event="close" update="formModulos"
+			listener="#{cadastroUsuarioMB.fecharDialogNovoUsuario}" />
 	</p:dialog>
 </ui:composition>
 </html>

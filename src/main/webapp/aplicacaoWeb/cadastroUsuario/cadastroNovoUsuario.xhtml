@@ -18,14 +18,18 @@
 				<p:messages id="msDadosUsuarios" showDetail="true" closable="true" />
 				<p:panelGrid id="dadosUsuario" columns="2"
 					styleClass="tabelaSemBorda">
-					<p:outputLabel value="#{msgs.DataCadastro}" />
-					<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-						pattern="dd/MM/yyyy" mask="true" size="8"
-						value="#{cadastroUsuarioMB.usuarioNovo.dataCadastroPessoa}" />
+					<p:outputLabel value="#{msgs.DataCadastro}*" />
+					<p:calendar id="calCadastroUsuario" locale="pt" showOn="button"
+						showButtonPanel="true" pattern="dd/MM/yyyy" mask="true" size="8"
+						requiredMessage="#{msgs.MensagemDataCadastroRequerida}"
+						value="#{cadastroUsuarioMB.usuarioNovo.dataCadastroPessoa}"
+						required="true" immediate="true" />
 
-					<p:outputLabel value="#{msgs.Nome}" />
+					<p:outputLabel value="#{msgs.Nome}*" />
 					<p:inputText id="iptNomePessoa" size="22"
-						value="#{cadastroUsuarioMB.usuarioNovo.nome}" />
+						value="#{cadastroUsuarioMB.usuarioNovo.nome}" required="true"
+						requiredMessage="#{msgs.MensagemNomeUsuarioRequerido}"
+						immediate="true" />
 
 					<p:outputLabel value="#{msgs.Genero}" />
 					<p:selectOneRadio value="#{cadastroUsuarioMB.usuarioNovo.genero}">
@@ -58,24 +62,30 @@
 
 					<p:tab title="RG">
 						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-							<p:outputLabel value="#{msgs.NumeroRG}" />
-							<p:inputNumber
-								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.numRG}" />
-							<p:outputLabel value="#{msgs.OrgExpedidorRG}" />
+							<p:outputLabel value="#{msgs.NumeroRG}*" />
 							<p:inputText
-								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.rgOrgExpedidor}" />
-							<p:outputLabel value="#{msgs.DataExpedicaoRG}" />
+								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.numRG}"
+								required="true" requiredMessage="#{msgs.MensagemNumRGRequerido}" />
+							<p:outputLabel value="#{msgs.OrgExpedidorRG}*" />
+							<p:inputText
+								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.rgOrgExpedidor}"
+								required="true"
+								requiredMessage="#{msgs.MensagemOrgExpRGRequerido}" />
+							<p:outputLabel value="#{msgs.DataExpedicaoRG}*" />
 							<p:calendar locale="pt" showOn="button" showButtonPanel="true"
 								pattern="dd/MM/yyyy" mask="true" size="8"
-								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.rgDataExpedicao}" />
+								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.rgDataExpedicao}"
+								required="true"
+								requiredMessage="#{msgs.MensagemDataExpedicaoRGRequerido}" />
 						</p:panelGrid>
 					</p:tab>
 
 					<p:tab title="CPF">
 						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-							<p:outputLabel value="#{msgs.NumeroCPF}" />
+							<p:outputLabel value="#{msgs.NumeroCPF}*" />
 							<p:inputMask mask="999.999.999-99" converter="cnpjCpfConverter"
-								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.numCPF}" />
+								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.numCPF}"
+								required="true" requiredMessage="#{msgs.MensagemCPFRequerido}" />
 						</p:panelGrid>
 					</p:tab>
 
@@ -173,9 +183,11 @@
 					<p:tab title="#{msgs.Email}">
 						<p:panel header="#{msgs.Email}" closable="false">
 							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-								<p:outputLabel value="#{msgs.Email}" />
+								<p:outputLabel value="#{msgs.Email}*" />
 								<p:inputText id="iptEmailUsuario" size="22" immediate="true"
-									value="#{cadastroUsuarioMB.emailUsuario.nomeEmail}" />
+									value="#{cadastroUsuarioMB.emailUsuario.nomeEmail}"
+									required="true"
+									requiredMessage="#{msgs.MensagemEmailUsuarioRequerido}" />
 
 								<p:outputLabel value="#{msgs.EmailTipo}" />
 								<p:selectOneMenu style="width:100%"
@@ -268,9 +280,11 @@
 					<p:tab title="#{msgs.Telefone}">
 						<p:panel header="#{msgs.Telefone}" closable="false">
 							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-								<p:outputLabel value="#{msgs.Telefone}" />
+								<p:outputLabel value="#{msgs.Telefone}*" />
 								<p:inputMask id="ipmTel" mask="+ 99 (99) 9999-9999" size="22"
-									value="#{cadastroUsuarioMB.telefoneUsuario.numeroTelefone}" />
+									value="#{cadastroUsuarioMB.telefoneUsuario.numeroTelefone}"
+									required="true"
+									requiredMessage="#{msgs.MensagemTelefoneUsuarioRequerido}" />
 								<p:outputLabel value="#{msgs.TelefoneTipo}" />
 								<p:selectOneMenu style="width:100%"
 									value="#{cadastroUsuarioMB.telefoneUsuario.tipoTelefone}"
@@ -399,7 +413,8 @@
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 					<p:commandButton value="#{msgs.Salvar}"
 						onclick="PF('dlgCriarUsuario').hide()"
-						actionListener="#{cadastroUsuarioMB.salvarUsuarioNaEmpresaSelecionada}">
+						actionListener="#{cadastroUsuarioMB.salvarUsuarioNaEmpresaSelecionada}"
+						update="formModulos">
 						<p:ajax
 							update="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
 							resetValues="true"

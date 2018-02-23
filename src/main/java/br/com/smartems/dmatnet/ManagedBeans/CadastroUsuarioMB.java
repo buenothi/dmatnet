@@ -69,6 +69,8 @@ public class CadastroUsuarioMB implements Serializable {
 	private DualListModel<EmpresaEntity> empresasUsuario;
 	private List<EmpresaEntity> empresasDisponiveisUsuario;
 	private List<EmpresaEntity> empresasAtribuidasUsuario;
+	
+	private boolean isDialogNovoUsuarioRendered = false;
 
 	// botões endereço de usuarios dentro de dadosCadastrais
 
@@ -356,6 +358,14 @@ public class CadastroUsuarioMB implements Serializable {
 		this.empresasAtribuidasUsuario = empresasAtribuidasUsuario;
 	}
 
+	public boolean isDialogNovoUsuarioRendered() {
+		return isDialogNovoUsuarioRendered;
+	}
+
+	public void setDialogNovoUsuarioRendered(boolean isDialogNovoUsuarioRendered) {
+		this.isDialogNovoUsuarioRendered = isDialogNovoUsuarioRendered;
+	}
+
 	public boolean isEnderecoUsuarioRendered() {
 		return isEnderecoUsuarioRendered;
 	}
@@ -531,6 +541,7 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void novoUsuarioNaEmpresaSelecionada(ActionEvent evt) {
 		this.initUsuario();
+		this.isDialogNovoUsuarioRendered = true;
 	}
 
 	public void salvarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
@@ -538,7 +549,12 @@ public class CadastroUsuarioMB implements Serializable {
 		this.usuarioNovo = this.usuarioFachada.salvarNovoUsuario(this.usuarioNovo, this.usuarioMB.getUsuarioLogado(),
 				this.documentosPessoaisUsuario, this.enderecoUsuarioAtual, this.emailsUsuario, this.telefonesUsuario,
 				this.empresasAtribuidasUsuario);
+		this.fecharDialogNovoUsuario();
 		this.initUsuario();
+	}
+	
+	public void fecharDialogNovoUsuario() {
+		this.isDialogNovoUsuarioRendered = false;
 	}
 
 	public void editarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
