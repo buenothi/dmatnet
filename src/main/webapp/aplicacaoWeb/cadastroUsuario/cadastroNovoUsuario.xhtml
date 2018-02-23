@@ -370,20 +370,23 @@
 				<p:panelGrid columns="1" styleClass="tabelaSemBorda">
 					<h:outputText
 						value="#{msgs.textoSelecionarMultiplasEmpresasUsuario}" />
-					<p:pickList id="pclEmpresasUsuario" immediate="true"
-						value="#{cadastroUsuarioMB.empresasUsuario}" var="empresa"
-						itemLabel="#{empresa.nome}" itemValue="#{empresa}"
-						converter="empresaConverter" showSourceFilter="true"
-						showTargetFilter="true" filterMatchMode="contains">
-						<f:facet name="sourceCaption">
-							<h:outputText value="#{msgs.EmpresaDisponivel}"
-								converter="stringConverter" />
-						</f:facet>
-						<f:facet name="targetCaption">
-							<h:outputText value="#{msgs.EmpresaAtribuida}"
-								converter="stringConverter" />
-						</f:facet>
-					</p:pickList>
+					<h:panelGroup style="width:100%">
+						<p:pickList id="pclEmpresasUsuario" immediate="true"
+							style="margin:0 auto"
+							value="#{cadastroUsuarioMB.empresasUsuario}" var="empresa"
+							itemLabel="#{empresa.nome}" itemValue="#{empresa}"
+							converter="empresaConverter" showSourceFilter="true"
+							showTargetFilter="true" filterMatchMode="contains">
+							<f:facet name="sourceCaption">
+								<h:outputText value="#{msgs.EmpresaDisponivel}"
+									converter="stringConverter" />
+							</f:facet>
+							<f:facet name="targetCaption">
+								<h:outputText value="#{msgs.EmpresaAtribuida}"
+									converter="stringConverter" />
+							</f:facet>
+						</p:pickList>
+					</h:panelGroup>
 				</p:panelGrid>
 			</p:panel>
 		</p:tab>
