@@ -8,9 +8,11 @@ import java.util.TreeSet;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import org.primefaces.model.DualListModel;
@@ -23,6 +25,7 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.PessoaFisicaDocument
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaGrupoEntity;
+import br.com.smartems.dmatnet.util.StringsUtilitarios;
 
 @ManagedBean
 @ViewScoped
@@ -39,6 +42,9 @@ public class CadastroUsuarioMB implements Serializable {
 
 	@EJB
 	private UsuarioFacadeLocal usuarioFachada;
+	
+	@EJB
+	private StringsUtilitarios stringUtils;
 
 	private UsuarioEntity usuario;
 	private EnderecoEntity enderecoUsuario;
@@ -544,12 +550,16 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isDialogNovoUsuarioRendered = true;
 	}
 
-	public void salvarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
+	public void salvarUsuario(ActionEvent evt) {
 		this.empresasAtribuidasUsuario = this.empresasUsuario.getTarget();
 		this.usuarioNovo = this.usuarioFachada.salvarNovoUsuario(this.usuarioNovo, this.usuarioMB.getUsuarioLogado(),
 				this.documentosPessoaisUsuario, this.enderecoUsuarioAtual, this.emailsUsuario, this.telefonesUsuario,
 				this.empresasAtribuidasUsuario);
 		this.fecharDialogNovoUsuario();
+		FacesMessage msg = new FacesMessage("Sucesso",
+				stringUtils.formatarTextoParaLeitura(this.usuarioNovo.getNome().toString())
+						+ " Atualizado com Sucesso");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
 		this.initUsuario();
 	}
 	
@@ -569,7 +579,6 @@ public class CadastroUsuarioMB implements Serializable {
 		TelefoneEntity novoTelefone = new TelefoneEntity();
 		novoTelefone = this.telefoneUsuario;
 		this.telefonesUsuario.add(novoTelefone);
-		this.telefoneUsuario = null;
 	}
 
 	public void removerTelefoneContatoDaLista(TelefoneEntity telefoneUsuario) {
@@ -683,10 +692,6 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public void cancelarUsuario(ActionEvent evt) {
-
-	}
-
-	public void salvarUsuario(ActionEvent evt) {
 
 	}
 
