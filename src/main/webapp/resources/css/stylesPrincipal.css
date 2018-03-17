@@ -322,5 +322,7 @@ a:LINK {
 }
 
 .top-aligned-columns td {
+	border: 0 solid white !important;
+	font-size: 11pt !important;
 	vertical-align: top;
 }

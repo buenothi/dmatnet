@@ -4,7 +4,9 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -27,6 +29,7 @@ import br.com.smartems.dmatnet.EJB.Facade.EstadoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.PessoaJuridicaFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.UsuarioFacadeLocal;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaDadosIsencao;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
@@ -108,6 +111,8 @@ public class CadastroEmpresaMB implements Serializable {
 
 	private DualListModel<EmpresaEntity> empresas;
 	private List<EmpresaGrupoEntity> grupos;
+	
+	private Set<UsuarioEntity> usuariosEmpresaSelecionada;
 
 	// barra das tabs em cadastro de empresa
 
@@ -454,6 +459,17 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setGrupos(List<EmpresaGrupoEntity> grupos) {
 		this.grupos = grupos;
+	}
+
+	public Set<UsuarioEntity> getUsuariosEmpresaSelecionada() {
+		if (this.usuariosEmpresaSelecionada == null) {
+			this.usuariosEmpresaSelecionada = new HashSet<UsuarioEntity>();
+		}
+		return usuariosEmpresaSelecionada;
+	}
+
+	public void setUsuariosEmpresaSelecionada(Set<UsuarioEntity> usuariosEmpresaSelecionada) {
+		this.usuariosEmpresaSelecionada = usuariosEmpresaSelecionada;
 	}
 
 	public EmpresaGrupoFacadeLocal getEmpresaGrupoFachada() {
@@ -987,6 +1003,7 @@ public class CadastroEmpresaMB implements Serializable {
 		try {
 			this.separarDadosCadastraisAtualDoHistorico((EmpresaEntity) evt.getObject());
 			this.separarEnderecoAtualDoHistorico((EmpresaEntity) evt.getObject());
+			this.usuariosEmpresaSelecionada = this.empresaSelecionada.getUsuarios();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1711,6 +1728,7 @@ public class CadastroEmpresaMB implements Serializable {
 			this.enderecosHistorico = null;
 			this.empresas = null;
 			this.grupos = null;
+			this.usuariosEmpresaSelecionada = null;
 
 			this.grupos = empresaGrupoFachada.listarGrupoEmpresas(usuarioMB.getUsuarioLogado());
 			this.empresasDisponiveis = pessoaJuridicaFachada.listarEmpresas(usuarioMB.getUsuarioLogado());

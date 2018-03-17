@@ -17,46 +17,52 @@
 
 	<p:spacer height="1px" width="100%" />
 
-	<h:panelGrid columns="2" style="display:block"
+	<p:panelGrid columns="2" style="display:block"
 		styleClass="top-aligned-columns">
-		<h:panelGroup>
+		<h:panelGroup layout="block" style="width: 289px">
 			<h:panelGrid columns="2">
 				<p:inputText style="width: 252px" />
 				<p:commandButton icon="fa fa-search"
 					style="font-size:10pt;height:31px" />
 			</h:panelGrid>
-			<p:dataList paginator="true" rows="10" paginatorAlwaysVisible="false"
-				emptyMessage="#{msgs.ListaUsuariosVazia}">
-			</p:dataList>
+			<p:dataTable scrollable="true"
+				paginator="true" rows="10" paginatorAlwaysVisible="false"
+				emptyMessage="#{msgs.ListaUsuariosVazia}" var="usuario"
+				value="#{cadastroEmpresaMB.usuariosEmpresaSelecionada}"
+				rowKey="#{usuario.idPessoa}" selectionMode="single">
+				<p:column headerText="#{msgs.Login}">
+					<p:outputLabel value="#{usuario.nome}" converter="stringConverter"/>
+				</p:column>
+			</p:dataTable>
 		</h:panelGroup>
 
 		<h:panelGroup>
 			<p:tabView id="tbwCadastroUsuario">
 
 				<p:tab title="#{msgs.DadosUsuario}">
-					
+
 				</p:tab>
-				
+
 				<p:tab title="#{msgs.DocumentosPessoaFisica}">
 
 				</p:tab>
 
 				<p:tab title="#{msgs.Endereco}">
-				
+
 				</p:tab>
 
 				<p:tab title="#{msgs.Contatos}">
-		
+
 				</p:tab>
-				
+
 				<p:tab title="#{msgs.Login}">
 				</p:tab>
-				
+
 				<p:tab title="#{msgs.Empresas}"></p:tab>
 
 			</p:tabView>
 		</h:panelGroup>
-	</h:panelGrid>
+	</p:panelGrid>
 
 	<p:dialog widgetVar="dlgCriarUsuario" resizable="false" modal="true"
 		width="1000" header="#{msgs.NovoUsuario}" style="padding:10px"

@@ -41,8 +41,8 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 	@JoinColumn(name = "empresa_ID")
 	private Set<LocalTrabalhoEntity> locais;
 
-	@ManyToMany(mappedBy = "empresasGerenciadas")
-	private List<UsuarioEntity> usuarios;
+	@ManyToMany(mappedBy = "empresasGerenciadas", fetch = FetchType.EAGER)
+	private Set<UsuarioEntity> usuarios;
 
 	@ManyToOne
 	@JoinColumn(name = "usuarioCriador_ID")
@@ -106,11 +106,11 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 		this.tipoEstabelecimento = tipoEstabelecimento;
 	}
 
-	public List<UsuarioEntity> getUsuarios() {
+	public Set<UsuarioEntity> getUsuarios() {
 		return usuarios;
 	}
 
-	public void setUsuarios(List<UsuarioEntity> usuarios) {
+	public void setUsuarios(Set<UsuarioEntity> usuarios) {
 		this.usuarios = usuarios;
 	}
 
