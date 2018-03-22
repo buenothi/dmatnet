@@ -40,17 +40,17 @@ public class EmpresaCadastroEntity implements Serializable, Cloneable {
 	private String razaoSocial;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
-			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
+			CascadeType.MERGE }, orphanRemoval = true)
 	@JoinColumn(name = "empresaFAP_ID")
 	private EmpresaFAP empresaFAP;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
-			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
+			CascadeType.MERGE }, orphanRemoval = true)
 	@JoinColumn(name = "empresaDadosIsencao_ID")
 	private EmpresaDadosIsencao empresaDadosIsencao;
 
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
-			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
+			CascadeType.MERGE }, orphanRemoval = true)
 	@JoinColumn(name = "organismoInternacional_ID")
 	private EmpresaOrganismoInternacional organismoInternacional;
 

@@ -222,13 +222,17 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		Date dataMaisRecente;
 		EmpresaCadastroEntity dadosCadastraisAtual = new EmpresaCadastroEntity();
 		if (!empresa.getCadastros().isEmpty()) {
-			dataMaisRecente = empresa.getCadastros().get(0).getDataInicioCadastro();
-			dadosCadastraisAtual = empresa.getCadastros().get(0);
-			for (EmpresaCadastroEntity dadoCadastral : empresa.getCadastros()) {
-				if (dadoCadastral.getDataInicioCadastro().compareTo(dataMaisRecente) >= 0
-						&& dadoCadastral.getDataFimCadastro() == null) {
-					dataMaisRecente = dadoCadastral.getDataInicioCadastro();
-					dadosCadastraisAtual = dadoCadastral;
+			List<EmpresaCadastroEntity> listaCadastroProvisoria = new ArrayList<EmpresaCadastroEntity>();
+			for (EmpresaCadastroEntity cadastro : empresa.getCadastros()) {
+				listaCadastroProvisoria.add(cadastro);
+			}
+			dataMaisRecente = listaCadastroProvisoria.get(0).getDataInicioCadastro();
+			dadosCadastraisAtual = listaCadastroProvisoria.get(0);
+			for (EmpresaCadastroEntity cadastro : empresa.getCadastros()) {
+				if (cadastro.getDataInicioCadastro().compareTo(dataMaisRecente) >= 0
+						&& cadastro.getDataFimCadastro() == null) {
+					dataMaisRecente = cadastro.getDataInicioCadastro();
+					dadosCadastraisAtual = cadastro;
 				}
 			}
 		}
@@ -238,14 +242,20 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 	public List<EmpresaCadastroEntity> selecionarDadosCadastraisHistorico(EmpresaCadastroEntity dadosCadastraisAtual,
 			EmpresaEntity empresaSelecionada) throws Exception {
 		List<EmpresaCadastroEntity> dadosCadastraisHistorico = new ArrayList<EmpresaCadastroEntity>();
-		empresaSelecionada.getCadastros().remove(dadosCadastraisAtual);
-		dadosCadastraisHistorico = empresaSelecionada.getCadastros();
+		if (!empresaSelecionada.getCadastros().isEmpty()) {
+			empresaSelecionada.getCadastros().remove(dadosCadastraisAtual);
+			List<EmpresaCadastroEntity> listaCadastroProvisoria = new ArrayList<EmpresaCadastroEntity>();
+			for (EmpresaCadastroEntity cadastro : empresaSelecionada.getCadastros()) {
+				listaCadastroProvisoria.add(cadastro);
+			}
+			dadosCadastraisHistorico = listaCadastroProvisoria;
+		}
 		return dadosCadastraisHistorico;
 	}
 
-	public void excluirDadoCadastral(EmpresaCadastroEntity dadoCadastral,
-			EmpresaEntity empresaSelecionada) throws Exception {
-		EmpresaEntity empresaSelecionadaAtual  = this.read(empresaSelecionada.getIdPessoa());
+	public void excluirDadoCadastral(EmpresaCadastroEntity dadoCadastral, EmpresaEntity empresaSelecionada)
+			throws Exception {
+		EmpresaEntity empresaSelecionadaAtual = this.read(empresaSelecionada.getIdPessoa());
 		if (empresaSelecionadaAtual.getCadastros().remove(dadoCadastral)) {
 			this.update(empresaSelecionadaAtual);
 		}
@@ -311,10 +321,9 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		}
 		return enderecosHistorico;
 	}
-	
-	public void excluirEnderecoEmpresa(EnderecoEntity endereco,
-			EmpresaEntity empresaSelecionada) throws Exception {
-		EmpresaEntity empresaSelecionadaAtual  = this.read(empresaSelecionada.getIdPessoa());
+
+	public void excluirEnderecoEmpresa(EnderecoEntity endereco, EmpresaEntity empresaSelecionada) throws Exception {
+		EmpresaEntity empresaSelecionadaAtual = this.read(empresaSelecionada.getIdPessoa());
 		if (empresaSelecionadaAtual.getEnderecos().remove(endereco)) {
 			this.update(empresaSelecionadaAtual);
 		}

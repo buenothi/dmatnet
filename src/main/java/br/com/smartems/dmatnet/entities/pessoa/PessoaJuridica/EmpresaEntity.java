@@ -1,7 +1,6 @@
 package br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -34,7 +33,7 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
 			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "empresa_ID")
-	private List<EmpresaCadastroEntity> cadastros;
+	private Set<EmpresaCadastroEntity> cadastros;
 
 	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
 			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
@@ -82,11 +81,11 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 		this.grupo = grupo;
 	}
 
-	public List<EmpresaCadastroEntity> getCadastros() {
+	public Set<EmpresaCadastroEntity> getCadastros() {
 		return cadastros;
 	}
 
-	public void setCadastros(List<EmpresaCadastroEntity> cadastros) {
+	public void setCadastros(Set<EmpresaCadastroEntity> cadastros) {
 		this.cadastros = cadastros;
 	}
 
