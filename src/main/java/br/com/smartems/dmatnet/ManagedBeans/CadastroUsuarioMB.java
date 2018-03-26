@@ -15,6 +15,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
+import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DualListModel;
 
 import br.com.smartems.dmatnet.EJB.Facade.UsuarioFacadeLocal;
@@ -565,6 +566,10 @@ public class CadastroUsuarioMB implements Serializable {
 	
 	public void fecharDialogNovoUsuario() {
 		this.isDialogNovoUsuarioRendered = false;
+	}
+	
+	public void onSelectionUsuario(SelectEvent evt) {
+		
 	}
 
 	public void editarUsuarioNaEmpresaSelecionada(ActionEvent evt) {

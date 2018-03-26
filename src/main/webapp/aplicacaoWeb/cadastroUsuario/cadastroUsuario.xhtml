@@ -25,13 +25,18 @@
 				<p:commandButton icon="fa fa-search"
 					style="font-size:10pt;height:31px" />
 			</h:panelGrid>
-			<p:dataTable scrollable="true"
-				paginator="true" rows="10" paginatorAlwaysVisible="false"
+			<p:dataTable scrollable="true" paginator="true" rows="10"
+				paginatorAlwaysVisible="false"
 				emptyMessage="#{msgs.ListaUsuariosVazia}" var="usuario"
 				value="#{cadastroEmpresaMB.usuariosEmpresaSelecionada}"
 				rowKey="#{usuario.idPessoa}" selectionMode="single">
+
+				<p:ajax event="rowSelect"
+					listener="#{cadastroUsuarioMB.onSelectionUsuario}"
+					update="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario" />
+
 				<p:column headerText="#{msgs.Login}">
-					<p:outputLabel value="#{usuario.nome}" converter="stringConverter"/>
+					<h:outputText value="#{usuario.nome}" converter="stringConverter" />
 				</p:column>
 			</p:dataTable>
 		</h:panelGroup>
