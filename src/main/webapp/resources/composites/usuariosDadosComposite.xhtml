@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
+
+
+<composite:interface>
+
+</composite:interface>
+
+
+<composite:implementation>
+
+	<p:panel header="#{msgs.DadosUsuario}" closable="false">
+		<p:messages id="msDadosUsuarios" showDetail="true" closable="true" />
+		<h:panelGroup id="pngUsuarioDadosCadastraisEditar" layout="block"
+			styleClass="formulario">
+			<p:panelGrid id="dadosUsuario" columns="2"
+				styleClass="tabelaSemBorda">
+				<p:outputLabel value="#{msgs.DataCadastro}*" />
+				<p:calendar id="calCadastroUsuario" locale="pt" showOn="button"
+					showButtonPanel="true" pattern="dd/MM/yyyy" mask="true" size="8"
+					requiredMessage="#{msgs.MensagemDataCadastroRequerida}"
+					value="#{cadastroUsuarioMB.usuarioNovo.dataCadastroPessoa}"
+					required="true" immediate="true" />
+
+				<p:outputLabel value="#{msgs.Nome}*" />
+				<p:inputText id="iptNomePessoa" size="22"
+					value="#{cadastroUsuarioMB.usuarioNovo.nome}" required="true"
+					requiredMessage="#{msgs.MensagemNomeUsuarioRequerido}"
+					immediate="true" />
+
+				<p:outputLabel value="#{msgs.Genero}" />
+				<p:selectOneRadio value="#{cadastroUsuarioMB.usuarioNovo.genero}">
+					<f:selectItem itemLabel="#{msgs.Masculino}" itemValue="1" />
+					<f:selectItem itemLabel="#{msgs.Feminino}" itemValue="2" />
+				</p:selectOneRadio>
+			</p:panelGrid>
+		</h:panelGroup>
+
+		<h:panelGroup id="pngUsuarioDadosCadastraisExibir" layout="block"
+			styleClass="formulario">
+		</h:panelGroup>
+	</p:panel>
+
+</composite:implementation>
+</html>

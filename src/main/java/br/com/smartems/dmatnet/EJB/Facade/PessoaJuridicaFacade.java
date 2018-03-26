@@ -1,6 +1,7 @@
 package br.com.smartems.dmatnet.EJB.Facade;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -63,7 +64,7 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 
 	public void alterarCadastroEmpresa(EmpresaEntity empresa, UsuarioEntity usuarioLogado, EmpresaFAP fap,
 			EmpresaDadosIsencao empresaDadosIsencao, EmpresaOrganismoInternacional empresaOrgI8n,
-			List<EmpresaSoftwareHouse> empresasSoftware, EmpresaCadastroEntity dadosCadastraisAtual) {
+			Set<EmpresaSoftwareHouse> empresasSoftware, EmpresaCadastroEntity dadosCadastraisAtual) {
 		pessoaJuridicaEAO.alterarCadastroEmpresa(empresa, usuarioLogado, fap, empresaDadosIsencao, empresaOrgI8n,
 				empresasSoftware, dadosCadastraisAtual);
 	}
@@ -80,7 +81,7 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
 			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap,
 			EmpresaDadosIsencao empresaDadosIsencao, EmpresaOrganismoInternacional empresaOrgI8n,
-			List<EmpresaSoftwareHouse> empresasSoftwareHouse, EmpresaEntity empresaSelecionada) throws Exception {
+			Set<EmpresaSoftwareHouse> empresasSoftwareHouse, EmpresaEntity empresaSelecionada) throws Exception {
 		pessoaJuridicaEAO.salvarDadosCadastraisEmpresa(dadosCadastraisAtual, dadosCadastraisAnterior, empresaFap,
 				empresaDadosIsencao, empresaOrgI8n, empresasSoftwareHouse, empresaSelecionada);
 	}

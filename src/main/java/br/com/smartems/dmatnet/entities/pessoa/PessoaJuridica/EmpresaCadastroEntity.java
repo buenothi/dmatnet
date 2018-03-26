@@ -2,7 +2,7 @@ package br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -57,7 +57,7 @@ public class EmpresaCadastroEntity implements Serializable, Cloneable {
 	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
 			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "empresaSoftwareHouse_ID")
-	private List<EmpresaSoftwareHouse> empresaSoftwareHouse;
+	private Set<EmpresaSoftwareHouse> empresaSoftwareHouse;
 
 	private static final long serialVersionUID = 1L;
 
@@ -170,11 +170,11 @@ public class EmpresaCadastroEntity implements Serializable, Cloneable {
 		this.organismoInternacional = organismoInternacional;
 	}
 
-	public List<EmpresaSoftwareHouse> getEmpresaSoftwareHouse() {
+	public Set<EmpresaSoftwareHouse> getEmpresaSoftwareHouse() {
 		return empresaSoftwareHouse;
 	}
 
-	public void setEmpresaSoftwareHouse(List<EmpresaSoftwareHouse> empresaSoftwareHouse) {
+	public void setEmpresaSoftwareHouse(Set<EmpresaSoftwareHouse> empresaSoftwareHouse) {
 		this.empresaSoftwareHouse = empresaSoftwareHouse;
 	}
 

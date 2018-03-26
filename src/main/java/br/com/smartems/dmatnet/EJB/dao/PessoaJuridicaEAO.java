@@ -3,7 +3,9 @@ package br.com.smartems.dmatnet.EJB.dao;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
@@ -71,7 +73,7 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 
 	public void alterarCadastroEmpresa(EmpresaEntity empresa, UsuarioEntity usuarioLogado, EmpresaFAP fap,
 			EmpresaDadosIsencao empresaDadosIsencao, EmpresaOrganismoInternacional empresaOrgI8n,
-			List<EmpresaSoftwareHouse> empresasSoftware, EmpresaCadastroEntity dadosCadastraisAtual) {
+			Set<EmpresaSoftwareHouse> empresasSoftware, EmpresaCadastroEntity dadosCadastraisAtual) {
 		empresa.setUsuarioCriador(usuarioLogado);
 		this.atribuirEmpresaFAP(fap, dadosCadastraisAtual);
 		this.atribuirEmpresaDadosIsencao(empresaDadosIsencao, dadosCadastraisAtual);
@@ -151,10 +153,10 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		return novoOrgI8n;
 	}
 
-	private void atribuirEmpresaSoftware(List<EmpresaSoftwareHouse> empresasSoftware,
+	private void atribuirEmpresaSoftware(Set<EmpresaSoftwareHouse> empresasSoftware,
 			EmpresaCadastroEntity dadosCadastraisAtual) {
 		if (empresasSoftware != null) {
-			List<EmpresaSoftwareHouse> novoEmpresasSoftware = new ArrayList<>(empresasSoftware);
+			Set<EmpresaSoftwareHouse> novoEmpresasSoftware = new HashSet<>(empresasSoftware);
 			try {
 				novoEmpresasSoftware = empresasSoftware;
 				dadosCadastraisAtual.setEmpresaSoftwareHouse(novoEmpresasSoftware);
@@ -186,7 +188,7 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
 			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap,
 			EmpresaDadosIsencao empresaDadosIsencao, EmpresaOrganismoInternacional empresaOrgI8n,
-			List<EmpresaSoftwareHouse> empresasSoftwareHouse, EmpresaEntity empresaSelecionada) throws Exception {
+			Set<EmpresaSoftwareHouse> empresasSoftwareHouse, EmpresaEntity empresaSelecionada) throws Exception {
 		if (dadosCadastraisAtual.getId() == 0) {
 			EmpresaEntity novaEmpresaSelecionada = this.read(empresaSelecionada.getIdPessoa());
 			for (EmpresaCadastroEntity dadoCadastral : novaEmpresaSelecionada.getCadastros()) {

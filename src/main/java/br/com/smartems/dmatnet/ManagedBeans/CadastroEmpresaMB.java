@@ -79,7 +79,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private EmpresaDadosIsencao empresaDadosIsencao;
 	private EmpresaOrganismoInternacional empresaOrgI8n;
 	private EmpresaSoftwareHouse empresaSoftwareHouse;
-	private List<EmpresaSoftwareHouse> empresasSoftwareHouse;
+	private Set<EmpresaSoftwareHouse> empresasSoftwareHouse;
 	private String empresaOrgI8nString;
 	private EmpresaFoto fotografiaFachadaEmpresa;
 	private EmpresaFoto fotografiaFachadaAntiga;
@@ -325,14 +325,14 @@ public class CadastroEmpresaMB implements Serializable {
 		this.empresaSoftwareHouse = empresaSoftwareHouse;
 	}
 
-	public List<EmpresaSoftwareHouse> getEmpresasSoftwareHouse() {
+	public Set<EmpresaSoftwareHouse> getEmpresasSoftwareHouse() {
 		if (this.empresasSoftwareHouse == null) {
-			this.empresasSoftwareHouse = new ArrayList<EmpresaSoftwareHouse>();
+			this.empresasSoftwareHouse = new HashSet<EmpresaSoftwareHouse>();
 		}
 		return empresasSoftwareHouse;
 	}
 
-	public void setEmpresasSoftwareHouse(List<EmpresaSoftwareHouse> empresasSoftwareHouse) {
+	public void setEmpresasSoftwareHouse(Set<EmpresaSoftwareHouse> empresasSoftwareHouse) {
 		this.empresasSoftwareHouse = empresasSoftwareHouse;
 	}
 
