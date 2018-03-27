@@ -15,11 +15,11 @@
 
 		<p:tab title="#{msgs.DadosUsuario}">
 			<p:panel header="#{msgs.DadosUsuario}" closable="false">
-				<p:messages id="msDadosUsuarios" showDetail="true" closable="true" />
+				<p:messages id="msDadosUsuariosNovo" showDetail="true" closable="true" />
 				<p:panelGrid id="dadosUsuario" columns="2"
 					styleClass="tabelaSemBorda">
 					<p:outputLabel value="#{msgs.DataCadastro}*" />
-					<p:calendar id="calCadastroUsuario" locale="pt" showOn="button"
+					<p:calendar id="calCadastroUsuarioNovo" locale="pt" showOn="button"
 						showButtonPanel="true" pattern="dd/MM/yyyy" mask="true" size="8"
 						requiredMessage="#{msgs.MensagemDataCadastroRequerida}"
 						value="#{cadastroUsuarioMB.usuarioNovo.dataCadastroPessoa}"

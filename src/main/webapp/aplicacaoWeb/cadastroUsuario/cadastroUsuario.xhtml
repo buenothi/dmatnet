@@ -33,7 +33,7 @@
 
 				<p:ajax event="rowSelect"
 					listener="#{cadastroUsuarioMB.onSelectionUsuario}"
-					update="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario" />
+					update="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcUsuarioSelecionado:pnlDadosUsuario" />
 
 				<p:column headerText="#{msgs.Login}">
 					<h:outputText value="#{usuario.nome}" converter="stringConverter" />
@@ -45,7 +45,10 @@
 			<p:tabView id="tbwCadastroUsuario">
 
 				<p:tab title="#{msgs.DadosUsuario}">
-
+					<dmat:usuariosDadosComposite id="udcUsuarioSelecionado"
+						cadastroUsuarioNome="#{cadastroUsuarioMB.usuarioSelecionado.nome}"
+						cadastroUsuarioSexo="#{cadastroUsuarioMB.usuarioSelecionado.genero}"
+						dataCadastroDadosCadastrais="#{cadastroUsuarioMB.usuarioSelecionado.dataCadastroPessoa}" />
 				</p:tab>
 
 				<p:tab title="#{msgs.DocumentosPessoaFisica}">

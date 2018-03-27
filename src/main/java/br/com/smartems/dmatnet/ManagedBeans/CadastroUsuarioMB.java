@@ -55,6 +55,7 @@ public class CadastroUsuarioMB implements Serializable {
 	private UsuarioEntity usuarioAtual;
 	private UsuarioEntity usuarioNovo;
 	private UsuarioEntity usuarioExcluir;
+	private UsuarioEntity usuarioSelecionado;
 
 	private PessoaFisicaDocumentosEntity documentosPessoaisUsuario;
 
@@ -198,6 +199,17 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void setUsuarioExcluir(UsuarioEntity usuarioExcluir) {
 		this.usuarioExcluir = usuarioExcluir;
+	}
+
+	public UsuarioEntity getUsuarioSelecionado() {
+		if (this.usuarioSelecionado == null){
+			this.usuarioSelecionado = new UsuarioEntity();			
+		}
+		return usuarioSelecionado;
+	}
+
+	public void setUsuarioSelecionado(UsuarioEntity usuarioSelecionado) {
+		this.usuarioSelecionado = usuarioSelecionado;
 	}
 
 	public PessoaFisicaDocumentosEntity getDocumentosPessoaisUsuario() {
@@ -569,7 +581,7 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 	
 	public void onSelectionUsuario(SelectEvent evt) {
-		
+		this.usuarioSelecionado = (UsuarioEntity) evt.getObject();
 	}
 
 	public void editarUsuarioNaEmpresaSelecionada(ActionEvent evt) {

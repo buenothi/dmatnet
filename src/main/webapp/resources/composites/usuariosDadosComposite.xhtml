@@ -4,8 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:composite="http://java.sun.com/jsf/composite"
-	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
+	xmlns:composite="http://java.sun.com/jsf/composite">
 
 
 <composite:interface>
@@ -13,39 +12,43 @@
 		default="true" />
 
 	<composite:attribute name="dataCadastroDadosCadastrais" />
-	<composite:editableValueHolder name="cadastroDataInput"
-		targets="form:cadastroUsuarioData" />
+	
+	<composite:attribute name="dataCadastroRequired" default="false" />
 
 	<composite:attribute name="cadastroUsuarioNome" />
 
+	<composite:attribute name="nomePessoaRequired" default="false" />
+
 	<composite:attribute name="cadastroUsuarioSexo" />
 
-	<composite:attribute name="cadastroUsuarioExibirRendered" />
+	<composite:attribute name="cadastroUsuarioExibirRendered"
+		default="false" />
 
 </composite:interface>
 
 
 <composite:implementation>
 
-	<p:panel header="#{msgs.DadosUsuario}" closable="false">
-		<p:messages id="msDadosUsuarios" showDetail="true" closable="true" />
-		<h:panelGroup id="pngUsuarioDadosCadastraisEditar" layout="block"
+	<p:panel id="pnlDadosUsuario" header="#{msgs.DadosUsuario}" closable="false">
+		
+		<h:panelGroup id="pngUsuarioCadastroEditar" layout="block"
 			styleClass="formulario"
 			rendered="#{cc.attrs.cadastroUsuarioEditarRendered}">
-			<p:panelGrid id="dadosUsuario" columns="2"
+			<p:panelGrid id="pgdDadosUsuarioEditar" columns="2"
 				styleClass="tabelaSemBorda">
 				<p:outputLabel value="#{msgs.DataCadastro}*" />
 				<p:calendar id="calCadastroUsuario" locale="pt" showOn="button"
 					showButtonPanel="true" pattern="dd/MM/yyyy" mask="true" size="8"
 					requiredMessage="#{msgs.MensagemDataCadastroRequerida}"
-					value="#{cc.attrs.dataCadastroDadosCadastrais}" required="true"
-					immediate="true" />
+					value="#{cc.attrs.dataCadastroDadosCadastrais}"
+					required="#{cc.attrs.dataCadastroRequired}"
+					immediate="#{cc.attrs.dataCadastroRequired}" />
 
 				<p:outputLabel value="#{msgs.Nome}*" />
-				<p:inputText id="iptNomePessoa" size="22"
-					value="#{cc.attrs.cadastroUsuarioNome}" required="true"
+				<p:inputText id="iptNomeUsuario" size="22"
+					value="#{cc.attrs.cadastroUsuarioNome}" required="#{cc.attrs.nomePessoaRequired}"
 					requiredMessage="#{msgs.MensagemNomeUsuarioRequerido}"
-					immediate="true" />
+					immediate="#{cc.attrs.nomePessoaRequired}" />
 
 				<p:outputLabel value="#{msgs.Genero}" />
 				<p:selectOneRadio value="#{cc.attrs.cadastroUsuarioSexo}">
@@ -56,17 +59,17 @@
 		</h:panelGroup>
 
 
-		<h:panelGroup id="pngUsuarioDadosCadastraisExibir" layout="block"
+		<h:panelGroup id="pngUsuarioCadastroExibir" layout="block"
 			styleClass="formulario"
 			rendered="#{cc.attrs.cadastroUsuarioExibirRendered}">
-			<p:panelGrid id="dadosUsuario" columns="2"
+			<p:panelGrid id="pgdDadosUsuarioExibir" columns="2"
 				styleClass="tabelaSemBorda">
 				<p:outputLabel value="#{msgs.DataCadastro}*" />
 				<p:outputLabel id="oplCadastroUsuario"
 					value="#{cc.attrs.dataCadastroDadosCadastrais}" />
 
 				<p:outputLabel value="#{msgs.Nome}*" />
-				<p:outputLabel id="oplNomePessoa" size="22"
+				<p:outputLabel id="oplNomeUsuario" size="22"
 					value="#{cc.attrs.cadastroUsuarioNome}" />
 
 				<p:outputLabel value="#{msgs.Genero}" />
