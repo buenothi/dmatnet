@@ -9,6 +9,18 @@
 
 
 <composite:interface>
+	<composite:attribute name="cadastroUsuarioEditarRendered"
+		default="true" />
+
+	<composite:attribute name="dataCadastroDadosCadastrais" />
+	<composite:editableValueHolder name="cadastroDataInput"
+		targets="form:cadastroUsuarioData" />
+
+	<composite:attribute name="cadastroUsuarioNome" />
+
+	<composite:attribute name="cadastroUsuarioSexo" />
+
+	<composite:attribute name="cadastroUsuarioExibirRendered" />
 
 </composite:interface>
 
@@ -18,33 +30,50 @@
 	<p:panel header="#{msgs.DadosUsuario}" closable="false">
 		<p:messages id="msDadosUsuarios" showDetail="true" closable="true" />
 		<h:panelGroup id="pngUsuarioDadosCadastraisEditar" layout="block"
-			styleClass="formulario">
+			styleClass="formulario"
+			rendered="#{cc.attrs.cadastroUsuarioEditarRendered}">
 			<p:panelGrid id="dadosUsuario" columns="2"
 				styleClass="tabelaSemBorda">
 				<p:outputLabel value="#{msgs.DataCadastro}*" />
 				<p:calendar id="calCadastroUsuario" locale="pt" showOn="button"
 					showButtonPanel="true" pattern="dd/MM/yyyy" mask="true" size="8"
 					requiredMessage="#{msgs.MensagemDataCadastroRequerida}"
-					value="#{cadastroUsuarioMB.usuarioNovo.dataCadastroPessoa}"
-					required="true" immediate="true" />
+					value="#{cc.attrs.dataCadastroDadosCadastrais}" required="true"
+					immediate="true" />
 
 				<p:outputLabel value="#{msgs.Nome}*" />
 				<p:inputText id="iptNomePessoa" size="22"
-					value="#{cadastroUsuarioMB.usuarioNovo.nome}" required="true"
+					value="#{cc.attrs.cadastroUsuarioNome}" required="true"
 					requiredMessage="#{msgs.MensagemNomeUsuarioRequerido}"
 					immediate="true" />
 
 				<p:outputLabel value="#{msgs.Genero}" />
-				<p:selectOneRadio value="#{cadastroUsuarioMB.usuarioNovo.genero}">
+				<p:selectOneRadio value="#{cc.attrs.cadastroUsuarioSexo}">
 					<f:selectItem itemLabel="#{msgs.Masculino}" itemValue="1" />
 					<f:selectItem itemLabel="#{msgs.Feminino}" itemValue="2" />
 				</p:selectOneRadio>
 			</p:panelGrid>
 		</h:panelGroup>
 
+
 		<h:panelGroup id="pngUsuarioDadosCadastraisExibir" layout="block"
-			styleClass="formulario">
+			styleClass="formulario"
+			rendered="#{cc.attrs.cadastroUsuarioExibirRendered}">
+			<p:panelGrid id="dadosUsuario" columns="2"
+				styleClass="tabelaSemBorda">
+				<p:outputLabel value="#{msgs.DataCadastro}*" />
+				<p:outputLabel id="oplCadastroUsuario"
+					value="#{cc.attrs.dataCadastroDadosCadastrais}" />
+
+				<p:outputLabel value="#{msgs.Nome}*" />
+				<p:outputLabel id="oplNomePessoa" size="22"
+					value="#{cc.attrs.cadastroUsuarioNome}" />
+
+				<p:outputLabel value="#{msgs.Genero}" />
+				<p:outputLabel value="#{cc.attrs.cadastroUsuarioSexo}" />
+			</p:panelGrid>
 		</h:panelGroup>
+
 	</p:panel>
 
 </composite:implementation>
