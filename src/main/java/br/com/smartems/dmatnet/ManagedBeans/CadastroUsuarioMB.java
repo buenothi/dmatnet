@@ -568,11 +568,11 @@ public class CadastroUsuarioMB implements Serializable {
 		this.usuarioNovo = this.usuarioFachada.salvarNovoUsuario(this.usuarioNovo, this.usuarioMB.getUsuarioLogado(),
 				this.documentosPessoaisUsuario, this.enderecoUsuarioAtual, this.emailsUsuario, this.telefonesUsuario,
 				this.empresasAtribuidasUsuario);
-		this.fecharDialogNovoUsuario();
 		FacesMessage msg = new FacesMessage("Sucesso",
 				stringUtils.formatarTextoParaLeitura(this.usuarioNovo.getNome().toString())
 						+ " Atualizado com Sucesso");
 		FacesContext.getCurrentInstance().addMessage(null, msg);
+		this.cadastroEmpresaMB.onSelectionEmpresa(this.cadastroEmpresaMB.getEmpresaSelecionada());
 		this.initUsuario();
 	}
 	

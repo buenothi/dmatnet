@@ -421,7 +421,7 @@
 					<p:commandButton value="#{msgs.Salvar}"
 						onclick="PF('dlgCriarUsuario').hide()"
 						actionListener="#{cadastroUsuarioMB.salvarUsuario}"
-						update="formModulos, growlPrincipal"
+						update="formModulos:formCadEmpresa:tbwCadastroEmpresa:pngCadastroUsuarioEmpresa, growlPrincipal"
 						oncomplete="PF('wzdUsuario').loadStep(PF('wzdUsuario').cfg.steps[0], true);">
 						<p:ajax
 							update="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"

@@ -111,7 +111,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	private DualListModel<EmpresaEntity> empresas;
 	private List<EmpresaGrupoEntity> grupos;
-	
+
 	private Set<UsuarioEntity> usuariosEmpresaSelecionada;
 
 	// barra das tabs em cadastro de empresa
@@ -999,10 +999,16 @@ public class CadastroEmpresaMB implements Serializable {
 		this.empresasFiltradas = null;
 	}
 
-	public void onSelectionEmpresa(SelectEvent evt) {
+	public void onSelectionEmpresa(Object obj) {
 		try {
-			this.separarDadosCadastraisAtualDoHistorico((EmpresaEntity) evt.getObject());
-			this.separarEnderecoAtualDoHistorico((EmpresaEntity) evt.getObject());
+			if (obj instanceof SelectEvent) {
+				SelectEvent evt = (SelectEvent) obj;
+				this.separarDadosCadastraisAtualDoHistorico((EmpresaEntity) evt.getObject());
+				this.separarEnderecoAtualDoHistorico((EmpresaEntity) evt.getObject());
+			} else if (obj instanceof EmpresaEntity) {
+				this.separarDadosCadastraisAtualDoHistorico((EmpresaEntity) obj);
+				this.separarEnderecoAtualDoHistorico((EmpresaEntity) obj);
+			}
 			this.usuariosEmpresaSelecionada = this.empresaSelecionada.getUsuarios();
 		} catch (Exception e) {
 			e.printStackTrace();
