@@ -8,14 +8,35 @@
 	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
 
 <ui:composition>
-	<h:panelGroup>
-		<p:commandButton icon="fa fa-plus" value="#{msgs.NovoUsuario}"
-			oncomplete="PF('dlgCriarUsuario').show()"
-			actionListener="#{cadastroUsuarioMB.novoUsuarioNaEmpresaSelecionada}"
-			update="formModulos" />
-	</h:panelGroup>
 
-	<p:spacer height="1px" width="100%" />
+	<dmat:barraBotoesComposite id="barraBotoesUsuario"
+		disabledEditar="#{cadastroUsuarioMB.btnUsuarioEditarDesativado}"
+		actionListenerEditar="#{cadastroUsuarioMB.editarUsuario}"
+		updateEditar="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcUsuarioSelecionado:pnlDadosUsuario"
+		disabledCancelar="#{cadastroUsuarioMB.btnUsuarioCancelarDesativado}"
+		actionListenerCancelar="#{cadastroUsuarioMB.cancelarUsuario}"
+		updateCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcUsuarioSelecionado:pnlDadosUsuario"
+		resetCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcUsuarioSelecionado:pnlDadosUsuario"
+		disabledSalvar="#{cadastroUsuarioMB.btnUsuarioSalvarDesativado}"
+		actionListenerSalvar="#{cadastroUsuarioMB.salvarUsuario}"
+		updateSalvar="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcUsuarioSelecionado:pnlDadosUsuario"
+		renderedBtnNovo="true" labelNovo="#{msgs.NovoUsuario}"
+		disabledNovo="#{cadastroUsuarioMB.btnUsuarioNovoDesativado}"
+		actionListenerNovo="#{cadastroUsuarioMB.novoUsuarioNaEmpresaSelecionada}"
+		onCompleteNovo="PF('dlgCriarUsuario').show()"
+		updateNovo="formModulos:formCadEmpresa:tbwCadastroEmpresa:pngCadastroUsuarioEmpresa"
+		renderSpacer="true"
+		disabledImprimir="#{cadastroUsuarioMB.btnUsuarioEditarDesativado}"
+		actionListenerImprimir="#{cadastroUsuarioMB.imprimirUsuario}"
+		labelImprimir="#{msgs.Imprimir}"
+		updateImprimir="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcUsuarioSelecionado:pnlDadosUsuario"
+		renderedBtnImprimir="true"
+		disabledExcluir="#{cadastroUsuarioMB.btnUsuarioExcluirDesativado}"
+		actionListenerExcluir="#{cadastroUsuarioMB.excluirUsuario}"
+		updateExcluir="formModulos:formCadEmpresa:tbwCadastroEmpresa:pngCadastroUsuarioEmpresa"
+		renderedBtnExcluir="#{cadastroUsuarioMB.btnUsuarioExcluirRender}"
+		labelExcluir="#{msgs.Excluir}" headerConfirma="#{msgs.Confirmar}"
+		messageConfirma="#{msgs.DeletarUsuario}" />
 
 	<p:panelGrid columns="2" style="display:block"
 		styleClass="top-aligned-columns">
@@ -33,7 +54,9 @@
 
 				<p:ajax event="rowSelect"
 					listener="#{cadastroUsuarioMB.onSelectionUsuario}"
-					update="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcUsuarioSelecionado:pnlDadosUsuario" />
+					update="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcUsuarioSelecionado:pngUsuarioCadastroEditar,
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocUsuarioSelecionado:tabDocumentos:pgdRG,
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocUsuarioSelecionado:tabDocumentos:pgdCPF" />
 
 				<p:column headerText="#{msgs.Login}">
 					<h:outputText value="#{usuario.nome}" converter="stringConverter" />
@@ -48,11 +71,27 @@
 					<dmat:usuariosDadosComposite id="udcUsuarioSelecionado"
 						cadastroUsuarioNome="#{cadastroUsuarioMB.usuarioSelecionado.nome}"
 						cadastroUsuarioSexo="#{cadastroUsuarioMB.usuarioSelecionado.genero}"
-						dataCadastroDadosCadastrais="#{cadastroUsuarioMB.usuarioSelecionado.dataCadastroPessoa}" />
+						dataCadastro="#{cadastroUsuarioMB.usuarioSelecionado.dataCadastroPessoa}" />
 				</p:tab>
 
 				<p:tab title="#{msgs.DocumentosPessoaFisica}">
-
+					<dmat:usuariosDocumentosComposite id="udocUsuarioSelecionado"
+						numRG="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.numRG}"
+						rgOrgExpedidor="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.rgOrgExpedidor}"
+						rgDataExpedicao="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.rgDataExpedicao}"
+						numCPF="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.numCPF}"
+						numRic="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.numRic}"
+						ricOrgExpedidor="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.ricOrgExpedidor}"
+						ricDataExpedicao="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.ricDataExpedicao}"
+						numRNE="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.numRNE}"
+						rneOrgExpedidor="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.rneOrgExpedidor}"
+						rneDataExpedicao="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.rneDataExpedicao}"
+						numCNH="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.numCNH}"
+						cnhUf="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.cnhUf}"
+						cnhDataExpedicao="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.cnhDataExpedicao}"
+						cnhValidade="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.cnhValidade}"
+						cnhPrimeiraEmissao="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.cnhPrimeiraEmissao}"
+						cnhCategoria="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.cnhCategoria}" />
 				</p:tab>
 
 				<p:tab title="#{msgs.Endereco}">

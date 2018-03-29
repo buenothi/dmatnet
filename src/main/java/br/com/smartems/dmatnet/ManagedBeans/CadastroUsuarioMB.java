@@ -43,7 +43,7 @@ public class CadastroUsuarioMB implements Serializable {
 
 	@EJB
 	private UsuarioFacadeLocal usuarioFachada;
-	
+
 	@EJB
 	private StringsUtilitarios stringUtils;
 
@@ -77,7 +77,7 @@ public class CadastroUsuarioMB implements Serializable {
 	private DualListModel<EmpresaEntity> empresasUsuario;
 	private List<EmpresaEntity> empresasDisponiveisUsuario;
 	private List<EmpresaEntity> empresasAtribuidasUsuario;
-	
+
 	private boolean isDialogNovoUsuarioRendered = false;
 
 	// botões endereço de usuarios dentro de dadosCadastrais
@@ -92,10 +92,12 @@ public class CadastroUsuarioMB implements Serializable {
 
 	// botões usuarios dentro de dadosCadastrais
 
-	private boolean isBtnUsuarioEditarDesativado;
-	private boolean isBtnUsuarioCancelarDesativado;
-	private boolean isBtnUsuarioSalvarDesativado;
-	private boolean isBtnUsuarioNovoDesativado;
+	private boolean isBtnUsuarioEditarDesativado = true;
+	private boolean isBtnUsuarioCancelarDesativado = false;
+	private boolean isBtnUsuarioSalvarDesativado = false;
+	private boolean isBtnUsuarioNovoDesativado = false;
+	private boolean isBtnUsuarioExcluirDesativado = false;
+	private boolean isBtnUsuarioExcluirRender = false;
 
 	// botões usuarios dentro de contatosUsuario
 
@@ -202,8 +204,8 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public UsuarioEntity getUsuarioSelecionado() {
-		if (this.usuarioSelecionado == null){
-			this.usuarioSelecionado = new UsuarioEntity();			
+		if (this.usuarioSelecionado == null) {
+			this.usuarioSelecionado = new UsuarioEntity();
 		}
 		return usuarioSelecionado;
 	}
@@ -477,6 +479,22 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isBtnUsuarioNovoDesativado = isBtnUsuarioNovoDesativado;
 	}
 
+	public boolean isBtnUsuarioExcluirDesativado() {
+		return isBtnUsuarioExcluirDesativado;
+	}
+
+	public void setBtnUsuarioExcluirDesativado(boolean isBtnUsuarioExcluirDesativado) {
+		this.isBtnUsuarioExcluirDesativado = isBtnUsuarioExcluirDesativado;
+	}
+
+	public boolean isBtnUsuarioExcluirRender() {
+		return isBtnUsuarioExcluirRender;
+	}
+
+	public void setBtnUsuarioExcluirRender(boolean isBtnUsuarioExcluirRender) {
+		this.isBtnUsuarioExcluirRender = isBtnUsuarioExcluirRender;
+	}
+
 	public boolean isBtnContatosCancelarDesativado() {
 		return isBtnContatosCancelarDesativado;
 	}
@@ -575,18 +593,20 @@ public class CadastroUsuarioMB implements Serializable {
 		this.cadastroEmpresaMB.onSelectionEmpresa(this.cadastroEmpresaMB.getEmpresaSelecionada());
 		this.initUsuario();
 	}
-	
+
 	public void fecharDialogNovoUsuario() {
 		this.isDialogNovoUsuarioRendered = false;
 	}
-	
+
 	public void onSelectionUsuario(SelectEvent evt) {
 		this.usuarioSelecionado = (UsuarioEntity) evt.getObject();
 	}
 
-	public void editarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
-
-	}
+	/*
+	 * public void editarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
+	 * 
+	 * }
+	 */
 
 	public void cancelarUsuarioNaEmpresaSelecionada(ActionEvent evt) {
 
@@ -720,6 +740,10 @@ public class CadastroUsuarioMB implements Serializable {
 
 	}
 
+	public void imprimirUsuario(ActionEvent evt) {
+
+	}
+
 	// action dos botões usuários dentro de contatosUsuario
 
 	public void cancelarContatoUsuario(ActionEvent evt) {
@@ -740,9 +764,9 @@ public class CadastroUsuarioMB implements Serializable {
 
 	@PostConstruct
 	public void initUsuario() {
-		
+
 		// neste ponto as variáveis devem ser limpas
-		
+
 		this.usuarioAtual = null;
 		this.usuarioNovo = null;
 		this.usuarioExcluir = null;
@@ -767,7 +791,7 @@ public class CadastroUsuarioMB implements Serializable {
 		this.empresasUsuario = null;
 		this.empresasDisponiveisUsuario = null;
 		this.empresasAtribuidasUsuario = null;
-		
+
 		try {
 			this.empresasAtribuidasUsuario = new ArrayList<EmpresaEntity>();
 			this.dualListEmpresasUsuario(this.cadastroEmpresaMB.getEmpresasDisponiveis(),

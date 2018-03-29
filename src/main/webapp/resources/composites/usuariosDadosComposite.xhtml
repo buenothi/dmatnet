@@ -8,10 +8,10 @@
 
 
 <composite:interface>
-	<composite:attribute name="cadastroUsuarioEditarRendered"
+	<composite:attribute name="editarRendered"
 		default="true" />
 
-	<composite:attribute name="dataCadastroDadosCadastrais" />
+	<composite:attribute name="dataCadastro" />
 	
 	<composite:attribute name="dataCadastroRequired" default="false" />
 
@@ -21,7 +21,7 @@
 
 	<composite:attribute name="cadastroUsuarioSexo" />
 
-	<composite:attribute name="cadastroUsuarioExibirRendered"
+	<composite:attribute name="exibirRendered"
 		default="false" />
 
 </composite:interface>
@@ -30,17 +30,17 @@
 <composite:implementation>
 
 	<p:panel id="pnlDadosUsuario" header="#{msgs.DadosUsuario}" closable="false">
-		
+		<p:messages id="msDadosUsuariosNovo" showDetail="true" closable="true" />
 		<h:panelGroup id="pngUsuarioCadastroEditar" layout="block"
 			styleClass="formulario"
-			rendered="#{cc.attrs.cadastroUsuarioEditarRendered}">
+			rendered="#{cc.attrs.editarRendered}">
 			<p:panelGrid id="pgdDadosUsuarioEditar" columns="2"
 				styleClass="tabelaSemBorda">
 				<p:outputLabel value="#{msgs.DataCadastro}*" />
 				<p:calendar id="calCadastroUsuario" locale="pt" showOn="button"
 					showButtonPanel="true" pattern="dd/MM/yyyy" mask="true" size="8"
 					requiredMessage="#{msgs.MensagemDataCadastroRequerida}"
-					value="#{cc.attrs.dataCadastroDadosCadastrais}"
+					value="#{cc.attrs.dataCadastro}"
 					required="#{cc.attrs.dataCadastroRequired}"
 					immediate="#{cc.attrs.dataCadastroRequired}" />
 
@@ -61,12 +61,12 @@
 
 		<h:panelGroup id="pngUsuarioCadastroExibir" layout="block"
 			styleClass="formulario"
-			rendered="#{cc.attrs.cadastroUsuarioExibirRendered}">
+			rendered="#{cc.attrs.exibirRendered}">
 			<p:panelGrid id="pgdDadosUsuarioExibir" columns="2"
 				styleClass="tabelaSemBorda">
 				<p:outputLabel value="#{msgs.DataCadastro}*" />
 				<p:outputLabel id="oplCadastroUsuario"
-					value="#{cc.attrs.dataCadastroDadosCadastrais}" />
+					value="#{cc.attrs.dataCadastro}" />
 
 				<p:outputLabel value="#{msgs.Nome}*" />
 				<p:outputLabel id="oplNomeUsuario" size="22"

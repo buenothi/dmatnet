@@ -14,123 +14,31 @@
 		onback="PF('dlgCriarUsuario').initPosition()">
 
 		<p:tab title="#{msgs.DadosUsuario}">
-			<p:panel header="#{msgs.DadosUsuario}" closable="false">
-				<p:messages id="msDadosUsuariosNovo" showDetail="true" closable="true" />
-				<p:panelGrid id="dadosUsuario" columns="2"
-					styleClass="tabelaSemBorda">
-					<p:outputLabel value="#{msgs.DataCadastro}*" />
-					<p:calendar id="calCadastroUsuarioNovo" locale="pt" showOn="button"
-						showButtonPanel="true" pattern="dd/MM/yyyy" mask="true" size="8"
-						requiredMessage="#{msgs.MensagemDataCadastroRequerida}"
-						value="#{cadastroUsuarioMB.usuarioNovo.dataCadastroPessoa}"
-						required="true" immediate="true" />
-
-					<p:outputLabel value="#{msgs.Nome}*" />
-					<p:inputText id="iptNomePessoa" size="22"
-						value="#{cadastroUsuarioMB.usuarioNovo.nome}" required="true"
-						requiredMessage="#{msgs.MensagemNomeUsuarioRequerido}"
-						immediate="true" />
-
-					<p:outputLabel value="#{msgs.Genero}" />
-					<p:selectOneRadio value="#{cadastroUsuarioMB.usuarioNovo.genero}">
-						<f:selectItem itemLabel="#{msgs.Masculino}" itemValue="1" />
-						<f:selectItem itemLabel="#{msgs.Feminino}" itemValue="2" />
-					</p:selectOneRadio>
-				</p:panelGrid>
-			</p:panel>
-		</p:tab>
+			<dmat:usuariosDadosComposite id="udcUsuarioNovo"
+				cadastroUsuarioNome="#{cadastroUsuarioMB.usuarioNovo.nome}"
+				cadastroUsuarioSexo="#{cadastroUsuarioMB.usuarioNovo.genero}"
+				dataCadastro="#{cadastroUsuarioMB.usuarioNovo.dataCadastroPessoa}" />
+		</p:tab>-
 
 		<p:tab title="#{msgs.DocumentosPessoaFisica}">
-			<p:panel header="#{msgs.DocumentosPessoaFisica}" closable="false">
-				<p:messages id="msDocumentosContato" showDetail="true"
-					closable="true" />
-				<p:tabView>
-					<p:tab title="RIC">
-						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-							<p:outputLabel value="#{msgs.NumeroRic}" />
-							<p:inputNumber
-								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.numRic}" />
-							<p:outputLabel value="#{msgs.OrgExpedidorRic}" />
-							<p:inputText
-								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.ricOrgExpedidor}" />
-							<p:outputLabel value="#{msgs.DataExpedicaoRic}" />
-							<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-								pattern="dd/MM/yyyy" mask="true" size="8"
-								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.ricDataExpedicao}" />
-						</p:panelGrid>
-					</p:tab>
+			<dmat:usuariosDocumentosComposite id="udocUsuarioNovo"
+				numRG="#{cadastroUsuarioMB.documentosPessoaisUsuario.numRG}"
+				rgOrgExpedidor="#{cadastroUsuarioMB.documentosPessoaisUsuario.rgOrgExpedidor}"
+				rgDataExpedicao="#{cadastroUsuarioMB.documentosPessoaisUsuario.rgDataExpedicao}"
+				numCPF="#{cadastroUsuarioMB.documentosPessoaisUsuario.numCPF}"
+				numRic="#{cadastroUsuarioMB.documentosPessoaisUsuario.numRic}"
+				ricOrgExpedidor="#{cadastroUsuarioMB.documentosPessoaisUsuario.ricOrgExpedidor}"
+				ricDataExpedicao="#{cadastroUsuarioMB.documentosPessoaisUsuario.ricDataExpedicao}"
+				numRNE="#{cadastroUsuarioMB.documentosPessoaisUsuario.numRNE}"
+				rneOrgExpedidor="#{cadastroUsuarioMB.documentosPessoaisUsuario.rneOrgExpedidor}"
+				rneDataExpedicao="#{cadastroUsuarioMB.documentosPessoaisUsuario.rneDataExpedicao}"
+				numCNH="#{cadastroUsuarioMB.documentosPessoaisUsuario.numCNH}"
+				cnhUf="#{cadastroUsuarioMB.documentosPessoaisUsuario.cnhUf}"
+				cnhDataExpedicao="#{cadastroUsuarioMB.documentosPessoaisUsuario.cnhDataExpedicao}"
+				cnhValidade="#{cadastroUsuarioMB.documentosPessoaisUsuario.cnhValidade}"
+				cnhPrimeiraEmissao="#{cadastroUsuarioMB.documentosPessoaisUsuario.cnhPrimeiraEmissao}"
+				cnhCategoria="#{cadastroUsuarioMB.documentosPessoaisUsuario.cnhCategoria}" />
 
-					<p:tab title="RG">
-						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-							<p:outputLabel value="#{msgs.NumeroRG}*" />
-							<p:inputText
-								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.numRG}"
-								required="true" requiredMessage="#{msgs.MensagemNumRGRequerido}" />
-							<p:outputLabel value="#{msgs.OrgExpedidorRG}*" />
-							<p:inputText
-								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.rgOrgExpedidor}"
-								required="true"
-								requiredMessage="#{msgs.MensagemOrgExpRGRequerido}" />
-							<p:outputLabel value="#{msgs.DataExpedicaoRG}*" />
-							<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-								pattern="dd/MM/yyyy" mask="true" size="8"
-								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.rgDataExpedicao}"
-								required="true"
-								requiredMessage="#{msgs.MensagemDataExpedicaoRGRequerido}" />
-						</p:panelGrid>
-					</p:tab>
-
-					<p:tab title="CPF">
-						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-							<p:outputLabel value="#{msgs.NumeroCPF}*" />
-							<p:inputMask mask="999.999.999-99" converter="cnpjCpfConverter"
-								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.numCPF}"
-								required="true" requiredMessage="#{msgs.MensagemCPFRequerido}" />
-						</p:panelGrid>
-					</p:tab>
-
-					<p:tab title="RNE">
-						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-							<p:outputLabel value="#{msgs.NumeroRNE}" />
-							<p:inputNumber
-								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.numRNE}" />
-							<p:outputLabel value="#{msgs.OrgExpedidorRNE}" />
-							<p:inputText
-								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.rneOrgExpedidor}" />
-							<p:outputLabel value="#{msgs.DataExpedicaoRNE}" />
-							<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-								pattern="dd/MM/yyyy" mask="true" size="8"
-								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.rneDataExpedicao}" />
-						</p:panelGrid>
-					</p:tab>
-
-					<p:tab title="CNH">
-						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-							<p:outputLabel value="#{msgs.NumeroCNH}" />
-							<p:inputNumber
-								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.numCNH}" />
-							<p:outputLabel value="#{msgs.UFCNH}" />
-							<p:inputText size="2"
-								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.cnhUf}" />
-							<p:outputLabel value="#{msgs.DataExpedicaoCNH}" />
-							<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-								pattern="dd/MM/yyyy" mask="true" size="8"
-								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.cnhDataExpedicao}" />
-							<p:outputLabel value="#{msgs.DataValidadeCNH}" />
-							<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-								pattern="dd/MM/yyyy" mask="true" size="8"
-								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.cnhValidade}" />
-							<p:outputLabel value="#{msgs.DataPrimeiraCNH}" />
-							<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-								pattern="dd/MM/yyyy" mask="true" size="8"
-								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.cnhPrimeiraEmissao}" />
-							<p:outputLabel value="#{msgs.CategoriaCNH}" />
-							<p:inputText
-								value="#{cadastroUsuarioMB.documentosPessoaisUsuario.cnhCategoria}" />
-						</p:panelGrid>
-					</p:tab>
-				</p:tabView>
-			</p:panel>
 		</p:tab>
 
 		<p:tab title="#{msgs.Endereco}">

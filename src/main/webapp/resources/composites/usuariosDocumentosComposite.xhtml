@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="editarRendered" default="true" />
+	<composite:attribute name="exibirRendered" default="false" />
+
+	<composite:attribute name="numRic" />
+	<composite:attribute name="ricOrgExpedidor" />
+	<composite:attribute name="ricDataExpedicao" />
+
+	<composite:attribute name="numRG" />
+	<composite:attribute name="rgOrgExpedidor" />
+	<composite:attribute name="rgDataExpedicao" />
+
+	<composite:attribute name="numCPF" />
+
+	<composite:attribute name="numRNE" />
+	<composite:attribute name="rneOrgExpedidor" />
+	<composite:attribute name="rneDataExpedicao" />
+
+	<composite:attribute name="numCNH" />
+	<composite:attribute name="cnhUf" />
+	<composite:attribute name="cnhDataExpedicao" />
+	<composite:attribute name="cnhValidade" />
+	<composite:attribute name="cnhPrimeiraEmissao" />
+	<composite:attribute name="cnhCategoria" />
+</composite:interface>
+
+<composite:implementation>
+
+	<p:panel id="pnlDocumentosUsuario" header="#{msgs.DocumentosPessoaFisica}"
+		closable="false">
+		<p:messages id="msDocumentosUsuarios" showDetail="true"
+			closable="true" />
+		<h:panelGroup id="pngUsuarioDocumentosEditar" layout="block"
+			styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
+			<p:tabView id="tabDocumentos">
+				<p:tab title="RG" id="tabRG">
+					<p:panelGrid id="pgdRG" columns="2" styleClass="tabelaSemBorda">
+						<p:outputLabel value="#{msgs.NumeroRG}*" />
+						<p:inputText value="#{cc.attrs.numRG}" required="true"
+							requiredMessage="#{msgs.MensagemNumRGRequerido}" />
+						<p:outputLabel value="#{msgs.OrgExpedidorRG}*" />
+						<p:inputText value="#{cc.attrs.rgOrgExpedidor}" required="true"
+							requiredMessage="#{msgs.MensagemOrgExpRGRequerido}" />
+						<p:outputLabel value="#{msgs.DataExpedicaoRG}*" />
+						<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+							pattern="dd/MM/yyyy" mask="true" size="8"
+							value="#{cc.attrs.rgDataExpedicao}" required="true"
+							requiredMessage="#{msgs.MensagemDataExpedicaoRGRequerido}" />
+					</p:panelGrid>
+				</p:tab>
+
+				<p:tab title="CPF" id="tabCPF">
+					<p:panelGrid id="pgdCPF" columns="2" styleClass="tabelaSemBorda">
+						<p:outputLabel value="#{msgs.NumeroCPF}*" />
+						<p:inputMask mask="999.999.999-99" converter="cnpjCpfConverter"
+							value="#{cc.attrs.numCPF}"
+							required="true" requiredMessage="#{msgs.MensagemCPFRequerido}" />
+					</p:panelGrid>
+				</p:tab>
+
+				<p:tab title="RIC">
+					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+						<p:outputLabel value="#{msgs.NumeroRic}" />
+						<p:inputNumber value="#{cc.attrs.numRic}" />
+						<p:outputLabel value="#{msgs.OrgExpedidorRic}" />
+						<p:inputText value="#{cc.attrs.ricOrgExpedidor}" />
+						<p:outputLabel value="#{msgs.DataExpedicaoRic}" />
+						<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+							pattern="dd/MM/yyyy" mask="true" size="8"
+							value="#{cc.attrs.ricDataExpedicao}" />
+					</p:panelGrid>
+				</p:tab>
+
+				<p:tab title="RNE">
+					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+						<p:outputLabel value="#{msgs.NumeroRNE}" />
+						<p:inputNumber value="#{cc.attrs.numRNE}" />
+						<p:outputLabel value="#{msgs.OrgExpedidorRNE}" />
+						<p:inputText value="#{cc.attrs.rneOrgExpedidor}" />
+						<p:outputLabel value="#{msgs.DataExpedicaoRNE}" />
+						<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+							pattern="dd/MM/yyyy" mask="true" size="8"
+							value="#{cc.attrs.rneDataExpedicao}" />
+					</p:panelGrid>
+				</p:tab>
+
+				<p:tab title="CNH">
+					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+						<p:outputLabel value="#{msgs.NumeroCNH}" />
+						<p:inputNumber value="#{cc.attrs.numCNH}" />
+						<p:outputLabel value="#{msgs.UFCNH}" />
+						<p:inputText size="2" value="#{cc.attrs.cnhUf}" />
+						<p:outputLabel value="#{msgs.DataExpedicaoCNH}" />
+						<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+							pattern="dd/MM/yyyy" mask="true" size="8"
+							value="#{cc.attrs.cnhDataExpedicao}" />
+						<p:outputLabel value="#{msgs.DataValidadeCNH}" />
+						<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+							pattern="dd/MM/yyyy" mask="true" size="8"
+							value="#{cc.attrs.cnhValidade}" />
+						<p:outputLabel value="#{msgs.DataPrimeiraCNH}" />
+						<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+							pattern="dd/MM/yyyy" mask="true" size="8"
+							value="#{cc.attrs.cnhPrimeiraEmissao}" />
+						<p:outputLabel value="#{msgs.CategoriaCNH}" />
+						<p:inputText value="#{cc.attrs.cnhCategoria}" />
+					</p:panelGrid>
+				</p:tab>
+			</p:tabView>
+		</h:panelGroup>
+
+
+		<h:panelGroup id="pngUsuarioDocumentosExibir" layout="block"
+			styleClass="formulario"
+			rendered="#{cc.attrs.cadastroUsuarioExibirRendered}">
+			<p:panelGrid id="pgdDadosUsuarioExibir" columns="2"
+				styleClass="tabelaSemBorda">
+				<p:tab title="RG">
+					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+						<p:outputLabel value="#{msgs.NumeroRG}*" />
+						<p:inputText value="#{cc.attrs.numRG}" required="true"
+							requiredMessage="#{msgs.MensagemNumRGRequerido}" />
+						<p:outputLabel value="#{msgs.OrgExpedidorRG}*" />
+						<p:outputLabel value="#{cc.attrs.rgOrgExpedidor}" />
+						<p:outputLabel value="#{msgs.DataExpedicaoRG}*" />
+						<p:outputLabel value="#{cc.attrs.rgDataExpedicao}" />
+					</p:panelGrid>
+				</p:tab>
+
+				<p:tab title="CPF">
+					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+						<p:outputLabel value="#{msgs.NumeroCPF}*" />
+						<p:outputLabel
+							value="#{cadastroUsuarioMB.documentosPessoaisUsuario.numCPF}" />
+					</p:panelGrid>
+				</p:tab>
+
+				<p:tab title="RIC">
+					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+						<p:outputLabel value="#{msgs.NumeroRic}" />
+						<p:outputLabel value="#{cc.attrs.numRic}" />
+						<p:outputLabel value="#{msgs.OrgExpedidorRic}" />
+						<p:outputLabel value="#{cc.attrs.ricOrgExpedidor}" />
+						<p:outputLabel value="#{msgs.DataExpedicaoRic}" />
+						<p:outputLabel value="#{cc.attrs.ricDataExpedicao}" />
+					</p:panelGrid>
+				</p:tab>
+
+				<p:tab title="RNE">
+					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+						<p:outputLabel value="#{msgs.NumeroRNE}" />
+						<p:outputLabel value="#{cc.attrs.numRNE}" />
+						<p:outputLabel value="#{msgs.OrgExpedidorRNE}" />
+						<p:outputLabel value="#{cc.attrs.rneOrgExpedidor}" />
+						<p:outputLabel value="#{msgs.DataExpedicaoRNE}" />
+						<p:outputLabel value="#{cc.attrs.rneDataExpedicao}" />
+					</p:panelGrid>
+				</p:tab>
+
+				<p:tab title="CNH">
+					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+						<p:outputLabel value="#{msgs.NumeroCNH}" />
+						<p:outputLabel value="#{cc.attrs.numCNH}" />
+						<p:outputLabel value="#{msgs.UFCNH}" />
+						<p:outputLabel size="2" value="#{cc.attrs.cnhUf}" />
+						<p:outputLabel value="#{msgs.DataExpedicaoCNH}" />
+						<p:outputLabel value="#{cc.attrs.cnhDataExpedicao}" />
+						<p:outputLabel value="#{msgs.DataValidadeCNH}" />
+						<p:outputLabel value="#{cc.attrs.cnhValidade}" />
+						<p:outputLabel value="#{msgs.DataPrimeiraCNH}" />
+						<p:outputLabel value="#{cc.attrs.cnhPrimeiraEmissao}" />
+						<p:outputLabel value="#{msgs.CategoriaCNH}" />
+						<p:outputLabel value="#{cc.attrs.cnhCategoria}" />
+					</p:panelGrid>
+				</p:tab>
+			</p:panelGrid>
+		</h:panelGroup>
+
+	</p:panel>
+
+</composite:implementation>
+</html>

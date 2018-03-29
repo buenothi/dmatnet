@@ -31,6 +31,7 @@
 		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
 	<composite:attribute name="updateNovo" />
 	<composite:attribute name="renderedBtnNovo" />
+	<composite:attribute name="onCompleteNovo" />
 
 	<composite:attribute name="labelImprimir" />
 	<composite:attribute name="disabledImprimir" />
@@ -80,7 +81,8 @@
 				disabled="#{cc.attrs.disabledNovo}"
 				rendered="#{cc.attrs.renderedBtnNovo}"
 				actionListener="#{cc.attrs.actionListenerNovo}"
-				update="#{cc.attrs.updateNovo}" />
+				update="#{cc.attrs.updateNovo}" 
+				oncomplete="#{cc.attrs.onCompleteNovo}"/>
 		</f:facet>
 		<f:facet name="right">
 			<p:commandButton id="btnImprimirObjeto"
