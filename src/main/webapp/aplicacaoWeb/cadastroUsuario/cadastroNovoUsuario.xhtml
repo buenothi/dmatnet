@@ -17,28 +17,15 @@
 			<dmat:usuariosDadosComposite id="udcUsuarioNovo"
 				cadastroUsuarioNome="#{cadastroUsuarioMB.usuarioNovo.nome}"
 				cadastroUsuarioSexo="#{cadastroUsuarioMB.usuarioNovo.genero}"
-				dataCadastro="#{cadastroUsuarioMB.usuarioNovo.dataCadastroPessoa}" />
-		</p:tab>-
+				dataCadastro="#{cadastroUsuarioMB.usuarioNovo.dataCadastroPessoa}"
+				dataCadastroRequired="true" nomePessoaRequired="true" />
+		</p:tab>
 
 		<p:tab title="#{msgs.DocumentosPessoaFisica}">
 			<dmat:usuariosDocumentosComposite id="udocUsuarioNovo"
-				numRG="#{cadastroUsuarioMB.documentosPessoaisUsuario.numRG}"
-				rgOrgExpedidor="#{cadastroUsuarioMB.documentosPessoaisUsuario.rgOrgExpedidor}"
-				rgDataExpedicao="#{cadastroUsuarioMB.documentosPessoaisUsuario.rgDataExpedicao}"
-				numCPF="#{cadastroUsuarioMB.documentosPessoaisUsuario.numCPF}"
-				numRic="#{cadastroUsuarioMB.documentosPessoaisUsuario.numRic}"
-				ricOrgExpedidor="#{cadastroUsuarioMB.documentosPessoaisUsuario.ricOrgExpedidor}"
-				ricDataExpedicao="#{cadastroUsuarioMB.documentosPessoaisUsuario.ricDataExpedicao}"
-				numRNE="#{cadastroUsuarioMB.documentosPessoaisUsuario.numRNE}"
-				rneOrgExpedidor="#{cadastroUsuarioMB.documentosPessoaisUsuario.rneOrgExpedidor}"
-				rneDataExpedicao="#{cadastroUsuarioMB.documentosPessoaisUsuario.rneDataExpedicao}"
-				numCNH="#{cadastroUsuarioMB.documentosPessoaisUsuario.numCNH}"
-				cnhUf="#{cadastroUsuarioMB.documentosPessoaisUsuario.cnhUf}"
-				cnhDataExpedicao="#{cadastroUsuarioMB.documentosPessoaisUsuario.cnhDataExpedicao}"
-				cnhValidade="#{cadastroUsuarioMB.documentosPessoaisUsuario.cnhValidade}"
-				cnhPrimeiraEmissao="#{cadastroUsuarioMB.documentosPessoaisUsuario.cnhPrimeiraEmissao}"
-				cnhCategoria="#{cadastroUsuarioMB.documentosPessoaisUsuario.cnhCategoria}" />
-
+				documentosPessoais="#{cadastroUsuarioMB.documentosPessoaisUsuario}"
+				rgRequired="true" rgOrgExpRequired="true" rgDataExpRequired="true"
+				cpfRequired="true" />
 		</p:tab>
 
 		<p:tab title="#{msgs.Endereco}">
@@ -47,17 +34,7 @@
 				<dmat:enderecoComposite id="dmatEnderecoContato"
 					enderecoRendered="true" barraBotoesRendered="false"
 					renderedHistorico="false"
-					logradouroTipo="#{cadastroUsuarioMB.enderecoUsuarioAtual.logradouro.nomeLogradouro}"
-					logradouro="#{cadastroUsuarioMB.enderecoUsuarioAtual.logradouro}"
-					logradouroNome="#{cadastroUsuarioMB.enderecoUsuarioAtual.logradouroNome}"
-					logradouroNumero="#{cadastroUsuarioMB.enderecoUsuarioAtual.logradouroNumero}"
-					logradouroComplemento="#{cadastroUsuarioMB.enderecoUsuarioAtual.logradouroComplemento}"
-					bairro="#{cadastroUsuarioMB.enderecoUsuarioAtual.bairro}"
-					cep="#{cadastroUsuarioMB.enderecoUsuarioAtual.cep}"
-					caixaPostal="#{cadastroUsuarioMB.enderecoUsuarioAtual.caixaPostal}"
-					cidade="#{cadastroUsuarioMB.enderecoUsuarioAtual.cidade}"
-					estado="#{cadastroUsuarioMB.enderecoUsuarioAtual.estado}"
-					dataCadastro="#{cadastroUsuarioMB.enderecoUsuarioAtual.dataInicioEndereco}"
+					enderecoAtual="#{cadastroUsuarioMB.enderecoUsuarioAtual}"
 					enderecoHistorico="#{cadastroUsuarioMB.enderecosUsuarioHistorico}"
 					ajaxComponentRender="@this, formModulos:formCadEmpresa:tbwCadastroEmpresa:dmatEnderecoContato:acpEndereco:listCidade"
 					disabledEditar="#{cadastroUsuarioMB.btnEnderecoUsuarioEditarDesativado}"

@@ -12,14 +12,14 @@
 	<dmat:barraBotoesComposite id="barraBotoesUsuario"
 		disabledEditar="#{cadastroUsuarioMB.btnUsuarioEditarDesativado}"
 		actionListenerEditar="#{cadastroUsuarioMB.editarUsuario}"
-		updateEditar="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcUsuarioSelecionado:pnlDadosUsuario"
+		updateEditar="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcDadosUsuarioSelecionado:pnlDadosUsuario"
 		disabledCancelar="#{cadastroUsuarioMB.btnUsuarioCancelarDesativado}"
 		actionListenerCancelar="#{cadastroUsuarioMB.cancelarUsuario}"
-		updateCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcUsuarioSelecionado:pnlDadosUsuario"
-		resetCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcUsuarioSelecionado:pnlDadosUsuario"
+		updateCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcDadosUsuarioSelecionado:pnlDadosUsuario"
+		resetCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcDadosUsuarioSelecionado:pnlDadosUsuario"
 		disabledSalvar="#{cadastroUsuarioMB.btnUsuarioSalvarDesativado}"
 		actionListenerSalvar="#{cadastroUsuarioMB.salvarUsuario}"
-		updateSalvar="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcUsuarioSelecionado:pnlDadosUsuario"
+		updateSalvar="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcDadosUsuarioSelecionado:pnlDadosUsuario"
 		renderedBtnNovo="true" labelNovo="#{msgs.NovoUsuario}"
 		disabledNovo="#{cadastroUsuarioMB.btnUsuarioNovoDesativado}"
 		actionListenerNovo="#{cadastroUsuarioMB.novoUsuarioNaEmpresaSelecionada}"
@@ -29,7 +29,7 @@
 		disabledImprimir="#{cadastroUsuarioMB.btnUsuarioEditarDesativado}"
 		actionListenerImprimir="#{cadastroUsuarioMB.imprimirUsuario}"
 		labelImprimir="#{msgs.Imprimir}"
-		updateImprimir="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcUsuarioSelecionado:pnlDadosUsuario"
+		updateImprimir="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcDadosUsuarioSelecionado:pnlDadosUsuario"
 		renderedBtnImprimir="true"
 		disabledExcluir="#{cadastroUsuarioMB.btnUsuarioExcluirDesativado}"
 		actionListenerExcluir="#{cadastroUsuarioMB.excluirUsuario}"
@@ -54,10 +54,17 @@
 
 				<p:ajax event="rowSelect"
 					listener="#{cadastroUsuarioMB.onSelectionUsuario}"
-					update="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcUsuarioSelecionado:pngUsuarioCadastroEditar,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocUsuarioSelecionado:tabDocumentos:pgdRG,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocUsuarioSelecionado:tabDocumentos:pgdCPF" />
-
+					update="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcDadosUsuarioSelecionado:pngUsuarioCadastroEditar,
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pgdRG,
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pgdCPF,
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pgdRIC,
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pgdRNE,
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pgdCNH,
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentosExibir:pgdRG
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentosExibir:pgdCPF,
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentosExibir:pgdRIC,
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentosExibir:pgdRNE,
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentosExibir:pgdCNH" />
 				<p:column headerText="#{msgs.Login}">
 					<h:outputText value="#{usuario.nome}" converter="stringConverter" />
 				</p:column>
@@ -68,34 +75,19 @@
 			<p:tabView id="tbwCadastroUsuario">
 
 				<p:tab title="#{msgs.DadosUsuario}">
-					<dmat:usuariosDadosComposite id="udcUsuarioSelecionado"
+					<dmat:usuariosDadosComposite id="udcDadosUsuarioSelecionado"
 						cadastroUsuarioNome="#{cadastroUsuarioMB.usuarioSelecionado.nome}"
 						cadastroUsuarioSexo="#{cadastroUsuarioMB.usuarioSelecionado.genero}"
 						dataCadastro="#{cadastroUsuarioMB.usuarioSelecionado.dataCadastroPessoa}" />
 				</p:tab>
 
 				<p:tab title="#{msgs.DocumentosPessoaFisica}">
-					<dmat:usuariosDocumentosComposite id="udocUsuarioSelecionado"
-						numRG="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.numRG}"
-						rgOrgExpedidor="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.rgOrgExpedidor}"
-						rgDataExpedicao="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.rgDataExpedicao}"
-						numCPF="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.numCPF}"
-						numRic="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.numRic}"
-						ricOrgExpedidor="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.ricOrgExpedidor}"
-						ricDataExpedicao="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.ricDataExpedicao}"
-						numRNE="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.numRNE}"
-						rneOrgExpedidor="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.rneOrgExpedidor}"
-						rneDataExpedicao="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.rneDataExpedicao}"
-						numCNH="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.numCNH}"
-						cnhUf="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.cnhUf}"
-						cnhDataExpedicao="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.cnhDataExpedicao}"
-						cnhValidade="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.cnhValidade}"
-						cnhPrimeiraEmissao="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.cnhPrimeiraEmissao}"
-						cnhCategoria="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais.cnhCategoria}" />
+					<dmat:usuariosDocumentosComposite id="udocDocumentosUsuarioSelecionado"
+						documentosPessoais="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais}" />
 				</p:tab>
 
 				<p:tab title="#{msgs.Endereco}">
-
+					<dmat:usuariosEnderecoComposite id="udocEnderecoUsuarioSelecionado"/>
 				</p:tab>
 
 				<p:tab title="#{msgs.Contatos}">

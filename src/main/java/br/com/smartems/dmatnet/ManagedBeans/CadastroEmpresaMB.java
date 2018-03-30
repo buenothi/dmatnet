@@ -1032,7 +1032,6 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isTabEmpregadosDesativado = true;
 		this.isTabEstabelecimentosDesativado = true;
 
-		this.exibirImagem(this.fotografiaFachadaEmpresa);
 		this.empresaFap = this.dadosCadastraisAtual.getEmpresaFAP();
 		this.empresaDadosIsencao = this.dadosCadastraisAtual.getEmpresaDadosIsencao();
 		this.empresaOrgI8n = this.dadosCadastraisAtual.getOrganismoInternacional();

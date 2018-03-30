@@ -206,6 +206,7 @@ public class CadastroUsuarioMB implements Serializable {
 	public UsuarioEntity getUsuarioSelecionado() {
 		if (this.usuarioSelecionado == null) {
 			this.usuarioSelecionado = new UsuarioEntity();
+			this.usuarioSelecionado.setDocumentosPessoais(new PessoaFisicaDocumentosEntity());
 		}
 		return usuarioSelecionado;
 	}

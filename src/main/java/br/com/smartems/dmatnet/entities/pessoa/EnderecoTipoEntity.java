@@ -47,7 +47,7 @@ public class EnderecoTipoEntity implements Serializable {
 	}
 
 	public void setNomeLogradouro(String nomeLogradouro) {
-		this.nomeLogradouro = nomeLogradouro.toUpperCase();
+		this.nomeLogradouro = nomeLogradouro;
 	}
 
 	public static long getSerialversionuid() {
