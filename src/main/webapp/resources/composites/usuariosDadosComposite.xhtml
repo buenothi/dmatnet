@@ -8,11 +8,10 @@
 
 
 <composite:interface>
-	<composite:attribute name="editarRendered"
-		default="true" />
+	<composite:attribute name="editarRendered" default="true" />
 
 	<composite:attribute name="dataCadastro" />
-	
+
 	<composite:attribute name="dataCadastroRequired" default="false" />
 
 	<composite:attribute name="cadastroUsuarioNome" />
@@ -21,19 +20,18 @@
 
 	<composite:attribute name="cadastroUsuarioSexo" />
 
-	<composite:attribute name="exibirRendered"
-		default="false" />
+	<composite:attribute name="exibirRendered" default="false" />
 
 </composite:interface>
 
 
 <composite:implementation>
 
-	<p:panel id="pnlDadosUsuario" header="#{msgs.DadosUsuario}" closable="false">
+	<p:panel id="pnlDadosUsuario" header="#{msgs.DadosUsuario}"
+		closable="false" style="width: 700px">
 		<p:messages id="msDadosUsuariosNovo" showDetail="true" closable="true" />
 		<h:panelGroup id="pngUsuarioCadastroEditar" layout="block"
-			styleClass="formulario"
-			rendered="#{cc.attrs.editarRendered}">
+			styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
 			<p:panelGrid id="pgdDadosUsuarioEditar" columns="2"
 				styleClass="tabelaSemBorda">
 				<p:outputLabel value="#{msgs.DataCadastro}*" />
@@ -46,7 +44,8 @@
 
 				<p:outputLabel value="#{msgs.Nome}*" />
 				<p:inputText id="iptNomeUsuario" size="22"
-					value="#{cc.attrs.cadastroUsuarioNome}" required="#{cc.attrs.nomePessoaRequired}"
+					value="#{cc.attrs.cadastroUsuarioNome}"
+					required="#{cc.attrs.nomePessoaRequired}"
 					requiredMessage="#{msgs.MensagemNomeUsuarioRequerido}"
 					immediate="#{cc.attrs.nomePessoaRequired}" />
 
@@ -60,8 +59,7 @@
 
 
 		<h:panelGroup id="pngUsuarioCadastroExibir" layout="block"
-			styleClass="formulario"
-			rendered="#{cc.attrs.exibirRendered}">
+			styleClass="formulario" rendered="#{cc.attrs.exibirRendered}">
 			<p:panelGrid id="pgdDadosUsuarioExibir" columns="2"
 				styleClass="tabelaSemBorda">
 				<p:outputLabel value="#{msgs.DataCadastro}*" />
