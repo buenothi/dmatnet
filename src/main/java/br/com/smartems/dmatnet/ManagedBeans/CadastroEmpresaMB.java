@@ -1054,7 +1054,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.empresaSelecionada = pessoaJuridicaFachada.read(this.empresaSelecionada.getIdPessoa());
 		this.exibirImagem(this.fotografiaFachadaEmpresa);
 		this.dadosCadastraisAtual = null;
-		this.separarDadosCadastraisAtualDoHistorico(this.empresaSelecionada);
+		this.onSelectionEmpresa(empresaSelecionada);
 	}
 
 	public void salvarDadosCadastraisEmpresa(ActionEvent evt) {
@@ -1083,8 +1083,7 @@ public class CadastroEmpresaMB implements Serializable {
 				FacesMessage msg = new FacesMessage("Erro",
 						"A data de início do Cadastro deverá ser igual ou superior à data de início do cadastro anterior");
 				FacesContext.getCurrentInstance().addMessage(null, msg);
-				this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
-
+				this.onSelectionEmpresa(empresaSelecionada);
 			}
 		} catch (NullPointerException exc) {
 			exc.printStackTrace();
@@ -1093,7 +1092,7 @@ public class CadastroEmpresaMB implements Serializable {
 			this.atribuirEmpresaOrgI8n(this.empresaOrgI8n);
 			this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
 			this.empresaSelecionada = this.pessoaJuridicaFachada.update(this.empresaSelecionada);
-			this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
+			this.onSelectionEmpresa(empresaSelecionada);
 		} catch (Exception exc) {
 			this.fotografiaFachadaEmpresa = null;
 			exc.printStackTrace();
@@ -1262,7 +1261,7 @@ public class CadastroEmpresaMB implements Serializable {
 		try {
 			pessoaJuridicaFachada.excluirDadoCadastral(this.dadosCadastraisAtual, this.empresaSelecionada);
 			this.exibirImagem(this.fotografiaFachadaEmpresa);
-			this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
+			this.onSelectionEmpresa(empresaSelecionada);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
