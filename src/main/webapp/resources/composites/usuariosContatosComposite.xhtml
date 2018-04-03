@@ -30,8 +30,11 @@
 	<composite:attribute name="actionListenerRemoverTelefoneLista"
 		method-signature="void actionListener(br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity)" />
 	<composite:attribute name="updateRemoverTelefoneLista" />
-	
+
 	<composite:attribute name="setPropertyActionListenerRemoverContato" />
+
+	<composite:attribute name="editarRendered" default="true" />
+	<composite:attribute name="exibirRendered" default="false"/>
 </composite:interface>
 
 <composite:implementation>
@@ -41,38 +44,48 @@
 		<p:tabView>
 			<p:tab title="#{msgs.Email}">
 				<p:panel header="#{msgs.Email}" closable="false">
-					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-						<p:outputLabel value="#{msgs.Email}*" />
-						<p:inputText id="iptEmailUsuario" size="22"
-							value="#{cc.attrs.emailPrincipal.nomeEmail}" required="true"
-							requiredMessage="#{msgs.MensagemEmailUsuarioRequerido}" />
+					<h:panelGroup id="pngUsuarioEmailEditar" layout="block"
+						styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
+						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+							<p:outputLabel value="#{msgs.Email}*" />
+							<p:inputText id="iptEmailUsuario" size="22"
+								value="#{cc.attrs.emailPrincipal.nomeEmail}" required="true"
+								requiredMessage="#{msgs.MensagemEmailUsuarioRequerido}" />
 
-						<p:outputLabel value="#{msgs.EmailTipo}" />
-						<p:selectOneMenu style="width:100%"
-							value="#{cc.attrs.emailPrincipal.tipoEmail}" effect="fade"
-							converter="emailTipoConverter">
-							<f:selectItems value="#{emailTipoMB.emailsTipos}" var="emailTipo"
-								itemLabel="#{emailTipo.tipo}" itemValue="#{emailTipo}" />
-						</p:selectOneMenu>
+							<p:outputLabel value="#{msgs.EmailTipo}" />
+							<p:selectOneMenu style="width:100%"
+								value="#{cc.attrs.emailPrincipal.tipoEmail}" effect="fade"
+								converter="emailTipoConverter">
+								<f:selectItems value="#{emailTipoMB.emailsTipos}"
+									var="emailTipo" itemLabel="#{emailTipo.tipo}"
+									itemValue="#{emailTipo}" />
+							</p:selectOneMenu>
 
-						<p:outputLabel value="#{msgs.EmailPrincipal}" />
-						<p:selectBooleanButton
-							value="#{cc.attrs.emailPrincipal.emailPrincipal}"
-							onLabel="#{msgs.Sim}" offLabel="#{msgs.Nao}"
-							onIcon="ui-icon-check" offIcon="ui-icon-close" />
+							<p:outputLabel value="#{msgs.EmailPrincipal}" />
+							<p:selectBooleanButton
+								value="#{cc.attrs.emailPrincipal.emailPrincipal}"
+								onLabel="#{msgs.Sim}" offLabel="#{msgs.Nao}"
+								onIcon="ui-icon-check" offIcon="ui-icon-close" />
 
-						<p:spacer width="100%" height="5px" />
-						<p:toolbar>
-							<f:facet name="left">
-								<p:commandButton value="#{msgs.Adicionar}"
-									actionListener="#{cc.attrs.actionListenerAdicionarEmailContato}"
-									update="#{cc.attrs.updateAdicionarEmailContato}" />
-								<p:commandButton value="#{msgs.Cancelar}"
-									update="#{cc.attrs.updateCancelarAdicionarEmailContato}" />
-							</f:facet>
-						</p:toolbar>
+							<p:spacer width="100%" height="5px" />
+							<p:toolbar>
+								<f:facet name="left">
+									<p:commandButton value="#{msgs.Adicionar}"
+										actionListener="#{cc.attrs.actionListenerAdicionarEmailContato}"
+										update="#{cc.attrs.updateAdicionarEmailContato}" />
+									<p:commandButton value="#{msgs.Cancelar}"
+										update="#{cc.attrs.updateCancelarAdicionarEmailContato}" />
+								</f:facet>
+							</p:toolbar>
 
-					</p:panelGrid>
+						</p:panelGrid>
+
+					</h:panelGroup>
+
+					<h:panelGroup id="pngUsuarioEmailExibir" layout="block"
+						styleClass="formulario" rendered="#{cc.attrs.exibirRendered}">
+
+					</h:panelGroup>
 
 					<p:spacer width="100%" height="2px" />
 
@@ -121,13 +134,17 @@
 							</p:cellEditor>
 						</p:column>
 
-						<p:column style="width:55px">
-							<p:rowEditor />
-						</p:column>
+						<h:panelGroup id="pngUsuarioEmailTabelaEditar" layout="block"
+							styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
 
-						<p:column style="width:55px">
-							<p:commandButton icon="fa fa-trash" />
-						</p:column>
+							<p:column style="width:55px">
+								<p:rowEditor />
+							</p:column>
+
+							<p:column style="width:55px">
+								<p:commandButton icon="fa fa-trash" />
+							</p:column>
+						</h:panelGroup>
 
 					</p:dataTable>
 				</p:panel>
@@ -135,31 +152,39 @@
 
 			<p:tab title="#{msgs.Telefone}">
 				<p:panel header="#{msgs.Telefone}" closable="false">
-					<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-						<p:outputLabel value="#{msgs.Telefone}*" />
-						<p:inputMask id="ipmTel" mask="+ 99 (99) 9999-9999" size="22"
-							value="#{cc.attrs.telefonePrincipal.numeroTelefone}" />
-						<p:outputLabel value="#{msgs.TelefoneTipo}" />
-						<p:selectOneMenu style="width:100%"
-							value="#{cc.attrs.telefonePrincipal.tipoTelefone}" effect="fade"
-							converter="telefoneTipoConverter">
-							<f:selectItems value="#{telefoneTipoMB.telefonesTipos}"
-								var="telefoneTipo" itemLabel="#{telefoneTipo.tipo}"
-								itemValue="#{telefoneTipo}" />
-						</p:selectOneMenu>
+					<h:panelGroup id="pngUsuarioTelefoneEditar" layout="block"
+						styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
+						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+							<p:outputLabel value="#{msgs.Telefone}*" />
+							<p:inputMask id="ipmTel" mask="+ 99 (99) 9999-9999" size="22"
+								value="#{cc.attrs.telefonePrincipal.numeroTelefone}" />
+							<p:outputLabel value="#{msgs.TelefoneTipo}" />
+							<p:selectOneMenu style="width:100%"
+								value="#{cc.attrs.telefonePrincipal.tipoTelefone}" effect="fade"
+								converter="telefoneTipoConverter">
+								<f:selectItems value="#{telefoneTipoMB.telefonesTipos}"
+									var="telefoneTipo" itemLabel="#{telefoneTipo.tipo}"
+									itemValue="#{telefoneTipo}" />
+							</p:selectOneMenu>
 
-						<p:spacer width="100%" height="5px" />
+							<p:spacer width="100%" height="5px" />
 
-						<p:toolbar>
-							<f:facet name="left">
-								<p:commandButton value="#{msgs.Adicionar}"
-									actionListener="#{cc.attrs.actionListenerAdicionarTelefoneContato}"
-									update="#{cc.attrs.updateAdicionarTelefoneContato}" />
-								<p:commandButton value="#{msgs.Cancelar}"
-									update="#{cc.attrs.updateCancelarTelefoneContato}" />
-							</f:facet>
-						</p:toolbar>
-					</p:panelGrid>
+							<p:toolbar>
+								<f:facet name="left">
+									<p:commandButton value="#{msgs.Adicionar}"
+										actionListener="#{cc.attrs.actionListenerAdicionarTelefoneContato}"
+										update="#{cc.attrs.updateAdicionarTelefoneContato}" />
+									<p:commandButton value="#{msgs.Cancelar}"
+										update="#{cc.attrs.updateCancelarTelefoneContato}" />
+								</f:facet>
+							</p:toolbar>
+						</p:panelGrid>
+					</h:panelGroup>
+					
+					<h:panelGroup id="pngUsuarioTelefoneExibir" layout="block"
+						styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
+
+					</h:panelGroup>
 
 					<p:spacer width="100%" height="2px" />
 
@@ -199,20 +224,25 @@
 							</p:cellEditor>
 						</p:column>
 
-						<p:column style="width:55px">
-							<p:rowEditor />
-						</p:column>
+						<h:panelGroup id="pngUsuarioEmailTabelaEditar" layout="block"
+							styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
 
-						<p:column style="width:55px">
-							<p:commandButton icon="fa fa-trash"
-								actionListener="#{cc.attrs.actionListenerRemoverTelefoneLista}"
-								update="#{cc.attrs.updateRemoverTelefoneLista}">
-								<f:setPropertyActionListener value="#{telefone}"
-									target="#{cc.attrs.setPropertyActionListenerRemoverContato}" />
-								<p:confirm header="#{msgs.Confirmar}" message=""
-									icon="ui-icon-alert" />
-							</p:commandButton>
-						</p:column>
+							<p:column style="width:55px">
+								<p:rowEditor />
+							</p:column>
+
+							<p:column style="width:55px">
+								<p:commandButton icon="fa fa-trash"
+									actionListener="#{cc.attrs.actionListenerRemoverTelefoneLista}"
+									update="#{cc.attrs.updateRemoverTelefoneLista}">
+									<f:setPropertyActionListener value="#{telefone}"
+										target="#{cc.attrs.setPropertyActionListenerRemoverContato}" />
+									<p:confirm header="#{msgs.Confirmar}" message=""
+										icon="ui-icon-alert" />
+								</p:commandButton>
+							</p:column>
+
+						</h:panelGroup>
 
 					</p:dataTable>
 				</p:panel>

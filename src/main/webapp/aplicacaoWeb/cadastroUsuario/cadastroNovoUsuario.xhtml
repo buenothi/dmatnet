@@ -29,39 +29,38 @@
 		</p:tab>
 
 		<p:tab title="#{msgs.Endereco}">
-			<p:panel header="#{msgs.Endereco}" closable="false">
-				<p:messages id="msEndereco" showDetail="true" closable="true" />
-				<dmat:enderecoComposite id="dmatEnderecoContato"
-					enderecoRendered="true" barraBotoesRendered="false"
-					renderedHistorico="false"
-					enderecoAtual="#{cadastroUsuarioMB.enderecoUsuarioAtual}"
-					enderecoHistorico="#{cadastroUsuarioMB.enderecosUsuarioHistorico}"
-					ajaxComponentRender="@this, formModulos:formCadEmpresa:tbwCadastroEmpresa:dmatEnderecoContato:acpEndereco:listCidade"
-					disabledEditar="#{cadastroUsuarioMB.btnEnderecoUsuarioEditarDesativado}"
-					actionListenerEditar="#{cadastroUsuarioMB.editarEnderecoUsuario}"
-					enderecoEditarRender="true"
-					updateEditar="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
-					disabledCancelar="false"
-					actionListenerCancelar="#{cadastroUsuarioMB.cancelarEnderecoUsuario}"
-					updateCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
-					disabledSalvar="#{cadastroUsuarioMB.btnEnderecoUsuarioSalvarDesativado}"
-					actionListenerSalvar="#{cadastroUsuarioMB.salvarEnderecoUsuario}"
-					updateSalvar="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
-					disabledNovo="#{cadastroUsuarioMB.btnEnderecoUsuarioNovoDesativado}"
-					actionListenerNovo="#{cadastroUsuarioMB.novoEnderecoUsuario}"
-					updateNovo="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
-					disabledExcluir="#{cadastroUsuarioMB.btnEnderecoUsuarioExcluirDesativado}"
-					actionListenerExcluir="#{cadastroUsuarioMB.excluirEnderecoUsuario}"
-					updateExcluir="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
-					renderedBtnExcluir="#{cadastroEmpresaMB.btnEnderecoEmpresaExcluirRender}"
-					messageConfirmaExcluir="#{msgs.DeletarEnderecoUsuario}"
-					messageHeaderExcluir="#{msgs.Confirmar}"
-					messageLabelExcluir="#{msgs.Excluir}">
-				</dmat:enderecoComposite>
-			</p:panel>
+			<dmat:usuariosEnderecoComposite id="uedUsuarioNovo"
+				enderecoRendered="true" barraBotoesRendered="false"
+				renderedHistorico="false"
+				enderecoAtual="#{cadastroUsuarioMB.enderecoUsuarioAtual}"
+				enderecoHistorico="#{cadastroUsuarioMB.enderecosUsuarioHistorico}"
+				ajaxComponentRender="@this, formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uedUsuarioSelecionado:dmatEnderecoContato:acpEndereco:listCidade"
+				disabledEditar="#{cadastroUsuarioMB.btnEnderecoUsuarioEditarDesativado}"
+				actionListenerEditar="#{cadastroUsuarioMB.editarEnderecoUsuario}"
+				enderecoEditarRender="true"
+				updateEditar="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
+				disabledCancelar="false"
+				actionListenerCancelar="#{cadastroUsuarioMB.cancelarEnderecoUsuario}"
+				updateCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
+				disabledSalvar="#{cadastroUsuarioMB.btnEnderecoUsuarioSalvarDesativado}"
+				actionListenerSalvar="#{cadastroUsuarioMB.salvarEnderecoUsuario}"
+				updateSalvar="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
+				disabledNovo="#{cadastroUsuarioMB.btnEnderecoUsuarioNovoDesativado}"
+				actionListenerNovo="#{cadastroUsuarioMB.novoEnderecoUsuario}"
+				updateNovo="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
+				disabledExcluir="#{cadastroUsuarioMB.btnEnderecoUsuarioExcluirDesativado}"
+				actionListenerExcluir="#{cadastroUsuarioMB.excluirEnderecoUsuario}"
+				updateExcluir="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
+				renderedBtnExcluir="#{cadastroEmpresaMB.btnEnderecoEmpresaExcluirRender}"
+				messageConfirmaExcluir="#{msgs.DeletarEnderecoUsuario}"
+				messageHeaderExcluir="#{msgs.Confirmar}"
+				messageLabelExcluir="#{msgs.Excluir}" />
 		</p:tab>
 
 		<p:tab title="#{msgs.ContatoUsuario}">
+			<dmat:usuariosContatosComposite 
+				emailPrincipal="#{cadastroUsuarioMB.emailUsuario}"
+				/>
 			<p:panel header="#{msgs.ContatoUsuario}" closable="false">
 				<p:messages id="msEmail" showDetail="true" closable="true" />
 				<p:tabView>

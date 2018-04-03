@@ -93,7 +93,7 @@
 						renderedHistorico="true"
 						enderecoAtual="#{cadastroUsuarioMB.enderecoUsuarioAtual}"
 						enderecoHistorico="#{cadastroUsuarioMB.enderecosUsuarioHistorico}"
-						ajaxComponentRender="@this, formModulos:formCadEmpresa:tbwCadastroEmpresa:dmatEnderecoContato:acpEndereco:listCidade"
+						ajaxComponentRender="@this, formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uedUsuarioSelecionado:dmatEnderecoContato:acpEndereco:listCidade"
 						disabledEditar="#{cadastroUsuarioMB.btnEnderecoUsuarioEditarDesativado}"
 						actionListenerEditar="#{cadastroUsuarioMB.editarEnderecoUsuario}"
 						enderecoEditarRender="true"
@@ -114,7 +114,6 @@
 						messageConfirmaExcluir="#{msgs.DeletarEnderecoUsuario}"
 						messageHeaderExcluir="#{msgs.Confirmar}"
 						messageLabelExcluir="#{msgs.Excluir}" />
-
 				</p:tab>
 
 				<p:tab title="#{msgs.Contatos}">
