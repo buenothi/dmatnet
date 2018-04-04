@@ -34,7 +34,7 @@
 	<composite:attribute name="setPropertyActionListenerRemoverContato" />
 
 	<composite:attribute name="editarRendered" default="true" />
-	<composite:attribute name="exibirRendered" default="false"/>
+	<composite:attribute name="exibirRendered" default="false" />
 </composite:interface>
 
 <composite:implementation>
@@ -91,9 +91,9 @@
 
 					<p:dataTable paginator="true" rows="2" scrollable="true"
 						styleClass="dataTable" emptyMessage="#{msgs.ListaEmailVazio}"
-						value="##{cc.attrs.listaEmailsUsuarios}"
+						value="#{cc.attrs.listaEmailsUsuarios}"
 						paginatorAlwaysVisible="false" var="email"
-						sortBy="#{email.idEmail}" sortOrder="descending" editable="true"
+						editable="true"
 						rowKey="#{email.idEmail}">
 
 						<p:column headerText="#{msgs.Email}">
@@ -180,7 +180,7 @@
 							</p:toolbar>
 						</p:panelGrid>
 					</h:panelGroup>
-					
+
 					<h:panelGroup id="pngUsuarioTelefoneExibir" layout="block"
 						styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
 
@@ -192,7 +192,6 @@
 						styleClass="dataTable" emptyMessage="#{msgs.ListaContatoVazio}"
 						value="#{cc.attrs.listaTelefonesUsuarios}"
 						paginatorAlwaysVisible="false" var="telefone"
-						sortBy="#{telefone.idTelefone}" sortOrder="descending"
 						editable="true" rowKey="#{telefone.idTelefone}">
 
 						<p:column headerText="#{msgs.Telefone}">
