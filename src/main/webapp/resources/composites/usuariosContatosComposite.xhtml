@@ -35,21 +35,24 @@
 
 	<composite:attribute name="editarRendered" default="true" />
 	<composite:attribute name="exibirRendered" default="false" />
+	<composite:attribute name="requiredEmail" default="false" />
 </composite:interface>
 
 <composite:implementation>
 
-	<p:panel header="#{msgs.ContatoUsuario}" closable="false">
+	<p:panel id="pnlContatosUsuario" header="#{msgs.ContatoUsuario}"
+		closable="false">
 		<p:messages id="msEmail" showDetail="true" closable="true" />
-		<p:tabView>
-			<p:tab title="#{msgs.Email}">
-				<p:panel header="#{msgs.Email}" closable="false">
+		<p:tabView id="tbwContatosUsuario">
+			<p:tab id="tabEmail" title="#{msgs.Email}">
+				<h:panelGroup id="pngContatoEmail" layout="block">
 					<h:panelGroup id="pngUsuarioEmailEditar" layout="block"
 						styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
-						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+						<p:panelGrid id="pgdEmail" columns="2" styleClass="tabelaSemBorda">
 							<p:outputLabel value="#{msgs.Email}*" />
 							<p:inputText id="iptEmailUsuario" size="22"
-								value="#{cc.attrs.emailPrincipal.nomeEmail}" required="true"
+								value="#{cc.attrs.emailPrincipal.nomeEmail}"
+								required="#{cc.attrs.requiredEmail}"
 								requiredMessage="#{msgs.MensagemEmailUsuarioRequerido}" />
 
 							<p:outputLabel value="#{msgs.EmailTipo}" />
@@ -92,8 +95,7 @@
 					<p:dataTable paginator="true" rows="2" scrollable="true"
 						styleClass="dataTable" emptyMessage="#{msgs.ListaEmailVazio}"
 						value="#{cc.attrs.listaEmailsUsuarios}"
-						paginatorAlwaysVisible="false" var="email"
-						editable="true"
+						paginatorAlwaysVisible="false" var="email" editable="true"
 						rowKey="#{email.idEmail}">
 
 						<p:column headerText="#{msgs.Email}">
@@ -147,14 +149,15 @@
 						</h:panelGroup>
 
 					</p:dataTable>
-				</p:panel>
+				</h:panelGroup>
 			</p:tab>
 
-			<p:tab title="#{msgs.Telefone}">
-				<p:panel header="#{msgs.Telefone}" closable="false">
+			<p:tab id="tabTelefone" title="#{msgs.Telefone}">
+				<h:panelGroup id="pngContatoTelefone" layout="block">
 					<h:panelGroup id="pngUsuarioTelefoneEditar" layout="block"
 						styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
-						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+						<p:panelGrid id="pgdTelefone" columns="2"
+							styleClass="tabelaSemBorda">
 							<p:outputLabel value="#{msgs.Telefone}*" />
 							<p:inputMask id="ipmTel" mask="+ 99 (99) 9999-9999" size="22"
 								value="#{cc.attrs.telefonePrincipal.numeroTelefone}" />
@@ -191,8 +194,8 @@
 					<p:dataTable paginator="true" rows="2" scrollable="true"
 						styleClass="dataTable" emptyMessage="#{msgs.ListaContatoVazio}"
 						value="#{cc.attrs.listaTelefonesUsuarios}"
-						paginatorAlwaysVisible="false" var="telefone"
-						editable="true" rowKey="#{telefone.idTelefone}">
+						paginatorAlwaysVisible="false" var="telefone" editable="true"
+						rowKey="#{telefone.idTelefone}">
 
 						<p:column headerText="#{msgs.Telefone}">
 							<p:cellEditor>
@@ -244,7 +247,7 @@
 						</h:panelGroup>
 
 					</p:dataTable>
-				</p:panel>
+				</h:panelGroup>
 			</p:tab>
 		</p:tabView>
 	</p:panel>

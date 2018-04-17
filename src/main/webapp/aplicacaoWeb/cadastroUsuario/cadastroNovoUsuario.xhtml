@@ -60,6 +60,7 @@
 		<p:tab title="#{msgs.ContatoUsuario}">
 			<dmat:usuariosContatosComposite id="uccUsuarioNovo"
 				emailPrincipal="#{cadastroUsuarioMB.emailUsuario}"
+				requiredEmail="true"
 				actionListenerAdicionarEmailContato="#{cadastroUsuarioMB.adicionarEmailContato}"
 				updateAdicionarEmailContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
 				updateCancelarAdicionarEmailContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
