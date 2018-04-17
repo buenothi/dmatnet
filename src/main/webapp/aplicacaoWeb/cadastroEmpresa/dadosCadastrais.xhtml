@@ -846,10 +846,10 @@
 		<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 			<p:commandButton value="#{msgs.Sim}" icon="ui-icon-check"
 				actionListener="#{cadastroEmpresaMB.novoDadosCadastraisEmpresaPreenchido}"
-				update="formModulos" />
+				update="formModulos" immediate="true" />
 			<p:commandButton value="#{msgs.Nao}" icon="ui-icon-close"
 				actionListener="#{cadastroEmpresaMB.novoDadosCadastraisEmpresaEmBranco}"
-				update="formModulos" />
+				update="formModulos" immediate="true" />
 		</p:panelGrid>
 	</p:dialog>
 </ui:composition>

@@ -63,10 +63,10 @@
 				styleClass="botoes" icon="fa fa-edit"
 				disabled="#{cc.attrs.disabledEditar}"
 				actionListener="#{cc.attrs.actionListenerEditar}"
-				update="#{cc.attrs.updateEditar}" />
+				update="#{cc.attrs.updateEditar}" immediate="true" />
 			<p:commandButton id="btnCancelar" value="#{msgs.Cancelar}"
 				styleClass="botoes" icon="fa fa-remove"
-				disabled="#{cc.attrs.disabledCancelar}"
+				disabled="#{cc.attrs.disabledCancelar}" immediate="true"
 				actionListener="#{cc.attrs.actionListenerCancelar}"
 				update="#{cc.attrs.updateCancelar}" process="@this">
 				<p:resetInput target="#{cc.attrs.resetCancelar}" />
@@ -75,14 +75,14 @@
 				styleClass="botoes" icon="fa fa-save"
 				disabled="#{cc.attrs.disabledSalvar}"
 				actionListener="#{cc.attrs.actionListenerSalvar}"
-				update="#{cc.attrs.updateSalvar}" />
+				update="#{cc.attrs.updateSalvar}" immediate="true" />
 			<p:commandButton id="btnNovoObjeto" value="#{cc.attrs.labelNovo}"
 				styleClass="botoes" icon="fa fa-plus"
 				disabled="#{cc.attrs.disabledNovo}"
 				rendered="#{cc.attrs.renderedBtnNovo}"
 				actionListener="#{cc.attrs.actionListenerNovo}"
-				update="#{cc.attrs.updateNovo}" 
-				oncomplete="#{cc.attrs.onCompleteNovo}"/>
+				update="#{cc.attrs.updateNovo}"
+				oncomplete="#{cc.attrs.onCompleteNovo}" immediate="true" />
 		</f:facet>
 		<f:facet name="right">
 			<p:commandButton id="btnImprimirObjeto"
