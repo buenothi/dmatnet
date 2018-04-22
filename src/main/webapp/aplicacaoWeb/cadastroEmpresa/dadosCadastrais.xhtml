@@ -462,8 +462,7 @@
 						emptyMessage="#{msgs.ListaEmpresaSoftwareVazio}"
 						value="#{cadastroEmpresaMB.empresasSoftwareHouse}"
 						paginatorAlwaysVisible="false" var="empresaSoftware"
-						editable="true"
-						rowKey="#{empresaSoftware.idEmpresaSoftwareHouse}">
+						editable="true" rowKey="#{empresaSoftware.idEmpresaSoftwareHouse}">
 
 						<p:column headerText="#{msgs.CnpjSoftwareHouse}" width="160">
 							<p:cellEditor>
@@ -612,7 +611,97 @@
 			</p:tab>
 
 			<p:tab title="#{msgs.Historico}">
-				<h:panelGrid columns="2" cellpadding="10">
+				<p:dataTable paginator="true" rows="10" scrollable="true"
+					styleClass="dataTable"
+					emptyMessage="#{msgs.ListaHistoricoDadosCadastrais}"
+					value="#{cadastroEmpresaMB.dadosCadastraisHistorico}"
+					paginatorAlwaysVisible="false" var="cadastro"
+					sortBy="#{cadastro.id}" sortOrder="descending" editable="true"
+					rowKey="#{cadastro.id}">
+
+					<p:column headerText="#{msgs.DataCadastro}" width="100">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.dataInicioCadastro}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:calendar value="#{cadastro.dataInicioCadastro}" locale="pt"
+									showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
+									mask="true" size="8" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.DataTermino}" width="100">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.dataFimCadastro}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:calendar value="#{cadastro.dataFimCadastro}" locale="pt"
+									showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
+									mask="true" size="8" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.TipoInscricao}" width="80">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.tipoInscricao}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:selectOneMenu style="width:100%;"
+									value="#{cadastro.tipoInscricao}">
+									<f:selectItem itemValue="1" itemLabel="CNPJ" />
+									<f:selectItem itemValue="2" itemLabel="CPF" />
+								</p:selectOneMenu>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.Inscricao}" width="160">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.numCNPJ}">
+									<f:converter converterId="cnpjCpfConverter" />
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputMask id="ipmInscricao" converter="cnpjCpfConverter"
+									mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}"
+									value="#{cadastro.numCNPJ}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.RazaoSocial}" width="210">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.razaoSocial}">
+									<f:converter converterId="stringConverter" />
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{cadastro.razaoSocial}" style="width: 100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.FAP}" width="90">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.empresaFAP.valorFAP}">
+									<f:converter converterId="javax.faces.Double" />
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputMask mask="9.999"
+									value="#{cadastro.empresaFAP.valorFAP}" style="width: 100%"
+									converter="javax.faces.Double">
+								</p:inputMask>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
 					<p:dataTable paginator="true" rows="10" scrollable="true"
 						styleClass="dataTable"
 						emptyMessage="#{msgs.ListaHistoricoDadosCadastrais}"
@@ -620,7 +709,6 @@
 						paginatorAlwaysVisible="false" var="cadastro"
 						sortBy="#{cadastro.id}" sortOrder="descending" editable="true"
 						rowKey="#{cadastro.id}">
-
 						<p:column headerText="#{msgs.DataCadastro}" width="100">
 							<p:cellEditor>
 								<f:facet name="output">
@@ -655,7 +743,7 @@
 									<p:outputLabel value="#{cadastro.tipoInscricao}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:selectOneMenu style="width:100%;"
+									<p:selectOneMenu style="width:100%"
 										value="#{cadastro.tipoInscricao}">
 										<f:selectItem itemValue="1" itemLabel="CNPJ" />
 										<f:selectItem itemValue="2" itemLabel="CPF" />
@@ -705,130 +793,35 @@
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
-						<p:dataTable paginator="true" rows="10" scrollable="true"
-							styleClass="dataTable"
-							emptyMessage="#{msgs.ListaHistoricoDadosCadastrais}"
-							value="#{cadastroEmpresaMB.dadosCadastraisHistorico}"
-							paginatorAlwaysVisible="false" var="cadastro"
-							sortBy="#{cadastro.id}" sortOrder="descending" editable="true"
-							rowKey="#{cadastro.id}">
 
-							<p:column headerText="#{msgs.DataCadastro}" width="100">
-								<p:cellEditor>
-									<f:facet name="output">
-										<p:outputLabel value="#{cadastro.dataInicioCadastro}">
-											<f:convertDateTime pattern="dd/MM/yyyy" />
-										</p:outputLabel>
-									</f:facet>
-									<f:facet name="input">
-										<p:calendar value="#{cadastro.dataInicioCadastro}" locale="pt"
-											showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
-											mask="true" size="8" />
-									</f:facet>
-								</p:cellEditor>
-							</p:column>
-							<p:column headerText="#{msgs.DataTermino}" width="100">
-								<p:cellEditor>
-									<f:facet name="output">
-										<p:outputLabel value="#{cadastro.dataFimCadastro}">
-											<f:convertDateTime pattern="dd/MM/yyyy" />
-										</p:outputLabel>
-									</f:facet>
-									<f:facet name="input">
-										<p:calendar value="#{cadastro.dataFimCadastro}" locale="pt"
-											showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
-											mask="true" size="8" />
-									</f:facet>
-								</p:cellEditor>
-							</p:column>
-							<p:column headerText="#{msgs.TipoInscricao}" width="80">
-								<p:cellEditor>
-									<f:facet name="output">
-										<p:outputLabel value="#{cadastro.tipoInscricao}" />
-									</f:facet>
-									<f:facet name="input">
-										<p:selectOneMenu style="width:100%"
-											value="#{cadastro.tipoInscricao}">
-											<f:selectItem itemValue="1" itemLabel="CNPJ" />
-											<f:selectItem itemValue="2" itemLabel="CPF" />
-										</p:selectOneMenu>
-									</f:facet>
-								</p:cellEditor>
-							</p:column>
-							<p:column headerText="#{msgs.Inscricao}" width="160">
-								<p:cellEditor>
-									<f:facet name="output">
-										<p:outputLabel value="#{cadastro.numCNPJ}">
-											<f:converter converterId="cnpjCpfConverter" />
-										</p:outputLabel>
-									</f:facet>
-									<f:facet name="input">
-										<p:inputMask id="ipmInscricao" converter="cnpjCpfConverter"
-											mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}"
-											value="#{cadastro.numCNPJ}" />
-									</f:facet>
-								</p:cellEditor>
-							</p:column>
-							<p:column headerText="#{msgs.RazaoSocial}" width="210">
-								<p:cellEditor>
-									<f:facet name="output">
-										<p:outputLabel value="#{cadastro.razaoSocial}">
-											<f:converter converterId="stringConverter" />
-										</p:outputLabel>
-									</f:facet>
-									<f:facet name="input">
-										<p:inputText value="#{cadastro.razaoSocial}"
-											style="width: 100%" />
-									</f:facet>
-								</p:cellEditor>
-							</p:column>
-							<p:column headerText="#{msgs.FAP}" width="90">
-								<p:cellEditor>
-									<f:facet name="output">
-										<p:outputLabel value="#{cadastro.empresaFAP.valorFAP}">
-											<f:converter converterId="javax.faces.Double" />
-										</p:outputLabel>
-									</f:facet>
-									<f:facet name="input">
-										<p:inputMask mask="9.999"
-											value="#{cadastro.empresaFAP.valorFAP}" style="width: 100%"
-											converter="javax.faces.Double">
-										</p:inputMask>
-									</f:facet>
-								</p:cellEditor>
-							</p:column>
-
-							<p:column style="width:55px">
-								<p:rowEditor />
-							</p:column>
-
-							<p:column style="width:55px">
-								<p:commandButton icon="fa fa-trash" />
-							</p:column>
-
-						</p:dataTable>
-
-						<p:column style="width:55px"
-							rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
+						<p:column style="width:55px">
 							<p:rowEditor />
 						</p:column>
 
-						<p:column style="width:55px"
-							rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
-							<p:commandButton icon="fa fa-trash"
-								actionListener="#{cadastroEmpresaMB.excluirDadosCadastraisDoHistoricoEmpresa(cadastro)}"
-								update="formSelecionarEmpresa, formModulos, growlPrincipal">
-								<f:setPropertyActionListener value="#{cadastro}"
-									target="#{cadastroEmpresaMB.dadosCadastraisExcluir}" />
-								<p:confirm header="#{msgs.Confirmar}"
-									message="#{msgs.DeletarDadosCadastrais}" icon="ui-icon-alert" />
-							</p:commandButton>
+						<p:column style="width:55px">
+							<p:commandButton icon="fa fa-trash" />
 						</p:column>
-					</p:dataTable>
-				</h:panelGrid>
-			</p:tab>
-			<p:selectOneListbox />
 
+					</p:dataTable>
+
+					<p:column style="width:55px"
+						rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
+						<p:rowEditor />
+					</p:column>
+
+					<p:column style="width:55px"
+						rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
+						<p:commandButton icon="fa fa-trash"
+							actionListener="#{cadastroEmpresaMB.excluirDadosCadastraisDoHistoricoEmpresa(cadastro)}"
+							update="formSelecionarEmpresa, formModulos, growlPrincipal">
+							<f:setPropertyActionListener value="#{cadastro}"
+								target="#{cadastroEmpresaMB.dadosCadastraisExcluir}" />
+							<p:confirm header="#{msgs.Confirmar}"
+								message="#{msgs.DeletarDadosCadastrais}" icon="ui-icon-alert" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</p:tab>
 
 		</p:accordionPanel>
 
