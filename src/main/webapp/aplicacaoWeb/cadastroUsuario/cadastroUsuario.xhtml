@@ -65,9 +65,9 @@
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentosExibir:pgdRIC,
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentosExibir:pgdRNE,
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentosExibir:pgdCNH,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uedUsuarioSelecionado:dmatEnderecoContato:acpEndereco, 
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoEmail, 
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoTelefone" />
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uedUsuarioSelecionado:dmatEnderecoContato:acpEndereco" /> 
+						 <!-- formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoEmail, 
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoTelefone" /> -->
 				<p:column headerText="#{msgs.Login}">
 					<h:outputText value="#{usuario.nome}" converter="stringConverter" />
 				</p:column>
@@ -94,7 +94,7 @@
 					<dmat:usuariosEnderecoComposite id="uedUsuarioSelecionado"
 						enderecoRendered="true" barraBotoesRendered="false"
 						renderedHistorico="true"
-						enderecoAtual="#{cadastroUsuarioMB.enderecoUsuarioAtual}"
+						enderecoAtual="#{cadastroUsuarioMB.enderecoUsuarioSelecionado}"
 						enderecoHistorico="#{cadastroUsuarioMB.enderecosUsuarioHistorico}"
 						ajaxComponentRender="@this, formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uedUsuarioSelecionado:dmatEnderecoContato:acpEndereco:listCidade"
 						disabledEditar="#{cadastroUsuarioMB.btnEnderecoUsuarioEditarDesativado}"
@@ -120,19 +120,7 @@
 				</p:tab>
 
 				<p:tab title="#{msgs.Contatos}">
-					<dmat:usuariosContatosComposite id="uccUsuarioSelecionado"
-						emailPrincipal="#{cadastroUsuarioMB.emailUsuario}"
-						actionListenerAdicionarEmailContato="#{cadastroUsuarioMB.adicionarEmailContato}"
-						updateAdicionarEmailContato=""
-						updateCancelarAdicionarEmailContato=""
-						listaEmailsUsuarios="#{cadastroUsuarioMB.emailsUsuario}"
-						telefonePrincipal="#{cadastroUsuarioMB.telefoneUsuario}"
-						listaTelefonesUsuarios="#{cadastroUsuarioMB.telefonesUsuario}"
-						actionListenerAdicionarTelefoneContato="#{cadastroUsuarioMB.adicionarEmailContato}"
-						updateAdicionarTelefoneContato=""
-						updateCancelarTelefoneContato=""
-						updateRemoverTelefoneLista=""
-						setPropertyActionListenerRemoverContato="#{cadastroUsuarioMB.telefoneUsuarioExcluir}" />
+					
 				</p:tab>
 
 				<p:tab title="#{msgs.Login}">

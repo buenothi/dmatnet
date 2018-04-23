@@ -72,4 +72,15 @@ public class UsuarioFacade implements UsuarioFacadeLocal {
 				empresasAtribuidas);
 	}
 
+	@Override
+	public EnderecoEntity selecionarEnderecoUsuarioAtual(UsuarioEntity usuario) throws Exception {
+		return usuarioEAO.selecionarEnderecoUsuarioAtual(usuario);
+	}
+
+	@Override
+	public List<EnderecoEntity> selecionarEnderecosUsuarioHistorico(EnderecoEntity enderecoAtual,
+			UsuarioEntity usuarioSelecionado) throws Exception {
+		return usuarioEAO.selecionarEnderecosUsuarioHistorico(enderecoAtual, usuarioSelecionado);
+	}
+	
 }

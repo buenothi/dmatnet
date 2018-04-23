@@ -61,6 +61,7 @@ public class CadastroUsuarioMB implements Serializable {
 
 	private EnderecoEntity enderecoUsuarioAtual;
 	private EnderecoEntity enderecoUsuarioExcluir;
+	private EnderecoEntity enderecoUsuarioSelecionado;
 	private List<EnderecoEntity> enderecosUsuarioHistorico;
 
 	private TelefoneEntity telefoneUsuario;
@@ -238,14 +239,25 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public EnderecoEntity getEnderecoUsuarioExcluir() {
+		if (enderecoUsuarioExcluir == null) {
+			this.enderecoUsuarioExcluir = new EnderecoEntity();
+		}
 		return enderecoUsuarioExcluir;
 	}
 
 	public void setEnderecoUsuarioExcluir(EnderecoEntity enderecoUsuarioExcluir) {
-		if (enderecoUsuarioExcluir == null) {
-			this.enderecoUsuarioExcluir = new EnderecoEntity();
-		}
 		this.enderecoUsuarioExcluir = enderecoUsuarioExcluir;
+	}
+
+	public EnderecoEntity getEnderecoUsuarioSelecionado() {
+		if (enderecoUsuarioSelecionado == null) {
+			this.enderecoUsuarioSelecionado = new EnderecoEntity();
+		}
+		return enderecoUsuarioSelecionado;
+	}
+
+	public void setEnderecoUsuarioSelecionado(EnderecoEntity enderecoUsuarioSelecionado) {
+		this.enderecoUsuarioSelecionado = enderecoUsuarioSelecionado;
 	}
 
 	public List<EnderecoEntity> getEnderecosUsuarioHistorico() {
@@ -601,6 +613,21 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void onSelectionUsuario(SelectEvent evt) {
 		this.usuarioSelecionado = (UsuarioEntity) evt.getObject();
+		this.separarEnderecoUsuarioAtualDoHistorico(this.usuarioSelecionado);
+	}
+
+	public void separarEnderecoUsuarioAtualDoHistorico(UsuarioEntity usuario) {
+		this.usuarioSelecionado = usuarioFachada.read(usuario.getIdPessoa());
+		try {
+			this.enderecoUsuarioSelecionado = this.usuarioFachada
+					.selecionarEnderecoUsuarioAtual(this.usuarioSelecionado);
+			this.enderecosUsuarioHistorico = this.usuarioFachada
+					.selecionarEnderecosUsuarioHistorico(this.enderecoUsuarioSelecionado, this.usuarioSelecionado);
+		} catch (NullPointerException np) {
+			np.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/*

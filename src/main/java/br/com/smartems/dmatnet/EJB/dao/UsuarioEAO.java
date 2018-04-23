@@ -1,5 +1,7 @@
 package br.com.smartems.dmatnet.EJB.dao;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -88,4 +90,40 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 		}
 		return usuario;
 	}
+
+	public EnderecoEntity selecionarEnderecoUsuarioAtual(UsuarioEntity usuario) throws Exception {
+		Date dataMaisRecente;
+		EnderecoEntity enderecoUsuarioAtual = new EnderecoEntity();
+		if (!usuario.getEnderecos().isEmpty()) {
+			List<EnderecoEntity> listaEnderecoProvisoria = new ArrayList<EnderecoEntity>();
+			for (EnderecoEntity endereco : usuario.getEnderecos()) {
+				listaEnderecoProvisoria.add(endereco);
+			}
+			dataMaisRecente = listaEnderecoProvisoria.get(0).getDataInicioEndereco();
+			enderecoUsuarioAtual = listaEnderecoProvisoria.get(0);
+			for (EnderecoEntity endereco : usuario.getEnderecos()) {
+				if (endereco.getDataInicioEndereco().compareTo(dataMaisRecente) >= 0
+						&& endereco.getDataTerminoEndereco() == null) {
+					dataMaisRecente = endereco.getDataInicioEndereco();
+					enderecoUsuarioAtual = endereco;
+				}
+			}
+		}
+		return enderecoUsuarioAtual;
+	}
+
+	public List<EnderecoEntity> selecionarEnderecosUsuarioHistorico(EnderecoEntity enderecoAtual,
+			UsuarioEntity usuarioSelecionado) throws Exception {
+		List<EnderecoEntity> enderecosHistorico = new ArrayList<EnderecoEntity>();
+		if (!usuarioSelecionado.getEnderecos().isEmpty()) {
+			usuarioSelecionado.getEnderecos().remove(enderecoAtual);
+			List<EnderecoEntity> listaEnderecoProvisoria = new ArrayList<EnderecoEntity>();
+			for (EnderecoEntity endereco : usuarioSelecionado.getEnderecos()) {
+				listaEnderecoProvisoria.add(endereco);
+			}
+			enderecosHistorico = listaEnderecoProvisoria;
+		}
+		return enderecosHistorico;
+	}
+
 }

@@ -41,7 +41,7 @@
 <composite:implementation>
 
 	<p:panel id="pnlContatosUsuario" header="#{msgs.ContatoUsuario}"
-		closable="false" style="max-width:800px">
+		closable="false" style="max-width:660px">
 		<p:messages id="msEmail" showDetail="true" closable="true" />
 		<p:tabView id="tbwContatosUsuario">
 			<p:tab id="tabEmail" title="#{msgs.Email}">
@@ -75,7 +75,7 @@
 								<f:facet name="left">
 									<p:commandButton value="#{msgs.Adicionar}"
 										actionListener="#{cc.attrs.actionListenerAdicionarEmailContato}"
-										update="#{cc.attrs.updateAdicionarEmailContato}" immediate="true"/>
+										update="#{cc.attrs.updateAdicionarEmailContato}"/>
 									<p:commandButton value="#{msgs.Cancelar}"
 										update="#{cc.attrs.updateCancelarAdicionarEmailContato}" />
 								</f:facet>
