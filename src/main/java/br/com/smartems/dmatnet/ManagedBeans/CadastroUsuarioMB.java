@@ -80,6 +80,11 @@ public class CadastroUsuarioMB implements Serializable {
 	private List<EmpresaEntity> empresasAtribuidasUsuario;
 
 	private boolean isDialogNovoUsuarioRendered = false;
+	
+	// botões dados do usuário de dadosCadastrais
+	
+	private boolean isDadosUsuariosEditar = false;
+	private boolean isDadosUsuariosExibir = true;
 
 	// botões endereço de usuarios dentro de dadosCadastrais
 
@@ -94,11 +99,11 @@ public class CadastroUsuarioMB implements Serializable {
 	// botões usuarios dentro de dadosCadastrais
 
 	private boolean isBtnUsuarioEditarDesativado = true;
-	private boolean isBtnUsuarioCancelarDesativado = false;
-	private boolean isBtnUsuarioSalvarDesativado = false;
+	private boolean isBtnUsuarioCancelarDesativado = true;
+	private boolean isBtnUsuarioSalvarDesativado = true;
 	private boolean isBtnUsuarioNovoDesativado = false;
 	private boolean isBtnUsuarioExcluirDesativado = false;
-	private boolean isBtnUsuarioExcluirRender = false;
+	private boolean isBtnUsuarioExcluirRender = true;
 
 	// botões usuarios dentro de contatosUsuario
 
@@ -611,7 +616,24 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isDialogNovoUsuarioRendered = false;
 	}
 
+	public boolean isDadosUsuariosEditar() {
+		return isDadosUsuariosEditar;
+	}
+
+	public void setDadosUsuariosEditar(boolean isDadosUsuariosEditar) {
+		this.isDadosUsuariosEditar = isDadosUsuariosEditar;
+	}
+
+	public boolean isDadosUsuariosExibir() {
+		return isDadosUsuariosExibir;
+	}
+
+	public void setDadosUsuariosExibir(boolean isDadosUsuariosExibir) {
+		this.isDadosUsuariosExibir = isDadosUsuariosExibir;
+	}
+
 	public void onSelectionUsuario(SelectEvent evt) {
+		this.isBtnUsuarioEditarDesativado = false;
 		this.usuarioSelecionado = (UsuarioEntity) evt.getObject();
 		this.separarEnderecoUsuarioAtualDoHistorico(this.usuarioSelecionado);
 	}
@@ -753,11 +775,17 @@ public class CadastroUsuarioMB implements Serializable {
 	// action dos botões dentro de dadosUsuario
 
 	public void editarUsuario(ActionEvent evt) {
-
+		this.isDadosUsuariosEditar = true;
+		this.isDadosUsuariosExibir = false;	
+		this.isBtnUsuarioCancelarDesativado = false;
+		this.isBtnUsuarioEditarDesativado = true;
 	}
 
 	public void cancelarUsuario(ActionEvent evt) {
-
+		this.isDadosUsuariosEditar = false;
+		this.isDadosUsuariosExibir = true;
+		this.isBtnUsuarioCancelarDesativado = true;
+		this.isBtnUsuarioEditarDesativado = false;
 	}
 
 	public void excluirUsuario(ActionEvent evt) {
