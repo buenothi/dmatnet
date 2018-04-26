@@ -18,7 +18,8 @@
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCPF,
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRIC,
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRNE,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCNH"
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCNH,
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uedUsuarioSelecionado:pnlEnderecoUsuario"
 		disabledCancelar="#{cadastroUsuarioMB.btnUsuarioCancelarDesativado}"
 		actionListenerCancelar="#{cadastroUsuarioMB.cancelarUsuario}"
 		updateCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesUsuario:tbrBotoes,
@@ -27,7 +28,8 @@
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCPF,
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRIC,
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRNE,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCNH,"
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCNH,
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uedUsuarioSelecionado:pnlEnderecoUsuario"
 		resetCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcDadosUsuarioSelecionado:pnlDadosUsuario"
 		disabledSalvar="#{cadastroUsuarioMB.btnUsuarioSalvarDesativado}"
 		actionListenerSalvar="#{cadastroUsuarioMB.salvarUsuario}"
@@ -73,7 +75,7 @@
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRIC,
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRNE,
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCNH,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uedUsuarioSelecionado:dmatEnderecoContato:acpEndereco" />
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uedUsuarioSelecionado:pnlEnderecoUsuario" />
 				<!-- formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoEmail, 
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoTelefone" /> -->
 				<p:column headerText="#{msgs.Login}">
@@ -111,9 +113,9 @@
 						ajaxComponentRender="@this, formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uedUsuarioSelecionado:dmatEnderecoContato:acpEndereco:listCidade"
 						disabledEditar="#{cadastroUsuarioMB.btnEnderecoUsuarioEditarDesativado}"
 						actionListenerEditar="#{cadastroUsuarioMB.editarEnderecoUsuario}"
-						enderecoEditarRender="true"
+						enderecoEditarRender="#{cadastroUsuarioMB.dadosUsuariosEditar}"						
+						disabledCancelar="#{cadastroUsuarioMB.dadosUsuariosExibir}" 
 						updateEditar="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
-						disabledCancelar="false"
 						actionListenerCancelar="#{cadastroUsuarioMB.cancelarEnderecoUsuario}"
 						updateCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
 						disabledSalvar="#{cadastroUsuarioMB.btnEnderecoUsuarioSalvarDesativado}"
