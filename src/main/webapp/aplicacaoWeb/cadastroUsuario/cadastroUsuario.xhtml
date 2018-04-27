@@ -68,8 +68,7 @@
 
 				<p:ajax event="rowSelect"
 					listener="#{cadastroUsuarioMB.onSelectionUsuario}"
-					update="formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesUsuario:tbrBotoes, 
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:pngCadastroUsuario,
+					update="formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesUsuario:tbrBotoes,
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcDadosUsuarioSelecionado:pnlDadosUsuario,
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRG,
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCPF,
@@ -86,7 +85,7 @@
 		</h:panelGroup>
 
 		<h:panelGroup id="pngCadastroUsuario" layout="block">
-			<p:tabView id="tbwCadastroUsuario" rendered="#{cadastroUsuarioMB.cadastroUsuarioRendered}">
+			<p:tabView id="tbwCadastroUsuario">
 
 				<p:tab title="#{msgs.DadosUsuario}">
 					<dmat:usuariosDadosComposite id="udcDadosUsuarioSelecionado"
@@ -94,7 +93,8 @@
 						cadastroUsuarioSexo="#{cadastroUsuarioMB.usuarioSelecionado.genero}"
 						dataCadastro="#{cadastroUsuarioMB.usuarioSelecionado.dataCadastroPessoa}"
 						editarRendered="#{cadastroUsuarioMB.dadosUsuariosEditar}"
-						exibirRendered="#{cadastroUsuarioMB.dadosUsuariosExibir}" />
+						exibirRendered="#{cadastroUsuarioMB.dadosUsuariosExibir}"
+						dadosUsuarioRendered="#{cadastroUsuarioMB.cadastroUsuarioRendered}" />
 				</p:tab>
 
 				<p:tab title="#{msgs.DocumentosPessoaFisica}">

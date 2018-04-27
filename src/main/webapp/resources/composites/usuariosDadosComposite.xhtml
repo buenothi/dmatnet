@@ -22,6 +22,8 @@
 
 	<composite:attribute name="exibirRendered" default="false" />
 
+	<composite:attribute name="dadosUsuarioRendered" default="true" />
+
 </composite:interface>
 
 
@@ -29,54 +31,58 @@
 
 	<p:panel id="pnlDadosUsuario" header="#{msgs.DadosUsuario}"
 		closable="false">
-		<p:messages id="msDadosUsuariosNovo" showDetail="true" closable="true" />
-		<h:panelGroup id="pngUsuarioCadastroEditar" layout="block"
-			styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
-			<p:panelGrid id="pgdDadosUsuarioEditar" columns="2"
-				styleClass="tabelaSemBorda">
-				<p:outputLabel value="#{msgs.DataCadastro}:*" />
-				<p:calendar id="calCadastroUsuario" locale="pt" showOn="button"
-					showButtonPanel="true" pattern="dd/MM/yyyy" mask="true" size="8"
-					requiredMessage="#{msgs.MensagemDataCadastroRequerida}"
-					value="#{cc.attrs.dataCadastro}"
-					required="#{cc.attrs.dataCadastroRequired}"
-					immediate="#{cc.attrs.dataCadastroRequired}" />
+		<p:outputLabel value=""/>
+		<h:panelGroup id="pngDadosUsuario" layout="block"
+			rendered="#{cc.attrs.dadosUsuarioRendered}">
+			<p:messages id="msDadosUsuariosNovo" showDetail="true"
+				closable="true" />
+			<h:panelGroup id="pngUsuarioCadastroEditar" layout="block"
+				styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
+				<p:panelGrid id="pgdDadosUsuarioEditar" columns="2"
+					styleClass="tabelaSemBorda">
+					<p:outputLabel value="#{msgs.DataCadastro}:*" />
+					<p:calendar id="calCadastroUsuario" locale="pt" showOn="button"
+						showButtonPanel="true" pattern="dd/MM/yyyy" mask="true" size="8"
+						requiredMessage="#{msgs.MensagemDataCadastroRequerida}"
+						value="#{cc.attrs.dataCadastro}"
+						required="#{cc.attrs.dataCadastroRequired}"
+						immediate="#{cc.attrs.dataCadastroRequired}" />
 
-				<p:outputLabel value="#{msgs.Nome}:*" />
-				<p:inputText id="iptNomeUsuario" size="22"
-					value="#{cc.attrs.cadastroUsuarioNome}"
-					required="#{cc.attrs.nomePessoaRequired}"
-					requiredMessage="#{msgs.MensagemNomeUsuarioRequerido}"
-					immediate="#{cc.attrs.nomePessoaRequired}" />
+					<p:outputLabel value="#{msgs.Nome}:*" />
+					<p:inputText id="iptNomeUsuario" size="22"
+						value="#{cc.attrs.cadastroUsuarioNome}"
+						required="#{cc.attrs.nomePessoaRequired}"
+						requiredMessage="#{msgs.MensagemNomeUsuarioRequerido}"
+						immediate="#{cc.attrs.nomePessoaRequired}" />
 
-				<p:outputLabel value="#{msgs.Genero}:" />
-				<p:selectOneRadio value="#{cc.attrs.cadastroUsuarioSexo}">
-					<f:selectItem itemLabel="#{msgs.Masculino}" itemValue="1" />
-					<f:selectItem itemLabel="#{msgs.Feminino}" itemValue="2" />
-				</p:selectOneRadio>
-			</p:panelGrid>
+					<p:outputLabel value="#{msgs.Genero}:" />
+					<p:selectOneRadio value="#{cc.attrs.cadastroUsuarioSexo}">
+						<f:selectItem itemLabel="#{msgs.Masculino}" itemValue="1" />
+						<f:selectItem itemLabel="#{msgs.Feminino}" itemValue="2" />
+					</p:selectOneRadio>
+				</p:panelGrid>
+			</h:panelGroup>
+
+
+			<h:panelGroup id="pngUsuarioCadastroExibir" layout="block"
+				styleClass="formulario" rendered="#{cc.attrs.exibirRendered}">
+				<p:panelGrid id="pgdDadosUsuarioExibir" columns="2"
+					styleClass="tabelaSemBorda">
+					<p:outputLabel value="#{msgs.DataCadastro}:" />
+					<p:outputLabel id="oplCadastroUsuario"
+						value="#{cc.attrs.dataCadastro}">
+						<f:convertDateTime type="both" pattern="dd/MM/YYYY" />
+					</p:outputLabel>
+
+					<p:outputLabel value="#{msgs.Nome}:" />
+					<p:outputLabel id="oplNomeUsuario" size="22"
+						value="#{cc.attrs.cadastroUsuarioNome}" />
+
+					<p:outputLabel value="#{msgs.Genero}:" />
+					<p:outputLabel value="#{cc.attrs.cadastroUsuarioSexo}" />
+				</p:panelGrid>
+			</h:panelGroup>
 		</h:panelGroup>
-
-
-		<h:panelGroup id="pngUsuarioCadastroExibir" layout="block"
-			styleClass="formulario" rendered="#{cc.attrs.exibirRendered}">
-			<p:panelGrid id="pgdDadosUsuarioExibir" columns="2"
-				styleClass="tabelaSemBorda">
-				<p:outputLabel value="#{msgs.DataCadastro}:" />
-				<p:outputLabel id="oplCadastroUsuario"
-					value="#{cc.attrs.dataCadastro}">
-					<f:convertDateTime type="both" pattern="dd/MM/YYYY" />
-				</p:outputLabel>
-
-				<p:outputLabel value="#{msgs.Nome}:" />
-				<p:outputLabel id="oplNomeUsuario" size="22"
-					value="#{cc.attrs.cadastroUsuarioNome}" />
-
-				<p:outputLabel value="#{msgs.Genero}:" />
-				<p:outputLabel value="#{cc.attrs.cadastroUsuarioSexo}" />
-			</p:panelGrid>
-		</h:panelGroup>
-
 	</p:panel>
 
 </composite:implementation>
