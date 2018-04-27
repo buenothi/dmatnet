@@ -69,6 +69,7 @@
 				<p:ajax event="rowSelect"
 					listener="#{cadastroUsuarioMB.onSelectionUsuario}"
 					update="formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesUsuario:tbrBotoes, 
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:pngCadastroUsuario,
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcDadosUsuarioSelecionado:pnlDadosUsuario,
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRG,
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCPF,
@@ -84,8 +85,8 @@
 			</p:dataTable>
 		</h:panelGroup>
 
-		<h:panelGroup>
-			<p:tabView id="tbwCadastroUsuario">
+		<h:panelGroup id="pngCadastroUsuario" layout="block">
+			<p:tabView id="tbwCadastroUsuario" rendered="#{cadastroUsuarioMB.cadastroUsuarioRendered}">
 
 				<p:tab title="#{msgs.DadosUsuario}">
 					<dmat:usuariosDadosComposite id="udcDadosUsuarioSelecionado"

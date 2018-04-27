@@ -80,6 +80,7 @@ public class CadastroUsuarioMB implements Serializable {
 	private List<EmpresaEntity> empresasAtribuidasUsuario;
 
 	private boolean isDialogNovoUsuarioRendered = false;
+	private boolean isCadastroUsuarioRendered = false;
 	
 	// botões dados do usuário de dadosCadastrais
 	
@@ -405,6 +406,14 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isDialogNovoUsuarioRendered = isDialogNovoUsuarioRendered;
 	}
 
+	public boolean isCadastroUsuarioRendered() {
+		return isCadastroUsuarioRendered;
+	}
+
+	public void setCadastroUsuarioRendered(boolean isCadastroUsuarioRendered) {
+		this.isCadastroUsuarioRendered = isCadastroUsuarioRendered;
+	}
+
 	public boolean isEnderecoUsuarioRendered() {
 		return isEnderecoUsuarioRendered;
 	}
@@ -634,6 +643,7 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void onSelectionUsuario(SelectEvent evt) {
 		this.isBtnUsuarioEditarDesativado = false;
+		this.isCadastroUsuarioRendered = true;
 		this.usuarioSelecionado = (UsuarioEntity) evt.getObject();
 		this.separarEnderecoUsuarioAtualDoHistorico(this.usuarioSelecionado);
 	}
