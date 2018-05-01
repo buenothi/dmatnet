@@ -34,14 +34,21 @@
 	<composite:attribute name="messageConfirmaExcluir" />
 	<composite:attribute name="messageHeaderExcluir" />
 	<composite:attribute name="messageLabelExcluir" />
+
+	<composite:attribute name="dadosUsuarioRendered" default="true" />
+
+	<composite:attribute name="mensagemSelecionarUsuarioRendered"
+		default="false" />
 </composite:interface>
 
 <composite:implementation>
 
 	<p:panel id="pnlEnderecoUsuario" header="#{msgs.Endereco}"
 		closable="false" style="width:660px">
-		<p:messages id="msEnderecoUsuario" showDetail="true"
-			closable="true" />
+		<p:messages id="msEnderecoUsuario" showDetail="true" closable="true" />
+
+		<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
+			rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
 
 		<dmat:enderecoComposite id="dmatEnderecoContato"
 			enderecoRendered="#{cc.attrs.enderecoRendered}"
@@ -69,7 +76,8 @@
 			renderedBtnExcluir="#{cc.attrs.renderedBtnExcluir}"
 			messageConfirmaExcluir="#{cc.attrs.messageConfirmaExcluir}"
 			messageHeaderExcluir="#{cc.attrs.messageHeaderExcluir}"
-			messageLabelExcluir="#{cc.attrs.messageLabelExcluir}" />
+			messageLabelExcluir="#{cc.attrs.messageLabelExcluir}"
+			rendered="#{cc.attrs.dadosUsuarioRendered}" />
 
 	</p:panel>
 

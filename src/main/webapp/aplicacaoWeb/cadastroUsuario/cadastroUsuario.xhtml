@@ -94,7 +94,8 @@
 						dataCadastro="#{cadastroUsuarioMB.usuarioSelecionado.dataCadastroPessoa}"
 						editarRendered="#{cadastroUsuarioMB.dadosUsuariosEditar}"
 						exibirRendered="#{cadastroUsuarioMB.dadosUsuariosExibir}"
-						dadosUsuarioRendered="#{cadastroUsuarioMB.cadastroUsuarioRendered}" />
+						dadosUsuarioRendered="#{cadastroUsuarioMB.cadastroUsuarioRendered}"
+						mensagemSelecionarUsuarioRendered="#{cadastroUsuarioMB.mensagemSelecionarUsuarioRendered}" />
 				</p:tab>
 
 				<p:tab title="#{msgs.DocumentosPessoaFisica}">
@@ -102,7 +103,9 @@
 						id="udocDocumentosUsuarioSelecionado"
 						documentosPessoais="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais}"
 						editarRendered="#{cadastroUsuarioMB.dadosUsuariosEditar}"
-						exibirRendered="#{cadastroUsuarioMB.dadosUsuariosExibir}" />
+						exibirRendered="#{cadastroUsuarioMB.dadosUsuariosExibir}"
+						dadosUsuarioRendered="#{cadastroUsuarioMB.cadastroUsuarioRendered}"
+						mensagemSelecionarUsuarioRendered="#{cadastroUsuarioMB.mensagemSelecionarUsuarioRendered}" />
 				</p:tab>
 
 				<p:tab title="#{msgs.Endereco}">
@@ -114,8 +117,8 @@
 						ajaxComponentRender="@this, formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uedUsuarioSelecionado:dmatEnderecoContato:acpEndereco:listCidade"
 						disabledEditar="#{cadastroUsuarioMB.btnEnderecoUsuarioEditarDesativado}"
 						actionListenerEditar="#{cadastroUsuarioMB.editarEnderecoUsuario}"
-						enderecoEditarRender="#{cadastroUsuarioMB.dadosUsuariosEditar}"						
-						disabledCancelar="#{cadastroUsuarioMB.dadosUsuariosExibir}" 
+						enderecoEditarRender="#{cadastroUsuarioMB.dadosUsuariosEditar}"
+						disabledCancelar="#{cadastroUsuarioMB.dadosUsuariosExibir}"
 						updateEditar="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
 						actionListenerCancelar="#{cadastroUsuarioMB.cancelarEnderecoUsuario}"
 						updateCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
@@ -131,7 +134,9 @@
 						renderedBtnExcluir="#{cadastroEmpresaMB.btnEnderecoEmpresaExcluirRender}"
 						messageConfirmaExcluir="#{msgs.DeletarEnderecoUsuario}"
 						messageHeaderExcluir="#{msgs.Confirmar}"
-						messageLabelExcluir="#{msgs.Excluir}" />
+						messageLabelExcluir="#{msgs.Excluir}"
+						dadosUsuarioRendered="#{cadastroUsuarioMB.cadastroUsuarioRendered}"
+						mensagemSelecionarUsuarioRendered="#{cadastroUsuarioMB.mensagemSelecionarUsuarioRendered}" />
 				</p:tab>
 
 				<p:tab title="#{msgs.Contatos}">
