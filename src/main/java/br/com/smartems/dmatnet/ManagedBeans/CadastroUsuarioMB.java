@@ -799,6 +799,11 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isDadosUsuariosExibir = false;	
 		this.isBtnUsuarioCancelarDesativado = false;
 		this.isBtnUsuarioEditarDesativado = true;
+		this.cadastroEmpresaMB.setTabDadosCadastraisDesativado(true);
+		this.cadastroEmpresaMB.setTabEnderecoDesativado(true);
+		this.cadastroEmpresaMB.setTabContatoDesativado(false);
+		this.cadastroEmpresaMB.setTabEmpregadosDesativado(true);
+		this.cadastroEmpresaMB.setTabEstabelecimentosDesativado(true);
 	}
 
 	public void cancelarUsuario(ActionEvent evt) {
@@ -806,6 +811,11 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isDadosUsuariosExibir = true;
 		this.isBtnUsuarioCancelarDesativado = true;
 		this.isBtnUsuarioEditarDesativado = false;
+		this.cadastroEmpresaMB.setTabDadosCadastraisDesativado(false);
+		this.cadastroEmpresaMB.setTabEnderecoDesativado(false);
+		this.cadastroEmpresaMB.setTabContatoDesativado(false);
+		this.cadastroEmpresaMB.setTabEmpregadosDesativado(false);
+		this.cadastroEmpresaMB.setTabEstabelecimentosDesativado(false);
 	}
 
 	public void excluirUsuario(ActionEvent evt) {
