@@ -846,6 +846,7 @@ public class CadastroUsuarioMB implements Serializable {
 		this.usuarioAtual = null;
 		this.usuarioNovo = null;
 		this.usuarioExcluir = null;
+		this.usuarioSelecionado = null;
 
 		this.documentosPessoaisUsuario = null;
 
@@ -867,6 +868,9 @@ public class CadastroUsuarioMB implements Serializable {
 		this.empresasUsuario = null;
 		this.empresasDisponiveisUsuario = null;
 		this.empresasAtribuidasUsuario = null;
+		
+		this.isCadastroUsuarioRendered = false;
+		this.isMensagemSelecionarUsuarioRendered = true;
 
 		try {
 			this.empresasAtribuidasUsuario = new ArrayList<EmpresaEntity>();
