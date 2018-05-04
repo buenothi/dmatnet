@@ -80,11 +80,16 @@ public class CadastroUsuarioMB implements Serializable {
 	private List<EmpresaEntity> empresasAtribuidasUsuario;
 
 	private boolean isDialogNovoUsuarioRendered = false;
-	private boolean isCadastroUsuarioRendered = false;
+	private boolean isCadastroUsuarioDadosRendered = false;
+	private boolean isCadastroUsuarioDoctosRendered = false;
+	private boolean isCadastroUsuarioEnderecoRendered = false;
+	private boolean isCadastroUsuarioContatoRendered = false;
+	private boolean isCadastroUsuarioUsuarioRendered = false;
+	private boolean isCadastroUsuarioEmpresasRendered = false;
 	private boolean isMensagemSelecionarUsuarioRendered = true;
-	
+
 	// botões dados do usuário de dadosCadastrais
-	
+
 	private boolean isDadosUsuariosEditar = false;
 	private boolean isDadosUsuariosExibir = true;
 
@@ -407,12 +412,52 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isDialogNovoUsuarioRendered = isDialogNovoUsuarioRendered;
 	}
 
-	public boolean isCadastroUsuarioRendered() {
-		return isCadastroUsuarioRendered;
+	public boolean isCadastroUsuarioDadosRendered() {
+		return isCadastroUsuarioDadosRendered;
 	}
 
-	public void setCadastroUsuarioRendered(boolean isCadastroUsuarioRendered) {
-		this.isCadastroUsuarioRendered = isCadastroUsuarioRendered;
+	public void setCadastroUsuarioDadosRendered(boolean isCadastroUsuarioDadosRendered) {
+		this.isCadastroUsuarioDadosRendered = isCadastroUsuarioDadosRendered;
+	}
+
+	public boolean isCadastroUsuarioDoctosRendered() {
+		return isCadastroUsuarioDoctosRendered;
+	}
+
+	public void setCadastroUsuarioDoctosRendered(boolean isCadastroUsuarioDoctosRendered) {
+		this.isCadastroUsuarioDoctosRendered = isCadastroUsuarioDoctosRendered;
+	}
+
+	public boolean isCadastroUsuarioEnderecoRendered() {
+		return isCadastroUsuarioEnderecoRendered;
+	}
+
+	public void setCadastroUsuarioEnderecoRendered(boolean isCadastroUsuarioEnderecoRendered) {
+		this.isCadastroUsuarioEnderecoRendered = isCadastroUsuarioEnderecoRendered;
+	}
+
+	public boolean isCadastroUsuarioContatoRendered() {
+		return isCadastroUsuarioContatoRendered;
+	}
+
+	public void setCadastroUsuarioContatoRendered(boolean isCadastroUsuarioContatoRendered) {
+		this.isCadastroUsuarioContatoRendered = isCadastroUsuarioContatoRendered;
+	}
+
+	public boolean isCadastroUsuarioUsuarioRendered() {
+		return isCadastroUsuarioUsuarioRendered;
+	}
+
+	public void setCadastroUsuarioUsuarioRendered(boolean isCadastroUsuarioUsuarioRendered) {
+		this.isCadastroUsuarioUsuarioRendered = isCadastroUsuarioUsuarioRendered;
+	}
+
+	public boolean isCadastroUsuarioEmpresasRendered() {
+		return isCadastroUsuarioEmpresasRendered;
+	}
+
+	public void setCadastroUsuarioEmpresasRendered(boolean isCadastroUsuarioEmpresasRendered) {
+		this.isCadastroUsuarioEmpresasRendered = isCadastroUsuarioEmpresasRendered;
 	}
 
 	public boolean isMensagemSelecionarUsuarioRendered() {
@@ -651,11 +696,62 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public void onSelectionUsuario(SelectEvent evt) {
-		this.isCadastroUsuarioRendered = true;
-		this.isBtnUsuarioEditarDesativado = false;
-		this.isMensagemSelecionarUsuarioRendered = false;
 		this.usuarioSelecionado = (UsuarioEntity) evt.getObject();
+		
+		try {
+			if (this.usuarioSelecionado.getNome().length() > 1) {
+				this.isCadastroUsuarioDadosRendered = true;
+				this.isMensagemSelecionarUsuarioRendered = false;
+				this.isBtnUsuarioEditarDesativado = false;
+			}
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+		}
+		
+		try {
+			if (this.usuarioSelecionado.getDocumentosPessoais().getNumCPF() > 1) {
+				this.isCadastroUsuarioDoctosRendered = true;
+				this.isMensagemSelecionarUsuarioRendered = false;
+				this.isBtnUsuarioEditarDesativado = false;
+			}
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+		}
+
 		this.separarEnderecoUsuarioAtualDoHistorico(this.usuarioSelecionado);
+		
+		this.isCadastroUsuarioEnderecoRendered = true;
+
+//		try {
+//			if (this.usuarioSelecionado.getEmails().size() > 1) {
+//				this.isCadastroUsuarioContatoRendered = true;
+//				this.isMensagemSelecionarUsuarioRendered = false;
+//				this.isBtnUsuarioEditarDesativado = false;
+//			}
+//		} catch (NullPointerException npe) {
+//			npe.printStackTrace();
+//		}
+		
+		try {
+			if (this.usuarioSelecionado.getLogin().length() > 1) {
+				this.isCadastroUsuarioUsuarioRendered = true;
+				this.isMensagemSelecionarUsuarioRendered = false;
+				this.isBtnUsuarioEditarDesativado = false;
+			}
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+		}
+		
+//		try {
+//			if (this.usuarioSelecionado.getEmpresasGerenciadas().size() > 1) {
+//				this.isCadastroUsuarioEmpresasRendered = true;
+//				this.isMensagemSelecionarUsuarioRendered = false;
+//				this.isBtnUsuarioEditarDesativado = false;
+//			}
+//		} catch (NullPointerException npe) {
+//			npe.printStackTrace();
+//		}
+		
 	}
 
 	public void separarEnderecoUsuarioAtualDoHistorico(UsuarioEntity usuario) {
@@ -796,7 +892,7 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void editarUsuario(ActionEvent evt) {
 		this.isDadosUsuariosEditar = true;
-		this.isDadosUsuariosExibir = false;	
+		this.isDadosUsuariosExibir = false;
 		this.isBtnUsuarioCancelarDesativado = false;
 		this.isBtnUsuarioEditarDesativado = true;
 		this.cadastroEmpresaMB.setTabDadosCadastraisDesativado(true);
@@ -878,8 +974,15 @@ public class CadastroUsuarioMB implements Serializable {
 		this.empresasUsuario = null;
 		this.empresasDisponiveisUsuario = null;
 		this.empresasAtribuidasUsuario = null;
-		
-		this.isCadastroUsuarioRendered = false;
+
+		this.isDialogNovoUsuarioRendered = false;
+		this.isCadastroUsuarioDadosRendered = false;
+		this.isCadastroUsuarioDoctosRendered = false;
+		this.isCadastroUsuarioEnderecoRendered = false;
+		this.isCadastroUsuarioContatoRendered = false;
+		this.isCadastroUsuarioUsuarioRendered = false;
+		this.isCadastroUsuarioEmpresasRendered = false;
+
 		this.isMensagemSelecionarUsuarioRendered = true;
 
 		try {
