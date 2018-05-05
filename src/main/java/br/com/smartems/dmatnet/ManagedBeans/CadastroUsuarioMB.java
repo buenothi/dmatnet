@@ -701,60 +701,50 @@ public class CadastroUsuarioMB implements Serializable {
 		try {
 			if (this.usuarioSelecionado.getNome().length() > 1) {
 				this.isCadastroUsuarioDadosRendered = true;
-				this.isMensagemSelecionarUsuarioRendered = false;
-				this.isBtnUsuarioEditarDesativado = false;
+				this.ocultarMensagemSelecionarUsuario();
+			} else {
+				this.isCadastroUsuarioDadosRendered = false;
+				this.exibirMensagemSelecionarUsuario();
 			}
 		} catch (NullPointerException npe) {
 			npe.printStackTrace();
+			this.isCadastroUsuarioDadosRendered = false;
+			this.exibirMensagemSelecionarUsuario();
 		}
 		
 		try {
 			if (this.usuarioSelecionado.getDocumentosPessoais().getNumCPF() > 1) {
 				this.isCadastroUsuarioDoctosRendered = true;
-				this.isMensagemSelecionarUsuarioRendered = false;
-				this.isBtnUsuarioEditarDesativado = false;
+				this.ocultarMensagemSelecionarUsuario();
+			} else {
+				this.isCadastroUsuarioDoctosRendered = false;
+				this.exibirMensagemSelecionarUsuario();
 			}
 		} catch (NullPointerException npe) {
 			npe.printStackTrace();
+			this.isCadastroUsuarioDoctosRendered = true;
+			this.ocultarMensagemSelecionarUsuario();
 		}
 
 		this.separarEnderecoUsuarioAtualDoHistorico(this.usuarioSelecionado);
 		
-		this.isCadastroUsuarioEnderecoRendered = true;
-
-//		try {
-//			if (this.usuarioSelecionado.getEmails().size() > 1) {
-//				this.isCadastroUsuarioContatoRendered = true;
-//				this.isMensagemSelecionarUsuarioRendered = false;
-//				this.isBtnUsuarioEditarDesativado = false;
-//			}
-//		} catch (NullPointerException npe) {
-//			npe.printStackTrace();
-//		}
-		
 		try {
-			if (this.usuarioSelecionado.getLogin().length() > 1) {
-				this.isCadastroUsuarioUsuarioRendered = true;
-				this.isMensagemSelecionarUsuarioRendered = false;
-				this.isBtnUsuarioEditarDesativado = false;
+			if (this.enderecoUsuarioSelecionado.getIdEndereco() > 1) {
+				this.isCadastroUsuarioEnderecoRendered = true;
+				this.ocultarMensagemSelecionarUsuario();
+			} else {
+				this.isCadastroUsuarioEnderecoRendered = false;
+				this.exibirMensagemSelecionarUsuario();
 			}
 		} catch (NullPointerException npe) {
 			npe.printStackTrace();
+			this.isCadastroUsuarioEnderecoRendered = false;
+			this.exibirMensagemSelecionarUsuario();
 		}
-		
-//		try {
-//			if (this.usuarioSelecionado.getEmpresasGerenciadas().size() > 1) {
-//				this.isCadastroUsuarioEmpresasRendered = true;
-//				this.isMensagemSelecionarUsuarioRendered = false;
-//				this.isBtnUsuarioEditarDesativado = false;
-//			}
-//		} catch (NullPointerException npe) {
-//			npe.printStackTrace();
-//		}
 		
 	}
 
-	public void separarEnderecoUsuarioAtualDoHistorico(UsuarioEntity usuario) {
+	private void separarEnderecoUsuarioAtualDoHistorico(UsuarioEntity usuario) {
 		this.usuarioSelecionado = usuarioFachada.read(usuario.getIdPessoa());
 		try {
 			this.enderecoUsuarioSelecionado = this.usuarioFachada
@@ -766,6 +756,16 @@ public class CadastroUsuarioMB implements Serializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void exibirMensagemSelecionarUsuario() {
+		this.isMensagemSelecionarUsuarioRendered = true;
+		this.isBtnUsuarioEditarDesativado = true;
+	}
+	
+	private void ocultarMensagemSelecionarUsuario() {
+		this.isMensagemSelecionarUsuarioRendered = false;
+		this.isBtnUsuarioEditarDesativado = false;
 	}
 
 	/*
