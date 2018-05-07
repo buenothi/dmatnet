@@ -26,6 +26,9 @@
 
 	<composite:attribute name="mensagemSelecionarUsuarioRendered"
 		default="false" />
+		
+	<composite:attribute name="mensagemHasUsuarioRendered"
+		default="false" />
 
 </composite:interface>
 
@@ -36,6 +39,8 @@
 		closable="false">
 		<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
 			rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
+		<p:outputLabel value="#{msgs.MensagemHasUsuario}"
+			rendered="#{cc.attrs.mensagemHasUsuarioRendered}" />
 		<h:panelGroup id="pngDadosUsuario" layout="block"
 			rendered="#{cc.attrs.dadosUsuarioRendered}">
 			<p:messages id="msDadosUsuariosNovo" showDetail="true"

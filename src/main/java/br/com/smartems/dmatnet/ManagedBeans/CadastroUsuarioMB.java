@@ -92,6 +92,15 @@ public class CadastroUsuarioMB implements Serializable {
 
 	private boolean isDadosUsuariosEditar = false;
 	private boolean isDadosUsuariosExibir = true;
+	private boolean isMensagemHasUsuario = false;
+	
+	// botões dados do usuário de documentos
+	
+	private boolean isMensagemHasRGRendered = false;
+	private boolean isMensagemHasCPFRendered = false;
+	private boolean isMensagemHasRICRendered = false;
+	private boolean isMensagemHasRNERendered = false;
+	private boolean isMensagemHasCNHRendered = false;
 
 	// botões endereço de usuarios dentro de dadosCadastrais
 
@@ -102,6 +111,7 @@ public class CadastroUsuarioMB implements Serializable {
 	private boolean isBtnEnderecoUsuarioNovoDesativado = false;
 	private boolean isEnderecoUsuarioEditarRender = false;
 	private boolean isBtnEnderecoUsuarioExcluirDesativado = true;
+	private boolean isMensagemHasEnderecoRendered = false;
 
 	// botões usuarios dentro de dadosCadastrais
 
@@ -468,6 +478,70 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isMensagemSelecionarUsuarioRendered = isMensagemSelecionarUsuarioRendered;
 	}
 
+	public boolean isDadosUsuariosEditar() {
+		return isDadosUsuariosEditar;
+	}
+
+	public void setDadosUsuariosEditar(boolean isDadosUsuariosEditar) {
+		this.isDadosUsuariosEditar = isDadosUsuariosEditar;
+	}
+
+	public boolean isDadosUsuariosExibir() {
+		return isDadosUsuariosExibir;
+	}
+
+	public void setDadosUsuariosExibir(boolean isDadosUsuariosExibir) {
+		this.isDadosUsuariosExibir = isDadosUsuariosExibir;
+	}
+
+	public boolean isMensagemHasUsuario() {
+		return isMensagemHasUsuario;
+	}
+
+	public void setMensagemHasUsuario(boolean isMensagemHasUsuario) {
+		this.isMensagemHasUsuario = isMensagemHasUsuario;
+	}
+
+	public boolean isMensagemHasRGRendered() {
+		return isMensagemHasRGRendered;
+	}
+
+	public void setMensagemHasRGRendered(boolean isMensagemHasRGRendered) {
+		this.isMensagemHasRGRendered = isMensagemHasRGRendered;
+	}
+
+	public boolean isMensagemHasCPFRendered() {
+		return isMensagemHasCPFRendered;
+	}
+
+	public void setMensagemHasCPFRendered(boolean isMensagemHasCPFRendered) {
+		this.isMensagemHasCPFRendered = isMensagemHasCPFRendered;
+	}
+
+	public boolean isMensagemHasRICRendered() {
+		return isMensagemHasRICRendered;
+	}
+
+	public void setMensagemHasRICRendered(boolean isMensagemHasRICRendered) {
+		this.isMensagemHasRICRendered = isMensagemHasRICRendered;
+	}
+
+	public boolean isMensagemHasRNERendered() {
+		return isMensagemHasRNERendered;
+	}
+
+	public void setMensagemHasRNERendered(boolean isMensagemHasRNERendered) {
+		this.isMensagemHasRNERendered = isMensagemHasRNERendered;
+	}
+
+	public boolean isMensagemHasCNHRendered() {
+		return isMensagemHasCNHRendered;
+	}
+
+	public void setMensagemHasCNHRendered(boolean isMensagemHasCNHRendered) {
+		this.isMensagemHasCNHRendered = isMensagemHasCNHRendered;
+	}
+
 	public boolean isEnderecoUsuarioRendered() {
 		return isEnderecoUsuarioRendered;
 	}
@@ -522,6 +596,14 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void setBtnEnderecoUsuarioExcluirDesativado(boolean isBtnEnderecoUsuarioExcluirDesativado) {
 		this.isBtnEnderecoUsuarioExcluirDesativado = isBtnEnderecoUsuarioExcluirDesativado;
+	}
+
+	public boolean isMensagemHasEnderecoRendered() {
+		return isMensagemHasEnderecoRendered;
+	}
+
+	public void setMensagemHasEnderecoRendered(boolean isMensagemHasEnderecoRendered) {
+		this.isMensagemHasEnderecoRendered = isMensagemHasEnderecoRendered;
 	}
 
 	public static long getSerialversionuid() {
@@ -675,55 +757,35 @@ public class CadastroUsuarioMB implements Serializable {
 		this.initUsuario();
 	}
 
-	public void fecharDialogNovoUsuario() {
-		this.isDialogNovoUsuarioRendered = false;
-	}
-
-	public boolean isDadosUsuariosEditar() {
-		return isDadosUsuariosEditar;
-	}
-
-	public void setDadosUsuariosEditar(boolean isDadosUsuariosEditar) {
-		this.isDadosUsuariosEditar = isDadosUsuariosEditar;
-	}
-
-	public boolean isDadosUsuariosExibir() {
-		return isDadosUsuariosExibir;
-	}
-
-	public void setDadosUsuariosExibir(boolean isDadosUsuariosExibir) {
-		this.isDadosUsuariosExibir = isDadosUsuariosExibir;
-	}
-
 	public void onSelectionUsuario(SelectEvent evt) {
 		this.usuarioSelecionado = (UsuarioEntity) evt.getObject();
-		
+		this.ocultarMensagemSelecionarUsuario();
 		try {
 			if (this.usuarioSelecionado.getNome().length() > 1) {
 				this.isCadastroUsuarioDadosRendered = true;
-				this.ocultarMensagemSelecionarUsuario();
+				this.isMensagemHasUsuario = false;
 			} else {
 				this.isCadastroUsuarioDadosRendered = false;
-				this.exibirMensagemSelecionarUsuario();
+				this.isMensagemHasUsuario = true;
 			}
 		} catch (NullPointerException npe) {
 			npe.printStackTrace();
 			this.isCadastroUsuarioDadosRendered = false;
-			this.exibirMensagemSelecionarUsuario();
+			this.isMensagemHasUsuario = true;
 		}
 		
 		try {
 			if (this.usuarioSelecionado.getDocumentosPessoais().getNumCPF() > 1) {
 				this.isCadastroUsuarioDoctosRendered = true;
-				this.ocultarMensagemSelecionarUsuario();
+				this.isMensagemHasCPFRendered = false;
 			} else {
 				this.isCadastroUsuarioDoctosRendered = false;
-				this.exibirMensagemSelecionarUsuario();
+				this.isMensagemHasCPFRendered = true;
 			}
 		} catch (NullPointerException npe) {
 			npe.printStackTrace();
-			this.isCadastroUsuarioDoctosRendered = true;
-			this.ocultarMensagemSelecionarUsuario();
+			this.isCadastroUsuarioDoctosRendered = false;
+			this.isMensagemHasCPFRendered = true;
 		}
 
 		this.separarEnderecoUsuarioAtualDoHistorico(this.usuarioSelecionado);
@@ -731,15 +793,15 @@ public class CadastroUsuarioMB implements Serializable {
 		try {
 			if (this.enderecoUsuarioSelecionado.getIdEndereco() > 1) {
 				this.isCadastroUsuarioEnderecoRendered = true;
-				this.ocultarMensagemSelecionarUsuario();
+				this.isMensagemHasEnderecoRendered = false;
 			} else {
 				this.isCadastroUsuarioEnderecoRendered = false;
-				this.exibirMensagemSelecionarUsuario();
+				this.isMensagemHasEnderecoRendered = true;
 			}
 		} catch (NullPointerException npe) {
 			npe.printStackTrace();
 			this.isCadastroUsuarioEnderecoRendered = false;
-			this.exibirMensagemSelecionarUsuario();
+			this.isMensagemHasEnderecoRendered = true;
 		}
 		
 	}
@@ -756,11 +818,6 @@ public class CadastroUsuarioMB implements Serializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	private void exibirMensagemSelecionarUsuario() {
-		this.isMensagemSelecionarUsuarioRendered = true;
-		this.isBtnUsuarioEditarDesativado = true;
 	}
 	
 	private void ocultarMensagemSelecionarUsuario() {

@@ -23,6 +23,16 @@
 	<composite:attribute name="mensagemSelecionarUsuarioRendered"
 		default="false" />
 
+	<composite:attribute name="mensagemHasRGRendered" default="false" />
+	
+	<composite:attribute name="mensagemHasCPFRendered" default="false" />
+	
+	<composite:attribute name="mensagemHasRICRendered" default="false" />
+	
+	<composite:attribute name="mensagemHasRNERendered" default="false" />
+	
+	<composite:attribute name="mensagemHasCNHRendered" default="false" />
+
 </composite:interface>
 
 <composite:implementation>
@@ -37,6 +47,8 @@
 					styleClass="formulario">
 					<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
 						rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
+					<p:outputLabel value="#{msgs.MensagemHasRG}"
+						rendered="#{cc.attrs.mensagemHasRGRendered}" />
 					<h:panelGroup id="pngUsuarioDocumentosRGBloco" layout="block"
 						styleClass="formulario"
 						rendered="#{cc.attrs.dadosUsuarioRendered}">
@@ -85,6 +97,8 @@
 					styleClass="formulario">
 					<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
 						rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
+					<p:outputLabel value="#{msgs.MensagemHasCPF}"
+						rendered="#{cc.attrs.mensagemHasCPFRendered}" />
 					<h:panelGroup id="pngUsuarioDocumentosCPFBloco" layout="block"
 						styleClass="formulario"
 						rendered="#{cc.attrs.dadosUsuarioRendered}">
@@ -117,6 +131,8 @@
 					styleClass="formulario">
 					<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
 						rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
+					<p:outputLabel value="#{msgs.MensagemHasRIC}"
+						rendered="#{cc.attrs.mensagemHasRICRendered}" />
 					<h:panelGroup id="pngUsuarioDocumentosRICBloco" layout="block"
 						styleClass="formulario"
 						rendered="#{cc.attrs.dadosUsuarioRendered}">
@@ -159,6 +175,8 @@
 					styleClass="formulario">
 					<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
 						rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
+					<p:outputLabel value="#{msgs.MensagemHasRNE}"
+						rendered="#{cc.attrs.mensagemHasRNERendered}" />
 					<h:panelGroup id="pngUsuarioDocumentosRNEBloco" layout="block"
 						styleClass="formulario"
 						rendered="#{cc.attrs.dadosUsuarioRendered}">
@@ -201,7 +219,8 @@
 					styleClass="formulario">
 					<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
 						rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
-
+					<p:outputLabel value="#{msgs.MensagemHasCNH}"
+						rendered="#{cc.attrs.mensagemHasCNHRendered}" />
 					<h:panelGroup id="pngUsuarioDocumentosCNHBloco" layout="block"
 						styleClass="formulario"
 						rendered="#{cc.attrs.dadosUsuarioRendered}">

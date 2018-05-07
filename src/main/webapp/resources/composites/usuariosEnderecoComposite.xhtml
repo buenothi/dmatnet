@@ -39,6 +39,9 @@
 
 	<composite:attribute name="mensagemSelecionarUsuarioRendered"
 		default="false" />
+		
+	<composite:attribute name="mensagemHasEnderecoRendered"
+		default="false" />
 </composite:interface>
 
 <composite:implementation>
@@ -49,6 +52,9 @@
 
 		<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
 			rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
+			
+		<p:outputLabel value="#{msgs.MensagemHasEndereco}"
+			rendered="#{cc.attrs.mensagemHasEnderecoRendered}" />
 
 		<dmat:enderecoComposite id="dmatEnderecoContato"
 			enderecoRendered="#{cc.attrs.enderecoRendered}"
