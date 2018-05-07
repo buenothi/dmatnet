@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="editarRendered" default="true" />
+	<composite:attribute name="exibirRendered" default="false" />
+
+	<composite:attribute name="rgRequired" default="false" />
+	<composite:attribute name="rgOrgExpRequired" default="false" />
+	<composite:attribute name="rgDataExpRequired" default="false" />
+	<composite:attribute name="cpfRequired" default="false" />
+
+	<composite:attribute name="documentosPessoais"
+		type="br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.PessoaFisicaDocumentosEntity" />
+
+	<composite:attribute name="dadosUsuarioRendered" default="true" />
+
+	<composite:attribute name="mensagemSelecionarUsuarioRendered"
+		default="false" />
+
+</composite:interface>
+
+<composite:implementation>
+
+	<p:panel id="pnlDocumentosUsuario"
+		header="#{msgs.DocumentosPessoaFisica}" closable="false">
+		<p:messages id="msDocumentosUsuarios" showDetail="true"
+			closable="true" />
+		<p:tabView id="tabDocumentos">
+			<p:tab title="RG" id="tabRG">
+				<h:panelGroup id="pngUsuarioDocumentosRG" layout="block"
+					styleClass="formulario">
+					<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
+						rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
+					<h:panelGroup id="pngUsuarioDocumentosRGBloco" layout="block"
+						styleClass="formulario"
+						rendered="#{cc.attrs.dadosUsuarioRendered}">
+						<h:panelGroup id="pngUsuarioDocumentosRGEditar" layout="block"
+							styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
+							<p:panelGrid id="pgdEditarRG" columns="2"
+								styleClass="tabelaSemBorda">
+								<p:outputLabel value="#{msgs.NumeroRG}:*" />
+								<p:inputText value="#{cc.attrs.documentosPessoais.numRG}"
+									required="#{cc.attrs.rgRequired}"
+									requiredMessage="#{msgs.MensagemNumRGRequerido}" />
+								<p:outputLabel value="#{msgs.OrgExpedidorRG}:*" />
+								<p:inputText
+									value="#{cc.attrs.documentosPessoais.rgOrgExpedidor}"
+									required="#{cc.attrs.rgOrgExpRequired}"
+									requiredMessage="#{msgs.MensagemOrgExpRGRequerido}" />
+								<p:outputLabel value="#{msgs.DataExpedicaoRG}:*" />
+								<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+									pattern="dd/MM/yyyy" mask="true" size="8"
+									value="#{cc.attrs.documentosPessoais.rgDataExpedicao}"
+									required="#{cc.attrs.rgDataExpRequired}"
+									requiredMessage="#{msgs.MensagemDataExpedicaoRGRequerido}" />
+							</p:panelGrid>
+						</h:panelGroup>
+
+						<h:panelGroup id="pngUsuarioDocumentosRGExibir" layout="block"
+							styleClass="formulario" rendered="#{cc.attrs.exibirRendered}">
+							<p:panelGrid id="pgdExibirRG" columns="2"
+								styleClass="tabelaSemBorda">
+								<p:outputLabel value="#{msgs.NumeroRG}:" />
+								<p:outputLabel value="#{cc.attrs.documentosPessoais.numRG}" />
+								<p:outputLabel value="#{msgs.OrgExpedidorRG}:" />
+								<p:outputLabel
+									value="#{cc.attrs.documentosPessoais.rgOrgExpedidor}" />
+								<p:outputLabel value="#{msgs.DataExpedicaoRG}:" />
+								<p:outputLabel
+									value="#{cc.attrs.documentosPessoais.rgDataExpedicao}" />
+							</p:panelGrid>
+						</h:panelGroup>
+					</h:panelGroup>
+				</h:panelGroup>
+			</p:tab>
+
+			<p:tab title="CPF" id="tabCPF">
+				<h:panelGroup id="pngUsuarioDocumentosCPF" layout="block"
+					styleClass="formulario">
+					<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
+						rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
+					<h:panelGroup id="pngUsuarioDocumentosCPFBloco" layout="block"
+						styleClass="formulario"
+						rendered="#{cc.attrs.dadosUsuarioRendered}">
+						<h:panelGroup id="pngUsuarioDocumentosCPFEditar" layout="block"
+							styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
+							<p:panelGrid id="pgdEditarCPF" columns="2"
+								styleClass="tabelaSemBorda">
+								<p:outputLabel value="#{msgs.NumeroCPF}:*" />
+								<p:inputMask mask="999.999.999-99" converter="cnpjCpfConverter"
+									value="#{cc.attrs.documentosPessoais.numCPF}"
+									required="#{cc.attrs.cpfRequired}"
+									requiredMessage="#{msgs.MensagemCPFRequerido}" />
+							</p:panelGrid>
+						</h:panelGroup>
+
+						<h:panelGroup id="pngUsuarioDocumentosCPFExibir" layout="block"
+							styleClass="formulario" rendered="#{cc.attrs.exibirRendered}">
+							<p:panelGrid id="pgdExibirCPF" columns="2"
+								styleClass="tabelaSemBorda">
+								<p:outputLabel value="#{msgs.NumeroCPF}:" />
+								<p:outputLabel value="#{cc.attrs.documentosPessoais.numCPF}" />
+							</p:panelGrid>
+						</h:panelGroup>
+					</h:panelGroup>
+				</h:panelGroup>
+			</p:tab>
+
+			<p:tab title="RIC">
+				<h:panelGroup id="pngUsuarioDocumentosRIC" layout="block"
+					styleClass="formulario">
+					<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
+						rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
+					<h:panelGroup id="pngUsuarioDocumentosRICBloco" layout="block"
+						styleClass="formulario"
+						rendered="#{cc.attrs.dadosUsuarioRendered}">
+						<h:panelGroup id="pngUsuarioDocumentosRICEditar" layout="block"
+							styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
+							<p:panelGrid id="pgdEditarRIC" columns="2"
+								styleClass="tabelaSemBorda">
+								<p:outputLabel value="#{msgs.NumeroRic}:" />
+								<p:inputNumber value="#{cc.attrs.documentosPessoais.numRic}" />
+								<p:outputLabel value="#{msgs.OrgExpedidorRic}:" />
+								<p:inputText
+									value="#{cc.attrs.documentosPessoais.ricOrgExpedidor}" />
+								<p:outputLabel value="#{msgs.DataExpedicaoRic}:" />
+								<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+									pattern="dd/MM/yyyy" mask="true" size="8"
+									value="#{cc.attrs.documentosPessoais.ricDataExpedicao}" />
+							</p:panelGrid>
+						</h:panelGroup>
+
+						<h:panelGroup id="pngUsuarioDocumentosRICExibir" layout="block"
+							styleClass="formulario" rendered="#{cc.attrs.exibirRendered}">
+							<p:panelGrid id="pgdExibirRIC" columns="2"
+								styleClass="tabelaSemBorda">
+								<p:outputLabel value="#{msgs.NumeroRic}:" />
+								<p:outputLabel value="#{cc.attrs.documentosPessoais.numRic}" />
+								<p:outputLabel value="#{msgs.OrgExpedidorRic}:" />
+								<p:outputLabel
+									value="#{cc.attrs.documentosPessoais.ricOrgExpedidor}" />
+								<p:outputLabel value="#{msgs.DataExpedicaoRic}:" />
+								<p:outputLabel
+									value="#{cc.attrs.documentosPessoais.ricDataExpedicao}" />
+							</p:panelGrid>
+						</h:panelGroup>
+					</h:panelGroup>
+				</h:panelGroup>
+			</p:tab>
+
+			<p:tab title="RNE">
+				<h:panelGroup id="pngUsuarioDocumentosRNE" layout="block"
+					styleClass="formulario">
+					<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
+						rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
+					<h:panelGroup id="pngUsuarioDocumentosRNEBloco" layout="block"
+						styleClass="formulario"
+						rendered="#{cc.attrs.dadosUsuarioRendered}">
+						<h:panelGroup id="pngUsuarioDocumentosRNEEditar" layout="block"
+							styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
+							<p:panelGrid id="pgdEditarRNE" columns="2"
+								styleClass="tabelaSemBorda">
+								<p:outputLabel value="#{msgs.NumeroRNE}:" />
+								<p:inputNumber value="#{cc.attrs.documentosPessoais.numRNE}" />
+								<p:outputLabel value="#{msgs.OrgExpedidorRNE}:" />
+								<p:inputText
+									value="#{cc.attrs.documentosPessoais.rneOrgExpedidor}" />
+								<p:outputLabel value="#{msgs.DataExpedicaoRNE}:" />
+								<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+									pattern="dd/MM/yyyy" mask="true" size="8"
+									value="#{cc.attrs.documentosPessoais.rneDataExpedicao}" />
+							</p:panelGrid>
+						</h:panelGroup>
+
+						<h:panelGroup id="pngUsuarioDocumentosRNEExibir" layout="block"
+							styleClass="formulario" rendered="#{cc.attrs.exibirRendered}">
+							<p:panelGrid id="pgdExibirRNE" columns="2"
+								styleClass="tabelaSemBorda">
+								<p:outputLabel value="#{msgs.NumeroRNE}:" />
+								<p:outputLabel value="#{cc.attrs.documentosPessoais.numRNE}" />
+								<p:outputLabel value="#{msgs.OrgExpedidorRNE}:" />
+								<p:outputLabel
+									value="#{cc.attrs.documentosPessoais.rneOrgExpedidor}" />
+								<p:outputLabel value="#{msgs.DataExpedicaoRNE}:" />
+								<p:outputLabel
+									value="#{cc.attrs.documentosPessoais.rneDataExpedicao}" />
+							</p:panelGrid>
+						</h:panelGroup>
+					</h:panelGroup>
+				</h:panelGroup>
+			</p:tab>
+
+			<p:tab title="CNH">
+				<h:panelGroup id="pngUsuarioDocumentosCNH" layout="block"
+					styleClass="formulario">
+					<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
+						rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
+
+					<h:panelGroup id="pngUsuarioDocumentosCNHBloco" layout="block"
+						styleClass="formulario"
+						rendered="#{cc.attrs.dadosUsuarioRendered}">
+						<h:panelGroup id="pngUsuarioDocumentosCNHEditar" layout="block"
+							styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
+							<p:panelGrid id="pgdEditarCNH" columns="2"
+								styleClass="tabelaSemBorda">
+								<p:outputLabel value="#{msgs.NumeroCNH}:" />
+								<p:inputNumber value="#{cc.attrs.documentosPessoais.numCNH}" />
+								<p:outputLabel value="#{msgs.UFCNH}:" />
+								<p:inputText size="2"
+									value="#{cc.attrs.documentosPessoais.cnhUf}" />
+								<p:outputLabel value="#{msgs.DataExpedicaoCNH}:" />
+								<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+									pattern="dd/MM/yyyy" mask="true" size="8"
+									value="#{cc.attrs.documentosPessoais.cnhDataExpedicao}" />
+								<p:outputLabel value="#{msgs.DataValidadeCNH}:" />
+								<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+									pattern="dd/MM/yyyy" mask="true" size="8"
+									value="#{cc.attrs.documentosPessoais.cnhValidade}" />
+								<p:outputLabel value="#{msgs.DataPrimeiraCNH}:" />
+								<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+									pattern="dd/MM/yyyy" mask="true" size="8"
+									value="#{cc.attrs.documentosPessoais.cnhPrimeiraEmissao}" />
+								<p:outputLabel value="#{msgs.CategoriaCNH}:" />
+								<p:inputText value="#{cc.attrs.documentosPessoais.cnhCategoria}" />
+							</p:panelGrid>
+						</h:panelGroup>
+
+						<h:panelGroup id="pngUsuarioDocumentosCNHExibir" layout="block"
+							styleClass="formulario" rendered="#{cc.attrs.exibirRendered}">
+							<p:panelGrid id="pgdCNH" columns="2" styleClass="tabelaSemBorda">
+								<p:outputLabel value="#{msgs.NumeroCNH}:" />
+								<p:outputLabel value="#{cc.attrs.documentosPessoais.numCNH}" />
+								<p:outputLabel value="#{msgs.UFCNH}:" />
+								<p:outputLabel size="2"
+									value="#{cc.attrs.documentosPessoais.cnhUf}" />
+								<p:outputLabel value="#{msgs.DataExpedicaoCNH}:" />
+								<p:outputLabel
+									value="#{cc.attrs.documentosPessoais.cnhDataExpedicao}" />
+								<p:outputLabel value="#{msgs.DataValidadeCNH}:" />
+								<p:outputLabel
+									value="#{cc.attrs.documentosPessoais.cnhValidade}" />
+								<p:outputLabel value="#{msgs.DataPrimeiraCNH}:" />
+								<p:outputLabel
+									value="#{cc.attrs.documentosPessoais.cnhPrimeiraEmissao}" />
+								<p:outputLabel value="#{msgs.CategoriaCNH}:" />
+								<p:outputLabel
+									value="#{cc.attrs.documentosPessoais.cnhCategoria}" />
+							</p:panelGrid>
+						</h:panelGroup>
+					</h:panelGroup>
+				</h:panelGroup>
+			</p:tab>
+		</p:tabView>
+
+	</p:panel>
+
+</composite:implementation>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
+
+<ui:composition>
+	<dmat:enderecoComposite id="dmatEnderecoUsuario"
+		disabledCancelar="#{cadastroUsuarioMB.btnEnderecoCancelarDesativado}"
+		actionListenerCancelar="#{cadastroUsuarioMB.cancelarEnderecoUsuario}"
+		updateCancelar="formModulos"
+		disabledEditar="#{cadastroUsuarioMB.btnEnderecoEditarDesativado}"
+		actionListenerEditar="#{cadastroUsuarioMB.editarEnderecoUsuario}"
+		updateEditar="formModulos"
+		disabledNovo="#{cadastroUsuarioMB.btnEnderecoNovoDesativado}"
+		actionListenerNovo="#{cadastroUsuarioMB.novoEnderecoUsuario}"
+		updateNovo="formModulos"
+		disabledSalvar="#{cadastroUsuarioMB.btnEnderecoSalvarDesativado}"
+		actionListenerSalvar="#{cadastroUsuarioMB.salvarEnderecoUsuario}"
+		updateSalvar="formModulos"
+		ajaxComponentRender="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:dmatEnderecoUsuario:acpEndereco:listCidade"
+		enderecoAtual="#{cadastroUsuarioMB.enderecoUsuario}" />
+</ui:composition>
+</html>

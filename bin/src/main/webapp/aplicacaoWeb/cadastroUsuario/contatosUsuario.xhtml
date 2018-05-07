@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
+
+<ui:composition>
+	<dmat:barraBotoesComposite id="dmatBotoesContatosUsuario"
+		actionListenerCancelar="#{cadastroUsuarioMB.cancelarContatoUsuario}"
+		actionListenerEditar="#{cadastroUsuarioMB.editarContatoUsuario}"
+		actionListenerNovo="#{cadastroUsuarioMB.novoContatoUsuario}"
+		actionListenerSalvar="#{cadastroUsuarioMB.salvarContatoUsuario}"
+		disabledCancelar="#{cadastroUsuarioMB.btnContatosCancelarDesativado}"
+		disabledEditar="#{cadastroUsuarioMB.btnContatosEditarDesativado}"
+		disabledNovo="#{cadastroUsuarioMB.btnContatosNovoDesativado}"
+		disabledSalvar="#{cadastroUsuarioMB.btnContatosSalvarDesativado}"
+		labelNovo="#{msgs.NovoContatoUsuario}" renderedBtnNovo="true"
+		updateCancelar="formModulos" updateEditar="formModulos"
+		updateNovo="formModulos" updateSalvar="formModulos" 
+		renderSpacer="true"/>
+
+	<p:tabView>
+	
+		<p:tab title="#{msgs.Telefones}">
+			<p:dataTable id="dtbTelefones" editable="true" style="width:500px;">
+				<p:column headerText="#{msgs.Telefone}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msgs.TelefoneTipo}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column style="width:32px">
+					<p:rowEditor />
+				</p:column>
+			</p:dataTable>
+		</p:tab>
+
+		<p:tab title="#{msgs.Email}">
+			<p:dataTable id="dtbEmais" editable="true" style="width:500px;">
+				<p:column headerText="#{msgs.Email}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msgs.EmailTipo}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText style="width:100%" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column style="width:32px">
+					<p:rowEditor />
+				</p:column>
+			</p:dataTable>
+		</p:tab>
+	</p:tabView>
+
+</ui:composition>
+</html>
