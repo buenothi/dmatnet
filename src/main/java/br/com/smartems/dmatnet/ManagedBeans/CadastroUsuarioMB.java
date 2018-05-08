@@ -760,6 +760,7 @@ public class CadastroUsuarioMB implements Serializable {
 	public void onSelectionUsuario(SelectEvent evt) {
 		this.usuarioSelecionado = (UsuarioEntity) evt.getObject();
 		this.ocultarMensagemSelecionarUsuario();
+		
 		try {
 			if (this.usuarioSelecionado.getNome().length() > 1) {
 				this.isCadastroUsuarioDadosRendered = true;
@@ -786,6 +787,62 @@ public class CadastroUsuarioMB implements Serializable {
 			npe.printStackTrace();
 			this.isCadastroUsuarioDoctosRendered = false;
 			this.isMensagemHasCPFRendered = true;
+		}
+		
+		try {
+			if (this.usuarioSelecionado.getDocumentosPessoais().getNumRG().length() > 1) {
+				this.isCadastroUsuarioDoctosRendered = true;
+				this.isMensagemHasRGRendered = false;
+			} else {
+				this.isCadastroUsuarioDoctosRendered = false;
+				this.isMensagemHasRGRendered = true;
+			}
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+			this.isCadastroUsuarioDoctosRendered = false;
+			this.isMensagemHasRGRendered = true;
+		}
+		
+		try {
+			if (this.usuarioSelecionado.getDocumentosPessoais().getNumRic() > 1) {
+				this.isCadastroUsuarioDoctosRendered = true;
+				this.isMensagemHasRICRendered = false;
+			} else {
+				this.isCadastroUsuarioDoctosRendered = false;
+				this.isMensagemHasRICRendered = true;
+			}
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+			this.isCadastroUsuarioDoctosRendered = false;
+			this.isMensagemHasRICRendered = true;
+		}
+		
+		try {
+			if (this.usuarioSelecionado.getDocumentosPessoais().getNumRNE() > 1) {
+				this.isCadastroUsuarioDoctosRendered = true;
+				this.isMensagemHasRNERendered = false;
+			} else {
+				this.isCadastroUsuarioDoctosRendered = false;
+				this.isMensagemHasRNERendered = true;
+			}
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+			this.isCadastroUsuarioDoctosRendered = false;
+			this.isMensagemHasRNERendered = true;
+		}
+		
+		try {
+			if (this.usuarioSelecionado.getDocumentosPessoais().getNumCNH() > 1) {
+				this.isCadastroUsuarioDoctosRendered = true;
+				this.isMensagemHasCNHRendered = false;
+			} else {
+				this.isCadastroUsuarioDoctosRendered = false;
+				this.isMensagemHasCNHRendered = true;
+			}
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+			this.isCadastroUsuarioDoctosRendered = false;
+			this.isMensagemHasCNHRendered = true;
 		}
 
 		this.separarEnderecoUsuarioAtualDoHistorico(this.usuarioSelecionado);
