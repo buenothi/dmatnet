@@ -81,7 +81,13 @@ public class CadastroUsuarioMB implements Serializable {
 
 	private boolean isDialogNovoUsuarioRendered = false;
 	private boolean isCadastroUsuarioDadosRendered = false;
-	private boolean isCadastroUsuarioDoctosRendered = false;
+
+	private boolean isCadastroUsuarioDoctosRGRendered = false;
+	private boolean isCadastroUsuarioDoctosCPFRendered = false;
+	private boolean isCadastroUsuarioDoctosRICRendered = false;
+	private boolean isCadastroUsuarioDoctosRNERendered = false;
+	private boolean isCadastroUsuarioDoctosCNHRendered = false;
+
 	private boolean isCadastroUsuarioEnderecoRendered = false;
 	private boolean isCadastroUsuarioContatoRendered = false;
 	private boolean isCadastroUsuarioUsuarioRendered = false;
@@ -93,9 +99,9 @@ public class CadastroUsuarioMB implements Serializable {
 	private boolean isDadosUsuariosEditar = false;
 	private boolean isDadosUsuariosExibir = true;
 	private boolean isMensagemHasUsuario = false;
-	
+
 	// botões dados do usuário de documentos
-	
+
 	private boolean isMensagemHasRGRendered = false;
 	private boolean isMensagemHasCPFRendered = false;
 	private boolean isMensagemHasRICRendered = false;
@@ -430,12 +436,44 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isCadastroUsuarioDadosRendered = isCadastroUsuarioDadosRendered;
 	}
 
-	public boolean isCadastroUsuarioDoctosRendered() {
-		return isCadastroUsuarioDoctosRendered;
+	public boolean isCadastroUsuarioDoctosRGRendered() {
+		return isCadastroUsuarioDoctosRGRendered;
 	}
 
-	public void setCadastroUsuarioDoctosRendered(boolean isCadastroUsuarioDoctosRendered) {
-		this.isCadastroUsuarioDoctosRendered = isCadastroUsuarioDoctosRendered;
+	public void setCadastroUsuarioDoctosRGRendered(boolean isCadastroUsuarioDoctosRGRendered) {
+		this.isCadastroUsuarioDoctosRGRendered = isCadastroUsuarioDoctosRGRendered;
+	}
+
+	public boolean isCadastroUsuarioDoctosCPFRendered() {
+		return isCadastroUsuarioDoctosCPFRendered;
+	}
+
+	public void setCadastroUsuarioDoctosCPFRendered(boolean isCadastroUsuarioDoctosCPFRendered) {
+		this.isCadastroUsuarioDoctosCPFRendered = isCadastroUsuarioDoctosCPFRendered;
+	}
+
+	public boolean isCadastroUsuarioDoctosRICRendered() {
+		return isCadastroUsuarioDoctosRICRendered;
+	}
+
+	public void setCadastroUsuarioDoctosRICRendered(boolean isCadastroUsuarioDoctosRICRendered) {
+		this.isCadastroUsuarioDoctosRICRendered = isCadastroUsuarioDoctosRICRendered;
+	}
+
+	public boolean isCadastroUsuarioDoctosRNERendered() {
+		return isCadastroUsuarioDoctosRNERendered;
+	}
+
+	public void setCadastroUsuarioDoctosRNERendered(boolean isCadastroUsuarioDoctosRNERendered) {
+		this.isCadastroUsuarioDoctosRNERendered = isCadastroUsuarioDoctosRNERendered;
+	}
+
+	public boolean isCadastroUsuarioDoctosCNHRendered() {
+		return isCadastroUsuarioDoctosCNHRendered;
+	}
+
+	public void setCadastroUsuarioDoctosCNHRendered(boolean isCadastroUsuarioDoctosCNHRendered) {
+		this.isCadastroUsuarioDoctosCNHRendered = isCadastroUsuarioDoctosCNHRendered;
 	}
 
 	public boolean isCadastroUsuarioEnderecoRendered() {
@@ -760,107 +798,8 @@ public class CadastroUsuarioMB implements Serializable {
 	public void onSelectionUsuario(SelectEvent evt) {
 		this.usuarioSelecionado = (UsuarioEntity) evt.getObject();
 		this.ocultarMensagemSelecionarUsuario();
-		
-		try {
-			if (this.usuarioSelecionado.getNome().length() > 1) {
-				this.isCadastroUsuarioDadosRendered = true;
-				this.isMensagemHasUsuario = false;
-			} else {
-				this.isCadastroUsuarioDadosRendered = false;
-				this.isMensagemHasUsuario = true;
-			}
-		} catch (NullPointerException npe) {
-			npe.printStackTrace();
-			this.isCadastroUsuarioDadosRendered = false;
-			this.isMensagemHasUsuario = true;
-		}
-		
-		try {
-			if (this.usuarioSelecionado.getDocumentosPessoais().getNumCPF() > 1) {
-				this.isCadastroUsuarioDoctosRendered = true;
-				this.isMensagemHasCPFRendered = false;
-			} else {
-				this.isCadastroUsuarioDoctosRendered = false;
-				this.isMensagemHasCPFRendered = true;
-			}
-		} catch (NullPointerException npe) {
-			npe.printStackTrace();
-			this.isCadastroUsuarioDoctosRendered = false;
-			this.isMensagemHasCPFRendered = true;
-		}
-		
-		try {
-			if (this.usuarioSelecionado.getDocumentosPessoais().getNumRG().length() > 1) {
-				this.isCadastroUsuarioDoctosRendered = true;
-				this.isMensagemHasRGRendered = false;
-			} else {
-				this.isCadastroUsuarioDoctosRendered = false;
-				this.isMensagemHasRGRendered = true;
-			}
-		} catch (NullPointerException npe) {
-			npe.printStackTrace();
-			this.isCadastroUsuarioDoctosRendered = false;
-			this.isMensagemHasRGRendered = true;
-		}
-		
-		try {
-			if (this.usuarioSelecionado.getDocumentosPessoais().getNumRic() > 1) {
-				this.isCadastroUsuarioDoctosRendered = true;
-				this.isMensagemHasRICRendered = false;
-			} else {
-				this.isCadastroUsuarioDoctosRendered = false;
-				this.isMensagemHasRICRendered = true;
-			}
-		} catch (NullPointerException npe) {
-			npe.printStackTrace();
-			this.isCadastroUsuarioDoctosRendered = false;
-			this.isMensagemHasRICRendered = true;
-		}
-		
-		try {
-			if (this.usuarioSelecionado.getDocumentosPessoais().getNumRNE() > 1) {
-				this.isCadastroUsuarioDoctosRendered = true;
-				this.isMensagemHasRNERendered = false;
-			} else {
-				this.isCadastroUsuarioDoctosRendered = false;
-				this.isMensagemHasRNERendered = true;
-			}
-		} catch (NullPointerException npe) {
-			npe.printStackTrace();
-			this.isCadastroUsuarioDoctosRendered = false;
-			this.isMensagemHasRNERendered = true;
-		}
-		
-		try {
-			if (this.usuarioSelecionado.getDocumentosPessoais().getNumCNH() > 1) {
-				this.isCadastroUsuarioDoctosRendered = true;
-				this.isMensagemHasCNHRendered = false;
-			} else {
-				this.isCadastroUsuarioDoctosRendered = false;
-				this.isMensagemHasCNHRendered = true;
-			}
-		} catch (NullPointerException npe) {
-			npe.printStackTrace();
-			this.isCadastroUsuarioDoctosRendered = false;
-			this.isMensagemHasCNHRendered = true;
-		}
 
-		this.separarEnderecoUsuarioAtualDoHistorico(this.usuarioSelecionado);
-		
-		try {
-			if (this.enderecoUsuarioSelecionado.getIdEndereco() > 1) {
-				this.isCadastroUsuarioEnderecoRendered = true;
-				this.isMensagemHasEnderecoRendered = false;
-			} else {
-				this.isCadastroUsuarioEnderecoRendered = false;
-				this.isMensagemHasEnderecoRendered = true;
-			}
-		} catch (NullPointerException npe) {
-			npe.printStackTrace();
-			this.isCadastroUsuarioEnderecoRendered = false;
-			this.isMensagemHasEnderecoRendered = true;
-		}
-		
+		this.ocultarCadastroAlterarStatusMensagens();
 	}
 
 	private void separarEnderecoUsuarioAtualDoHistorico(UsuarioEntity usuario) {
@@ -876,10 +815,136 @@ public class CadastroUsuarioMB implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void ocultarMensagemSelecionarUsuario() {
 		this.isMensagemSelecionarUsuarioRendered = false;
 		this.isBtnUsuarioEditarDesativado = false;
+	}
+
+	private void exibirCadastroAlterarStatusMensagens() {
+		this.isCadastroUsuarioDadosRendered = true;
+		this.isCadastroUsuarioDoctosRGRendered = true;
+		this.isCadastroUsuarioDoctosCPFRendered = true;
+		this.isCadastroUsuarioDoctosRICRendered = true;
+		this.isCadastroUsuarioDoctosRNERendered = true;
+		this.isCadastroUsuarioDoctosCNHRendered = true;
+		this.isCadastroUsuarioEnderecoRendered = true;
+
+		this.isMensagemSelecionarUsuarioRendered = false;
+
+		this.isMensagemHasUsuario = false;
+		this.isMensagemHasRGRendered = false;
+		this.isMensagemHasCPFRendered = false;
+		this.isMensagemHasRICRendered = false;
+		this.isMensagemHasRNERendered = false;
+		this.isMensagemHasCNHRendered = false;
+
+		this.isMensagemHasEnderecoRendered = false;
+	}
+
+	private void ocultarCadastroAlterarStatusMensagens() {
+		
+		this.ocultarMensagemSelecionarUsuario();
+
+		try {
+			if (this.usuarioSelecionado.getNome().length() > 1) {
+				this.isCadastroUsuarioDadosRendered = true;
+				this.isMensagemHasUsuario = false;
+			} else {
+				this.isCadastroUsuarioDadosRendered = false;
+				this.isMensagemHasUsuario = true;
+			}
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+			this.isCadastroUsuarioDadosRendered = false;
+			this.isMensagemHasUsuario = true;
+		}
+
+		try {
+			if (this.usuarioSelecionado.getDocumentosPessoais().getNumCPF() > 1) {
+				this.isCadastroUsuarioDoctosCPFRendered = true;
+				this.isMensagemHasCPFRendered = false;
+			} else {
+				this.isCadastroUsuarioDoctosCPFRendered = false;
+				this.isMensagemHasCPFRendered = true;
+			}
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+			this.isCadastroUsuarioDoctosCPFRendered = false;
+			this.isMensagemHasCPFRendered = true;
+		}
+
+		try {
+			if (this.usuarioSelecionado.getDocumentosPessoais().getNumRG().length() > 1) {
+				this.isCadastroUsuarioDoctosRGRendered = true;
+				this.isMensagemHasRGRendered = false;
+			} else {
+				this.isCadastroUsuarioDoctosRGRendered = false;
+				this.isMensagemHasRGRendered = true;
+			}
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+			this.isCadastroUsuarioDoctosRGRendered = false;
+			this.isMensagemHasRGRendered = true;
+		}
+
+		try {
+			if (this.usuarioSelecionado.getDocumentosPessoais().getNumRic() > 1) {
+				this.isCadastroUsuarioDoctosRICRendered = true;
+				this.isMensagemHasRICRendered = false;
+			} else {
+				this.isCadastroUsuarioDoctosRICRendered = false;
+				this.isMensagemHasRICRendered = true;
+			}
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+			this.isCadastroUsuarioDoctosRICRendered = false;
+			this.isMensagemHasRICRendered = true;
+		}
+
+		try {
+			if (this.usuarioSelecionado.getDocumentosPessoais().getNumRNE() > 1) {
+				this.isCadastroUsuarioDoctosRNERendered = true;
+				this.isMensagemHasRNERendered = false;
+			} else {
+				this.isCadastroUsuarioDoctosRNERendered = false;
+				this.isMensagemHasRNERendered = true;
+			}
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+			this.isCadastroUsuarioDoctosRNERendered = false;
+			this.isMensagemHasRNERendered = true;
+		}
+
+		try {
+			if (this.usuarioSelecionado.getDocumentosPessoais().getNumCNH() > 1) {
+				this.isCadastroUsuarioDoctosCNHRendered = true;
+				this.isMensagemHasCNHRendered = false;
+			} else {
+				this.isCadastroUsuarioDoctosCNHRendered = false;
+				this.isMensagemHasCNHRendered = true;
+			}
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+			this.isCadastroUsuarioDoctosCNHRendered = false;
+			this.isMensagemHasCNHRendered = true;
+		}
+
+		this.separarEnderecoUsuarioAtualDoHistorico(this.usuarioSelecionado);
+
+		try {
+			if (this.enderecoUsuarioSelecionado.getIdEndereco() > 1) {
+				this.isCadastroUsuarioEnderecoRendered = true;
+				this.isMensagemHasEnderecoRendered = false;
+			} else {
+				this.isCadastroUsuarioEnderecoRendered = false;
+				this.isMensagemHasEnderecoRendered = true;
+			}
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+			this.isCadastroUsuarioEnderecoRendered = false;
+			this.isMensagemHasEnderecoRendered = true;
+		}
 	}
 
 	/*
@@ -1007,8 +1072,12 @@ public class CadastroUsuarioMB implements Serializable {
 	public void editarUsuario(ActionEvent evt) {
 		this.isDadosUsuariosEditar = true;
 		this.isDadosUsuariosExibir = false;
+
+		this.exibirCadastroAlterarStatusMensagens();
+
 		this.isBtnUsuarioCancelarDesativado = false;
 		this.isBtnUsuarioEditarDesativado = true;
+
 		this.cadastroEmpresaMB.setTabDadosCadastraisDesativado(true);
 		this.cadastroEmpresaMB.setTabEnderecoDesativado(true);
 		this.cadastroEmpresaMB.setTabContatoDesativado(false);
@@ -1019,8 +1088,12 @@ public class CadastroUsuarioMB implements Serializable {
 	public void cancelarUsuario(ActionEvent evt) {
 		this.isDadosUsuariosEditar = false;
 		this.isDadosUsuariosExibir = true;
+		
+		this.ocultarCadastroAlterarStatusMensagens();
+
 		this.isBtnUsuarioCancelarDesativado = true;
 		this.isBtnUsuarioEditarDesativado = false;
+
 		this.cadastroEmpresaMB.setTabDadosCadastraisDesativado(false);
 		this.cadastroEmpresaMB.setTabEnderecoDesativado(false);
 		this.cadastroEmpresaMB.setTabContatoDesativado(false);
@@ -1091,7 +1164,11 @@ public class CadastroUsuarioMB implements Serializable {
 
 		this.isDialogNovoUsuarioRendered = false;
 		this.isCadastroUsuarioDadosRendered = false;
-		this.isCadastroUsuarioDoctosRendered = false;
+		this.isCadastroUsuarioDoctosRGRendered = false;
+		this.isCadastroUsuarioDoctosCPFRendered = false;
+		this.isCadastroUsuarioDoctosRICRendered = false;
+		this.isCadastroUsuarioDoctosRNERendered = false;
+		this.isCadastroUsuarioDoctosCNHRendered = false;
 		this.isCadastroUsuarioEnderecoRendered = false;
 		this.isCadastroUsuarioContatoRendered = false;
 		this.isCadastroUsuarioUsuarioRendered = false;

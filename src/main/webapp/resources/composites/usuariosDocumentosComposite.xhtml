@@ -9,28 +9,23 @@
 <composite:interface>
 	<composite:attribute name="editarRendered" default="true" />
 	<composite:attribute name="exibirRendered" default="false" />
-
 	<composite:attribute name="rgRequired" default="false" />
 	<composite:attribute name="rgOrgExpRequired" default="false" />
 	<composite:attribute name="rgDataExpRequired" default="false" />
 	<composite:attribute name="cpfRequired" default="false" />
-
 	<composite:attribute name="documentosPessoais"
 		type="br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.PessoaFisicaDocumentosEntity" />
-
-	<composite:attribute name="dadosUsuarioRendered" default="true" />
-
+	<composite:attribute name="dadosUsuarioRGRendered" default="true" />
+	<composite:attribute name="dadosUsuarioCPFRendered" default="true" />
+	<composite:attribute name="dadosUsuarioRICRendered" default="true" />
+	<composite:attribute name="dadosUsuarioRNERendered" default="true" />
+	<composite:attribute name="dadosUsuarioCNHRendered" default="true" />
 	<composite:attribute name="mensagemSelecionarUsuarioRendered"
 		default="false" />
-
 	<composite:attribute name="mensagemHasRGRendered" default="false" />
-	
 	<composite:attribute name="mensagemHasCPFRendered" default="false" />
-	
 	<composite:attribute name="mensagemHasRICRendered" default="false" />
-	
 	<composite:attribute name="mensagemHasRNERendered" default="false" />
-	
 	<composite:attribute name="mensagemHasCNHRendered" default="false" />
 
 </composite:interface>
@@ -51,7 +46,7 @@
 						rendered="#{cc.attrs.mensagemHasRGRendered}" />
 					<h:panelGroup id="pngUsuarioDocumentosRGBloco" layout="block"
 						styleClass="formulario"
-						rendered="#{cc.attrs.dadosUsuarioRendered}">
+						rendered="#{cc.attrs.dadosUsuarioRGRendered}">
 						<h:panelGroup id="pngUsuarioDocumentosRGEditar" layout="block"
 							styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
 							<p:panelGrid id="pgdEditarRG" columns="2"
@@ -101,7 +96,7 @@
 						rendered="#{cc.attrs.mensagemHasCPFRendered}" />
 					<h:panelGroup id="pngUsuarioDocumentosCPFBloco" layout="block"
 						styleClass="formulario"
-						rendered="#{cc.attrs.dadosUsuarioRendered}">
+						rendered="#{cc.attrs.dadosUsuarioCPFRendered}">
 						<h:panelGroup id="pngUsuarioDocumentosCPFEditar" layout="block"
 							styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
 							<p:panelGrid id="pgdEditarCPF" columns="2"
@@ -135,7 +130,7 @@
 						rendered="#{cc.attrs.mensagemHasRICRendered}" />
 					<h:panelGroup id="pngUsuarioDocumentosRICBloco" layout="block"
 						styleClass="formulario"
-						rendered="#{cc.attrs.dadosUsuarioRendered}">
+						rendered="#{cc.attrs.dadosUsuarioRICRendered}">
 						<h:panelGroup id="pngUsuarioDocumentosRICEditar" layout="block"
 							styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
 							<p:panelGrid id="pgdEditarRIC" columns="2"
@@ -179,7 +174,7 @@
 						rendered="#{cc.attrs.mensagemHasRNERendered}" />
 					<h:panelGroup id="pngUsuarioDocumentosRNEBloco" layout="block"
 						styleClass="formulario"
-						rendered="#{cc.attrs.dadosUsuarioRendered}">
+						rendered="#{cc.attrs.dadosUsuarioRNERendered}">
 						<h:panelGroup id="pngUsuarioDocumentosRNEEditar" layout="block"
 							styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
 							<p:panelGrid id="pgdEditarRNE" columns="2"
@@ -223,7 +218,7 @@
 						rendered="#{cc.attrs.mensagemHasCNHRendered}" />
 					<h:panelGroup id="pngUsuarioDocumentosCNHBloco" layout="block"
 						styleClass="formulario"
-						rendered="#{cc.attrs.dadosUsuarioRendered}">
+						rendered="#{cc.attrs.dadosUsuarioCNHRendered}">
 						<h:panelGroup id="pngUsuarioDocumentosCNHEditar" layout="block"
 							styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
 							<p:panelGrid id="pgdEditarCNH" columns="2"
