@@ -1175,6 +1175,13 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isCadastroUsuarioEmpresasRendered = false;
 
 		this.isMensagemSelecionarUsuarioRendered = true;
+		this.isMensagemHasUsuario = false;
+		this.isMensagemHasRGRendered = false;
+		this.isMensagemHasCPFRendered = false;
+		this.isMensagemHasRICRendered = false;
+		this.isMensagemHasRNERendered = false;
+		this.isMensagemHasCNHRendered = false;
+		this.isMensagemHasEnderecoRendered = false;
 
 		try {
 			this.empresasAtribuidasUsuario = new ArrayList<EmpresaEntity>();
