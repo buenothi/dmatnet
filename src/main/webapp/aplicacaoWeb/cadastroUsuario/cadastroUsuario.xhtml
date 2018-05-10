@@ -64,7 +64,8 @@
 				paginatorAlwaysVisible="false"
 				emptyMessage="#{msgs.ListaUsuariosVazia}" var="usuario"
 				value="#{cadastroEmpresaMB.usuariosEmpresaSelecionada}"
-				rowKey="#{usuario.idPessoa}" selectionMode="single">
+				rowKey="#{usuario.idPessoa}" selectionMode="single"
+				disabledSelection="#{cadastroUsuarioMB.disabledSelecaoTabelaUsuarios}">
 
 				<p:ajax event="rowSelect"
 					listener="#{cadastroUsuarioMB.onSelectionUsuario}"
@@ -95,8 +96,8 @@
 						editarRendered="#{cadastroUsuarioMB.dadosUsuariosEditar}"
 						exibirRendered="#{cadastroUsuarioMB.dadosUsuariosExibir}"
 						dadosUsuarioRendered="#{cadastroUsuarioMB.cadastroUsuarioDadosRendered}"
-						mensagemSelecionarUsuarioRendered="#{cadastroUsuarioMB.mensagemSelecionarUsuarioRendered}" 
-						mensagemHasUsuarioRendered="#{cadastroUsuarioMB.mensagemHasUsuario}"/>
+						mensagemSelecionarUsuarioRendered="#{cadastroUsuarioMB.mensagemSelecionarUsuarioRendered}"
+						mensagemHasUsuarioRendered="#{cadastroUsuarioMB.mensagemHasUsuario}" />
 				</p:tab>
 
 				<p:tab title="#{msgs.DocumentosPessoaFisica}">
@@ -110,12 +111,12 @@
 						dadosUsuarioRICRendered="#{cadastroUsuarioMB.cadastroUsuarioDoctosRICRendered}"
 						dadosUsuarioRNERendered="#{cadastroUsuarioMB.cadastroUsuarioDoctosRNERendered}"
 						dadosUsuarioCNHRendered="#{cadastroUsuarioMB.cadastroUsuarioDoctosCNHRendered}"
-						mensagemSelecionarUsuarioRendered="#{cadastroUsuarioMB.mensagemSelecionarUsuarioRendered}" 
-						mensagemHasRGRendered="#{cadastroUsuarioMB.mensagemHasRGRendered}" 
+						mensagemSelecionarUsuarioRendered="#{cadastroUsuarioMB.mensagemSelecionarUsuarioRendered}"
+						mensagemHasRGRendered="#{cadastroUsuarioMB.mensagemHasRGRendered}"
 						mensagemHasCPFRendered="#{cadastroUsuarioMB.mensagemHasCPFRendered}"
 						mensagemHasRICRendered="#{cadastroUsuarioMB.mensagemHasRICRendered}"
 						mensagemHasRNERendered="#{cadastroUsuarioMB.mensagemHasRNERendered}"
-						mensagemHasCNHRendered="#{cadastroUsuarioMB.mensagemHasCNHRendered}"/>
+						mensagemHasCNHRendered="#{cadastroUsuarioMB.mensagemHasCNHRendered}" />
 				</p:tab>
 
 				<p:tab title="#{msgs.Endereco}">

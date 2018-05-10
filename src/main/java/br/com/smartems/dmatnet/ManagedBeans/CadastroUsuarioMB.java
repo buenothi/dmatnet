@@ -99,6 +99,7 @@ public class CadastroUsuarioMB implements Serializable {
 	private boolean isDadosUsuariosEditar = false;
 	private boolean isDadosUsuariosExibir = true;
 	private boolean isMensagemHasUsuario = false;
+	private boolean isDisabledSelecaoTabelaUsuarios = false;
 
 	// botões dados do usuário de documentos
 
@@ -540,6 +541,14 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isMensagemHasUsuario = isMensagemHasUsuario;
 	}
 
+	public boolean isDisabledSelecaoTabelaUsuarios() {
+		return isDisabledSelecaoTabelaUsuarios;
+	}
+
+	public void setDisabledSelecaoTabelaUsuarios(boolean isDisabledSelecaoTabelaUsuarios) {
+		this.isDisabledSelecaoTabelaUsuarios = isDisabledSelecaoTabelaUsuarios;
+	}
+
 	public boolean isMensagemHasRGRendered() {
 		return isMensagemHasRGRendered;
 	}
@@ -783,16 +792,23 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public void salvarUsuario(ActionEvent evt) {
-		this.empresasAtribuidasUsuario = this.empresasUsuario.getTarget();
-		this.usuarioNovo = this.usuarioFachada.salvarNovoUsuario(this.usuarioNovo, this.usuarioMB.getUsuarioLogado(),
-				this.documentosPessoaisUsuario, this.enderecoUsuarioAtual, this.emailsUsuario, this.telefonesUsuario,
-				this.empresasAtribuidasUsuario);
-		FacesMessage msg = new FacesMessage("Sucesso",
-				stringUtils.formatarTextoParaLeitura(this.usuarioNovo.getNome().toString())
-						+ " Atualizado com Sucesso");
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-		this.cadastroEmpresaMB.onSelectionEmpresa(this.cadastroEmpresaMB.getEmpresaSelecionada());
-		this.initUsuario();
+		try {
+			this.empresasAtribuidasUsuario = this.empresasUsuario.getTarget();
+			this.usuarioNovo = this.usuarioFachada.salvarNovoUsuario(this.usuarioNovo,
+					this.usuarioMB.getUsuarioLogado(), this.documentosPessoaisUsuario, this.enderecoUsuarioAtual,
+					this.emailsUsuario, this.telefonesUsuario, this.empresasAtribuidasUsuario);
+			FacesMessage msg = new FacesMessage("Sucesso",
+					stringUtils.formatarTextoParaLeitura(this.usuarioNovo.getNome().toString())
+							+ " Atualizado com Sucesso");
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+			this.cadastroEmpresaMB.onSelectionEmpresa(this.cadastroEmpresaMB.getEmpresaSelecionada());
+			this.initUsuario();
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+			//inserir funcionalidades referentes a alteração de usuário
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void onSelectionUsuario(SelectEvent evt) {
@@ -843,7 +859,7 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	private void ocultarCadastroAlterarStatusMensagens() {
-		
+
 		this.ocultarMensagemSelecionarUsuario();
 
 		try {
@@ -1072,11 +1088,14 @@ public class CadastroUsuarioMB implements Serializable {
 	public void editarUsuario(ActionEvent evt) {
 		this.isDadosUsuariosEditar = true;
 		this.isDadosUsuariosExibir = false;
+		this.isDisabledSelecaoTabelaUsuarios = true;
 
 		this.exibirCadastroAlterarStatusMensagens();
 
 		this.isBtnUsuarioCancelarDesativado = false;
 		this.isBtnUsuarioEditarDesativado = true;
+		this.isBtnUsuarioSalvarDesativado = false;
+		this.isBtnUsuarioNovoDesativado = true;
 
 		this.cadastroEmpresaMB.setTabDadosCadastraisDesativado(true);
 		this.cadastroEmpresaMB.setTabEnderecoDesativado(true);
@@ -1088,11 +1107,14 @@ public class CadastroUsuarioMB implements Serializable {
 	public void cancelarUsuario(ActionEvent evt) {
 		this.isDadosUsuariosEditar = false;
 		this.isDadosUsuariosExibir = true;
-		
+		this.isDisabledSelecaoTabelaUsuarios = false;
+
 		this.ocultarCadastroAlterarStatusMensagens();
 
 		this.isBtnUsuarioCancelarDesativado = true;
 		this.isBtnUsuarioEditarDesativado = false;
+		this.isBtnUsuarioSalvarDesativado = true;
+		this.isBtnUsuarioNovoDesativado = false;
 
 		this.cadastroEmpresaMB.setTabDadosCadastraisDesativado(false);
 		this.cadastroEmpresaMB.setTabEnderecoDesativado(false);
@@ -1162,6 +1184,7 @@ public class CadastroUsuarioMB implements Serializable {
 		this.empresasDisponiveisUsuario = null;
 		this.empresasAtribuidasUsuario = null;
 
+		this.isDisabledSelecaoTabelaUsuarios = false;
 		this.isDialogNovoUsuarioRendered = false;
 		this.isCadastroUsuarioDadosRendered = false;
 		this.isCadastroUsuarioDoctosRGRendered = false;
