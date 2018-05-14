@@ -806,6 +806,7 @@ public class CadastroUsuarioMB implements Serializable {
 		} catch (NullPointerException npe) {
 			npe.printStackTrace();
 			//inserir funcionalidades referentes a alteração de usuário
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
