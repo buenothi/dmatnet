@@ -174,7 +174,7 @@
 		<ui:include
 			src="/aplicacaoWeb/cadastroUsuario/cadastroNovoUsuario.xhtml" />
 		<p:ajax event="close" update="formModulos"
-			listener="#{cadastroUsuarioMB.fecharDialogNovoUsuario}" />
+			listener="#{cadastroUsuarioMB.fecharDialogNovoUsuario}" resetValues="true"/>
 	</p:dialog>
 </ui:composition>
 </html>

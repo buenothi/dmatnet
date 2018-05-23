@@ -15,6 +15,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
+import org.primefaces.event.CloseEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DualListModel;
 
@@ -787,8 +788,11 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public void novoUsuarioNaEmpresaSelecionada(ActionEvent evt) {
-		this.initUsuario();
 		this.isDialogNovoUsuarioRendered = true;
+	}
+	
+	public void fecharDialogNovoUsuario(CloseEvent evt) {
+		this.isDialogNovoUsuarioRendered = false;
 	}
 
 	public void salvarUsuario(ActionEvent evt) {
