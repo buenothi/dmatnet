@@ -92,6 +92,26 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 		return usuario;
 	}
 
+	public void alterarUsuario(UsuarioEntity usuario, PessoaFisicaDocumentosEntity documento, EnderecoEntity endereco,
+			List<EmailEntity> emails, List<TelefoneEntity> telefones, List<EmpresaEntity> empresasAtribuidas) {
+		try {
+			usuario.setDocumentosPessoais(documento);
+			usuario.setEmails(emails);
+			usuario.setTelefones(telefones);
+			usuario.setEnderecos(new HashSet<>());
+			usuario.getEnderecos().add(endereco);
+			try {
+				Set<EmpresaEntity> setEmpresas = new HashSet<EmpresaEntity>(empresasAtribuidas);
+				usuario.setEmpresasGerenciadas(setEmpresas);
+			} catch (NullPointerException npe) {
+				npe.printStackTrace();
+			}
+		} catch (Exception excp) {
+			excp.printStackTrace();
+		}
+		this.update(usuario);
+	}
+
 	public EnderecoEntity selecionarEnderecoUsuarioAtual(UsuarioEntity usuario) throws Exception {
 		Date dataMaisRecente;
 		EnderecoEntity enderecoUsuarioAtual = new EnderecoEntity();
