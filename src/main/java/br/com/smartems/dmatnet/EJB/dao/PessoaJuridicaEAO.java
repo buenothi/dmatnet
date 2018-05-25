@@ -3,9 +3,9 @@ package br.com.smartems.dmatnet.EJB.dao;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
@@ -156,7 +156,7 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 	private void atribuirEmpresaSoftware(Set<EmpresaSoftwareHouse> empresasSoftware,
 			EmpresaCadastroEntity dadosCadastraisAtual) {
 		if (empresasSoftware != null) {
-			Set<EmpresaSoftwareHouse> novoEmpresasSoftware = new HashSet<>(empresasSoftware);
+			Set<EmpresaSoftwareHouse> novoEmpresasSoftware = new TreeSet<>(empresasSoftware);
 			try {
 				novoEmpresasSoftware = empresasSoftware;
 				dadosCadastraisAtual.setEmpresaSoftwareHouse(novoEmpresasSoftware);

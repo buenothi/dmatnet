@@ -73,6 +73,13 @@ public class UsuarioFacade implements UsuarioFacadeLocal {
 	}
 
 	@Override
+	public UsuarioEntity alterarUsuario(UsuarioEntity usuarioAtual, PessoaFisicaDocumentosEntity documento,
+			List<EnderecoEntity> enderecos, List<EmailEntity> emails, List<TelefoneEntity> telefones,
+			List<EmpresaEntity> empresasAtribuidas) {
+		return usuarioEAO.alterarUsuario(usuarioAtual, documento, enderecos, emails, telefones, empresasAtribuidas);
+	}
+
+	@Override
 	public EnderecoEntity selecionarEnderecoUsuarioAtual(UsuarioEntity usuario) throws Exception {
 		return usuarioEAO.selecionarEnderecoUsuarioAtual(usuario);
 	}
@@ -82,5 +89,5 @@ public class UsuarioFacade implements UsuarioFacadeLocal {
 			UsuarioEntity usuarioSelecionado) throws Exception {
 		return usuarioEAO.selecionarEnderecosUsuarioHistorico(enderecoAtual, usuarioSelecionado);
 	}
-	
+
 }

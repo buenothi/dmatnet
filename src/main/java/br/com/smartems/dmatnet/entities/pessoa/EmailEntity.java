@@ -13,7 +13,7 @@ import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "tbl_email")
-public class EmailEntity implements Serializable {
+public class EmailEntity implements Serializable, Cloneable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,6 +67,12 @@ public class EmailEntity implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	
+	@Override
+	protected EmailEntity clone() throws CloneNotSupportedException {
+		return (EmailEntity) super.clone();
 	}
 
 	@Override

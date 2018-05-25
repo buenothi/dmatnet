@@ -6,7 +6,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 @Embeddable
-public class PessoaFisicaDocumentosEntity implements Serializable {
+public class PessoaFisicaDocumentosEntity implements Serializable, Cloneable {
 	
 	//registro de identificação civil (para atendimento do eSocial)
 	private Long numRic; 
@@ -180,6 +180,11 @@ public class PessoaFisicaDocumentosEntity implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+	@Override
+	public PessoaFisicaDocumentosEntity clone() throws CloneNotSupportedException {
+		return (PessoaFisicaDocumentosEntity) super.clone();
 	}
 
 	@Override
