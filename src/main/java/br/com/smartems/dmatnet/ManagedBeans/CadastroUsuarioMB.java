@@ -59,6 +59,7 @@ public class CadastroUsuarioMB implements Serializable {
 	private UsuarioEntity usuarioSelecionado;
 
 	private PessoaFisicaDocumentosEntity documentosPessoaisUsuario;
+	private PessoaFisicaDocumentosEntity documentosPessoaisUsuarioSelecionado;
 
 	private EnderecoEntity enderecoUsuarioAtual;
 	private EnderecoEntity enderecoUsuarioExcluir;
@@ -68,17 +69,23 @@ public class CadastroUsuarioMB implements Serializable {
 	private TelefoneEntity telefoneUsuario;
 	private TelefoneEntity telefoneUsuarioExcluir;
 	private List<TelefoneEntity> telefonesUsuario;
+	private List<TelefoneEntity> telefonesUsuarioSelecionado;
 
 	private EmailEntity emailUsuario;
 	private EmailEntity emailUsuarioExcluir;
 	private List<EmailEntity> emailsUsuario;
+	private List<EmailEntity> emailsUsuarioSelecionado;
 
 	private Set<EmpresaGrupoEntity> gruposGerenciados;
+	private Set<EmpresaGrupoEntity> gruposGerenciadosUsuarioSelecionado;
 	private Set<EmpresaEntity> empresasGerenciadas;
+	private Set<EmpresaEntity> empresasGerenciadasUsuarioSelecionado;
 
 	private DualListModel<EmpresaEntity> empresasUsuario;
 	private List<EmpresaEntity> empresasDisponiveisUsuario;
+	private List<EmpresaEntity> empresasDisponiveisUsuarioSelecionado;
 	private List<EmpresaEntity> empresasAtribuidasUsuario;
+	private List<EmpresaEntity> empresasAtribuidasUsuarioSelecionado;
 
 	private boolean isDialogNovoUsuarioRendered = false;
 	private boolean isCadastroUsuarioDadosRendered = false;
@@ -246,6 +253,10 @@ public class CadastroUsuarioMB implements Serializable {
 		this.usuarioSelecionado = usuarioSelecionado;
 	}
 
+	public void setDocumentosPessoaisUsuario(PessoaFisicaDocumentosEntity documentosPessoaisUsuario) {
+		this.documentosPessoaisUsuario = documentosPessoaisUsuario;
+	}
+
 	public PessoaFisicaDocumentosEntity getDocumentosPessoaisUsuario() {
 		if (documentosPessoaisUsuario == null) {
 			this.documentosPessoaisUsuario = new PessoaFisicaDocumentosEntity();
@@ -253,10 +264,17 @@ public class CadastroUsuarioMB implements Serializable {
 		return documentosPessoaisUsuario;
 	}
 
-	public void setDocumentosPessoaisUsuario(PessoaFisicaDocumentosEntity documentosPessoaisUsuario) {
-		this.documentosPessoaisUsuario = documentosPessoaisUsuario;
+	public PessoaFisicaDocumentosEntity getDocumentosPessoaisUsuarioSelecionado() {
+		if (documentosPessoaisUsuarioSelecionado == null) {
+			documentosPessoaisUsuarioSelecionado = new PessoaFisicaDocumentosEntity();
+		}
+		return documentosPessoaisUsuarioSelecionado;
 	}
 
+	public void setDocumentosPessoaisUsuarioSelecionado(PessoaFisicaDocumentosEntity documentosPessoaisUsuario) {
+		this.documentosPessoaisUsuarioSelecionado = documentosPessoaisUsuario;
+	}
+	
 	public EnderecoEntity getEnderecoUsuarioAtual() {
 		if (enderecoUsuarioAtual == null) {
 			this.enderecoUsuarioAtual = new EnderecoEntity();
@@ -334,6 +352,17 @@ public class CadastroUsuarioMB implements Serializable {
 		this.telefonesUsuario = telefonesUsuario;
 	}
 
+	public List<TelefoneEntity> getTelefonesUsuarioSelecionado() {
+		if (telefonesUsuarioSelecionado == null) {
+			this.telefonesUsuarioSelecionado = new ArrayList<TelefoneEntity>();
+		}
+		return telefonesUsuarioSelecionado;
+	}
+
+	public void setTelefonesUsuarioSelecionado(List<TelefoneEntity> telefonesUsuarioSelecionado) {
+		this.telefonesUsuarioSelecionado = telefonesUsuarioSelecionado;
+	}
+
 	public EmailEntity getEmailUsuario() {
 		if (emailUsuario == null) {
 			this.emailUsuario = new EmailEntity();
@@ -367,6 +396,17 @@ public class CadastroUsuarioMB implements Serializable {
 		this.emailsUsuario = emailsUsuario;
 	}
 
+	public List<EmailEntity> getEmailsUsuarioSelecionado() {
+		if (emailsUsuarioSelecionado == null) {
+			this.emailsUsuarioSelecionado = new ArrayList<EmailEntity>();
+		}
+		return emailsUsuarioSelecionado;
+	}
+
+	public void setEmailsUsuarioSelecionado(List<EmailEntity> emailsUsuarioSelecionado) {
+		this.emailsUsuarioSelecionado = emailsUsuarioSelecionado;
+	}
+
 	public Set<EmpresaGrupoEntity> getGruposGerenciados() {
 		if (gruposGerenciados == null) {
 			this.gruposGerenciados = new TreeSet<EmpresaGrupoEntity>();
@@ -378,6 +418,17 @@ public class CadastroUsuarioMB implements Serializable {
 		this.gruposGerenciados = gruposGerenciados;
 	}
 
+	public Set<EmpresaGrupoEntity> getGruposGerenciadosUsuarioSelecionado() {
+		if (gruposGerenciadosUsuarioSelecionado == null) {
+			this.gruposGerenciadosUsuarioSelecionado = new TreeSet<EmpresaGrupoEntity>();
+		}
+		return gruposGerenciadosUsuarioSelecionado;
+	}
+
+	public void setGruposGerenciadosUsuarioSelecionado(Set<EmpresaGrupoEntity> gruposGerenciadosUsuarioSelecionado) {
+		this.gruposGerenciadosUsuarioSelecionado = gruposGerenciadosUsuarioSelecionado;
+	}
+
 	public Set<EmpresaEntity> getEmpresasGerenciadas() {
 		if (empresasGerenciadas == null) {
 			this.empresasGerenciadas = new TreeSet<EmpresaEntity>();
@@ -387,6 +438,17 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void setEmpresasGerenciadas(Set<EmpresaEntity> empresasGerenciadas) {
 		this.empresasGerenciadas = empresasGerenciadas;
+	}
+
+	public Set<EmpresaEntity> getEmpresasGerenciadasUsuarioSelecionado() {
+		if (empresasGerenciadasUsuarioSelecionado == null){
+			this.empresasGerenciadasUsuarioSelecionado = new TreeSet<EmpresaEntity>();
+		}
+		return empresasGerenciadasUsuarioSelecionado;
+	}
+
+	public void setEmpresasGerenciadasUsuarioSelecionado(Set<EmpresaEntity> empresasGerenciadasUsuarioSelecionado) {
+		this.empresasGerenciadasUsuarioSelecionado = empresasGerenciadasUsuarioSelecionado;
 	}
 
 	public DualListModel<EmpresaEntity> getEmpresasUsuario() {
@@ -411,6 +473,17 @@ public class CadastroUsuarioMB implements Serializable {
 		this.empresasDisponiveisUsuario = empresasDisponiveisUsuario;
 	}
 
+	public List<EmpresaEntity> getEmpresasDisponiveisUsuarioSelecionado() {
+		if (empresasDisponiveisUsuarioSelecionado == null) {
+			this.empresasDisponiveisUsuarioSelecionado = new ArrayList<EmpresaEntity>();
+		}
+		return empresasDisponiveisUsuarioSelecionado;
+	}
+
+	public void setEmpresasDisponiveisUsuarioSelecionado(List<EmpresaEntity> empresasDisponiveisUsuarioSelecionado) {
+		this.empresasDisponiveisUsuarioSelecionado = empresasDisponiveisUsuarioSelecionado;
+	}
+
 	public List<EmpresaEntity> getEmpresasAtribuidasUsuario() {
 		if (empresasAtribuidasUsuario == null) {
 			this.empresasAtribuidasUsuario = new ArrayList<EmpresaEntity>();
@@ -420,6 +493,17 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void setEmpresasAtribuidasUsuario(List<EmpresaEntity> empresasAtribuidasUsuario) {
 		this.empresasAtribuidasUsuario = empresasAtribuidasUsuario;
+	}
+	
+	public List<EmpresaEntity> getEmpresasAtribuidasUsuarioSelecionado() {
+		if (empresasAtribuidasUsuarioSelecionado == null) {
+			this.empresasAtribuidasUsuarioSelecionado = new ArrayList<EmpresaEntity>();
+		}
+		return empresasAtribuidasUsuarioSelecionado;
+	}
+
+	public void setEmpresasAtribuidasUsuarioSelecionado(List<EmpresaEntity> empresasAtribuidasUsuarioSelecionado) {
+		this.empresasAtribuidasUsuarioSelecionado = empresasAtribuidasUsuarioSelecionado;
 	}
 
 	public boolean isDialogNovoUsuarioRendered() {
@@ -808,9 +892,8 @@ public class CadastroUsuarioMB implements Serializable {
 			this.cadastroEmpresaMB.onSelectionEmpresa(this.cadastroEmpresaMB.getEmpresaSelecionada());
 			this.initUsuario();
 		} catch (NullPointerException npe) {
-			npe.printStackTrace();
 			//inserir funcionalidades referentes a alteração de usuário
-			
+			System.out.println("salvar alterações do usuario");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
