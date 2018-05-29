@@ -274,7 +274,7 @@ public class CadastroUsuarioMB implements Serializable {
 	public void setDocumentosPessoaisUsuarioSelecionado(PessoaFisicaDocumentosEntity documentosPessoaisUsuario) {
 		this.documentosPessoaisUsuarioSelecionado = documentosPessoaisUsuario;
 	}
-	
+
 	public EnderecoEntity getEnderecoUsuarioAtual() {
 		if (enderecoUsuarioAtual == null) {
 			this.enderecoUsuarioAtual = new EnderecoEntity();
@@ -441,7 +441,7 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public Set<EmpresaEntity> getEmpresasGerenciadasUsuarioSelecionado() {
-		if (empresasGerenciadasUsuarioSelecionado == null){
+		if (empresasGerenciadasUsuarioSelecionado == null) {
 			this.empresasGerenciadasUsuarioSelecionado = new TreeSet<EmpresaEntity>();
 		}
 		return empresasGerenciadasUsuarioSelecionado;
@@ -494,7 +494,7 @@ public class CadastroUsuarioMB implements Serializable {
 	public void setEmpresasAtribuidasUsuario(List<EmpresaEntity> empresasAtribuidasUsuario) {
 		this.empresasAtribuidasUsuario = empresasAtribuidasUsuario;
 	}
-	
+
 	public List<EmpresaEntity> getEmpresasAtribuidasUsuarioSelecionado() {
 		if (empresasAtribuidasUsuarioSelecionado == null) {
 			this.empresasAtribuidasUsuarioSelecionado = new ArrayList<EmpresaEntity>();
@@ -874,7 +874,7 @@ public class CadastroUsuarioMB implements Serializable {
 	public void novoUsuarioNaEmpresaSelecionada(ActionEvent evt) {
 		this.isDialogNovoUsuarioRendered = true;
 	}
-	
+
 	public void fecharDialogNovoUsuario(CloseEvent evt) {
 		this.isDialogNovoUsuarioRendered = false;
 	}
@@ -892,7 +892,7 @@ public class CadastroUsuarioMB implements Serializable {
 			this.cadastroEmpresaMB.onSelectionEmpresa(this.cadastroEmpresaMB.getEmpresaSelecionada());
 			this.initUsuario();
 		} catch (NullPointerException npe) {
-			//inserir funcionalidades referentes a alteração de usuário
+			// inserir funcionalidades referentes a alteração de usuário
 			System.out.println("salvar alterações do usuario");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -901,9 +901,30 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void onSelectionUsuario(SelectEvent evt) {
 		this.usuarioSelecionado = (UsuarioEntity) evt.getObject();
+		
+		if (this.usuarioSelecionado.getDocumentosPessoais() != null) {
+			this.documentosPessoaisUsuarioSelecionado = this.usuarioSelecionado.getDocumentosPessoais();
+		}
+	
 		this.ocultarMensagemSelecionarUsuario();
 
 		this.ocultarCadastroAlterarStatusMensagens();
+		
+		this.separarEnderecoUsuarioAtualDoHistorico(this.usuarioSelecionado);
+
+		try {
+			if (this.enderecoUsuarioSelecionado.getIdEndereco() > 1) {
+				this.isCadastroUsuarioEnderecoRendered = true;
+				this.isMensagemHasEnderecoRendered = false;
+			} else {
+				this.isCadastroUsuarioEnderecoRendered = false;
+				this.isMensagemHasEnderecoRendered = true;
+			}
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+			this.isCadastroUsuarioEnderecoRendered = false;
+			this.isMensagemHasEnderecoRendered = true;
+		}
 	}
 
 	private void separarEnderecoUsuarioAtualDoHistorico(UsuarioEntity usuario) {
@@ -1034,21 +1055,6 @@ public class CadastroUsuarioMB implements Serializable {
 			this.isMensagemHasCNHRendered = true;
 		}
 
-		this.separarEnderecoUsuarioAtualDoHistorico(this.usuarioSelecionado);
-
-		try {
-			if (this.enderecoUsuarioSelecionado.getIdEndereco() > 1) {
-				this.isCadastroUsuarioEnderecoRendered = true;
-				this.isMensagemHasEnderecoRendered = false;
-			} else {
-				this.isCadastroUsuarioEnderecoRendered = false;
-				this.isMensagemHasEnderecoRendered = true;
-			}
-		} catch (NullPointerException npe) {
-			npe.printStackTrace();
-			this.isCadastroUsuarioEnderecoRendered = false;
-			this.isMensagemHasEnderecoRendered = true;
-		}
 	}
 
 	/*
