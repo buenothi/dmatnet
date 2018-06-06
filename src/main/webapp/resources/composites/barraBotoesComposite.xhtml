@@ -75,14 +75,14 @@
 				styleClass="botoes" icon="fa fa-save"
 				disabled="#{cc.attrs.disabledSalvar}"
 				actionListener="#{cc.attrs.actionListenerSalvar}"
-				update="#{cc.attrs.updateSalvar}" immediate="true" />
+				update="#{cc.attrs.updateSalvar}" />
 			<p:commandButton id="btnNovoObjeto" value="#{cc.attrs.labelNovo}"
 				styleClass="botoes" icon="fa fa-plus"
 				disabled="#{cc.attrs.disabledNovo}"
 				rendered="#{cc.attrs.renderedBtnNovo}"
 				actionListener="#{cc.attrs.actionListenerNovo}"
 				update="#{cc.attrs.updateNovo}"
-				oncomplete="#{cc.attrs.onCompleteNovo}" immediate="true" />
+				oncomplete="#{cc.attrs.onCompleteNovo}" />
 		</f:facet>
 		<f:facet name="right">
 			<p:commandButton id="btnImprimirObjeto"

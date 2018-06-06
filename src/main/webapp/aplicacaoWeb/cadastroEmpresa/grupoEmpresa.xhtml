@@ -67,7 +67,7 @@
 										<p:inputText size="33"
 											rendered="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
 											value="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
-										<p:outputLabel converter="stringConverter"
+										<p:outputLabel 
 											rendered="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}"
 											value="#{cadastroEmpresaMB.grupoSelecionado.nomeGrupo}" />
 										<p:outputLabel value="#{msgs.EmpresaGrupoDescricao}"
@@ -75,7 +75,7 @@
 										<p:inputTextarea cols="33"
 											rendered="#{cadastroEmpresaMB.btnGrupoNovoDesativado}"
 											value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
-										<p:outputLabel converter="stringConverter"
+										<p:outputLabel 
 											rendered="#{cadastroEmpresaMB.btnGrupoCancelarDesativado}"
 											value="#{cadastroEmpresaMB.grupoSelecionado.descricaoGrupo}" />
 									</p:panelGrid>
