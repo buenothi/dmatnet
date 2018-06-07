@@ -893,23 +893,34 @@ public class CadastroUsuarioMB implements Serializable {
 			this.initUsuario();
 		} catch (NullPointerException npe) {
 			// inserir funcionalidades referentes a alteração de usuário
-			System.out.println("salvar alterações do usuario");
-		} catch (Exception e) {
-			e.printStackTrace();
+			/*try {
+				
+				this.empresasAtribuidasUsuario = this.empresasUsuario.getTarget();
+				
+				List<EnderecoEntity> enderecosUsuarios = this.enderecosUsuarioHistorico;
+				enderecosUsuarios.add(this.enderecoUsuarioAtual);
+				
+				this.usuarioSelecionado = this.usuarioFachada.alterarUsuario(this.usuarioSelecionado, 
+						this.documentosPessoaisUsuarioSelecionado, enderecosUsuarios, );
+				
+				System.out.println("salvar alterações do usuario");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}*/
 		}
 	}
 
 	public void onSelectionUsuario(SelectEvent evt) {
 		this.usuarioSelecionado = (UsuarioEntity) evt.getObject();
-		
+
 		if (this.usuarioSelecionado.getDocumentosPessoais() != null) {
 			this.documentosPessoaisUsuarioSelecionado = this.usuarioSelecionado.getDocumentosPessoais();
 		}
-	
+
 		this.ocultarMensagemSelecionarUsuario();
 
 		this.ocultarCadastroAlterarStatusMensagens();
-		
+
 		this.separarEnderecoUsuarioAtualDoHistorico(this.usuarioSelecionado);
 
 		try {
