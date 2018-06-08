@@ -75,7 +75,7 @@
 								<f:facet name="left">
 									<p:commandButton value="#{msgs.Adicionar}"
 										actionListener="#{cc.attrs.actionListenerAdicionarEmailContato}"
-										update="#{cc.attrs.updateAdicionarEmailContato}"/>
+										update="#{cc.attrs.updateAdicionarEmailContato}" />
 									<p:commandButton value="#{msgs.Cancelar}"
 										update="#{cc.attrs.updateCancelarAdicionarEmailContato}" />
 								</f:facet>
@@ -97,7 +97,7 @@
 						paginatorAlwaysVisible="false" var="email" editable="true"
 						rowKey="#{email.idEmail}">
 
-						<p:column headerText="#{msgs.Email}">
+						<p:column headerText="#{msgs.Email}" width="180">
 							<p:cellEditor>
 								<f:facet name="output">
 									<p:outputLabel value="#{email.nomeEmail}" />
@@ -135,14 +135,28 @@
 							</p:cellEditor>
 						</p:column>
 
-						<h:panelGroup id="pngUsuarioEmailTabelaEditar" layout="block"
-							styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
+						<p:column style="width:55px" rendered="#{cc.attrs.editarRendered}">
+							<p:rowEditor />
+						</p:column>
 
-							<p:column style="width:55px">
+						<p:column style="width:55px" rendered="#{cc.attrs.editarRendered}">
+
+							<!-- insertChildren utilizado para inserir o botão de exclusão do histórico -->
+
+							<composite:insertChildren />
+
+						</p:column>
+
+						<h:panelGroup id="pngUsuarioEmailTabelaEditar"
+							styleClass="formulario">
+
+							<p:column style="width:55px"
+								rendered="#{cc.attrs.editarRendered}">
 								<p:rowEditor />
 							</p:column>
 
-							<p:column style="width:55px">
+							<p:column style="width:55px"
+								rendered="#{cc.attrs.editarRendered}">
 								<p:commandButton icon="fa fa-trash" />
 							</p:column>
 						</h:panelGroup>
@@ -225,27 +239,19 @@
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
-
-						<h:panelGroup id="pngUsuarioEmailTabelaEditar" layout="block"
-							styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
-
-							<p:column style="width:55px">
-								<p:rowEditor />
-							</p:column>
-
-							<p:column style="width:55px">
-								<p:commandButton icon="fa fa-trash"
-									actionListener="#{cc.attrs.actionListenerRemoverTelefoneLista}"
-									update="#{cc.attrs.updateRemoverTelefoneLista}">
-									<f:setPropertyActionListener value="#{telefone}"
-										target="#{cc.attrs.setPropertyActionListenerRemoverContato}" />
-									<p:confirm header="#{msgs.Confirmar}" message=""
-										icon="ui-icon-alert" />
-								</p:commandButton>
-							</p:column>
-
-						</h:panelGroup>
-
+						<p:column style="width:55px" rendered="#{cc.attrs.editarRendered}">
+							<p:rowEditor />
+						</p:column>
+						<p:column style="width:55px" rendered="#{cc.attrs.editarRendered}">
+							<p:commandButton icon="fa fa-trash"
+								actionListener="#{cc.attrs.actionListenerRemoverTelefoneLista}"
+								update="#{cc.attrs.updateRemoverTelefoneLista}">
+								<f:setPropertyActionListener value="#{telefone}"
+									target="#{cc.attrs.setPropertyActionListenerRemoverContato}" />
+								<p:confirm header="#{msgs.Confirmar}" message=""
+									icon="ui-icon-alert" />
+							</p:commandButton>
+						</p:column>
 					</p:dataTable>
 				</h:panelGroup>
 			</p:tab>

@@ -900,6 +900,8 @@ public class CadastroUsuarioMB implements Serializable {
 				List<EnderecoEntity> enderecosUsuarios = this.enderecosUsuarioHistorico;
 				enderecosUsuarios.add(this.enderecoUsuarioAtual);
 				
+				
+				
 				this.usuarioSelecionado = this.usuarioFachada.alterarUsuario(this.usuarioSelecionado, 
 						this.documentosPessoaisUsuarioSelecionado, enderecosUsuarios, );
 				

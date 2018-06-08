@@ -67,11 +67,24 @@
 				listaEmailsUsuarios="#{cadastroUsuarioMB.emailsUsuario}"
 				telefonePrincipal="#{cadastroUsuarioMB.telefoneUsuario}"
 				listaTelefonesUsuarios="#{cadastroUsuarioMB.telefonesUsuario}"
-				actionListenerAdicionarTelefoneContato="#{cadastroUsuarioMB.adicionarEmailContato}"
+				actionListenerAdicionarTelefoneContato="#{cadastroUsuarioMB.adicionarTelefoneContato}"
 				updateAdicionarTelefoneContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
 				updateCancelarTelefoneContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
 				updateRemoverTelefoneLista="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
-				setPropertyActionListenerRemoverContato="#{cadastroUsuarioMB.telefoneUsuarioExcluir}" />
+				setPropertyActionListenerRemoverContato="#{cadastroUsuarioMB.telefoneUsuarioExcluir}" 
+				actionListenerRemoverTelefoneLista="#{cadastroUsuarioMB.removerTelefoneContatoDaLista(telefone)}">
+
+				<p:commandButton icon="fa fa-trash"
+					actionListener="#{cadastroUsuarioMB.removerEmailContatoDaLista(email)}"
+					update="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
+					immediate="true">
+					<f:setPropertyActionListener value="#{email}"
+						target="#{cadastroUsuarioMB.emailUsuarioExcluir}" />
+					<p:confirm header="#{msgs.Confirmar}"
+						message="#{msgs.DeletarEmailUsuario}?" icon="ui-icon-alert" />
+				</p:commandButton>
+
+			</dmat:usuariosContatosComposite>
 		</p:tab>
 
 		<p:tab title="#{msgs.Login}">
