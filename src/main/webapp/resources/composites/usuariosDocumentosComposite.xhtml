@@ -80,7 +80,9 @@
 									value="#{cc.attrs.documentosPessoais.rgOrgExpedidor}" />
 								<p:outputLabel value="#{msgs.DataExpedicaoRG}:" />
 								<p:outputLabel
-									value="#{cc.attrs.documentosPessoais.rgDataExpedicao}" />
+									value="#{cc.attrs.documentosPessoais.rgDataExpedicao}">
+									<f:convertDateTime type="both" pattern="dd/MM/YYYY" />
+								</p:outputLabel>
 							</p:panelGrid>
 						</h:panelGroup>
 					</h:panelGroup>
@@ -158,7 +160,9 @@
 									value="#{cc.attrs.documentosPessoais.ricOrgExpedidor}" />
 								<p:outputLabel value="#{msgs.DataExpedicaoRic}:" />
 								<p:outputLabel
-									value="#{cc.attrs.documentosPessoais.ricDataExpedicao}" />
+									value="#{cc.attrs.documentosPessoais.ricDataExpedicao}">
+									<f:convertDateTime type="both" pattern="dd/MM/YYYY" />
+								</p:outputLabel>
 							</p:panelGrid>
 						</h:panelGroup>
 					</h:panelGroup>
@@ -202,7 +206,9 @@
 									value="#{cc.attrs.documentosPessoais.rneOrgExpedidor}" />
 								<p:outputLabel value="#{msgs.DataExpedicaoRNE}:" />
 								<p:outputLabel
-									value="#{cc.attrs.documentosPessoais.rneDataExpedicao}" />
+									value="#{cc.attrs.documentosPessoais.rneDataExpedicao}">
+									<f:convertDateTime type="both" pattern="dd/MM/YYYY" />
+								</p:outputLabel>
 							</p:panelGrid>
 						</h:panelGroup>
 					</h:panelGroup>
@@ -255,13 +261,19 @@
 									value="#{cc.attrs.documentosPessoais.cnhUf}" />
 								<p:outputLabel value="#{msgs.DataExpedicaoCNH}:" />
 								<p:outputLabel
-									value="#{cc.attrs.documentosPessoais.cnhDataExpedicao}" />
+									value="#{cc.attrs.documentosPessoais.cnhDataExpedicao}">
+									<f:convertDateTime type="both" pattern="dd/MM/YYYY" />
+								</p:outputLabel>
 								<p:outputLabel value="#{msgs.DataValidadeCNH}:" />
 								<p:outputLabel
-									value="#{cc.attrs.documentosPessoais.cnhValidade}" />
+									value="#{cc.attrs.documentosPessoais.cnhValidade}">
+									<f:convertDateTime type="both" pattern="dd/MM/YYYY" />
+								</p:outputLabel>
 								<p:outputLabel value="#{msgs.DataPrimeiraCNH}:" />
 								<p:outputLabel
-									value="#{cc.attrs.documentosPessoais.cnhPrimeiraEmissao}" />
+									value="#{cc.attrs.documentosPessoais.cnhPrimeiraEmissao}">
+									<f:convertDateTime type="both" pattern="dd/MM/YYYY" />
+								</p:outputLabel>
 								<p:outputLabel value="#{msgs.CategoriaCNH}:" />
 								<p:outputLabel
 									value="#{cc.attrs.documentosPessoais.cnhCategoria}" />

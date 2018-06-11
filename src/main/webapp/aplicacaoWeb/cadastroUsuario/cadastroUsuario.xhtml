@@ -152,7 +152,21 @@
 				</p:tab>
 
 				<p:tab title="#{msgs.Contatos}">
-					 
+					<dmat:usuariosContatosComposite id="uccUsuarioNovo"
+						emailPrincipal="#{cadastroUsuarioMB.emailUsuarioSelecionado}"
+						requiredEmail="true"
+						actionListenerAdicionarEmailContato="#{cadastroUsuarioMB.adicionarEmailContato}"
+						updateAdicionarEmailContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
+						updateCancelarAdicionarEmailContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
+						listaEmailsUsuarios="#{cadastroUsuarioMB.emailsUsuario}"
+						telefonePrincipal="#{cadastroUsuarioMB.telefoneUsuario}"
+						listaTelefonesUsuarios="#{cadastroUsuarioMB.telefonesUsuario}"
+						actionListenerAdicionarTelefoneContato="#{cadastroUsuarioMB.adicionarTelefoneContato}"
+						updateAdicionarTelefoneContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
+						updateCancelarTelefoneContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
+						updateRemoverTelefoneLista="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
+						setPropertyActionListenerRemoverContato="#{cadastroUsuarioMB.telefoneUsuarioExcluir}"
+						actionListenerRemoverTelefoneLista="#{cadastroUsuarioMB.removerTelefoneContatoDaLista(telefone)}" />
 				</p:tab>
 
 				<p:tab title="#{msgs.Login}">

@@ -72,6 +72,7 @@ public class CadastroUsuarioMB implements Serializable {
 	private List<TelefoneEntity> telefonesUsuarioSelecionado;
 
 	private EmailEntity emailUsuario;
+	private EmailEntity emailUsuarioSelecionado;
 	private EmailEntity emailUsuarioExcluir;
 	private List<EmailEntity> emailsUsuario;
 	private List<EmailEntity> emailsUsuarioSelecionado;
@@ -372,6 +373,17 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void setEmailUsuario(EmailEntity emailUsuario) {
 		this.emailUsuario = emailUsuario;
+	}
+
+	public EmailEntity getEmailUsuarioSelecionado() {
+		if (emailUsuarioSelecionado == null) {
+			this.emailUsuarioSelecionado = new EmailEntity();
+		}
+		return emailUsuarioSelecionado;
+	}
+
+	public void setEmailUsuarioSelecionado(EmailEntity emailUsuarioSelecionado) {
+		this.emailUsuarioSelecionado = emailUsuarioSelecionado;
 	}
 
 	public EmailEntity getEmailUsuarioExcluir() {
