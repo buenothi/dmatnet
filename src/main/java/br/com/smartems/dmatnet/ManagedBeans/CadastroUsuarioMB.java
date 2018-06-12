@@ -67,6 +67,7 @@ public class CadastroUsuarioMB implements Serializable {
 	private List<EnderecoEntity> enderecosUsuarioHistorico;
 
 	private TelefoneEntity telefoneUsuario;
+	private TelefoneEntity telefoneUsuarioSelecionado;
 	private TelefoneEntity telefoneUsuarioExcluir;
 	private List<TelefoneEntity> telefonesUsuario;
 	private List<TelefoneEntity> telefonesUsuarioSelecionado;
@@ -329,6 +330,17 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void setTelefoneUsuario(TelefoneEntity telefoneUsuario) {
 		this.telefoneUsuario = telefoneUsuario;
+	}
+
+	public TelefoneEntity getTelefoneUsuarioSelecionado() {
+		if(telefoneUsuarioSelecionado == null) {
+			this.telefoneUsuarioSelecionado = new TelefoneEntity();
+		}
+		return telefoneUsuarioSelecionado;
+	}
+
+	public void setTelefoneUsuarioSelecionado(TelefoneEntity telefoneUsuarioSelecionado) {
+		this.telefoneUsuarioSelecionado = telefoneUsuarioSelecionado;
 	}
 
 	public TelefoneEntity getTelefoneUsuarioExcluir() {
@@ -1201,7 +1213,8 @@ public class CadastroUsuarioMB implements Serializable {
 			e.printStackTrace();
 		}
 	}
-
+	
+	//---------------------------------------------------------------
 	// action dos botões dentro de dadosUsuario
 
 	public void editarUsuario(ActionEvent evt) {
@@ -1246,31 +1259,23 @@ public class CadastroUsuarioMB implements Serializable {
 
 	}
 
-	public void novoUsuario(ActionEvent evt) {
-
-	}
 
 	public void imprimirUsuario(ActionEvent evt) {
 
 	}
-
-	// action dos botões usuários dentro de contatosUsuario
-
-	public void cancelarContatoUsuario(ActionEvent evt) {
-
+	
+	public void adicionarEmailContatoUsuarioSelecionado(ActionEvent evt){
+		EmailEntity novoEmail = new EmailEntity();
+		novoEmail = this.emailUsuarioSelecionado;
+		this.emailsUsuarioSelecionado.add(novoEmail);
+	}
+	
+	public void adicionarTelefoneContatoUsuarioSelecionado(ActionEvent evt){
+		TelefoneEntity novoTelefone = new TelefoneEntity();
+		novoTelefone = this.telefoneUsuarioSelecionado;
+		this.telefonesUsuarioSelecionado.add(novoTelefone);
 	}
 
-	public void editarContatoUsuario(ActionEvent evt) {
-
-	}
-
-	public void novoContatoUsuario(ActionEvent evt) {
-
-	}
-
-	public void salvarContatoUsuario(ActionEvent evt) {
-
-	}
 
 	@PostConstruct
 	public void initUsuario() {
