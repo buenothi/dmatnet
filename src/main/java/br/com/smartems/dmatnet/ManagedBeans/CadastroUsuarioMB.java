@@ -1202,7 +1202,7 @@ public class CadastroUsuarioMB implements Serializable {
 		}
 	}
 
-	// action dos botões dentro de dadosUsuario (editar usuário)
+	// action dos botões dentro de dadosUsuario
 
 	public void editarUsuario(ActionEvent evt) {
 		this.isDadosUsuariosEditar = true;
@@ -1243,6 +1243,10 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public void excluirUsuario(ActionEvent evt) {
+
+	}
+
+	public void novoUsuario(ActionEvent evt) {
 
 	}
 
