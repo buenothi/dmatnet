@@ -30,12 +30,21 @@
 	<composite:attribute name="actionListenerRemoverTelefoneLista"
 		method-signature="void actionListener(br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity)" />
 	<composite:attribute name="updateRemoverTelefoneLista" />
-
 	<composite:attribute name="setPropertyActionListenerRemoverContato" />
+
+	<composite:attribute name="actionListenerRemoverEmailLista"
+		method-signature="void actionListener(br.com.smartems.dmatnet.entities.pessoa.EmailEntity)" />
+	<composite:attribute name="updateRemoverEmailLista" />
+	<composite:attribute name="setPropertyActionListenerRemoverEmail" />
 
 	<composite:attribute name="editarRendered" default="true" />
 	<composite:attribute name="exibirRendered" default="false" />
 	<composite:attribute name="requiredEmail" default="false" />
+
+	<composite:attribute name="mensagemSelecionarUsuarioRendered"
+		default="false" />
+
+	<composite:attribute name="mensagemHasContatoRendered" default="false" />
 </composite:interface>
 
 <composite:implementation>
@@ -43,9 +52,14 @@
 	<p:panel id="pnlContatosUsuario" header="#{msgs.ContatoUsuario}"
 		closable="false" style="max-width:660px">
 		<p:messages id="msEmail" showDetail="true" closable="true" />
+
 		<p:tabView id="tbwContatosUsuario">
 			<p:tab id="tabEmail" title="#{msgs.Email}">
 				<h:panelGroup id="pngContatoEmail" layout="block">
+					<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
+						rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
+					<p:outputLabel value="#{msgs.MensagemHasEndereco}"
+						rendered="#{cc.attrs.mensagemHasContatoRendered}" />
 					<h:panelGroup id="pngUsuarioEmailEditar" layout="block"
 						styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
 						<p:panelGrid id="pgdEmail" columns="2" styleClass="tabelaSemBorda">
@@ -94,7 +108,7 @@
 
 							<p:outputLabel value="#{msgs.EmailTipo}" />
 							<p:outputLabel value="#{cc.attrs.emailPrincipal.tipoEmail}" />
-							
+
 							<p:outputLabel value="#{msgs.EmailPrincipal}" />
 							<p:outputLabel value="#{cc.attrs.emailPrincipal.emailPrincipal}" />
 						</p:panelGrid>
@@ -150,26 +164,15 @@
 						</p:column>
 
 						<p:column style="width:55px" rendered="#{cc.attrs.editarRendered}">
-
-							<!-- insertChildren utilizado para inserir o botão de exclusão do histórico -->
-
-							<composite:insertChildren />
-
+							<p:commandButton icon="fa fa-trash"
+								actionListener="#{cc.attrs.actionListenerRemoverEmailLista}"
+								update="#{cc.attrs.updateRemoverEmailLista}">
+								<f:setPropertyActionListener value="#{email}"
+									target="#{cc.attrs.setPropertyActionListenerRemoverEmail}" />
+								<p:confirm header="#{msgs.Confirmar}"
+									message="#{msgs.DeletarEmailUsuario}?" icon="ui-icon-alert" />
+							</p:commandButton>
 						</p:column>
-
-						<h:panelGroup id="pngUsuarioEmailTabelaEditar"
-							styleClass="formulario">
-
-							<p:column style="width:55px"
-								rendered="#{cc.attrs.editarRendered}">
-								<p:rowEditor />
-							</p:column>
-
-							<p:column style="width:55px"
-								rendered="#{cc.attrs.editarRendered}">
-								<p:commandButton icon="fa fa-trash" />
-							</p:column>
-						</h:panelGroup>
 
 					</p:dataTable>
 
@@ -178,6 +181,10 @@
 
 			<p:tab id="tabTelefone" title="#{msgs.Telefone}">
 				<h:panelGroup id="pngContatoTelefone" layout="block">
+					<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
+						rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
+					<p:outputLabel value="#{msgs.MensagemHasEndereco}"
+						rendered="#{cc.attrs.mensagemHasContatoRendered}" />
 					<h:panelGroup id="pngUsuarioTelefoneEditar" layout="block"
 						styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
 						<p:panelGrid id="pgdTelefone" columns="2"

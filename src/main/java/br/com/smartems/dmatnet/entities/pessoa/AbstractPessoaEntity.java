@@ -39,7 +39,7 @@ public abstract class AbstractPessoaEntity implements Serializable {
 	@JoinColumn(name = "PESSOA_ID")
 	private List<TelefoneEntity> telefones;
 
-	@OneToMany(cascade = { CascadeType.ALL })
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
 	@JoinColumn(name = "PESSOA_ID")
 	private List<EmailEntity> emails;
 

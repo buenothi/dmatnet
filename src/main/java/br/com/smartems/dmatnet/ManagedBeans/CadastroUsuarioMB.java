@@ -145,6 +145,7 @@ public class CadastroUsuarioMB implements Serializable {
 	private boolean isBtnContatosEditarDesativado;
 	private boolean isBtnContatosNovoDesativado;
 	private boolean isBtnContatosSalvarDesativado;
+	private boolean isMensagemHasContatoRendered = false;
 
 	// botões endereço de usuários dentro de enderecoUsuario
 
@@ -333,7 +334,7 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public TelefoneEntity getTelefoneUsuarioSelecionado() {
-		if(telefoneUsuarioSelecionado == null) {
+		if (telefoneUsuarioSelecionado == null) {
 			this.telefoneUsuarioSelecionado = new TelefoneEntity();
 		}
 		return telefoneUsuarioSelecionado;
@@ -846,6 +847,14 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isBtnContatosSalvarDesativado = isBtnContatosSalvarDesativado;
 	}
 
+	public boolean isMensagemHasContatoRendered() {
+		return isMensagemHasContatoRendered;
+	}
+
+	public void setMensagemHasContatoRendered(boolean isMensagemHasContatoRendered) {
+		this.isMensagemHasContatoRendered = isMensagemHasContatoRendered;
+	}
+
 	public boolean isBtnEnderecoCancelarDesativado() {
 		return isBtnEnderecoCancelarDesativado;
 	}
@@ -917,46 +926,50 @@ public class CadastroUsuarioMB implements Serializable {
 			this.initUsuario();
 		} catch (NullPointerException npe) {
 			// inserir funcionalidades referentes a alteração de usuário
-			/*try {
-				
-				this.empresasAtribuidasUsuario = this.empresasUsuario.getTarget();
-				
-				List<EnderecoEntity> enderecosUsuarios = this.enderecosUsuarioHistorico;
-				enderecosUsuarios.add(this.enderecoUsuarioAtual);
-				
-				
-				
-				this.usuarioSelecionado = this.usuarioFachada.alterarUsuario(this.usuarioSelecionado, 
-						this.documentosPessoaisUsuarioSelecionado, enderecosUsuarios, );
-				
-				System.out.println("salvar alterações do usuario");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}*/
+			/*
+			 * try {
+			 * 
+			 * this.empresasAtribuidasUsuario =
+			 * this.empresasUsuario.getTarget();
+			 * 
+			 * List<EnderecoEntity> enderecosUsuarios =
+			 * this.enderecosUsuarioHistorico;
+			 * enderecosUsuarios.add(this.enderecoUsuarioAtual);
+			 * 
+			 * 
+			 * 
+			 * this.usuarioSelecionado =
+			 * this.usuarioFachada.alterarUsuario(this.usuarioSelecionado,
+			 * this.documentosPessoaisUsuarioSelecionado, enderecosUsuarios, );
+			 * 
+			 * System.out.println("salvar alterações do usuario"); } catch
+			 * (Exception e) { e.printStackTrace(); }
+			 */
 		}
 	}
 
 	public void onSelectionUsuario(SelectEvent evt) {
 		this.usuarioSelecionado = (UsuarioEntity) evt.getObject();
 
-		if (this.usuarioSelecionado.getDocumentosPessoais() != null) {
-			this.documentosPessoaisUsuarioSelecionado = this.usuarioSelecionado.getDocumentosPessoais();
-		}
-
-		this.ocultarMensagemSelecionarUsuario();
-
-		this.ocultarCadastroAlterarStatusMensagens();
-
-		this.separarEnderecoUsuarioAtualDoHistorico(this.usuarioSelecionado);
-
 		try {
-			if (this.enderecoUsuarioSelecionado.getIdEndereco() > 1) {
+			if (this.usuarioSelecionado.getDocumentosPessoais() != null) {
+				this.documentosPessoaisUsuarioSelecionado = this.usuarioSelecionado.getDocumentosPessoais();
+			}
+
+			this.ocultarMensagemSelecionarUsuario();
+
+			this.ocultarCadastroAlterarStatusMensagens();
+
+			this.separarEnderecoUsuarioAtualDoHistorico(this.usuarioSelecionado);
+
+			if (this.enderecoUsuarioSelecionado.getIdEndereco() > 0) {
 				this.isCadastroUsuarioEnderecoRendered = true;
 				this.isMensagemHasEnderecoRendered = false;
 			} else {
 				this.isCadastroUsuarioEnderecoRendered = false;
 				this.isMensagemHasEnderecoRendered = true;
 			}
+
 		} catch (NullPointerException npe) {
 			npe.printStackTrace();
 			this.isCadastroUsuarioEnderecoRendered = false;
@@ -1009,7 +1022,7 @@ public class CadastroUsuarioMB implements Serializable {
 		this.ocultarMensagemSelecionarUsuario();
 
 		try {
-			if (this.usuarioSelecionado.getNome().length() > 1) {
+			if (this.usuarioSelecionado.getNome().length() > 0) {
 				this.isCadastroUsuarioDadosRendered = true;
 				this.isMensagemHasUsuario = false;
 			} else {
@@ -1023,13 +1036,14 @@ public class CadastroUsuarioMB implements Serializable {
 		}
 
 		try {
-			if (this.usuarioSelecionado.getDocumentosPessoais().getNumCPF() > 1) {
+			if (this.usuarioSelecionado.getDocumentosPessoais().getNumCPF() > 0) {
 				this.isCadastroUsuarioDoctosCPFRendered = true;
 				this.isMensagemHasCPFRendered = false;
 			} else {
 				this.isCadastroUsuarioDoctosCPFRendered = false;
 				this.isMensagemHasCPFRendered = true;
 			}
+
 		} catch (NullPointerException npe) {
 			npe.printStackTrace();
 			this.isCadastroUsuarioDoctosCPFRendered = false;
@@ -1037,7 +1051,7 @@ public class CadastroUsuarioMB implements Serializable {
 		}
 
 		try {
-			if (this.usuarioSelecionado.getDocumentosPessoais().getNumRG().length() > 1) {
+			if (this.usuarioSelecionado.getDocumentosPessoais().getNumRG().length() > 0) {
 				this.isCadastroUsuarioDoctosRGRendered = true;
 				this.isMensagemHasRGRendered = false;
 			} else {
@@ -1051,7 +1065,7 @@ public class CadastroUsuarioMB implements Serializable {
 		}
 
 		try {
-			if (this.usuarioSelecionado.getDocumentosPessoais().getNumRic() > 1) {
+			if (this.usuarioSelecionado.getDocumentosPessoais().getNumRic() > 0) {
 				this.isCadastroUsuarioDoctosRICRendered = true;
 				this.isMensagemHasRICRendered = false;
 			} else {
@@ -1065,7 +1079,7 @@ public class CadastroUsuarioMB implements Serializable {
 		}
 
 		try {
-			if (this.usuarioSelecionado.getDocumentosPessoais().getNumRNE() > 1) {
+			if (this.usuarioSelecionado.getDocumentosPessoais().getNumRNE() > 0) {
 				this.isCadastroUsuarioDoctosRNERendered = true;
 				this.isMensagemHasRNERendered = false;
 			} else {
@@ -1079,7 +1093,7 @@ public class CadastroUsuarioMB implements Serializable {
 		}
 
 		try {
-			if (this.usuarioSelecionado.getDocumentosPessoais().getNumCNH() > 1) {
+			if (this.usuarioSelecionado.getDocumentosPessoais().getNumCNH() > 0) {
 				this.isCadastroUsuarioDoctosCNHRendered = true;
 				this.isMensagemHasCNHRendered = false;
 			} else {
@@ -1090,6 +1104,15 @@ public class CadastroUsuarioMB implements Serializable {
 			npe.printStackTrace();
 			this.isCadastroUsuarioDoctosCNHRendered = false;
 			this.isMensagemHasCNHRendered = true;
+		}
+
+		try {
+			if (this.usuarioSelecionado.getEmails().size() > 0) {
+				this.isMensagemHasContatoRendered = false;
+			}
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+			this.isMensagemHasContatoRendered = true;
 		}
 
 	}
@@ -1213,8 +1236,8 @@ public class CadastroUsuarioMB implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
-	//---------------------------------------------------------------
+
+	// ---------------------------------------------------------------
 	// action dos botões dentro de dadosUsuario
 
 	public void editarUsuario(ActionEvent evt) {
@@ -1259,23 +1282,21 @@ public class CadastroUsuarioMB implements Serializable {
 
 	}
 
-
 	public void imprimirUsuario(ActionEvent evt) {
 
 	}
-	
-	public void adicionarEmailContatoUsuarioSelecionado(ActionEvent evt){
+
+	public void adicionarEmailContatoUsuarioSelecionado(ActionEvent evt) {
 		EmailEntity novoEmail = new EmailEntity();
 		novoEmail = this.emailUsuarioSelecionado;
 		this.emailsUsuarioSelecionado.add(novoEmail);
 	}
-	
-	public void adicionarTelefoneContatoUsuarioSelecionado(ActionEvent evt){
+
+	public void adicionarTelefoneContatoUsuarioSelecionado(ActionEvent evt) {
 		TelefoneEntity novoTelefone = new TelefoneEntity();
 		novoTelefone = this.telefoneUsuarioSelecionado;
 		this.telefonesUsuarioSelecionado.add(novoTelefone);
 	}
-
 
 	@PostConstruct
 	public void initUsuario() {
