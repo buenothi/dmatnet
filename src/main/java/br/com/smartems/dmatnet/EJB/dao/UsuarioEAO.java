@@ -204,5 +204,7 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 		}
 		return enderecosHistorico;
 	}
+	
+	public EmailEntity 
 
 }

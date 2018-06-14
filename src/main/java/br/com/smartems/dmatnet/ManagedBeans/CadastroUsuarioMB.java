@@ -961,6 +961,10 @@ public class CadastroUsuarioMB implements Serializable {
 			this.ocultarCadastroAlterarStatusMensagens();
 
 			this.separarEnderecoUsuarioAtualDoHistorico(this.usuarioSelecionado);
+			
+			
+				
+			}
 
 			if (this.enderecoUsuarioSelecionado.getIdEndereco() > 0) {
 				this.isCadastroUsuarioEnderecoRendered = true;
