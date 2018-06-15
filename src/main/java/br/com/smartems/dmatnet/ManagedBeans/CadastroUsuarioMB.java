@@ -73,7 +73,7 @@ public class CadastroUsuarioMB implements Serializable {
 	private List<TelefoneEntity> telefonesUsuarioSelecionado;
 
 	private EmailEntity emailUsuario;
-	private EmailEntity emailUsuarioSelecionado;
+	private EmailEntity emailPrincipalUsuarioSelecionado;
 	private EmailEntity emailUsuarioExcluir;
 	private List<EmailEntity> emailsUsuario;
 	private List<EmailEntity> emailsUsuarioSelecionado;
@@ -388,17 +388,6 @@ public class CadastroUsuarioMB implements Serializable {
 		this.emailUsuario = emailUsuario;
 	}
 
-	public EmailEntity getEmailUsuarioSelecionado() {
-		if (emailUsuarioSelecionado == null) {
-			this.emailUsuarioSelecionado = new EmailEntity();
-		}
-		return emailUsuarioSelecionado;
-	}
-
-	public void setEmailUsuarioSelecionado(EmailEntity emailUsuarioSelecionado) {
-		this.emailUsuarioSelecionado = emailUsuarioSelecionado;
-	}
-
 	public EmailEntity getEmailUsuarioExcluir() {
 		if (emailUsuarioExcluir == null) {
 			this.emailUsuarioExcluir = new EmailEntity();
@@ -430,6 +419,17 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void setEmailsUsuarioSelecionado(List<EmailEntity> emailsUsuarioSelecionado) {
 		this.emailsUsuarioSelecionado = emailsUsuarioSelecionado;
+	}
+
+	public EmailEntity getEmailPrincipalUsuarioSelecionado() {
+		if (this.emailPrincipalUsuarioSelecionado == null) {
+			this.emailPrincipalUsuarioSelecionado = new EmailEntity();
+		}
+		return emailPrincipalUsuarioSelecionado;
+	}
+
+	public void setEmailPrincipalUsuarioSelecionado(EmailEntity emailPrincipalUsuarioSelecionado) {
+		this.emailPrincipalUsuarioSelecionado = emailPrincipalUsuarioSelecionado;
 	}
 
 	public Set<EmpresaGrupoEntity> getGruposGerenciados() {
@@ -961,10 +961,8 @@ public class CadastroUsuarioMB implements Serializable {
 			this.ocultarCadastroAlterarStatusMensagens();
 
 			this.separarEnderecoUsuarioAtualDoHistorico(this.usuarioSelecionado);
-			
-			
-				
-			}
+
+			this.separarEmailUsuarioPrincipalDoSecudario(this.usuarioSelecionado);
 
 			if (this.enderecoUsuarioSelecionado.getIdEndereco() > 0) {
 				this.isCadastroUsuarioEnderecoRendered = true;
@@ -990,6 +988,17 @@ public class CadastroUsuarioMB implements Serializable {
 					.selecionarEnderecosUsuarioHistorico(this.enderecoUsuarioSelecionado, this.usuarioSelecionado);
 		} catch (NullPointerException np) {
 			np.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void separarEmailUsuarioPrincipalDoSecudario(UsuarioEntity usuarioSelecionado) {
+		try {
+			this.emailPrincipalUsuarioSelecionado = usuarioFachada.selecionarEmailUsuarioPrincipal(usuarioSelecionado);
+			this.emailsUsuarioSelecionado = usuarioFachada.selecionarEmailsSecundarios(emailPrincipalUsuarioSelecionado,
+					usuarioSelecionado);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1292,7 +1301,7 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void adicionarEmailContatoUsuarioSelecionado(ActionEvent evt) {
 		EmailEntity novoEmail = new EmailEntity();
-		novoEmail = this.emailUsuarioSelecionado;
+		novoEmail = this.emailPrincipalUsuarioSelecionado;
 		this.emailsUsuarioSelecionado.add(novoEmail);
 	}
 

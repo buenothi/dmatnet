@@ -144,8 +144,8 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 		if (enderecos != null) {
 			Set<EnderecoEntity> novoEnderecos = new TreeSet<EnderecoEntity>();
 			try {
-				for(EnderecoEntity endereco : enderecos) {
-					novoEnderecos.add(endereco);					
+				for (EnderecoEntity endereco : enderecos) {
+					novoEnderecos.add(endereco);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -159,8 +159,8 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 		if (empresasAtribuidas != null) {
 			Set<EmpresaEntity> novoEmpresasAtribuidas = new TreeSet<EmpresaEntity>();
 			try {
-				for(EmpresaEntity empresa : empresasAtribuidas ) {
-					novoEmpresasAtribuidas.add(empresa);					
+				for (EmpresaEntity empresa : empresasAtribuidas) {
+					novoEmpresasAtribuidas.add(empresa);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -169,7 +169,6 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 		}
 	}
 
-	
 	public EnderecoEntity selecionarEnderecoUsuarioAtual(UsuarioEntity usuario) throws Exception {
 		Date dataMaisRecente;
 		EnderecoEntity enderecoUsuarioAtual = new EnderecoEntity();
@@ -204,7 +203,28 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 		}
 		return enderecosHistorico;
 	}
-	
-	public EmailEntity 
+
+	public EmailEntity selecionarEmailUsuarioPrincipal(UsuarioEntity usuarioSelecionado) throws Exception {
+		EmailEntity emailPrincipal = new EmailEntity();
+		if (!usuario.getEmails().isEmpty()) {
+			for (EmailEntity email : usuarioSelecionado.getEmails()) {
+				if (email.isEmailPrincipal()) {
+					emailPrincipal = email;
+				}
+			}
+		}
+		return emailPrincipal;
+	}
+
+	public List<EmailEntity> selecionarEmailsSecundarios(EmailEntity emailPrincipal, UsuarioEntity usuarioSelecionado)
+			throws Exception {
+		List<EmailEntity> emailsSecundarios = new ArrayList<EmailEntity>();
+		if (!usuarioSelecionado.getEmails().isEmpty() && usuarioSelecionado.getEmails().remove(emailPrincipal)){
+			emailsSecundarios = usuarioSelecionado.getEmails();
+		} else {
+			emailsSecundarios = usuarioSelecionado.getEmails();
+		}
+		return emailsSecundarios;
+	}
 
 }

@@ -23,14 +23,19 @@ public interface UsuarioFacadeLocal extends AbstractFacade<UsuarioEntity> {
 	public abstract UsuarioEntity salvarNovoUsuario(UsuarioEntity usuario, UsuarioEntity usuarioPai,
 			PessoaFisicaDocumentosEntity documento, EnderecoEntity endereço, List<EmailEntity> emails,
 			List<TelefoneEntity> telefones, List<EmpresaEntity> empresasAtribuidas);
-	
+
 	public abstract UsuarioEntity alterarUsuario(UsuarioEntity usuarioAtual, PessoaFisicaDocumentosEntity documento,
 			List<EnderecoEntity> enderecos, List<EmailEntity> emails, List<TelefoneEntity> telefones,
 			List<EmpresaEntity> empresasAtribuidas);
 
 	public EnderecoEntity selecionarEnderecoUsuarioAtual(UsuarioEntity usuario) throws Exception;
-	
+
 	public List<EnderecoEntity> selecionarEnderecosUsuarioHistorico(EnderecoEntity enderecoAtual,
 			UsuarioEntity usuarioSelecionado) throws Exception;
+
+	public EmailEntity selecionarEmailUsuarioPrincipal(UsuarioEntity usuarioSelecionado) throws Exception;
+
+	public List<EmailEntity> selecionarEmailsSecundarios(EmailEntity emailPrincipal, UsuarioEntity usuarioSelecionado)
+			throws Exception;
 
 }

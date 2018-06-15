@@ -90,4 +90,15 @@ public class UsuarioFacade implements UsuarioFacadeLocal {
 		return usuarioEAO.selecionarEnderecosUsuarioHistorico(enderecoAtual, usuarioSelecionado);
 	}
 
+	@Override
+	public EmailEntity selecionarEmailUsuarioPrincipal(UsuarioEntity usuarioSelecionado) throws Exception {
+		return usuarioEAO.selecionarEmailUsuarioPrincipal(usuarioSelecionado);
+	}
+
+	@Override
+	public List<EmailEntity> selecionarEmailsSecundarios(EmailEntity emailPrincipal, UsuarioEntity usuarioSelecionado)
+			throws Exception {
+		return usuarioEAO.selecionarEmailsSecundarios(emailPrincipal, usuarioSelecionado);
+	}
+
 }
