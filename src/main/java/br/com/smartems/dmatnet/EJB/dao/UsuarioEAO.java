@@ -206,7 +206,7 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 
 	public EmailEntity selecionarEmailUsuarioPrincipal(UsuarioEntity usuarioSelecionado) throws Exception {
 		EmailEntity emailPrincipal = new EmailEntity();
-		if (!usuario.getEmails().isEmpty()) {
+		if (!usuarioSelecionado.getEmails().isEmpty()) {
 			for (EmailEntity email : usuarioSelecionado.getEmails()) {
 				if (email.isEmailPrincipal()) {
 					emailPrincipal = email;
