@@ -99,7 +99,8 @@ public class CadastroUsuarioMB implements Serializable {
 	private boolean isCadastroUsuarioDoctosCNHRendered = false;
 
 	private boolean isCadastroUsuarioEnderecoRendered = false;
-	private boolean isCadastroUsuarioContatoRendered = false;
+	private boolean isCadastroUsuarioEmailRendered = false;
+	private boolean isCadastroUsuarioTelefoneRendered = false;
 	private boolean isCadastroUsuarioUsuarioRendered = false;
 	private boolean isCadastroUsuarioEmpresasRendered = false;
 	private boolean isMensagemSelecionarUsuarioRendered = true;
@@ -595,12 +596,20 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isCadastroUsuarioEnderecoRendered = isCadastroUsuarioEnderecoRendered;
 	}
 
-	public boolean isCadastroUsuarioContatoRendered() {
-		return isCadastroUsuarioContatoRendered;
+	public boolean isCadastroUsuarioEmailRendered() {
+		return isCadastroUsuarioEmailRendered;
 	}
 
-	public void setCadastroUsuarioContatoRendered(boolean isCadastroUsuarioContatoRendered) {
-		this.isCadastroUsuarioContatoRendered = isCadastroUsuarioContatoRendered;
+	public void setCadastroUsuarioEmailRendered(boolean isCadastroUsuarioEmailRendered) {
+		this.isCadastroUsuarioEmailRendered = isCadastroUsuarioEmailRendered;
+	}
+
+	public boolean isCadastroUsuarioTelefoneRendered() {
+		return isCadastroUsuarioTelefoneRendered;
+	}
+
+	public void setCadastroUsuarioTelefoneRendered(boolean isCadastroUsuarioTelefoneRendered) {
+		this.isCadastroUsuarioTelefoneRendered = isCadastroUsuarioTelefoneRendered;
 	}
 
 	public boolean isCadastroUsuarioUsuarioRendered() {
@@ -971,6 +980,15 @@ public class CadastroUsuarioMB implements Serializable {
 				this.isCadastroUsuarioEnderecoRendered = false;
 				this.isMensagemHasEnderecoRendered = true;
 			}
+			
+			if (this.emailPrincipalUsuarioSelecionado.getIdEmail() > 0) {
+				this.isCadastroUsuarioEmailRendered = true;
+				this.isMensagemHasContatoRendered = false;
+			} else {
+				this.isCadastroUsuarioEmailRendered = false;
+				this.isMensagemHasContatoRendered = true;
+			}
+			
 
 		} catch (NullPointerException npe) {
 			npe.printStackTrace();
@@ -1351,7 +1369,8 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isCadastroUsuarioDoctosRNERendered = false;
 		this.isCadastroUsuarioDoctosCNHRendered = false;
 		this.isCadastroUsuarioEnderecoRendered = false;
-		this.isCadastroUsuarioContatoRendered = false;
+		this.isCadastroUsuarioEmailRendered = false;
+		this.isCadastroUsuarioTelefoneRendered = false;		
 		this.isCadastroUsuarioUsuarioRendered = false;
 		this.isCadastroUsuarioEmpresasRendered = false;
 
