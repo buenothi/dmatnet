@@ -66,6 +66,7 @@
 							<p:outputLabel value="#{msgs.Email}*" />
 							<p:inputText id="iptEmailUsuario" placeholder="nome@email.com"
 								size="22" value="#{cc.attrs.emailPrincipal.nomeEmail}"
+								converter="stringMinusConverter"
 								required="#{cc.attrs.requiredEmail}"
 								requiredMessage="#{msgs.MensagemEmailUsuarioRequerido}" />
 
@@ -104,10 +105,10 @@
 						<p:panelGrid id="pgdEmailExibir" columns="2"
 							styleClass="tabelaSemBorda">
 							<p:outputLabel value="#{msgs.Email}" />
-							<p:outputLabel value="#{cc.attrs.emailPrincipal.nomeEmail}" />
+							<p:outputLabel value="#{cc.attrs.emailPrincipal.nomeEmail}" converter="stringMinusConverter"/>
 
 							<p:outputLabel value="#{msgs.EmailTipo}" />
-							<p:outputLabel value="#{cc.attrs.emailPrincipal.tipoEmail}" />
+							<p:outputLabel value="#{cc.attrs.emailPrincipal.tipoEmail}" converter="emailTipoConverter"/>
 
 							<p:outputLabel value="#{msgs.EmailPrincipal}" />
 							<p:outputLabel value="#{cc.attrs.emailPrincipal.emailPrincipal}" />

@@ -116,7 +116,8 @@
 							<p:panelGrid id="pgdExibirCPF" columns="2"
 								styleClass="tabelaSemBorda">
 								<p:outputLabel value="#{msgs.NumeroCPF}:" />
-								<p:outputLabel value="#{cc.attrs.documentosPessoais.numCPF}" />
+								<p:outputLabel value="#{cc.attrs.documentosPessoais.numCPF}"
+									converter="cnpjCpfConverter" />
 							</p:panelGrid>
 						</h:panelGroup>
 					</h:panelGroup>

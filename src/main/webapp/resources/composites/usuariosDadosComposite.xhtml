@@ -26,9 +26,8 @@
 
 	<composite:attribute name="mensagemSelecionarUsuarioRendered"
 		default="false" />
-		
-	<composite:attribute name="mensagemHasUsuarioRendered"
-		default="false" />
+
+	<composite:attribute name="mensagemHasUsuarioRendered" default="false" />
 
 </composite:interface>
 
@@ -62,7 +61,8 @@
 						value="#{cc.attrs.cadastroUsuarioNome}"
 						required="#{cc.attrs.nomePessoaRequired}"
 						requiredMessage="#{msgs.MensagemNomeUsuarioRequerido}"
-						immediate="#{cc.attrs.nomePessoaRequired}" />
+						immediate="#{cc.attrs.nomePessoaRequired}"
+						converter="stringConverter" />
 
 					<p:outputLabel value="#{msgs.Genero}:" />
 					<p:selectOneRadio value="#{cc.attrs.cadastroUsuarioSexo}">
@@ -85,7 +85,8 @@
 
 					<p:outputLabel value="#{msgs.Nome}:" />
 					<p:outputLabel id="oplNomeUsuario" size="22"
-						value="#{cc.attrs.cadastroUsuarioNome}" />
+						value="#{cc.attrs.cadastroUsuarioNome}"
+						converter="stringConverter" />
 
 					<p:outputLabel value="#{msgs.Genero}:" />
 					<p:outputLabel value="#{cc.attrs.cadastroUsuarioSexo}" />

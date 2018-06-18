@@ -27,6 +27,14 @@ public class StringsUtilitarios {
 		}
 		return stringFormatada;
 	}
+	
+	public String formatarTextoParaMinusculo(String value) {
+		if (value != null && !value.isEmpty()) {
+			return value.toString().toLowerCase();
+		} else {
+			return null;
+		}
+	}
 
 	public String formatarTextoParaGravacao(String texto) {
 		return null;
