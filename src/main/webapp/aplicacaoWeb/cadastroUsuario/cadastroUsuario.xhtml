@@ -175,7 +175,8 @@
 						actionListenerRemoverEmailLista="#{cadastroUsuarioMB.removerEmailContatoDaLista(email)}" 
 						setPropertyActionListenerRemoverEmail="#{cadastroUsuarioMB.emailUsuarioExcluir}"
 						updateRemoverEmailLista="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioNovo:tbwContatosUsuario:pngContatoEmail"
-						dadosUsuarioRendered="true"/>
+						dadosUsuarioEmailRendered="#{cadastroUsuarioMB.cadastroUsuarioSelecionadoEmailRendered}"
+						dadosUsuarioTelefoneRendered="false"/>
 				</p:tab>
 
 				<p:tab title="#{msgs.Login}">

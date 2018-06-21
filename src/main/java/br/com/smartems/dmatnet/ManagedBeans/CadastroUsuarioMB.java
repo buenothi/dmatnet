@@ -142,11 +142,13 @@ public class CadastroUsuarioMB implements Serializable {
 
 	// botões usuarios dentro de contatosUsuario
 
-	private boolean isBtnContatosCancelarDesativado;
-	private boolean isBtnContatosEditarDesativado;
-	private boolean isBtnContatosNovoDesativado;
-	private boolean isBtnContatosSalvarDesativado;
-	private boolean isMensagemHasContatoRendered = false;
+	private boolean isBtnContatosEditarDesativado = true;
+	private boolean isBtnContatosCancelarDesativado = true;
+	private boolean isBtnContatosNovoDesativado = true;
+	private boolean isBtnContatosSalvarDesativado = false;
+	private boolean isMensagemHasContatoRendered = true;
+	private boolean isCadastroUsuarioSelecionadoEmailRendered = false;
+	private boolean isCadastroUsuarioSelecionadoTelefoneRendered = false;
 
 	// botões endereço de usuários dentro de enderecoUsuario
 
@@ -636,6 +638,14 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isMensagemSelecionarUsuarioRendered = isMensagemSelecionarUsuarioRendered;
 	}
 
+	public boolean isCadastroUsuarioSelecionadoTelefoneRendered() {
+		return isCadastroUsuarioSelecionadoTelefoneRendered;
+	}
+
+	public void setCadastroUsuarioSelecionadoTelefoneRendered(boolean isCadastroUsuarioSelecionadoTelefoneRendered) {
+		this.isCadastroUsuarioSelecionadoTelefoneRendered = isCadastroUsuarioSelecionadoTelefoneRendered;
+	}
+
 	public boolean isDadosUsuariosEditar() {
 		return isDadosUsuariosEditar;
 	}
@@ -862,6 +872,14 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void setMensagemHasContatoRendered(boolean isMensagemHasContatoRendered) {
 		this.isMensagemHasContatoRendered = isMensagemHasContatoRendered;
+	}
+
+	public boolean isCadastroUsuarioSelecionadoEmailRendered() {
+		return isCadastroUsuarioSelecionadoEmailRendered;
+	}
+
+	public void setCadastroUsuarioSelecionadoEmailRendered(boolean isCadastroUsuarioSelecionadoEmailRendered) {
+		this.isCadastroUsuarioSelecionadoEmailRendered = isCadastroUsuarioSelecionadoEmailRendered;
 	}
 
 	public boolean isBtnEnderecoCancelarDesativado() {
@@ -1140,12 +1158,23 @@ public class CadastroUsuarioMB implements Serializable {
 		try {
 			if (this.usuarioSelecionado.getEmails().size() > 0) {
 				this.isMensagemHasContatoRendered = false;
+				this.isCadastroUsuarioSelecionadoEmailRendered = true;
 			}
 		} catch (NullPointerException npe) {
 			npe.printStackTrace();
 			this.isMensagemHasContatoRendered = true;
 		}
-
+		
+/*		try {
+			if (this.usuarioSelecionado.getTelefones().size() > 0) {
+				this.isMensagemHasContatoRendered = false;
+				this.isCadastroUsuarioSelecionadoTelefoneRendered = true;
+			}
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+			this.isMensagemHasContatoRendered = true;
+		}
+*/
 	}
 
 	/*
