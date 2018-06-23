@@ -62,7 +62,7 @@
 									requiredMessage="#{msgs.MensagemOrgExpRGRequerido}" />
 								<p:outputLabel value="#{msgs.DataExpedicaoRG}:*" />
 								<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-									pattern="dd/MM/yyyy" mask="true" size="8"
+									pattern="dd/MM/yyyy" mask="true" size="10"
 									value="#{cc.attrs.documentosPessoais.rgDataExpedicao}"
 									required="#{cc.attrs.rgDataExpRequired}"
 									requiredMessage="#{msgs.MensagemDataExpedicaoRGRequerido}" />
@@ -145,7 +145,7 @@
 									value="#{cc.attrs.documentosPessoais.ricOrgExpedidor}" />
 								<p:outputLabel value="#{msgs.DataExpedicaoRic}:" />
 								<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-									pattern="dd/MM/yyyy" mask="true" size="8"
+									pattern="dd/MM/yyyy" mask="true" size="10"
 									value="#{cc.attrs.documentosPessoais.ricDataExpedicao}" />
 							</p:panelGrid>
 						</h:panelGroup>
@@ -191,7 +191,7 @@
 									value="#{cc.attrs.documentosPessoais.rneOrgExpedidor}" />
 								<p:outputLabel value="#{msgs.DataExpedicaoRNE}:" />
 								<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-									pattern="dd/MM/yyyy" mask="true" size="8"
+									pattern="dd/MM/yyyy" mask="true" size="10"
 									value="#{cc.attrs.documentosPessoais.rneDataExpedicao}" />
 							</p:panelGrid>
 						</h:panelGroup>
@@ -237,15 +237,15 @@
 									value="#{cc.attrs.documentosPessoais.cnhUf}" />
 								<p:outputLabel value="#{msgs.DataExpedicaoCNH}:" />
 								<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-									pattern="dd/MM/yyyy" mask="true" size="8"
+									pattern="dd/MM/yyyy" mask="true" size="10"
 									value="#{cc.attrs.documentosPessoais.cnhDataExpedicao}" />
 								<p:outputLabel value="#{msgs.DataValidadeCNH}:" />
 								<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-									pattern="dd/MM/yyyy" mask="true" size="8"
+									pattern="dd/MM/yyyy" mask="true" size="10"
 									value="#{cc.attrs.documentosPessoais.cnhValidade}" />
 								<p:outputLabel value="#{msgs.DataPrimeiraCNH}:" />
 								<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-									pattern="dd/MM/yyyy" mask="true" size="8"
+									pattern="dd/MM/yyyy" mask="true" size="10"
 									value="#{cc.attrs.documentosPessoais.cnhPrimeiraEmissao}" />
 								<p:outputLabel value="#{msgs.CategoriaCNH}:" />
 								<p:inputText value="#{cc.attrs.documentosPessoais.cnhCategoria}" />

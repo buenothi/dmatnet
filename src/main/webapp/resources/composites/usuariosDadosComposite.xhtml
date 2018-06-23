@@ -50,7 +50,7 @@
 					styleClass="tabelaSemBorda">
 					<p:outputLabel value="#{msgs.DataCadastro}:*" />
 					<p:calendar id="calCadastroUsuario" locale="pt" showOn="button"
-						showButtonPanel="true" pattern="dd/MM/yyyy" mask="true" size="8"
+						showButtonPanel="true" pattern="dd/MM/yyyy" mask="true" size="10"
 						requiredMessage="#{msgs.MensagemDataCadastroRequerida}"
 						value="#{cc.attrs.dataCadastro}"
 						required="#{cc.attrs.dataCadastroRequired}"
@@ -61,8 +61,7 @@
 						value="#{cc.attrs.cadastroUsuarioNome}"
 						required="#{cc.attrs.nomePessoaRequired}"
 						requiredMessage="#{msgs.MensagemNomeUsuarioRequerido}"
-						immediate="#{cc.attrs.nomePessoaRequired}"
-						converter="stringConverter" />
+						immediate="#{cc.attrs.nomePessoaRequired}" />
 
 					<p:outputLabel value="#{msgs.Genero}:" />
 					<p:selectOneRadio value="#{cc.attrs.cadastroUsuarioSexo}">
