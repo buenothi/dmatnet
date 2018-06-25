@@ -69,14 +69,14 @@ public class CadastroUsuarioMB implements Serializable {
 	private TelefoneEntity telefoneUsuario;
 	private TelefoneEntity telefoneUsuarioSelecionado;
 	private TelefoneEntity telefoneUsuarioExcluir;
-	private List<TelefoneEntity> telefonesUsuario;
-	private List<TelefoneEntity> telefonesUsuarioSelecionado;
+	private Set<TelefoneEntity> telefonesUsuario;
+	private Set<TelefoneEntity> telefonesUsuarioSelecionado;
 
 	private EmailEntity emailUsuario;
 	private EmailEntity emailPrincipalUsuarioSelecionado;
 	private EmailEntity emailUsuarioExcluir;
-	private List<EmailEntity> emailsUsuario;
-	private List<EmailEntity> emailsUsuarioSelecionado;
+	private Set<EmailEntity> emailsUsuario;
+	private Set<EmailEntity> emailsUsuarioSelecionado;
 
 	private Set<EmpresaGrupoEntity> gruposGerenciados;
 	private Set<EmpresaGrupoEntity> gruposGerenciadosUsuarioSelecionado;
@@ -358,25 +358,25 @@ public class CadastroUsuarioMB implements Serializable {
 		this.telefoneUsuarioExcluir = telefoneUsuarioExcluir;
 	}
 
-	public List<TelefoneEntity> getTelefonesUsuario() {
+	public Set<TelefoneEntity> getTelefonesUsuario() {
 		if (telefonesUsuario == null) {
-			this.telefonesUsuario = new ArrayList<TelefoneEntity>();
+			this.telefonesUsuario = new TreeSet<TelefoneEntity>();
 		}
 		return telefonesUsuario;
 	}
 
-	public void setTelefonesUsuario(List<TelefoneEntity> telefonesUsuario) {
+	public void setTelefonesUsuario(Set<TelefoneEntity> telefonesUsuario) {
 		this.telefonesUsuario = telefonesUsuario;
 	}
 
-	public List<TelefoneEntity> getTelefonesUsuarioSelecionado() {
+	public Set<TelefoneEntity> getTelefonesUsuarioSelecionado() {
 		if (telefonesUsuarioSelecionado == null) {
-			this.telefonesUsuarioSelecionado = new ArrayList<TelefoneEntity>();
+			this.telefonesUsuarioSelecionado = new TreeSet<TelefoneEntity>();
 		}
 		return telefonesUsuarioSelecionado;
 	}
 
-	public void setTelefonesUsuarioSelecionado(List<TelefoneEntity> telefonesUsuarioSelecionado) {
+	public void setTelefonesUsuarioSelecionado(Set<TelefoneEntity> telefonesUsuarioSelecionado) {
 		this.telefonesUsuarioSelecionado = telefonesUsuarioSelecionado;
 	}
 
@@ -402,25 +402,25 @@ public class CadastroUsuarioMB implements Serializable {
 		this.emailUsuarioExcluir = emailUsuarioExcluir;
 	}
 
-	public List<EmailEntity> getEmailsUsuario() {
+	public Set<EmailEntity> getEmailsUsuario() {
 		if (emailsUsuario == null) {
-			this.emailsUsuario = new ArrayList<EmailEntity>();
+			this.emailsUsuario = new TreeSet<EmailEntity>();
 		}
 		return emailsUsuario;
 	}
 
-	public void setEmailsUsuario(List<EmailEntity> emailsUsuario) {
+	public void setEmailsUsuario(Set<EmailEntity> emailsUsuario) {
 		this.emailsUsuario = emailsUsuario;
 	}
 
-	public List<EmailEntity> getEmailsUsuarioSelecionado() {
+	public Set<EmailEntity> getEmailsUsuarioSelecionado() {
 		if (emailsUsuarioSelecionado == null) {
-			this.emailsUsuarioSelecionado = new ArrayList<EmailEntity>();
+			this.emailsUsuarioSelecionado = new TreeSet<EmailEntity>();
 		}
 		return emailsUsuarioSelecionado;
 	}
 
-	public void setEmailsUsuarioSelecionado(List<EmailEntity> emailsUsuarioSelecionado) {
+	public void setEmailsUsuarioSelecionado(Set<EmailEntity> emailsUsuarioSelecionado) {
 		this.emailsUsuarioSelecionado = emailsUsuarioSelecionado;
 	}
 
@@ -1165,7 +1165,7 @@ public class CadastroUsuarioMB implements Serializable {
 			this.isMensagemHasContatoRendered = true;
 		}
 		
-/*		try {
+		try {
 			if (this.usuarioSelecionado.getTelefones().size() > 0) {
 				this.isMensagemHasContatoRendered = false;
 				this.isCadastroUsuarioSelecionadoTelefoneRendered = true;
@@ -1174,7 +1174,7 @@ public class CadastroUsuarioMB implements Serializable {
 			npe.printStackTrace();
 			this.isMensagemHasContatoRendered = true;
 		}
-*/
+
 	}
 
 	/*

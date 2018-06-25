@@ -2,7 +2,6 @@ package br.com.smartems.dmatnet.entities.pessoa;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -35,13 +34,13 @@ public abstract class AbstractPessoaEntity implements Serializable {
 	@JoinColumn(name = "PESSOA_ID")
 	private Set<EnderecoEntity> enderecos;
 
-	@OneToMany(cascade = { CascadeType.ALL })
+	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
 	@JoinColumn(name = "PESSOA_ID")
-	private List<TelefoneEntity> telefones;
+	private Set<TelefoneEntity> telefones;
 
 	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
 	@JoinColumn(name = "PESSOA_ID")
-	private List<EmailEntity> emails;
+	private Set<EmailEntity> emails;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastroPessoa;
@@ -76,19 +75,19 @@ public abstract class AbstractPessoaEntity implements Serializable {
 		this.enderecos = enderecos;
 	}
 
-	public List<TelefoneEntity> getTelefones() {
+	public Set<TelefoneEntity> getTelefones() {
 		return telefones;
 	}
 
-	public void setTelefones(List<TelefoneEntity> telefones) {
+	public void setTelefones(Set<TelefoneEntity> telefones) {
 		this.telefones = telefones;
 	}
 
-	public List<EmailEntity> getEmails() {
+	public Set<EmailEntity> getEmails() {
 		return emails;
 	}
 
-	public void setEmails(List<EmailEntity> emails) {
+	public void setEmails(Set<EmailEntity> emails) {
 		this.emails = emails;
 	}
 

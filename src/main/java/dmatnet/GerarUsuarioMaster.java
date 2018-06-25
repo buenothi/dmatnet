@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
@@ -68,14 +69,14 @@ public class GerarUsuarioMaster extends HttpServlet {
 
 				TelefoneEntity telefone = new TelefoneEntity();
 				telefone.setNumeroTelefone("11974802701");
-				List<TelefoneEntity> telefones = new ArrayList<>();
+				Set<TelefoneEntity> telefones = new TreeSet<>();
 				telefones.add(telefone);
 
 				um.setTelefones(telefones);
 
 				EmailEntity emailPrincipal = new EmailEntity();
 				emailPrincipal.setNomeEmail("bueno_thiago@outlook.com");
-				List<EmailEntity> emails = new ArrayList<>();
+				Set<EmailEntity> emails = new TreeSet<>();
 				emails.add(emailPrincipal);
 
 				um.setEmails(emails);

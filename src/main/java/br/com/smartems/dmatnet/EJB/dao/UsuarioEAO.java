@@ -69,8 +69,8 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 	}
 
 	public UsuarioEntity salvarNovoUsuario(UsuarioEntity usuario, UsuarioEntity usuarioPai,
-			PessoaFisicaDocumentosEntity documento, EnderecoEntity endereco, List<EmailEntity> emails,
-			List<TelefoneEntity> telefones, List<EmpresaEntity> empresasAtribuidas) {
+			PessoaFisicaDocumentosEntity documento, EnderecoEntity endereco, Set<EmailEntity> emails,
+			Set<TelefoneEntity> telefones, List<EmpresaEntity> empresasAtribuidas) {
 		try {
 			if (usuario.getIdPessoa() == 0) {
 				usuario.setIdUsuarioPai(usuarioPai.getIdPessoa());
@@ -94,7 +94,7 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 	}
 
 	public UsuarioEntity alterarUsuario(UsuarioEntity usuarioAtual, PessoaFisicaDocumentosEntity documento,
-			List<EnderecoEntity> enderecos, List<EmailEntity> emails, List<TelefoneEntity> telefones,
+			List<EnderecoEntity> enderecos, Set<EmailEntity> emails, Set<TelefoneEntity> telefones,
 			List<EmpresaEntity> empresasAtribuidas) {
 		this.atribuirDocumentosPessoaFisica(documento, usuarioAtual);
 		this.atribuirEmailsPessoaFisica(emails, usuarioAtual);
@@ -116,9 +116,9 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 		}
 	}
 
-	private void atribuirEmailsPessoaFisica(List<EmailEntity> emails, UsuarioEntity usuarioAtual) {
+	private void atribuirEmailsPessoaFisica(Set<EmailEntity> emails, UsuarioEntity usuarioAtual) {
 		if (emails != null) {
-			List<EmailEntity> novoEmailsPessoaFisica = new ArrayList<EmailEntity>();
+			Set<EmailEntity> novoEmailsPessoaFisica = new TreeSet<EmailEntity>();
 			try {
 				novoEmailsPessoaFisica = emails;
 			} catch (Exception e) {
@@ -128,9 +128,9 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 		}
 	}
 
-	private void atribuirTelefonesPessoaFisica(List<TelefoneEntity> telefones, UsuarioEntity usuarioAtual) {
+	private void atribuirTelefonesPessoaFisica(Set<TelefoneEntity> telefones, UsuarioEntity usuarioAtual) {
 		if (telefones != null) {
-			List<TelefoneEntity> novoTelefones = new ArrayList<TelefoneEntity>();
+			Set<TelefoneEntity> novoTelefones = new TreeSet<TelefoneEntity>();
 			try {
 				novoTelefones = telefones;
 			} catch (Exception e) {
@@ -216,9 +216,9 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 		return emailPrincipal;
 	}
 
-	public List<EmailEntity> selecionarEmailsSecundarios(EmailEntity emailPrincipal, UsuarioEntity usuarioSelecionado)
+	public Set<EmailEntity> selecionarEmailsSecundarios(EmailEntity emailPrincipal, UsuarioEntity usuarioSelecionado)
 			throws Exception {
-		List<EmailEntity> emailsSecundarios = new ArrayList<EmailEntity>();
+		Set<EmailEntity> emailsSecundarios = new TreeSet<EmailEntity>();
 		if (!usuarioSelecionado.getEmails().isEmpty() && usuarioSelecionado.getEmails().remove(emailPrincipal)){
 			emailsSecundarios = usuarioSelecionado.getEmails();
 		} else {

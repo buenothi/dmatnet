@@ -1,6 +1,7 @@
 package br.com.smartems.dmatnet.EJB.Facade;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
@@ -66,15 +67,15 @@ public class UsuarioFacade implements UsuarioFacadeLocal {
 
 	@Override
 	public UsuarioEntity salvarNovoUsuario(UsuarioEntity usuario, UsuarioEntity usuarioPai,
-			PessoaFisicaDocumentosEntity documento, EnderecoEntity endereço, List<EmailEntity> emails,
-			List<TelefoneEntity> telefones, List<EmpresaEntity> empresasAtribuidas) {
+			PessoaFisicaDocumentosEntity documento, EnderecoEntity endereço, Set<EmailEntity> emails,
+			Set<TelefoneEntity> telefones, List<EmpresaEntity> empresasAtribuidas) {
 		return usuarioEAO.salvarNovoUsuario(usuario, usuarioPai, documento, endereço, emails, telefones,
 				empresasAtribuidas);
 	}
 
 	@Override
 	public UsuarioEntity alterarUsuario(UsuarioEntity usuarioAtual, PessoaFisicaDocumentosEntity documento,
-			List<EnderecoEntity> enderecos, List<EmailEntity> emails, List<TelefoneEntity> telefones,
+			List<EnderecoEntity> enderecos, Set<EmailEntity> emails, Set<TelefoneEntity> telefones,
 			List<EmpresaEntity> empresasAtribuidas) {
 		return usuarioEAO.alterarUsuario(usuarioAtual, documento, enderecos, emails, telefones, empresasAtribuidas);
 	}
@@ -96,7 +97,7 @@ public class UsuarioFacade implements UsuarioFacadeLocal {
 	}
 
 	@Override
-	public List<EmailEntity> selecionarEmailsSecundarios(EmailEntity emailPrincipal, UsuarioEntity usuarioSelecionado)
+	public Set<EmailEntity> selecionarEmailsSecundarios(EmailEntity emailPrincipal, UsuarioEntity usuarioSelecionado)
 			throws Exception {
 		return usuarioEAO.selecionarEmailsSecundarios(emailPrincipal, usuarioSelecionado);
 	}
