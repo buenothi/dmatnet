@@ -1068,7 +1068,7 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void exibirTelefoneUsuario(UsuarioEntity usuarioSelecionado) {
 		try {
-			this.telefonesUsuarioSelecionado = usuarioFachada.atribuirTelefoneUsuario(usuarioSelecionado);
+			this.telefonesUsuarioSelecionado = usuarioFachada.obterTelefonesUsuario(usuarioSelecionado);
 				
 		} catch (Exception e) {
 			e.printStackTrace();

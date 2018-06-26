@@ -103,8 +103,8 @@ public class UsuarioFacade implements UsuarioFacadeLocal {
 	}
 
 	@Override
-	public Set<TelefoneEntity> atribuirTelefoneUsuario(UsuarioEntity usuarioSelecionado) throws Exception {
-		return usuarioEAO.atribuirTelefoneUsuario(usuarioSelecionado);
+	public Set<TelefoneEntity> obterTelefonesUsuario(UsuarioEntity usuarioSelecionado) throws Exception {
+		return usuarioEAO.obterTelefonesUsuario(usuarioSelecionado);
 	}
 
 }

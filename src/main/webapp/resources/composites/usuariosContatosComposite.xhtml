@@ -75,7 +75,6 @@
 								<p:outputLabel value="#{msgs.Email}*" />
 								<p:inputText id="iptEmailUsuario" placeholder="nome@email.com"
 									size="22" value="#{cc.attrs.emailPrincipal.nomeEmail}"
-									converter="stringMinusConverter"
 									required="#{cc.attrs.requiredEmail}"
 									requiredMessage="#{msgs.MensagemEmailUsuarioRequerido}" />
 
@@ -355,7 +354,7 @@
 						</h:panelGroup>
 
 						<h:panelGroup id="pngUsuarioTelefoneExibir" layout="block"
-							styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
+							styleClass="formulario" rendered="#{cc.attrs.exibirRendered}">
 
 							<p:dataTable paginator="true" rows="2" scrollable="true"
 								styleClass="dataTable" emptyMessage="#{msgs.ListaContatoVazio}"

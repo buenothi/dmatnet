@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbl_telefone")
-public class TelefoneEntity implements Serializable {
+public class TelefoneEntity implements Serializable, Cloneable, Comparable<TelefoneEntity> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -81,5 +81,13 @@ public class TelefoneEntity implements Serializable {
 	@Override
 	public TelefoneEntity clone() throws CloneNotSupportedException {
 		return (TelefoneEntity) super.clone();
+	}
+
+	@Override
+	public int compareTo(TelefoneEntity outroTelefone) {
+		if(outroTelefone.getNumeroTelefone() == this.getNumeroTelefone()) {		
+			return 0;
+		}
+		return -1;
 	}
 }

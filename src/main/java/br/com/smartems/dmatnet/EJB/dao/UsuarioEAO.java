@@ -225,7 +225,7 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 		}
 	}
 
-	public Set<TelefoneEntity> atribuirTelefoneUsuario(UsuarioEntity usuarioSelecionado) throws Exception{
+	public Set<TelefoneEntity> obterTelefonesUsuario(UsuarioEntity usuarioSelecionado) throws Exception {
 		if (!usuarioSelecionado.getTelefones().isEmpty()) {
 			return usuarioSelecionado.getTelefones();
 		} else {

@@ -13,7 +13,7 @@ import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "tbl_email")
-public class EmailEntity implements Serializable, Cloneable {
+public class EmailEntity implements Serializable, Cloneable, Comparable<EmailEntity> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -106,6 +106,14 @@ public class EmailEntity implements Serializable, Cloneable {
 		} else if (!nomeEmail.equals(other.nomeEmail))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(EmailEntity outroEmail) {
+		if (outroEmail.getNomeEmail() == this.nomeEmail) {
+			return 0;
+		}
+		return -1;
 	}
 
 }
