@@ -218,13 +218,19 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 
 	public Set<EmailEntity> selecionarEmailsSecundarios(EmailEntity emailPrincipal, UsuarioEntity usuarioSelecionado)
 			throws Exception {
-		Set<EmailEntity> emailsSecundarios = new TreeSet<EmailEntity>();
-		if (!usuarioSelecionado.getEmails().isEmpty() && usuarioSelecionado.getEmails().remove(emailPrincipal)){
-			emailsSecundarios = usuarioSelecionado.getEmails();
+		if (!usuarioSelecionado.getEmails().isEmpty() && usuarioSelecionado.getEmails().remove(emailPrincipal)) {
+			return usuarioSelecionado.getEmails();
 		} else {
-			emailsSecundarios = usuarioSelecionado.getEmails();
+			return usuarioSelecionado.getEmails();
 		}
-		return emailsSecundarios;
+	}
+
+	public Set<TelefoneEntity> atribuirTelefoneUsuario(UsuarioEntity usuarioSelecionado) throws Exception{
+		if (!usuarioSelecionado.getTelefones().isEmpty()) {
+			return usuarioSelecionado.getTelefones();
+		} else {
+			return null;
+		}
 	}
 
 }

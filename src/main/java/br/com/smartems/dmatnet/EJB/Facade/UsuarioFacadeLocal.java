@@ -39,4 +39,6 @@ public interface UsuarioFacadeLocal extends AbstractFacade<UsuarioEntity> {
 	public Set<EmailEntity> selecionarEmailsSecundarios(EmailEntity emailPrincipal, UsuarioEntity usuarioSelecionado)
 			throws Exception;
 
+	public Set<TelefoneEntity> atribuirTelefoneUsuario(UsuarioEntity usuarioSelecionado) throws Exception;
+
 }

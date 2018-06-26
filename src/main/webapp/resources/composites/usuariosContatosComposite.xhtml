@@ -44,7 +44,8 @@
 	<composite:attribute name="mensagemSelecionarUsuarioRendered"
 		default="false" />
 
-	<composite:attribute name="mensagemHasContatoRendered" default="false" />
+	<composite:attribute name="mensagemHasEmailRendered" default="false" />
+	<composite:attribute name="mensagemHasTelefoneRendered" default="false" />
 	<composite:attribute name="dadosUsuarioEmailRendered" default="false" />
 	<composite:attribute name="dadosUsuarioTelefoneRendered"
 		default="false" />
@@ -61,8 +62,8 @@
 				<h:panelGroup id="pngContatoEmail" layout="block">
 					<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
 						rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
-					<p:outputLabel value="#{msgs.MensagemHasEndereco}"
-						rendered="#{cc.attrs.mensagemHasContatoRendered}" />
+					<p:outputLabel value="#{msgs.MensagemHasEmail}"
+						rendered="#{cc.attrs.mensagemHasEmailRendered}" />
 
 					<h:panelGroup id="pngUsuarioEmail" layout="block"
 						rendered="#{cc.attrs.dadosUsuarioEmailRendered}">
@@ -264,8 +265,8 @@
 				<h:panelGroup id="pngContatoTelefone" layout="block">
 					<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
 						rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
-					<p:outputLabel value="#{msgs.MensagemHasEndereco}"
-						rendered="#{cc.attrs.mensagemHasContatoRendered}" />
+					<p:outputLabel value="#{msgs.MensagemHasTelefone}"
+						rendered="#{cc.attrs.mensagemHasTelefoneRendered}" />
 
 					<h:panelGroup id="pngUsuarioTelefone" layout="block"
 						rendered="#{cc.attrs.dadosUsuarioTelefoneRendered}">
@@ -355,15 +356,6 @@
 
 						<h:panelGroup id="pngUsuarioTelefoneExibir" layout="block"
 							styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
-
-							<p:outputLabel value="#{msgs.Telefone}" />
-							<p:outputLabel
-								value="#{cc.attrs.telefonePrincipal.numeroTelefone}" />
-
-							<p:outputLabel value="#{msgs.TelefoneTipo}" />
-							<p:outputLabel value="#{cc.attrs.telefonePrincipal.tipoTelefone}" />
-
-							<p:spacer width="100%" height="2px" />
 
 							<p:dataTable paginator="true" rows="2" scrollable="true"
 								styleClass="dataTable" emptyMessage="#{msgs.ListaContatoVazio}"

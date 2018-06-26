@@ -102,4 +102,9 @@ public class UsuarioFacade implements UsuarioFacadeLocal {
 		return usuarioEAO.selecionarEmailsSecundarios(emailPrincipal, usuarioSelecionado);
 	}
 
+	@Override
+	public Set<TelefoneEntity> atribuirTelefoneUsuario(UsuarioEntity usuarioSelecionado) throws Exception {
+		return usuarioEAO.atribuirTelefoneUsuario(usuarioSelecionado);
+	}
+
 }

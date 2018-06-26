@@ -146,7 +146,9 @@ public class CadastroUsuarioMB implements Serializable {
 	private boolean isBtnContatosCancelarDesativado = true;
 	private boolean isBtnContatosNovoDesativado = true;
 	private boolean isBtnContatosSalvarDesativado = false;
-	private boolean isMensagemHasContatoRendered = true;
+	private boolean isMensagemHasContatoRendered = false;
+	private boolean isMensagemHasEmailRendered = false;
+	private boolean isMensagemHasTelefoneRendered = false;
 	private boolean isCadastroUsuarioSelecionadoEmailRendered = false;
 	private boolean isCadastroUsuarioSelecionadoTelefoneRendered = false;
 
@@ -878,6 +880,22 @@ public class CadastroUsuarioMB implements Serializable {
 		return isCadastroUsuarioSelecionadoEmailRendered;
 	}
 
+	public boolean isMensagemHasEmailRendered() {
+		return isMensagemHasEmailRendered;
+	}
+
+	public void setMensagemHasEmailRendered(boolean isMensagemHasEmailRendered) {
+		this.isMensagemHasEmailRendered = isMensagemHasEmailRendered;
+	}
+
+	public boolean isMensagemHasTelefoneRendered() {
+		return isMensagemHasTelefoneRendered;
+	}
+
+	public void setMensagemHasTelefoneRendered(boolean isMensagemHasTelefoneRendered) {
+		this.isMensagemHasTelefoneRendered = isMensagemHasTelefoneRendered;
+	}
+
 	public void setCadastroUsuarioSelecionadoEmailRendered(boolean isCadastroUsuarioSelecionadoEmailRendered) {
 		this.isCadastroUsuarioSelecionadoEmailRendered = isCadastroUsuarioSelecionadoEmailRendered;
 	}
@@ -991,6 +1009,8 @@ public class CadastroUsuarioMB implements Serializable {
 
 			this.separarEmailUsuarioPrincipalDoSecudario(this.usuarioSelecionado);
 
+			this.exibirTelefoneUsuario(this.usuarioSelecionado);
+
 			if (this.enderecoUsuarioSelecionado.getIdEndereco() > 0) {
 				this.isCadastroUsuarioEnderecoRendered = true;
 				this.isMensagemHasEnderecoRendered = false;
@@ -998,15 +1018,22 @@ public class CadastroUsuarioMB implements Serializable {
 				this.isCadastroUsuarioEnderecoRendered = false;
 				this.isMensagemHasEnderecoRendered = true;
 			}
-			
+
 			if (this.emailPrincipalUsuarioSelecionado.getIdEmail() > 0) {
 				this.isCadastroUsuarioEmailRendered = true;
-				this.isMensagemHasContatoRendered = false;
+				this.isMensagemHasEmailRendered = false;
 			} else {
 				this.isCadastroUsuarioEmailRendered = false;
-				this.isMensagemHasContatoRendered = true;
+				this.isMensagemHasEmailRendered = true;
 			}
-			
+
+			if (!this.telefonesUsuarioSelecionado.isEmpty()) {
+				this.isCadastroUsuarioTelefoneRendered = true;
+				this.isMensagemHasTelefoneRendered = false;
+			} else {
+				this.isCadastroUsuarioTelefoneRendered = false;
+				this.isMensagemHasTelefoneRendered = true;
+			}
 
 		} catch (NullPointerException npe) {
 			npe.printStackTrace();
@@ -1034,7 +1061,15 @@ public class CadastroUsuarioMB implements Serializable {
 			this.emailPrincipalUsuarioSelecionado = usuarioFachada.selecionarEmailUsuarioPrincipal(usuarioSelecionado);
 			this.emailsUsuarioSelecionado = usuarioFachada.selecionarEmailsSecundarios(emailPrincipalUsuarioSelecionado,
 					usuarioSelecionado);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
+	public void exibirTelefoneUsuario(UsuarioEntity usuarioSelecionado) {
+		try {
+			this.telefonesUsuarioSelecionado = usuarioFachada.atribuirTelefoneUsuario(usuarioSelecionado);
+				
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1157,17 +1192,17 @@ public class CadastroUsuarioMB implements Serializable {
 
 		try {
 			if (this.usuarioSelecionado.getEmails().size() > 0) {
-				this.isMensagemHasContatoRendered = false;
+				this.isMensagemHasEmailRendered = false;
 				this.isCadastroUsuarioSelecionadoEmailRendered = true;
 			}
 		} catch (NullPointerException npe) {
 			npe.printStackTrace();
 			this.isMensagemHasContatoRendered = true;
 		}
-		
+
 		try {
 			if (this.usuarioSelecionado.getTelefones().size() > 0) {
-				this.isMensagemHasContatoRendered = false;
+				this.isMensagemHasTelefoneRendered = false;
 				this.isCadastroUsuarioSelecionadoTelefoneRendered = true;
 			}
 		} catch (NullPointerException npe) {
@@ -1399,7 +1434,7 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isCadastroUsuarioDoctosCNHRendered = false;
 		this.isCadastroUsuarioEnderecoRendered = false;
 		this.isCadastroUsuarioEmailRendered = false;
-		this.isCadastroUsuarioTelefoneRendered = false;		
+		this.isCadastroUsuarioTelefoneRendered = false;
 		this.isCadastroUsuarioUsuarioRendered = false;
 		this.isCadastroUsuarioEmpresasRendered = false;
 
@@ -1411,6 +1446,9 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isMensagemHasRNERendered = false;
 		this.isMensagemHasCNHRendered = false;
 		this.isMensagemHasEnderecoRendered = false;
+		this.isMensagemHasContatoRendered = false;
+		this.isMensagemHasEmailRendered = false;
+		this.isMensagemHasTelefoneRendered = false;
 
 		try {
 			this.empresasAtribuidasUsuario = new ArrayList<EmpresaEntity>();
