@@ -1010,35 +1010,57 @@ public class CadastroUsuarioMB implements Serializable {
 			this.separarEmailUsuarioPrincipalDoSecudario(this.usuarioSelecionado);
 
 			this.exibirTelefoneUsuario(this.usuarioSelecionado);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 
+		try {
 			if (this.enderecoUsuarioSelecionado.getIdEndereco() > 0) {
 				this.isCadastroUsuarioEnderecoRendered = true;
 				this.isMensagemHasEnderecoRendered = false;
 			} else {
 				this.isCadastroUsuarioEnderecoRendered = false;
 				this.isMensagemHasEnderecoRendered = true;
-			}
-
-			if (this.emailPrincipalUsuarioSelecionado.getIdEmail() > 0) {
-				this.isCadastroUsuarioEmailRendered = true;
-				this.isMensagemHasEmailRendered = false;
-			} else {
-				this.isCadastroUsuarioEmailRendered = false;
-				this.isMensagemHasEmailRendered = true;
-			}
-
-			if (!this.telefonesUsuarioSelecionado.isEmpty()) {
-				this.isCadastroUsuarioTelefoneRendered = true;
-				this.isMensagemHasTelefoneRendered = false;
-			} else {
-				this.isCadastroUsuarioTelefoneRendered = false;
-				this.isMensagemHasTelefoneRendered = true;
+				this.isCadastroUsuarioEnderecoRendered = false;
 			}
 
 		} catch (NullPointerException npe) {
 			npe.printStackTrace();
 			this.isCadastroUsuarioEnderecoRendered = false;
 			this.isMensagemHasEnderecoRendered = true;
+			this.isCadastroUsuarioEnderecoRendered = false;
+		}
+
+		try {
+			if (this.emailPrincipalUsuarioSelecionado.getIdEmail() > 0) {
+				this.isCadastroUsuarioEmailRendered = true;
+				this.isMensagemHasEmailRendered = false;
+			} else {
+				this.isCadastroUsuarioEmailRendered = false;
+				this.isMensagemHasEmailRendered = true;
+				this.isCadastroUsuarioSelecionadoEmailRendered = false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.isCadastroUsuarioEmailRendered = false;
+			this.isMensagemHasEmailRendered = true;
+			this.isCadastroUsuarioSelecionadoEmailRendered = false;
+		}
+
+		try {
+			if (this.usuarioSelecionado.getTelefones().size() > 0) {
+				this.isCadastroUsuarioTelefoneRendered = true;
+				this.isMensagemHasTelefoneRendered = false;
+			} else {
+				this.isCadastroUsuarioTelefoneRendered = false;
+				this.isMensagemHasTelefoneRendered = true;
+				this.isCadastroUsuarioSelecionadoTelefoneRendered = false;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			this.isCadastroUsuarioTelefoneRendered = false;
+			this.isMensagemHasTelefoneRendered = true;
+			this.isCadastroUsuarioSelecionadoTelefoneRendered = false;
 		}
 	}
 
@@ -1069,7 +1091,7 @@ public class CadastroUsuarioMB implements Serializable {
 	public void exibirTelefoneUsuario(UsuarioEntity usuarioSelecionado) {
 		try {
 			this.telefonesUsuarioSelecionado = usuarioFachada.obterTelefonesUsuario(usuarioSelecionado);
-				
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1197,7 +1219,7 @@ public class CadastroUsuarioMB implements Serializable {
 			}
 		} catch (NullPointerException npe) {
 			npe.printStackTrace();
-			this.isMensagemHasContatoRendered = true;
+			this.isMensagemHasEmailRendered = true;
 		}
 
 		try {
@@ -1207,7 +1229,7 @@ public class CadastroUsuarioMB implements Serializable {
 			}
 		} catch (NullPointerException npe) {
 			npe.printStackTrace();
-			this.isMensagemHasContatoRendered = true;
+			this.isMensagemHasEmailRendered = true;
 		}
 
 	}
@@ -1437,6 +1459,8 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isCadastroUsuarioTelefoneRendered = false;
 		this.isCadastroUsuarioUsuarioRendered = false;
 		this.isCadastroUsuarioEmpresasRendered = false;
+		this.isCadastroUsuarioSelecionadoEmailRendered = false;
+		this.isCadastroUsuarioSelecionadoTelefoneRendered = false;
 
 		this.isMensagemSelecionarUsuarioRendered = true;
 		this.isMensagemHasUsuario = false;
@@ -1447,7 +1471,9 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isMensagemHasCNHRendered = false;
 		this.isMensagemHasEnderecoRendered = false;
 		this.isMensagemHasContatoRendered = false;
+		this.isCadastroUsuarioEmailRendered = false;
 		this.isMensagemHasEmailRendered = false;
+		this.isCadastroUsuarioTelefoneRendered = false;
 		this.isMensagemHasTelefoneRendered = false;
 
 		try {
