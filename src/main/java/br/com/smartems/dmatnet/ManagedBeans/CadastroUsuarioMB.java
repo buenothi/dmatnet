@@ -1121,6 +1121,8 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isMensagemHasCNHRendered = false;
 
 		this.isMensagemHasEnderecoRendered = false;
+		
+		this.isMensagemHasTelefoneRendered = false;
 	}
 
 	private void ocultarCadastroAlterarStatusMensagens() {
@@ -1358,6 +1360,9 @@ public class CadastroUsuarioMB implements Serializable {
 	// action dos botões dentro de dadosUsuario
 
 	public void editarUsuario(ActionEvent evt) {
+		this.isCadastroUsuarioSelecionadoEmailRendered = true;
+		this.isCadastroUsuarioSelecionadoTelefoneRendered = true;
+	
 		this.isDadosUsuariosEditar = true;
 		this.isDadosUsuariosExibir = false;
 		this.isDisabledSelecaoTabelaUsuarios = true;
@@ -1380,6 +1385,9 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isDadosUsuariosEditar = false;
 		this.isDadosUsuariosExibir = true;
 		this.isDisabledSelecaoTabelaUsuarios = false;
+		
+		this.isCadastroUsuarioSelecionadoEmailRendered = false;
+		this.isCadastroUsuarioSelecionadoTelefoneRendered = false;
 
 		this.ocultarCadastroAlterarStatusMensagens();
 
