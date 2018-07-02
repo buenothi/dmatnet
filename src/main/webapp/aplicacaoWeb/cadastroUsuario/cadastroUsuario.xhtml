@@ -12,7 +12,9 @@
 	<dmat:barraBotoesComposite id="barraBotoesUsuario"
 		disabledEditar="#{cadastroUsuarioMB.btnUsuarioEditarDesativado}"
 		actionListenerEditar="#{cadastroUsuarioMB.editarUsuario}"
-		updateEditar="formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesUsuario:tbrBotoes,
+		updateEditar="formModulos,
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesUsuario:tbrBotoes,
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:pngSelecaoUsuario,
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcDadosUsuarioSelecionado:pnlDadosUsuario,
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRG,
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCPF,
@@ -24,7 +26,9 @@
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioNovo:tbwContatosUsuario:pngContatoTelefone"
 		disabledCancelar="#{cadastroUsuarioMB.btnUsuarioCancelarDesativado}"
 		actionListenerCancelar="#{cadastroUsuarioMB.cancelarUsuario}"
-		updateCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesUsuario:tbrBotoes,
+		updateCancelar="formModulos,
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesUsuario:tbrBotoes,
+						 formModulos:formCadEmpresa:tbwCadastroEmpresa:pngSelecaoUsuario,
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcDadosUsuarioSelecionado:pnlDadosUsuario,
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRG,
 						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCPF,
@@ -58,7 +62,8 @@
 
 	<p:panelGrid columns="2" style="display:block"
 		styleClass="top-aligned-columns">
-		<h:panelGroup layout="block" style="width: 250px">
+		<h:panelGroup id="pngSelecaoUsuario" layout="block"
+			style="width: 250px">
 			<h:panelGrid columns="2">
 				<p:inputText style="width: 213px" />
 				<p:commandButton icon="fa fa-search"
@@ -74,17 +79,16 @@
 				<p:ajax event="rowSelect"
 					listener="#{cadastroUsuarioMB.onSelectionUsuario}"
 					update="formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesUsuario:tbrBotoes,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcDadosUsuarioSelecionado:pnlDadosUsuario,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRG,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCPF,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRIC,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRNE,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCNH,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uedUsuarioSelecionado:pnlEnderecoUsuario,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioNovo:tbwContatosUsuario:pngContatoEmail,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioNovo:tbwContatosUsuario:pngContatoTelefone" />
-				<!-- formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoEmail, 
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoTelefone" /> -->
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:pngSelecaoUsuario,
+							formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcDadosUsuarioSelecionado:pnlDadosUsuario,
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRG,
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCPF,
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRIC,
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRNE,
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCNH,
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uedUsuarioSelecionado:pnlEnderecoUsuario,
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioNovo:tbwContatosUsuario:pngContatoEmail,
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioNovo:tbwContatosUsuario:pngContatoTelefone" />
 				<p:column headerText="#{msgs.Login}">
 					<h:outputText value="#{usuario.nome}" converter="stringConverter" />
 				</p:column>
@@ -172,12 +176,12 @@
 						updateCancelarTelefoneContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioNovo:tbwContatosUsuario:pngContatoTelefone"
 						updateRemoverTelefoneLista="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioNovo:tbwContatosUsuario:pngContatoTelefone"
 						setPropertyActionListenerRemoverContato="#{cadastroUsuarioMB.telefoneUsuarioExcluir}"
-						actionListenerRemoverTelefoneLista="#{cadastroUsuarioMB.removerTelefoneContatoDaLista(telefone)}" 
-						actionListenerRemoverEmailLista="#{cadastroUsuarioMB.removerEmailContatoDaLista(email)}" 
+						actionListenerRemoverTelefoneLista="#{cadastroUsuarioMB.removerTelefoneContatoDaLista(telefone)}"
+						actionListenerRemoverEmailLista="#{cadastroUsuarioMB.removerEmailContatoDaLista(email)}"
 						setPropertyActionListenerRemoverEmail="#{cadastroUsuarioMB.emailUsuarioExcluir}"
 						updateRemoverEmailLista="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioNovo:tbwContatosUsuario:pngContatoEmail"
 						dadosUsuarioEmailRendered="#{cadastroUsuarioMB.cadastroUsuarioSelecionadoEmailRendered}"
-						dadosUsuarioTelefoneRendered="#{cadastroUsuarioMB.cadastroUsuarioSelecionadoTelefoneRendered}"/>
+						dadosUsuarioTelefoneRendered="#{cadastroUsuarioMB.cadastroUsuarioSelecionadoTelefoneRendered}" />
 				</p:tab>
 
 				<p:tab title="#{msgs.Login}">
