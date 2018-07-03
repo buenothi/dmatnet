@@ -12,32 +12,10 @@
 	<dmat:barraBotoesComposite id="barraBotoesUsuario"
 		disabledEditar="#{cadastroUsuarioMB.btnUsuarioEditarDesativado}"
 		actionListenerEditar="#{cadastroUsuarioMB.editarUsuario}"
-		updateEditar="formModulos,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesUsuario:tbrBotoes,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:pngSelecaoUsuario,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcDadosUsuarioSelecionado:pnlDadosUsuario,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRG,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCPF,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRIC,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRNE,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCNH,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uedUsuarioSelecionado:pnlEnderecoUsuario,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioNovo:tbwContatosUsuario:pngContatoEmail,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioNovo:tbwContatosUsuario:pngContatoTelefone"
+		updateEditar="formModulos"
 		disabledCancelar="#{cadastroUsuarioMB.btnUsuarioCancelarDesativado}"
 		actionListenerCancelar="#{cadastroUsuarioMB.cancelarUsuario}"
-		updateCancelar="formModulos,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesUsuario:tbrBotoes,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:pngSelecaoUsuario,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcDadosUsuarioSelecionado:pnlDadosUsuario,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRG,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCPF,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRIC,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRNE,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCNH,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uedUsuarioSelecionado:pnlEnderecoUsuario,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioNovo:tbwContatosUsuario:pngContatoEmail,
-						 formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioNovo:tbwContatosUsuario:pngContatoTelefone"
+		updateCancelar="formModulos"
 		resetCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcDadosUsuarioSelecionado:pnlDadosUsuario"
 		disabledSalvar="#{cadastroUsuarioMB.btnUsuarioSalvarDesativado}"
 		actionListenerSalvar="#{cadastroUsuarioMB.salvarUsuario}"
@@ -157,7 +135,7 @@
 				</p:tab>
 
 				<p:tab title="#{msgs.Contatos}">
-					<dmat:usuariosContatosComposite id="uccUsuarioNovo"
+					<dmat:usuariosContatosComposite id="uccUsuarioSelecionado"
 						emailPrincipal="#{cadastroUsuarioMB.emailPrincipalUsuarioSelecionado}"
 						requiredEmail="true"
 						mensagemSelecionarUsuarioRendered="#{cadastroUsuarioMB.mensagemSelecionarUsuarioRendered}"
@@ -185,6 +163,13 @@
 				</p:tab>
 
 				<p:tab title="#{msgs.Login}">
+					<dmat:usuariosUsuarioComposite id="uucUsuarioelecionado"
+						usuario="#{cadastroUsuarioMB.usuarioNovo}"
+						editarRendered="#{cadastroUsuarioMB.dadosUsuariosEditar}"
+						exibirRendered="#{cadastroUsuarioMB.dadosUsuariosExibir}"
+						mensagemHasUsuarioRendered="#{msgs.MensagemHasUsuario}"
+						mensagemSelecionarUsuarioRendered="#{cadastroUsuarioMB.mensagemSelecionarUsuarioRendered}"
+						usuarioRendered="" />
 				</p:tab>
 
 				<p:tab title="#{msgs.Empresas}"></p:tab>
