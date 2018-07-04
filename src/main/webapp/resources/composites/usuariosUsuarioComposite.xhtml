@@ -22,17 +22,18 @@
 	<composite:attribute name="editarRendered" default="true" />
 	<composite:attribute name="exibirRendered" default="false" />
 	<composite:attribute name="usuarioRendered" default="true" />
-	
+
 </composite:interface>
 
 <composite:implementation>
 
 	<p:panel header="#{msgs.Login}" closable="false">
 		<p:messages id="msLogin" showDetail="true" closable="true" />
-		<p:tabView>
+		<p:tabView id="tbwUsuario">
 			<p:tab title="#{msgs.Login}">
-				<h:panelGroup id="pngUsuario" layout="block"
-					rendered="#{cc.attrs.usuarioRendered}">
+			
+				<h:panelGroup id="pngUsuario" layout="block">
+					
 					<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
 						rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
 					<p:outputLabel value="#{msgs.MensagemHasUsuario}"
@@ -41,7 +42,7 @@
 					<h:panelGroup id="pngUsuarioEditar" layout="block"
 						rendered="#{cc.attrs.editarRendered}">
 						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-							<p:outputLabel value="#{msgs.Login}" />
+							<p:outputLabel value="#{msgs.Login}:* " />
 							<p:inputText id="iptLogin" size="22"
 								value="#{cc.attrs.usuario.login}" required="true"
 								requiredMessage="#{msgs.MensagemLoginRequerido}" />
@@ -55,7 +56,7 @@
 					<h:panelGroup id="pngUsuarioExibir" layout="block"
 						rendered="#{cc.attrs.exibirRendered}">
 						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-							<p:outputLabel value="#{msgs.Login}" />
+							<p:outputLabel value="#{msgs.Login}: " />
 							<p:outputLabel value="#{cc.attrs.usuario.login}" />
 						</p:panelGrid>
 					</h:panelGroup>

@@ -66,7 +66,8 @@
 						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCNH,
 						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uedUsuarioSelecionado:pnlEnderecoUsuario,
 						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoEmail,
-						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoTelefone" />
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoTelefone,
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uucUsuarioelecionado:tbwUsuario:pngUsuario" />
 				<p:column headerText="#{msgs.Login}">
 					<h:outputText value="#{usuario.nome}" converter="stringConverter" />
 				</p:column>
@@ -144,32 +145,32 @@
 						editarRendered="#{cadastroUsuarioMB.dadosUsuariosEditar}"
 						exibirRendered="#{cadastroUsuarioMB.dadosUsuariosExibir}"
 						actionListenerAdicionarEmailContato="#{cadastroUsuarioMB.adicionarEmailContatoUsuarioSelecionado}"
-						updateAdicionarEmailContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioNovo:tbwContatosUsuario:pngContatoEmail"
-						updateCancelarAdicionarEmailContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioNovo:tbwContatosUsuario:pngContatoTelefone"
+						updateAdicionarEmailContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoEmail"
+						updateCancelarAdicionarEmailContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoTelefone"
 						listaEmailsUsuarios="#{cadastroUsuarioMB.emailsUsuarioSelecionado}"
 						telefonePrincipal="#{cadastroUsuarioMB.telefoneUsuarioSelecionado}"
 						listaTelefonesUsuarios="#{cadastroUsuarioMB.telefonesUsuarioSelecionado}"
 						actionListenerAdicionarTelefoneContato="#{cadastroUsuarioMB.adicionarTelefoneContatoUsuarioSelecionado}"
-						updateAdicionarTelefoneContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioNovo:tbwContatosUsuario:pngContatoTelefone"
-						updateCancelarTelefoneContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioNovo:tbwContatosUsuario:pngContatoTelefone"
-						updateRemoverTelefoneLista="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioNovo:tbwContatosUsuario:pngContatoTelefone"
+						updateAdicionarTelefoneContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoTelefone"
+						updateCancelarTelefoneContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoTelefone"
+						updateRemoverTelefoneLista="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoTelefone"
 						setPropertyActionListenerRemoverContato="#{cadastroUsuarioMB.telefoneUsuarioExcluir}"
 						actionListenerRemoverTelefoneLista="#{cadastroUsuarioMB.removerTelefoneContatoDaLista(telefone)}"
 						actionListenerRemoverEmailLista="#{cadastroUsuarioMB.removerEmailContatoDaLista(email)}"
 						setPropertyActionListenerRemoverEmail="#{cadastroUsuarioMB.emailUsuarioExcluir}"
-						updateRemoverEmailLista="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioNovo:tbwContatosUsuario:pngContatoEmail"
+						updateRemoverEmailLista="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoEmail"
 						dadosUsuarioEmailRendered="#{cadastroUsuarioMB.cadastroUsuarioSelecionadoEmailRendered}"
 						dadosUsuarioTelefoneRendered="#{cadastroUsuarioMB.cadastroUsuarioSelecionadoTelefoneRendered}" />
 				</p:tab>
 
 				<p:tab title="#{msgs.Login}">
 					<dmat:usuariosUsuarioComposite id="uucUsuarioelecionado"
-						usuario="#{cadastroUsuarioMB.usuarioNovo}"
+						usuario="#{cadastroUsuarioMB.usuarioSelecionado}"
 						editarRendered="#{cadastroUsuarioMB.dadosUsuariosEditar}"
 						exibirRendered="#{cadastroUsuarioMB.dadosUsuariosExibir}"
-						mensagemHasUsuarioRendered="#{msgs.MensagemHasUsuario}"
+						mensagemHasUsuarioRendered="#{cadastroUsuarioMB.mensagemHasUsuarioRendered}"
 						mensagemSelecionarUsuarioRendered="#{cadastroUsuarioMB.mensagemSelecionarUsuarioRendered}"
-						usuarioRendered="" />
+						usuarioRendered="#{cadastroUsuarioMB.cadastroUsuarioSelecionadoUsuarioRendered}" />
 				</p:tab>
 
 				<p:tab title="#{msgs.Empresas}"></p:tab>

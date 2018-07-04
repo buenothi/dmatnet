@@ -103,7 +103,6 @@ public class CadastroUsuarioMB implements Serializable {
 	private boolean isCadastroUsuarioTelefoneRendered = false;
 	private boolean isCadastroUsuarioUsuarioRendered = false;
 	private boolean isCadastroUsuarioEmpresasRendered = false;
-	private boolean isMensagemSelecionarUsuarioRendered = true;
 
 	// botões dados do usuário de dadosCadastrais
 
@@ -151,6 +150,10 @@ public class CadastroUsuarioMB implements Serializable {
 	private boolean isMensagemHasTelefoneRendered = false;
 	private boolean isCadastroUsuarioSelecionadoEmailRendered = false;
 	private boolean isCadastroUsuarioSelecionadoTelefoneRendered = false;
+
+	private boolean isMensagemSelecionarUsuarioRendered = true;
+	private boolean isMensagemHasUsuarioRendered = false;
+	private boolean isCadastroUsuarioSelecionadoUsuarioRendered = false;
 
 	// botões endereço de usuários dentro de enderecoUsuario
 
@@ -648,6 +651,22 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isCadastroUsuarioSelecionadoTelefoneRendered = isCadastroUsuarioSelecionadoTelefoneRendered;
 	}
 
+	public boolean isMensagemHasUsuarioRendered() {
+		return isMensagemHasUsuarioRendered;
+	}
+
+	public void setMensagemHasUsuarioRendered(boolean isMensagemHasUsuarioRendered) {
+		this.isMensagemHasUsuarioRendered = isMensagemHasUsuarioRendered;
+	}
+
+	public boolean isCadastroUsuarioSelecionadoUsuarioRendered() {
+		return isCadastroUsuarioSelecionadoUsuarioRendered;
+	}
+
+	public void setCadastroUsuarioSelecionadoUsuarioRendered(boolean isCadastroUsuarioSelecionadoUsuarioRendered) {
+		this.isCadastroUsuarioSelecionadoUsuarioRendered = isCadastroUsuarioSelecionadoUsuarioRendered;
+	}
+
 	public boolean isDadosUsuariosEditar() {
 		return isDadosUsuariosEditar;
 	}
@@ -994,11 +1013,11 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public void onSelectionUsuario(Object usuario) {
-		
+
 		if (usuario instanceof SelectEvent) {
 			this.usuarioSelecionado = (UsuarioEntity) ((SelectEvent) usuario).getObject();
-		} 
-		
+		}
+
 		try {
 			if (this.usuarioSelecionado.getDocumentosPessoais() != null) {
 				this.documentosPessoaisUsuarioSelecionado = this.usuarioSelecionado.getDocumentosPessoais();
@@ -1013,6 +1032,8 @@ public class CadastroUsuarioMB implements Serializable {
 			this.separarEmailUsuarioPrincipalDoSecudario(this.usuarioSelecionado);
 
 			this.exibirTelefoneUsuario(this.usuarioSelecionado);
+
+			this.exibirUsuario(this.usuarioSelecionado);
 
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -1078,7 +1099,7 @@ public class CadastroUsuarioMB implements Serializable {
 
 	}
 
-	public void exibirTelefoneUsuario(UsuarioEntity usuarioSelecionado) {
+	private void exibirTelefoneUsuario(UsuarioEntity usuarioSelecionado) {
 		try {
 			this.telefonesUsuarioSelecionado = usuarioFachada.obterTelefonesUsuario(usuarioSelecionado);
 
@@ -1100,6 +1121,18 @@ public class CadastroUsuarioMB implements Serializable {
 			this.isCadastroUsuarioTelefoneRendered = false;
 			this.isMensagemHasTelefoneRendered = true;
 			this.isCadastroUsuarioSelecionadoTelefoneRendered = false;
+		}
+	}
+
+	private void exibirUsuario(UsuarioEntity usuarioSelecionado) {
+		try {
+			if (this.usuarioSelecionado.getLogin().length() > 0) {
+				this.isMensagemHasUsuarioRendered = false;
+				this.isCadastroUsuarioSelecionadoUsuarioRendered = true;
+			}
+		} catch (Exception e) {
+			this.isMensagemHasUsuarioRendered = true;
+			this.isCadastroUsuarioSelecionadoUsuarioRendered = false;
 		}
 	}
 
