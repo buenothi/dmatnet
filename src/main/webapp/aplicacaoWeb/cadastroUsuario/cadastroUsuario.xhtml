@@ -67,7 +67,7 @@
 						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uedUsuarioSelecionado:pnlEnderecoUsuario,
 						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoEmail,
 						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoTelefone,
-						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uucUsuarioelecionado:tbwUsuario:pngUsuario" />
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uucUsuarioSelecionado:tbwUsuario:pngUsuario" />
 				<p:column headerText="#{msgs.Login}">
 					<h:outputText value="#{usuario.nome}" converter="stringConverter" />
 				</p:column>
@@ -164,7 +164,7 @@
 				</p:tab>
 
 				<p:tab title="#{msgs.Login}">
-					<dmat:usuariosUsuarioComposite id="uucUsuarioelecionado"
+					<dmat:usuariosUsuarioComposite id="uucUsuarioSelecionado"
 						usuario="#{cadastroUsuarioMB.usuarioSelecionado}"
 						editarRendered="#{cadastroUsuarioMB.dadosUsuariosEditar}"
 						exibirRendered="#{cadastroUsuarioMB.dadosUsuariosExibir}"
@@ -174,7 +174,7 @@
 				</p:tab>
 
 				<p:tab title="#{msgs.Empresas}">
-				
+
 				</p:tab>
 
 			</p:tabView>

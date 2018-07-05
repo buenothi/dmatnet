@@ -60,8 +60,7 @@
 		<p:tab title="#{msgs.ContatoUsuario}">
 			<dmat:usuariosContatosComposite id="uccUsuarioNovo"
 				emailPrincipal="#{cadastroUsuarioMB.emailUsuario}"
-				requiredEmail="true"
-				dadosUsuarioEmailRendered="true"
+				requiredEmail="true" dadosUsuarioEmailRendered="true"
 				actionListenerAdicionarEmailContato="#{cadastroUsuarioMB.adicionarEmailContato}"
 				updateAdicionarEmailContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
 				updateCancelarAdicionarEmailContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
@@ -72,18 +71,17 @@
 				updateAdicionarTelefoneContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
 				updateCancelarTelefoneContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
 				updateRemoverTelefoneLista="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
-				setPropertyActionListenerRemoverContato="#{cadastroUsuarioMB.telefoneUsuarioExcluir}" 
+				setPropertyActionListenerRemoverContato="#{cadastroUsuarioMB.telefoneUsuarioExcluir}"
 				actionListenerRemoverTelefoneLista="#{cadastroUsuarioMB.removerTelefoneContatoDaLista(telefone)}"
 				actionListenerRemoverEmailLista="#{cadastroUsuarioMB.removerEmailContatoDaLista(email)}"
 				updateRemoverEmailLista="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
-				setPropertyActionListenerRemoverEmail="#{cadastroUsuarioMB.emailUsuarioExcluir}"/>
+				setPropertyActionListenerRemoverEmail="#{cadastroUsuarioMB.emailUsuarioExcluir}" />
 
 		</p:tab>
 
 		<p:tab title="#{msgs.Login}">
-			<dmat:usuariosUsuarioComposite 
-				id="uucUsuarioNovo"
-				usuario="#{cadastroUsuarioMB.usuarioNovo}"/>
+			<dmat:usuariosUsuarioComposite id="uucUsuarioNovo"
+				usuario="#{cadastroUsuarioMB.usuarioNovo}" />
 		</p:tab>
 
 		<p:tab title="#{msgs.Empresas}">
