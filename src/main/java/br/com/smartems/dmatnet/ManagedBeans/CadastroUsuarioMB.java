@@ -1505,6 +1505,7 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isCadastroUsuarioEmpresasRendered = false;
 		this.isCadastroUsuarioSelecionadoEmailRendered = false;
 		this.isCadastroUsuarioSelecionadoTelefoneRendered = false;
+		this.isCadastroUsuarioSelecionadoUsuarioRendered = false;
 
 		this.isMensagemSelecionarUsuarioRendered = true;
 		this.isMensagemHasUsuario = false;

@@ -31,34 +31,38 @@
 		<p:messages id="msLogin" showDetail="true" closable="true" />
 		<p:tabView id="tbwUsuario">
 			<p:tab title="#{msgs.Login}">
-			
+
 				<h:panelGroup id="pngUsuario" layout="block">
-					
+
 					<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
 						rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
 					<p:outputLabel value="#{msgs.MensagemHasUsuario}"
 						rendered="#{cc.attrs.mensagemHasUsuarioRendered}" />
 
-					<h:panelGroup id="pngUsuarioEditar" layout="block"
-						rendered="#{cc.attrs.editarRendered}">
-						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-							<p:outputLabel value="#{msgs.Login}:* " />
-							<p:inputText id="iptLogin" size="22"
-								value="#{cc.attrs.usuario.login}" required="true"
-								requiredMessage="#{msgs.MensagemLoginRequerido}" />
-							<p:outputLabel value="#{msgs.Senha}" />
-							<p:commandButton id="btnGerarSenhaProvisoria"
-								value="#{msgs.BotaoGerarSenha}"
-								actionListener="#{cc.attrs.actionListenerGerarSenha}" />
-						</p:panelGrid>
-					</h:panelGroup>
+					<h:panelGroup id="pngUsuarioUsuario" layout="block"
+						rendered="#{cc.attrs.usuarioRendered}">
 
-					<h:panelGroup id="pngUsuarioExibir" layout="block"
-						rendered="#{cc.attrs.exibirRendered}">
-						<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-							<p:outputLabel value="#{msgs.Login}: " />
-							<p:outputLabel value="#{cc.attrs.usuario.login}" />
-						</p:panelGrid>
+						<h:panelGroup id="pngUsuarioEditar" layout="block"
+							rendered="#{cc.attrs.editarRendered}">
+							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+								<p:outputLabel value="#{msgs.Login}:* " />
+								<p:inputText id="iptLogin" size="22"
+									value="#{cc.attrs.usuario.login}" required="true"
+									requiredMessage="#{msgs.MensagemLoginRequerido}" />
+								<p:outputLabel value="#{msgs.Senha}" />
+								<p:commandButton id="btnGerarSenhaProvisoria"
+									value="#{msgs.BotaoGerarSenha}"
+									actionListener="#{cc.attrs.actionListenerGerarSenha}" />
+							</p:panelGrid>
+						</h:panelGroup>
+
+						<h:panelGroup id="pngUsuarioExibir" layout="block"
+							rendered="#{cc.attrs.exibirRendered}">
+							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+								<p:outputLabel value="#{msgs.Login}: " />
+								<p:outputLabel value="#{cc.attrs.usuario.login}" />
+							</p:panelGrid>
+						</h:panelGroup>
 					</h:panelGroup>
 				</h:panelGroup>
 			</p:tab>
