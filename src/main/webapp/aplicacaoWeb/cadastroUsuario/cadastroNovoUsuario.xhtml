@@ -85,29 +85,8 @@
 		</p:tab>
 
 		<p:tab title="#{msgs.Empresas}">
-			<p:panel header="#{msgs.Empresas}" closable="false">
-				<p:panelGrid columns="1" styleClass="tabelaSemBorda">
-					<h:outputText
-						value="#{msgs.textoSelecionarMultiplasEmpresasUsuario}" />
-					<h:panelGroup style="width:100%">
-						<p:pickList id="pclEmpresasUsuario" immediate="true"
-							style="margin:0 auto"
-							value="#{cadastroUsuarioMB.empresasUsuario}" var="empresa"
-							itemLabel="#{empresa.nome}" itemValue="#{empresa}"
-							converter="empresaConverter" showSourceFilter="true"
-							showTargetFilter="true" filterMatchMode="contains">
-							<f:facet name="sourceCaption">
-								<h:outputText value="#{msgs.EmpresaDisponivel}"
-									converter="stringConverter" />
-							</f:facet>
-							<f:facet name="targetCaption">
-								<h:outputText value="#{msgs.EmpresaAtribuida}"
-									converter="stringConverter" />
-							</f:facet>
-						</p:pickList>
-					</h:panelGroup>
-				</p:panelGrid>
-			</p:panel>
+			<dmat:usuariosEmpresasComposite id="uecUsuarioNovo"
+				empresasUsuario="#{cadastroUsuarioMB.empresasUsuario}" />
 		</p:tab>
 
 		<p:tab title="#{msgs.Salvar}">
