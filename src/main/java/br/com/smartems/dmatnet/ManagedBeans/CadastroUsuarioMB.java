@@ -84,6 +84,7 @@ public class CadastroUsuarioMB implements Serializable {
 	private Set<EmpresaEntity> empresasGerenciadasUsuarioSelecionado;
 
 	private DualListModel<EmpresaEntity> empresasUsuario;
+	private DualListModel<EmpresaEntity> empresasUsuarioSelecionado;
 	private List<EmpresaEntity> empresasDisponiveisUsuario;
 	private List<EmpresaEntity> empresasDisponiveisUsuarioSelecionado;
 	private List<EmpresaEntity> empresasAtribuidasUsuario;
@@ -493,6 +494,17 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void setEmpresasUsuario(DualListModel<EmpresaEntity> empresasUsuario) {
 		this.empresasUsuario = empresasUsuario;
+	}
+
+	public DualListModel<EmpresaEntity> getEmpresasUsuarioSelecionado() {
+		if (this.empresasUsuarioSelecionado == null) {
+			this.empresasUsuarioSelecionado = new DualListModel<EmpresaEntity>();
+		}
+		return empresasUsuarioSelecionado;
+	}
+
+	public void setEmpresasUsuarioSelecionado(DualListModel<EmpresaEntity> empresasUsuarioSelecionado) {
+		this.empresasUsuarioSelecionado = empresasUsuarioSelecionado;
 	}
 
 	public List<EmpresaEntity> getEmpresasDisponiveisUsuario() {
@@ -993,11 +1005,9 @@ public class CadastroUsuarioMB implements Serializable {
 			/*
 			 * try {
 			 * 
-			 * this.empresasAtribuidasUsuario =
-			 * this.empresasUsuario.getTarget();
+			 * this.empresasAtribuidasUsuario = this.empresasUsuario.getTarget();
 			 * 
-			 * List<EnderecoEntity> enderecosUsuarios =
-			 * this.enderecosUsuarioHistorico;
+			 * List<EnderecoEntity> enderecosUsuarios = this.enderecosUsuarioHistorico;
 			 * enderecosUsuarios.add(this.enderecoUsuarioAtual);
 			 * 
 			 * 
@@ -1006,8 +1016,8 @@ public class CadastroUsuarioMB implements Serializable {
 			 * this.usuarioFachada.alterarUsuario(this.usuarioSelecionado,
 			 * this.documentosPessoaisUsuarioSelecionado, enderecosUsuarios, );
 			 * 
-			 * System.out.println("salvar alterações do usuario"); } catch
-			 * (Exception e) { e.printStackTrace(); }
+			 * System.out.println("salvar alterações do usuario"); } catch (Exception e) {
+			 * e.printStackTrace(); }
 			 */
 		}
 	}
@@ -1034,6 +1044,8 @@ public class CadastroUsuarioMB implements Serializable {
 			this.exibirTelefoneUsuario(this.usuarioSelecionado);
 
 			this.exibirUsuario(this.usuarioSelecionado);
+
+			this.exibirEmpresasDualList(this.usuarioSelecionado);
 
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -1133,6 +1145,22 @@ public class CadastroUsuarioMB implements Serializable {
 		} catch (Exception e) {
 			this.isMensagemHasUsuarioRendered = true;
 			this.isCadastroUsuarioSelecionadoUsuarioRendered = false;
+		}
+	}
+
+	private void exibirEmpresasDualList(UsuarioEntity usuarioSelecionado) {
+		try {
+			try {
+				for (EmpresaEntity empresa : usuarioSelecionado.getEmpresasGerenciadas()) {
+					this.empresasAtribuidasUsuarioSelecionado.add(empresa);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			this.empresasUsuarioSelecionado = new DualListModel<EmpresaEntity>(
+					this.cadastroEmpresaMB.getEmpresasDisponiveis(), this.empresasAtribuidasUsuarioSelecionado);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -1487,6 +1515,7 @@ public class CadastroUsuarioMB implements Serializable {
 		this.empresasGerenciadas = null;
 
 		this.empresasUsuario = null;
+		this.empresasUsuarioSelecionado = null;
 		this.empresasDisponiveisUsuario = null;
 		this.empresasAtribuidasUsuario = null;
 
