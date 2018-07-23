@@ -104,6 +104,8 @@ public class CadastroUsuarioMB implements Serializable {
 	private boolean isCadastroUsuarioTelefoneRendered = false;
 	private boolean isCadastroUsuarioUsuarioRendered = false;
 	private boolean isCadastroUsuarioEmpresasRendered = false;
+	private boolean isDisabledUsuarioEmpresas = true;
+	
 
 	// botões dados do usuário de dadosCadastrais
 
@@ -647,6 +649,14 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isCadastroUsuarioEmpresasRendered = isCadastroUsuarioEmpresasRendered;
 	}
 
+	public boolean isDisabledUsuarioEmpresas() {
+		return isDisabledUsuarioEmpresas;
+	}
+
+	public void setDisabledUsuarioEmpresas(boolean isDisabledUsuarioEmpresas) {
+		this.isDisabledUsuarioEmpresas = isDisabledUsuarioEmpresas;
+	}
+
 	public boolean isMensagemSelecionarUsuarioRendered() {
 		return isMensagemSelecionarUsuarioRendered;
 	}
@@ -1005,9 +1015,11 @@ public class CadastroUsuarioMB implements Serializable {
 			/*
 			 * try {
 			 * 
-			 * this.empresasAtribuidasUsuario = this.empresasUsuario.getTarget();
+			 * this.empresasAtribuidasUsuario =
+			 * this.empresasUsuario.getTarget();
 			 * 
-			 * List<EnderecoEntity> enderecosUsuarios = this.enderecosUsuarioHistorico;
+			 * List<EnderecoEntity> enderecosUsuarios =
+			 * this.enderecosUsuarioHistorico;
 			 * enderecosUsuarios.add(this.enderecoUsuarioAtual);
 			 * 
 			 * 
@@ -1016,8 +1028,8 @@ public class CadastroUsuarioMB implements Serializable {
 			 * this.usuarioFachada.alterarUsuario(this.usuarioSelecionado,
 			 * this.documentosPessoaisUsuarioSelecionado, enderecosUsuarios, );
 			 * 
-			 * System.out.println("salvar alterações do usuario"); } catch (Exception e) {
-			 * e.printStackTrace(); }
+			 * System.out.println("salvar alterações do usuario"); } catch
+			 * (Exception e) { e.printStackTrace(); }
 			 */
 		}
 	}
@@ -1150,13 +1162,23 @@ public class CadastroUsuarioMB implements Serializable {
 
 	private void exibirEmpresasDualList(UsuarioEntity usuarioSelecionado) {
 		this.empresasAtribuidasUsuarioSelecionado = new ArrayList<EmpresaEntity>();
+		this.empresasDisponiveisUsuarioSelecionado = new ArrayList<EmpresaEntity>();
 		try {
+			
 			for (EmpresaEntity empresa : usuarioSelecionado.getEmpresasGerenciadas()) {
 				this.empresasAtribuidasUsuarioSelecionado.add(empresa);
 			}
+			
+			for (EmpresaEntity empresa : this.cadastroEmpresaMB.getEmpresasDisponiveis()) {
+				this.empresasDisponiveisUsuarioSelecionado.add(empresa);
+			}
+			
+			for (EmpresaEntity empresa : this.empresasAtribuidasUsuarioSelecionado) {
+				this.empresasDisponiveisUsuarioSelecionado.remove(empresa);
+			}
 
 			this.empresasUsuarioSelecionado = new DualListModel<EmpresaEntity>(
-					this.cadastroEmpresaMB.getEmpresasDisponiveis(), this.empresasAtribuidasUsuarioSelecionado);
+					this.empresasDisponiveisUsuarioSelecionado, this.empresasAtribuidasUsuarioSelecionado);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1444,6 +1466,8 @@ public class CadastroUsuarioMB implements Serializable {
 		this.cadastroEmpresaMB.setTabContatoDesativado(false);
 		this.cadastroEmpresaMB.setTabEmpregadosDesativado(true);
 		this.cadastroEmpresaMB.setTabEstabelecimentosDesativado(true);
+		
+		isDisabledUsuarioEmpresas = false;
 	}
 
 	public void cancelarUsuario(ActionEvent evt) {
@@ -1463,6 +1487,8 @@ public class CadastroUsuarioMB implements Serializable {
 		this.cadastroEmpresaMB.setTabContatoDesativado(false);
 		this.cadastroEmpresaMB.setTabEmpregadosDesativado(false);
 		this.cadastroEmpresaMB.setTabEstabelecimentosDesativado(false);
+		
+		isDisabledUsuarioEmpresas = true;
 	}
 
 	public void excluirUsuario(ActionEvent evt) {
@@ -1516,6 +1542,9 @@ public class CadastroUsuarioMB implements Serializable {
 		this.empresasUsuarioSelecionado = null;
 		this.empresasDisponiveisUsuario = null;
 		this.empresasAtribuidasUsuario = null;
+		this.empresasDisponiveisUsuarioSelecionado = null;
+		this.empresasAtribuidasUsuarioSelecionado = null;
+		this.isDisabledUsuarioEmpresas = true;
 
 		this.isDisabledSelecaoTabelaUsuarios = false;
 		this.isDialogNovoUsuarioRendered = false;
