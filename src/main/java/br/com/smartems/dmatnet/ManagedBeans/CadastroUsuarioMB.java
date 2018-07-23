@@ -1149,14 +1149,12 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	private void exibirEmpresasDualList(UsuarioEntity usuarioSelecionado) {
+		this.empresasAtribuidasUsuarioSelecionado = new ArrayList<EmpresaEntity>();
 		try {
-			try {
-				for (EmpresaEntity empresa : usuarioSelecionado.getEmpresasGerenciadas()) {
-					this.empresasAtribuidasUsuarioSelecionado.add(empresa);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
+			for (EmpresaEntity empresa : usuarioSelecionado.getEmpresasGerenciadas()) {
+				this.empresasAtribuidasUsuarioSelecionado.add(empresa);
 			}
+
 			this.empresasUsuarioSelecionado = new DualListModel<EmpresaEntity>(
 					this.cadastroEmpresaMB.getEmpresasDisponiveis(), this.empresasAtribuidasUsuarioSelecionado);
 		} catch (Exception e) {

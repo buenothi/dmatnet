@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -38,7 +39,7 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 	@JoinColumn(name="usuarioGrupo_ID")
 	private UsuarioGrupoEntity grupo;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="tbl_usuarioEmpresas_joinTable",
 		joinColumns=@JoinColumn(name="usuario_ID"),
 		inverseJoinColumns=@JoinColumn(name="empresa_ID"))
