@@ -105,7 +105,6 @@ public class CadastroUsuarioMB implements Serializable {
 	private boolean isCadastroUsuarioUsuarioRendered = false;
 	private boolean isCadastroUsuarioEmpresasRendered = false;
 	private boolean isDisabledUsuarioEmpresas = true;
-	
 
 	// botões dados do usuário de dadosCadastrais
 
@@ -1006,31 +1005,39 @@ public class CadastroUsuarioMB implements Serializable {
 					this.emailsUsuario, this.telefonesUsuario, this.empresasAtribuidasUsuario);
 			FacesMessage msg = new FacesMessage("Sucesso",
 					stringUtils.formatarTextoParaLeitura(this.usuarioNovo.getNome().toString())
+							+ " Cadastrado com Sucesso");
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+			this.cadastroEmpresaMB.onSelectionEmpresa(this.cadastroEmpresaMB.getEmpresaSelecionada());
+			this.initUsuario();
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+		}
+	}
+
+	public void salvarAlteracoesUsuario(ActionEvent evt) {
+		try {
+			List<EnderecoEntity> enderecos = new ArrayList<EnderecoEntity>();
+			try {
+				enderecos.addAll(this.enderecosUsuarioHistorico);
+			} catch (NullPointerException e) {
+				e.printStackTrace();
+			}
+			try {
+				enderecos.add(this.enderecoUsuarioAtual);
+			} catch (NullPointerException e) {
+				e.printStackTrace();
+			}
+			UsuarioEntity usuarioAlterado = this.usuarioFachada.alterarUsuario(this.usuarioSelecionado,
+					this.documentosPessoaisUsuarioSelecionado, enderecos, this.emailsUsuarioSelecionado,
+					this.telefonesUsuarioSelecionado, this.empresasUsuarioSelecionado.getTarget());
+			FacesMessage msg = new FacesMessage("Sucesso",
+					stringUtils.formatarTextoParaLeitura(usuarioAlterado.getNome().toString())
 							+ " Atualizado com Sucesso");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
 			this.cadastroEmpresaMB.onSelectionEmpresa(this.cadastroEmpresaMB.getEmpresaSelecionada());
 			this.initUsuario();
 		} catch (NullPointerException npe) {
-			// inserir funcionalidades referentes a alteração de usuário
-			/*
-			 * try {
-			 * 
-			 * this.empresasAtribuidasUsuario =
-			 * this.empresasUsuario.getTarget();
-			 * 
-			 * List<EnderecoEntity> enderecosUsuarios =
-			 * this.enderecosUsuarioHistorico;
-			 * enderecosUsuarios.add(this.enderecoUsuarioAtual);
-			 * 
-			 * 
-			 * 
-			 * this.usuarioSelecionado =
-			 * this.usuarioFachada.alterarUsuario(this.usuarioSelecionado,
-			 * this.documentosPessoaisUsuarioSelecionado, enderecosUsuarios, );
-			 * 
-			 * System.out.println("salvar alterações do usuario"); } catch
-			 * (Exception e) { e.printStackTrace(); }
-			 */
+			npe.printStackTrace();
 		}
 	}
 
@@ -1164,15 +1171,15 @@ public class CadastroUsuarioMB implements Serializable {
 		this.empresasAtribuidasUsuarioSelecionado = new ArrayList<EmpresaEntity>();
 		this.empresasDisponiveisUsuarioSelecionado = new ArrayList<EmpresaEntity>();
 		try {
-			
+
 			for (EmpresaEntity empresa : usuarioSelecionado.getEmpresasGerenciadas()) {
 				this.empresasAtribuidasUsuarioSelecionado.add(empresa);
 			}
-			
+
 			for (EmpresaEntity empresa : this.cadastroEmpresaMB.getEmpresasDisponiveis()) {
 				this.empresasDisponiveisUsuarioSelecionado.add(empresa);
 			}
-			
+
 			for (EmpresaEntity empresa : this.empresasAtribuidasUsuarioSelecionado) {
 				this.empresasDisponiveisUsuarioSelecionado.remove(empresa);
 			}
@@ -1466,7 +1473,7 @@ public class CadastroUsuarioMB implements Serializable {
 		this.cadastroEmpresaMB.setTabContatoDesativado(false);
 		this.cadastroEmpresaMB.setTabEmpregadosDesativado(true);
 		this.cadastroEmpresaMB.setTabEstabelecimentosDesativado(true);
-		
+
 		isDisabledUsuarioEmpresas = false;
 	}
 
@@ -1487,7 +1494,7 @@ public class CadastroUsuarioMB implements Serializable {
 		this.cadastroEmpresaMB.setTabContatoDesativado(false);
 		this.cadastroEmpresaMB.setTabEmpregadosDesativado(false);
 		this.cadastroEmpresaMB.setTabEstabelecimentosDesativado(false);
-		
+
 		isDisabledUsuarioEmpresas = true;
 	}
 

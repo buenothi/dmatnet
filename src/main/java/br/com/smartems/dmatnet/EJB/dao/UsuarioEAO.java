@@ -101,7 +101,7 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 		this.atribuirTelefonesPessoaFisica(telefones, usuarioAtual);
 		this.atribuirEnderecosPessoaFisica(enderecos, usuarioAtual);
 		this.atribuirEmpresasAtribuidasPessoaFisica(empresasAtribuidas, usuarioAtual);
-		return this.update(usuario);
+		return this.update(usuarioAtual);
 	}
 
 	private void atribuirDocumentosPessoaFisica(PessoaFisicaDocumentosEntity documento, UsuarioEntity usuarioAtual) {
@@ -156,17 +156,13 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 
 	private void atribuirEmpresasAtribuidasPessoaFisica(List<EmpresaEntity> empresasAtribuidas,
 			UsuarioEntity usuarioAtual) {
-		if (empresasAtribuidas != null) {
-			Set<EmpresaEntity> novoEmpresasAtribuidas = new TreeSet<EmpresaEntity>();
-			try {
-				for (EmpresaEntity empresa : empresasAtribuidas) {
-					novoEmpresasAtribuidas.add(empresa);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			usuarioAtual.setEmpresasGerenciadas(novoEmpresasAtribuidas);
+		Set<EmpresaEntity> novoEmpresasAtribuidas = new TreeSet<EmpresaEntity>();
+		try {
+			novoEmpresasAtribuidas.addAll(empresasAtribuidas);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		usuarioAtual.setEmpresasGerenciadas(novoEmpresasAtribuidas);
 	}
 
 	public EnderecoEntity selecionarEnderecoUsuarioAtual(UsuarioEntity usuario) throws Exception {
