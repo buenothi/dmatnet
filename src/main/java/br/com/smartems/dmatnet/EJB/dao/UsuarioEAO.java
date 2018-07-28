@@ -120,7 +120,7 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 		if (emails != null) {
 			Set<EmailEntity> novoEmailsPessoaFisica = new TreeSet<EmailEntity>();
 			try {
-				novoEmailsPessoaFisica = emails;
+				novoEmailsPessoaFisica.addAll(emails);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -132,7 +132,7 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 		if (telefones != null) {
 			Set<TelefoneEntity> novoTelefones = new TreeSet<TelefoneEntity>();
 			try {
-				novoTelefones = telefones;
+				novoTelefones.addAll(telefones);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -144,9 +144,7 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 		if (enderecos != null) {
 			Set<EnderecoEntity> novoEnderecos = new TreeSet<EnderecoEntity>();
 			try {
-				for (EnderecoEntity endereco : enderecos) {
-					novoEnderecos.add(endereco);
-				}
+				novoEnderecos.addAll(enderecos);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
