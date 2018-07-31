@@ -105,62 +105,55 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 	}
 
 	private void atribuirDocumentosPessoaFisica(PessoaFisicaDocumentosEntity documento, UsuarioEntity usuarioAtual) {
-		if (documento != null) {
+		try {
 			PessoaFisicaDocumentosEntity novoDocumentos = new PessoaFisicaDocumentosEntity();
-			try {
-				novoDocumentos = documento.clone();
-			} catch (CloneNotSupportedException e) {
-				e.printStackTrace();
-			}
+			novoDocumentos = documento.clone();
 			usuarioAtual.setDocumentosPessoais(novoDocumentos);
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
 		}
 	}
 
 	private void atribuirEmailsPessoaFisica(Set<EmailEntity> emails, UsuarioEntity usuarioAtual) {
-		if (emails != null) {
-			Set<EmailEntity> novoEmailsPessoaFisica = new TreeSet<EmailEntity>();
-			try {
-				novoEmailsPessoaFisica.addAll(emails);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		try {
+			Set<EmailEntity> novoEmailsPessoaFisica = new TreeSet<>(emails);
+			novoEmailsPessoaFisica = emails;
 			usuarioAtual.setEmails(novoEmailsPessoaFisica);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
 	}
 
 	private void atribuirTelefonesPessoaFisica(Set<TelefoneEntity> telefones, UsuarioEntity usuarioAtual) {
-		if (telefones != null) {
-			Set<TelefoneEntity> novoTelefones = new TreeSet<TelefoneEntity>();
-			try {
-				novoTelefones.addAll(telefones);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		try {
+			Set<TelefoneEntity> novoTelefones = new TreeSet<>(telefones);
+			novoTelefones = telefones;
 			usuarioAtual.setTelefones(novoTelefones);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
 	private void atribuirEnderecosPessoaFisica(List<EnderecoEntity> enderecos, UsuarioEntity usuarioAtual) {
-		if (enderecos != null) {
-			Set<EnderecoEntity> novoEnderecos = new TreeSet<EnderecoEntity>();
-			try {
-				novoEnderecos.addAll(enderecos);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		try {
+			Set<EnderecoEntity> novoEnderecos = new TreeSet<>(enderecos);
+			novoEnderecos.addAll(enderecos);
 			usuarioAtual.setEnderecos(novoEnderecos);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
 	private void atribuirEmpresasAtribuidasPessoaFisica(List<EmpresaEntity> empresasAtribuidas,
 			UsuarioEntity usuarioAtual) {
-		Set<EmpresaEntity> novoEmpresasAtribuidas = new TreeSet<EmpresaEntity>();
 		try {
+			Set<EmpresaEntity> novoEmpresasAtribuidas = new TreeSet<>(empresasAtribuidas);
 			novoEmpresasAtribuidas.addAll(empresasAtribuidas);
+			usuarioAtual.setEmpresasGerenciadas(novoEmpresasAtribuidas);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		usuarioAtual.setEmpresasGerenciadas(novoEmpresasAtribuidas);
 	}
 
 	public EnderecoEntity selecionarEnderecoUsuarioAtual(UsuarioEntity usuario) throws Exception {
