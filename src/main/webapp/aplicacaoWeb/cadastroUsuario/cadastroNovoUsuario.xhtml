@@ -14,7 +14,7 @@
 		onback="PF('dlgCriarUsuario').initPosition()">
 
 		<p:tab title="#{msgs.DadosUsuario}">
-			<dmat:usuariosDadosComposite id="udcUsuarioNovo"
+			<dmat:usuariosDadosComposite id="udcUsuarioNovo" mensagemRendered="true"
 				cadastroUsuarioNome="#{cadastroUsuarioMB.usuarioNovo.nome}"
 				cadastroUsuarioSexo="#{cadastroUsuarioMB.usuarioNovo.genero}"
 				dataCadastro="#{cadastroUsuarioMB.usuarioNovo.dataCadastroPessoa}"
@@ -22,7 +22,7 @@
 		</p:tab>
 
 		<p:tab title="#{msgs.DocumentosPessoaFisica}">
-			<dmat:usuariosDocumentosComposite id="udocUsuarioNovo"
+			<dmat:usuariosDocumentosComposite id="udocUsuarioNovo" mensagemRendered="true"
 				documentosPessoais="#{cadastroUsuarioMB.documentosPessoaisUsuario}"
 				rgRequired="true" rgOrgExpRequired="true" rgDataExpRequired="true"
 				cpfRequired="true" />
@@ -31,7 +31,7 @@
 		<p:tab title="#{msgs.Endereco}">
 			<dmat:usuariosEnderecoComposite id="uedUsuarioNovo"
 				enderecoRendered="true" barraBotoesRendered="false"
-				renderedHistorico="false"
+				renderedHistorico="false" mensagemRendered="true"
 				enderecoAtual="#{cadastroUsuarioMB.enderecoUsuarioAtual}"
 				enderecoHistorico="#{cadastroUsuarioMB.enderecosUsuarioHistorico}"
 				ajaxComponentRender="@this, formModulos:formCadEmpresa:tbwCadastroEmpresa:uedUsuarioNovo:dmatEnderecoContato:acpEndereco:listCidade"
@@ -60,7 +60,7 @@
 		<p:tab title="#{msgs.ContatoUsuario}">
 			<dmat:usuariosContatosComposite id="uccUsuarioNovo"
 				emailPrincipal="#{cadastroUsuarioMB.emailUsuario}"
-				requiredEmail="true" dadosUsuarioEmailRendered="true"
+				requiredEmail="true" dadosUsuarioEmailRendered="true" mensagemRendered="true"
 				actionListenerAdicionarEmailContato="#{cadastroUsuarioMB.adicionarEmailContato}"
 				updateAdicionarEmailContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
 				updateCancelarAdicionarEmailContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:wzdUsuario"
@@ -81,12 +81,12 @@
 
 		<p:tab title="#{msgs.Login}">
 			<dmat:usuariosUsuarioComposite id="uucUsuarioNovo"
-				usuario="#{cadastroUsuarioMB.usuarioNovo}" />
+				usuario="#{cadastroUsuarioMB.usuarioNovo}" mensagemRendered="true" />
 		</p:tab>
 
 		<p:tab title="#{msgs.Empresas}">
 			<dmat:usuariosEmpresasComposite id="uecUsuarioNovo"
-				empresasUsuario="#{cadastroUsuarioMB.empresasUsuario}" />
+				empresasUsuario="#{cadastroUsuarioMB.empresasUsuario}" mensagemRendered="true"/>
 		</p:tab>
 
 		<p:tab title="#{msgs.Salvar}">

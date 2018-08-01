@@ -12,12 +12,15 @@
 		type="org.primefaces.model.DualListModel"
 		shortDescription="Insert only Empresas DualistModel" />
 	<composite:attribute name="disabled" default="false" />
+	<composite:attribute name="mensagemRendered"
+		default="false" />
 </composite:interface>
 
 <composite:implementation>
 
 	<p:panel header="#{msgs.Empresas}" closable="false">
-		<p:messages id="msLogin" showDetail="true" closable="true" />
+		<p:messages id="msEmail" showDetail="true" closable="true"
+			rendered="#{cc.attrs.mensagemRendered}" />
 		<h:panelGroup id="pngEmpresas" layout="block">
 			<p:panelGrid columns="1" styleClass="tabelaSemBorda">
 				<h:outputText
@@ -27,7 +30,8 @@
 						style="margin:0 auto" value="#{cc.attrs.empresasUsuario}"
 						var="empresa" itemLabel="#{empresa.nome}" itemValue="#{empresa}"
 						converter="empresaConverter" showSourceFilter="true"
-						showTargetFilter="true" filterMatchMode="contains" disabled="#{cc.attrs.disabled}">
+						showTargetFilter="true" filterMatchMode="contains"
+						disabled="#{cc.attrs.disabled}">
 						<f:facet name="sourceCaption">
 							<h:outputText value="#{msgs.EmpresaDisponivel}"
 								converter="stringConverter" />

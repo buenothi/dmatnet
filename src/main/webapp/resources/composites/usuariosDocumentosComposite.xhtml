@@ -22,6 +22,7 @@
 	<composite:attribute name="dadosUsuarioCNHRendered" default="true" />
 	<composite:attribute name="mensagemSelecionarUsuarioRendered"
 		default="false" />
+	<composite:attribute name="mensagemRendered" default="false" />
 	<composite:attribute name="mensagemHasRGRendered" default="false" />
 	<composite:attribute name="mensagemHasCPFRendered" default="false" />
 	<composite:attribute name="mensagemHasRICRendered" default="false" />
@@ -34,8 +35,8 @@
 
 	<p:panel id="pnlDocumentosUsuario"
 		header="#{msgs.DocumentosPessoaFisica}" closable="false">
-		<p:messages id="msDocumentosUsuarios" showDetail="true"
-			closable="true" />
+		<p:messages id="msEmail" showDetail="true" closable="true"
+			rendered="#{cc.attrs.mensagemRendered}" />
 		<p:tabView id="tabDocumentos">
 			<p:tab title="RG" id="tabRG">
 				<h:panelGroup id="pngUsuarioDocumentosRG" layout="block"

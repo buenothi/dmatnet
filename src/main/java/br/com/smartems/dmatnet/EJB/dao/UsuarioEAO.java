@@ -199,6 +199,9 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 					emailPrincipal = email;
 				}
 			}
+			if (emailPrincipal.getIdEmail() < 1 ) {
+				emailPrincipal = usuarioSelecionado.getEmails().iterator().next();
+			}
 		}
 		return emailPrincipal;
 	}

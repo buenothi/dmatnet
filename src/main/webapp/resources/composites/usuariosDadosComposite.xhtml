@@ -26,6 +26,7 @@
 
 	<composite:attribute name="mensagemSelecionarUsuarioRendered"
 		default="false" />
+	<composite:attribute name="mensagemRendered" default="false" />
 
 	<composite:attribute name="mensagemHasUsuarioRendered" default="false" />
 
@@ -42,8 +43,8 @@
 			rendered="#{cc.attrs.mensagemHasUsuarioRendered}" />
 		<h:panelGroup id="pngDadosUsuario" layout="block"
 			rendered="#{cc.attrs.dadosUsuarioRendered}">
-			<p:messages id="msDadosUsuariosNovo" showDetail="true"
-				closable="true" />
+			<p:messages id="msEmail" showDetail="true" closable="true"
+				rendered="#{cc.attrs.mensagemRendered}" />
 			<h:panelGroup id="pngUsuarioCadastroEditar" layout="block"
 				styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
 				<p:panelGrid id="pgdDadosUsuarioEditar" columns="2"

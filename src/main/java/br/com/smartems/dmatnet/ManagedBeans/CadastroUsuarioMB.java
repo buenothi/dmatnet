@@ -1027,24 +1027,106 @@ public class CadastroUsuarioMB implements Serializable {
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}
+			try {
+				this.emailsUsuarioSelecionado.add(emailPrincipalUsuarioSelecionado);
+			} catch (NullPointerException e) {
+				e.printStackTrace();
+			}
+
 			UsuarioEntity usuarioAlterado = this.usuarioFachada.alterarUsuario(this.usuarioSelecionado,
 					this.documentosPessoaisUsuarioSelecionado, enderecos, this.emailsUsuarioSelecionado,
 					this.telefonesUsuarioSelecionado, this.empresasUsuarioSelecionado.getTarget());
+
 			FacesMessage msg = new FacesMessage("Sucesso",
 					stringUtils.formatarTextoParaLeitura(usuarioAlterado.getNome().toString())
 							+ " Atualizado com Sucesso");
 			FacesContext.getCurrentInstance().addMessage(null, msg);
+
+			this.alterarViewParaExibir();
+
 			this.cadastroEmpresaMB.onSelectionEmpresa(this.cadastroEmpresaMB.getEmpresaSelecionada());
 			this.initUsuario();
+			this.onSelectionUsuario(usuarioAlterado);
+
 		} catch (NullPointerException npe) {
 			npe.printStackTrace();
 		}
+	}
+
+	public void editarUsuario(ActionEvent evt) {
+		this.isCadastroUsuarioSelecionadoEmailRendered = true;
+		this.isCadastroUsuarioSelecionadoTelefoneRendered = true;
+
+		this.isDadosUsuariosEditar = true;
+		this.isDadosUsuariosExibir = false;
+		this.isDisabledSelecaoTabelaUsuarios = true;
+
+		this.exibirCadastroAlterarStatusMensagens();
+
+		this.isBtnUsuarioCancelarDesativado = false;
+		this.isBtnUsuarioEditarDesativado = true;
+		this.isBtnUsuarioSalvarDesativado = false;
+		this.isBtnUsuarioNovoDesativado = true;
+
+		this.cadastroEmpresaMB.setTabDadosCadastraisDesativado(true);
+		this.cadastroEmpresaMB.setTabEnderecoDesativado(true);
+		this.cadastroEmpresaMB.setTabContatoDesativado(false);
+		this.cadastroEmpresaMB.setTabEmpregadosDesativado(true);
+		this.cadastroEmpresaMB.setTabEstabelecimentosDesativado(true);
+
+		isDisabledUsuarioEmpresas = false;
+	}
+
+	public void cancelarUsuario(ActionEvent evt) {
+		this.onSelectionUsuario(null);
+		this.alterarViewParaExibir();
+	}
+
+	private void alterarViewParaExibir() {
+		this.isDadosUsuariosEditar = false;
+		this.isDadosUsuariosExibir = true;
+		this.isDisabledSelecaoTabelaUsuarios = false;
+
+		this.isBtnUsuarioCancelarDesativado = true;
+		this.isBtnUsuarioEditarDesativado = false;
+		this.isBtnUsuarioSalvarDesativado = true;
+		this.isBtnUsuarioNovoDesativado = false;
+
+		this.cadastroEmpresaMB.setTabDadosCadastraisDesativado(false);
+		this.cadastroEmpresaMB.setTabEnderecoDesativado(false);
+		this.cadastroEmpresaMB.setTabContatoDesativado(false);
+		this.cadastroEmpresaMB.setTabEmpregadosDesativado(false);
+		this.cadastroEmpresaMB.setTabEstabelecimentosDesativado(false);
+
+		isDisabledUsuarioEmpresas = true;
+	}
+
+	public void excluirUsuario(ActionEvent evt) {
+
+	}
+
+	public void imprimirUsuario(ActionEvent evt) {
+
+	}
+
+	public void adicionarEmailContatoUsuarioSelecionado(ActionEvent evt) {
+		EmailEntity novoEmail = new EmailEntity();
+		novoEmail = this.emailPrincipalUsuarioSelecionado;
+		this.emailsUsuarioSelecionado.add(novoEmail);
+	}
+
+	public void adicionarTelefoneContatoUsuarioSelecionado(ActionEvent evt) {
+		TelefoneEntity novoTelefone = new TelefoneEntity();
+		novoTelefone = this.telefoneUsuarioSelecionado;
+		this.telefonesUsuarioSelecionado.add(novoTelefone);
 	}
 
 	public void onSelectionUsuario(Object usuario) {
 
 		if (usuario instanceof SelectEvent) {
 			this.usuarioSelecionado = (UsuarioEntity) ((SelectEvent) usuario).getObject();
+		} else if (usuario instanceof UsuarioEntity) {
+			this.usuarioSelecionado = (UsuarioEntity) usuario;
 		}
 
 		try {
@@ -1453,71 +1535,6 @@ public class CadastroUsuarioMB implements Serializable {
 	// ---------------------------------------------------------------
 	// action dos botões dentro de dadosUsuario
 
-	public void editarUsuario(ActionEvent evt) {
-		this.isCadastroUsuarioSelecionadoEmailRendered = true;
-		this.isCadastroUsuarioSelecionadoTelefoneRendered = true;
-
-		this.isDadosUsuariosEditar = true;
-		this.isDadosUsuariosExibir = false;
-		this.isDisabledSelecaoTabelaUsuarios = true;
-
-		this.exibirCadastroAlterarStatusMensagens();
-
-		this.isBtnUsuarioCancelarDesativado = false;
-		this.isBtnUsuarioEditarDesativado = true;
-		this.isBtnUsuarioSalvarDesativado = false;
-		this.isBtnUsuarioNovoDesativado = true;
-
-		this.cadastroEmpresaMB.setTabDadosCadastraisDesativado(true);
-		this.cadastroEmpresaMB.setTabEnderecoDesativado(true);
-		this.cadastroEmpresaMB.setTabContatoDesativado(false);
-		this.cadastroEmpresaMB.setTabEmpregadosDesativado(true);
-		this.cadastroEmpresaMB.setTabEstabelecimentosDesativado(true);
-
-		isDisabledUsuarioEmpresas = false;
-	}
-
-	public void cancelarUsuario(ActionEvent evt) {
-		this.isDadosUsuariosEditar = false;
-		this.isDadosUsuariosExibir = true;
-		this.isDisabledSelecaoTabelaUsuarios = false;
-
-		this.onSelectionUsuario(null);
-
-		this.isBtnUsuarioCancelarDesativado = true;
-		this.isBtnUsuarioEditarDesativado = false;
-		this.isBtnUsuarioSalvarDesativado = true;
-		this.isBtnUsuarioNovoDesativado = false;
-
-		this.cadastroEmpresaMB.setTabDadosCadastraisDesativado(false);
-		this.cadastroEmpresaMB.setTabEnderecoDesativado(false);
-		this.cadastroEmpresaMB.setTabContatoDesativado(false);
-		this.cadastroEmpresaMB.setTabEmpregadosDesativado(false);
-		this.cadastroEmpresaMB.setTabEstabelecimentosDesativado(false);
-
-		isDisabledUsuarioEmpresas = true;
-	}
-
-	public void excluirUsuario(ActionEvent evt) {
-
-	}
-
-	public void imprimirUsuario(ActionEvent evt) {
-
-	}
-
-	public void adicionarEmailContatoUsuarioSelecionado(ActionEvent evt) {
-		EmailEntity novoEmail = new EmailEntity();
-		novoEmail = this.emailPrincipalUsuarioSelecionado;
-		this.emailsUsuarioSelecionado.add(novoEmail);
-	}
-
-	public void adicionarTelefoneContatoUsuarioSelecionado(ActionEvent evt) {
-		TelefoneEntity novoTelefone = new TelefoneEntity();
-		novoTelefone = this.telefoneUsuarioSelecionado;
-		this.telefonesUsuarioSelecionado.add(novoTelefone);
-	}
-
 	@PostConstruct
 	public void initUsuario() {
 
@@ -1526,7 +1543,6 @@ public class CadastroUsuarioMB implements Serializable {
 		this.usuarioAtual = null;
 		this.usuarioNovo = null;
 		this.usuarioExcluir = null;
-		this.usuarioSelecionado = null;
 
 		this.documentosPessoaisUsuario = null;
 

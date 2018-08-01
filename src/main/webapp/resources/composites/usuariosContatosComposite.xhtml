@@ -43,6 +43,8 @@
 
 	<composite:attribute name="mensagemSelecionarUsuarioRendered"
 		default="false" />
+	<composite:attribute name="mensagemRendered"
+		default="false" />
 
 	<composite:attribute name="mensagemHasEmailRendered" default="false" />
 	<composite:attribute name="mensagemHasTelefoneRendered" default="false" />
@@ -55,7 +57,7 @@
 
 	<p:panel id="pnlContatosUsuario" header="#{msgs.ContatoUsuario}"
 		closable="false" style="max-width:660px">
-		<p:messages id="msEmail" showDetail="true" closable="true" />
+		<p:messages id="msEmail" showDetail="true" closable="true" rendered="#{cc.attrs.mensagemRendered}"/>
 
 		<p:tabView id="tbwContatosUsuario">
 			<p:tab id="tabEmail" title="#{msgs.Email}">
@@ -310,7 +312,9 @@
 								<p:column headerText="#{msgs.Telefone}">
 									<p:cellEditor>
 										<f:facet name="output">
-											<p:outputLabel value="#{telefone.numeroTelefone}" />
+											<p:outputLabel value="#{telefone.numeroTelefone}" >
+												<f:convertNumber pattern="+ 99 (99) 9999-9999"/>
+											</p:outputLabel>
 										</f:facet>
 										<f:facet name="input">
 											<p:inputMask mask="+ 99 (99) 9999-9999"

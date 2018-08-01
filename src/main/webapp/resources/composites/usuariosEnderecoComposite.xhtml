@@ -39,20 +39,21 @@
 
 	<composite:attribute name="mensagemSelecionarUsuarioRendered"
 		default="false" />
-		
-	<composite:attribute name="mensagemHasEnderecoRendered"
-		default="false" />
+	<composite:attribute name="mensagemRendered" default="false" />
+
+	<composite:attribute name="mensagemHasEnderecoRendered" default="false" />
 </composite:interface>
 
 <composite:implementation>
 
 	<p:panel id="pnlEnderecoUsuario" header="#{msgs.Endereco}"
 		closable="false" style="width:660px">
-		<p:messages id="msEnderecoUsuario" showDetail="true" closable="true" />
+		<p:messages id="msEmail" showDetail="true" closable="true"
+			rendered="#{cc.attrs.mensagemRendered}" />
 
 		<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
 			rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
-			
+
 		<p:outputLabel value="#{msgs.MensagemHasEndereco}"
 			rendered="#{cc.attrs.mensagemHasEnderecoRendered}" />
 
