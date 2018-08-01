@@ -1075,6 +1075,10 @@ public class CadastroUsuarioMB implements Serializable {
 		this.cadastroEmpresaMB.setTabEstabelecimentosDesativado(true);
 
 		isDisabledUsuarioEmpresas = false;
+		
+		this.emailsUsuarioSelecionado.add(this.emailPrincipalUsuarioSelecionado);
+		this.emailPrincipalUsuarioSelecionado = new EmailEntity();
+		
 	}
 
 	public void cancelarUsuario(ActionEvent evt) {
