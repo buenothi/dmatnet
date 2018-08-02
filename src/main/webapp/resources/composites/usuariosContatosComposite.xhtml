@@ -16,6 +16,8 @@
 	<composite:attribute name="updateCancelarAdicionarEmailContato" />
 
 	<composite:attribute name="listaEmailsUsuarios" />
+	
+	<composite:attribute name="stringEmailUsuario" />
 
 	<composite:attribute name="telefonePrincipal"
 		type="br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity" />
@@ -188,7 +190,7 @@
 									converter="emailTipoConverter" />
 
 								<p:outputLabel value="#{msgs.EmailPrincipal}" />
-								<p:outputLabel value="#{cc.attrs.emailPrincipal.emailPrincipal}" />
+								<p:outputLabel value="#{cc.attrs.stringEmailUsuario}" />
 							</p:panelGrid>
 
 							<p:spacer width="100%" height="2px" />

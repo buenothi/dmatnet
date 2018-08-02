@@ -77,6 +77,7 @@ public class CadastroUsuarioMB implements Serializable {
 	private EmailEntity emailUsuarioExcluir;
 	private Set<EmailEntity> emailsUsuario;
 	private Set<EmailEntity> emailsUsuarioSelecionado;
+	private String stringEmailUsuarioPrincipal;
 
 	private Set<EmpresaGrupoEntity> gruposGerenciados;
 	private Set<EmpresaGrupoEntity> gruposGerenciadosUsuarioSelecionado;
@@ -429,6 +430,14 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void setEmailsUsuarioSelecionado(Set<EmailEntity> emailsUsuarioSelecionado) {
 		this.emailsUsuarioSelecionado = emailsUsuarioSelecionado;
+	}
+	
+	public String getStringEmailUsuarioPrincipal() {
+		return stringEmailUsuarioPrincipal;
+	}
+
+	public void setStringEmailUsuarioPrincipal(String stringEmailUsuarioPrincipal) {
+		this.stringEmailUsuarioPrincipal = stringEmailUsuarioPrincipal;
 	}
 
 	public EmailEntity getEmailPrincipalUsuarioSelecionado() {
@@ -1194,6 +1203,13 @@ public class CadastroUsuarioMB implements Serializable {
 			this.emailPrincipalUsuarioSelecionado = usuarioFachada.selecionarEmailUsuarioPrincipal(usuarioSelecionado);
 			this.emailsUsuarioSelecionado = usuarioFachada.selecionarEmailsSecundarios(emailPrincipalUsuarioSelecionado,
 					usuarioSelecionado);
+			
+			if(this.emailPrincipalUsuarioSelecionado.isEmailPrincipal()){
+				this.stringEmailUsuarioPrincipal = "Sim";
+			} else {
+				this.stringEmailUsuarioPrincipal = "Não";				
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1561,6 +1577,7 @@ public class CadastroUsuarioMB implements Serializable {
 		this.emailUsuario = null;
 		this.emailUsuarioExcluir = null;
 		this.emailsUsuario = null;
+		this.stringEmailUsuarioPrincipal = null;
 
 		this.gruposGerenciados = null;
 		this.empresasGerenciadas = null;
