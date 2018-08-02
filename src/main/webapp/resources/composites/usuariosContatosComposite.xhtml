@@ -16,7 +16,7 @@
 	<composite:attribute name="updateCancelarAdicionarEmailContato" />
 
 	<composite:attribute name="listaEmailsUsuarios" />
-	
+
 	<composite:attribute name="stringEmailUsuario" />
 
 	<composite:attribute name="telefonePrincipal"
@@ -45,21 +45,20 @@
 
 	<composite:attribute name="mensagemSelecionarUsuarioRendered"
 		default="false" />
-	<composite:attribute name="mensagemRendered"
-		default="false" />
+	<composite:attribute name="mensagemRendered" default="false" />
 
 	<composite:attribute name="mensagemHasEmailRendered" default="false" />
 	<composite:attribute name="mensagemHasTelefoneRendered" default="false" />
 	<composite:attribute name="dadosUsuarioEmailRendered" default="true" />
-	<composite:attribute name="dadosUsuarioTelefoneRendered"
-		default="true" />
+	<composite:attribute name="dadosUsuarioTelefoneRendered" default="true" />
 </composite:interface>
 
 <composite:implementation>
 
 	<p:panel id="pnlContatosUsuario" header="#{msgs.ContatoUsuario}"
 		closable="false" style="max-width:660px">
-		<p:messages id="msEmail" showDetail="true" closable="true" rendered="#{cc.attrs.mensagemRendered}"/>
+		<p:messages id="msEmail" showDetail="true" closable="true"
+			rendered="#{cc.attrs.mensagemRendered}" />
 
 		<p:tabView id="tbwContatosUsuario">
 			<p:tab id="tabEmail" title="#{msgs.Email}">
@@ -117,7 +116,7 @@
 								paginatorAlwaysVisible="false" var="email" editable="true"
 								rowKey="#{email.idEmail}">
 
-								<p:column headerText="#{msgs.Email}" width="180">
+								<p:column headerText="#{msgs.Email}" width="310">
 									<p:cellEditor>
 										<f:facet name="output">
 											<p:outputLabel value="#{email.nomeEmail}" />
@@ -143,10 +142,11 @@
 										</f:facet>
 									</p:cellEditor>
 								</p:column>
-								<p:column headerText="#{msgs.EmailPrincipalTab}">
+								<p:column headerText="#{msgs.EmailPrincipalTab}" width="80">
 									<p:cellEditor>
 										<f:facet name="output">
-											<p:outputLabel value="#{email.emailPrincipal}" />
+											<p:outputLabel value="#{email.emailPrincipal}"
+												converter="stringTrueFalseConverter" />
 										</f:facet>
 										<f:facet name="input">
 											<p:selectBooleanButton value="#{email.emailPrincipal}"
@@ -190,7 +190,8 @@
 									converter="emailTipoConverter" />
 
 								<p:outputLabel value="#{msgs.EmailPrincipal}" />
-								<p:outputLabel value="#{cc.attrs.stringEmailUsuario}" />
+								<p:outputLabel value="#{cc.attrs.emailPrincipal.emailPrincipal}"
+									converter="stringTrueFalseConverter" />
 							</p:panelGrid>
 
 							<p:spacer width="100%" height="2px" />
@@ -200,10 +201,11 @@
 								paginatorAlwaysVisible="false" var="email" editable="true"
 								rowKey="#{email.idEmail}">
 
-								<p:column headerText="#{msgs.Email}" width="180">
+								<p:column headerText="#{msgs.Email}" width="310">
 									<p:cellEditor>
 										<f:facet name="output">
-											<p:outputLabel value="#{email.nomeEmail}" />
+											<p:outputLabel value="#{email.nomeEmail}"
+												converter="stringMinusConverter" />
 										</f:facet>
 										<f:facet name="input">
 											<p:inputText value="#{email.nomeEmail}" />
@@ -213,7 +215,8 @@
 								<p:column headerText="#{msgs.EmailTipo}">
 									<p:cellEditor>
 										<f:facet name="output">
-											<p:outputLabel value="#{email.tipoEmail.tipo}" />
+											<p:outputLabel value="#{email.tipoEmail.tipo}"
+												converter="stringMinusConverter" />
 										</f:facet>
 										<f:facet name="input">
 											<p:selectOneMenu style="width:100%"
@@ -226,10 +229,11 @@
 										</f:facet>
 									</p:cellEditor>
 								</p:column>
-								<p:column headerText="#{msgs.EmailPrincipalTab}">
+								<p:column headerText="#{msgs.EmailPrincipalTab}" width="80">
 									<p:cellEditor>
 										<f:facet name="output">
-											<p:outputLabel value="#{email.emailPrincipal}" />
+											<p:outputLabel value="#{email.emailPrincipal}"
+												converter="stringTrueFalseConverter" />
 										</f:facet>
 										<f:facet name="input">
 											<p:selectBooleanButton value="#{email.emailPrincipal}"
@@ -314,8 +318,8 @@
 								<p:column headerText="#{msgs.Telefone}">
 									<p:cellEditor>
 										<f:facet name="output">
-											<p:outputLabel value="#{telefone.numeroTelefone}" >
-												<f:convertNumber pattern="+ 99 (99) 9999-9999"/>
+											<p:outputLabel value="#{telefone.numeroTelefone}">
+												<f:convertNumber pattern="+ 99 (99) 9999-9999" />
 											</p:outputLabel>
 										</f:facet>
 										<f:facet name="input">
