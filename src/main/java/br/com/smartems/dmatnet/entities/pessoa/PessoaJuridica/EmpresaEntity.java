@@ -1,6 +1,7 @@
 package br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -41,7 +42,7 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 	private Set<LocalTrabalhoEntity> locais;
 
 	@ManyToMany(mappedBy = "empresasGerenciadas", fetch = FetchType.EAGER)
-	private Set<UsuarioEntity> usuarios;
+	private List<UsuarioEntity> usuarios;
 
 	@ManyToOne
 	@JoinColumn(name = "usuarioCriador_ID")
@@ -105,11 +106,11 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 		this.tipoEstabelecimento = tipoEstabelecimento;
 	}
 
-	public Set<UsuarioEntity> getUsuarios() {
+	public List<UsuarioEntity> getUsuarios() {
 		return usuarios;
 	}
 
-	public void setUsuarios(Set<UsuarioEntity> usuarios) {
+	public void setUsuarios(List<UsuarioEntity> usuarios) {
 		this.usuarios = usuarios;
 	}
 

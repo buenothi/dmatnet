@@ -112,7 +112,7 @@ public class CadastroEmpresaMB implements Serializable {
 	private DualListModel<EmpresaEntity> empresas;
 	private List<EmpresaGrupoEntity> grupos;
 
-	private Set<UsuarioEntity> usuariosEmpresaSelecionada;
+	private List<UsuarioEntity> usuariosEmpresaSelecionada;
 
 	// barra das tabs em cadastro de empresa
 
@@ -461,14 +461,14 @@ public class CadastroEmpresaMB implements Serializable {
 		this.grupos = grupos;
 	}
 
-	public Set<UsuarioEntity> getUsuariosEmpresaSelecionada() {
+	public List<UsuarioEntity> getUsuariosEmpresaSelecionada() {
 		if (this.usuariosEmpresaSelecionada == null) {
-			this.usuariosEmpresaSelecionada = new HashSet<UsuarioEntity>();
+			this.usuariosEmpresaSelecionada = new ArrayList<UsuarioEntity>();
 		}
 		return usuariosEmpresaSelecionada;
 	}
 
-	public void setUsuariosEmpresaSelecionada(Set<UsuarioEntity> usuariosEmpresaSelecionada) {
+	public void setUsuariosEmpresaSelecionada(List<UsuarioEntity> usuariosEmpresaSelecionada) {
 		this.usuariosEmpresaSelecionada = usuariosEmpresaSelecionada;
 	}
 

@@ -48,10 +48,10 @@
 					style="font-size:10pt;height:31px" />
 			</h:panelGrid>
 			<p:dataTable scrollable="true" paginator="true" rows="8"
-				paginatorAlwaysVisible="false"
+				paginatorAlwaysVisible="false" 
 				emptyMessage="#{msgs.ListaUsuariosVazia}" var="usuario"
 				value="#{cadastroEmpresaMB.usuariosEmpresaSelecionada}"
-				rowKey="#{usuario.idPessoa}" selectionMode="single"
+				rowKey="#{usuario.idPessoa}" selectionMode="single" sortBy="#{usuario.nome}"
 				disabledSelection="#{cadastroUsuarioMB.disabledSelecaoTabelaUsuarios}">
 
 				<p:ajax event="rowSelect"
