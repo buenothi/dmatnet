@@ -222,4 +222,10 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 			return null;
 		}
 	}
+	
+	public UsuarioEntity excluirUsuarioDaEmpresa(UsuarioEntity usuarioSelecionado) throws Exception {
+		UsuarioEntity usuarioDeletado = usuarioSelecionado;
+		this.delete(usuarioSelecionado);
+		return usuarioDeletado;
+	}
 }

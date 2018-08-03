@@ -40,5 +40,7 @@ public interface UsuarioFacadeLocal extends AbstractFacade<UsuarioEntity> {
 			throws Exception;
 
 	public Set<TelefoneEntity> obterTelefonesUsuario(UsuarioEntity usuarioSelecionado) throws Exception;
+	
+	public UsuarioEntity excluirUsuarioDaEmpresa(UsuarioEntity usuarioSelecionado) throws Exception;
 
 }

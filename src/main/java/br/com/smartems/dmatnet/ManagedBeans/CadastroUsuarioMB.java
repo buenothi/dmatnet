@@ -138,7 +138,7 @@ public class CadastroUsuarioMB implements Serializable {
 	private boolean isBtnUsuarioCancelarDesativado = true;
 	private boolean isBtnUsuarioSalvarDesativado = true;
 	private boolean isBtnUsuarioNovoDesativado = false;
-	private boolean isBtnUsuarioExcluirDesativado = false;
+	private boolean isBtnUsuarioExcluirDesativado = true;
 	private boolean isBtnUsuarioExcluirRender = true;
 
 	// botões usuarios dentro de contatosUsuario
@@ -1067,6 +1067,7 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isBtnUsuarioEditarDesativado = true;
 		this.isBtnUsuarioSalvarDesativado = false;
 		this.isBtnUsuarioNovoDesativado = true;
+		this.isBtnUsuarioExcluirDesativado = true;
 
 		this.cadastroEmpresaMB.setTabDadosCadastraisDesativado(true);
 		this.cadastroEmpresaMB.setTabEnderecoDesativado(true);
@@ -1075,10 +1076,10 @@ public class CadastroUsuarioMB implements Serializable {
 		this.cadastroEmpresaMB.setTabEstabelecimentosDesativado(true);
 
 		isDisabledUsuarioEmpresas = false;
-		
+
 		this.emailsUsuarioSelecionado.add(this.emailPrincipalUsuarioSelecionado);
 		this.emailPrincipalUsuarioSelecionado = new EmailEntity();
-		
+
 	}
 
 	public void cancelarUsuario(ActionEvent evt) {
@@ -1095,6 +1096,7 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isBtnUsuarioEditarDesativado = false;
 		this.isBtnUsuarioSalvarDesativado = true;
 		this.isBtnUsuarioNovoDesativado = false;
+		this.isBtnUsuarioExcluirDesativado = false;
 
 		this.cadastroEmpresaMB.setTabDadosCadastraisDesativado(false);
 		this.cadastroEmpresaMB.setTabEnderecoDesativado(false);
@@ -1106,7 +1108,17 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public void excluirUsuario(ActionEvent evt) {
+		try {
+			this.usuarioFachada.excluirUsuarioDaEmpresa(usuarioSelecionado);
 
+			FacesMessage msg = new FacesMessage("Sucesso",
+					stringUtils.formatarTextoParaLeitura(usuarioSelecionado.getNome().toString())
+							+ " Excluído com Sucesso");
+			FacesContext.getCurrentInstance().addMessage(null, msg);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		this.initUsuario();
 	}
 
 	public void imprimirUsuario(ActionEvent evt) {
@@ -1194,7 +1206,7 @@ public class CadastroUsuarioMB implements Serializable {
 			this.emailPrincipalUsuarioSelecionado = usuarioFachada.selecionarEmailUsuarioPrincipal(usuarioSelecionado);
 			this.emailsUsuarioSelecionado = usuarioFachada.selecionarEmailsSecundarios(emailPrincipalUsuarioSelecionado,
 					usuarioSelecionado);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1281,6 +1293,7 @@ public class CadastroUsuarioMB implements Serializable {
 	private void ocultarMensagemSelecionarUsuario() {
 		this.isMensagemSelecionarUsuarioRendered = false;
 		this.isBtnUsuarioEditarDesativado = false;
+		this.isBtnUsuarioExcluirDesativado = false;
 	}
 
 	private void exibirCadastroAlterarStatusMensagens() {

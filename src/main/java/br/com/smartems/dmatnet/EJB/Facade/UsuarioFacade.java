@@ -107,4 +107,9 @@ public class UsuarioFacade implements UsuarioFacadeLocal {
 		return usuarioEAO.obterTelefonesUsuario(usuarioSelecionado);
 	}
 
+	@Override
+	public UsuarioEntity excluirUsuarioDaEmpresa(UsuarioEntity usuarioSelecionado) throws Exception {
+		return usuarioEAO.excluirUsuarioDaEmpresa(usuarioSelecionado);
+	}
+	
 }
