@@ -139,7 +139,7 @@
 				<p:tab title="#{msgs.Contatos}">
 					<dmat:usuariosContatosComposite id="uccUsuarioSelecionado"
 						emailPrincipal="#{cadastroUsuarioMB.emailPrincipalUsuarioSelecionado}"
-						requiredEmail="true"
+						requiredEmail="false"
 						mensagemSelecionarUsuarioRendered="#{cadastroUsuarioMB.mensagemSelecionarUsuarioRendered}"
 						mensagemHasEmailRendered="#{cadastroUsuarioMB.mensagemHasEmailRendered}"
 						mensagemHasTelefoneRendered="#{cadastroUsuarioMB.mensagemHasTelefoneRendered}"
@@ -147,6 +147,7 @@
 						exibirRendered="#{cadastroUsuarioMB.dadosUsuariosExibir}"
 						actionListenerAdicionarEmailContato="#{cadastroUsuarioMB.adicionarEmailContatoUsuarioSelecionado}"
 						updateAdicionarEmailContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoEmail"
+						actionListenerNovoEmailContato="#{cadastroUsuarioMB.novoEnderecoUsuario}"
 						updateCancelarAdicionarEmailContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoTelefone"
 						listaEmailsUsuarios="#{cadastroUsuarioMB.emailsUsuarioSelecionado}"
 						telefonePrincipal="#{cadastroUsuarioMB.telefoneUsuarioSelecionado}"
@@ -161,8 +162,7 @@
 						setPropertyActionListenerRemoverEmail="#{cadastroUsuarioMB.emailUsuarioExcluir}"
 						updateRemoverEmailLista="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoEmail"
 						dadosUsuarioEmailRendered="#{cadastroUsuarioMB.cadastroUsuarioSelecionadoEmailRendered}"
-						dadosUsuarioTelefoneRendered="#{cadastroUsuarioMB.cadastroUsuarioSelecionadoTelefoneRendered}" 
-						stringEmailUsuario="#{cadastroUsuarioMB.stringEmailUsuarioPrincipal}"/>
+						dadosUsuarioTelefoneRendered="#{cadastroUsuarioMB.cadastroUsuarioSelecionadoTelefoneRendered}" />
 				</p:tab>
 
 				<p:tab title="#{msgs.Login}">

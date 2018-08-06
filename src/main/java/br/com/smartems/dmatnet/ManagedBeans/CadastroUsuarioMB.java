@@ -1077,9 +1077,6 @@ public class CadastroUsuarioMB implements Serializable {
 
 		isDisabledUsuarioEmpresas = false;
 
-		this.emailsUsuarioSelecionado.add(this.emailPrincipalUsuarioSelecionado);
-		this.emailPrincipalUsuarioSelecionado = new EmailEntity();
-
 	}
 
 	public void cancelarUsuario(ActionEvent evt) {
@@ -1127,7 +1124,11 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void adicionarEmailContatoUsuarioSelecionado(ActionEvent evt) {
 		EmailEntity novoEmail = new EmailEntity();
-		novoEmail = this.emailPrincipalUsuarioSelecionado;
+		this.emailsUsuarioSelecionado.add(novoEmail);
+	}
+	
+	public void novoContatoUsuarioSelecionado(ActionEvent evt) {
+		EmailEntity novoEmail = new EmailEntity();
 		this.emailsUsuarioSelecionado.add(novoEmail);
 	}
 

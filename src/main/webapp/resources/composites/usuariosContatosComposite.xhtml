@@ -15,6 +15,9 @@
 	<composite:attribute name="updateAdicionarEmailContato" />
 	<composite:attribute name="updateCancelarAdicionarEmailContato" />
 
+	<composite:attribute name="actionListenerNovoEmailContato"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+
 	<composite:attribute name="listaEmailsUsuarios" />
 
 	<composite:attribute name="stringEmailUsuario" />
@@ -99,6 +102,9 @@
 								<p:spacer width="100%" height="5px" />
 								<p:toolbar>
 									<f:facet name="left">
+										<p:commandButton value="#{msgs.NovoEmail}"
+											actionListener="#{cc.attrs.actionListenerNovoEmailContato}"
+											update="#{cc.attrs.updateAdicionarEmailContato}" />
 										<p:commandButton value="#{msgs.Adicionar}"
 											actionListener="#{cc.attrs.actionListenerAdicionarEmailContato}"
 											update="#{cc.attrs.updateAdicionarEmailContato}" />
