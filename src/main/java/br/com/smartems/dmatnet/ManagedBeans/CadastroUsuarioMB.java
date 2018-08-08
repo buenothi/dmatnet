@@ -1123,13 +1123,12 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public void adicionarEmailContatoUsuarioSelecionado(ActionEvent evt) {
-		EmailEntity novoEmail = new EmailEntity();
-		this.emailsUsuarioSelecionado.add(novoEmail);
+		this.emailsUsuarioSelecionado.add(emailPrincipalUsuarioSelecionado);
 	}
 	
-	public void novoContatoUsuarioSelecionado(ActionEvent evt) {
-		EmailEntity novoEmail = new EmailEntity();
-		this.emailsUsuarioSelecionado.add(novoEmail);
+	public void novoEmailContatoUsuarioSelecionado(ActionEvent evt) {
+		this.emailsUsuarioSelecionado.add(emailPrincipalUsuarioSelecionado);
+		this.emailPrincipalUsuarioSelecionado = new EmailEntity();
 	}
 
 	public void adicionarTelefoneContatoUsuarioSelecionado(ActionEvent evt) {
