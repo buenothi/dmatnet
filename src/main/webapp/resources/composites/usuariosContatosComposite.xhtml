@@ -55,6 +55,7 @@
 	<composite:attribute name="dadosUsuarioEmailRendered" default="true" />
 	<composite:attribute name="dadosUsuarioTelefoneRendered" default="true" />
 	
+	<composite:attribute name="disabledBotaoNovoEmail" default="true"/>
 	<composite:attribute name="disabledBotaoAdicionarEmail" default="true"/>
 	<composite:attribute name="disabledBotaoCancelarEmail" default="true"/>
 </composite:interface>
@@ -107,7 +108,8 @@
 									<f:facet name="left">
 										<p:commandButton value="#{msgs.NovoEmail}"
 											actionListener="#{cc.attrs.actionListenerNovoEmailContato}"
-											update="#{cc.attrs.updateAdicionarEmailContato}" />
+											update="#{cc.attrs.updateAdicionarEmailContato}" 
+											disabled="#{cc.attrs.disabledBotaoNovoEmail}"/>
 										<p:commandButton value="#{msgs.Adicionar}"
 											actionListener="#{cc.attrs.actionListenerAdicionarEmailContato}"
 											update="#{cc.attrs.updateAdicionarEmailContato}" 

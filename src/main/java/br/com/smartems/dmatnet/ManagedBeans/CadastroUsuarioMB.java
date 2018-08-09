@@ -156,6 +156,10 @@ public class CadastroUsuarioMB implements Serializable {
 	private boolean isMensagemSelecionarUsuarioRendered = true;
 	private boolean isMensagemHasUsuarioRendered = false;
 	private boolean isCadastroUsuarioSelecionadoUsuarioRendered = false;
+	
+	private boolean isBtnNovoEmail = false;
+	private boolean isBtnAdicionarEmail = true;
+	private boolean isBtnCancelarAdicaoEmail = true;
 
 	// botões endereço de usuários dentro de enderecoUsuario
 
@@ -688,6 +692,30 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isCadastroUsuarioSelecionadoUsuarioRendered = isCadastroUsuarioSelecionadoUsuarioRendered;
 	}
 
+	public boolean isBtnNovoEmail() {
+		return isBtnNovoEmail;
+	}
+
+	public void setBtnNovoEmail(boolean isBtnNovoEmail) {
+		this.isBtnNovoEmail = isBtnNovoEmail;
+	}
+
+	public boolean isBtnAdicionarEmail() {
+		return isBtnAdicionarEmail;
+	}
+
+	public void setBtnAdicionarEmail(boolean isBtnAdicionarEmail) {
+		this.isBtnAdicionarEmail = isBtnAdicionarEmail;
+	}
+
+	public boolean isBtnCancelarAdicaoEmail() {
+		return isBtnCancelarAdicaoEmail;
+	}
+
+	public void setBtnCancelarAdicaoEmail(boolean isBtnCancelarAdicaoEmail) {
+		this.isBtnCancelarAdicaoEmail = isBtnCancelarAdicaoEmail;
+	}
+
 	public boolean isDadosUsuariosEditar() {
 		return isDadosUsuariosEditar;
 	}
@@ -1129,6 +1157,9 @@ public class CadastroUsuarioMB implements Serializable {
 	public void novoEmailContatoUsuarioSelecionado(ActionEvent evt) {
 		this.emailsUsuarioSelecionado.add(emailPrincipalUsuarioSelecionado);
 		this.emailPrincipalUsuarioSelecionado = new EmailEntity();
+		this.isBtnNovoEmail = true;
+		this.isBtnAdicionarEmail = false;
+		this.isBtnCancelarAdicaoEmail = false;		
 	}
 
 	public void adicionarTelefoneContatoUsuarioSelecionado(ActionEvent evt) {
@@ -1617,6 +1648,9 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isMensagemHasEmailRendered = false;
 		this.isCadastroUsuarioTelefoneRendered = false;
 		this.isMensagemHasTelefoneRendered = false;
+		this.isBtnNovoEmail = false;
+		this.isBtnAdicionarEmail = true;
+		this.isBtnCancelarAdicaoEmail = true;	
 
 		try {
 			this.empresasAtribuidasUsuario = new ArrayList<EmpresaEntity>();

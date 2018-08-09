@@ -139,7 +139,9 @@
 				<p:tab title="#{msgs.Contatos}">
 					<dmat:usuariosContatosComposite id="uccUsuarioSelecionado"
 						emailPrincipal="#{cadastroUsuarioMB.emailPrincipalUsuarioSelecionado}"
-						requiredEmail="false"
+						requiredEmail="false" disabledBotaoAdicionarEmail="#{cadastroUsuarioMB.btnAdicionarEmail}"
+						disabledBotaoCancelarEmail="#{cadastroUsuarioMB.btnCancelarAdicaoEmail}"
+						disabledBotaoNovoEmail="#{cadastroUsuarioMB.btnNovoEmail}"
 						mensagemSelecionarUsuarioRendered="#{cadastroUsuarioMB.mensagemSelecionarUsuarioRendered}"
 						mensagemHasEmailRendered="#{cadastroUsuarioMB.mensagemHasEmailRendered}"
 						mensagemHasTelefoneRendered="#{cadastroUsuarioMB.mensagemHasTelefoneRendered}"
