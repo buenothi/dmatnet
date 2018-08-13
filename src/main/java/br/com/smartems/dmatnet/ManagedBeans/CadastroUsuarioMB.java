@@ -1122,6 +1122,10 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isBtnUsuarioSalvarDesativado = true;
 		this.isBtnUsuarioNovoDesativado = false;
 		this.isBtnUsuarioExcluirDesativado = false;
+		
+		this.isBtnNovoEmail = false;
+		this.isBtnAdicionarEmail = true;
+		this.isBtnCancelarAdicaoEmail = true;
 
 		this.cadastroEmpresaMB.setTabDadosCadastraisDesativado(false);
 		this.cadastroEmpresaMB.setTabEnderecoDesativado(false);

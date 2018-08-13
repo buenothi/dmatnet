@@ -84,12 +84,12 @@
 								styleClass="tabelaSemBorda">
 								<p:outputLabel value="#{msgs.Email}*" />
 								<p:inputText id="iptEmailUsuario" placeholder="nome@email.com"
-									size="22" value="#{cc.attrs.emailPrincipal.nomeEmail}"
+									size="27" value="#{cc.attrs.emailPrincipal.nomeEmail}"
 									required="#{cc.attrs.requiredEmail}"
 									requiredMessage="#{msgs.MensagemEmailUsuarioRequerido}" />
 
 								<p:outputLabel value="#{msgs.EmailTipo}" />
-								<p:selectOneMenu style="width:100%"
+								<p:selectOneMenu style="width:220px"
 									value="#{cc.attrs.emailPrincipal.tipoEmail}" effect="fade"
 									converter="emailTipoConverter">
 									<f:selectItems value="#{emailTipoMB.emailsTipos}"
@@ -109,7 +109,7 @@
 										<p:commandButton value="#{msgs.NovoEmail}"
 											actionListener="#{cc.attrs.actionListenerNovoEmailContato}"
 											update="#{cc.attrs.updateAdicionarEmailContato}" 
-											disabled="#{cc.attrs.disabledBotaoNovoEmail}"/>
+											disabled="#{cc.attrs.disabledBotaoNovoEmail}" />
 										<p:commandButton value="#{msgs.Adicionar}"
 											actionListener="#{cc.attrs.actionListenerAdicionarEmailContato}"
 											update="#{cc.attrs.updateAdicionarEmailContato}" 
