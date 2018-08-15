@@ -13,7 +13,6 @@
 	<composite:attribute name="actionListenerAdicionarEmailContato"
 		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
 	<composite:attribute name="updateAdicionarEmailContato" />
-	<composite:attribute name="updateCancelarAdicionarEmailContato" />
 
 	<composite:attribute name="actionListenerNovoEmailContato"
 		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
@@ -54,10 +53,9 @@
 	<composite:attribute name="mensagemHasTelefoneRendered" default="false" />
 	<composite:attribute name="dadosUsuarioEmailRendered" default="true" />
 	<composite:attribute name="dadosUsuarioTelefoneRendered" default="true" />
-	
-	<composite:attribute name="disabledBotaoNovoEmail" default="true"/>
-	<composite:attribute name="disabledBotaoAdicionarEmail" default="true"/>
-	<composite:attribute name="disabledBotaoCancelarEmail" default="true"/>
+
+	<composite:attribute name="disabledBotaoNovoEmail" default="true" />
+	<composite:attribute name="disabledBotaoAdicionarEmail" default="true" />
 </composite:interface>
 
 <composite:implementation>
@@ -104,25 +102,24 @@
 									onIcon="ui-icon-check" offIcon="ui-icon-close" />
 
 								<p:spacer width="100%" height="5px" />
+								
 								<p:toolbar>
 									<f:facet name="left">
 										<p:commandButton value="#{msgs.NovoEmail}"
 											actionListener="#{cc.attrs.actionListenerNovoEmailContato}"
-											update="#{cc.attrs.updateAdicionarEmailContato}" 
+											update="#{cc.attrs.updateAdicionarEmailContato}"
 											disabled="#{cc.attrs.disabledBotaoNovoEmail}" />
 										<p:commandButton value="#{msgs.Adicionar}"
 											actionListener="#{cc.attrs.actionListenerAdicionarEmailContato}"
-											update="#{cc.attrs.updateAdicionarEmailContato}" 
+											update="#{cc.attrs.updateAdicionarEmailContato}"
 											disabled="#{cc.attrs.disabledBotaoAdicionarEmail}" />
-										<p:commandButton value="#{msgs.Cancelar}"
-											update="#{cc.attrs.updateCancelarAdicionarEmailContato}" 
-											disabled="#{cc.attrs.disabledBotaoCancelarEmail}" />
 									</f:facet>
 								</p:toolbar>
 
 							</p:panelGrid>
 
 							<p:spacer width="100%" height="2px" />
+							
 							<p:dataTable paginator="true" rows="2" scrollable="true"
 								styleClass="dataTable" emptyMessage="#{msgs.ListaEmailVazio}"
 								value="#{cc.attrs.listaEmailsUsuarios}"
@@ -178,7 +175,7 @@
 									rendered="#{cc.attrs.editarRendered}">
 									<p:commandButton icon="fa fa-trash"
 										actionListener="#{cc.attrs.actionListenerRemoverEmailLista}"
-										update="#{cc.attrs.updateRemoverEmailLista}">
+										update="#{cc.attrs.updateRemoverEmailLista}" immediate="true">
 										<f:setPropertyActionListener value="#{email}"
 											target="#{cc.attrs.setPropertyActionListenerRemoverEmail}" />
 										<p:confirm header="#{msgs.Confirmar}"

@@ -159,7 +159,6 @@ public class CadastroUsuarioMB implements Serializable {
 	
 	private boolean isBtnNovoEmail = false;
 	private boolean isBtnAdicionarEmail = true;
-	private boolean isBtnCancelarAdicaoEmail = true;
 
 	// botões endereço de usuários dentro de enderecoUsuario
 
@@ -708,14 +707,6 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isBtnAdicionarEmail = isBtnAdicionarEmail;
 	}
 
-	public boolean isBtnCancelarAdicaoEmail() {
-		return isBtnCancelarAdicaoEmail;
-	}
-
-	public void setBtnCancelarAdicaoEmail(boolean isBtnCancelarAdicaoEmail) {
-		this.isBtnCancelarAdicaoEmail = isBtnCancelarAdicaoEmail;
-	}
-
 	public boolean isDadosUsuariosEditar() {
 		return isDadosUsuariosEditar;
 	}
@@ -1125,7 +1116,6 @@ public class CadastroUsuarioMB implements Serializable {
 		
 		this.isBtnNovoEmail = false;
 		this.isBtnAdicionarEmail = true;
-		this.isBtnCancelarAdicaoEmail = true;
 
 		this.cadastroEmpresaMB.setTabDadosCadastraisDesativado(false);
 		this.cadastroEmpresaMB.setTabEnderecoDesativado(false);
@@ -1156,6 +1146,7 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void adicionarEmailContatoUsuarioSelecionado(ActionEvent evt) {
 		this.emailsUsuarioSelecionado.add(emailPrincipalUsuarioSelecionado);
+		this.emailPrincipalUsuarioSelecionado = new EmailEntity();
 	}
 	
 	public void novoEmailContatoUsuarioSelecionado(ActionEvent evt) {
@@ -1163,7 +1154,6 @@ public class CadastroUsuarioMB implements Serializable {
 		this.emailPrincipalUsuarioSelecionado = new EmailEntity();
 		this.isBtnNovoEmail = true;
 		this.isBtnAdicionarEmail = false;
-		this.isBtnCancelarAdicaoEmail = false;		
 	}
 
 	public void adicionarTelefoneContatoUsuarioSelecionado(ActionEvent evt) {
@@ -1502,6 +1492,14 @@ public class CadastroUsuarioMB implements Serializable {
 			e.printStackTrace();
 		}
 	}
+	
+	public void removerEmailContatoDaListaUsuarioSelecionado(EmailEntity emailUsuario) {
+		try {
+			this.emailsUsuarioSelecionado.remove(emailUsuario);
+		} catch (IndexOutOfBoundsException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void editarEnderecoUsuario(ActionEvent evt) {
 		this.isBtnEnderecoUsuarioEditarDesativado = true;
@@ -1654,7 +1652,6 @@ public class CadastroUsuarioMB implements Serializable {
 		this.isMensagemHasTelefoneRendered = false;
 		this.isBtnNovoEmail = false;
 		this.isBtnAdicionarEmail = true;
-		this.isBtnCancelarAdicaoEmail = true;	
 
 		try {
 			this.empresasAtribuidasUsuario = new ArrayList<EmpresaEntity>();

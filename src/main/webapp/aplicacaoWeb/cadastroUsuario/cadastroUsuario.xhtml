@@ -140,7 +140,6 @@
 					<dmat:usuariosContatosComposite id="uccUsuarioSelecionado"
 						emailPrincipal="#{cadastroUsuarioMB.emailPrincipalUsuarioSelecionado}"
 						requiredEmail="false" disabledBotaoAdicionarEmail="#{cadastroUsuarioMB.btnAdicionarEmail}"
-						disabledBotaoCancelarEmail="#{cadastroUsuarioMB.btnCancelarAdicaoEmail}"
 						disabledBotaoNovoEmail="#{cadastroUsuarioMB.btnNovoEmail}"
 						mensagemSelecionarUsuarioRendered="#{cadastroUsuarioMB.mensagemSelecionarUsuarioRendered}"
 						mensagemHasEmailRendered="#{cadastroUsuarioMB.mensagemHasEmailRendered}"
@@ -149,8 +148,7 @@
 						exibirRendered="#{cadastroUsuarioMB.dadosUsuariosExibir}"
 						actionListenerAdicionarEmailContato="#{cadastroUsuarioMB.adicionarEmailContatoUsuarioSelecionado}"
 						updateAdicionarEmailContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoEmail"
-						actionListenerNovoEmailContato="#{cadastroUsuarioMB.novoEmailContatoUsuarioSelecionado}"
-						updateCancelarAdicionarEmailContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoTelefone"
+						actionListenerNovoEmailContato="#{cadastroUsuarioMB.novoEmailContatoUsuarioSelecionado}" 
 						listaEmailsUsuarios="#{cadastroUsuarioMB.emailsUsuarioSelecionado}"
 						telefonePrincipal="#{cadastroUsuarioMB.telefoneUsuarioSelecionado}"
 						listaTelefonesUsuarios="#{cadastroUsuarioMB.telefonesUsuarioSelecionado}"
@@ -160,11 +158,11 @@
 						updateRemoverTelefoneLista="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoTelefone"
 						setPropertyActionListenerRemoverContato="#{cadastroUsuarioMB.telefoneUsuarioExcluir}"
 						actionListenerRemoverTelefoneLista="#{cadastroUsuarioMB.removerTelefoneContatoDaLista(telefone)}"
-						actionListenerRemoverEmailLista="#{cadastroUsuarioMB.removerEmailContatoDaLista(email)}"
+						actionListenerRemoverEmailLista="#{cadastroUsuarioMB.removerEmailContatoDaListaUsuarioSelecionado(email)}"
 						setPropertyActionListenerRemoverEmail="#{cadastroUsuarioMB.emailUsuarioExcluir}"
 						updateRemoverEmailLista="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoEmail"
 						dadosUsuarioEmailRendered="#{cadastroUsuarioMB.cadastroUsuarioSelecionadoEmailRendered}"
-						dadosUsuarioTelefoneRendered="#{cadastroUsuarioMB.cadastroUsuarioSelecionadoTelefoneRendered}" />
+						dadosUsuarioTelefoneRendered="#{cadastroUsuarioMB.cadastroUsuarioSelecionadoTelefoneRendered}" mensagemRendered="true"/>
 				</p:tab>
 
 				<p:tab title="#{msgs.Login}">
