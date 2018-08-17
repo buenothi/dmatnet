@@ -1145,8 +1145,8 @@ public class CadastroUsuarioMB implements Serializable {
 	}
 
 	public void adicionarEmailContatoUsuarioSelecionado(ActionEvent evt) {
+		this.isBtnNovoEmail = false;
 		this.emailsUsuarioSelecionado.add(emailPrincipalUsuarioSelecionado);
-		this.emailPrincipalUsuarioSelecionado = new EmailEntity();
 	}
 	
 	public void novoEmailContatoUsuarioSelecionado(ActionEvent evt) {

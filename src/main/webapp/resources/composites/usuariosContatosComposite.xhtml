@@ -89,10 +89,10 @@
 								<p:outputLabel value="#{msgs.EmailTipo}" />
 								<p:selectOneMenu style="width:220px"
 									value="#{cc.attrs.emailPrincipal.tipoEmail}" effect="fade"
-									converter="emailTipoConverter">
+									converter="emailTipoConverter" >
 									<f:selectItems value="#{emailTipoMB.emailsTipos}"
 										var="emailTipo" itemLabel="#{emailTipo.tipo}"
-										itemValue="#{emailTipo}" />
+										itemValue="#{emailTipo.tipo}" />
 								</p:selectOneMenu>
 
 								<p:outputLabel value="#{msgs.EmailPrincipal}" />
