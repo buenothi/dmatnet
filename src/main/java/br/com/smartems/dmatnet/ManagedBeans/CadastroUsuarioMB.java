@@ -1160,6 +1160,7 @@ public class CadastroUsuarioMB implements Serializable {
 		TelefoneEntity novoTelefone = new TelefoneEntity();
 		novoTelefone = this.telefoneUsuarioSelecionado;
 		this.telefonesUsuarioSelecionado.add(novoTelefone);
+		this.telefoneUsuarioSelecionado = null;
 	}
 
 	public void onSelectionUsuario(Object usuario) {
@@ -1474,6 +1475,14 @@ public class CadastroUsuarioMB implements Serializable {
 	public void removerTelefoneContatoDaLista(TelefoneEntity telefoneUsuario) {
 		try {
 			this.telefonesUsuario.remove(telefoneUsuario);
+		} catch (IndexOutOfBoundsException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void removerTelefoneContatoDaListaUsuarioSelecionado(TelefoneEntity telefoneUsuario) {
+		try {
+			this.telefonesUsuarioSelecionado.remove(telefoneUsuario);
 		} catch (IndexOutOfBoundsException e) {
 			e.printStackTrace();
 		}

@@ -27,7 +27,6 @@
 	<composite:attribute name="actionListenerAdicionarTelefoneContato"
 		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
 	<composite:attribute name="updateAdicionarTelefoneContato" />
-	<composite:attribute name="updateCancelarTelefoneContato" />
 
 	<composite:attribute name="listaTelefonesUsuarios" />
 
@@ -293,7 +292,7 @@
 							<p:panelGrid id="pgdTelefone" columns="2"
 								styleClass="tabelaSemBorda">
 								<p:outputLabel value="#{msgs.Telefone}*" />
-								<p:inputMask id="ipmTel" mask="+ 99 (99) 9999-9999" size="22"
+								<p:inputMask id="ipmTel" mask="+ 55 (99) 9999-9999" size="22"
 									value="#{cc.attrs.telefonePrincipal.numeroTelefone}" />
 								<p:outputLabel value="#{msgs.TelefoneTipo}" />
 								<p:selectOneMenu style="width:100%"
@@ -311,8 +310,6 @@
 										<p:commandButton value="#{msgs.Adicionar}"
 											actionListener="#{cc.attrs.actionListenerAdicionarTelefoneContato}"
 											update="#{cc.attrs.updateAdicionarTelefoneContato}" />
-										<p:commandButton value="#{msgs.Cancelar}"
-											update="#{cc.attrs.updateCancelarTelefoneContato}" />
 									</f:facet>
 								</p:toolbar>
 							</p:panelGrid>
@@ -366,7 +363,7 @@
 										update="#{cc.attrs.updateRemoverTelefoneLista}">
 										<f:setPropertyActionListener value="#{telefone}"
 											target="#{cc.attrs.setPropertyActionListenerRemoverContato}" />
-										<p:confirm header="#{msgs.Confirmar}" message=""
+										<p:confirm header="#{msgs.Confirmar}" message="#{msgs.DeletarTelefoneUsuario}"
 											icon="ui-icon-alert" />
 									</p:commandButton>
 								</p:column>
@@ -421,7 +418,7 @@
 										update="#{cc.attrs.updateRemoverTelefoneLista}">
 										<f:setPropertyActionListener value="#{telefone}"
 											target="#{cc.attrs.setPropertyActionListenerRemoverContato}" />
-										<p:confirm header="#{msgs.Confirmar}" message=""
+										<p:confirm header="#{msgs.Confirmar}" message="#{msgs.DeletarTelefoneUsuario}?"
 											icon="ui-icon-alert" />
 									</p:commandButton>
 								</p:column>
