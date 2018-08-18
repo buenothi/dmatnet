@@ -37,10 +37,12 @@
 					<h:outputFormat value="#{usuarioMB.usuarioLogado.grupo.nomeGrupo}"
 						converter="stringConverter" />
 				</h:panelGrid>
-				<p:splitButton value="#{msgs.Sair}" icon="ui-icon-extlink"
-					actionListener="#{principalMB.sairAplicacao}" style="color:#CD0000">
-					<p:menuitem value="#{msgs.ConfUsuario}" icon="fa fa-user" />
-				</p:splitButton>
+				<p:commandButton value="#{msgs.Sair}" icon="ui-icon-extlink"
+					action="#{usuarioMB.logout}" style="color:#CD0000">
+					<p:confirm header="#{msgs.Confirmar}"
+						message="#{msgs.SairAplicacao}"
+						icon="ui-icon-alert" />
+				</p:commandButton>
 				<p:commandButton id="btnSideBar" title="#{msgs.PainelNotificacoes}" styleClass="botoesWebApp"
 					icon="fa fa-list-ul" onclick="PF('sidebarPrincipal').show()" />
 			</h:panelGrid>
@@ -187,20 +189,6 @@
 		</h:form>
 	</p:dialog>
 
-	<p:dialog widgetVar="dlgSairAplicacao"
-		header="#{msgs.TituloSairAplicacao}" closable="true" resizable="false"
-		modal="true">
-		<p:panelGrid columns="1" styleClass="tabelaSemBorda">
-			<p:outputLabel value="#{msgs.SairAplicacao}" />
-		</p:panelGrid>
-		<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-			<p:commandButton value="#{msgs.Sim}" icon="ui-icon-check"
-				action="#{usuarioMB.logout}" />
-			<p:commandButton value="#{msgs.Nao}" icon="ui-icon-close"
-				onclick="PF('dlgSairAplicacao').hide()" />
-		</p:panelGrid>
-	</p:dialog>
-
 	<p:ajaxStatus onstart="PF('statusDialog').show()"
 		onsuccess="PF('statusDialog').hide()" />
 
@@ -209,7 +197,6 @@
 		showEffect="fade" hideEffect="fade">
 		<h:graphicImage name="images/16.gif" />
 	</p:dialog>
-
 
 	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
 		<p:commandButton value="#{msgs.Sim}" type="button"
