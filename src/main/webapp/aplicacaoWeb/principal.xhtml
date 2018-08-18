@@ -26,11 +26,11 @@
 					value="#{cadastroEmpresaMB.empresaSelecionada.nome}" />
 				<p:spacer height="100%" width="10px" />
 				<p:commandButton id="btnSelecionarEmpresa"
-					value="#{msgs.MudarEmpresa}" icon="fa fa-list-alt"
+					title="#{msgs.MudarEmpresa}" icon="fa fa-list-alt"
 					styleClass="botoesWebApp"
 					onclick="PF('dlgSelecionarEmpresa').show()" />
 			</h:panelGrid>
-			<h:panelGrid class="usuarioLogado" columns="2">
+			<h:panelGrid class="usuarioLogado" columns="3">
 				<h:panelGrid columns="1">
 					<h:outputFormat value="#{usuarioMB.usuarioLogado.nome}"
 						converter="stringConverter" />
@@ -41,7 +41,8 @@
 					actionListener="#{principalMB.sairAplicacao}" style="color:#CD0000">
 					<p:menuitem value="#{msgs.ConfUsuario}" icon="fa fa-user" />
 				</p:splitButton>
-
+				<p:commandButton id="btnSideBar" title="#{msgs.PainelNotificacoes}" styleClass="botoesWebApp"
+					icon="fa fa-list-ul" onclick="PF('sidebarPrincipal').show()" />
 			</h:panelGrid>
 
 		</h:form>
@@ -220,6 +221,8 @@
 	<p:growl id="growlPrincipal" showDetail="true" sticky="false"
 		life="6000" />
 
+	<p:sidebar widgetVar="sidebarPrincipal" position="right"
+		baseZIndex="10000"></p:sidebar>
 </h:body>
 
 </html>
