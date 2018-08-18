@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
 
-import org.primefaces.context.RequestContext;
+import org.primefaces.PrimeFaces;
 
 @ManagedBean
 @SessionScoped
@@ -55,7 +55,8 @@ public class PrincipalMB implements Serializable {
 	}
 	
 	public void sairAplicacao(ActionEvent evt) {
-		RequestContext.getCurrentInstance().execute("PF('dlgSairAplicacao').show()");
+		//RequestContext.getCurrentInstance().execute("PF('dlgSairAplicacao').show()");
+		PrimeFaces.current().ajax().update("PF('dlgSairAplicacao').show()");
 	}
 
 }

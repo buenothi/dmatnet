@@ -11,7 +11,7 @@ import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.primefaces.context.RequestContext;
+import org.primefaces.PrimeFaces;
 
 import br.com.smartems.dmatnet.EJB.Facade.UsuarioFacadeLocal;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
@@ -67,7 +67,7 @@ public class UsuarioMB implements Serializable {
 	}
 
 	public void logarUsuario(ActionEvent e) {
-		RequestContext context = RequestContext.getCurrentInstance();
+		PrimeFaces context = PrimeFaces.current();
 		FacesMessage message = null;
 		isLogado = false;
 
@@ -85,7 +85,7 @@ public class UsuarioMB implements Serializable {
 			this.outcome = "falha";
 		}
 
-		context.addCallbackParam("logado", isLogado);
+		context.ajax().addCallbackParam("logado", isLogado);
 	}
 	
 	public String logout() {

@@ -18,7 +18,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.persistence.NoResultException;
 
-import org.primefaces.context.RequestContext;
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultStreamedContent;
@@ -1147,7 +1147,8 @@ public class CadastroEmpresaMB implements Serializable {
 		this.dadosCadastraisAtual = new EmpresaCadastroEntity();
 		this.dadosCadastraisAtual.setId(0);
 		this.dadosCadastraisTrocaStatusBotoes();
-		RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').hide()");
+		//RequestContext.getCurrentInstance().execute();
+		PrimeFaces.current().ajax().update("PF('dlgPerguntaDadosCadastrais').hide()");
 	}
 
 	public void novoDadosCadastraisEmpresaPreenchido(ActionEvent e) {
@@ -1161,14 +1162,16 @@ public class CadastroEmpresaMB implements Serializable {
 		this.empresaOrgI8n = this.dadosCadastraisAtual.getOrganismoInternacional();
 		this.dadosCadastraisAtual.setId(0);
 		this.dadosCadastraisTrocaStatusBotoes();
-		RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').hide()");
+		//RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').hide()");
+		PrimeFaces.current().ajax().update("PF('dlgPerguntaDadosCadastrais').hide()");
 	}
 
 	public void novoDadosCadastraisEmpresa(ActionEvent evt) {
 		this.isDadosCadastraisRendered = true;
 		try {
 			if (this.dadosCadastraisAtual.getId() >= 1) {
-				RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').show()");
+				//RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').show()");
+				PrimeFaces.current().ajax().update("PF('dlgPerguntaDadosCadastrais').show()");
 			} else {
 				this.dadosCadastraisTrocaStatusBotoes();
 			}
@@ -1415,7 +1418,8 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isEnderecoRendered = true;
 		try {
 			if (this.enderecoAtual.getIdEndereco() >= 1) {
-				RequestContext.getCurrentInstance().execute("PF('dlgPerguntaEndereco').show()");
+				//RequestContext.getCurrentInstance().execute("PF('dlgPerguntaEndereco').show()");
+				PrimeFaces.current().ajax().update("PF('dlgPerguntaEndereco').show()");
 			} else {
 				this.enderecoTrocaStatusBotoes();
 			}
@@ -1434,7 +1438,8 @@ public class CadastroEmpresaMB implements Serializable {
 		this.enderecoAtual = new EnderecoEntity();
 		this.enderecoAtual.setIdEndereco(0);
 		this.enderecoTrocaStatusBotoes();
-		RequestContext.getCurrentInstance().execute("PF('dlgPerguntaEndereco').hide()");
+		//RequestContext.getCurrentInstance().execute("PF('dlgPerguntaEndereco').hide()");
+		PrimeFaces.current().ajax().update("PF('dlgPerguntaEndereco').hide()");
 	}
 
 	public void novoEnderecoEmpresaPreenchido(ActionEvent e) {
@@ -1445,7 +1450,8 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 		this.enderecoAtual.setIdEndereco(0);
 		this.enderecoTrocaStatusBotoes();
-		RequestContext.getCurrentInstance().execute("PF('dlgPerguntaEndereco').hide()");
+		//RequestContext.getCurrentInstance().execute("PF('dlgPerguntaEndereco').hide()");
+		PrimeFaces.current().ajax().update("PF('dlgPerguntaEndereco').hide()");
 	}
 
 	public void enderecoTrocaStatusBotoes() {
