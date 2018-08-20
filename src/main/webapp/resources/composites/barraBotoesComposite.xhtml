@@ -85,13 +85,13 @@
 				oncomplete="#{cc.attrs.onCompleteNovo}" />
 		</f:facet>
 		<f:facet name="right">
-			<p:commandButton id="btnImprimirObjeto"
+			<p:commandButton id="btnImprimirObjeto" 
 				value="#{cc.attrs.labelImprimir}" styleClass="botoes"
 				icon="fa fa-print" disabled="#{cc.attrs.disabledImprimir}"
 				rendered="#{cc.attrs.renderedBtnImprimir}"
 				actionListener="#{cc.attrs.actionListenerImprimir}"
 				update="#{cc.attrs.updateImprimir}" immediate="false" ajax="false" />
-			<p:commandButton id="btnExcluirObjeto" style="color:#CD0000"
+			<p:commandButton id="btnExcluirObjeto" 
 				value="#{cc.attrs.labelExcluir}" styleClass="botoes"
 				icon="fa fa-trash" disabled="#{cc.attrs.disabledExcluir}"
 				rendered="#{cc.attrs.renderedBtnExcluir}"

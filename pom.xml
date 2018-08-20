@@ -29,7 +29,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.primefaces.themes</groupId>
-			<artifactId>afterwork</artifactId>
+			<artifactId>cruze</artifactId>
 			<version>1.0.10</version>
 		</dependency>
 		<dependency>
