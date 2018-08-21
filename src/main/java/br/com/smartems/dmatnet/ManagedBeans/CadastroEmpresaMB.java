@@ -1170,8 +1170,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isDadosCadastraisRendered = true;
 		try {
 			if (this.dadosCadastraisAtual.getId() >= 1) {
-				//RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').show()");
-				PrimeFaces.current().ajax().update("PF('dlgPerguntaDadosCadastrais').show()");
+				PrimeFaces.current().executeScript("PF('dlgPerguntaDadosCadastrais').show()");
 			} else {
 				this.dadosCadastraisTrocaStatusBotoes();
 			}
@@ -1418,8 +1417,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isEnderecoRendered = true;
 		try {
 			if (this.enderecoAtual.getIdEndereco() >= 1) {
-				//RequestContext.getCurrentInstance().execute("PF('dlgPerguntaEndereco').show()");
-				PrimeFaces.current().ajax().update("PF('dlgPerguntaEndereco').show()");
+				PrimeFaces.current().executeScript("PF('dlgPerguntaEndereco').show()");
 			} else {
 				this.enderecoTrocaStatusBotoes();
 			}
