@@ -121,11 +121,11 @@
 							
 							<p:dataTable paginator="true" rows="2" scrollable="true"
 								styleClass="dataTable" emptyMessage="#{msgs.ListaEmailVazio}"
-								value="#{cc.attrs.listaEmailsUsuarios}"
+								value="#{cc.attrs.listaEmailsUsuarios}" resizeMode="expand"
 								paginatorAlwaysVisible="false" var="email" editable="true"
 								rowKey="#{email.idEmail}">
 
-								<p:column headerText="#{msgs.Email}" width="310">
+								<p:column headerText="#{msgs.Email}" width="290">
 									<p:cellEditor>
 										<f:facet name="output">
 											<p:outputLabel value="#{email.nomeEmail}" />
@@ -135,7 +135,7 @@
 										</f:facet>
 									</p:cellEditor>
 								</p:column>
-								<p:column headerText="#{msgs.EmailTipo}">
+								<p:column headerText="#{msgs.EmailTipo}" width="110">
 									<p:cellEditor>
 										<f:facet name="output">
 											<p:outputLabel value="#{email.tipoEmail.tipo}" />
@@ -151,7 +151,7 @@
 										</f:facet>
 									</p:cellEditor>
 								</p:column>
-								<p:column headerText="#{msgs.EmailPrincipalTab}" width="80">
+								<p:column headerText="#{msgs.EmailPrincipalTab}" width="65">
 									<p:cellEditor>
 										<f:facet name="output">
 											<p:outputLabel value="#{email.emailPrincipal}"
@@ -165,12 +165,12 @@
 									</p:cellEditor>
 								</p:column>
 
-								<p:column style="width:55px"
+								<p:column width="35"
 									rendered="#{cc.attrs.editarRendered}">
 									<p:rowEditor />
 								</p:column>
 
-								<p:column style="width:55px"
+								<p:column width="25"
 									rendered="#{cc.attrs.editarRendered}">
 									<p:commandButton icon="fa fa-trash"
 										actionListener="#{cc.attrs.actionListenerRemoverEmailLista}"
@@ -208,9 +208,9 @@
 								styleClass="dataTable" emptyMessage="#{msgs.ListaEmailVazio}"
 								value="#{cc.attrs.listaEmailsUsuarios}"
 								paginatorAlwaysVisible="false" var="email" editable="true"
-								rowKey="#{email.idEmail}">
+								rowKey="#{email.idEmail}" resizeMode="expand">
 
-								<p:column headerText="#{msgs.Email}" width="310">
+								<p:column headerText="#{msgs.Email}" width="290">
 									<p:cellEditor>
 										<f:facet name="output">
 											<p:outputLabel value="#{email.nomeEmail}"
@@ -221,7 +221,7 @@
 										</f:facet>
 									</p:cellEditor>
 								</p:column>
-								<p:column headerText="#{msgs.EmailTipo}">
+								<p:column headerText="#{msgs.EmailTipo}" width="110">
 									<p:cellEditor>
 										<f:facet name="output">
 											<p:outputLabel value="#{email.tipoEmail.tipo}"
@@ -238,7 +238,7 @@
 										</f:facet>
 									</p:cellEditor>
 								</p:column>
-								<p:column headerText="#{msgs.EmailPrincipalTab}" width="80">
+								<p:column headerText="#{msgs.EmailPrincipalTab}" width="65">
 									<p:cellEditor>
 										<f:facet name="output">
 											<p:outputLabel value="#{email.emailPrincipal}"
@@ -250,23 +250,6 @@
 												onIcon="ui-icon-check" offIcon="ui-icon-close" />
 										</f:facet>
 									</p:cellEditor>
-								</p:column>
-
-								<p:column style="width:55px"
-									rendered="#{cc.attrs.editarRendered}">
-									<p:rowEditor />
-								</p:column>
-
-								<p:column style="width:55px"
-									rendered="#{cc.attrs.editarRendered}">
-									<p:commandButton icon="fa fa-trash"
-										actionListener="#{cc.attrs.actionListenerRemoverEmailLista}"
-										update="#{cc.attrs.updateRemoverEmailLista}">
-										<f:setPropertyActionListener value="#{email}"
-											target="#{cc.attrs.setPropertyActionListenerRemoverEmail}" />
-										<p:confirm header="#{msgs.Confirmar}"
-											message="#{msgs.DeletarEmailUsuario}?" icon="ui-icon-alert" />
-									</p:commandButton>
 								</p:column>
 
 							</p:dataTable>

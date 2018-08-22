@@ -32,7 +32,7 @@
 				<p:outputLabel value="#{msgs.DataCadastro}*:" />
 				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 					<p:calendar id="calDataCadastro" locale="pt" showOn="button"
-						showButtonPanel="true" pattern="dd/MM/yyyy" mask="true" size="8"
+						pattern="dd/MM/yyyy" mask="true"
 						value="#{cadastroEmpresaMB.empresa.dataCadastroPessoa}"
 						required="true" label="#{msgs.DataCadastro}" />
 					<p:message for="calDataCadastro" />

@@ -87,7 +87,7 @@
 					styleClass="tabelaSemBorda">
 					<p:outputLabel value="#{msgs.DataCadastro}:" />
 					<p:calendar id="calDataInicio" locale="pt" showOn="button"
-						showButtonPanel="true" pattern="dd/MM/yyyy" mask="true" size="10"
+						pattern="dd/MM/yyyy" mask="true" showTodayButton="true"
 						value="#{cc.attrs.enderecoAtual.dataInicioEndereco}"
 						label="#{msgs.DataCadastro}">
 						<p:message for="calDataInicio" />
@@ -141,7 +141,8 @@
 					<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}:" />
 					<h:panelGrid id="tblCidadeEstado" columns="2">
 						<p:selectOneMenu id="listEstado" panelStyle="width:150px"
-							effect="fade" style="width:60px" value="#{cc.attrs.enderecoAtual.estado}"
+							effect="fade" style="width:60px"
+							value="#{cc.attrs.enderecoAtual.estado}"
 							converter="estadoConverter" immediate="true">
 							<p:ajax event="itemSelect"
 								listener="#{estadoMB.onSelectionEstado}"

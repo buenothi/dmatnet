@@ -55,8 +55,7 @@
 							<p:column>
 								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 									<p:calendar id="calDataInicio" locale="pt" showOn="button"
-										showButtonPanel="true" pattern="dd/MM/yyyy" mask="true"
-										size="8"
+										pattern="dd/MM/yyyy" mask="true"
 										value="#{cadastroEmpresaMB.dadosCadastraisAtual.dataInicioCadastro}"
 										required="true" label="#{msgs.DataCadastro}" />
 									<p:message for="calDataInicio" />
@@ -241,8 +240,8 @@
 							<p:column>
 								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 									<p:calendar id="calDataEmissaoCertificado" locale="pt"
-										showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
-										mask="true" size="8" label="#{msgs.dataEmissaoCertificado}"
+										showOn="button" pattern="dd/MM/yyyy" mask="true"
+										label="#{msgs.dataEmissaoCertificado}"
 										value="#{cadastroEmpresaMB.empresaDadosIsencao.dataEmissaoCertificado}" />
 									<p:message for="calDataEmissaoCertificado" />
 								</p:panelGrid>
@@ -255,8 +254,8 @@
 							<p:column>
 								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 									<p:calendar id="calDataVencimentoCertificado" locale="pt"
-										showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
-										mask="true" size="8" label="#{msgs.dataVencimentoCertificado}"
+										showOn="button" pattern="dd/MM/yyyy" mask="true"
+										label="#{msgs.dataVencimentoCertificado}"
 										value="#{cadastroEmpresaMB.empresaDadosIsencao.dataVencimentoCertificado}" />
 									<p:message for="calDataVencimentoCertificado" />
 								</p:panelGrid>
@@ -628,8 +627,7 @@
 							</f:facet>
 							<f:facet name="input">
 								<p:calendar value="#{cadastro.dataInicioCadastro}" locale="pt"
-									showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
-									mask="true" size="8" />
+									showOn="button" pattern="dd/MM/yyyy" mask="true" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -642,8 +640,7 @@
 							</f:facet>
 							<f:facet name="input">
 								<p:calendar value="#{cadastro.dataFimCadastro}" locale="pt"
-									showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
-									mask="true" size="8" />
+									showOn="button" pattern="dd/MM/yyyy" mask="true" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -718,8 +715,8 @@
 								</f:facet>
 								<f:facet name="input">
 									<p:calendar value="#{cadastro.dataInicioCadastro}" locale="pt"
-										showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
-										mask="true" size="8" />
+										showOn="button" pattern="dd/MM/yyyy"
+										mask="true" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
@@ -732,8 +729,8 @@
 								</f:facet>
 								<f:facet name="input">
 									<p:calendar value="#{cadastro.dataFimCadastro}" locale="pt"
-										showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
-										mask="true" size="8" />
+										showOn="button" pattern="dd/MM/yyyy"
+										mask="true" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>

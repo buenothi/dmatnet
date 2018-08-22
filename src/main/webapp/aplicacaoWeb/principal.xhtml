@@ -38,13 +38,13 @@
 						converter="stringConverter" />
 				</h:panelGrid>
 				<p:commandButton value="#{msgs.Sair}" icon="ui-icon-extlink"
-					action="#{usuarioMB.logout}"  style="color:red">
+					action="#{usuarioMB.logout}" style="color:#CD0000">
 					<p:confirm header="#{msgs.Confirmar}"
-						message="#{msgs.SairAplicacao}"
-						icon="ui-icon-alert" />
+						message="#{msgs.SairAplicacao}" icon="ui-icon-alert" />
 				</p:commandButton>
-				<p:commandButton id="btnSideBar" title="#{msgs.PainelNotificacoes}" styleClass="botoesWebApp"
-					icon="fa fa-list-ul" onclick="PF('sidebarPrincipal').show()" />
+				<p:commandButton id="btnSideBar" title="#{msgs.PainelNotificacoes}"
+					styleClass="botoesWebApp" icon="fa fa-list-ul"
+					onclick="PF('sidebarPrincipal').show()" />
 			</h:panelGrid>
 
 		</h:form>
@@ -127,7 +127,7 @@
 	</h:form>
 
 	<p:dialog id="dlgSelecionarEmpresa" widgetVar="dlgSelecionarEmpresa"
-		resizable="false" modal="true" width="830"
+		resizable="false" modal="true" width="830" dynamic="true"
 		header="#{msgs.SelecionarEmpresa}" responsive="true"
 		style="padding:10px" showEffect="fade" hideEffect="fade">
 		<ui:include
@@ -198,11 +198,13 @@
 		<h:graphicImage name="images/16.gif" />
 	</p:dialog>
 
-	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-		<p:commandButton value="#{msgs.Sim}" type="button"
-			styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-		<p:commandButton value="#{msgs.Nao}" type="button"
-			styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" >
+		<p:panelGrid columns="2" style="width:100%" styleClass="tabelaSemBorda">
+			<p:commandButton value="#{msgs.Sim}" type="button"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			<p:commandButton value="#{msgs.Nao}" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		</p:panelGrid>
 	</p:confirmDialog>
 
 	<p:growl id="growlPrincipal" showDetail="true" sticky="false"

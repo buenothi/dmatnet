@@ -26,7 +26,7 @@
 				<h:outputText
 					value="#{msgs.textoSelecionarMultiplasEmpresasUsuario}" />
 				<h:panelGroup style="width:100%">
-					<p:pickList id="pclEmpresasUsuario" immediate="true"
+					<p:pickList id="pclEmpresasUsuario" immediate="true" 
 						style="margin:0 auto" value="#{cc.attrs.empresasUsuario}"
 						var="empresa" itemLabel="#{empresa.nome}" itemValue="#{empresa}"
 						converter="empresaConverter" showSourceFilter="true"
