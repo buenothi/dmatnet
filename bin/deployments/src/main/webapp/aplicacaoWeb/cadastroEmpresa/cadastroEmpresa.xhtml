@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
+
+
+<ui:fragment>
+	<h:form id="formCadEmpresa" styleClass="painelConteudo">
+
+		<h:panelGroup layout="block" styleClass="tabsConteiner">
+			<p:tabView id="tbwCadastroEmpresa">
+				<p:tab id="tabDadosCadastrais" title="#{msgs.DadosCadastrais}"
+					disabled="#{cadastroEmpresaMB.tabDadosCadastraisDesativado}">
+					<ui:include
+						src="/aplicacaoWeb/cadastroEmpresa/dadosCadastrais.xhtml" />
+				</p:tab>
+				<p:tab id="tabEndereco" title="#{msgs.Endereco}" disabled="#{cadastroEmpresaMB.tabEnderecoDesativado}">
+					<ui:include
+						src="/aplicacaoWeb/cadastroEmpresa/enderecoEmpresa.xhtml" />
+				</p:tab>
+				<p:tab title="#{msgs.ContatoUsuario}" disabled="#{cadastroEmpresaMB.tabContatoDesativado}">
+					<ui:include
+						src="/aplicacaoWeb/cadastroEmpresa/contatoEmpresa.xhtml" />
+				</p:tab>
+				<p:tab title="#{msgs.Empregados}" disabled="#{cadastroEmpresaMB.tabEmpregadosDesativado}"></p:tab>
+				<p:tab title="#{msgs.Estabelecimentos}" disabled="#{cadastroEmpresaMB.tabEstabelecimentosDesativado}"></p:tab>
+			</p:tabView>
+		</h:panelGroup>
+	</h:form>
+</ui:fragment>
+
+</html>

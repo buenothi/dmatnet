@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
+
+<ui:composition>
+	<h:form id="formCriarEmpresa">
+		<h:panelGroup>
+			<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+				<p:commandButton id="btnSalvarEmpresa" icon="fa fa-save"
+					value="#{msgs.Salvar}"
+					actionListener="#{cadastroEmpresaMB.salvarCadastroEmpresa}"
+					update="formSelecionarEmpresa, formModulos, formCriarEmpresa, growlPrincipal"
+					disabled="#{cadastroEmpresaMB.btnEmpresaSalvarAlteracoes}">
+					<p:resetInput target="formCriarEmpresa" />
+				</p:commandButton>
+				<p:commandButton icon="fa fa-remove" value="#{msgs.Cancelar}"
+					actionListener="#{cadastroEmpresaMB.cancelarCadastroEmpresa}"
+					update="formSelecionarEmpresa, formModulos, formCriarEmpresa, growlPrincipal"
+					oncomplete="PF('dlgCriarEmpresa').hide()" process="@this">
+					<p:resetInput target="formCriarEmpresa" />
+				</p:commandButton>
+			</p:panelGrid>
+		</h:panelGroup>
+		<p:spacer width="100%" height="10px" />
+		<h:panelGroup id="pngCadastroNovaEmpresa">
+			<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+				<p:outputLabel value="#{msgs.DataCadastro}*:" />
+				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+					<p:calendar id="calDataCadastro" locale="pt" showOn="button"
+						showButtonPanel="true" pattern="dd/MM/yyyy" mask="true" size="8"
+						value="#{cadastroEmpresaMB.empresa.dataCadastroPessoa}"
+						required="true" label="#{msgs.DataCadastro}" />
+					<p:message for="calDataCadastro" />
+				</p:panelGrid>
+
+				<p:outputLabel value="#{msgs.NomeFantasia}*:" />
+				<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+					<p:inputText id="iptNomeFantasia" size="25"
+						value="#{cadastroEmpresaMB.empresa.nome}" required="true"
+						label="#{msgs.NomeFantasia}">
+						<p:ajax event="blur" update="formCriarEmpresa:btnSalvarEmpresa" />
+					</p:inputText>
+					<p:message for="iptNomeFantasia" />
+				</p:panelGrid>
+
+				<p:outputLabel value="#{msgs.FachadaEmpresa}:" />
+				<p:panelGrid columns="3" styleClass="tabelaSemBorda">
+					<p:commandButton value="#{msgs.FachadaEmpresa}"
+						actionListener="#{cadastroEmpresaMB.exibirImagem(cadastroEmpresaMB.empresa.empresaFotoFachada)}"
+						oncomplete="PF('dlgFachadaEmpresa').show()" icon="fa fa-photo"
+						update="dlgFachadaEmpresa" />
+					<p:commandButton
+						actionListener="#{cadastroEmpresaMB.excluirImagemFachadaEmpresa}"
+						icon="fa fa-trash" update="@this, dlgFachadaEmpresa"
+						disabled="#{cadastroEmpresaMB.btnExcluirFotoFachada}" />
+					<p:outputLabel id="oplFachadaAlterada"
+						style="color:red;font-size:small" value="#{msgs.MensagemFoto}"
+						rendered="#{cadastroEmpresaMB.fotoAlterada}" />
+				</p:panelGrid>
+
+				<p:outputLabel value="#{msgs.Logotipo}:" />
+				<p:panelGrid columns="3" styleClass="tabelaSemBorda">
+					<p:commandButton value="#{msgs.Logotipo}"
+						actionListener="#{cadastroEmpresaMB.exibirImagem(cadastroEmpresaMB.empresa.empresaLogotipo)}"
+						oncomplete="PF('dlgLogotipo').show()" icon="fa fa-photo"
+						update="dlgLogotipo" />
+					<p:commandButton
+						actionListener="#{cadastroEmpresaMB.excluirImagemLogotipo}"
+						icon="fa fa-trash" update="@this, dlgLogotipo"
+						disabled="#{cadastroEmpresaMB.btnExcluirFotoLogotipo}" />
+					<p:outputLabel id="oplLogoAlterado"
+						style="color:red;font-size:small" value="#{msgs.MensagemLogo}"
+						rendered="#{cadastroEmpresaMB.logoAlterado}" />
+				</p:panelGrid>
+
+			</p:panelGrid>
+		</h:panelGroup>
+
+	</h:form>
+</ui:composition>
+</html>

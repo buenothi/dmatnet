@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
+
+<composite:interface>
+	<composite:attribute name="enderecoRendered" />
+	<composite:attribute name="barraBotoesRendered" />
+	<composite:attribute name="renderedHistorico" />
+	<composite:attribute name="enderecoAtual" />
+	<composite:attribute name="enderecoHistorico" />
+	<composite:attribute name="ajaxComponentRender" />
+	<composite:attribute name="disabledEditar" />
+	<composite:attribute name="actionListenerEditar" />
+	<composite:attribute name="enderecoEditarRender" />
+	<composite:attribute name="updateEditar" />
+	<composite:attribute name="disabledCancelar" />
+	<composite:attribute name="actionListenerCancelar" />
+	<composite:attribute name="updateCancelar" />
+	<composite:attribute name="disabledSalvar" />
+	<composite:attribute name="actionListenerSalvar" />
+	<composite:attribute name="updateSalvar" />
+	<composite:attribute name="disabledNovo" />
+	<composite:attribute name="actionListenerNovo" />
+	<composite:attribute name="updateNovo" />
+	<composite:attribute name="disabledExcluir" />
+	<composite:attribute name="actionListenerExcluir" />
+	<composite:attribute name="updateExcluir" />
+	<composite:attribute name="renderedBtnExcluir" />
+	<composite:attribute name="messageConfirmaExcluir" />
+	<composite:attribute name="messageHeaderExcluir" />
+	<composite:attribute name="messageLabelExcluir" />
+
+	<composite:attribute name="dadosUsuarioRendered" default="true" />
+
+	<composite:attribute name="mensagemSelecionarUsuarioRendered"
+		default="false" />
+	<composite:attribute name="mensagemRendered" default="false" />
+
+	<composite:attribute name="mensagemHasEnderecoRendered" default="false" />
+</composite:interface>
+
+<composite:implementation>
+
+	<p:panel id="pnlEnderecoUsuario" header="#{msgs.Endereco}"
+		closable="false" style="width:660px">
+		<p:messages id="msEmail" showDetail="true" closable="true"
+			rendered="#{cc.attrs.mensagemRendered}" />
+
+		<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
+			rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
+
+		<p:outputLabel value="#{msgs.MensagemHasEndereco}"
+			rendered="#{cc.attrs.mensagemHasEnderecoRendered}" />
+
+		<dmat:enderecoComposite id="dmatEnderecoContato"
+			enderecoRendered="#{cc.attrs.enderecoRendered}"
+			barraBotoesRendered="#{cc.attrs.barraBotoesRendered}"
+			renderedHistorico="#{cc.attrs.renderedHistorico}"
+			enderecoAtual="#{cc.attrs.enderecoAtual}"
+			enderecoHistorico="#{cc.attrs.enderecoHistorico}"
+			ajaxComponentRender="#{cc.attrs.ajaxComponentRender}"
+			disabledEditar="#{cc.attrs.disabledEditar}"
+			actionListenerEditar="#{cc.attrs.actionListenerEditar}"
+			enderecoEditarRender="#{cc.attrs.enderecoEditarRender}"
+			updateEditar="#{cc.attrs.updateEditar}"
+			disabledCancelar="#{cc.attrs.disabledCancelar}"
+			actionListenerCancelar="#{cc.attrs.actionListenerCancelar}"
+			updateCancelar="#{cc.attrs.updateCancelar}"
+			disabledSalvar="#{cc.attrs.disabledSalvar}"
+			actionListenerSalvar="#{cc.attrs.actionListenerSalvar}"
+			updateSalvar="#{cc.attrs.updateSalvar}"
+			disabledNovo="#{cc.attrs.disabledNovo}"
+			actionListenerNovo="#{cc.attrs.actionListenerNovo}"
+			updateNovo="#{cc.attrs.updateNovo}"
+			disabledExcluir="#{cc.attrs.disabledExcluir}"
+			actionListenerExcluir="#{cc.attrs.actionListenerExcluir}"
+			updateExcluir="#{cc.attrs.updateExcluir}"
+			renderedBtnExcluir="#{cc.attrs.renderedBtnExcluir}"
+			messageConfirmaExcluir="#{cc.attrs.messageConfirmaExcluir}"
+			messageHeaderExcluir="#{cc.attrs.messageHeaderExcluir}"
+			messageLabelExcluir="#{cc.attrs.messageLabelExcluir}"
+			rendered="#{cc.attrs.dadosUsuarioRendered}" />
+
+	</p:panel>
+
+</composite:implementation>
+</html>
