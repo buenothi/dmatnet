@@ -1035,6 +1035,7 @@ public class CadastroUsuarioMB implements Serializable {
 
 	public void salvarAlteracoesUsuario(ActionEvent evt) {
 		try {
+			this.empresasAtribuidasUsuario = this.empresasUsuarioSelecionado.getTarget();
 			List<EnderecoEntity> enderecos = new ArrayList<EnderecoEntity>();
 			try {
 				enderecos.addAll(this.enderecosUsuarioHistorico);
@@ -1054,7 +1055,7 @@ public class CadastroUsuarioMB implements Serializable {
 
 			UsuarioEntity usuarioAlterado = this.usuarioFachada.alterarUsuario(this.usuarioSelecionado,
 					this.documentosPessoaisUsuarioSelecionado, enderecos, this.emailsUsuarioSelecionado,
-					this.telefonesUsuarioSelecionado, this.empresasUsuarioSelecionado.getTarget());
+					this.telefonesUsuarioSelecionado, this.empresasAtribuidasUsuario);
 
 			FacesMessage msg = new FacesMessage("Sucesso",
 					stringUtils.formatarTextoParaLeitura(usuarioAlterado.getNome().toString())
