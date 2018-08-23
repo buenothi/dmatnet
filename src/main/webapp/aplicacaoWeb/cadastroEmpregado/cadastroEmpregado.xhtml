@@ -18,7 +18,7 @@
 			<h:panelGroup id="pngCadastroEmpregados" layout="block"
 				class="formulario">
 				<p:messages id="msDadosCadastrais" showDetail="true" closable="true" />
-				
+
 				<dmat:barraBotoesComposite />
 
 				<dmat:pesquisaComposite />
@@ -27,6 +27,18 @@
 
 				<p:tabView id="tbwCadastroEmpregado">
 					<p:tab title="#{msgs.DadosCadastrais}"
+						disabled="#{cadastroEmpresaMB.tabDadosCadastraisDesativado}">
+					</p:tab>
+					<p:tab title="#{msgs.DocumentosPessoaFisica}"
+						disabled="#{cadastroEmpresaMB.tabDadosCadastraisDesativado}">
+					</p:tab>
+					<p:tab title="#{msgs.Endereco}"
+						disabled="#{cadastroEmpresaMB.tabDadosCadastraisDesativado}">
+					</p:tab>
+					<p:tab title="#{msgs.Contatos}"
+						disabled="#{cadastroEmpresaMB.tabDadosCadastraisDesativado}">
+					</p:tab>
+					<p:tab title="#{msgs.ClassificacaoFuncional}"
 						disabled="#{cadastroEmpresaMB.tabDadosCadastraisDesativado}">
 					</p:tab>
 				</p:tabView>
