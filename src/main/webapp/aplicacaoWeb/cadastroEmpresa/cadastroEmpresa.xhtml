@@ -28,7 +28,9 @@
 					<ui:include
 						src="/aplicacaoWeb/cadastroEmpresa/contatoEmpresa.xhtml" />
 				</p:tab>
-				<p:tab title="#{msgs.Empregados}" disabled="#{cadastroEmpresaMB.tabEmpregadosDesativado}"></p:tab>
+				<p:tab title="#{msgs.Empregados}" disabled="#{cadastroEmpresaMB.tabEmpregadosDesativado}">
+					<ui:include src="/aplicacaoWeb/cadastroEmpregado/cadastroEmpregado.xhtml" />
+				</p:tab>
 				<p:tab title="#{msgs.Estabelecimentos}" disabled="#{cadastroEmpresaMB.tabEstabelecimentosDesativado}"></p:tab>
 			</p:tabView>
 		</h:panelGroup>
