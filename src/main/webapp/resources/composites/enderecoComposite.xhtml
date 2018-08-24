@@ -143,11 +143,11 @@
 						<p:selectOneMenu id="listEstado" panelStyle="width:150px"
 							effect="fade" style="width:60px"
 							value="#{cc.attrs.enderecoAtual.estado}"
-							converter="estadoConverter" immediate="true">
+							converter="estadoConverter" >
 							<p:ajax event="itemSelect"
 								listener="#{estadoMB.onSelectionEstado}"
 								update="#{cc.attrs.ajaxComponentRender}" />
-							<f:selectItem
+							<f:selectItem itemValue="#{cc.attrs.enderecoAtual.estado}"
 								itemLabel="#{cc.attrs.enderecoAtual.estado.estadoSigla}" />
 							<f:selectItem itemLabel="--------------" noSelectionOption="true" />
 							<f:selectItems value="#{estadoMB.estados}" var="estado"
@@ -158,7 +158,7 @@
 							value="#{cc.attrs.enderecoAtual.cidade}"
 							converter="cidadeConverter" filter="true"
 							filterMatchMode="startsWith">
-							<f:selectItem
+							<f:selectItem itemValue="{cc.attrs.enderecoAtual.cidade}"
 								itemLabel="#{cc.attrs.enderecoAtual.cidade.cidadeNome}" />
 							<f:selectItem itemLabel="--------------" noSelectionOption="true" />
 							<f:selectItems value="#{estadoMB.cidadesPorEstado}" var="cidade"
