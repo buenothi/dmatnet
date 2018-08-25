@@ -103,7 +103,7 @@
 								<p:panelGrid columns="1" styleClass="tabelaSemBorda">
 									<p:pickList id="pclEmpresasGrupo" immediate="true"
 										style="margin:0 auto" value="#{cadastroEmpresaMB.empresas}"
-										var="#{empresa}" itemLabel="#{empresa.nome}"
+										var="empresa" itemLabel="#{empresa.nome}"
 										itemValue="#{empresa}" converter="empresaConverter"
 										showSourceFilter="true" showTargetFilter="true"
 										filterMatchMode="contains">
