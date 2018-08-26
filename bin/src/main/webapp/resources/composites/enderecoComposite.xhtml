@@ -141,13 +141,13 @@
 					<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}:" />
 					<h:panelGrid id="tblCidadeEstado" columns="2">
 						<p:selectOneMenu id="listEstado" panelStyle="width:150px"
-							effect="fade" style="width:60px" value="#{cc.attrs.enderecoAtual.estado}"
-							converter="estadoConverter" immediate="true">
+							effect="fade" style="width:60px" value="#{cc.attrs.enderecoAtual.cidade.estado}"
+							converter="estadoConverter" >
 							<p:ajax event="itemSelect"
 								listener="#{estadoMB.onSelectionEstado}"
 								update="#{cc.attrs.ajaxComponentRender}" />
 							<f:selectItem
-								itemLabel="#{cc.attrs.enderecoAtual.estado.estadoSigla}" />
+								itemLabel="#{cc.attrs.enderecoAtual.cidade.estado.estadoSigla}" />
 							<f:selectItem itemLabel="--------------" noSelectionOption="true" />
 							<f:selectItems value="#{estadoMB.estados}" var="estado"
 								itemLabel="#{estado.estadoSigla}" itemValue="#{estado}" />
@@ -216,7 +216,7 @@
 					<p:outputLabel value="#{msgs.Estado}/#{msgs.Cidade}:" />
 					<h:panelGrid columns="3">
 						<p:outputLabel id="estadoExibir"
-							value="#{cc.attrs.enderecoAtual.estado}" />
+							value="#{cc.attrs.enderecoAtual.cidade.estado}" />
 						<p:spacer width="15" />
 						<p:outputLabel id="cidadeExibir"
 							value="#{cc.attrs.enderecoAtual.cidade}" />

@@ -12,7 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import br.com.smartems.dmatnet.entities.cidades.CidadeEntity;
-import br.com.smartems.dmatnet.entities.cidades.EstadoEntity;
 
 @Entity
 @Table(name = "tbl_endereco")
@@ -38,10 +37,6 @@ public class EnderecoEntity implements Serializable, Cloneable {
 	@ManyToOne
 	@JoinColumn(name = "CIDADE_ID")
 	private CidadeEntity cidade;
-
-	@ManyToOne
-	@JoinColumn(name = "ESTADO_ID")
-	private EstadoEntity estado;
 
 	private String logradouroTipo;
 	private String logradouroPais;
@@ -133,19 +128,14 @@ public class EnderecoEntity implements Serializable, Cloneable {
 	}
 
 	public CidadeEntity getCidade() {
+		if (this.cidade == null) {
+			this.cidade = new CidadeEntity();
+		}
 		return cidade;
 	}
 
 	public void setCidade(CidadeEntity cidade) {
 		this.cidade = cidade;
-	}
-
-	public EstadoEntity getEstado() {
-		return estado;
-	}
-
-	public void setEstado(EstadoEntity estado) {
-		this.estado = estado;
 	}
 
 	public String getLogradouroTipo() {
