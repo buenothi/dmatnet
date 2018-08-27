@@ -143,7 +143,7 @@
 						<p:selectOneMenu id="listEstado" panelStyle="width:150px"
 							effect="fade" style="width:60px"
 							value="#{cc.attrs.enderecoAtual.cidade.estado}"
-							converter="estadoConverter" >
+							converter="estadoConverter">
 							<p:ajax event="itemSelect"
 								listener="#{estadoMB.onSelectionEstado}"
 								update="#{cc.attrs.ajaxComponentRender}" />
@@ -158,7 +158,8 @@
 							value="#{cc.attrs.enderecoAtual.cidade}"
 							converter="cidadeConverter" filter="true"
 							filterMatchMode="startsWith">
-							<f:selectItem itemValue="#{cc.attrs.enderecoAtual.cidade.cidadeNome}"
+							<f:selectItem
+								itemValue="#{cc.attrs.enderecoAtual.cidade.cidadeNome}"
 								itemLabel="#{cc.attrs.enderecoAtual.cidade.cidadeNome}" />
 							<f:selectItem itemLabel="--------------" noSelectionOption="true" />
 							<f:selectItems value="#{estadoMB.cidadesPorEstado}" var="cidade"
@@ -229,9 +230,9 @@
 
 		<p:tab id="tabEnderecoHistorico" title="#{msgs.Historico}"
 			rendered="#{cc.attrs.renderedHistorico}">
-			<h:panelGrid columns="2" cellpadding="10">
-				<p:dataTable scrollable="true" styleClass="dataTable"
-					paginator="true" rows="10"
+			<h:panelGrid id="pngEnderecoHistorico" columns="2" cellpadding="10">
+				<p:dataTable id="dttEnderecoHistorico" scrollable="true"
+					styleClass="dataTable" paginator="true" rows="10"
 					emptyMessage="#{msgs.ListaHistoricoEndereco}"
 					value="#{cc.attrs.enderecoHistorico}"
 					paginatorAlwaysVisible="false" var="endereco"
@@ -356,23 +357,26 @@
 					<p:column headerText="#{msgs.Estado}" width="60">
 						<p:cellEditor>
 							<f:facet name="output">
-								<p:outputLabel value="#{endereco.estado}">
-								</p:outputLabel>
+								<p:outputLabel value="#{endereco.cidade.estado.estadoSigla}" />
 							</f:facet>
 							<f:facet name="input">
 								<p:selectOneMenu id="listEstado" panelStyle="width:150px"
-									effect="fade" style="width:60px" value="#{endereco.estado}"
-									converter="estadoConverter" immediate="true">
-									<p:ajax event="change" listener="#{estadoMB.onSelectionEstado}"
+									effect="fade" style="width:60px"
+									value="#{endereco.cidade.estado}" converter="estadoConverter"
+									immediate="true">
+									<p:ajax event="itemSelect" listener="#{estadoMB.onSelectionEstado}"
 										update="#{cc.attrs.ajaxComponentRenderHistorico}" />
-									<f:selectItem itemLabel="UF" noSelectionOption="true" />
+									<f:selectItem itemValue="#{endereco.cidade.estado}"
+										itemLabel="#{endereco.cidade.estado.estadoSigla}" />
+									<f:selectItem itemLabel="--------------"
+										noSelectionOption="true" />
 									<f:selectItems value="#{estadoMB.estados}" var="estado"
 										itemLabel="#{estado.estadoSigla}" itemValue="#{estado}" />
 								</p:selectOneMenu>
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
-					<p:column headerText="#{msgs.Cidade}" width="180">
+					<p:column headerText="#{msgs.Cidade}" width="210">
 						<p:cellEditor>
 							<f:facet name="output">
 								<p:outputLabel value="#{endereco.cidade}"
@@ -381,10 +385,12 @@
 							</f:facet>
 							<f:facet name="input">
 								<p:selectOneMenu id="listCidade" panelStyle="width:180px"
-									effect="fade" style="width:333px" value="#{endereco.cidade}"
+									effect="fade" style="width:200px" value="#{endereco.cidade}"
 									converter="cidadeConverter" immediate="true" filter="true"
 									filterMatchMode="startsWith">
-									<f:selectItem itemLabel="Selecionar a Cidade"
+									<f:selectItem itemValue="#{endereco.cidade.cidadeNome}"
+										itemLabel="#{endereco.cidade.cidadeNome}" />
+									<f:selectItem itemLabel="--------------"
 										noSelectionOption="true" />
 									<f:selectItems value="#{estadoMB.cidadesPorEstado}"
 										var="cidade" itemLabel="#{cidade.cidadeNome}"
