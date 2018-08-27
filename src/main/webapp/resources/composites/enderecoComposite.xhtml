@@ -158,7 +158,7 @@
 							value="#{cc.attrs.enderecoAtual.cidade}"
 							converter="cidadeConverter" filter="true"
 							filterMatchMode="startsWith">
-							<f:selectItem itemValue="{cc.attrs.enderecoAtual.cidade}"
+							<f:selectItem itemValue="#{cc.attrs.enderecoAtual.cidade.cidadeNome}"
 								itemLabel="#{cc.attrs.enderecoAtual.cidade.cidadeNome}" />
 							<f:selectItem itemLabel="--------------" noSelectionOption="true" />
 							<f:selectItems value="#{estadoMB.cidadesPorEstado}" var="cidade"

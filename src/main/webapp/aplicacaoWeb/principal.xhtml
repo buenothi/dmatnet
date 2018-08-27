@@ -198,13 +198,16 @@
 		<h:graphicImage name="images/16.gif" />
 	</p:dialog>
 
-	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" >
-		<p:panelGrid columns="2" style="width:100%" styleClass="tabelaSemBorda">
-			<p:commandButton value="#{msgs.Sim}" type="button"
-				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-			<p:commandButton value="#{msgs.Nao}" type="button"
-				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-		</p:panelGrid>
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+		responsive="true">
+		<p:toolbar id="tbrBotoes">
+			<f:facet name="right">
+				<p:commandButton value="#{msgs.Sim}" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="#{msgs.Nao}" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</f:facet>
+		</p:toolbar>
 	</p:confirmDialog>
 
 	<p:growl id="growlPrincipal" showDetail="true" sticky="false"
