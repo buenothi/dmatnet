@@ -137,7 +137,7 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 
 	private void atribuirEnderecosPessoaFisica(List<EnderecoEntity> enderecos, UsuarioEntity usuarioAtual) {
 		try {
-			Set<EnderecoEntity> novoEnderecos = new TreeSet<>(enderecos);
+			Set<EnderecoEntity> novoEnderecos = new HashSet<EnderecoEntity>();
 			novoEnderecos.addAll(enderecos);
 			usuarioAtual.setEnderecos(novoEnderecos);
 		} catch (Exception e) {
@@ -148,7 +148,8 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 	private void atribuirEmpresasAtribuidasPessoaFisica(List<EmpresaEntity> empresasAtribuidas,
 			UsuarioEntity usuarioAtual) {
 		try {
-			Set<EmpresaEntity> novoEmpresasAtribuidas = new HashSet<EmpresaEntity>(empresasAtribuidas);
+			Set<EmpresaEntity> novoEmpresasAtribuidas = new HashSet<EmpresaEntity>();
+			novoEmpresasAtribuidas.addAll(empresasAtribuidas);
 			usuarioAtual.setEmpresasGerenciadas(novoEmpresasAtribuidas);
 		} catch (Exception e) {
 			e.printStackTrace();

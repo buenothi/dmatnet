@@ -1043,7 +1043,7 @@ public class CadastroUsuarioMB implements Serializable {
 				e.printStackTrace();
 			}
 			try {
-				enderecos.add(this.enderecoUsuarioAtual);
+				enderecos.add(this.enderecoUsuarioSelecionado);
 			} catch (NullPointerException e) {
 				e.printStackTrace();
 			}
