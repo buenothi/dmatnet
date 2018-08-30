@@ -19,8 +19,8 @@
 		resetCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcDadosUsuarioSelecionado:pnlDadosUsuario"
 		disabledSalvar="#{cadastroUsuarioMB.btnUsuarioSalvarDesativado}"
 		actionListenerSalvar="#{cadastroUsuarioMB.salvarAlteracoesUsuario}"
-		updateSalvar="formModulos, growlPrincipal"
-		renderedBtnNovo="true" labelNovo="#{msgs.NovoUsuario}"
+		updateSalvar="formModulos, growlPrincipal" renderedBtnNovo="true"
+		labelNovo="#{msgs.NovoUsuario}"
 		disabledNovo="#{cadastroUsuarioMB.btnUsuarioNovoDesativado}"
 		actionListenerNovo="#{cadastroUsuarioMB.novoUsuarioNaEmpresaSelecionada}"
 		onCompleteNovo="PF('dlgCriarUsuario').show()"
@@ -48,10 +48,11 @@
 					style="font-size:10pt;height:31px" />
 			</h:panelGrid>
 			<p:dataTable scrollable="true" paginator="true" rows="8"
-				paginatorAlwaysVisible="false" 
+				paginatorAlwaysVisible="false"
 				emptyMessage="#{msgs.ListaUsuariosVazia}" var="usuario"
 				value="#{cadastroEmpresaMB.usuariosEmpresaSelecionada}"
-				rowKey="#{usuario.idPessoa}" selectionMode="single" sortBy="#{usuario.nome}"
+				rowKey="#{usuario.idPessoa}" selectionMode="single"
+				sortBy="#{usuario.nome}"
 				disabledSelection="#{cadastroUsuarioMB.disabledSelecaoTabelaUsuarios}">
 
 				<p:ajax event="rowSelect"
@@ -112,7 +113,7 @@
 				<p:tab title="#{msgs.Endereco}">
 					<dmat:usuariosEnderecoComposite id="uedUsuarioSelecionado"
 						enderecoRendered="true" barraBotoesRendered="false"
-						renderedHistorico="true"
+						renderedHistorico="false"
 						enderecoAtual="#{cadastroUsuarioMB.enderecoUsuarioSelecionado}"
 						enderecoHistorico="#{cadastroUsuarioMB.enderecosUsuarioHistorico}"
 						ajaxComponentRender="@this, formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uedUsuarioSelecionado:dmatEnderecoContato:acpEndereco:listCidade"
@@ -140,7 +141,8 @@
 				<p:tab title="#{msgs.Contatos}">
 					<dmat:usuariosContatosComposite id="uccUsuarioSelecionado"
 						emailPrincipal="#{cadastroUsuarioMB.emailPrincipalUsuarioSelecionado}"
-						requiredEmail="false" disabledBotaoAdicionarEmail="#{cadastroUsuarioMB.btnAdicionarEmail}"
+						requiredEmail="false" 
+						disabledBotaoAdicionarEmail="#{cadastroUsuarioMB.btnAdicionarEmail}"
 						disabledBotaoNovoEmail="#{cadastroUsuarioMB.btnNovoEmail}"
 						mensagemSelecionarUsuarioRendered="#{cadastroUsuarioMB.mensagemSelecionarUsuarioRendered}"
 						mensagemHasEmailRendered="#{cadastroUsuarioMB.mensagemHasEmailRendered}"
@@ -149,7 +151,7 @@
 						exibirRendered="#{cadastroUsuarioMB.dadosUsuariosExibir}"
 						actionListenerAdicionarEmailContato="#{cadastroUsuarioMB.adicionarEmailContatoUsuarioSelecionado}"
 						updateAdicionarEmailContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoEmail"
-						actionListenerNovoEmailContato="#{cadastroUsuarioMB.novoEmailContatoUsuarioSelecionado}" 
+						actionListenerNovoEmailContato="#{cadastroUsuarioMB.novoEmailContatoUsuarioSelecionado}"
 						listaEmailsUsuarios="#{cadastroUsuarioMB.emailsUsuarioSelecionado}"
 						telefonePrincipal="#{cadastroUsuarioMB.telefoneUsuarioSelecionado}"
 						listaTelefonesUsuarios="#{cadastroUsuarioMB.telefonesUsuarioSelecionado}"
@@ -162,7 +164,8 @@
 						setPropertyActionListenerRemoverEmail="#{cadastroUsuarioMB.emailUsuarioExcluir}"
 						updateRemoverEmailLista="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoEmail"
 						dadosUsuarioEmailRendered="#{cadastroUsuarioMB.cadastroUsuarioSelecionadoEmailRendered}"
-						dadosUsuarioTelefoneRendered="#{cadastroUsuarioMB.cadastroUsuarioSelecionadoTelefoneRendered}" mensagemRendered="true"/>
+						dadosUsuarioTelefoneRendered="#{cadastroUsuarioMB.cadastroUsuarioSelecionadoTelefoneRendered}"
+						mensagemRendered="false" />
 				</p:tab>
 
 				<p:tab title="#{msgs.Login}">
@@ -177,8 +180,8 @@
 
 				<p:tab title="#{msgs.Empresas}">
 					<dmat:usuariosEmpresasComposite id="uecUsuarioSelecionado"
-						empresasUsuario="#{cadastroUsuarioMB.empresasUsuarioSelecionado}" 
-						disabled="#{cadastroUsuarioMB.disabledUsuarioEmpresas}"/>
+						empresasUsuario="#{cadastroUsuarioMB.empresasUsuarioSelecionado}"
+						disabled="#{cadastroUsuarioMB.disabledUsuarioEmpresas}" />
 				</p:tab>
 
 			</p:tabView>

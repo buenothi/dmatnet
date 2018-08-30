@@ -1038,11 +1038,6 @@ public class CadastroUsuarioMB implements Serializable {
 			this.empresasAtribuidasUsuario = this.empresasUsuarioSelecionado.getTarget();
 			List<EnderecoEntity> enderecos = new ArrayList<EnderecoEntity>();
 			try {
-				enderecos.addAll(this.enderecosUsuarioHistorico);
-			} catch (NullPointerException e) {
-				e.printStackTrace();
-			}
-			try {
 				enderecos.add(this.enderecoUsuarioSelecionado);
 			} catch (NullPointerException e) {
 				e.printStackTrace();
