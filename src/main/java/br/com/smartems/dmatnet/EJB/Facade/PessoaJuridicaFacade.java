@@ -5,7 +5,6 @@ import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.jws.WebService;
 
 import br.com.smartems.dmatnet.EJB.dao.PessoaJuridicaEAO;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
@@ -20,7 +19,6 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaOrganismoIn
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaSoftwareHouse;
 
 @Stateless
-@WebService
 public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 
 	@EJB
