@@ -26,19 +26,13 @@
 		<p:spacer width="100%" height="10px" />
 
 		<h:panelGrid columns="2" style="width:100%">
-			<p:inputText id="iptBuscarEmpresa" style="width: 705px"
-				value="#{cadastroEmpresaMB.nomeEmpresaProcurada}"
-				placeholder="#{msgs.DigiteEmpresa}" />
-			<h:panelGroup>
-				<p:commandButton icon="fa fa-search"
-					style="font-size:10pt;height:31px"
-					actionListener="#{cadastroEmpresaMB.filtrarEmpresa}"
-					update="formSelecionarEmpresa" />
-				<p:commandButton icon="fa fa-rotate-left"
-					style="font-size:10pt;height:31px"
-					actionListener="#{cadastroEmpresaMB.removerFiltroEmpresa}"
-					update="formSelecionarEmpresa" />
-			</h:panelGroup>
+			<dmat:barraPesquisarComposite id="bpcBuscarEmpresa"
+				widthPesquisar="705px"
+				textoPesquisar="#{cadastroEmpresaMB.nomeEmpresaProcurada}"
+				placeholderPesquisar="#{msgs.DigiteEmpresa}"
+				actionListenerFiltrar="#{cadastroEmpresaMB.filtrarEmpresa}"
+				updateFiltrar="formSelecionarEmpresa"
+				actionListenerRemoverFiltro="#{cadastroEmpresaMB.removerFiltroEmpresa}" />
 		</h:panelGrid>
 
 		<p:spacer width="100%" height="10px" />
@@ -56,8 +50,7 @@
 				update="formSuperior, formSelecionarEmpresa:dtbEmpresas, growlPrincipal, formModulos, formLateral"
 				resetValues="true" />
 
-			<p:ajax event="rowSelect"
-				listener="#{cadastroUsuarioMB.initUsuario}"
+			<p:ajax event="rowSelect" listener="#{cadastroUsuarioMB.initUsuario}"
 				update="formSuperior, formSelecionarEmpresa:dtbEmpresas, growlPrincipal, formModulos, formLateral"
 				resetValues="true" />
 

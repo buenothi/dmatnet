@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+
+	<composite:attribute name="widthPesquisar" />
+	<composite:attribute name="textoPesquisar" />
+	<composite:attribute name="placeholderPesquisar" />
+	<composite:attribute name="actionListenerFiltrar"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="updateFiltrar" />
+	<composite:attribute name="actionListenerRemoverFiltro"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+
+</composite:interface>
+
+<composite:implementation>
+
+	<p:inputText id="iptBuscar"
+		style="width: #{cc.attrs.widthPesquisar}"
+		value="#{cc.attrs.textoPesquisar}"
+		placeholder="#{cc.attrs.placeholderPesquisar}" />
+	<h:panelGroup>
+		<p:commandButton icon="fa fa-search"
+			style="font-size:10pt;height:31px"
+			actionListener="#{cc.attrs.actionListenerFiltrar}"
+			update="#{cc.attrs.updateFiltrar}" />
+		<p:commandButton icon="fa fa-rotate-left"
+			style="font-size:10pt;height:31px"
+			actionListener="#{cc.attrs.actionListenerRemoverFiltro}"
+			update="#{cc.attrs.updateFiltrar}" />
+	</h:panelGroup>
+
+</composite:implementation>
+</html>
