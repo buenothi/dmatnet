@@ -16,6 +16,8 @@
 	<composite:attribute name="updateFiltrar" />
 	<composite:attribute name="actionListenerRemoverFiltro"
 		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+		
+	<composite:attribute name="renderSpacer" default="true"/>
 
 </composite:interface>
 
@@ -35,6 +37,9 @@
 			actionListener="#{cc.attrs.actionListenerRemoverFiltro}"
 			update="#{cc.attrs.updateFiltrar}" />
 	</h:panelGroup>
+	
+	<p:spacer height="10px" width="100%"
+		rendered="#{cc.attrs.renderSpacer}" />
 
 </composite:implementation>
 </html>

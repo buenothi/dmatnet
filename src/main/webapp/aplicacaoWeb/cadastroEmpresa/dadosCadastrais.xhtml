@@ -25,7 +25,7 @@
 			renderedBtnNovo="true" labelNovo="#{msgs.NovoEmpresaDadosCadastrais}"
 			disabledNovo="#{cadastroEmpresaMB.btnDadosCadastraisNovaEmpresaDesativado}"
 			actionListenerNovo="#{cadastroEmpresaMB.novoDadosCadastraisEmpresa}"
-			updateNovo="formModulos" renderSpacer="false"
+			updateNovo="formModulos"
 			disabledImprimir="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}"
 			actionListenerImprimir="#{cadastroEmpresaMB.imprimirDadosCadastrais}"
 			labelImprimir="#{msgs.Imprimir}" updateImprimir="formModulos"
@@ -36,9 +36,6 @@
 			renderedBtnExcluir="#{cadastroEmpresaMB.btnDadosCadastraisExcluirRender}"
 			labelExcluir="#{msgs.Excluir}" headerConfirma="#{msgs.Confirmar}"
 			messageConfirma="#{msgs.DeletarDadosCadastrais}" />
-
-		<p:spacer height="10px" width="100%" />
-
 
 		<p:accordionPanel id="acpDadosCadastrais"
 			rendered="#{cadastroEmpresaMB.dadosCadastraisRendered}">

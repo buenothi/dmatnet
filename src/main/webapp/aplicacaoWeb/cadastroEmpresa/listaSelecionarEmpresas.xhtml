@@ -17,7 +17,6 @@
 					onclick="PF('dlgCriarEmpresa').show()"
 					actionListener="#{cadastroEmpresaMB.novoCadastroEmpresa}"
 					update="formCriarEmpresa, formModulos" />
-				<p:spacer width="10px" height="100%" />
 				<p:commandButton onclick="PF('dlgGrupo').show()" icon="fa fa-group"
 					value="#{msgs.EmpresaGrupoCriar}" />
 			</h:panelGrid>
@@ -27,15 +26,12 @@
 
 		<h:panelGrid columns="2" style="width:100%">
 			<dmat:barraPesquisarComposite id="bpcBuscarEmpresa"
-				widthPesquisar="705px"
 				textoPesquisar="#{cadastroEmpresaMB.nomeEmpresaProcurada}"
 				placeholderPesquisar="#{msgs.DigiteEmpresa}"
 				actionListenerFiltrar="#{cadastroEmpresaMB.filtrarEmpresa}"
 				updateFiltrar="formSelecionarEmpresa"
 				actionListenerRemoverFiltro="#{cadastroEmpresaMB.removerFiltroEmpresa}" />
 		</h:panelGrid>
-
-		<p:spacer width="100%" height="10px" />
 
 		<p:dataTable id="dtbEmpresas" var="empresa"
 			paginatorAlwaysVisible="false"

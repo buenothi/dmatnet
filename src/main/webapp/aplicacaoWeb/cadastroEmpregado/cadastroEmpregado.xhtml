@@ -17,11 +17,27 @@
 			class="formulario">
 			<p:messages id="msEmpregados" showDetail="true" closable="true" />
 
-			<dmat:barraBotoesComposite />
+			<dmat:barraBotoesComposite id="barraBotoesEmpregados" />
 
-			<dmat:barraPesquisarComposite id="bpcPesquisarEmpregado" />
+			<dmat:barraPesquisarComposite id="bpcPesquisarEmpregado"
+				placeholderPesquisar="#{msgs.DigiteEmpregado}" />
 
-			<p:dataTable />
+			<p:dataTable id="dtbEmpregados" paginator="true" rows="10"
+				scrollable="true" styleClass="dataTable"
+				paginatorAlwaysVisible="false" draggableColumns="true"
+				emptyMessage="#{msgs.ListaEmpregadosVazio}" selectionMode="single">
+				<p:column headerText="#{msgs.DataCadastro}" width="60"></p:column>
+				<p:column headerText="#{msgs.Nome}" width="200"></p:column>
+				<p:column headerText="#{msgs.Genero}" width="30"></p:column>
+				<p:column headerText="#{msgs.NumeroRG}" width="80"></p:column>
+				<p:column headerText="#{msgs.NumeroCPF}" width="80"></p:column>
+				<p:column headerText="#{msgs.NumeroRNE}" width="80"></p:column>
+				<p:column headerText="#{msgs.NumeroRic}" width="80"></p:column>
+				<p:column headerText="#{msgs.DataAdmissao}" width="60"></p:column>
+				<p:column headerText="#{msgs.DataDemissao}" width="60"></p:column>
+			</p:dataTable>
+
+			<p:spacer height="10px" width="100%" />
 
 			<p:tabView id="tbwCadastroEmpregado">
 				<p:tab title="#{msgs.DadosCadastrais}"

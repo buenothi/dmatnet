@@ -25,7 +25,6 @@
 		actionListenerNovo="#{cadastroUsuarioMB.novoUsuarioNaEmpresaSelecionada}"
 		onCompleteNovo="PF('dlgCriarUsuario').show()"
 		updateNovo="formModulos:formCadEmpresa:tbwCadastroEmpresa:pngCadastroUsuarioEmpresa"
-		renderSpacer="true"
 		disabledImprimir="#{cadastroUsuarioMB.btnUsuarioEditarDesativado}"
 		actionListenerImprimir="#{cadastroUsuarioMB.imprimirUsuario}"
 		labelImprimir="#{msgs.Imprimir}"
@@ -42,8 +41,7 @@
 		styleClass="top-aligned-columns">
 		<h:panelGroup id="pngSelecaoUsuario" layout="block"
 			style="width: 250px">
-				<dmat:barraPesquisarComposite id="bpcBuscarContato"
-				widthPesquisar="183px" />
+				<dmat:barraPesquisarComposite id="bpcBuscarContato" renderSpacer="false"/>
 			<p:dataTable scrollable="true" paginator="true" rows="8"
 				paginatorAlwaysVisible="false"
 				emptyMessage="#{msgs.ListaUsuariosVazia}" var="usuario"
