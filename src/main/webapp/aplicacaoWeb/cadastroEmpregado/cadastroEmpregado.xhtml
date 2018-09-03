@@ -19,6 +19,15 @@
 
 			<dmat:barraBotoesComposite id="barraBotoesEmpregados" />
 
+			<!-- inserir msgs dos itens abaixo -->
+			<p:selectOneButton>
+				<f:selectItem itemLabel="Ativo" itemValue="Xbox One" />
+				<f:selectItem itemLabel="Inativo" itemValue="PS4" />
+				<f:selectItem itemLabel="Afastado" itemValue="Wii U" />
+			</p:selectOneButton>
+
+			<p:spacer height="10px" width="100%" />
+
 			<dmat:barraPesquisarComposite id="bpcPesquisarEmpregado"
 				placeholderPesquisar="#{msgs.DigiteEmpregado}" />
 
@@ -40,20 +49,17 @@
 			<p:spacer height="10px" width="100%" />
 
 			<p:tabView id="tbwCadastroEmpregado">
-				<p:tab title="#{msgs.DadosCadastrais}"
-					disabled="#{cadastroEmpresaMB.tabDadosCadastraisDesativado}">
+				<p:tab title="#{msgs.DadosCadastrais}" disabled="">
+					<ui:include
+						src="/aplicacaoWeb/cadastroEmpregado/dadosCadastraisEmpregado.xhtml" />
 				</p:tab>
-				<p:tab title="#{msgs.DocumentosPessoaFisica}"
-					disabled="#{cadastroEmpresaMB.tabDadosCadastraisDesativado}">
+				<p:tab title="#{msgs.DocumentosPessoaFisica}" disabled="">
 				</p:tab>
-				<p:tab title="#{msgs.Endereco}"
-					disabled="#{cadastroEmpresaMB.tabDadosCadastraisDesativado}">
+				<p:tab title="#{msgs.Endereco}" disabled="">
 				</p:tab>
-				<p:tab title="#{msgs.Contatos}"
-					disabled="#{cadastroEmpresaMB.tabDadosCadastraisDesativado}">
+				<p:tab title="#{msgs.Contatos}" disabled="">
 				</p:tab>
-				<p:tab title="#{msgs.ClassificacaoFuncional}"
-					disabled="#{cadastroEmpresaMB.tabDadosCadastraisDesativado}">
+				<p:tab title="#{msgs.ClassificacaoFuncional}" disabled="">
 				</p:tab>
 			</p:tabView>
 		</h:panelGroup>
