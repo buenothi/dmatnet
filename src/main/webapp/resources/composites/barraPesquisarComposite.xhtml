@@ -9,7 +9,6 @@
 
 <composite:interface>
 
-	<composite:attribute name="widthPesquisar" />
 	<composite:attribute name="textoPesquisar" />
 	<composite:attribute name="placeholderPesquisar" />
 	<composite:attribute name="actionListenerFiltrar"
@@ -23,16 +22,16 @@
 <composite:implementation>
 
 	<p:inputText id="iptBuscar"
-		style="width: #{cc.attrs.widthPesquisar}"
+		style="min-width: 80px;width: calc(100% - 65px)"
 		value="#{cc.attrs.textoPesquisar}"
 		placeholder="#{cc.attrs.placeholderPesquisar}" />
 	<h:panelGroup>
 		<p:commandButton icon="fa fa-search"
-			style="font-size:10pt;height:31px"
+			style="font-size:10pt;height:31px;width: 31px"
 			actionListener="#{cc.attrs.actionListenerFiltrar}"
 			update="#{cc.attrs.updateFiltrar}" />
 		<p:commandButton icon="fa fa-rotate-left"
-			style="font-size:10pt;height:31px"
+			style="font-size:10pt;height:31px;width: 31px"
 			actionListener="#{cc.attrs.actionListenerRemoverFiltro}"
 			update="#{cc.attrs.updateFiltrar}" />
 	</h:panelGroup>
