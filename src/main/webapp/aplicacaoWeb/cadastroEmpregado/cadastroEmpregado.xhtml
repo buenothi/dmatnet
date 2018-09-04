@@ -20,11 +20,14 @@
 			<dmat:barraBotoesComposite id="barraBotoesEmpregados" />
 
 			<!-- inserir msgs dos itens abaixo -->
-			<p:selectOneButton>
-				<f:selectItem itemLabel="Ativo" itemValue="Xbox One" />
-				<f:selectItem itemLabel="Inativo" itemValue="PS4" />
-				<f:selectItem itemLabel="Afastado" itemValue="Wii U" />
-			</p:selectOneButton>
+
+			<h:panelGroup layout="block" style="text-align: center">
+				<p:selectOneButton>
+					<f:selectItem itemLabel="Ativo" itemValue="Xbox One" />
+					<f:selectItem itemLabel="Inativo" itemValue="PS4" />
+					<f:selectItem itemLabel="Afastado" itemValue="Wii U" />
+				</p:selectOneButton>
+			</h:panelGroup>
 
 			<p:spacer height="10px" width="100%" />
 
@@ -32,7 +35,7 @@
 				placeholderPesquisar="#{msgs.DigiteEmpregado}" />
 
 			<p:dataTable id="dtbEmpregados" scrollable="true"
-				styleClass="dataTable" scrollHeight="90" 
+				styleClass="dataTable" paginator="true" rows="10"
 				paginatorAlwaysVisible="false" draggableColumns="true"
 				emptyMessage="#{msgs.ListaEmpregadosVazio}" selectionMode="single">
 				<p:column headerText="#{msgs.DataCadastro}" width="60"></p:column>
@@ -60,6 +63,8 @@
 				<p:tab title="#{msgs.Contatos}" disabled="">
 				</p:tab>
 				<p:tab title="#{msgs.ClassificacaoFuncional}" disabled="">
+				</p:tab>
+				<p:tab title="#{msgs.InfoDeficiencia}" disabled="">
 				</p:tab>
 			</p:tabView>
 		</h:panelGroup>
