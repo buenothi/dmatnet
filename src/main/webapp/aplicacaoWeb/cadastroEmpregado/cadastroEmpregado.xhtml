@@ -31,8 +31,8 @@
 			<dmat:barraPesquisarComposite id="bpcPesquisarEmpregado"
 				placeholderPesquisar="#{msgs.DigiteEmpregado}" />
 
-			<p:dataTable id="dtbEmpregados" paginator="true" rows="10"
-				scrollable="true" styleClass="dataTable"
+			<p:dataTable id="dtbEmpregados" scrollable="true"
+				styleClass="dataTable" scrollHeight="90" 
 				paginatorAlwaysVisible="false" draggableColumns="true"
 				emptyMessage="#{msgs.ListaEmpregadosVazio}" selectionMode="single">
 				<p:column headerText="#{msgs.DataCadastro}" width="60"></p:column>
