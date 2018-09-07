@@ -157,6 +157,11 @@ a:LINK {
 	background-color: transparent;
 }
 
+#logoMenu {
+	background-image:
+		url("../resources/images/menuNavegacao/icoMenu.png");
+}
+
 #logoHome {
 	background-image:
 		url("../resources/images/menuNavegacao/newIcoHome_out.png");
