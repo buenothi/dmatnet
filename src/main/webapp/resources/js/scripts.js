@@ -27,3 +27,19 @@ PrimeFaces.locales['pt'] = {
 	day : 'Dia',
 	allDayText : 'Todo o Dia'
 };
+<<<<<<< master
+=======
+
+function openMenu() {
+	document.getElementById("modulos").className = "conteudoFixo";
+	document.getElementById("lateral").className = "lateralFixo";
+	document.getElementById("formLateral:btnMenu").className = "menuBotaoMenuSelecionado";
+	document.getElementById("formLateral:btnMenu").setAttribute('onclick', 'closeMenu()')
+}
+function closeMenu() {
+	document.getElementById("modulos").className = "conteudo";
+	document.getElementById("lateral").className = "lateral";
+	document.getElementById("formLateral:btnMenu").className = "menuBotao";
+	document.getElementById("formLateral:btnMenu").setAttribute('onclick', 'openMenu()');
+}
+>>>>>>> 5e43b26 Revert "Cadastro Empregado - Parte 13 JavaScript"

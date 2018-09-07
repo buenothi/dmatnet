@@ -118,6 +118,16 @@ a:LINK {
 	cursor: pointer;
 }
 
+.menuBotaoMenuSelecionado {
+	height: 55px;
+	width: 200px;
+	background-color: #ff7d78;
+	color: white;
+	display: block;
+	margin-top: 1px;
+	cursor: pointer;
+}
+
 .logosMenu {
 	height: 54px;
 	width: 54px;
@@ -182,7 +192,7 @@ a:LINK {
 		url("../resources/images/menuNavegacao/newIcoTreinamento_out.png");
 }
 
-#lateral {
+.lateral {
 	padding: 0 0 0 0;
 	-moz-transition: all 0.5s ease;
 	-webkit-transition: all 0.5s ease;
@@ -210,20 +220,58 @@ a:LINK {
 	z-index: 1000;
 }
 
-#lateral:before {
+.lateral:before {
 	z-index: 1000;
 }
 
-#lateral:hover, #lateral:focus, #lateral:active {
+.lateral:hover, #lateral:focus, #lateral:active {
 	width: 200px;
 	overflow: auto;
+}
+
+.lateralFixo {
+	padding: 0 0 0 0;
+	-moz-transition: all 0.5s ease;
+	-webkit-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	background: rgb(75, 75, 77);
+	background-image: -moz-linear-gradient(135deg, rgb(75, 75, 77),
+		rgb(49, 49, 49));
+	background-image: -webkit-linear-gradient(135deg, rgb(75, 75, 77),
+		rgb(49, 49, 49));
+	background-image: -o-linear-gradient(135deg, rgb(75, 75, 77),
+		rgb(49, 49, 49));
+	background-image: -ms-linear-gradient(135deg, rgb(75, 75, 77),
+		rgb(49, 49, 49));
+	background-image: linear-gradient(135deg, rgb(75, 75, 77),
+		rgb(49, 49, 49));
+	height: 100%;
+	overflow: hidden;
+	position: fixed;
+	top: 42px;
+	left: 0;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+	z-index: 1000;
+	width: 200px;
 }
 
 .conteudo {
 	padding: 42px 0 0 56px !important;
 	height: 100%;
 	width: 100%;
-	position: relative;
+	position: absolute;
+	overflow: auto;
+	font-size: 10pt;
+	min-width: 1200px;
+}
+
+.conteudoFixo {
+	padding: 42px 0 0 200px !important;
+	height: 100%;
+	width: 100%;
+	position: absolute;
 	overflow: auto;
 	font-size: 10pt;
 	min-width: 1200px;

@@ -50,8 +50,24 @@
 		</h:form>
 	</div>
 
+<<<<<<< master
 	<h:form id="formLateral">
 		<div id="lateral">
+=======
+	<div id="lateral" class="lateral">
+		<h:form id="formLateral">
+			<p:commandLink>
+				<h:panelGroup id="btnMenu" layout="block" styleClass="menuBotao"
+					onclick="openMenu()">
+					<div id="logoMenu" class="logosMenu" />
+					<div id="rotuloMenu" class="rotuloMenu">
+						<h:outputFormat styleClass="textoMenu"
+							value="#{fn:toUpperCase(msgs.Menu)}" />
+					</div>
+				</h:panelGroup>
+			</p:commandLink>
+
+>>>>>>> 5e43b26 Revert "Cadastro Empregado - Parte 13 JavaScript"
 			<p:commandLink actionListener="#{principalMB.exibirHome}"
 				update="@this formModulos btnCadastroEmpresa">
 				<h:panelGroup id="btnHome" layout="block"
@@ -116,15 +132,18 @@
 						value="#{fn:toUpperCase(msgs.TreinamentosSST)}" />
 				</div>
 			</div>
-		</div>
-	</h:form>
+		</h:form>
+	</div>
 
-	<h:form id="formModulos" styleClass="conteudo">
-		<p:panel id="pnlCadastroEmpresa" header="#{msgs.CadastroEmpresa}"
-			rendered="#{principalMB.renderizarCadastroEmpresa}">
-			<ui:include src="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml" />
-		</p:panel>
-	</h:form>
+	<div id="modulos" class="conteudo">
+		<h:form id="formModulos">
+			<p:panel id="pnlCadastroEmpresa" header="#{msgs.CadastroEmpresa}"
+				rendered="#{principalMB.renderizarCadastroEmpresa}">
+				<ui:include
+					src="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml" />
+			</p:panel>
+		</h:form>
+	</div>
 
 	<p:dialog id="dlgSelecionarEmpresa" widgetVar="dlgSelecionarEmpresa"
 		resizable="false" modal="true" width="830" dynamic="true"
