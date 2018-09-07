@@ -29,7 +29,7 @@ PrimeFaces.locales['pt'] = {
 };
 
 function openMenu() {
-	document.getElementById("formModulos").style.paddingLeft = "200px !important";
+	document.getElementById("conteudo").style.marginLeft = "200px";
 	document.getElementById("lateral").style.width = "200px";
 	console.log("teste");
 }
