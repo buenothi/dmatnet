@@ -162,6 +162,11 @@ a:LINK {
 		url("../resources/images/menuNavegacao/icoMenu.png");
 }
 
+#logoMenuFixo {
+	background-image:
+		url("../resources/images/menuNavegacao/icoMenuClose.png");
+}
+
 #logoHome {
 	background-image:
 		url("../resources/images/menuNavegacao/newIcoHome_out.png");
