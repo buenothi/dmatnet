@@ -29,14 +29,11 @@ PrimeFaces.locales['pt'] = {
 };
 
 function openMenu() {
-	document.getElementById("modulos").className = "conteudoFixo";
-	document.getElementById("lateral").className = "lateralFixo";
-	document.getElementById("formLateral:btnMenu").className = "menuBotaoMenuSelecionado";
-	document.getElementById("formLateral:btnMenu").setAttribute('onclick', 'closeMenu()')
+	document.getElementById("formModulos").style.paddingLeft = "200px !important";
+	document.getElementById("lateral").style.width = "200px";
+	console.log("teste");
 }
 function closeMenu() {
-	document.getElementById("modulos").className = "conteudo";
-	document.getElementById("lateral").className = "lateral";
-	document.getElementById("formLateral:btnMenu").className = "menuBotao";
-	document.getElementById("formLateral:btnMenu").setAttribute('onclick', 'openMenu()');
+	document.getElementById("conteudo").style.marginLeft = "0%";
+	document.getElementById("lateral").style.display = "42px";
 }

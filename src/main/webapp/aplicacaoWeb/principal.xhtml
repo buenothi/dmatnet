@@ -50,11 +50,12 @@
 		</h:form>
 	</div>
 
-	<div id="lateral" class="lateral">
-		<h:form id="formLateral">
-			<p:commandLink>
-				<h:panelGroup id="btnMenu" layout="block" styleClass="menuBotao"
-					onclick="openMenu()">
+	<h:form id="formLateral">
+		<div id="lateral" style="">
+			<p:commandLink update="@this"
+				actionListener="#{principalMB.exibirMenu}" onclick="openMenu()">
+				<h:panelGroup id="btnMenu" layout="block"
+					styleClass="#{principalMB.classMenuBotaoMenu}">
 					<div id="logoMenu" class="logosMenu" />
 					<div id="rotuloMenu" class="rotuloMenu">
 						<h:outputFormat styleClass="textoMenu"
@@ -127,18 +128,15 @@
 						value="#{fn:toUpperCase(msgs.TreinamentosSST)}" />
 				</div>
 			</div>
-		</h:form>
-	</div>
+		</div>
+	</h:form>
 
-	<div id="modulos" class="conteudo">
-		<h:form id="formModulos">
-			<p:panel id="pnlCadastroEmpresa" header="#{msgs.CadastroEmpresa}"
-				rendered="#{principalMB.renderizarCadastroEmpresa}">
-				<ui:include
-					src="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml" />
-			</p:panel>
-		</h:form>
-	</div>
+	<h:form id="formModulos" styleClass="conteudo">
+		<p:panel id="pnlCadastroEmpresa" header="#{msgs.CadastroEmpresa}"
+			rendered="#{principalMB.renderizarCadastroEmpresa}">
+			<ui:include src="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml" />
+		</p:panel>
+	</h:form>
 
 	<p:dialog id="dlgSelecionarEmpresa" widgetVar="dlgSelecionarEmpresa"
 		resizable="false" modal="true" width="830" dynamic="true"
