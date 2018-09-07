@@ -32,7 +32,8 @@ function openMenu() {
 	document.getElementById("modulos").className = "conteudoFixo";
 	document.getElementById("lateral").className = "lateralFixo";
 	document.getElementById("formLateral:btnMenu").className = "menuBotaoMenuSelecionado";
-	document.getElementById("formLateral:btnMenu").setAttribute('onclick', 'closeMenu()')
+	document.getElementById("formLateral:btnMenu").setAttribute('onclick', 'closeMenu()');
+	document.getElementById("logoMenu").setAttribute('id', 'logoMenuFixo');
 }
 
 function closeMenu() {
@@ -40,4 +41,5 @@ function closeMenu() {
 	document.getElementById("lateral").className = "lateral";
 	document.getElementById("formLateral:btnMenu").className = "menuBotao";
 	document.getElementById("formLateral:btnMenu").setAttribute('onclick', 'openMenu()');
+	document.getElementById("logoMenuFixo").setAttribute('id', 'logoMenu');
 }
