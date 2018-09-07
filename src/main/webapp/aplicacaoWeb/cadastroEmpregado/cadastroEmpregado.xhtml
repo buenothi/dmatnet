@@ -15,9 +15,7 @@
 
 		<h:panelGroup id="pngCadastroEmpregados" layout="block"
 			class="formulario">
-			<p:messages id="msEmpregados" showDetail="true" closable="true" />
-
-			<dmat:barraBotoesComposite id="barraBotoesEmpregados" />
+			<p:messages id="msEmpregados" showDetail="false" closable="true" />
 
 			<!-- inserir msgs dos itens abaixo -->
 
@@ -26,6 +24,8 @@
 					<f:selectItem itemLabel="Ativo" itemValue="Xbox One" />
 					<f:selectItem itemLabel="Inativo" itemValue="PS4" />
 					<f:selectItem itemLabel="Afastado" itemValue="Wii U" />
+					<f:selectItem itemLabel="Todos" itemValue="Wii U" />
+					<f:selectItem itemLabel="Terceiros" itemValue="Wii U" />
 				</p:selectOneButton>
 			</h:panelGroup>
 
@@ -51,10 +51,12 @@
 
 			<p:spacer height="10px" width="100%" />
 
+			<dmat:barraBotoesComposite id="barraBotoesEmpregados" />
+
 			<p:tabView id="tbwCadastroEmpregado">
 				<p:tab title="#{msgs.DadosCadastrais}" disabled="">
-					<ui:include
-						src="/aplicacaoWeb/cadastroEmpregado/dadosCadastraisEmpregado.xhtml" />
+					<!-- <ui:include
+						src="/aplicacaoWeb/cadastroEmpregado/dadosCadastraisEmpregado.xhtml" /> -->
 				</p:tab>
 				<p:tab title="#{msgs.DocumentosPessoaFisica}" disabled="">
 				</p:tab>
@@ -65,6 +67,8 @@
 				<p:tab title="#{msgs.ClassificacaoFuncional}" disabled="">
 				</p:tab>
 				<p:tab title="#{msgs.InfoDeficiencia}" disabled="">
+				</p:tab>
+				<p:tab title="#{msgs.AcidenteEmpregado}" disabled="">
 				</p:tab>
 			</p:tabView>
 		</h:panelGroup>
