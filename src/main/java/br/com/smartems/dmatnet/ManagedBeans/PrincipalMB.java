@@ -12,11 +12,9 @@ import org.primefaces.PrimeFaces;
 @SessionScoped
 public class PrincipalMB implements Serializable {
 
-	private String classMenuBotaoHome = "menuBotaoSelecionado";
 	private String classMenuBotaoCadEmpresa = "menuBotao";
+	private String classMenuBotaoHome = "menuBotaoSelecionado";
 	private String classMenuBotaoCadEmpresaDesativado = "menuBotaoDesativado";
-
-	private String classMenuBotaoMenu = "menuBotao";
 	private boolean isRenderizarCadastroEmpresa = false;
 
 	private static final long serialVersionUID = 1L;
@@ -34,14 +32,6 @@ public class PrincipalMB implements Serializable {
 
 	public String getClassMenuBotaoCadEmpresaDesativado() {
 		return classMenuBotaoCadEmpresaDesativado;
-	}
-
-	public String getClassMenuBotaoMenu() {
-		return classMenuBotaoMenu;
-	}
-
-	public void setClassMenuBotaoMenu(String classMenuBotaoMenu) {
-		this.classMenuBotaoMenu = classMenuBotaoMenu;
 	}
 
 	public void setClassMenuBotaoCadEmpresaDesativado(String classMenuBotaoCadEmpresaDesativado) {
@@ -63,17 +53,9 @@ public class PrincipalMB implements Serializable {
 		this.classMenuBotaoHome = "menuBotaoSelecionado";
 		this.isRenderizarCadastroEmpresa = false;
 	}
-
-	public void exibirMenu(ActionEvent evt) {
-		if (this.classMenuBotaoMenu == "menuBotaoSelecionado") {
-			this.classMenuBotaoMenu = "menuBotao";
-		} else {
-			this.classMenuBotaoMenu = "menuBotaoSelecionado";
-		}
-	}
-
+	
 	public void sairAplicacao(ActionEvent evt) {
-		// RequestContext.getCurrentInstance().execute("PF('dlgSairAplicacao').show()");
+		//RequestContext.getCurrentInstance().execute("PF('dlgSairAplicacao').show()");
 		PrimeFaces.current().ajax().update("PF('dlgSairAplicacao').show()");
 	}
 

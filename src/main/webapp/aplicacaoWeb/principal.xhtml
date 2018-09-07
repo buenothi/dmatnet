@@ -52,18 +52,9 @@
 
 	<h:form id="formLateral">
 		<div id="lateral">
-			<p:commandLink update="@this formModulos"
-				actionListener="#{principalMB.exibirMenu}" onclick="openMenu()">
-				<h:panelGroup id="btnMenu" layout="block"
-					styleClass="#{principalMB.classMenuBotaoMenu}">
-					<div id="logoMenu" class="logosMenu" />
-					<div id="rotuloMenu" class="rotuloMenu">
-						<h:outputFormat styleClass="textoMenu"
-							value="#{fn:toUpperCase(msgs.Menu)}" />
-					</div>
-				</h:panelGroup>
-			</p:commandLink>
-
+			<p:commandButton>
+			</p:commandButton>
+			
 			<p:commandLink actionListener="#{principalMB.exibirHome}"
 				update="@this formModulos btnCadastroEmpresa">
 				<h:panelGroup id="btnHome" layout="block"

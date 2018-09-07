@@ -28,12 +28,14 @@ PrimeFaces.locales['pt'] = {
 	allDayText : 'Todo o Dia'
 };
 
-function openMenu() {
+function w3_open() {
 	document.getElementById("conteudo").style.marginLeft = "200px";
 	document.getElementById("lateral").style.width = "200px";
-	console.log("teste");
+	document.getElementById("lateral").style.display = "block";
+	document.getElementById("openNav").style.display = 'none';
 }
-function closeMenu() {
+function w3_close() {
 	document.getElementById("conteudo").style.marginLeft = "0%";
 	document.getElementById("lateral").style.display = "42px";
+	document.getElementById("openNav").style.display = "inline-block";
 }
