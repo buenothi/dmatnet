@@ -35,7 +35,7 @@
 				placeholderPesquisar="#{msgs.DigiteEmpregado}" />
 
 			<p:dataTable id="dtbEmpregados" scrollable="true"
-				styleClass="dataTable" paginator="true" rows="10"
+				styleClass="dataTable" paginator="true" rows="10" 
 				paginatorAlwaysVisible="false" draggableColumns="true"
 				emptyMessage="#{msgs.ListaEmpregadosVazio}" selectionMode="single">
 				<p:column headerText="#{msgs.DataCadastro}" width="60"></p:column>
@@ -55,8 +55,8 @@
 
 			<p:tabView id="tbwCadastroEmpregado">
 				<p:tab title="#{msgs.DadosCadastrais}" disabled="">
-					<!-- <ui:include
-						src="/aplicacaoWeb/cadastroEmpregado/dadosCadastraisEmpregado.xhtml" /> -->
+					<ui:include
+						src="/aplicacaoWeb/cadastroEmpregado/dadosCadastraisEmpregado.xhtml" /> 
 				</p:tab>
 				<p:tab title="#{msgs.DocumentosPessoaFisica}" disabled="">
 				</p:tab>

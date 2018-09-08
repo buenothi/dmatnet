@@ -26,7 +26,7 @@
 							<p:column>
 								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 									<p:calendar id="calDataInicio" locale="pt" showOn="button"
-										pattern="dd/MM/yyyy" mask="true" value=""
+										pattern="dd/MM/yyyy" mask="true" 
 										label="#{msgs.DataCadastro}" size="8"/>
 									<p:message for="calDataInicio" />
 								</p:panelGrid>
@@ -38,7 +38,7 @@
 							<p:column>
 								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 									<p:calendar id="calDataNascimento" locale="pt" showOn="button"
-										pattern="dd/MM/yyyy" mask="true" value="" 
+										pattern="dd/MM/yyyy" mask="true" 
 										label="#{msgs.DataCadastro}" size="8" />
 									<p:message for="calDataNascimento" />
 								</p:panelGrid>
@@ -54,7 +54,7 @@
 							<p:column colspan="3">
 								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 									<p:inputText id="iptNomeEmpregado" maxlength="250" size="76"
-										value="" label="#{msgs.Nome}" />
+										label="#{msgs.Nome}" />
 									<p:message for="iptNomeEmpregado" />
 								</p:panelGrid>
 							</p:column>
@@ -67,7 +67,7 @@
 							<p:column colspan="3">
 								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 									<p:inputText id="iptNomeMae" maxlength="250" size="76"
-										value="" label="#{msgs.Nome}" />
+										label="#{msgs.Nome}" />
 									<p:message for="iptNomeMae" />
 								</p:panelGrid>
 							</p:column>
@@ -80,7 +80,7 @@
 							<p:column colspan="3">
 								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 									<p:inputText id="iptNomePai" maxlength="250" size="76"
-										value="" label="#{msgs.Nome}" />
+										label="#{msgs.Nome}" />
 									<p:message for="iptNomePai" />
 								</p:panelGrid>
 							</p:column>
@@ -94,7 +94,7 @@
 								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 									<p:selectOneMenu id="somGenero" style="width:200px"
 										value="#{cadastroEmpresaMB.dadosCadastraisAtual.tipoInscricao}"
-										required="true" label="#{msgs.TipoInscricao}">
+										label="#{msgs.TipoInscricao}">
 										<!-- <p:ajax
 											listener="#{cadastroEmpresaMB.alterarMascaraPessoaJuridica}"
 											update="formModulos:formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:ipmInscricao" /> -->
