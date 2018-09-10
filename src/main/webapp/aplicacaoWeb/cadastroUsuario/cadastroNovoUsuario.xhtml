@@ -14,7 +14,7 @@
 		onback="PF('dlgCriarUsuario').initPosition()">
 
 		<p:tab title="#{msgs.DadosUsuario}">
-			<dmat:usuariosDadosComposite id="udcUsuarioNovo" mensagemRendered="true"
+			<dmat:pessoaFisicaDadosComposite id="udcUsuarioNovo" mensagemRendered="true"
 				cadastroUsuarioNome="#{cadastroUsuarioMB.usuarioNovo.nome}"
 				cadastroUsuarioSexo="#{cadastroUsuarioMB.usuarioNovo.genero}"
 				dataCadastro="#{cadastroUsuarioMB.usuarioNovo.dataCadastroPessoa}"
@@ -22,14 +22,14 @@
 		</p:tab>
 
 		<p:tab title="#{msgs.DocumentosPessoaFisica}">
-			<dmat:usuariosDocumentosComposite id="udocUsuarioNovo" mensagemRendered="true"
+			<dmat:pessoaFisicaDocumentosComposite id="udocUsuarioNovo" mensagemRendered="true"
 				documentosPessoais="#{cadastroUsuarioMB.documentosPessoaisUsuario}"
 				rgRequired="true" rgOrgExpRequired="true" rgDataExpRequired="true"
 				cpfRequired="true" />
 		</p:tab>
 
 		<p:tab title="#{msgs.Endereco}">
-			<dmat:usuariosEnderecoComposite id="uedUsuarioNovo"
+			<dmat:pessoaFisicaEnderecoComposite id="uedUsuarioNovo"
 				enderecoRendered="true" barraBotoesRendered="false"
 				renderedHistorico="false" mensagemRendered="true"
 				enderecoAtual="#{cadastroUsuarioMB.enderecoUsuarioAtual}"
@@ -58,7 +58,7 @@
 		</p:tab>
 
 		<p:tab title="#{msgs.ContatoUsuario}">
-			<dmat:usuariosContatosComposite id="uccUsuarioNovo"
+			<dmat:pessoaFisicaContatosComposite id="uccUsuarioNovo"
 				emailPrincipal="#{cadastroUsuarioMB.emailUsuario}"
 				requiredEmail="true" dadosUsuarioEmailRendered="true" mensagemRendered="true"
 				disabledBotaoAdicionarEmail="false"
@@ -79,12 +79,12 @@
 		</p:tab>
 
 		<p:tab title="#{msgs.Login}">
-			<dmat:usuariosUsuarioComposite id="uucUsuarioNovo"
+			<dmat:pessoaFisicaUsuarioComposite id="uucUsuarioNovo"
 				usuario="#{cadastroUsuarioMB.usuarioNovo}" mensagemRendered="true" />
 		</p:tab>
 
 		<p:tab title="#{msgs.Empresas}">
-			<dmat:usuariosEmpresasComposite id="uecUsuarioNovo"
+			<dmat:pessoaFisicaEmpresasComposite id="uecUsuarioNovo"
 				empresasUsuario="#{cadastroUsuarioMB.empresasUsuario}" mensagemRendered="true"/>
 		</p:tab>
 

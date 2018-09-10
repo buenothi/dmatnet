@@ -75,7 +75,7 @@
 			<p:tabView id="tbwCadastroUsuario">
 
 				<p:tab title="#{msgs.DadosUsuario}">
-					<dmat:usuariosDadosComposite id="udcDadosUsuarioSelecionado"
+					<dmat:pessoaFisicaDadosComposite id="udcDadosUsuarioSelecionado"
 						cadastroUsuarioNome="#{cadastroUsuarioMB.usuarioSelecionado.nome}"
 						cadastroUsuarioSexo="#{cadastroUsuarioMB.usuarioSelecionado.genero}"
 						dataCadastro="#{cadastroUsuarioMB.usuarioSelecionado.dataCadastroPessoa}"
@@ -87,7 +87,7 @@
 				</p:tab>
 
 				<p:tab title="#{msgs.DocumentosPessoaFisica}">
-					<dmat:usuariosDocumentosComposite
+					<dmat:pessoaFisicaDocumentosComposite
 						id="udocDocumentosUsuarioSelecionado"
 						documentosPessoais="#{cadastroUsuarioMB.documentosPessoaisUsuarioSelecionado}"
 						editarRendered="#{cadastroUsuarioMB.dadosUsuariosEditar}"
@@ -106,7 +106,7 @@
 				</p:tab>
 
 				<p:tab title="#{msgs.Endereco}">
-					<dmat:usuariosEnderecoComposite id="uedUsuarioSelecionado"
+					<dmat:pessoaFisicaEnderecoComposite id="uedUsuarioSelecionado"
 						enderecoRendered="true" barraBotoesRendered="false"
 						renderedHistorico="false"
 						enderecoAtual="#{cadastroUsuarioMB.enderecoUsuarioSelecionado}"
@@ -134,7 +134,7 @@
 				</p:tab>
 
 				<p:tab title="#{msgs.Contatos}">
-					<dmat:usuariosContatosComposite id="uccUsuarioSelecionado"
+					<dmat:pessoaFisicaContatosComposite id="uccUsuarioSelecionado"
 						emailPrincipal="#{cadastroUsuarioMB.emailPrincipalUsuarioSelecionado}"
 						requiredEmail="false" 
 						disabledBotaoAdicionarEmail="#{cadastroUsuarioMB.btnAdicionarEmail}"
@@ -164,7 +164,7 @@
 				</p:tab>
 
 				<p:tab title="#{msgs.Login}">
-					<dmat:usuariosUsuarioComposite id="uucUsuarioSelecionado"
+					<dmat:pessoaFisicaUsuarioComposite id="uucUsuarioSelecionado"
 						usuario="#{cadastroUsuarioMB.usuarioSelecionado}"
 						editarRendered="#{cadastroUsuarioMB.dadosUsuariosEditar}"
 						exibirRendered="#{cadastroUsuarioMB.dadosUsuariosExibir}"
@@ -174,7 +174,7 @@
 				</p:tab>
 
 				<p:tab title="#{msgs.Empresas}">
-					<dmat:usuariosEmpresasComposite id="uecUsuarioSelecionado"
+					<dmat:pessoaFisicaEmpresasComposite id="uecUsuarioSelecionado"
 						empresasUsuario="#{cadastroUsuarioMB.empresasUsuarioSelecionado}"
 						disabled="#{cadastroUsuarioMB.disabledUsuarioEmpresas}" />
 				</p:tab>

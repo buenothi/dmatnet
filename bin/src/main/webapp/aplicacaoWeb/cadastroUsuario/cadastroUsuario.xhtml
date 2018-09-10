@@ -88,7 +88,7 @@
 			<p:tabView id="tbwCadastroUsuario">
 
 				<p:tab title="#{msgs.DadosUsuario}">
-					<dmat:usuariosDadosComposite id="udcDadosUsuarioSelecionado"
+					<dmat:pessoaFisicaDadosComposite id="udcDadosUsuarioSelecionado"
 						cadastroUsuarioNome="#{cadastroUsuarioMB.usuarioSelecionado.nome}"
 						cadastroUsuarioSexo="#{cadastroUsuarioMB.usuarioSelecionado.genero}"
 						dataCadastro="#{cadastroUsuarioMB.usuarioSelecionado.dataCadastroPessoa}"
@@ -99,7 +99,7 @@
 				</p:tab>
 
 				<p:tab title="#{msgs.DocumentosPessoaFisica}">
-					<dmat:usuariosDocumentosComposite
+					<dmat:pessoaFisicaDocumentosComposite
 						id="udocDocumentosUsuarioSelecionado"
 						documentosPessoais="#{cadastroUsuarioMB.usuarioSelecionado.documentosPessoais}"
 						editarRendered="#{cadastroUsuarioMB.dadosUsuariosEditar}"
@@ -108,7 +108,7 @@
 				</p:tab>
 
 				<p:tab title="#{msgs.Endereco}">
-					<dmat:usuariosEnderecoComposite id="uedUsuarioSelecionado"
+					<dmat:pessoaFisicaEnderecoComposite id="uedUsuarioSelecionado"
 						enderecoRendered="true" barraBotoesRendered="false"
 						renderedHistorico="true"
 						enderecoAtual="#{cadastroUsuarioMB.enderecoUsuarioSelecionado}"
