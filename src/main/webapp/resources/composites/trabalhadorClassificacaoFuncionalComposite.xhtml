@@ -15,65 +15,12 @@
 				method-signature="void actionListener(javax.faces.event.ActionEvent)" />
 			<composite:attribute name="updateAdicionarEmailContato" />
 
-			<composite:attribute name="actionListenerNovoEmailContato"
-				method-signature="void actionListener(javax.faces.event.ActionEvent)" />
-
-			<composite:attribute name="listaEmailsUsuarios" />
-
-			<composite:attribute name="stringEmailUsuario" />
-
-			<composite:attribute name="telefonePrincipal"
-				type="br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity" />
-
-			<composite:attribute
-				name="actionListenerAdicionarTelefoneContato"
-				method-signature="void actionListener(javax.faces.event.ActionEvent)" />
-			<composite:attribute name="updateAdicionarTelefoneContato" />
-
-			<composite:attribute name="listaTelefonesUsuarios" />
-
-			<composite:attribute
-				name="actionListenerRemoverTelefoneLista"
-				method-signature="void actionListener(br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity)" />
-			<composite:attribute name="updateRemoverTelefoneLista" />
-			<composite:attribute
-				name="setPropertyActionListenerRemoverContato" />
-
-			<composite:attribute name="actionListenerRemoverEmailLista"
-				method-signature="void actionListener(br.com.smartems.dmatnet.entities.pessoa.EmailEntity)" />
-			<composite:attribute name="updateRemoverEmailLista" />
-			<composite:attribute
-				name="setPropertyActionListenerRemoverEmail" />
-
-			<composite:attribute name="editarRendered" default="true" />
-			<composite:attribute name="exibirRendered" default="false" />
-			<composite:attribute name="requiredEmail" default="false" />
-
-			<composite:attribute
-				name="mensagemSelecionarUsuarioRendered" default="false" />
-			<composite:attribute name="mensagemRendered"
-				default="false" />
-
-			<composite:attribute name="mensagemHasEmailRendered"
-				default="false" />
-			<composite:attribute name="mensagemHasTelefoneRendered"
-				default="false" />
-			<composite:attribute name="dadosUsuarioEmailRendered"
-				default="true" />
-			<composite:attribute name="dadosUsuarioTelefoneRendered"
-				default="true" />
-
-			<composite:attribute name="disabledBotaoNovoEmail"
-				default="true" />
-			<composite:attribute name="disabledBotaoAdicionarEmail"
-				default="true" />
-			<composite:attribute name="id"></composite:attribute>
 		</composite:interface>
 
 		<composite:implementation>
 
 			<p:panel id="pnlContatosUsuario"
-				header="#{msgs.ContatoUsuario}" closable="false"
+				header="#{msgs.ClassificacaoFuncional}" closable="false"
 				style="max-width:660px">
 				<p:messages id="msEmail" showDetail="true"
 					closable="true" rendered="#{cc.attrs.mensagemRendered}" />
