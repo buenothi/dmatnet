@@ -1,31 +1,91 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-	<html xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:ui="http://java.sun.com/jsf/facelets"
-		xmlns:f="http://java.sun.com/jsf/core"
-		xmlns:h="http://java.sun.com/jsf/html"
-		xmlns:p="http://primefaces.org/ui"
-		xmlns:composite="http://java.sun.com/jsf/composite">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
 
-		<composite:interface>
-			<composite:attribute name="emailPrincipal"
-				type="br.com.smartems.dmatnet.entities.pessoa.EmailEntity" />
+<composite:interface>
+	<composite:attribute name="emailPrincipal"
+		type="br.com.smartems.dmatnet.entities.pessoa.EmailEntity" />
 
-			<composite:attribute
-				name="actionListenerAdicionarEmailContato"
-				method-signature="void actionListener(javax.faces.event.ActionEvent)" />
-			<composite:attribute name="updateAdicionarEmailContato" />
+	<composite:attribute name="actionListenerAdicionarEmailContato"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="updateAdicionarEmailContato" />
 
-		</composite:interface>
+</composite:interface>
 
-		<composite:implementation>
+<composite:implementation>
 
-			<p:panel id="pnlClasFuncional"
-				header="#{msgs.ClassificacaoFuncional}" closable="false">
-				<p:messages id="msClassFuncional" showDetail="true"
-					closable="true" rendered="#{cc.attrs.mensagemRendered}" />
+	<p:panel id="pnlClasFuncional" header="#{msgs.ClassificacaoFuncional}"
+		closable="false">
+		<p:messages id="msClassFuncional" showDetail="true" closable="true"
+			rendered="#{cc.attrs.mensagemRendered}" />
 
-				
-			</p:panel>
+		<p:dataTable paginator="true" rows="2" scrollable="true"
+			styleClass="dataTable" emptyMessage="#{msgs.ListaEmailVazio}"
+			value="#{cc.attrs.listaEmailsUsuarios}" resizeMode="expand"
+			paginatorAlwaysVisible="false" var="email" editable="true"
+			rowKey="#{email.idEmail}">
 
-		</composite:implementation>
+			<p:column headerText="#{msgs.Email}" width="290">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{email.nomeEmail}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{email.nomeEmail}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="#{msgs.EmailTipo}" width="110">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{email.tipoEmail.tipo}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:selectOneMenu style="width:100%" value="#{email.tipoEmail}"
+							converter="emailTipoConverter" immediate="true">
+							<f:selectItems value="#{emailTipoMB.emailsTipos}" var="emailTipo"
+								itemLabel="#{emailTipo.tipo}" itemValue="#{emailTipo}" />
+						</p:selectOneMenu>
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="#{msgs.EmailPrincipalTab}" width="65">
+				<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{email.emailPrincipal}"
+							converter="stringTrueFalseConverter" />
+					</f:facet>
+					<f:facet name="input">
+						<p:selectBooleanButton value="#{email.emailPrincipal}"
+							onLabel="#{msgs.Sim}" offLabel="#{msgs.Nao}"
+							onIcon="ui-icon-check" offIcon="ui-icon-close" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column width="35" rendered="#{cc.attrs.editarRendered}">
+				<p:rowEditor />
+			</p:column>
+
+			<p:column width="25" rendered="#{cc.attrs.editarRendered}">
+				<p:commandButton icon="fa fa-trash"
+					actionListener="#{cc.attrs.actionListenerRemoverEmailLista}"
+					update="#{cc.attrs.updateRemoverEmailLista}" immediate="true">
+					<f:setPropertyActionListener value="#{email}"
+						target="#{cc.attrs.setPropertyActionListenerRemoverEmail}" />
+					<p:confirm header="#{msgs.Confirmar}"
+						message="#{msgs.DeletarEmailUsuario}?" icon="ui-icon-alert" />
+				</p:commandButton>
+			</p:column>
+
+		</p:dataTable>
+
+
+	</p:panel>
+
+</composite:implementation>
 </html>
