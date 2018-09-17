@@ -7,84 +7,171 @@
 	xmlns:composite="http://java.sun.com/jsf/composite">
 
 <composite:interface>
-	<composite:attribute name="emailPrincipal"
-		type="br.com.smartems.dmatnet.entities.pessoa.EmailEntity" />
+	<composite:attribute name="mensagemRendered" />
 
-	<composite:attribute name="actionListenerAdicionarEmailContato"
+	<composite:attribute name="listaClassFuncional" />
+
+	<composite:attribute name="listaSetoresEstabelecimentoSelecionado" />
+
+	<composite:attribute name="listaFuncoesEstabelecimentoSelecionado" />
+
+	<composite:attribute name="listaGHEEstabelecimentoSelecionado" />
+
+	<composite:attribute name="actionListenerAdicionarClassFuncional"
 		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
-	<composite:attribute name="updateAdicionarEmailContato" />
 
+	<composite:attribute name="updateNovo" />
+	<composite:attribute name="onCompleteNovo" />
 </composite:interface>
 
 <composite:implementation>
-
 	<p:panel id="pnlClasFuncional" header="#{msgs.ClassificacaoFuncional}"
 		closable="false">
 		<p:messages id="msClassFuncional" showDetail="true" closable="true"
 			rendered="#{cc.attrs.mensagemRendered}" />
 
-		<p:dataTable paginator="true" rows="2" scrollable="true"
-			styleClass="dataTable" emptyMessage="#{msgs.ListaEmailVazio}"
-			value="#{cc.attrs.listaEmailsUsuarios}" resizeMode="expand"
-			paginatorAlwaysVisible="false" var="email" editable="true"
-			rowKey="#{email.idEmail}">
+		<p:panelGrid columns="1" style="display:block"
+			styleClass="tabelaSemBorda">
+			<p:commandButton id="btnNovaClassFuncional"
+				value="#{msgs.NovaClassFuncional}" styleClass="botoes" icon="fa fa-plus"
+				actionListener="#{cc.attrs.actionListenerAdicionarClassFuncional}"
+				update="#{cc.attrs.updateNovo}"
+				oncomplete="#{cc.attrs.onCompleteNovo}" />
 
-			<p:column headerText="#{msgs.Email}" width="290">
-				<p:cellEditor>
-					<f:facet name="output">
-						<p:outputLabel value="#{email.nomeEmail}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:inputText value="#{email.nomeEmail}" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
-			<p:column headerText="#{msgs.EmailTipo}" width="110">
-				<p:cellEditor>
-					<f:facet name="output">
-						<p:outputLabel value="#{email.tipoEmail.tipo}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:selectOneMenu style="width:100%" value="#{email.tipoEmail}"
-							converter="emailTipoConverter" immediate="true">
-							<f:selectItems value="#{emailTipoMB.emailsTipos}" var="emailTipo"
-								itemLabel="#{emailTipo.tipo}" itemValue="#{emailTipo}" />
-						</p:selectOneMenu>
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
-			<p:column headerText="#{msgs.EmailPrincipalTab}" width="65">
-				<p:cellEditor>
-					<f:facet name="output">
-						<p:outputLabel value="#{email.emailPrincipal}"
-							converter="stringTrueFalseConverter" />
-					</f:facet>
-					<f:facet name="input">
-						<p:selectBooleanButton value="#{email.emailPrincipal}"
-							onLabel="#{msgs.Sim}" offLabel="#{msgs.Nao}"
-							onIcon="ui-icon-check" offIcon="ui-icon-close" />
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
+			<p:dataTable paginator="true" rows="2" scrollable="true"
+				styleClass="dataTable"
+				emptyMessage="#{msgs.ListaClassificacaoFuncionalVazio}"
+				value="#{cc.attrs.listaClassFuncional}" resizeMode="expand"
+				paginatorAlwaysVisible="false" var="classFuncional" editable="true"
+				rowKey="#{classFuncional.id}">
 
-			<p:column width="35" rendered="#{cc.attrs.editarRendered}">
-				<p:rowEditor />
-			</p:column>
+				<p:column headerText="#{msgs.DataInicio}" width="110">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{classFuncional.dataInicio}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</p:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							<p:calendar value="#{classFuncional.dataInicio}" locale="pt"
+								showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
+								mask="true" size="8" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msgs.DataTermino}" width="110">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{classFuncional.dataTermino}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</p:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							<p:calendar value="#{classFuncional.dataTermino}" locale="pt"
+								showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
+								mask="true" size="8" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msgs.Estabelecimento}" width="100">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{classFuncional.local.numInscricao}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu id="listEstabelecimento"
+								panelStyle="width:150px" effect="fade" style="width:60px"
+								value="#{classFuncional.local.numInscricao}" immediate="true">
+								<!-- <p:ajax event="itemSelect" listener="#" update="#" /> -->
+								<f:selectItem itemValue="#{classFuncional.local.numInscricao}" />
+								<f:selectItem itemLabel="--------------"
+									noSelectionOption="true" />
+								<f:selectItems
+									value="#{cc.attrs.listaSetoresEstabelecimentoSelecionado}"
+									var="local" itemLabel="#{local.numInscricao}"
+									itemValue="#{local}" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msgs.Setor}" width="200">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{classFuncional.setor.setorNome}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu id="listSetor" panelStyle="width:150px"
+								effect="fade" style="width:60px"
+								value="#{classFuncional.setor.setorNome}" immediate="true">
+								<!-- <p:ajax event="itemSelect" listener="#" update="#" /> -->
+								<f:selectItem itemValue="#{classFuncional.setor.setorNome}" />
+								<f:selectItem itemLabel="--------------"
+									noSelectionOption="true" />
+								<f:selectItems
+									value="#{cc.attrs.listaSetoresEstabelecimentoSelecionado}"
+									var="setor" itemLabel="#{setor.setorNome}" itemValue="#{setor}" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msgs.Funcao}" width="200">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{classFuncional.funcao.funcaoNome}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu id="listFuncao" panelStyle="width:150px"
+								effect="fade" style="width:60px"
+								value="#{classFuncional.funcao.funcaoNome}" immediate="true">
+								<!-- <p:ajax event="itemSelect" listener="#" update="#" /> -->
+								<f:selectItem itemValue="#{classFuncional.funcao.funcaoNome}" />
+								<f:selectItem itemLabel="--------------"
+									noSelectionOption="true" />
+								<f:selectItems
+									value="#{cc.attrs.listaFuncoesEstabelecimentoSelecionado}"
+									var="setor" itemLabel="#{setor.setorNome}" itemValue="#{setor}" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+				<p:column headerText="#{msgs.GHE}" width="200">
+					<p:cellEditor>
+						<f:facet name="output">
+							<p:outputLabel value="#{classFuncional.ghe.gheNome}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:selectOneMenu id="listGHE" panelStyle="width:150px"
+								effect="fade" style="width:60px"
+								value="#{classFuncional.ghe.gheNome}" immediate="true">
+								<!-- <p:ajax event="itemSelect" listener="#" update="#" /> -->
+								<f:selectItem itemValue="#{classFuncional.ghe.gheNome}" />
+								<f:selectItem itemLabel="--------------"
+									noSelectionOption="true" />
+								<f:selectItems
+									value="#{cc.attrs.listaGHEEstabelecimentoSelecionado}"
+									var="ghe" itemLabel="#{ghe.gheNome}" itemValue="#{ghe}" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
 
-			<p:column width="25" rendered="#{cc.attrs.editarRendered}">
-				<p:commandButton icon="fa fa-trash"
-					actionListener="#{cc.attrs.actionListenerRemoverEmailLista}"
-					update="#{cc.attrs.updateRemoverEmailLista}" immediate="true">
-					<f:setPropertyActionListener value="#{email}"
-						target="#{cc.attrs.setPropertyActionListenerRemoverEmail}" />
-					<p:confirm header="#{msgs.Confirmar}"
-						message="#{msgs.DeletarEmailUsuario}?" icon="ui-icon-alert" />
-				</p:commandButton>
-			</p:column>
+				<p:column width="35" rendered="#{cc.attrs.editarRendered}">
+					<p:rowEditor />
+				</p:column>
 
-		</p:dataTable>
+				<p:column width="25" rendered="#{cc.attrs.editarRendered}">
+					<p:commandButton icon="fa fa-trash"
+						actionListener="#{cc.attrs.actionListenerRemoverEmailLista}"
+						update="#{cc.attrs.updateRemoverEmailLista}" immediate="true">
+						<f:setPropertyActionListener value="#{email}"
+							target="#{cc.attrs.setPropertyActionListenerRemoverEmail}" />
+						<p:confirm header="#{msgs.Confirmar}"
+							message="#{msgs.DeletarEmailUsuario}?" icon="ui-icon-alert" />
+					</p:commandButton>
+				</p:column>
 
-
+			</p:dataTable>
+		</p:panelGrid>
 	</p:panel>
 
 </composite:implementation>
