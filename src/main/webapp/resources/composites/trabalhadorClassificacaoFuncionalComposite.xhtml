@@ -33,9 +33,11 @@
 		<p:panelGrid columns="1" style="display:block"
 			styleClass="tabelaSemBorda">
 			<p:commandButton id="btnNovaClassFuncional"
-				value="#{msgs.NovaClassFuncional}" styleClass="botoes" icon="fa fa-plus"
+				value="#{msgs.NovaClassFuncional}" styleClass="botoes"
+				icon="fa fa-plus"
 				actionListener="#{cc.attrs.actionListenerAdicionarClassFuncional}"
 				update="#{cc.attrs.updateNovo}"
+				onclick="PF('novoClassFuncionalDialog').show()"
 				oncomplete="#{cc.attrs.onCompleteNovo}" />
 
 			<p:dataTable paginator="true" rows="2" scrollable="true"
@@ -80,7 +82,7 @@
 						</f:facet>
 						<f:facet name="input">
 							<p:selectOneMenu id="listEstabelecimento"
-								panelStyle="width:150px" effect="fade" style="width:60px"
+								panelStyle="width:150px" effect="fade" style="width:100px"
 								value="#{classFuncional.local.numInscricao}" immediate="true">
 								<!-- <p:ajax event="itemSelect" listener="#" update="#" /> -->
 								<f:selectItem itemValue="#{classFuncional.local.numInscricao}" />
@@ -94,7 +96,7 @@
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-				<p:column headerText="#{msgs.Setor}" width="200">
+				<p:column headerText="#{msgs.Setor}" width="100">
 					<p:cellEditor>
 						<f:facet name="output">
 							<p:outputLabel value="#{classFuncional.setor.setorNome}" />
@@ -114,7 +116,7 @@
 						</f:facet>
 					</p:cellEditor>
 				</p:column>
-				<p:column headerText="#{msgs.Funcao}" width="200">
+				<p:column headerText="#{msgs.Funcao}" width="100">
 					<p:cellEditor>
 						<f:facet name="output">
 							<p:outputLabel value="#{classFuncional.funcao.funcaoNome}" />
@@ -173,6 +175,65 @@
 			</p:dataTable>
 		</p:panelGrid>
 	</p:panel>
+
+	<p:dialog widgetVar="novoClassFuncionalDialog" modal="true"
+		draggable="true" closable="true" resizable="false" showHeader="true"
+		header="#{msgs.ClassificacaoFuncional}" showEffect="fade"
+		hideEffect="fade">
+		<p:panelGrid columns="2" style="display:block"
+			styleClass="tabelaSemBorda">
+			<p:outputLabel value="#{msgs.DataInicio}" />
+			<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+				pattern="dd/MM/yyyy" mask="true" size="8" />
+			<p:outputLabel value="#{msgs.DataTermino}" />
+			<p:calendar locale="pt" showOn="button" showButtonPanel="true"
+				pattern="dd/MM/yyyy" mask="true" size="8" />
+			<p:outputLabel value="#{msgs.Estabelecimento}" />
+			<p:selectOneMenu id="listEstabelecimentoClassNovo"
+				panelStyle="width:150px" effect="fade" style="width:300px"
+				immediate="true">
+				<!-- <p:ajax event="itemSelect" listener="#" update="#" /> -->
+				<f:selectItem itemValue="#{classFuncional.local.numInscricao}" />
+				<f:selectItem itemLabel="--------------" noSelectionOption="true" />
+				<f:selectItems
+					value="#{cc.attrs.listaSetoresEstabelecimentoSelecionado}"
+					var="local" itemLabel="#{local.numInscricao}" itemValue="#{local}" />
+			</p:selectOneMenu>
+			<p:outputLabel value="#{msgs.Setor}" />
+			<p:selectOneMenu id="listSetorClassNovo"
+				panelStyle="width:150px" effect="fade" style="width:300px"
+				immediate="true">
+				<!-- <p:ajax event="itemSelect" listener="#" update="#" /> -->
+				<f:selectItem itemValue="#{classFuncional.local.numInscricao}" />
+				<f:selectItem itemLabel="--------------" noSelectionOption="true" />
+				<f:selectItems
+					value="#{cc.attrs.listaSetoresEstabelecimentoSelecionado}"
+					var="local" itemLabel="#{local.numInscricao}" itemValue="#{local}" />
+			</p:selectOneMenu>
+			<p:outputLabel value="#{msgs.Funcao}" />
+			<p:selectOneMenu id="listFuncaoClassNovo"
+				panelStyle="width:150px" effect="fade" style="width:300px"
+				immediate="true">
+				<!-- <p:ajax event="itemSelect" listener="#" update="#" /> -->
+				<f:selectItem itemValue="#{classFuncional.local.numInscricao}" />
+				<f:selectItem itemLabel="--------------" noSelectionOption="true" />
+				<f:selectItems
+					value="#{cc.attrs.listaSetoresEstabelecimentoSelecionado}"
+					var="local" itemLabel="#{local.numInscricao}" itemValue="#{local}" />
+			</p:selectOneMenu>
+			<p:outputLabel value="#{msgs.GHE}" />
+			<p:selectOneMenu id="listGHEClassNovo"
+				panelStyle="width:150px" effect="fade" style="width:300px"
+				immediate="true">
+				<!-- <p:ajax event="itemSelect" listener="#" update="#" /> -->
+				<f:selectItem itemValue="#{classFuncional.local.numInscricao}" />
+				<f:selectItem itemLabel="--------------" noSelectionOption="true" />
+				<f:selectItems
+					value="#{cc.attrs.listaSetoresEstabelecimentoSelecionado}"
+					var="local" itemLabel="#{local.numInscricao}" itemValue="#{local}" />
+			</p:selectOneMenu>
+		</p:panelGrid>
+	</p:dialog>
 
 </composite:implementation>
 </html>
