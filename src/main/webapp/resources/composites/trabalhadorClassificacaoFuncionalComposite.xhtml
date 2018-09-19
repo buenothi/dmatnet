@@ -30,15 +30,6 @@
 		<p:messages id="msClassFuncional" showDetail="true" closable="true"
 			rendered="#{cc.attrs.mensagemRendered}" />
 
-		<p:toolbar id="tbrBotoes">
-			<f:facet name="left">
-				<p:commandButton value="#{msgs.Salvar}" type="button"
-					styleClass="ui-confirmdialog-yes" icon="fa fa-save" />
-				<p:commandButton value="#{msgs.Cancelar}" type="button"
-					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-			</f:facet>
-		</p:toolbar>
-
 		<p:panelGrid columns="1" style="display:block"
 			styleClass="tabelaSemBorda">
 			<p:commandButton id="btnNovaClassFuncional"
@@ -189,6 +180,7 @@
 		draggable="true" closable="true" resizable="false" showHeader="true"
 		header="#{msgs.ClassificacaoFuncional}" showEffect="fade"
 		hideEffect="fade">
+		
 		<p:panelGrid columns="2" style="display:block"
 			styleClass="tabelaSemBorda">
 			<p:outputLabel value="#{msgs.DataInicio}" />
@@ -239,6 +231,17 @@
 					var="local" itemLabel="#{local.numInscricao}" itemValue="#{local}" />
 			</p:selectOneMenu>
 		</p:panelGrid>
+		
+		<p:spacer/>
+				
+		<p:toolbar id="tbrBotoes">
+			<f:facet name="left">
+				<p:commandButton value="#{msgs.Adicionar}" type="button"
+					styleClass="ui-confirmdialog-yes" icon="fa fa-save" />
+				<p:commandButton value="#{msgs.Cancelar}" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</f:facet>
+		</p:toolbar>
 	</p:dialog>
 
 </composite:implementation>
