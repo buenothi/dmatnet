@@ -30,6 +30,15 @@
 		<p:messages id="msClassFuncional" showDetail="true" closable="true"
 			rendered="#{cc.attrs.mensagemRendered}" />
 
+		<p:toolbar id="tbrBotoes">
+			<f:facet name="left">
+				<p:commandButton value="#{msgs.Salvar}" type="button"
+					styleClass="ui-confirmdialog-yes" icon="fa fa-save" />
+				<p:commandButton value="#{msgs.Cancelar}" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</f:facet>
+		</p:toolbar>
+
 		<p:panelGrid columns="1" style="display:block"
 			styleClass="tabelaSemBorda">
 			<p:commandButton id="btnNovaClassFuncional"
@@ -200,9 +209,8 @@
 					var="local" itemLabel="#{local.numInscricao}" itemValue="#{local}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="#{msgs.Setor}" />
-			<p:selectOneMenu id="listSetorClassNovo"
-				panelStyle="width:150px" effect="fade" style="width:300px"
-				immediate="true">
+			<p:selectOneMenu id="listSetorClassNovo" panelStyle="width:150px"
+				effect="fade" style="width:300px" immediate="true">
 				<!-- <p:ajax event="itemSelect" listener="#" update="#" /> -->
 				<f:selectItem itemValue="#{classFuncional.local.numInscricao}" />
 				<f:selectItem itemLabel="--------------" noSelectionOption="true" />
@@ -211,9 +219,8 @@
 					var="local" itemLabel="#{local.numInscricao}" itemValue="#{local}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="#{msgs.Funcao}" />
-			<p:selectOneMenu id="listFuncaoClassNovo"
-				panelStyle="width:150px" effect="fade" style="width:300px"
-				immediate="true">
+			<p:selectOneMenu id="listFuncaoClassNovo" panelStyle="width:150px"
+				effect="fade" style="width:300px" immediate="true">
 				<!-- <p:ajax event="itemSelect" listener="#" update="#" /> -->
 				<f:selectItem itemValue="#{classFuncional.local.numInscricao}" />
 				<f:selectItem itemLabel="--------------" noSelectionOption="true" />
@@ -222,9 +229,8 @@
 					var="local" itemLabel="#{local.numInscricao}" itemValue="#{local}" />
 			</p:selectOneMenu>
 			<p:outputLabel value="#{msgs.GHE}" />
-			<p:selectOneMenu id="listGHEClassNovo"
-				panelStyle="width:150px" effect="fade" style="width:300px"
-				immediate="true">
+			<p:selectOneMenu id="listGHEClassNovo" panelStyle="width:150px"
+				effect="fade" style="width:300px" immediate="true">
 				<!-- <p:ajax event="itemSelect" listener="#" update="#" /> -->
 				<f:selectItem itemValue="#{classFuncional.local.numInscricao}" />
 				<f:selectItem itemLabel="--------------" noSelectionOption="true" />
