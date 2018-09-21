@@ -158,8 +158,7 @@ a:LINK {
 }
 
 #logoMenu {
-	background-image:
-		url("../resources/images/menuNavegacao/icoMenu.png");
+	background-image: url("../resources/images/menuNavegacao/icoMenu.png");
 }
 
 #logoMenuFixo {
@@ -182,7 +181,7 @@ a:LINK {
 		url("../resources/images/menuNavegacao/newIcoCadUsuarios_out.png");
 }
 
-#logoRegAmbientais{
+#logoRegAmbientais {
 	background-image:
 		url("../resources/images/menuNavegacao/newIcoRegAmbientais_out.png");
 }
@@ -197,12 +196,12 @@ a:LINK {
 		url("../resources/images/menuNavegacao/newIcoDocLegais_out.png");
 }
 
-#logoEquiptosProtecao{
+#logoEquiptosProtecao {
 	background-image:
 		url("../resources/images/menuNavegacao/newIcoEntregaEPI_out.png");
 }
 
-#logoFerramentas{
+#logoFerramentas {
 	background-image:
 		url("../resources/images/menuNavegacao/newIcoOrdServicos_out.png");
 }
