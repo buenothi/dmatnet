@@ -182,17 +182,32 @@ a:LINK {
 		url("../resources/images/menuNavegacao/newIcoCadUsuarios_out.png");
 }
 
+#logoRegAmbientais{
+	background-image:
+		url("../resources/images/menuNavegacao/newIcoRegAmbientais_out.png");
+}
+
+#logoSaudeTrabalho {
+	background-image:
+		url("../resources/images/menuNavegacao/newIcoPCMSO_out.png");
+}
+
 #logoDocLegais {
 	background-image:
 		url("../resources/images/menuNavegacao/newIcoDocLegais_out.png");
 }
 
-#logoOrdServicos {
+#logoEquiptosProtecao{
+	background-image:
+		url("../resources/images/menuNavegacao/newIcoEntregaEPI_out.png");
+}
+
+#logoFerramentas{
 	background-image:
 		url("../resources/images/menuNavegacao/newIcoOrdServicos_out.png");
 }
 
-#logoAuditoria {
+#logoAcidentes {
 	background-image:
 		url("../resources/images/menuNavegacao/newIcoAuditoria_out.png");
 }
