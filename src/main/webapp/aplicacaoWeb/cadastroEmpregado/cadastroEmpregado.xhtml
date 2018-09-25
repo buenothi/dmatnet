@@ -20,22 +20,31 @@
 			<!-- inserir msgs dos itens abaixo -->
 
 			<h:panelGroup layout="block" style="text-align: center">
-				<p:selectOneButton>
-					<f:selectItem itemLabel="Ativo" itemValue="Xbox One" />
-					<f:selectItem itemLabel="Inativo" itemValue="PS4" />
-					<f:selectItem itemLabel="Afastado" itemValue="Wii U" />
-					<f:selectItem itemLabel="Todos" itemValue="Wii U" />
-					<f:selectItem itemLabel="Terceiros" itemValue="Wii U" />
+				<p:selectOneButton
+					value="#{cadastroEmpregadoMB.filtroEmpregadosEmpresaSelecionada}">
+					<f:selectItem itemLabel="#{msgs.FiltroAtivos}" itemValue="Ativo" />
+					<f:selectItem itemLabel="#{msgs.FiltroInativos}"
+						itemValue="Inativo" />
+					<f:selectItem itemLabel="#{msgs.FiltroAfastados}"
+						itemValue="Afastado" />
+					<f:selectItem itemLabel="#{msgs.FiltroTerceiros}"
+						itemValue="Terceiro" />
+					<f:selectItem itemLabel="#{msgs.FiltroTodos}" itemValue="Todos" />
+					<f:ajax event="change"
+						listener="#{cadastroEmpregadoMB.mudarTipoFiltroListaEmpregados}" />
 				</p:selectOneButton>
 			</h:panelGroup>
 
 			<p:spacer height="10px" width="100%" />
 
 			<dmat:barraPesquisarComposite id="bpcPesquisarEmpregado"
-				placeholderPesquisar="#{msgs.DigiteEmpregado}" />
+				textoPesquisar="#{cadastroEmpregadoMB.nomeEmpregadoProcurado}"
+				placeholderPesquisar="#{msgs.DigiteEmpregado}"
+				actionListenerFiltrar="#{cadastroEmpregadoMB.filtrarEmpregados}" updateFiltrar=""
+				actionListenerRemoverFiltro="#{cadastroEmpregadoMB.removerFiltroEmpresa}" />
 
 			<p:dataTable id="dtbEmpregados" scrollable="true"
-				styleClass="dataTable" paginator="true" rows="10" 
+				styleClass="dataTable" paginator="true" rows="10"
 				paginatorAlwaysVisible="false" draggableColumns="true"
 				emptyMessage="#{msgs.ListaEmpregadosVazio}" selectionMode="single">
 				<p:column headerText="#{msgs.DataCadastro}" width="60"></p:column>
@@ -51,32 +60,33 @@
 
 			<p:spacer height="10px" width="100%" />
 
-			<dmat:barraBotoesComposite id="barraBotoesEmpregados" />
+			<dmat:barraBotoesComposite id="barraBotoesEmpregados"
+				renderedBtnNovo="true" />
 
 			<p:tabView id="tbwCadastroEmpregado">
-				<p:tab title="#{msgs.DadosCadastrais}" disabled="">
+				<p:tab title="#{msgs.DadosCadastrais}">
 					<ui:include
-						src="/aplicacaoWeb/cadastroEmpregado/dadosCadastraisEmpregado.xhtml" /> 
+						src="/aplicacaoWeb/cadastroEmpregado/dadosCadastraisEmpregado.xhtml" />
 				</p:tab>
-				<p:tab title="#{msgs.DocumentosPessoaFisica}" disabled="">
+				<p:tab title="#{msgs.DocumentosPessoaFisica}">
 					<ui:include
-						src="/aplicacaoWeb/cadastroEmpregado/documentosEmpregado.xhtml" /> 
+						src="/aplicacaoWeb/cadastroEmpregado/documentosEmpregado.xhtml" />
 				</p:tab>
-				<p:tab title="#{msgs.Endereco}" disabled="">
+				<p:tab title="#{msgs.Endereco}">
 					<ui:include
-						src="/aplicacaoWeb/cadastroEmpregado/enderecoEmpregado.xhtml" /> 
+						src="/aplicacaoWeb/cadastroEmpregado/enderecoEmpregado.xhtml" />
 				</p:tab>
-				<p:tab title="#{msgs.Contatos}" disabled="">
+				<p:tab title="#{msgs.Contatos}">
 					<ui:include
-						src="/aplicacaoWeb/cadastroEmpregado/contatoEmpregado.xhtml" /> 
+						src="/aplicacaoWeb/cadastroEmpregado/contatoEmpregado.xhtml" />
 				</p:tab>
-				<p:tab title="#{msgs.ClassificacaoFuncional}" disabled="">
+				<p:tab title="#{msgs.ClassificacaoFuncional}">
 					<ui:include
-						src="/aplicacaoWeb/cadastroEmpregado/classificacaoFuncionalEmpregado.xhtml" /> 
+						src="/aplicacaoWeb/cadastroEmpregado/classificacaoFuncionalEmpregado.xhtml" />
 				</p:tab>
 				<p:tab title="#{msgs.InfoDeficiencia}" disabled="">
 					<ui:include
-						src="/aplicacaoWeb/cadastroEmpregado/infoDeficienciaEmpregado.xhtml" /> 
+						src="/aplicacaoWeb/cadastroEmpregado/infoDeficienciaEmpregado.xhtml" />
 				</p:tab>
 			</p:tabView>
 		</h:panelGroup>
