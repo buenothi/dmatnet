@@ -1,6 +1,7 @@
 package br.com.smartems.dmatnet.ManagedBeans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -32,6 +33,8 @@ public class CadastroEmpregadoMB implements Serializable {
 	private String filtroEmpregadosEmpresaSelecionada = "Ativo";
 
 	private String nomeEmpregadoProcurado;
+	
+	private boolean exibirDadosCadastraisEmpregado = true;
 
 	/* getters e setter */
 
@@ -64,6 +67,9 @@ public class CadastroEmpregadoMB implements Serializable {
 	}
 
 	public List<TrabalhadorEntity> getListaEmpregadosEmpresaSelecionada() {
+		if (this.listaEmpregadosEmpresaSelecionada == null) {
+			this.listaEmpregadosEmpresaSelecionada = new ArrayList<TrabalhadorEntity>();
+		}
 		return listaEmpregadosEmpresaSelecionada;
 	}
 
@@ -78,8 +84,17 @@ public class CadastroEmpregadoMB implements Serializable {
 	public void setFiltroEmpregadosEmpresaSelecionada(String filtroEmpregadosEmpresaSelecionada) {
 		this.filtroEmpregadosEmpresaSelecionada = filtroEmpregadosEmpresaSelecionada;
 	}
+	
+	public boolean isExibirDadosCadastraisEmpregado() {
+		return exibirDadosCadastraisEmpregado;
+	}
+
+	public void setExibirDadosCadastraisEmpregado(boolean exibirDadosCadastraisEmpregado) {
+		this.exibirDadosCadastraisEmpregado = exibirDadosCadastraisEmpregado;
+	}
 
 	/* Fim dos geters e seters */
+
 
 	public String getNomeEmpregadoProcurado() {
 		return nomeEmpregadoProcurado;
@@ -94,20 +109,26 @@ public class CadastroEmpregadoMB implements Serializable {
 		// teste abaixo ok
 		System.out.println(this.filtroEmpregadosEmpresaSelecionada.toString());
 	}
-	
+
 	public void filtrarEmpregados(ActionEvent evt) {
-		
+
 	}
-	
+
 	public void removerFiltroEmpresa(ActionEvent e) {
 		this.initEmpregado();
 		this.nomeEmpregadoProcurado = null;
 		this.listaEmpregadosEmpresaSelecionada = null;
 	}
-	
+
 	@PostConstruct
 	public void initEmpregado() {
-		
+		this.usuarioMB = null;
+		this.principalMB = null;
+		this.cadastroEmpresaMB = null;
+		this.listaEmpregadosEmpresaSelecionada = null;
+		this.filtroEmpregadosEmpresaSelecionada = "Ativo";
+		this.nomeEmpregadoProcurado = null;
+		this.exibirDadosCadastraisEmpregado = true;
 	}
 
 }

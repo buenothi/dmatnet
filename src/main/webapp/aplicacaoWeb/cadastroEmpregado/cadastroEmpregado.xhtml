@@ -17,8 +17,6 @@
 			class="formulario">
 			<p:messages id="msEmpregados" showDetail="false" closable="true" />
 
-			<!-- inserir msgs dos itens abaixo -->
-
 			<h:panelGroup layout="block" style="text-align: center">
 				<p:selectOneButton
 					value="#{cadastroEmpregadoMB.filtroEmpregadosEmpresaSelecionada}">
@@ -40,22 +38,59 @@
 			<dmat:barraPesquisarComposite id="bpcPesquisarEmpregado"
 				textoPesquisar="#{cadastroEmpregadoMB.nomeEmpregadoProcurado}"
 				placeholderPesquisar="#{msgs.DigiteEmpregado}"
-				actionListenerFiltrar="#{cadastroEmpregadoMB.filtrarEmpregados}" updateFiltrar=""
+				actionListenerFiltrar="#{cadastroEmpregadoMB.filtrarEmpregados}"
+				updateFiltrar="formModulos:formCadEmpresa:tbwCadastroEmpresa:dtbEmpregados,
+							   formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado"
 				actionListenerRemoverFiltro="#{cadastroEmpregadoMB.removerFiltroEmpresa}" />
 
-			<p:dataTable id="dtbEmpregados" scrollable="true"
+			<p:dataTable id="dtbEmpregados" scrollable="true" var="empregado"
+				value="#{cadastroEmpregadoMB.listaEmpregadosEmpresaSelecionada}"
 				styleClass="dataTable" paginator="true" rows="10"
 				paginatorAlwaysVisible="false" draggableColumns="true"
 				emptyMessage="#{msgs.ListaEmpregadosVazio}" selectionMode="single">
-				<p:column headerText="#{msgs.DataCadastro}" width="60"></p:column>
-				<p:column headerText="#{msgs.Nome}" width="200"></p:column>
-				<p:column headerText="#{msgs.Genero}" width="30"></p:column>
-				<p:column headerText="#{msgs.NumeroRG}" width="80"></p:column>
-				<p:column headerText="#{msgs.NumeroCPF}" width="80"></p:column>
-				<p:column headerText="#{msgs.NumeroRNE}" width="80"></p:column>
-				<p:column headerText="#{msgs.NumeroRic}" width="80"></p:column>
-				<p:column headerText="#{msgs.DataAdmissao}" width="60"></p:column>
-				<p:column headerText="#{msgs.DataDemissao}" width="60"></p:column>
+
+				<p:column headerText="#{msgs.DataCadastro}" width="60">
+					<h:outputText value="#{empregado.dataCadastroPessoa}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="#{msgs.Nome}" width="200">
+					<h:outputText value="#{empregado.dataCadastroPessoa}"
+						converter="stringConverter" />
+				</p:column>
+
+				<p:column headerText="#{msgs.Genero}" width="30">
+					<h:outputText value="#{empregado.genero}" />
+				</p:column>
+
+				<p:column headerText="#{msgs.NumeroRG}" width="80">
+					<h:outputText value="#{empregado.documentosPessoais.numRG}" />
+				</p:column>
+
+				<p:column headerText="#{msgs.NumeroCPF}" width="80">
+					<h:outputText value="#{empregado.documentosPessoais.numCPF}" />
+				</p:column>
+
+				<p:column headerText="#{msgs.NumeroRNE}" width="80">
+					<h:outputText value="#{empregado.documentosPessoais.numRNE}" />
+				</p:column>
+
+				<p:column headerText="#{msgs.NumeroRic}" width="80">
+					<h:outputText value="#{empregado.documentosPessoais.numRic}" />
+				</p:column>
+
+				<p:column headerText="#{msgs.DataAdmissao}" width="60">
+					<h:outputText value="#{empregado.dataAdmissao}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="#{msgs.DataDemissao}" width="60">
+					<h:outputText value="#{empregado.dataDesligamento}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
 			</p:dataTable>
 
 			<p:spacer height="10px" width="100%" />
@@ -63,7 +98,8 @@
 			<dmat:barraBotoesComposite id="barraBotoesEmpregados"
 				renderedBtnNovo="true" />
 
-			<p:tabView id="tbwCadastroEmpregado">
+			<p:tabView id="tbwCadastroEmpregado"
+				rendered="#{cadastroEmpregadoMB.exibirDadosCadastraisEmpregado}">
 				<p:tab title="#{msgs.DadosCadastrais}">
 					<ui:include
 						src="/aplicacaoWeb/cadastroEmpregado/dadosCadastraisEmpregado.xhtml" />
