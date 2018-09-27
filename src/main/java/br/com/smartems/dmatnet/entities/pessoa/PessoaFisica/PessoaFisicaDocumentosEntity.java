@@ -7,45 +7,48 @@ import javax.persistence.*;
 
 @Embeddable
 public class PessoaFisicaDocumentosEntity implements Serializable, Cloneable {
-	
-	//registro de identificação civil (para atendimento do eSocial)
-	private Long numRic; 
+
+	// registro de identificação civil (para atendimento do eSocial)
+	private Long numRic;
 	private String ricOrgExpedidor;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date ricDataExpedicao;
-	
+
 	private String numRG;
 	private String rgOrgExpedidor;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date rgDataExpedicao;
-	
+
 	private Long numCPF;
-	
+
 	private Long numRNE;
 	private String rneOrgExpedidor;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date rneDataExpedicao;
-	
+
+	private Long numCTPS;
+	private Long serieCTPS;
+	private String ufCTPS;
+
 	private Long numCNH;
 	private String cnhUf;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date cnhDataExpedicao;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date cnhValidade;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date cnhPrimeiraEmissao;
-	
+
 	private String cnhCategoria;
-	
+
 	private static final long serialVersionUID = 1L;
 
-	
 	public PessoaFisicaDocumentosEntity() {
 		super();
 	}
@@ -130,6 +133,30 @@ public class PessoaFisicaDocumentosEntity implements Serializable, Cloneable {
 		this.rneDataExpedicao = rneDataExpedicao;
 	}
 
+	public Long getNumCTPS() {
+		return numCTPS;
+	}
+
+	public void setNumCTPS(Long numCTPS) {
+		this.numCTPS = numCTPS;
+	}
+
+	public Long getSerieCTPS() {
+		return serieCTPS;
+	}
+
+	public void setSerieCTPS(Long serieCTPS) {
+		this.serieCTPS = serieCTPS;
+	}
+
+	public String getUfCTPS() {
+		return ufCTPS;
+	}
+
+	public void setUfCTPS(String ufCTPS) {
+		this.ufCTPS = ufCTPS;
+	}
+
 	public Long getNumCNH() {
 		return numCNH;
 	}
@@ -181,7 +208,7 @@ public class PessoaFisicaDocumentosEntity implements Serializable, Cloneable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
 	@Override
 	public PessoaFisicaDocumentosEntity clone() throws CloneNotSupportedException {
 		return (PessoaFisicaDocumentosEntity) super.clone();
@@ -301,5 +328,5 @@ public class PessoaFisicaDocumentosEntity implements Serializable, Cloneable {
 			return false;
 		return true;
 	}
-	
+
 }

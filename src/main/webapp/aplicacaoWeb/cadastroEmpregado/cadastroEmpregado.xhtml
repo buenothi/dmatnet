@@ -49,6 +49,11 @@
 				paginatorAlwaysVisible="false" draggableColumns="true"
 				emptyMessage="#{msgs.ListaEmpregadosVazio}" selectionMode="single">
 
+				<p:ajax event="rowSelect"
+					listener="#{cadastroEmpregadoMB.onSelectionEmpregado}"
+					update="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado"
+					resetValues="true" />
+
 				<p:column headerText="#{msgs.DataCadastro}" width="60">
 					<h:outputText value="#{empregado.dataCadastroPessoa}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
