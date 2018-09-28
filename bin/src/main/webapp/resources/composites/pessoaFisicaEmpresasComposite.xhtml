@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:composite="http://java.sun.com/jsf/composite"
+		xmlns:dmat="http://java.sun.com/jsf/composite/composites">
+
+		<composite:interface>
+			<composite:attribute name="empresasUsuario"
+				type="org.primefaces.model.DualListModel"
+				shortDescription="Insert only Empresas DualistModel" />
+			<composite:attribute name="disabled" default="false" />
+			<composite:attribute name="mensagemRendered"
+				default="false" />
+			<composite:attribute name="id"></composite:attribute>
+		</composite:interface>
+
+		<composite:implementation>
+
+			<p:panel header="#{msgs.Empresas}" closable="false">
+				<p:messages id="msEmail" showDetail="true"
+					closable="true" rendered="#{cc.attrs.mensagemRendered}" />
+				<h:panelGroup id="pngEmpresas" layout="block">
+					<p:panelGrid columns="1"
+						styleClass="tabelaSemBorda">
+						<h:outputText
+							value="#{msgs.textoSelecionarMultiplasEmpresasUsuario}" />
+						<h:panelGroup style="width:100%">
+							<p:pickList id="pclEmpresasUsuario"
+								immediate="true" style="margin:0 auto"
+								value="#{cc.attrs.empresasUsuario}" var="empresa"
+								itemLabel="#{empresa.nome}" itemValue="#{empresa}"
+								converter="empresaConverter" showSourceFilter="true"
+								showTargetFilter="true" filterMatchMode="contains"
+								disabled="#{cc.attrs.disabled}">
+								<f:facet name="sourceCaption">
+									<h:outputText
+										value="#{msgs.EmpresaDisponivel}" converter="stringConverter" />
+								</f:facet>
+								<f:facet name="targetCaption">
+									<h:outputText
+										value="#{msgs.EmpresaAtribuida}" converter="stringConverter" />
+								</f:facet>
+							</p:pickList>
+						</h:panelGroup>
+					</p:panelGrid>
+				</h:panelGroup>
+			</p:panel>
+
+		</composite:implementation>
+</html>

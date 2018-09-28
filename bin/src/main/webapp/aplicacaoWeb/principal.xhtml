@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
+
+<h:head>
+	<title><h:outputText value="#{msgs.TituloJanela}" /></title>
+	<h:outputStylesheet library="css" name="stylesPrincipal.css" />
+	<h:outputScript library="js" name="scripts.js" />
+</h:head>
+
+<h:body onload="PF('dlgSelecionarEmpresa').show()">
+	<div id="superior">
+		<div id="logoDMAT" />
+		<h:form id="formSuperior">
+			<h:panelGrid class="empresaSelecionada" columns="4">
+				<p:spacer height="100%" width="10px" />
+				<p:outputLabel id="oplEmpresaSelecionada"
+					converter="stringConverter"
+					value="#{cadastroEmpresaMB.empresaSelecionada.nome}" />
+				<p:spacer height="100%" width="10px" />
+				<p:commandButton id="btnSelecionarEmpresa"
+					title="#{msgs.MudarEmpresa}" icon="fa fa-list-alt"
+					styleClass="botoesWebApp"
+					onclick="PF('dlgSelecionarEmpresa').show()" />
+			</h:panelGrid>
+			<h:panelGrid class="usuarioLogado" columns="3">
+				<h:panelGrid columns="1">
+					<h:outputFormat value="#{usuarioMB.usuarioLogado.nome}"
+						converter="stringConverter" />
+					<h:outputFormat value="#{usuarioMB.usuarioLogado.grupo.nomeGrupo}"
+						converter="stringConverter" />
+				</h:panelGrid>
+				<p:commandButton value="#{msgs.Sair}" icon="ui-icon-extlink"
+					action="#{usuarioMB.logout}" style="color:#CD0000">
+					<p:confirm header="#{msgs.Confirmar}"
+						message="#{msgs.SairAplicacao}" icon="ui-icon-alert" />
+				</p:commandButton>
+				<p:commandButton id="btnSideBar" title="#{msgs.PainelNotificacoes}"
+					styleClass="botoesWebApp" icon="fa fa-list-ul"
+					onclick="PF('sidebarPrincipal').show()" />
+			</h:panelGrid>
+
+		</h:form>
+	</div>
+
+	<div id="lateral" class="lateral">
+		<h:form id="formLateral">
+			<p:commandLink>
+				<h:panelGroup id="btnMenu" layout="block" styleClass="menuBotao"
+					onclick="openMenu()">
+					<div id="logoMenu" class="logosMenu" />
+					<div id="rotuloMenu" class="rotuloMenu">
+						<h:outputFormat styleClass="textoMenu"
+							value="#{fn:toUpperCase(msgs.Menu)}" />
+					</div>
+				</h:panelGroup>
+			</p:commandLink>
+
+			<p:commandLink actionListener="#{principalMB.exibirHome}"
+				update="@this formModulos btnCadastroEmpresa">
+				<h:panelGroup id="btnHome" layout="block"
+					styleClass="#{principalMB.classMenuBotaoHome}">
+					<div id="logoHome" class="logosMenu" />
+					<div id="rotuloCadEmpresas" class="rotuloMenu">
+						<h:outputFormat styleClass="textoMenu"
+							value="#{fn:toUpperCase(msgs.Home)}" />
+					</div>
+				</h:panelGroup>
+			</p:commandLink>
+
+			<p:commandLink actionListener="#{principalMB.exibirCadastroEmpresa}"
+				update="formModulos @this btnHome"
+				disabled="#{cadastroEmpresaMB.btnModuloDadosCadastrais}">
+				<h:panelGroup id="btnCadastroEmpresa" layout="block"
+					styleClass="#{principalMB.classMenuBotaoCadEmpresa}">
+					<div id="logoCadEmpresa" class="logosMenu" />
+					<div id="rotuloCadEmpresas" class="rotuloMenu">
+						<h:outputFormat styleClass="textoMenu"
+							value="#{fn:toUpperCase(msgs.CadastroEmpresa)}" />
+					</div>
+				</h:panelGroup>
+			</p:commandLink>
+
+			<div id="itemCadUsuarios" class="menuBotao">
+				<div id="logoCadUsuarios" class="logosMenu" />
+				<div id="rotuloCadUsuarios" class="rotuloMenu">
+					<h:outputFormat styleClass="textoMenu"
+						value="#{fn:toUpperCase(msgs.CadastroUsuario)}" />
+				</div>
+			</div>
+
+			<div id="itemRegAmbientais" class="menuBotao">
+				<div id="logoRegAmbientais" class="logosMenu" />
+				<div id="rotuloRegAmbientais" class="rotuloMenu">
+					<h:outputFormat styleClass="textoMenu"
+						value="#{fn:toUpperCase(msgs.RegistroAmbiental)}" />
+				</div>
+			</div>
+
+			<div id="itemSaudeTrabalho" class="menuBotao">
+				<div id="logoSaudeTrabalho" class="logosMenu" />
+				<div id="rotuloSaudeTrabalho" class="rotuloMenu">
+					<h:outputFormat styleClass="textoMenu"
+						value="#{fn:toUpperCase(msgs.SaudeTrabalho)}" />
+				</div>
+			</div>
+
+			<div id="itemDocLegais" class="menuBotao">
+				<div id="logoDocLegais" class="logosMenu" />
+				<div id="rotuloDocLegais" class="rotuloMenu">
+					<h:outputFormat styleClass="textoMenu"
+						value="#{fn:toUpperCase(msgs.DocumentosLegais)}" />
+				</div>
+			</div>
+
+			<div id="itemAcidentes" class="menuBotao">
+				<div id="logoAcidentes" class="logosMenu" />
+				<div id="rotuloAcidentes" class="rotuloMenu">
+					<h:outputFormat styleClass="textoMenu"
+						value="#{fn:toUpperCase(msgs.AcidenteEmpregado)}" />
+				</div>
+			</div>
+
+			<div id="itemEquiptosProtecao" class="menuBotao">
+				<div id="logoEquiptosProtecao" class="logosMenu" />
+				<div id="rotuloEquiptosProtecao" class="rotuloMenu">
+					<h:outputFormat styleClass="textoMenu"
+						value="#{fn:toUpperCase(msgs.EquiptoProtecao)}" />
+				</div>
+			</div>
+
+			<div id="itemFerramentas" class="menuBotao">
+				<div id="logoFerramentas" class="logosMenu" />
+				<div id="rotuloFerramentas" class="rotuloMenu">
+					<h:outputFormat styleClass="textoMenu"
+						value="#{fn:toUpperCase(msgs.Ferramentas)}" />
+				</div>
+			</div>
+
+			<div id="itemTreinamento" class="menuBotao">
+				<div id="logoTreinamento" class="logosMenu" />
+				<div id="rotuloTreinmento" class="rotuloMenu">
+					<h:outputFormat styleClass="textoMenu"
+						value="#{fn:toUpperCase(msgs.TreinamentosSST)}" />
+				</div>
+			</div>
+		</h:form>
+	</div>
+
+	<div id="modulos" class="conteudo">
+		<h:form id="formModulos">
+			<p:panel id="pnlCadastroEmpresa" header="#{msgs.CadastroEmpresa}"
+				rendered="#{principalMB.renderizarCadastroEmpresa}">
+				<ui:include
+					src="/aplicacaoWeb/cadastroEmpresa/cadastroEmpresa.xhtml" />
+			</p:panel>
+		</h:form>
+	</div>
+
+	<p:dialog id="dlgSelecionarEmpresa" widgetVar="dlgSelecionarEmpresa"
+		resizable="false" modal="true" width="830" dynamic="true"
+		header="#{msgs.SelecionarEmpresa}" responsive="true"
+		style="padding:10px" showEffect="fade" hideEffect="fade">
+		<ui:include
+			src="/aplicacaoWeb/cadastroEmpresa/listaSelecionarEmpresas.xhtml" />
+	</p:dialog>
+
+	<p:dialog id="dlgGrupo" header="#{msgs.EmpresaGrupo}"
+		widgetVar="dlgGrupo" closable="true" resizable="false" dynamic="true"
+		draggable="true" responsive="true" styleClass="pdialogGrupo"
+		showEffect="fade" hideEffect="fade">
+		<ui:include src="/aplicacaoWeb/cadastroEmpresa/grupoEmpresa.xhtml" />
+	</p:dialog>
+
+	<p:dialog id="dlgCriarEmpresa" widgetVar="dlgCriarEmpresa"
+		resizable="false" modal="true" width="680" dynamic="true"
+		header="#{msgs.TituloEmpresa}" responsive="true" style="padding:10px"
+		showEffect="fade" hideEffect="fade">
+		<ui:include src="/aplicacaoWeb/cadastroEmpresa/criarEmpresa.xhtml" />
+	</p:dialog>
+
+	<p:dialog header="#{msgs.FachadaEmpresa}" id="dlgFachadaEmpresa"
+		widgetVar="dlgFachadaEmpresa" closable="true" resizable="false"
+		modal="false" fitViewport="true" responsive="true">
+		<h:form id="formFachadaEmpresa">
+			<p:panelGrid columns="1" styleClass="tabelaSemBorda">
+				<p:graphicImage id="gpiFachadaEmpresa"
+					value="#{cadastroEmpresaMB.fachadaEmpresa}" height="180"
+					cache="false" />
+				<p:fileUpload style="height: 100%" mode="advanced"
+					label="#{msgs.SelecionarImagem}" uploadLabel="#{msgs.Upload}"
+					cancelLabel="#{msgs.Cancelar}" dragDropSupport="true"
+					sizeLimit="1048576" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+					fileUploadListener="#{cadastroEmpresaMB.gravarImagemFachada}"
+					update="@this, formCriarEmpresa, formFachadaEmpresa:gpiFachadaEmpresa, formCriarEmpresa:oplFachadaAlterada"
+					fileLimitMessage="#{msgs.LimiteArquivoImagem}"
+					invalidSizeMessage="#{msgs.LimiteArquivoImagem}"
+					invalidFileMessage="#{msgs.ImagemInvalida}" fileLimit="1" />
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+
+	<p:dialog header="#{msgs.Logotipo}" id="dlgLogotipo"
+		widgetVar="dlgLogotipo" closable="true" resizable="false"
+		modal="false" fitViewport="true" responsive="true">
+		<h:form id="formLogotipo">
+			<p:panelGrid columns="1" styleClass="tabelaSemBorda">
+				<p:graphicImage id="gpiLogotipo"
+					value="#{cadastroEmpresaMB.logotipo}" height="180" cache="false" />
+				<p:fileUpload style="height: 100%" mode="advanced"
+					label="#{msgs.SelecionarImagem}" uploadLabel="#{msgs.Upload}"
+					cancelLabel="#{msgs.Cancelar}" dragDropSupport="true"
+					sizeLimit="1048576" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+					fileUploadListener="#{cadastroEmpresaMB.gravarLogotipo}"
+					update="@this, formCriarEmpresa, formLogotipo:gpiLogotipo, formCriarEmpresa:oplLogoAlterado"
+					fileLimitMessage="#{msgs.LimiteArquivoImagem}"
+					invalidSizeMessage="#{msgs.LimiteArquivoImagem}"
+					invalidFileMessage="#{msgs.ImagemInvalida}" fileLimit="1" />
+			</p:panelGrid>
+		</h:form>
+	</p:dialog>
+
+	<p:ajaxStatus onstart="PF('statusDialog').show()"
+		onsuccess="PF('statusDialog').hide()" />
+
+	<p:dialog widgetVar="statusDialog" modal="false" draggable="false"
+		closable="false" resizable="false" showHeader="false"
+		showEffect="fade" hideEffect="fade">
+		<h:graphicImage name="images/16.gif" />
+	</p:dialog>
+
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
+		responsive="true">
+		<p:toolbar id="tbrBotoes">
+			<f:facet name="right">
+				<p:commandButton value="#{msgs.Sim}" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="#{msgs.Nao}" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</f:facet>
+		</p:toolbar>
+	</p:confirmDialog>
+
+	<p:growl id="growlPrincipal" showDetail="true" sticky="false"
+		life="6000" />
+
+	<p:sidebar widgetVar="sidebarPrincipal" position="right"
+		baseZIndex="10000"></p:sidebar>
+</h:body>
+
+</html>

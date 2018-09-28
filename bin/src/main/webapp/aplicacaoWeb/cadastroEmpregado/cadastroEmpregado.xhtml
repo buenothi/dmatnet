@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
+
+<ui:composition>
+
+	<p:panel header="#{msgs.Empregados}" closable="false">
+
+		<h:panelGroup id="pngCadastroEmpregados" layout="block"
+			class="formulario">
+			<p:messages id="msEmpregados" showDetail="false" closable="true" />
+
+			<h:panelGroup layout="block" style="text-align: center">
+				<p:selectOneButton
+					value="#{cadastroEmpregadoMB.filtroEmpregadosEmpresaSelecionada}">
+					<f:selectItem itemLabel="#{msgs.FiltroAtivos}" itemValue="Ativo" />
+					<f:selectItem itemLabel="#{msgs.FiltroInativos}"
+						itemValue="Inativo" />
+					<f:selectItem itemLabel="#{msgs.FiltroAfastados}"
+						itemValue="Afastado" />
+					<f:selectItem itemLabel="#{msgs.FiltroTerceiros}"
+						itemValue="Terceiro" />
+					<f:selectItem itemLabel="#{msgs.FiltroTodos}" itemValue="Todos" />
+					<f:ajax event="change"
+						listener="#{cadastroEmpregadoMB.mudarTipoFiltroListaEmpregados}" />
+				</p:selectOneButton>
+			</h:panelGroup>
+
+			<p:spacer height="10px" width="100%" />
+
+			<dmat:barraPesquisarComposite id="bpcPesquisarEmpregado"
+				textoPesquisar="#{cadastroEmpregadoMB.nomeEmpregadoProcurado}"
+				placeholderPesquisar="#{msgs.DigiteEmpregado}"
+				actionListenerFiltrar="#{cadastroEmpregadoMB.filtrarEmpregados}"
+				updateFiltrar="formModulos:formCadEmpresa:tbwCadastroEmpresa:dtbEmpregados,
+							   formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado"
+				actionListenerRemoverFiltro="#{cadastroEmpregadoMB.removerFiltroEmpresa}" />
+
+			<p:dataTable id="dtbEmpregados" scrollable="true" var="empregado"
+				value="#{cadastroEmpregadoMB.listaEmpregadosEmpresaSelecionada}"
+				styleClass="dataTable" paginator="true" rows="10"
+				paginatorAlwaysVisible="false" draggableColumns="true"
+				emptyMessage="#{msgs.ListaEmpregadosVazio}" selectionMode="single">
+
+				<p:ajax event="rowSelect"
+					listener="#{cadastroEmpregadoMB.onSelectionEmpregado}"
+					update="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado"
+					resetValues="true" />
+
+				<p:column headerText="#{msgs.DataCadastro}" width="60">
+					<h:outputText value="#{empregado.dataCadastroPessoa}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="#{msgs.Nome}" width="200">
+					<h:outputText value="#{empregado.dataCadastroPessoa}"
+						converter="stringConverter" />
+				</p:column>
+
+				<p:column headerText="#{msgs.Genero}" width="30">
+					<h:outputText value="#{empregado.genero}" />
+				</p:column>
+
+				<p:column headerText="#{msgs.NumeroRG}" width="80">
+					<h:outputText value="#{empregado.documentosPessoais.numRG}" />
+				</p:column>
+
+				<p:column headerText="#{msgs.NumeroCPF}" width="80">
+					<h:outputText value="#{empregado.documentosPessoais.numCPF}" />
+				</p:column>
+
+				<p:column headerText="#{msgs.NumeroRNE}" width="80">
+					<h:outputText value="#{empregado.documentosPessoais.numRNE}" />
+				</p:column>
+
+				<p:column headerText="#{msgs.NumeroRic}" width="80">
+					<h:outputText value="#{empregado.documentosPessoais.numRic}" />
+				</p:column>
+
+				<p:column headerText="#{msgs.DataAdmissao}" width="60">
+					<h:outputText value="#{empregado.dataAdmissao}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="#{msgs.DataDemissao}" width="60">
+					<h:outputText value="#{empregado.dataDesligamento}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+			</p:dataTable>
+
+			<p:spacer height="10px" width="100%" />
+
+			<dmat:barraBotoesComposite id="barraBotoesEmpregados"
+				renderedBtnNovo="true" />
+
+			<p:tabView id="tbwCadastroEmpregado"
+				rendered="#{cadastroEmpregadoMB.exibirDadosCadastraisEmpregado}">
+				<p:tab title="#{msgs.DadosCadastrais}">
+					<ui:include
+						src="/aplicacaoWeb/cadastroEmpregado/dadosCadastraisEmpregado.xhtml" />
+				</p:tab>
+				<p:tab title="#{msgs.DocumentosPessoaFisica}">
+					<ui:include
+						src="/aplicacaoWeb/cadastroEmpregado/documentosEmpregado.xhtml" />
+				</p:tab>
+				<p:tab title="#{msgs.Endereco}">
+					<ui:include
+						src="/aplicacaoWeb/cadastroEmpregado/enderecoEmpregado.xhtml" />
+				</p:tab>
+				<p:tab title="#{msgs.Contatos}">
+					<ui:include
+						src="/aplicacaoWeb/cadastroEmpregado/contatoEmpregado.xhtml" />
+				</p:tab>
+				<p:tab title="#{msgs.ClassificacaoFuncional}">
+					<ui:include
+						src="/aplicacaoWeb/cadastroEmpregado/classificacaoFuncionalEmpregado.xhtml" />
+				</p:tab>
+				<p:tab title="#{msgs.InfoDeficiencia}" disabled="">
+					<ui:include
+						src="/aplicacaoWeb/cadastroEmpregado/infoDeficienciaEmpregado.xhtml" />
+				</p:tab>
+			</p:tabView>
+		</h:panelGroup>
+
+	</p:panel>
+
+</ui:composition>
+
+</html>

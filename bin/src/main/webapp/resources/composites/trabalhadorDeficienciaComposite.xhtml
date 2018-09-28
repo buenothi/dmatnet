@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+	<composite:attribute name="mensagemRendered" />
+
+	<composite:attribute name="editarRendered" default="true" />
+
+	<composite:attribute name="exibirRendered" default="false" />
+
+	<composite:attribute name="listaFuncoesEstabelecimentoSelecionado" />
+
+	<composite:attribute name="listaGHEEstabelecimentoSelecionado" />
+
+	<composite:attribute name="actionListenerAdicionarClassFuncional"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+
+	<composite:attribute name="updateNovo" />
+	<composite:attribute name="onCompleteNovo" />
+</composite:interface>
+
+<composite:implementation>
+	<p:panel id="pnlClasFuncional" header="#{msgs.InfoDeficiencia}"
+		closable="false">
+		<p:messages id="msDeficiencia" showDetail="true" closable="true"
+			rendered="#{cc.attrs.mensagemRendered}" />
+
+		<h:panelGroup id="pngEmpregadoDeficienciaEditar" layout="block"
+			styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
+
+			<p:panelGrid columns="2" style="display:block"
+				styleClass="tabelaSemBorda">
+
+				<p:outputLabel value="#{msgs.IsDeficienciaFisica}" />
+				<p:inputSwitch onLabel="#{msgs.Sim}" offLabel="#{msgs.Nao}"
+					onIcon="ui-icon-check" offIcon="ui-icon-close"></p:inputSwitch>
+
+				<p:outputLabel value="#{msgs.IsDeficienciaVisual}" />
+				<p:inputSwitch onLabel="#{msgs.Sim}" offLabel="#{msgs.Nao}"
+					onIcon="ui-icon-check" offIcon="ui-icon-close"></p:inputSwitch>
+
+				<p:outputLabel value="#{msgs.IsDeficienciaAuditiva}" />
+				<p:inputSwitch onLabel="#{msgs.Sim}" offLabel="#{msgs.Nao}"
+					onIcon="ui-icon-check" offIcon="ui-icon-close"></p:inputSwitch>
+
+				<p:outputLabel value="#{msgs.IsDeficienciaMental}" />
+				<p:inputSwitch onLabel="#{msgs.Sim}" offLabel="#{msgs.Nao}"
+					onIcon="ui-icon-check" offIcon="ui-icon-close"></p:inputSwitch>
+
+				<p:outputLabel value="#{msgs.IsDeficienciaIntelectual}" />
+				<p:inputSwitch onLabel="#{msgs.Sim}" offLabel="#{msgs.Nao}"
+					onIcon="ui-icon-check" offIcon="ui-icon-close"></p:inputSwitch>
+
+				<p:outputLabel value="#{msgs.IsReabilitadoReadaptado}" />
+				<p:inputSwitch onLabel="#{msgs.Sim}" offLabel="#{msgs.Nao}"
+					onIcon="ui-icon-check" offIcon="ui-icon-close"></p:inputSwitch>
+
+				<p:outputLabel value="#{msgs.Observacao}" />
+				<p:inputTextarea rows="2" cols="25"></p:inputTextarea>
+
+			</p:panelGrid>
+
+
+		</h:panelGroup>
+
+		<h:panelGroup id="pngEmpregadoDeficienciaExibir" layout="block"
+			styleClass="formulario" rendered="#{cc.attrs.exibirRendered}">
+
+		</h:panelGroup>
+
+	</p:panel>
+</composite:implementation>
+</html>

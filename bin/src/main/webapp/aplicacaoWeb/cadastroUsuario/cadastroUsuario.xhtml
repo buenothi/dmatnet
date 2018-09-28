@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
+
+<ui:composition>
+
+	<dmat:barraBotoesComposite id="barraBotoesUsuario"
+		disabledEditar="#{cadastroUsuarioMB.btnUsuarioEditarDesativado}"
+		actionListenerEditar="#{cadastroUsuarioMB.editarUsuario}"
+		updateEditar="formModulos, growlPrincipal"
+		disabledCancelar="#{cadastroUsuarioMB.btnUsuarioCancelarDesativado}"
+		actionListenerCancelar="#{cadastroUsuarioMB.cancelarUsuario}"
+		updateCancelar="formModulos, growlPrincipal"
+		resetCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcDadosUsuarioSelecionado:pnlDadosUsuario"
+		disabledSalvar="#{cadastroUsuarioMB.btnUsuarioSalvarDesativado}"
+		actionListenerSalvar="#{cadastroUsuarioMB.salvarAlteracoesUsuario}"
+		updateSalvar="formModulos, growlPrincipal" renderedBtnNovo="true"
+		labelNovo="#{msgs.NovoUsuario}"
+		disabledNovo="#{cadastroUsuarioMB.btnUsuarioNovoDesativado}"
+		actionListenerNovo="#{cadastroUsuarioMB.novoUsuarioNaEmpresaSelecionada}"
+		onCompleteNovo="PF('dlgCriarUsuario').show()"
+		updateNovo="formModulos:formCadEmpresa:tbwCadastroEmpresa:pngCadastroUsuarioEmpresa"
+		disabledImprimir="#{cadastroUsuarioMB.btnUsuarioEditarDesativado}"
+		actionListenerImprimir="#{cadastroUsuarioMB.imprimirUsuario}"
+		labelImprimir="#{msgs.Imprimir}"
+		updateImprimir="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcDadosUsuarioSelecionado:pnlDadosUsuario"
+		renderedBtnImprimir="true"
+		disabledExcluir="#{cadastroUsuarioMB.btnUsuarioExcluirDesativado}"
+		actionListenerExcluir="#{cadastroUsuarioMB.excluirUsuario}"
+		updateExcluir="formModulos:formCadEmpresa:tbwCadastroEmpresa:pngCadastroUsuarioEmpresa"
+		renderedBtnExcluir="#{cadastroUsuarioMB.btnUsuarioExcluirRender}"
+		labelExcluir="#{msgs.Excluir}" headerConfirma="#{msgs.Confirmar}"
+		messageConfirma="#{msgs.DeletarUsuario}" />
+
+	<p:panelGrid columns="2" style="display:block"
+		styleClass="top-aligned-columns">
+		<h:panelGroup id="pngSelecaoUsuario" layout="block"
+			style="width: 250px">
+			<dmat:barraPesquisarComposite id="bpcBuscarContato"
+				renderSpacer="false" />
+			<p:dataTable scrollable="true" paginator="true" rows="8"
+				paginatorAlwaysVisible="false"
+				emptyMessage="#{msgs.ListaUsuariosVazia}" var="usuario"
+				value="#{cadastroEmpresaMB.usuariosEmpresaSelecionada}"
+				rowKey="#{usuario.idPessoa}" selectionMode="single"
+				sortBy="#{usuario.nome}"
+				disabledSelection="#{cadastroUsuarioMB.disabledSelecaoTabelaUsuarios}">
+
+				<p:ajax event="rowSelect"
+					listener="#{cadastroUsuarioMB.onSelectionUsuario}"
+					update="formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesUsuario:tbrBotoes,
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:pngSelecaoUsuario,
+							formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udcDadosUsuarioSelecionado:pnlDadosUsuario,
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRG,
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCPF,
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRIC,
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosRNE,
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:udocDocumentosUsuarioSelecionado:tabDocumentos:pngUsuarioDocumentosCNH,
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uedUsuarioSelecionado:pnlEnderecoUsuario,
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoEmail,
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoTelefone,
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uucUsuarioSelecionado:tbwUsuario:pngUsuario,
+						 	formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uecUsuarioSelecionado:pngEmpresas" />
+				<p:column headerText="#{msgs.Login}">
+					<h:outputText value="#{usuario.nome}" converter="stringConverter" />
+				</p:column>
+			</p:dataTable>
+		</h:panelGroup>
+
+		<h:panelGroup id="pngCadastroUsuario" layout="block">
+			<p:tabView id="tbwCadastroUsuario">
+
+				<p:tab title="#{msgs.DadosUsuario}">
+					<dmat:pessoaFisicaDadosComposite id="udcDadosUsuarioSelecionado"
+						cadastroUsuarioNome="#{cadastroUsuarioMB.usuarioSelecionado.nome}"
+						cadastroUsuarioSexo="#{cadastroUsuarioMB.usuarioSelecionado.genero}"
+						dataCadastro="#{cadastroUsuarioMB.usuarioSelecionado.dataCadastroPessoa}"
+						editarRendered="#{cadastroUsuarioMB.dadosUsuariosEditar}"
+						exibirRendered="#{cadastroUsuarioMB.dadosUsuariosExibir}"
+						dadosUsuarioRendered="#{cadastroUsuarioMB.cadastroUsuarioDadosRendered}"
+						mensagemSelecionarUsuarioRendered="#{cadastroUsuarioMB.mensagemSelecionarUsuarioRendered}"
+						mensagemHasUsuarioRendered="#{cadastroUsuarioMB.mensagemHasUsuario}" />
+				</p:tab>
+
+				<p:tab title="#{msgs.DocumentosPessoaFisica}">
+					<dmat:pessoaFisicaDocumentosComposite
+						id="udocDocumentosUsuarioSelecionado"
+						documentosPessoais="#{cadastroUsuarioMB.documentosPessoaisUsuarioSelecionado}"
+						editarRendered="#{cadastroUsuarioMB.dadosUsuariosEditar}"
+						exibirRendered="#{cadastroUsuarioMB.dadosUsuariosExibir}"
+						dadosUsuarioRGRendered="#{cadastroUsuarioMB.cadastroUsuarioDoctosRGRendered}"
+						dadosUsuarioCPFRendered="#{cadastroUsuarioMB.cadastroUsuarioDoctosCPFRendered}"
+						dadosUsuarioRICRendered="#{cadastroUsuarioMB.cadastroUsuarioDoctosRICRendered}"
+						dadosUsuarioRNERendered="#{cadastroUsuarioMB.cadastroUsuarioDoctosRNERendered}"
+						dadosUsuarioCNHRendered="#{cadastroUsuarioMB.cadastroUsuarioDoctosCNHRendered}"
+						mensagemSelecionarUsuarioRendered="#{cadastroUsuarioMB.mensagemSelecionarUsuarioRendered}"
+						mensagemHasRGRendered="#{cadastroUsuarioMB.mensagemHasRGRendered}"
+						mensagemHasCPFRendered="#{cadastroUsuarioMB.mensagemHasCPFRendered}"
+						mensagemHasRICRendered="#{cadastroUsuarioMB.mensagemHasRICRendered}"
+						mensagemHasRNERendered="#{cadastroUsuarioMB.mensagemHasRNERendered}"
+						mensagemHasCNHRendered="#{cadastroUsuarioMB.mensagemHasCNHRendered}" />
+				</p:tab>
+
+				<p:tab title="#{msgs.Endereco}">
+					<dmat:pessoaFisicaEnderecoComposite id="uedUsuarioSelecionado"
+						enderecoRendered="true" barraBotoesRendered="false"
+						renderedHistorico="false"
+						enderecoAtual="#{cadastroUsuarioMB.enderecoUsuarioSelecionado}"
+						enderecoHistorico="#{cadastroUsuarioMB.enderecosUsuarioHistorico}"
+						ajaxComponentRender="@this, formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uedUsuarioSelecionado:dmatEnderecoContato:acpEndereco:listCidade"
+						ajaxComponentRenderHistorico=""
+						disabledEditar="#{cadastroUsuarioMB.btnEnderecoUsuarioEditarDesativado}"
+						actionListenerEditar="#{cadastroUsuarioMB.editarEnderecoUsuario}"
+						enderecoEditarRender="#{cadastroUsuarioMB.dadosUsuariosEditar}"
+						disabledCancelar="#{cadastroUsuarioMB.dadosUsuariosExibir}"
+						actionListenerCancelar="#{cadastroUsuarioMB.cancelarEnderecoUsuario}"
+						disabledSalvar="#{cadastroUsuarioMB.btnEnderecoUsuarioSalvarDesativado}"
+						actionListenerSalvar="#{cadastroUsuarioMB.salvarEnderecoUsuario}"
+						disabledNovo="#{cadastroUsuarioMB.btnEnderecoUsuarioNovoDesativado}"
+						actionListenerNovo="#{cadastroUsuarioMB.novoEnderecoUsuario}"
+						disabledExcluir="#{cadastroUsuarioMB.btnEnderecoUsuarioExcluirDesativado}"
+						actionListenerExcluir="#{cadastroUsuarioMB.excluirEnderecoUsuario}"
+						renderedBtnExcluir="#{cadastroEmpresaMB.btnEnderecoEmpresaExcluirRender}"
+						messageConfirmaExcluir="#{msgs.DeletarEnderecoUsuario}"
+						messageHeaderExcluir="#{msgs.Confirmar}"
+						messageLabelExcluir="#{msgs.Excluir}"
+						dadosUsuarioRendered="#{cadastroUsuarioMB.cadastroUsuarioEnderecoRendered}"
+						mensagemSelecionarUsuarioRendered="#{cadastroUsuarioMB.mensagemSelecionarUsuarioRendered}"
+						mensagemHasEnderecoRendered="#{cadastroUsuarioMB.mensagemHasEnderecoRendered}" />
+				</p:tab>
+
+				<p:tab title="#{msgs.Contatos}">
+					<dmat:pessoaFisicaContatosComposite id="uccUsuarioSelecionado"
+						emailPrincipal="#{cadastroUsuarioMB.emailPrincipalUsuarioSelecionado}"
+						requiredEmail="false"
+						disabledBotaoAdicionarEmail="#{cadastroUsuarioMB.btnAdicionarEmail}"
+						disabledBotaoNovoEmail="#{cadastroUsuarioMB.btnNovoEmail}"
+						mensagemSelecionarUsuarioRendered="#{cadastroUsuarioMB.mensagemSelecionarUsuarioRendered}"
+						mensagemHasEmailRendered="#{cadastroUsuarioMB.mensagemHasEmailRendered}"
+						mensagemHasTelefoneRendered="#{cadastroUsuarioMB.mensagemHasTelefoneRendered}"
+						editarRendered="#{cadastroUsuarioMB.dadosUsuariosEditar}"
+						exibirRendered="#{cadastroUsuarioMB.dadosUsuariosExibir}"
+						actionListenerAdicionarEmailContato="#{cadastroUsuarioMB.adicionarEmailContatoUsuarioSelecionado}"
+						updateAdicionarEmailContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoEmail"
+						actionListenerNovoEmailContato="#{cadastroUsuarioMB.novoEmailContatoUsuarioSelecionado}"
+						listaEmailsUsuarios="#{cadastroUsuarioMB.emailsUsuarioSelecionado}"
+						telefonePrincipal="#{cadastroUsuarioMB.telefoneUsuarioSelecionado}"
+						listaTelefonesUsuarios="#{cadastroUsuarioMB.telefonesUsuarioSelecionado}"
+						actionListenerAdicionarTelefoneContato="#{cadastroUsuarioMB.adicionarTelefoneContatoUsuarioSelecionado}"
+						updateAdicionarTelefoneContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoTelefone"
+						updateRemoverTelefoneLista="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoTelefone"
+						setPropertyActionListenerRemoverContato="#{cadastroUsuarioMB.telefoneUsuarioExcluir}"
+						actionListenerRemoverTelefoneLista="#{cadastroUsuarioMB.removerTelefoneContatoDaListaUsuarioSelecionado(telefone)}"
+						actionListenerRemoverEmailLista="#{cadastroUsuarioMB.removerEmailContatoDaListaUsuarioSelecionado(email)}"
+						setPropertyActionListenerRemoverEmail="#{cadastroUsuarioMB.emailUsuarioExcluir}"
+						updateRemoverEmailLista="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroUsuario:uccUsuarioSelecionado:tbwContatosUsuario:pngContatoEmail"
+						dadosUsuarioEmailRendered="#{cadastroUsuarioMB.cadastroUsuarioSelecionadoEmailRendered}"
+						dadosUsuarioTelefoneRendered="#{cadastroUsuarioMB.cadastroUsuarioSelecionadoTelefoneRendered}"
+						mensagemRendered="false" />
+				</p:tab>
+
+				<p:tab title="#{msgs.Login}">
+					<dmat:pessoaFisicaUsuarioComposite id="uucUsuarioSelecionado"
+						usuario="#{cadastroUsuarioMB.usuarioSelecionado}"
+						editarRendered="#{cadastroUsuarioMB.dadosUsuariosEditar}"
+						exibirRendered="#{cadastroUsuarioMB.dadosUsuariosExibir}"
+						mensagemHasUsuarioRendered="#{cadastroUsuarioMB.mensagemHasUsuarioRendered}"
+						mensagemSelecionarUsuarioRendered="#{cadastroUsuarioMB.mensagemSelecionarUsuarioRendered}"
+						usuarioRendered="#{cadastroUsuarioMB.cadastroUsuarioSelecionadoUsuarioRendered}" />
+				</p:tab>
+
+				<p:tab title="#{msgs.Empresas}">
+					<dmat:pessoaFisicaEmpresasComposite id="uecUsuarioSelecionado"
+						empresasUsuario="#{cadastroUsuarioMB.empresasUsuarioSelecionado}"
+						disabled="#{cadastroUsuarioMB.disabledUsuarioEmpresas}" />
+				</p:tab>
+
+			</p:tabView>
+		</h:panelGroup>
+	</p:panelGrid>
+
+	<p:dialog widgetVar="dlgCriarUsuario" resizable="false" modal="true"
+		width="1000" header="#{msgs.NovoUsuario}" style="padding:10px"
+		showEffect="fade" hideEffect="fade" responsive="true"
+		position="center"
+		onHide="PF('wzdUsuario').loadStep(PF('wzdUsuario').cfg.steps[0], true);"
+		onShow="PF('dlgCriarUsuario').initPosition()"
+		rendered="#{cadastroUsuarioMB.dialogNovoUsuarioRendered}">
+		<ui:include
+			src="/aplicacaoWeb/cadastroUsuario/cadastroNovoUsuario.xhtml" />
+		<p:ajax event="close" update="formModulos"
+			listener="#{cadastroUsuarioMB.fecharDialogNovoUsuario}"
+			resetValues="true" />
+	</p:dialog>
+</ui:composition>
+</html>

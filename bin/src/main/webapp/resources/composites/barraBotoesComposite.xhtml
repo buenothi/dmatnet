@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<composite:interface>
+
+	<composite:attribute name="disabledEditar" />
+	<composite:attribute name="actionListenerEditar"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="updateEditar" />
+
+	<composite:attribute name="disabledCancelar" />
+	<composite:attribute name="actionListenerCancelar"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="updateCancelar" />
+	<composite:attribute name="resetCancelar" />
+
+	<composite:attribute name="disabledSalvar" />
+	<composite:attribute name="actionListenerSalvar"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="updateSalvar" />
+
+	<composite:attribute name="labelNovo" />
+	<composite:attribute name="disabledNovo" />
+	<composite:attribute name="actionListenerNovo"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="updateNovo" />
+	<composite:attribute name="renderedBtnNovo" />
+	<composite:attribute name="onCompleteNovo" />
+
+	<composite:attribute name="labelImprimir" />
+	<composite:attribute name="disabledImprimir" />
+	<composite:attribute name="actionListenerImprimir"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="updateImprimir" />
+	<composite:attribute name="renderedBtnImprimir" />
+
+	<composite:attribute name="labelExcluir" />
+	<composite:attribute name="disabledExcluir" />
+	<composite:attribute name="actionListenerExcluir"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="updateExcluir" />
+	<composite:attribute name="renderedBtnExcluir" />
+	<composite:attribute name="messageConfirma" />
+	<composite:attribute name="headerConfirma" />
+	<composite:attribute name="objetoConfirma" />
+
+	<composite:attribute name="renderSpacer" default="true" />
+
+</composite:interface>
+
+
+<composite:implementation>
+
+	<p:toolbar id="tbrBotoes">
+		<f:facet name="left">
+			<p:commandButton id="btnEditar" value="#{msgs.Editar}"
+				styleClass="botoes" icon="fa fa-edit"
+				disabled="#{cc.attrs.disabledEditar}"
+				actionListener="#{cc.attrs.actionListenerEditar}"
+				update="#{cc.attrs.updateEditar}" immediate="true" />
+			<p:commandButton id="btnCancelar" value="#{msgs.Cancelar}"
+				styleClass="botoes" icon="fa fa-remove"
+				disabled="#{cc.attrs.disabledCancelar}" immediate="true"
+				actionListener="#{cc.attrs.actionListenerCancelar}"
+				update="#{cc.attrs.updateCancelar}" process="@this">
+				<p:resetInput target="#{cc.attrs.resetCancelar}" />
+			</p:commandButton>
+			<p:commandButton id="btnSalvar" value="#{msgs.Salvar}"
+				styleClass="botoes" icon="fa fa-save"
+				disabled="#{cc.attrs.disabledSalvar}"
+				actionListener="#{cc.attrs.actionListenerSalvar}"
+				update="#{cc.attrs.updateSalvar}" />
+			<p:commandButton id="btnNovoObjeto" value="#{cc.attrs.labelNovo}"
+				styleClass="botoes" icon="fa fa-plus"
+				disabled="#{cc.attrs.disabledNovo}"
+				rendered="#{cc.attrs.renderedBtnNovo}"
+				actionListener="#{cc.attrs.actionListenerNovo}"
+				update="#{cc.attrs.updateNovo}"
+				oncomplete="#{cc.attrs.onCompleteNovo}" />
+		</f:facet>
+		<f:facet name="right">
+			<p:commandButton id="btnImprimirObjeto" 
+				value="#{cc.attrs.labelImprimir}" styleClass="botoes"
+				icon="fa fa-print" disabled="#{cc.attrs.disabledImprimir}"
+				rendered="#{cc.attrs.renderedBtnImprimir}"
+				actionListener="#{cc.attrs.actionListenerImprimir}"
+				update="#{cc.attrs.updateImprimir}" immediate="false" ajax="false" />
+			<p:commandButton id="btnExcluirObjeto" 
+				value="#{cc.attrs.labelExcluir}" styleClass="botoes" style="color:#CD0000"
+				icon="fa fa-trash" disabled="#{cc.attrs.disabledExcluir}"
+				rendered="#{cc.attrs.renderedBtnExcluir}"
+				actionListener="#{cc.attrs.actionListenerExcluir}"
+				update="#{cc.attrs.updateExcluir}">
+				<p:confirm header="#{cc.attrs.headerConfirma}"
+					message="#{cc.attrs.messageConfirma} #{cc.attrs.objetoConfirma}?"
+					icon="ui-icon-alert" />
+			</p:commandButton>
+		</f:facet>
+	</p:toolbar>
+
+	<p:spacer height="10px" width="100%"
+		rendered="#{cc.attrs.renderSpacer}" />
+
+</composite:implementation>
+</html>

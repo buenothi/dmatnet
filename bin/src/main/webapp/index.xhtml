@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title><h:outputText value="#{msgs.TituloJanela}" /></title>
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+
+<h:body onload="PF('dlgLogin').show();" styleClass="bkgndLogin">
+
+	<h:form>
+		<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		<p:dialog id="dlgLogin" header="#{msgs.BemVindo}" widgetVar="dlgLogin"
+			draggable="false" closable="false" resizable="false" 
+			responsive="true" showEffect="fade" dynamic="true">
+			<p:focus context="dlgLogin" />
+			<h:panelGrid columns="2">
+				<h:graphicImage value="/resources/images/Logo SMARTEMS.jpg" />
+				<h:panelGrid columns="2" cellpadding="5px">
+					<h:outputLabel value="#{msgs.Login}" />
+					<p:inputText id="iptLogin" value="#{usuarioMB.login}" />
+					<h:outputLabel value="#{msgs.Senha}" />
+					<p:password id="iptSenha" value="#{usuarioMB.senha}"
+						redisplay="false" />
+					<p:spacer width="100%" />
+					<p:commandButton value="#{msgs.Entrar}" update="growl"
+						actionListener="#{usuarioMB.logarUsuario}"
+						action="#{usuarioMB.navegar}" icon="fa fa-lock">
+					</p:commandButton>
+				</h:panelGrid>
+			</h:panelGrid>
+		</p:dialog>
+
+		<h:panelGroup layout="block"
+			style="position:absolute; right: 30px; bottom:30px">
+			<h:panelGrid columns="1">
+				<h:outputLabel value="developed by"
+					style="font-size:x-small; font-family:Sans-serif; color:white; font-weight: bold" />
+				<h:outputLink value="http://www.lifesafety.eng.br" target="_blank">
+					<h:graphicImage value="/resources/images/LFLogo.jpg" width="130" />
+				</h:outputLink>
+			</h:panelGrid>
+		</h:panelGroup>
+
+	</h:form>
+</h:body>
+</html>

@@ -1,0 +1,843 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
+
+<ui:composition>
+
+	<p:panel header="#{msgs.DadosCadastrais}" closable="false">
+		<p:messages id="msDadosCadastrais" showDetail="true" closable="true" />
+		<dmat:barraBotoesComposite id="barraBotoesDadosCadastrais"
+			disabledEditar="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}"
+			actionListenerEditar="#{cadastroEmpresaMB.editarDadosCadastraisEmpresa}"
+			updateEditar="formModulos, growlPrincipal"
+			disabledCancelar="#{cadastroEmpresaMB.btnDadosCadastraisCancelarDesativado}"
+			actionListenerCancelar="#{cadastroEmpresaMB.cancelarDadosCadastraisEmpresa}"
+			updateCancelar="formModulos, growlPrincipal"
+			resetCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:pngEditarDadoCadastrais"
+			disabledSalvar="#{cadastroEmpresaMB.btnDadosCadastraisSalvarDesativado}"
+			actionListenerSalvar="#{cadastroEmpresaMB.salvarDadosCadastraisEmpresa}"
+			updateSalvar="formSelecionarEmpresa, formModulos, growlPrincipal"
+			renderedBtnNovo="true" labelNovo="#{msgs.NovoEmpresaDadosCadastrais}"
+			disabledNovo="#{cadastroEmpresaMB.btnDadosCadastraisNovaEmpresaDesativado}"
+			actionListenerNovo="#{cadastroEmpresaMB.novoDadosCadastraisEmpresa}"
+			updateNovo="formModulos"
+			disabledImprimir="#{cadastroEmpresaMB.btnDadosCadastraisEditarDesativado}"
+			actionListenerImprimir="#{cadastroEmpresaMB.imprimirDadosCadastrais}"
+			labelImprimir="#{msgs.Imprimir}" updateImprimir="formModulos"
+			renderedBtnImprimir="true"
+			disabledExcluir="#{cadastroEmpresaMB.btnDadosCadastraisExcluirDesativado}"
+			actionListenerExcluir="#{cadastroEmpresaMB.excluirDadosCadastraisEmpresa}"
+			updateExcluir="formSelecionarEmpresa, formModulos, growlPrincipal"
+			renderedBtnExcluir="#{cadastroEmpresaMB.btnDadosCadastraisExcluirRender}"
+			labelExcluir="#{msgs.Excluir}" headerConfirma="#{msgs.Confirmar}"
+			messageConfirma="#{msgs.DeletarDadosCadastrais}" />
+
+		<p:accordionPanel id="acpDadosCadastrais"
+			rendered="#{cadastroEmpresaMB.dadosCadastraisRendered}">
+			<p:tab id="tabDadosBasicos" title="#{msgs.DadosBasicos}">
+				<h:panelGroup id="pngCadEmpresaEditar" layout="block"
+					styleClass="formulario"
+					rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
+					<p:panelGrid id="pngEditarDadoCadastrais"
+						styleClass="tabelaSemBorda">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.DataCadastro}*:" />
+							</p:column>
+							<p:column>
+								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+									<p:calendar id="calDataInicio" locale="pt" showOn="button"
+										pattern="dd/MM/yyyy" mask="true" size="8"
+										value="#{cadastroEmpresaMB.dadosCadastraisAtual.dataInicioCadastro}"
+										required="true" label="#{msgs.DataCadastro}" />
+									<p:message for="calDataInicio" />
+								</p:panelGrid>
+							</p:column>
+						</p:row>
+
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.TipoInscricao}*:" />
+							</p:column>
+
+							<p:column>
+								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+									<p:selectOneMenu id="somTipoInscricao" style="width:100px"
+										value="#{cadastroEmpresaMB.dadosCadastraisAtual.tipoInscricao}"
+										required="true" label="#{msgs.TipoInscricao}">
+										<p:ajax
+											listener="#{cadastroEmpresaMB.alterarMascaraPessoaJuridica}"
+											update="formModulos:formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:ipmInscricao" />
+										<f:selectItem itemValue="1" itemLabel="CNPJ" />
+										<f:selectItem itemValue="2" itemLabel="CPF" />
+									</p:selectOneMenu>
+									<p:message for="somTipoInscricao" />
+								</p:panelGrid>
+							</p:column>
+						</p:row>
+
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.Inscricao}*:" />
+							</p:column>
+							<p:column>
+								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+									<p:inputMask id="ipmInscricao" converter="cnpjCpfConverter"
+										mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}"
+										value="#{cadastroEmpresaMB.dadosCadastraisAtual.numCNPJ}"
+										required="true" label="#{msgs.Inscricao}" />
+									<p:message for="ipmInscricao" />
+								</p:panelGrid>
+							</p:column>
+						</p:row>
+
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.RazaoSocial}*:" />
+							</p:column>
+							<p:column>
+								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+									<p:inputText id="iptRazaoSocial" maxlength="250" size="62"
+										value="#{cadastroEmpresaMB.dadosCadastraisAtual.razaoSocial}"
+										required="true" label="#{msgs.RazaoSocial}" />
+									<p:message for="iptRazaoSocial" />
+								</p:panelGrid>
+							</p:column>
+						</p:row>
+
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.FAP}:" />
+							</p:column>
+
+							<p:column>
+								<h:panelGroup>
+									<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+										<p:inputNumber maxlength="250" size="5" decimalPlaces="4"
+											value="#{cadastroEmpresaMB.empresaFap.valorFAP}"
+											minValue="0.5" maxValue="2" />
+										<p:commandButton value="#{msgs.ProcessoFAP}" />
+									</p:panelGrid>
+								</h:panelGroup>
+							</p:column>
+						</p:row>
+
+					</p:panelGrid>
+
+				</h:panelGroup>
+
+				<h:panelGroup id="pngCadEmpresaExibir" layout="block"
+					styleClass="formulario"
+					rendered="#{cadastroEmpresaMB.btnDadosCadastraisCancelarDesativado}">
+					<p:panelGrid styleClass="tabelaSemBorda">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.DataCadastro}:" />
+							</p:column>
+							<p:column>
+								<p:outputLabel
+									value="#{cadastroEmpresaMB.dadosCadastraisAtual.dataInicioCadastro}">
+									<f:convertDateTime type="both" pattern="dd/MM/YYYY" />
+								</p:outputLabel>
+							</p:column>
+						</p:row>
+
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.TipoInscricao}:" />
+							</p:column>
+
+							<p:column>
+								<p:outputLabel value="#{cadastroEmpresaMB.textoTipoInscricaoPJ}" />
+							</p:column>
+						</p:row>
+
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.Inscricao}:" />
+							</p:column>
+
+							<p:column>
+								<p:outputLabel
+									value="#{cadastroEmpresaMB.dadosCadastraisAtual.numCNPJ}">
+									<f:converter converterId="cnpjCpfConverter" />
+								</p:outputLabel>
+							</p:column>
+						</p:row>
+
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.RazaoSocial}:" />
+							</p:column>
+
+							<p:column>
+								<p:outputLabel
+									value="#{cadastroEmpresaMB.dadosCadastraisAtual.razaoSocial}"
+									converter="stringConverter" />
+							</p:column>
+						</p:row>
+
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.FAP}:" />
+							</p:column>
+
+							<p:column>
+								<h:panelGroup>
+									<p:outputLabel
+										value="#{cadastroEmpresaMB.dadosCadastraisAtual.empresaFAP.valorFAP}   " />
+									<p:commandButton value="#{msgs.ProcessoFAP}" />
+								</h:panelGroup>
+							</p:column>
+
+						</p:row>
+					</p:panelGrid>
+
+				</h:panelGroup>
+
+			</p:tab>
+
+			<p:tab title="#{msgs.EmpresaDadosIsencao} (esocial)">
+				<h:panelGroup id="pngEmpDadosIsencaoEditar" layout="block"
+					styleClass="formulario"
+					rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
+					<p:panelGrid id="pngEditarDadosIsencao" styleClass="tabelaSemBorda">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.siglaMinisterio}:" />
+							</p:column>
+							<p:column>
+								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+									<p:inputText maxlength="2" size="2"
+										value="#{cadastroEmpresaMB.empresaDadosIsencao.siglaMinisterio}" />
+								</p:panelGrid>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.numeroCertificado}:" />
+							</p:column>
+							<p:column>
+								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+									<p:inputNumber size="13" decimalPlaces="0"
+										converter="javax.faces.Long"
+										value="#{cadastroEmpresaMB.empresaDadosIsencao.numCertificado}" />
+								</p:panelGrid>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.dataEmissaoCertificado}:" />
+							</p:column>
+							<p:column>
+								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+									<p:calendar id="calDataEmissaoCertificado" locale="pt"
+										showOn="button" pattern="dd/MM/yyyy" mask="true"
+										label="#{msgs.dataEmissaoCertificado}"
+										value="#{cadastroEmpresaMB.empresaDadosIsencao.dataEmissaoCertificado}" />
+									<p:message for="calDataEmissaoCertificado" />
+								</p:panelGrid>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.dataVencimentoCertificado}:" />
+							</p:column>
+							<p:column>
+								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+									<p:calendar id="calDataVencimentoCertificado" locale="pt"
+										showOn="button" pattern="dd/MM/yyyy" mask="true"
+										label="#{msgs.dataVencimentoCertificado}"
+										value="#{cadastroEmpresaMB.empresaDadosIsencao.dataVencimentoCertificado}" />
+									<p:message for="calDataVencimentoCertificado" />
+								</p:panelGrid>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.numeroProtocolo}:" />
+							</p:column>
+							<p:column>
+								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+									<p:inputNumber size="13" decimalPlaces="0"
+										converter="javax.faces.Long"
+										value="#{cadastroEmpresaMB.empresaDadosIsencao.numProtocoloRenovacao}" />
+								</p:panelGrid>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.dataRenovacaoCertificado}:" />
+							</p:column>
+							<p:column>
+								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+									<p:calendar id="calDataRenovacaoCertificado" locale="pt"
+										showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
+										mask="true" size="8" label="#{msgs.dataRenovacaoCertificado}"
+										value="#{cadastroEmpresaMB.empresaDadosIsencao.dataRenovacao}" />
+									<p:message for="calDataRenovacaoCertificado" />
+								</p:panelGrid>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.dataDOU}:" />
+							</p:column>
+							<p:column>
+								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+									<p:calendar id="calDataDOU" locale="pt" showOn="button"
+										showButtonPanel="true" pattern="dd/MM/yyyy" mask="true"
+										size="8" label="#{msgs.dataDOU}}"
+										value="#{cadastroEmpresaMB.empresaDadosIsencao.dataDOU}" />
+									<p:message for="calDataDOU" />
+								</p:panelGrid>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.pagDOU}:" />
+							</p:column>
+							<p:column>
+								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+									<p:inputNumber size="13" decimalPlaces="0"
+										converter="javax.faces.Long"
+										value="#{cadastroEmpresaMB.empresaDadosIsencao.paginaDOU}" />
+								</p:panelGrid>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+
+				</h:panelGroup>
+
+				<h:panelGroup id="pngEmpDadosIsencaoExibir" layout="block"
+					styleClass="formulario"
+					rendered="#{cadastroEmpresaMB.btnDadosCadastraisCancelarDesativado}">
+					<p:panelGrid id="pngEditarDadosExibir" styleClass="tabelaSemBorda">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.siglaMinisterio}:" />
+							</p:column>
+							<p:column>
+								<p:outputLabel
+									value="#{cadastroEmpresaMB.dadosCadastraisAtual.empresaDadosIsencao.siglaMinisterio}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.numeroCertificado}:" />
+							</p:column>
+							<p:column>
+								<p:outputLabel
+									value="#{cadastroEmpresaMB.dadosCadastraisAtual.empresaDadosIsencao.numCertificado}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.dataEmissaoCertificado}:" />
+							</p:column>
+							<p:column>
+								<p:outputLabel
+									value="#{cadastroEmpresaMB.dadosCadastraisAtual.empresaDadosIsencao.dataEmissaoCertificado}">
+									<f:convertDateTime type="both" pattern="dd/MM/YYYY" />
+								</p:outputLabel>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.dataVencimentoCertificado}:" />
+							</p:column>
+							<p:column>
+								<p:outputLabel
+									value="#{cadastroEmpresaMB.dadosCadastraisAtual.empresaDadosIsencao.dataVencimentoCertificado}">
+									<f:convertDateTime type="both" pattern="dd/MM/YYYY" />
+								</p:outputLabel>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.numeroProtocolo}:" />
+							</p:column>
+							<p:column>
+								<p:outputLabel
+									value="#{cadastroEmpresaMB.dadosCadastraisAtual.empresaDadosIsencao.numProtocoloRenovacao}" />
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.dataRenovacaoCertificado}:" />
+							</p:column>
+							<p:column>
+								<p:outputLabel
+									value="#{cadastroEmpresaMB.dadosCadastraisAtual.empresaDadosIsencao.dataRenovacao}">
+									<f:convertDateTime type="both" pattern="dd/MM/YYYY" />
+								</p:outputLabel>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.dataDOU}:" />
+							</p:column>
+							<p:column>
+								<p:outputLabel
+									value="#{cadastroEmpresaMB.dadosCadastraisAtual.empresaDadosIsencao.dataDOU}">
+									<f:convertDateTime type="both" pattern="dd/MM/YYYY" />
+								</p:outputLabel>
+							</p:column>
+						</p:row>
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.pagDOU}:" />
+							</p:column>
+							<p:column>
+								<p:outputLabel
+									value="#{cadastroEmpresaMB.dadosCadastraisAtual.empresaDadosIsencao.paginaDOU}" />
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+
+
+				</h:panelGroup>
+
+			</p:tab>
+
+			<p:tab title="#{msgs.OrganismoInternacional} (esocial)">
+
+				<h:panelGroup id="pngEmpOrgIntEditar" layout="block"
+					styleClass="formulario"
+					rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
+					<p:panelGrid id="pngEditarOrgInt" styleClass="tabelaSemBorda">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.IndAcordoIsenMulta}" />
+							</p:column>
+							<p:column>
+								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+									<p:selectBooleanButton id="sBBAcordoInt" onLabel="#{msgs.Sim}"
+										offLabel="#{msgs.Nao}" onIcon="ui-icon-check"
+										offIcon="ui-icon-close" style="width:60px"
+										value="#{cadastroEmpresaMB.empresaOrgI8n.acordoInternacional}" />
+								</p:panelGrid>
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+				</h:panelGroup>
+
+				<h:panelGroup id="pngEmpOrganismoIntExibir" layout="block"
+					styleClass="formulario"
+					rendered="#{cadastroEmpresaMB.btnDadosCadastraisCancelarDesativado}">
+					<p:panelGrid id="pngExibirOrgInt" styleClass="tabelaSemBorda">
+						<p:row>
+							<p:column>
+								<p:outputLabel value="#{msgs.IndAcordoIsenMulta}" />
+							</p:column>
+							<p:column>
+								<p:outputLabel value="#{cadastroEmpresaMB.empresaOrgI8nString}" />
+							</p:column>
+						</p:row>
+					</p:panelGrid>
+
+				</h:panelGroup>
+
+			</p:tab>
+
+			<p:tab title="#{msgs.EmpresaSoftwareHouse} (esocial)">
+				<h:panelGroup style="padding:0 0 8px 4px" layout="block"
+					rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
+					<p:commandButton value="#{msgs.Adicionar}" icon="fa fa-plus"
+						onclick="PF('dlgEmpresaSoftware').show()" />
+				</h:panelGroup>
+				<h:panelGrid id="pngExibirSoftwareHouse" styleClass="tabelaSemBorda">
+
+					<p:dataTable paginator="true" rows="10" scrollable="true"
+						styleClass="dataTable"
+						emptyMessage="#{msgs.ListaEmpresaSoftwareVazio}"
+						value="#{cadastroEmpresaMB.empresasSoftwareHouse}"
+						paginatorAlwaysVisible="false" var="empresaSoftware"
+						editable="true" rowKey="#{empresaSoftware.idEmpresaSoftwareHouse}">
+
+						<p:column headerText="#{msgs.CnpjSoftwareHouse}" width="160">
+							<p:cellEditor>
+								<f:facet name="output">
+									<p:outputLabel value="#{empresaSoftware.numCNPJ}">
+										<f:converter converterId="cnpjCpfConverter" />
+									</p:outputLabel>
+								</f:facet>
+								<f:facet name="input">
+									<p:inputMask id="ipmInscricaoEmpresaSoft"
+										converter="cnpjCpfConverter"
+										mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}"
+										value="#{empresaSoftware.numCNPJ}" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.nmRazaoSoftwareHouse}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<p:outputLabel value="#{empresaSoftware.razaoSocial}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{empresaSoftware.razaoSocial}"
+										style="width: 100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.nmContatoSoftwareHouse}" width="160">
+							<p:cellEditor>
+								<f:facet name="output">
+									<p:outputLabel value="#{empresaSoftware.nomeContato}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{empresaSoftware.nomeContato}"
+										style="width: 100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.telSoftwareHouse}" width="160">
+							<p:cellEditor>
+								<f:facet name="output">
+									<p:outputLabel value="#{empresaSoftware.telFixo}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputMask id="ipmTelEmpreSoft" mask="+ 99 (99) 9999-9999"
+										value="#{empresaSoftware.telFixo}" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.Email}" width="270">
+							<p:cellEditor>
+								<f:facet name="output">
+									<p:outputLabel value="#{empresaSoftware.email}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{empresaSoftware.email}"
+										style="width: 100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column style="width:55px"
+							rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
+							<p:rowEditor />
+						</p:column>
+						<p:column style="width:55px"
+							rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
+							<p:commandButton icon="fa fa-trash" />
+						</p:column>
+
+					</p:dataTable>
+
+				</h:panelGrid>
+
+				<p:dialog header="#{msgs.TituloInserirEmpresaSoftware}"
+					widgetVar="dlgEmpresaSoftware" modal="true" draggable="true"
+					closable="true" resizable="false" showHeader="true"
+					showEffect="fade" hideEffect="fade">
+					<h:panelGroup id="pngInserirEmpresaSoftware" layout="block"
+						styleClass="formulario">
+						<p:commandButton value="#{msgs.Adicionar}" icon="fa fa-plus"
+							onclick="PF('dlgEmpresaSoftware').show()"
+							actionListener="#{cadastroEmpresaMB.novoCadastroEmpresaSoftware}"
+							update="formModulos:formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais">
+							<p:resetInput
+								target="formModulos:formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:pngInserirEmpresaSoftware" />
+						</p:commandButton>
+						<p:spacer height="5px" width="100%" />
+						<p:panelGrid id="frmNovaEmpresaSoftware"
+							styleClass="tabelaSemBorda">
+							<p:row>
+								<p:column>
+									<p:outputLabel value="#{msgs.CnpjSoftwareHouse}:" />
+								</p:column>
+								<p:column>
+									<p:inputMask id="ipmInsInscricaoEmpresaSoft"
+										converter="cnpjCpfConverter"
+										mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}"
+										value="#{cadastroEmpresaMB.empresaSoftwareHouse.numCNPJ}" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column>
+									<p:outputLabel value="#{msgs.nmRazaoSoftwareHouse}:">
+										<f:converter converterId="cnpjCpfConverter" />
+									</p:outputLabel>
+								</p:column>
+								<p:column>
+									<p:inputText
+										value="#{cadastroEmpresaMB.empresaSoftwareHouse.razaoSocial}"
+										style="width: 100%" maxlength="250" size="62" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column>
+									<p:outputLabel value="#{msgs.nmContatoSoftwareHouse}:" />
+								</p:column>
+								<p:column>
+									<p:inputText
+										value="#{cadastroEmpresaMB.empresaSoftwareHouse.nomeContato}"
+										style="width: 100%" maxlength="250" size="62" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column>
+									<p:outputLabel value="#{msgs.telSoftwareHouse}:" />
+								</p:column>
+								<p:column>
+									<p:inputMask id="ipmTelEmpreSoft" mask="+ 99 (99) 9999-9999"
+										value="#{cadastroEmpresaMB.empresaSoftwareHouse.telFixo}" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column>
+									<p:outputLabel value="#{msgs.emailSoftwareHouse}:" />
+								</p:column>
+								<p:column>
+									<p:inputText
+										value="#{cadastroEmpresaMB.empresaSoftwareHouse.email}"
+										style="width: 100%" maxlength="250" size="62" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</h:panelGroup>
+				</p:dialog>
+
+			</p:tab>
+
+			<p:tab title="#{msgs.Historico}">
+				<p:dataTable paginator="true" rows="10" scrollable="true"
+					styleClass="dataTable"
+					emptyMessage="#{msgs.ListaHistoricoDadosCadastrais}"
+					value="#{cadastroEmpresaMB.dadosCadastraisHistorico}"
+					paginatorAlwaysVisible="false" var="cadastro"
+					sortBy="#{cadastro.id}" sortOrder="descending" editable="true"
+					rowKey="#{cadastro.id}">
+
+					<p:column headerText="#{msgs.DataCadastro}" width="100">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.dataInicioCadastro}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:calendar value="#{cadastro.dataInicioCadastro}" locale="pt"
+									showOn="button" pattern="dd/MM/yyyy" mask="true" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.DataTermino}" width="100">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.dataFimCadastro}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:calendar value="#{cadastro.dataFimCadastro}" locale="pt"
+									showOn="button" pattern="dd/MM/yyyy" mask="true" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.TipoInscricao}" width="80">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.tipoInscricao}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:selectOneMenu style="width:100%;"
+									value="#{cadastro.tipoInscricao}">
+									<f:selectItem itemValue="1" itemLabel="CNPJ" />
+									<f:selectItem itemValue="2" itemLabel="CPF" />
+								</p:selectOneMenu>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.Inscricao}" width="160">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.numCNPJ}">
+									<f:converter converterId="cnpjCpfConverter" />
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputMask id="ipmInscricao" converter="cnpjCpfConverter"
+									mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}"
+									value="#{cadastro.numCNPJ}" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.RazaoSocial}" width="210">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.razaoSocial}">
+									<f:converter converterId="stringConverter" />
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{cadastro.razaoSocial}" style="width: 100%" />
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:column headerText="#{msgs.FAP}" width="90">
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{cadastro.empresaFAP.valorFAP}">
+									<f:converter converterId="javax.faces.Double" />
+								</p:outputLabel>
+							</f:facet>
+							<f:facet name="input">
+								<p:inputMask mask="9.999"
+									value="#{cadastro.empresaFAP.valorFAP}" style="width: 100%"
+									converter="javax.faces.Double">
+								</p:inputMask>
+							</f:facet>
+						</p:cellEditor>
+					</p:column>
+					<p:dataTable paginator="true" rows="10" scrollable="true"
+						styleClass="dataTable"
+						emptyMessage="#{msgs.ListaHistoricoDadosCadastrais}"
+						value="#{cadastroEmpresaMB.dadosCadastraisHistorico}"
+						paginatorAlwaysVisible="false" var="cadastro"
+						sortBy="#{cadastro.id}" sortOrder="descending" editable="true"
+						rowKey="#{cadastro.id}">
+						<p:column headerText="#{msgs.DataCadastro}" width="100">
+							<p:cellEditor>
+								<f:facet name="output">
+									<p:outputLabel value="#{cadastro.dataInicioCadastro}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</p:outputLabel>
+								</f:facet>
+								<f:facet name="input">
+									<p:calendar value="#{cadastro.dataInicioCadastro}" locale="pt"
+										showOn="button" pattern="dd/MM/yyyy"
+										mask="true" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.DataTermino}" width="100">
+							<p:cellEditor>
+								<f:facet name="output">
+									<p:outputLabel value="#{cadastro.dataFimCadastro}">
+										<f:convertDateTime pattern="dd/MM/yyyy" />
+									</p:outputLabel>
+								</f:facet>
+								<f:facet name="input">
+									<p:calendar value="#{cadastro.dataFimCadastro}" locale="pt"
+										showOn="button" pattern="dd/MM/yyyy"
+										mask="true" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.TipoInscricao}" width="80">
+							<p:cellEditor>
+								<f:facet name="output">
+									<p:outputLabel value="#{cadastro.tipoInscricao}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:selectOneMenu style="width:100%"
+										value="#{cadastro.tipoInscricao}">
+										<f:selectItem itemValue="1" itemLabel="CNPJ" />
+										<f:selectItem itemValue="2" itemLabel="CPF" />
+									</p:selectOneMenu>
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.Inscricao}" width="160">
+							<p:cellEditor>
+								<f:facet name="output">
+									<p:outputLabel value="#{cadastro.numCNPJ}">
+										<f:converter converterId="cnpjCpfConverter" />
+									</p:outputLabel>
+								</f:facet>
+								<f:facet name="input">
+									<p:inputMask id="ipmInscricao" converter="cnpjCpfConverter"
+										mask="#{cadastroEmpresaMB.mascaraPessoaJuridica}"
+										value="#{cadastro.numCNPJ}" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.RazaoSocial}" width="210">
+							<p:cellEditor>
+								<f:facet name="output">
+									<p:outputLabel value="#{cadastro.razaoSocial}">
+										<f:converter converterId="stringConverter" />
+									</p:outputLabel>
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{cadastro.razaoSocial}"
+										style="width: 100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.FAP}" width="90">
+							<p:cellEditor>
+								<f:facet name="output">
+									<p:outputLabel value="#{cadastro.empresaFAP.valorFAP}">
+										<f:converter converterId="javax.faces.Double" />
+									</p:outputLabel>
+								</f:facet>
+								<f:facet name="input">
+									<p:inputMask mask="9.999"
+										value="#{cadastro.empresaFAP.valorFAP}" style="width: 100%"
+										converter="javax.faces.Double">
+									</p:inputMask>
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column style="width:55px">
+							<p:rowEditor />
+						</p:column>
+
+						<p:column style="width:55px">
+							<p:commandButton icon="fa fa-trash" />
+						</p:column>
+
+					</p:dataTable>
+
+					<p:column style="width:55px"
+						rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
+						<p:rowEditor />
+					</p:column>
+
+					<p:column style="width:55px"
+						rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
+						<p:commandButton icon="fa fa-trash"
+							actionListener="#{cadastroEmpresaMB.excluirDadosCadastraisDoHistoricoEmpresa(cadastro)}"
+							update="formSelecionarEmpresa, formModulos, growlPrincipal">
+							<f:setPropertyActionListener value="#{cadastro}"
+								target="#{cadastroEmpresaMB.dadosCadastraisExcluir}" />
+							<p:confirm header="#{msgs.Confirmar}"
+								message="#{msgs.DeletarDadosCadastrais}" icon="ui-icon-alert" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</p:tab>
+
+		</p:accordionPanel>
+
+		<p:outputLabel value="#{msgs.DadosCadastraisInexistente}"
+			rendered="#{cadastroEmpresaMB.textoDadosCadastraisInexistentes}" />
+
+	</p:panel>
+
+	<p:dialog widgetVar="dlgPerguntaDadosCadastrais"
+		header="#{msgs.Confirmar}" closable="true" resizable="false"
+		modal="true">
+		<p:panelGrid columns="1" styleClass="tabelaSemBorda">
+			<p:outputLabel value="#{msgs.MsgNovoCadastroDadosEmpresa}" />
+		</p:panelGrid>
+		<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+			<p:commandButton value="#{msgs.Sim}" icon="ui-icon-check"
+				actionListener="#{cadastroEmpresaMB.novoDadosCadastraisEmpresaPreenchido}"
+				update="formModulos" immediate="true" />
+			<p:commandButton value="#{msgs.Nao}" icon="ui-icon-close"
+				actionListener="#{cadastroEmpresaMB.novoDadosCadastraisEmpresaEmBranco}"
+				update="formModulos" immediate="true" />
+		</p:panelGrid>
+	</p:dialog>
+</ui:composition>
+</html>
