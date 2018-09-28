@@ -29,10 +29,6 @@ public class PessoaFisicaDocumentosEntity implements Serializable, Cloneable {
 	@Temporal(TemporalType.DATE)
 	private Date rneDataExpedicao;
 
-	private Long numCTPS;
-	private Long serieCTPS;
-	private String ufCTPS;
-
 	private Long numCNH;
 	private String cnhUf;
 
@@ -131,30 +127,6 @@ public class PessoaFisicaDocumentosEntity implements Serializable, Cloneable {
 
 	public void setRneDataExpedicao(Date rneDataExpedicao) {
 		this.rneDataExpedicao = rneDataExpedicao;
-	}
-
-	public Long getNumCTPS() {
-		return numCTPS;
-	}
-
-	public void setNumCTPS(Long numCTPS) {
-		this.numCTPS = numCTPS;
-	}
-
-	public Long getSerieCTPS() {
-		return serieCTPS;
-	}
-
-	public void setSerieCTPS(Long serieCTPS) {
-		this.serieCTPS = serieCTPS;
-	}
-
-	public String getUfCTPS() {
-		return ufCTPS;
-	}
-
-	public void setUfCTPS(String ufCTPS) {
-		this.ufCTPS = ufCTPS;
 	}
 
 	public Long getNumCNH() {
