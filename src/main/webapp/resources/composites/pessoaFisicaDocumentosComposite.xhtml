@@ -13,6 +13,7 @@
 	<composite:attribute name="rgOrgExpRequired" default="false" />
 	<composite:attribute name="rgDataExpRequired" default="false" />
 	<composite:attribute name="cpfRequired" default="false" />
+	<composite:attribute name="ctpsRendered" default="false" />
 	<composite:attribute name="documentosPessoais"
 		type="br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.PessoaFisicaDocumentosEntity" />
 	<composite:attribute name="dadosUsuarioRGRendered" default="true" />
@@ -20,7 +21,7 @@
 	<composite:attribute name="dadosUsuarioRICRendered" default="true" />
 	<composite:attribute name="dadosUsuarioRNERendered" default="true" />
 	<composite:attribute name="dadosUsuarioCNHRendered" default="true" />
-	<composite:attribute name="mensagemSelecionarUsuarioRendered"
+	<composite:attribute name="mensagemSelecquiredionarUsuarioRendered"
 		default="false" />
 	<composite:attribute name="mensagemRendered" default="false" />
 	<composite:attribute name="mensagemHasRGRendered" default="false" />
@@ -28,6 +29,7 @@
 	<composite:attribute name="mensagemHasRICRendered" default="false" />
 	<composite:attribute name="mensagemHasRNERendered" default="false" />
 	<composite:attribute name="mensagemHasCNHRendered" default="false" />
+	<composite:attribute name="mensagemHasCTPSRendered" default="false" />
 
 </composite:interface>
 
@@ -62,8 +64,8 @@
 									required="#{cc.attrs.rgOrgExpRequired}"
 									requiredMessage="#{msgs.MensagemOrgExpRGRequerido}" />
 								<p:outputLabel value="#{msgs.DataExpedicaoRG}:*" />
-								<p:calendar locale="pt" showOn="button" 
-									pattern="dd/MM/yyyy" mask="true"
+								<p:calendar locale="pt" showOn="button" pattern="dd/MM/yyyy"
+									mask="true"
 									value="#{cc.attrs.documentosPessoais.rgDataExpedicao}"
 									required="#{cc.attrs.rgDataExpRequired}"
 									requiredMessage="#{msgs.MensagemDataExpedicaoRGRequerido}" />
@@ -257,7 +259,8 @@
 							styleClass="formulario" rendered="#{cc.attrs.exibirRendered}">
 							<p:panelGrid id="pgdCNH" columns="2" styleClass="tabelaSemBorda">
 								<p:outputLabel value="#{msgs.NumeroCNH}:" />
-								<p:outputLabel value="#{cc.attrs.documentosPessoais.numCNH}" />
+								<p:outputLabel
+									valuequired="#{cc.attrs.documentosPessoais.numCNH}" />
 								<p:outputLabel value="#{msgs.UFCNH}:" />
 								<p:outputLabel size="2"
 									value="#{cc.attrs.documentosPessoais.cnhUf}" />
@@ -283,6 +286,16 @@
 						</h:panelGroup>
 					</h:panelGroup>
 				</h:panelGroup>
+			</p:tab>
+
+			<p:tab title="CTPS" rendered="#{cc.attrs.ctpsRendered}">
+				<h:panelGroup id="pngUsuarioDocumentosCTPS" styleClass="formulario"
+					rendered="#{cc.attrs.editarRendered}">
+				</h:panelGroup>
+				<h:panelGroup id="pngUsuarioDocumentosCTPS" styleClass="formulario"
+					rendered="#{cc.attrs.exibirRendered}">
+				</h:panelGroup>
+
 			</p:tab>
 
 		</p:tabView>
