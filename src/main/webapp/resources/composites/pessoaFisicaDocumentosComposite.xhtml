@@ -14,15 +14,28 @@
 	<composite:attribute name="rgDataExpRequired" default="false" />
 	<composite:attribute name="cpfRequired" default="false" />
 	<composite:attribute name="ctpsRendered" default="false" />
+	<composite:attribute name="pisRendered" default="false" />
+
 	<composite:attribute name="documentosPessoais"
 		type="br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.PessoaFisicaDocumentosEntity" />
+
+	<composite:attribute name="numeroCTPS" />
+	<composite:attribute name="numeroSerieCTPS" />
+	<composite:attribute name="ufCTPS" />
+
+	<composite:attribute name="numeroNIS" />
+
 	<composite:attribute name="dadosUsuarioRGRendered" default="true" />
 	<composite:attribute name="dadosUsuarioCPFRendered" default="true" />
 	<composite:attribute name="dadosUsuarioRICRendered" default="true" />
 	<composite:attribute name="dadosUsuarioRNERendered" default="true" />
 	<composite:attribute name="dadosUsuarioCNHRendered" default="true" />
+	<composite:attribute name="dadosUsuarioCTPSRendered" default="true" />
+	<composite:attribute name="dadosUsuarioNISRendered" default="true" />
+
 	<composite:attribute name="mensagemSelecquiredionarUsuarioRendered"
 		default="false" />
+
 	<composite:attribute name="mensagemRendered" default="false" />
 	<composite:attribute name="mensagemHasRGRendered" default="false" />
 	<composite:attribute name="mensagemHasCPFRendered" default="false" />
@@ -30,6 +43,7 @@
 	<composite:attribute name="mensagemHasRNERendered" default="false" />
 	<composite:attribute name="mensagemHasCNHRendered" default="false" />
 	<composite:attribute name="mensagemHasCTPSRendered" default="false" />
+	<composite:attribute name="mensagemHasPISRendered" default="false" />
 
 </composite:interface>
 
@@ -40,6 +54,69 @@
 		<p:messages id="msEmail" showDetail="true" closable="true"
 			rendered="#{cc.attrs.mensagemRendered}" />
 		<p:tabView id="tabDocumentos">
+
+			<p:tab title="CTPS" rendered="#{cc.attrs.ctpsRendered}">
+				<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
+					rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
+				<p:outputLabel value="#{msgs.MensagemHasCTPS}"
+					rendered="#{cc.attrs.mensagemHasCTPSRendered}" />
+				<h:panelGroup id="pngUsuarioDocumentosCTPSBloco" layout="block"
+					styleClass="formulario"
+					rendered="#{cc.attrs.dadosUsuarioCTPSRendered}">
+					<h:panelGroup id="pngUsuarioDocumentosCTPSEditar"
+						styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
+						<p:panelGrid id="pgdEditarCTPS" columns="2"
+							styleClass="tabelaSemBorda">
+							<p:outputLabel value="#{msgs.NumeroCTPS}:" />
+							<p:inputNumber value="#{cc.attrs.numeroCTPS}" />
+							<p:outputLabel value="#{msgs.NumeroSerieCTPS}:" />
+							<p:inputNumber value="#{cc.attrs.numeroSerieCTPS}" />
+							<p:outputLabel value="#{msgs.UFCTPS}:" />
+							<p:inputText size="2" value="#{cc.attrs.ufCTPS}" />
+						</p:panelGrid>
+					</h:panelGroup>
+					<h:panelGroup id="pngUsuarioDocumentosCTPSExibir"
+						styleClass="formulario" rendered="#{cc.attrs.exibirRendered}">
+						<p:panelGrid id="pgdExibirCTPS" columns="2"
+							styleClass="tabelaSemBorda">
+							<p:outputLabel value="#{msgs.NumeroCTPS}:" />
+							<p:outputLabel value="#{cc.attrs.numeroCTPS}" />
+							<p:outputLabel value="#{msgs.NumeroSerieCTPS}:" />
+							<p:outputLabel value="#{cc.attrs.numeroSerieCTPS}" />
+							<p:outputLabel value="#{msgs.UFCTPS}:" />
+							<p:outputLabel value="#{cc.attrs.ufCTPS}" />
+						</p:panelGrid>
+					</h:panelGroup>
+				</h:panelGroup>
+			</p:tab>
+
+			<p:tab title="PIS" rendered="#{cc.attrs.pisRendered}">
+				<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
+					rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
+				<p:outputLabel value="#{msgs.MensagemHasPIS}"
+					rendered="#{cc.attrs.mensagemHasPISRendered}" />
+				<h:panelGroup id="pngUsuarioDocumentosPISBloco" layout="block"
+					styleClass="formulario"
+					rendered="#{cc.attrs.dadosUsuarioNISRendered}">
+					<h:panelGroup id="pngUsuarioDocumentosNISEditar"
+						styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
+						<p:panelGrid id="pgdEditarPIS" columns="2"
+							styleClass="tabelaSemBorda">
+							<p:outputLabel value="#{msgs.NumeroNIS}:" />
+							<p:inputNumber value="#{cc.attrs.numeroNIS}" />
+						</p:panelGrid>
+					</h:panelGroup>
+					<h:panelGroup id="pngUsuarioDocumentosNISExibir"
+						styleClass="formulario" rendered="#{cc.attrs.exibirRendered}">
+						<p:panelGrid id="pgdExibirPIS" columns="2"
+							styleClass="tabelaSemBorda">
+							<p:outputLabel value="#{msgs.NumeroNIS}:" />
+							<p:outputLabel value="#{cc.attrs.numeroNIS}" />
+						</p:panelGrid>
+					</h:panelGroup>
+				</h:panelGroup>
+			</p:tab>
+
 			<p:tab title="RG" id="tabRG">
 				<h:panelGroup id="pngUsuarioDocumentosRG" layout="block"
 					styleClass="formulario">
@@ -112,6 +189,7 @@
 									required="#{cc.attrs.cpfRequired}"
 									requiredMessage="#{msgs.MensagemCPFRequerido}" />
 							</p:panelGrid>
+							<composite:attribute name="numeroPIS" />
 						</h:panelGroup>
 
 						<h:panelGroup id="pngUsuarioDocumentosCPFExibir" layout="block"
@@ -251,7 +329,7 @@
 									pattern="dd/MM/yyyy" mask="true" size="10"
 									value="#{cc.attrs.documentosPessoais.cnhPrimeiraEmissao}" />
 								<p:outputLabel value="#{msgs.CategoriaCNH}:" />
-								<p:inputText value="#{cc.attrs.documentosPessoais.cnhCategoria}" />
+								<p:inputText value="#{cc.attrs.documentosPessoais.cnhCategoria}" />ona F
 							</p:panelGrid>
 						</h:panelGroup>
 
@@ -286,16 +364,6 @@
 						</h:panelGroup>
 					</h:panelGroup>
 				</h:panelGroup>
-			</p:tab>
-
-			<p:tab title="CTPS" rendered="#{cc.attrs.ctpsRendered}">
-				<h:panelGroup id="pngUsuarioDocumentosCTPSEditar" styleClass="formulario"
-					rendered="#{cc.attrs.editarRendered}">
-				</h:panelGroup>
-				<h:panelGroup id="pngUsuarioDocumentosCTPSExibir" styleClass="formulario"
-					rendered="#{cc.attrs.exibirRendered}">
-				</h:panelGroup>
-
 			</p:tab>
 
 		</p:tabView>
