@@ -13,6 +13,7 @@ import javax.faces.event.AjaxBehaviorEvent;
 
 import org.primefaces.event.SelectEvent;
 
+import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.PessoaFisicaDocumentosEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEntity;
 
@@ -36,14 +37,15 @@ public class CadastroEmpregadoMB implements Serializable {
 	private String filtroEmpregadosEmpresaSelecionada = "Ativo";
 
 	private String nomeEmpregadoProcurado;
-	
+
 	private boolean exibirDadosCadastraisEmpregado = true;
-	
+
 	private TrabalhadorEntity trabalhadorSelecionado;
-	
+
 	private TrabalhadorCadastroEntity trabalhadorSelecionadoCadastroAtual;
 	private List<TrabalhadorCadastroEntity> trabalhadorSelecionadoListaCadastroHistorico;
 
+	private PessoaFisicaDocumentosEntity trabalhadorDocumentos;
 
 	/* getters e setter */
 
@@ -93,7 +95,7 @@ public class CadastroEmpregadoMB implements Serializable {
 	public void setFiltroEmpregadosEmpresaSelecionada(String filtroEmpregadosEmpresaSelecionada) {
 		this.filtroEmpregadosEmpresaSelecionada = filtroEmpregadosEmpresaSelecionada;
 	}
-	
+
 	public boolean isExibirDadosCadastraisEmpregado() {
 		return exibirDadosCadastraisEmpregado;
 	}
@@ -109,7 +111,7 @@ public class CadastroEmpregadoMB implements Serializable {
 	public void setNomeEmpregadoProcurado(String nomeEmpregadoProcurado) {
 		this.nomeEmpregadoProcurado = nomeEmpregadoProcurado;
 	}
-	
+
 	public TrabalhadorEntity getTrabalhadorSelecionado() {
 		return trabalhadorSelecionado;
 	}
@@ -135,10 +137,14 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.trabalhadorSelecionadoListaCadastroHistorico = trabalhadorSelecionadoListaCadastroHistorico;
 	}
 
-	
-	
-	
-	
+	public PessoaFisicaDocumentosEntity getTrabalhadorDocumentos() {
+		return trabalhadorDocumentos;
+	}
+
+	public void setTrabalhadorDocumentos(PessoaFisicaDocumentosEntity trabalhadorDocumentos) {
+		this.trabalhadorDocumentos = trabalhadorDocumentos;
+	}
+
 	public void mudarTipoFiltroListaEmpregados(AjaxBehaviorEvent evt) {
 
 		// teste abaixo ok
@@ -154,15 +160,15 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.nomeEmpregadoProcurado = null;
 		this.listaEmpregadosEmpresaSelecionada = null;
 	}
-	
+
 	public void onSelectionEmpregado(Object obj) {
 		try {
 			if (obj instanceof SelectEvent) {
 				SelectEvent evt = (SelectEvent) obj;
 				this.trabalhadorSelecionado = (TrabalhadorEntity) evt.getObject();
-				
+
 			} else if (obj instanceof TrabalhadorEntity) {
-				
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

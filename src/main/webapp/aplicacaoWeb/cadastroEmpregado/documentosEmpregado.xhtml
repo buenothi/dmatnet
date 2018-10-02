@@ -11,7 +11,13 @@
 
 <ui:composition>
 	<dmat:pessoaFisicaDocumentosComposite id="pfdDocumentosTrabalhador"
-		ctpsRendered="true" pisRendered="true" />
+		ctpsRendered="true" pisRendered="true"
+		documentosPessoais="#{cadastroEmpregadoMB.trabalhadorDocumentos}"
+		numeroCTPS="#{cadastroEmpregadoMB.trabalhadorSelecionadoCadastroAtual.numCTPS}" 
+		numeroSerieCTPS="#{cadastroEmpregadoMB.trabalhadorSelecionadoCadastroAtual.numCTPSSerie}"
+		ufCTPS="#{cadastroEmpregadoMB.trabalhadorSelecionadoCadastroAtual.ufCTPS}" 
+		numeroNIS="#{cadastroEmpregadoMB.trabalhadorSelecionadoCadastroAtual.numNIS}"
+		/>
 </ui:composition>
 
 </html>
