@@ -101,7 +101,38 @@
 			<p:spacer height="10px" width="100%" />
 
 			<dmat:barraBotoesComposite id="barraBotoesEmpregados"
-				renderedBtnNovo="true" />
+				renderedBtnNovo="true" labelNovo="#{msgs.NovoEmpregado}"
+				labelImprimir="#{msgs.Imprimir}"
+				actionListenerCancelar="#{cadastroEmpregadoMB.cancelarTrabalhadorSelecionado}"
+				actionListenerEditar="#{cadastroEmpregadoMB.editarTrabalhadorSelecionado}"
+				actionListenerImprimir="#{cadastroEmpregadoMB.imprimirTrabalhadorSelecionado}"
+				actionListenerNovo="#{cadastroEmpregadoMB.novoTrabalhadorSelecionado}"
+				actionListenerSalvar="#{cadastroEmpregadoMB.salvarTrabalhadorSelecionado}"
+				disabledCancelar="#{cadastroEmpregadoMB.disabledCancelar}"
+				disabledEditar="#{cadastroEmpregadoMB.disabledEditar}"
+				disabledImprimir="#{cadastroEmpregadoMB.disabledImprimir}"
+				disabledNovo="#{cadastroEmpregadoMB.disabledNovo}"
+				disabledSalvar="#{cadastroEmpregadoMB.disabledSalvar}"
+				updateEditar="formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesEmpregados:tbrBotoes,
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:dtbEmpregados,
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pnlDadosCadastraisEmpregado,
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfdDocumentosTrabalhador:pnlDocumentosPessoaFisica"
+				updateCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesEmpregados:tbrBotoes,
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:dtbEmpregados,
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pnlDadosCadastraisEmpregado,
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfdDocumentosTrabalhador:pnlDocumentosPessoaFisica"
+				updateImprimir="formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesEmpregados:tbrBotoes,
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:dtbEmpregados,
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pnlDadosCadastraisEmpregado,
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfdDocumentosTrabalhador:pnlDocumentosPessoaFisica"
+				updateNovo="formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesEmpregados:tbrBotoes,
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:dtbEmpregados,
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pnlDadosCadastraisEmpregado,
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfdDocumentosTrabalhador:pnlDocumentosPessoaFisica"
+				updateSalvar="formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesEmpregados:tbrBotoes,
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:dtbEmpregados,
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pnlDadosCadastraisEmpregado,
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfdDocumentosTrabalhador:pnlDocumentosPessoaFisica" />
 
 			<p:tabView id="tbwCadastroEmpregado"
 				rendered="#{cadastroEmpregadoMB.exibirDadosCadastraisEmpregado}">
