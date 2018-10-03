@@ -26,6 +26,10 @@ public class TrabalhadorEntity extends AbstractPessoaFisicaEntity implements Ser
 
 	@Temporal(TemporalType.DATE)
 	private Date dataDesligamento;
+	
+	private String nomeMae;
+	private String nomePai;
+	private int grauInstrucao;
 
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "trabalhador_ID")
@@ -63,6 +67,30 @@ public class TrabalhadorEntity extends AbstractPessoaFisicaEntity implements Ser
 
 	public void setDataDesligamento(Date dataDesligamento) {
 		this.dataDesligamento = dataDesligamento;
+	}
+
+	public String getNomeMae() {
+		return nomeMae;
+	}
+
+	public void setNomeMae(String nomeMae) {
+		this.nomeMae = nomeMae;
+	}
+
+	public String getNomePai() {
+		return nomePai;
+	}
+
+	public void setNomePai(String nomePai) {
+		this.nomePai = nomePai;
+	}
+
+	public int getGrauInstrucao() {
+		return grauInstrucao;
+	}
+
+	public void setGrauInstrucao(int grauInstrucao) {
+		this.grauInstrucao = grauInstrucao;
 	}
 
 	public List<TrabalhadorCadastroEntity> getCadastrosTrabalhador() {

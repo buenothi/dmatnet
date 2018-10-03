@@ -38,14 +38,41 @@ public class CadastroEmpregadoMB implements Serializable {
 
 	private String nomeEmpregadoProcurado;
 
+	private boolean mensagemSelecionarEmpregado;
+	private boolean mensagemHasEmpregado;
+	private boolean exibirDadosCadastraisEmpregadoBloco;
 	private boolean exibirDadosCadastraisEmpregado = true;
 
 	private TrabalhadorEntity trabalhadorSelecionado;
 
 	private TrabalhadorCadastroEntity trabalhadorSelecionadoCadastroAtual;
 	private List<TrabalhadorCadastroEntity> trabalhadorSelecionadoListaCadastroHistorico;
+	
+	private boolean isEditarDadosCadastrais;
+	private boolean isExibirDadosCadastrais;
 
 	private PessoaFisicaDocumentosEntity trabalhadorDocumentos;
+	
+	private boolean isDadosUsuarioCTPS;
+	private boolean isDadosUsuarioCNH;
+	private boolean isDadosUsuarioCPF;
+	private boolean isDadosUsuarioNIS;
+	private boolean isDadosUsuarioRG;
+	private boolean isDadosUsuarioRIC;
+	private boolean isDadosUsuarioRNE;
+	
+	private boolean isExibirFormEditar;
+	private boolean isEditarFormEditar;
+	
+	private boolean hasCNH;
+	private boolean hasCTPS;
+	private boolean hasCPF;
+	private boolean hasNIS;
+	private boolean hasRG;
+	private boolean hasRIC;
+	private boolean hasRNE;
+	
+	private boolean isMensagemSelecionarUsuarioRendered;
 
 	/* getters e setter */
 
@@ -112,6 +139,30 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.nomeEmpregadoProcurado = nomeEmpregadoProcurado;
 	}
 
+	public boolean isMensagemSelecionarEmpregado() {
+		return mensagemSelecionarEmpregado;
+	}
+
+	public void setMensagemSelecionarEmpregado(boolean mensagemSelecionarEmpregado) {
+		this.mensagemSelecionarEmpregado = mensagemSelecionarEmpregado;
+	}
+
+	public boolean isMensagemHasEmpregado() {
+		return mensagemHasEmpregado;
+	}
+
+	public void setMensagemHasEmpregado(boolean mensagemHasEmpregado) {
+		this.mensagemHasEmpregado = mensagemHasEmpregado;
+	}
+
+	public boolean isExibirDadosCadastraisEmpregadoBloco() {
+		return exibirDadosCadastraisEmpregadoBloco;
+	}
+
+	public void setExibirDadosCadastraisEmpregadoBloco(boolean exibirDadosCadastraisEmpregadoBloco) {
+		this.exibirDadosCadastraisEmpregadoBloco = exibirDadosCadastraisEmpregadoBloco;
+	}
+
 	public TrabalhadorEntity getTrabalhadorSelecionado() {
 		return trabalhadorSelecionado;
 	}
@@ -137,12 +188,164 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.trabalhadorSelecionadoListaCadastroHistorico = trabalhadorSelecionadoListaCadastroHistorico;
 	}
 
+	public boolean isEditarDadosCadastrais() {
+		return isEditarDadosCadastrais;
+	}
+
+	public void setEditarDadosCadastrais(boolean isEditarDadosCadastrais) {
+		this.isEditarDadosCadastrais = isEditarDadosCadastrais;
+	}
+
+	public boolean isExibirDadosCadastrais() {
+		return isExibirDadosCadastrais;
+	}
+
+	public void setExibirDadosCadastrais(boolean isExibirDadosCadastrais) {
+		this.isExibirDadosCadastrais = isExibirDadosCadastrais;
+	}
+
 	public PessoaFisicaDocumentosEntity getTrabalhadorDocumentos() {
 		return trabalhadorDocumentos;
 	}
 
 	public void setTrabalhadorDocumentos(PessoaFisicaDocumentosEntity trabalhadorDocumentos) {
 		this.trabalhadorDocumentos = trabalhadorDocumentos;
+	}
+
+	public boolean isDadosUsuarioCTPS() {
+		return isDadosUsuarioCTPS;
+	}
+
+	public void setDadosUsuarioCTPS(boolean isDadosUsuarioCTPS) {
+		this.isDadosUsuarioCTPS = isDadosUsuarioCTPS;
+	}
+
+	public boolean isDadosUsuarioCNH() {
+		return isDadosUsuarioCNH;
+	}
+
+	public void setDadosUsuarioCNH(boolean isDadosUsuarioCNH) {
+		this.isDadosUsuarioCNH = isDadosUsuarioCNH;
+	}
+
+	public boolean isDadosUsuarioCPF() {
+		return isDadosUsuarioCPF;
+	}
+
+	public void setDadosUsuarioCPF(boolean isDadosUsuarioCPF) {
+		this.isDadosUsuarioCPF = isDadosUsuarioCPF;
+	}
+
+	public boolean isDadosUsuarioNIS() {
+		return isDadosUsuarioNIS;
+	}
+
+	public void setDadosUsuarioNIS(boolean isDadosUsuarioNIS) {
+		this.isDadosUsuarioNIS = isDadosUsuarioNIS;
+	}
+
+	public boolean isDadosUsuarioRG() {
+		return isDadosUsuarioRG;
+	}
+
+	public void setDadosUsuarioRG(boolean isDadosUsuarioRG) {
+		this.isDadosUsuarioRG = isDadosUsuarioRG;
+	}
+
+	public boolean isDadosUsuarioRIC() {
+		return isDadosUsuarioRIC;
+	}
+
+	public void setDadosUsuarioRIC(boolean isDadosUsuarioRIC) {
+		this.isDadosUsuarioRIC = isDadosUsuarioRIC;
+	}
+
+	public boolean isDadosUsuarioRNE() {
+		return isDadosUsuarioRNE;
+	}
+
+	public void setDadosUsuarioRNE(boolean isDadosUsuarioRNE) {
+		this.isDadosUsuarioRNE = isDadosUsuarioRNE;
+	}
+
+	public boolean isExibirFormEditar() {
+		return isExibirFormEditar;
+	}
+
+	public void setExibirFormEditar(boolean isExibirFormEditar) {
+		this.isExibirFormEditar = isExibirFormEditar;
+	}
+
+	public boolean isEditarFormEditar() {
+		return isEditarFormEditar;
+	}
+
+	public void setEditarFormEditar(boolean isEditarFormEditar) {
+		this.isEditarFormEditar = isEditarFormEditar;
+	}
+
+	public boolean isHasCNH() {
+		return hasCNH;
+	}
+
+	public void setHasCNH(boolean hasCNH) {
+		this.hasCNH = hasCNH;
+	}
+
+	public boolean isHasCTPS() {
+		return hasCTPS;
+	}
+
+	public void setHasCTPS(boolean hasCTPS) {
+		this.hasCTPS = hasCTPS;
+	}
+
+	public boolean isHasCPF() {
+		return hasCPF;
+	}
+
+	public void setHasCPF(boolean hasCPF) {
+		this.hasCPF = hasCPF;
+	}
+
+	public boolean isHasNIS() {
+		return hasNIS;
+	}
+
+	public void setHasNIS(boolean hasNIS) {
+		this.hasNIS = hasNIS;
+	}
+
+	public boolean isHasRG() {
+		return hasRG;
+	}
+
+	public void setHasRG(boolean hasRG) {
+		this.hasRG = hasRG;
+	}
+
+	public boolean isHasRIC() {
+		return hasRIC;
+	}
+
+	public void setHasRIC(boolean hasRIC) {
+		this.hasRIC = hasRIC;
+	}
+
+	public boolean isHasRNE() {
+		return hasRNE;
+	}
+
+	public void setHasRNE(boolean hasRNE) {
+		this.hasRNE = hasRNE;
+	}
+
+	public boolean isMensagemSelecionarUsuarioRendered() {
+		return isMensagemSelecionarUsuarioRendered;
+	}
+
+	public void setMensagemSelecionarUsuarioRendered(boolean isMensagemSelecionarUsuarioRendered) {
+		this.isMensagemSelecionarUsuarioRendered = isMensagemSelecionarUsuarioRendered;
 	}
 
 	public void mudarTipoFiltroListaEmpregados(AjaxBehaviorEvent evt) {
@@ -183,8 +386,39 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.listaEmpregadosEmpresaSelecionada = null;
 		this.filtroEmpregadosEmpresaSelecionada = "Ativo";
 		this.nomeEmpregadoProcurado = null;
+		this.mensagemHasEmpregado = false;
+		this.exibirDadosCadastraisEmpregadoBloco = true;
+		this.mensagemSelecionarEmpregado = true;
 		this.exibirDadosCadastraisEmpregado = true;
 		this.trabalhadorSelecionado = null;
+		this.trabalhadorSelecionadoCadastroAtual = null;
+		this.trabalhadorSelecionadoListaCadastroHistorico = null;
+		
+		this.isEditarDadosCadastrais = true;
+		this.isExibirDadosCadastrais = false;
+		
+		this.trabalhadorDocumentos = null;
+		
+		this.isDadosUsuarioCTPS = false;
+		this.isDadosUsuarioCNH = false;
+		this. isDadosUsuarioCPF = false;
+		this.isDadosUsuarioNIS = false;
+		this.isDadosUsuarioRG = false;
+		this.isDadosUsuarioRIC = false;
+		this.isDadosUsuarioRNE = false;
+		
+		this.isExibirFormEditar = false;
+		this.isEditarFormEditar = false;
+		
+		this.hasCNH = false;
+		this.hasCTPS = false;
+		this.hasCPF = false;
+		this.hasNIS = false;
+		this.hasRG = false;
+		this.hasRIC = false;
+		this.hasRNE = false;
+		
+		this.isMensagemSelecionarUsuarioRendered = true;
 	}
 
 }

@@ -1,6 +1,8 @@
 package br.com.smartems.dmatnet.entities.pessoa.PessoaFisica;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.*;
 
 import br.com.smartems.dmatnet.entities.pessoa.AbstractPessoaEntity;
@@ -11,7 +13,14 @@ public abstract class AbstractPessoaFisicaEntity extends AbstractPessoaEntity im
 	
 	private int genero;
 	
+	private int raca;
+	
+	private int estadoCivil;
+	
 	private PessoaFisicaDocumentosEntity documentosPessoais;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dataNascimento;
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -27,12 +36,36 @@ public abstract class AbstractPessoaFisicaEntity extends AbstractPessoaEntity im
 		this.genero = genero;
 	}
 
+	public int getRaca() {
+		return raca;
+	}
+
+	public void setRaca(int raca) {
+		this.raca = raca;
+	}
+
+	public int getEstadoCivil() {
+		return estadoCivil;
+	}
+
+	public void setEstadoCivil(int estadoCivil) {
+		this.estadoCivil = estadoCivil;
+	}
+
 	public PessoaFisicaDocumentosEntity getDocumentosPessoais() {
 		return documentosPessoais;
 	}
 
 	public void setDocumentosPessoais(PessoaFisicaDocumentosEntity documentosPessoais) {
 		this.documentosPessoais = documentosPessoais;
+	}
+
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 	@Override

@@ -13,148 +13,294 @@
 	<p:panel id="pnlDadosCadastraisEmpregado"
 		header="#{msgs.DadosCadastrais}" closable="false">
 		<p:messages id="msDadosEmpregado" showDetail="false" closable="true" />
-		<p:accordionPanel id="acpDadosCadastraisEmpregado">
-			<p:tab id="tabDadosBasicosEmpregado" title="#{msgs.DadosBasicos}">
-				<h:panelGroup id="pngCadEmpregadoEditar" layout="block"
-					styleClass="formulario">
-					<p:panelGrid id="pngEditarDadoCadastrais"
-						styleClass="tabelaSemBorda">
-						<p:row>
+		<p:outputLabel value="#{msgs.MensagemSelecionarEmpregado}"
+			rendered="#{cadastroEmpregadoMB.mensagemSelecionarEmpregado}" />
+		<p:outputLabel value="#{msgs.MensagemHasDadosCadastraisEmpregado}"
+			rendered="#{cadastroEmpregadoMB.mensagemHasEmpregado}" />
+		<h:panelGroup id="pngDadosCadastraisEmpregadoBloco" layout="block"
+			styleClass="formulario"
+			rendered="#{cadastroEmpregadoMB.exibirDadosCadastraisEmpregadoBloco}">
+			<p:accordionPanel id="acpDadosCadastraisEmpregado">
+				<p:tab id="tabDadosBasicosEmpregado" title="#{msgs.DadosBasicos}">
+					<h:panelGroup id="pngCadEmpregadoEditar" layout="block"
+						styleClass="formulario"
+						rendered="#{cadastroEmpregadoMB.editarDadosCadastrais}">
+						<p:panelGrid id="pngEditarDadosCadastrais"
+							styleClass="tabelaSemBorda">
+							<p:row>
+								<p:column>
+									<p:outputLabel value="#{msgs.DataCadastro}*:" />
+								</p:column>
+								<p:column>
+									<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+										<p:calendar id="calDataInicio" locale="pt" showOn="button"
+											pattern="dd/MM/yyyy" mask="true" label="#{msgs.DataCadastro}"
+											size="8"
+											value="#{cadastroEmpregadoMB.trabalhadorSelecionado.dataCadastroPessoa}" />
+										<p:message for="calDataInicio" />
+									</p:panelGrid>
+								</p:column>
+
+								<p:column>
+									<p:outputLabel value="#{msgs.DataNascimento}*:" />
+								</p:column>
+								<p:column>
+									<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+										<p:calendar id="calDataNascimento" locale="pt" showOn="button"
+											pattern="dd/MM/yyyy" mask="true" label="#{msgs.DataCadastro}"
+											size="8"
+											value="#{cadastroEmpregadoMB.trabalhadorSelecionado.dataNascimento}" />
+										<p:message for="calDataNascimento" />
+									</p:panelGrid>
+								</p:column>
+							</p:row>
+
 							<p:column>
-								<p:outputLabel value="#{msgs.DataCadastro}*:" />
+								<p:outputLabel value="#{msgs.DataAdmissao}*:" />
 							</p:column>
 							<p:column>
 								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-									<p:calendar id="calDataInicio" locale="pt" showOn="button"
-										pattern="dd/MM/yyyy" mask="true" label="#{msgs.DataCadastro}"
-										size="8" value=""/>
-									<p:message for="calDataInicio" />
+									<p:calendar id="calDataAdmissao" locale="pt" showOn="button"
+										pattern="dd/MM/yyyy" mask="true" label="#{msgs.DataDemissao}"
+										size="8"
+										value="#{cadastroEmpregadoMB.trabalhadorSelecionado.dataAdmissao}" />
+									<p:message for="calDataAdmissao" />
 								</p:panelGrid>
 							</p:column>
 
 							<p:column>
-								<p:outputLabel value="#{msgs.DataNascimento}*:" />
+								<p:outputLabel value="#{msgs.DataDemissao}:" />
 							</p:column>
 							<p:column>
 								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-									<p:calendar id="calDataNascimento" locale="pt" showOn="button"
-										pattern="dd/MM/yyyy" mask="true" label="#{msgs.DataCadastro}"
-										size="8" />
-									<p:message for="calDataNascimento" />
+									<p:calendar id="calDataDemissao" locale="pt" showOn="button"
+										pattern="dd/MM/yyyy" mask="true" label="#{msgs.DataDemissao}"
+										size="8"
+										value="#{cadastroEmpregadoMB.trabalhadorSelecionado.dataDesligamento}" />
+									<p:message for="calDataDemissao" />
 								</p:panelGrid>
 							</p:column>
-							<p:column />
-							<p:column />
-						</p:row>
 
-						<p:row>
-							<p:column>
-								<p:outputLabel value="#{msgs.Nome}*:" />
-							</p:column>
-							<p:column colspan="3">
-								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-									<p:inputText id="iptNomeEmpregado" maxlength="250" size="76"
-										label="#{msgs.Nome}" />
-									<p:message for="iptNomeEmpregado" />
-								</p:panelGrid>
-							</p:column>
-						</p:row>
+							<p:row>
+								<p:column>
+									<p:outputLabel value="#{msgs.Nome}*:" />
+								</p:column>
+								<p:column colspan="3">
+									<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+										<p:inputText id="iptNomeEmpregado" maxlength="250" size="76"
+											label="#{msgs.Nome}"
+											value="#{cadastroEmpregadoMB.trabalhadorSelecionado.nome}" />
+										<p:message for="iptNomeEmpregado" />
+									</p:panelGrid>
+								</p:column>
+							</p:row>
 
-						<p:row>
-							<p:column>
-								<p:outputLabel value="#{msgs.NomeMae}*:" />
-							</p:column>
-							<p:column colspan="3">
-								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-									<p:inputText id="iptNomeMae" maxlength="250" size="76"
-										label="#{msgs.Nome}" />
-									<p:message for="iptNomeMae" />
-								</p:panelGrid>
-							</p:column>
-						</p:row>
+							<p:row>
+								<p:column>
+									<p:outputLabel value="#{msgs.NomeMae}*:" />
+								</p:column>
+								<p:column colspan="3">
+									<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+										<p:inputText id="iptNomeMae" maxlength="250" size="76"
+											label="#{msgs.Nome}"
+											value="#{cadastroEmpregadoMB.trabalhadorSelecionado.nomeMae}" />
+										<p:message for="iptNomeMae" />
+									</p:panelGrid>
+								</p:column>
+							</p:row>
 
-						<p:row>
-							<p:column>
-								<p:outputLabel value="#{msgs.NomePai}*:" />
-							</p:column>
-							<p:column colspan="3">
-								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-									<p:inputText id="iptNomePai" maxlength="250" size="76"
-										label="#{msgs.Nome}" />
-									<p:message for="iptNomePai" />
-								</p:panelGrid>
-							</p:column>
-						</p:row>
+							<p:row>
+								<p:column>
+									<p:outputLabel value="#{msgs.NomePai}*:" />
+								</p:column>
+								<p:column colspan="3">
+									<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+										<p:inputText id="iptNomePai" maxlength="250" size="76"
+											label="#{msgs.Nome}"
+											value="#{cadastroEmpregadoMB.trabalhadorSelecionado.nomePai}" />
+										<p:message for="iptNomePai" />
+									</p:panelGrid>
+								</p:column>
+							</p:row>
 
-						<p:row>
-							<p:column>
-								<p:outputLabel value="#{msgs.Genero}*:" />
-							</p:column>
-							<p:column>
-								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-									<p:selectOneMenu id="somGenero" style="width:200px"
-										value="#{cadastroEmpresaMB.dadosCadastraisAtual.tipoInscricao}"
-										label="#{msgs.TipoInscricao}">
-										<!-- <p:ajax
+							<p:row>
+								<p:column>
+									<p:outputLabel value="#{msgs.Genero}*:" />
+								</p:column>
+								<p:column>
+									<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+										<p:selectOneMenu id="somGenero" style="width:200px"
+											value="#{cadastroEmpregadoMB.trabalhadorSelecionado.genero}"
+											label="#{msgs.Genero}">
+											<!-- <p:ajax
 											listener="#{cadastroEmpresaMB.alterarMascaraPessoaJuridica}"
 											update="formModulos:formCadEmpresa:tbwCadastroEmpresa:acpDadosCadastrais:ipmInscricao" /> -->
-										<f:selectItem itemValue="1" itemLabel="#{msgs.Masculino}" />
-										<f:selectItem itemValue="2" itemLabel="#{msgs.Feminino}" />
-									</p:selectOneMenu>
-									<p:message for="somGenero" />
-								</p:panelGrid>
+											<f:selectItem itemValue="1" itemLabel="#{msgs.Masculino}" />
+											<f:selectItem itemValue="2" itemLabel="#{msgs.Feminino}" />
+										</p:selectOneMenu>
+										<p:message for="somGenero" />
+									</p:panelGrid>
+								</p:column>
+
+								<p:column>
+									<p:outputLabel value="#{msgs.Raca}*:" />
+								</p:column>
+								<p:column>
+									<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+										<p:selectOneMenu id="somRaca" style="width:200px"
+											value="#{cadastroEmpregadoMB.trabalhadorSelecionado.raca}">
+											<f:selectItem itemValue="1" itemLabel="#{msgs.Masculino}" />
+											<f:selectItem itemValue="2" itemLabel="#{msgs.Feminino}" />
+										</p:selectOneMenu>
+										<p:message for="somRaca" />
+									</p:panelGrid>
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column>
+									<p:outputLabel value="#{msgs.EstadoCivil}*:" />
+								</p:column>
+								<p:column>
+									<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+										<p:selectOneMenu id="somEstadoCivil" style="width:200px"
+											value="#{cadastroEmpregadoMB.trabalhadorSelecionado.estadoCivil}">
+											<f:selectItem itemValue="1" itemLabel="#{msgs.Masculino}" />
+											<f:selectItem itemValue="2" itemLabel="#{msgs.Feminino}" />
+										</p:selectOneMenu>
+										<p:message for="somEstadoCivil" />
+									</p:panelGrid>
+								</p:column>
+
+								<p:column>
+									<p:outputLabel value="#{msgs.GrauInstrucao}*:" />
+								</p:column>
+								<p:column>
+									<p:panelGrid columns="2" styleClass="tabelaSemBorda">
+										<p:selectOneMenu id="somGrauInstrucao" style="width:200px"
+											value="#{cadastroEmpregadoMB.trabalhadorSelecionado.grauInstrucao}">
+											<f:selectItem itemValue="1" itemLabel="#{msgs.Masculino}" />
+											<f:selectItem itemValue="2" itemLabel="#{msgs.Feminino}" />
+										</p:selectOneMenu>
+										<p:message for="somGrauInstrucao" />
+									</p:panelGrid>
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</h:panelGroup>
+					<h:panelGroup id="pngCadEmpregadoExibir" layout="block"
+						styleClass="formulario"
+						rendered="#{cadastroEmpregadoMB.exibirDadosCadastrais}">
+						<p:panelGrid id="pngExibirDadosCadastrais"
+							styleClass="tabelaSemBorda">
+							<p:row>
+								<p:column>
+									<p:outputLabel value="#{msgs.DataCadastro}*:" />
+								</p:column>
+								<p:column>
+									<p:outputLabel
+										value="#{cadastroEmpregadoMB.trabalhadorSelecionado.dataCadastroPessoa}">
+										<f:convertDateTime dateStyle="dd/MM/yyyy" />
+									</p:outputLabel>
+								</p:column>
+
+								<p:column>
+									<p:outputLabel value="#{msgs.DataNascimento}*:" />
+								</p:column>
+								<p:column>
+									<p:outputLabel
+										value="#{cadastroEmpregadoMB.trabalhadorSelecionado.dataNascimento}">
+										<f:convertDateTime dateStyle="dd/MM/yyyy" />
+									</p:outputLabel>
+								</p:column>
+							</p:row>
+
+							<p:column>
+								<p:outputLabel value="#{msgs.DataAdmissao}*:" />
+							</p:column>
+							<p:column>
+								<p:outputLabel
+									value="#{cadastroEmpregadoMB.trabalhadorSelecionado.dataAdmissao}">
+									<f:convertDateTime dateStyle="dd/MM/yyyy" />
+								</p:outputLabel>
 							</p:column>
 
 							<p:column>
-								<p:outputLabel value="#{msgs.Raca}*:" />
+								<p:outputLabel value="#{msgs.DataDemissao}:" />
 							</p:column>
 							<p:column>
-								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-									<p:selectOneMenu id="somRaca" style="width:200px">
-
-									</p:selectOneMenu>
-									<p:message for="somRaca" />
-								</p:panelGrid>
-							</p:column>
-						</p:row>
-
-						<p:row>
-							<p:column>
-								<p:outputLabel value="#{msgs.EstadoCivil}*:" />
-							</p:column>
-							<p:column>
-								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-									<p:selectOneMenu id="somEstadoCivil" style="width:200px">
-
-									</p:selectOneMenu>
-									<p:message for="somEstadoCivil" />
-								</p:panelGrid>
+								<p:outputLabel
+									value="#{cadastroEmpregadoMB.trabalhadorSelecionado.dataDesligamento}">
+									<f:convertDateTime dateStyle="dd/MM/yyyy" />
+								</p:outputLabel>
 							</p:column>
 
-							<p:column>
-								<p:outputLabel value="#{msgs.GrauInstrucao}*:" />
-							</p:column>
-							<p:column>
-								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-									<p:selectOneMenu id="somGrauInstrucao" style="width:200px">
+							<p:row>
+								<p:column>
+									<p:outputLabel value="#{msgs.Nome}*:" />
+								</p:column>
+								<p:column colspan="3">
+									<p:outputLabel value="#{cadastroEmpregadoMB.trabalhadorSelecionado.nome}" />
+								</p:column>
+							</p:row>
 
-									</p:selectOneMenu>
-									<p:message for="somGrauInstrucao" />
-								</p:panelGrid>
-							</p:column>
-						</p:row>
-					</p:panelGrid>
-				</h:panelGroup>
-				<h:panelGroup id="pngCadEmpregadoExibir" layout="block"
-					styleClass="formulario"
-					rendered="#{cadastroEmpresaMB.dadosCadastraisEditarRender}">
-				</h:panelGroup>
-			</p:tab>
-			<p:tab id="tabDadosBasicosHistoricoEmpregado"
-				title="#{msgs.Historico}">
-			</p:tab>
+							<p:row>
+								<p:column>
+									<p:outputLabel value="#{msgs.NomeMae}*:" />
+								</p:column>
+								<p:column colspan="3">
+									<p:outputLabel value="#{cadastroEmpregadoMB.trabalhadorSelecionado.nomeMae}" />
+								</p:column>
+							</p:row>
 
-		</p:accordionPanel>
+							<p:row>
+								<p:column>
+									<p:outputLabel value="#{msgs.NomePai}:" />
+								</p:column>
+								<p:column colspan="3">
+									<p:outputLabel value="#{cadastroEmpregadoMB.trabalhadorSelecionado.nomePai}" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column>
+									<p:outputLabel value="#{msgs.Genero}*:" />
+								</p:column>
+								<p:column>
+									<p:outputLabel value="#{cadastroEmpregadoMB.trabalhadorSelecionado.genero}" />
+								</p:column>
+
+								<p:column>
+									<p:outputLabel value="#{msgs.Raca}*:" />
+								</p:column>
+								<p:column>
+									<p:outputLabel value="#{cadastroEmpregadoMB.trabalhadorSelecionado.raca}" />
+								</p:column>
+							</p:row>
+
+							<p:row>
+								<p:column>
+									<p:outputLabel value="#{msgs.EstadoCivil}*:" />
+								</p:column>
+								<p:column>
+									<p:outputLabel value="#{cadastroEmpregadoMB.trabalhadorSelecionado.estadoCivil}" />
+								</p:column>
+
+								<p:column>
+									<p:outputLabel value="#{msgs.GrauInstrucao}*:" />
+								</p:column>
+								<p:column>
+									<p:outputLabel value="#{cadastroEmpregadoMB.trabalhadorSelecionado.grauInstrucao}" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</h:panelGroup>
+				</p:tab>
+				<p:tab id="tabDadosBasicosHistoricoEmpregado"
+					title="#{msgs.Historico}">
+				</p:tab>
+			</p:accordionPanel>
+		</h:panelGroup>
 	</p:panel>
 
 </ui:composition>

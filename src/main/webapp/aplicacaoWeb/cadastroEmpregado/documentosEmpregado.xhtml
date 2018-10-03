@@ -13,11 +13,29 @@
 	<dmat:pessoaFisicaDocumentosComposite id="pfdDocumentosTrabalhador"
 		ctpsRendered="true" pisRendered="true"
 		documentosPessoais="#{cadastroEmpregadoMB.trabalhadorDocumentos}"
-		numeroCTPS="#{cadastroEmpregadoMB.trabalhadorSelecionadoCadastroAtual.numCTPS}" 
+		numeroCTPS="#{cadastroEmpregadoMB.trabalhadorSelecionadoCadastroAtual.numCTPS}"
 		numeroSerieCTPS="#{cadastroEmpregadoMB.trabalhadorSelecionadoCadastroAtual.numCTPSSerie}"
-		ufCTPS="#{cadastroEmpregadoMB.trabalhadorSelecionadoCadastroAtual.ufCTPS}" 
+		ufCTPS="#{cadastroEmpregadoMB.trabalhadorSelecionadoCadastroAtual.ufCTPS}"
 		numeroNIS="#{cadastroEmpregadoMB.trabalhadorSelecionadoCadastroAtual.numNIS}"
-		/>
+		cpfRequired="false"
+		dadosUsuarioCTPSRendered="#{cadastroEmpregadoMB.dadosUsuarioCTPS}"
+		dadosUsuarioCNHRendered="#{cadastroEmpregadoMB.dadosUsuarioCNH}"
+		dadosUsuarioCPFRendered="#{cadastroEmpregadoMB.dadosUsuarioCPF}"
+		dadosUsuarioNISRendered="#{cadastroEmpregadoMB.dadosUsuarioNIS}"
+		dadosUsuarioRGRendered="#{cadastroEmpregadoMB.dadosUsuarioRG}"
+		dadosUsuarioRICRendered="#{cadastroEmpregadoMB.dadosUsuarioRIC}"
+		dadosUsuarioRNERendered="#{cadastroEmpregadoMB.dadosUsuarioRNE}"
+		editarRendered="#{cadastroEmpregadoMB.editarFormEditar}"
+		exibirRendered="#{cadastroEmpregadoMB.exibirFormEditar}"
+		mensagemHasCNHRendered="#{cadastroEmpregadoMB.hasCNH}"
+		mensagemHasCPFRendered="#{cadastroEmpregadoMB.hasCPF}"
+		mensagemHasCTPSRendered="#{cadastroEmpregadoMB.hasCTPS}"
+		mensagemHasPISRendered="#{cadastroEmpregadoMB.hasNIS}"
+		mensagemHasRGRendered="#{cadastroEmpregadoMB.hasRG}"
+		mensagemHasRICRendered="#{cadastroEmpregadoMB.hasRIC}"
+		mensagemHasRNERendered="#{cadastroEmpregadoMB.hasRNE}"
+		mensagemRendered="false"
+		mensagemSelecionarUsuarioRendered="#{cadastroEmpregadoMB.mensagemSelecionarUsuarioRendered}" />
 </ui:composition>
 
 </html>
