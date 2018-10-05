@@ -38,7 +38,7 @@
 
 	<composite:attribute name="dadosUsuarioRendered" default="true" />
 
-	<composite:attribute name="mensagemSelecionarUsuarioRendered"
+	<composite:attribute name="mensagemSelecionarPessoaRendered"
 		default="false" />
 	<composite:attribute name="mensagemRendered" default="false" />
 
@@ -53,8 +53,8 @@
 		<p:messages id="msEmail" showDetail="true" closable="true"
 			rendered="#{cc.attrs.mensagemRendered}" />
 
-		<p:outputLabel value="#{msgs.MensagemSelecionarUsuario}"
-			rendered="#{cc.attrs.mensagemSelecionarUsuarioRendered}" />
+		<p:outputLabel value="#{msgs.MensagemSelecionarPessoa}"
+			rendered="#{cc.attrs.mensagemSelecionarPessoaRendered}" />
 
 		<p:outputLabel value="#{msgs.MensagemHasEndereco}"
 			rendered="#{cc.attrs.mensagemHasEnderecoRendered}" />

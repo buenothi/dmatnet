@@ -10,7 +10,18 @@
 	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
 
 <ui:composition>
-	<dmat:pessoaFisicaEnderecoComposite />
+	<dmat:pessoaFisicaEnderecoComposite id="pfeTrabalhador"
+		barraBotoesRendered="false"
+		enderecoAtual="#{cadastroEmpregadoMB.enderecoAtual}"
+		enderecoHistorico="#{cadastroEmpregadoMB.enderecoHistorico}"
+		enderecoEditarRender="#{cadastroEmpregadoMB.disabledEditar}"
+		enderecoRendered="true"
+		ajaxComponentRender="" ajaxComponentRenderHistorico=""
+		mensagemHasEnderecoRendered="" mensagemRendered=""
+		mensagemSelecionarPessoaRendered="" messageConfirmaExcluir=""
+		messageHeaderExcluir="" messageLabelExcluir=""
+		renderedBtnExcluir="true" renderedHistorico="" updateCancelar=""
+		updateEditar="" updateExcluir="" updateNovo="" updateSalvar="" />
 </ui:composition>
 
 </html>

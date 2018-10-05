@@ -13,6 +13,7 @@ import javax.faces.event.AjaxBehaviorEvent;
 
 import org.primefaces.event.SelectEvent;
 
+import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.PessoaFisicaDocumentosEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEntity;
@@ -77,7 +78,11 @@ public class CadastroEmpregadoMB implements Serializable {
 	private boolean hasRIC;
 	private boolean hasRNE;
 
-	private boolean isMensagemSelecionarUsuarioRendered;
+	private boolean isMensagemSelecionarTrabalhadorRendered;
+	
+	private boolean enderecoRendered;
+	private EnderecoEntity enderecoAtual;
+	private List<EnderecoEntity> enderecoHistorico;
 
 	/* getters e setter */
 
@@ -388,12 +393,36 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.hasRNE = hasRNE;
 	}
 
-	public boolean isMensagemSelecionarUsuarioRendered() {
-		return isMensagemSelecionarUsuarioRendered;
+	public boolean isMensagemSelecionarTrabalhadorRendered() {
+		return isMensagemSelecionarTrabalhadorRendered;
 	}
 
-	public void setMensagemSelecionarUsuarioRendered(boolean isMensagemSelecionarUsuarioRendered) {
-		this.isMensagemSelecionarUsuarioRendered = isMensagemSelecionarUsuarioRendered;
+	public void setMensagemSelecionarTrabalhadorRendered(boolean isMensagemSelecionarTrabalhadorRendered) {
+		this.isMensagemSelecionarTrabalhadorRendered = isMensagemSelecionarTrabalhadorRendered;
+	}
+
+	public boolean isEnderecoRendered() {
+		return enderecoRendered;
+	}
+
+	public void setEnderecoRendered(boolean enderecoRendered) {
+		this.enderecoRendered = enderecoRendered;
+	}
+
+	public EnderecoEntity getEnderecoAtual() {
+		return enderecoAtual;
+	}
+
+	public void setEnderecoAtual(EnderecoEntity enderecoAtual) {
+		this.enderecoAtual = enderecoAtual;
+	}
+
+	public List<EnderecoEntity> getEnderecoHistorico() {
+		return enderecoHistorico;
+	}
+
+	public void setEnderecoHistorico(List<EnderecoEntity> enderecoHistorico) {
+		this.enderecoHistorico = enderecoHistorico;
 	}
 
 	public void mudarTipoFiltroListaEmpregados(AjaxBehaviorEvent evt) {
@@ -501,7 +530,11 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.hasRIC = false;
 		this.hasRNE = false;
 
-		this.isMensagemSelecionarUsuarioRendered = true;
+		this.isMensagemSelecionarTrabalhadorRendered = true;
+		
+		this.enderecoRendered = false;
+		this.enderecoAtual = null;
+		this.enderecoHistorico = null;
 	}
 
 }

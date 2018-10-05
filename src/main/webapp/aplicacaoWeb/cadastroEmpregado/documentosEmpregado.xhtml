@@ -10,7 +10,7 @@
 	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
 
 <ui:composition>
-	<dmat:pessoaFisicaDocumentosComposite id="pfdDocumentosTrabalhador"
+	<dmat:pessoaFisicaDocumentosComposite id="pfdTrabalhador"
 		ctpsRendered="true" pisRendered="true"
 		documentosPessoais="#{cadastroEmpregadoMB.trabalhadorDocumentos}"
 		numeroCTPS="#{cadastroEmpregadoMB.trabalhadorSelecionadoCadastroAtual.numCTPS}"
@@ -35,7 +35,7 @@
 		mensagemHasRICRendered="#{cadastroEmpregadoMB.hasRIC}"
 		mensagemHasRNERendered="#{cadastroEmpregadoMB.hasRNE}"
 		mensagemRendered="false"
-		mensagemSelecionarUsuarioRendered="#{cadastroEmpregadoMB.mensagemSelecionarUsuarioRendered}" />
+		mensagemSelecionarUsuarioRendered="#{cadastroEmpregadoMB.mensagemSelecionarTrabalhadorRendered}" />
 </ui:composition>
 
 </html>
