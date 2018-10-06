@@ -13,15 +13,17 @@
 	<dmat:pessoaFisicaEnderecoComposite id="pfeTrabalhador"
 		barraBotoesRendered="false"
 		enderecoAtual="#{cadastroEmpregadoMB.enderecoAtual}"
-		enderecoHistorico="#{cadastroEmpregadoMB.enderecoHistorico}"
-		enderecoEditarRender="#{cadastroEmpregadoMB.disabledEditar}"
 		enderecoRendered="true"
-		ajaxComponentRender="" ajaxComponentRenderHistorico=""
-		mensagemHasEnderecoRendered="" mensagemRendered=""
-		mensagemSelecionarPessoaRendered="" messageConfirmaExcluir=""
-		messageHeaderExcluir="" messageLabelExcluir=""
-		renderedBtnExcluir="true" renderedHistorico="" updateCancelar=""
-		updateEditar="" updateExcluir="" updateNovo="" updateSalvar="" />
+		enderecoEditarRender="#{cadastroEmpregadoMB.disabledEditar}"
+		enderecoHistorico="#{cadastroEmpregadoMB.enderecoHistorico}"
+		ajaxComponentRender="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfeTrabalhador:dmatEnderecoContato:acpEndereco:listCidade"
+		ajaxComponentRenderHistorico="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfeTrabalhador:dmatEnderecoContato:acpEndereco:tabEnderecoHistorico"
+		mensagemHasEnderecoRendered="#{cadastroEmpregadoMB.hasEndereco}"
+		mensagemRendered="true"
+		disabledCancelar="#{cadastroEmpregadoMB.disabledCancelar}"
+		mensagemSelecionarPessoaRendered="#{cadastroEmpregadoMB.hasPessoaSelecionada}"
+		messageConfirmaExcluir="#{msgs.DeletarEnderecoEmpregado}"
+		messageHeaderExcluir="#{msgs.Excluir}" renderedHistorico="true" />
 </ui:composition>
 
 </html>

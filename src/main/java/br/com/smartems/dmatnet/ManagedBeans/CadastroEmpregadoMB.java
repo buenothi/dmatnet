@@ -83,6 +83,9 @@ public class CadastroEmpregadoMB implements Serializable {
 	private boolean enderecoRendered;
 	private EnderecoEntity enderecoAtual;
 	private List<EnderecoEntity> enderecoHistorico;
+	private boolean hasEndereco;
+	private boolean hasPessoaSelecionada;
+	private boolean desativarCancelarEndereco;
 
 	/* getters e setter */
 
@@ -425,6 +428,30 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.enderecoHistorico = enderecoHistorico;
 	}
 
+	public boolean isHasEndereco() {
+		return hasEndereco;
+	}
+
+	public void setHasEndereco(boolean hasEndereco) {
+		this.hasEndereco = hasEndereco;
+	}
+
+	public boolean isHasPessoaSelecionada() {
+		return hasPessoaSelecionada;
+	}
+
+	public void setHasPessoaSelecionada(boolean hasPessoaSelecionada) {
+		this.hasPessoaSelecionada = hasPessoaSelecionada;
+	}
+
+	public boolean isDesativarCancelarEndereco() {
+		return desativarCancelarEndereco;
+	}
+
+	public void setDesativarCancelarEndereco(boolean desativarCancelarEndereco) {
+		this.desativarCancelarEndereco = desativarCancelarEndereco;
+	}
+
 	public void mudarTipoFiltroListaEmpregados(AjaxBehaviorEvent evt) {
 
 		// teste abaixo ok
@@ -535,6 +562,9 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.enderecoRendered = false;
 		this.enderecoAtual = null;
 		this.enderecoHistorico = null;
+		this.hasEndereco = false;
+		this.hasPessoaSelecionada = true;
+		this.desativarCancelarEndereco = true;
 	}
 
 }
