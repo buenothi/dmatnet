@@ -246,6 +246,7 @@ a:LINK {
 
 .lateral:before {
 	z-index: 1000;
+	overflow: auto;
 }
 
 .lateral:hover, #lateral:focus, #lateral:active {
@@ -271,7 +272,7 @@ a:LINK {
 	background-image: linear-gradient(135deg, rgb(75, 75, 77),
 		rgb(49, 49, 49));
 	height: 100%;
-	overflow: hidden;
+	overflow: auto;
 	position: fixed;
 	top: 42px;
 	left: 0;

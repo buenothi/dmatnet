@@ -47,7 +47,7 @@ public class CadastroEmpregadoMB implements Serializable {
 	private TrabalhadorEntity trabalhadorSelecionado;
 	private TrabalhadorCadastroEntity trabalhadorSelecionadoCadastroAtual;
 	private List<TrabalhadorCadastroEntity> trabalhadorSelecionadoListaCadastroHistorico;
-	
+
 	private boolean isDisabledCancelar;
 	private boolean isDisabledEditar;
 	private boolean isDisabledImprimir;
@@ -79,7 +79,7 @@ public class CadastroEmpregadoMB implements Serializable {
 	private boolean hasRNE;
 
 	private boolean isMensagemSelecionarTrabalhadorRendered;
-	
+
 	private boolean enderecoRendered;
 	private EnderecoEntity enderecoAtual;
 	private List<EnderecoEntity> enderecoHistorico;
@@ -261,6 +261,9 @@ public class CadastroEmpregadoMB implements Serializable {
 	}
 
 	public PessoaFisicaDocumentosEntity getTrabalhadorDocumentos() {
+		if (this.trabalhadorDocumentos == null) {
+			this.trabalhadorDocumentos = new PessoaFisicaDocumentosEntity();
+		}
 		return trabalhadorDocumentos;
 	}
 
@@ -474,6 +477,43 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.isDisabledImprimir = true;
 		this.isDisabledNovo = true;
 		this.isDisabledSalvar = false;
+
+		this.mensagemHasEmpregado = false;
+		this.exibirDadosCadastraisEmpregadoBloco = true;
+		this.mensagemSelecionarEmpregado = false;
+		this.exibirDadosCadastraisEmpregado = true;
+
+		this.exibirDadosCadastraisEmpregadoBloco = true;
+		
+		this.isEditarDadosCadastrais = true;
+		this.isExibirDadosCadastrais = false;
+
+		this.hasCNH = false;
+		this.hasCTPS = false;
+		this.hasCPF = false;
+		this.hasNIS = false;
+		this.hasRG = false;
+		this.hasRIC = false;
+		this.hasRNE = false;
+		
+		this.isDadosUsuarioCTPS = true;
+		this.isDadosUsuarioCNH = true;
+		this.isDadosUsuarioCPF = true;
+		this.isDadosUsuarioNIS = true;
+		this.isDadosUsuarioRG = true;
+		this.isDadosUsuarioRIC = true;
+		this.isDadosUsuarioRNE = true;
+		
+		this.isExibirFormEditar = false;
+		this.isEditarFormEditar = true;
+
+		this.isMensagemSelecionarTrabalhadorRendered = false;
+
+		this.enderecoRendered = false;
+		this.hasEndereco = false;
+		this.hasPessoaSelecionada = true;
+		this.desativarCancelarEndereco = true;
+
 	}
 
 	public void cancelarTrabalhadorSelecionado(ActionEvent evt) {
@@ -487,15 +527,14 @@ public class CadastroEmpregadoMB implements Serializable {
 	public void novoTrabalhadorSelecionado(ActionEvent evt) {
 
 	}
-	
+
 	public void imprimirTrabalhadorSelecionado(ActionEvent evt) {
 
 	}
 
 	public void excluirTrabalhadorSelecionado(ActionEvent evt) {
-		
+
 	}
-	
 
 	public void onSelectionEmpregado(Object obj) {
 		try {
@@ -526,14 +565,16 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.trabalhadorSelecionado = null;
 		this.trabalhadorSelecionadoCadastroAtual = null;
 		this.trabalhadorSelecionadoListaCadastroHistorico = null;
-		
+
 		this.isDisabledCancelar = true;
 		this.isDisabledEditar = false;
 		this.isDisabledImprimir = false;
 		this.isDisabledNovo = false;
 		this.isDisabledSalvar = true;
+		
+		this.exibirDadosCadastraisEmpregadoBloco = false;
 
-		this.isEditarDadosCadastrais = true;
+		this.isEditarDadosCadastrais = false;
 		this.isExibirDadosCadastrais = false;
 
 		this.trabalhadorDocumentos = null;
@@ -558,7 +599,7 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.hasRNE = false;
 
 		this.isMensagemSelecionarTrabalhadorRendered = true;
-		
+
 		this.enderecoRendered = false;
 		this.enderecoAtual = null;
 		this.enderecoHistorico = null;
