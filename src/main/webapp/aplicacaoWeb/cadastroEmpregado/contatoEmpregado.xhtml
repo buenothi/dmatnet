@@ -10,7 +10,10 @@
 	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
 
 <ui:composition>
-	<dmat:pessoaFisicaContatosComposite />
+	<dmat:pessoaFisicaContatosComposite
+		dadosUsuarioEmailRendered="#{cadastroEmpregadoMB.emailRendered}" 
+		dadosUsuarioTelefoneRendered="#{cadastroEmpregadoMB.telefoneRendered}"
+		/>
 </ui:composition>
 
 </html>

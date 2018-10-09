@@ -86,6 +86,9 @@ public class CadastroEmpregadoMB implements Serializable {
 	private boolean hasEndereco;
 	private boolean hasPessoaSelecionada;
 	private boolean desativarCancelarEndereco;
+	
+	private boolean isEmailRendered;
+	private boolean isTelefoneRendered;
 
 	/* getters e setter */
 
@@ -455,6 +458,22 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.desativarCancelarEndereco = desativarCancelarEndereco;
 	}
 
+	public boolean isEmailRendered() {
+		return isEmailRendered;
+	}
+
+	public void setEmailRendered(boolean isEmailRendered) {
+		this.isEmailRendered = isEmailRendered;
+	}
+
+	public boolean isTelefoneRendered() {
+		return isTelefoneRendered;
+	}
+
+	public void setTelefoneRendered(boolean isTelefoneRendered) {
+		this.isTelefoneRendered = isTelefoneRendered;
+	}
+
 	public void mudarTipoFiltroListaEmpregados(AjaxBehaviorEvent evt) {
 
 		// teste abaixo ok
@@ -509,10 +528,13 @@ public class CadastroEmpregadoMB implements Serializable {
 
 		this.isMensagemSelecionarTrabalhadorRendered = false;
 
-		this.enderecoRendered = false;
+		this.enderecoRendered = true;
 		this.hasEndereco = false;
 		this.hasPessoaSelecionada = true;
 		this.desativarCancelarEndereco = true;
+		
+		this.isEmailRendered = true;
+		this.isTelefoneRendered = true;
 
 	}
 
@@ -606,6 +628,9 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.hasEndereco = false;
 		this.hasPessoaSelecionada = true;
 		this.desativarCancelarEndereco = true;
+		
+		this.isEmailRendered = true;
+		this.isTelefoneRendered = true;
 	}
 
 }
