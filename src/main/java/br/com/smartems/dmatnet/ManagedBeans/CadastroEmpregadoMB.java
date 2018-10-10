@@ -1,3 +1,4 @@
+
 package br.com.smartems.dmatnet.ManagedBeans;
 
 import java.io.Serializable;
@@ -81,7 +82,9 @@ public class CadastroEmpregadoMB implements Serializable {
 	private boolean isMensagemSelecionarTrabalhadorRendered;
 
 	private boolean enderecoRendered;
+	
 	private EnderecoEntity enderecoAtual;
+	
 	private List<EnderecoEntity> enderecoHistorico;
 	private boolean hasEndereco;
 	private boolean hasPessoaSelecionada;
@@ -419,6 +422,9 @@ public class CadastroEmpregadoMB implements Serializable {
 	}
 
 	public EnderecoEntity getEnderecoAtual() {
+		if(this.enderecoAtual == null) {
+			this.enderecoAtual = new EnderecoEntity();
+		}
 		return enderecoAtual;
 	}
 
