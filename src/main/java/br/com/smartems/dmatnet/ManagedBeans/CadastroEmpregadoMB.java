@@ -86,12 +86,20 @@ public class CadastroEmpregadoMB implements Serializable {
 	private EnderecoEntity enderecoAtual;
 	
 	private List<EnderecoEntity> enderecoHistorico;
+	
 	private boolean hasEndereco;
 	private boolean hasPessoaSelecionada;
+	
 	private boolean desativarCancelarEndereco;
 	
 	private boolean isEmailRendered;
 	private boolean isTelefoneRendered;
+	
+	private boolean hasEmail;
+	private boolean hasTelefone;
+	
+	private boolean isEditarContato;
+	private boolean isExibirContato;
 
 	/* getters e setter */
 
@@ -480,6 +488,38 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.isTelefoneRendered = isTelefoneRendered;
 	}
 
+	public boolean isHasEmail() {
+		return hasEmail;
+	}
+
+	public void setHasEmail(boolean hasEmail) {
+		this.hasEmail = hasEmail;
+	}
+
+	public boolean isHasTelefone() {
+		return hasTelefone;
+	}
+
+	public void setHasTelefone(boolean hasTelefone) {
+		this.hasTelefone = hasTelefone;
+	}
+
+	public boolean isEditarContato() {
+		return isEditarContato;
+	}
+
+	public void setEditarContato(boolean isEditarContato) {
+		this.isEditarContato = isEditarContato;
+	}
+
+	public boolean isExibirContato() {
+		return isExibirContato;
+	}
+
+	public void setExibirContato(boolean isExibirContato) {
+		this.isExibirContato = isExibirContato;
+	}
+
 	public void mudarTipoFiltroListaEmpregados(AjaxBehaviorEvent evt) {
 
 		// teste abaixo ok
@@ -536,11 +576,16 @@ public class CadastroEmpregadoMB implements Serializable {
 
 		this.enderecoRendered = true;
 		this.hasEndereco = false;
-		this.hasPessoaSelecionada = true;
+		this.hasPessoaSelecionada = false;
 		this.desativarCancelarEndereco = true;
+		
+		this.isMensagemSelecionarTrabalhadorRendered = false;
 		
 		this.isEmailRendered = true;
 		this.isTelefoneRendered = true;
+		
+		this.isEditarContato = true;
+		this.isExibirContato = false;
 
 	}
 
@@ -635,8 +680,17 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.hasPessoaSelecionada = true;
 		this.desativarCancelarEndereco = true;
 		
-		this.isEmailRendered = true;
-		this.isTelefoneRendered = true;
+		this.isEmailRendered = false;
+		this.isTelefoneRendered = false;
+		
+		this.isMensagemSelecionarTrabalhadorRendered = true;
+		
+		this.hasEmail = false;
+		this.hasTelefone = false;
+		
+		this.isEditarContato = false;
+		this.isExibirContato = false;
+		
 	}
 
 }

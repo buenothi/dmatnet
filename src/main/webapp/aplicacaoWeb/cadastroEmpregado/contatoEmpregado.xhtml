@@ -10,10 +10,48 @@
 	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
 
 <ui:composition>
-	<dmat:pessoaFisicaContatosComposite
-		dadosUsuarioEmailRendered="#{cadastroEmpregadoMB.emailRendered}" 
+	<dmat:pessoaFisicaContatosComposite id="pfcEmpregado"
+		mensagemHasEmailRendered="#{cadastroEmpregadoMB.hasEmail}"
+		mensagemHasTelefoneRendered="#{cadastroEmpregadoMB.hasTelefone}"
+		dadosUsuarioEmailRendered="#{cadastroEmpregadoMB.emailRendered}"
 		dadosUsuarioTelefoneRendered="#{cadastroEmpregadoMB.telefoneRendered}"
-		/>
+		editarRendered="#{cadastroEmpregadoMB.editarContato}" 
+		exibirRendered="#{cadastroEmpregadoMB.exibirContato}" 
+		mensagemSelecionarUsuarioRendered="#{cadastroEmpregadoMB.mensagemSelecionarTrabalhadorRendered}" />
+	<!-- actionListenerAdicionarEmailContato=""
+		actionListenerNovoEmailContato=""
+		actionListenerAdicionarTelefoneContato=""
+		actionListenerRemoverEmailLista=""
+		actionListenerRemoverTelefoneLista=""
+		
+		disabledBotaoAdicionarEmail=""
+		disabledBotaoNovoEmail=""
+		
+		editarRendered=""
+		exibirRendered=""
+		
+		emailPrincipal=""
+		
+		listaEmailsUsuarios=""
+		listaTelefonesUsuarios=""
+
+		
+		mensagemRendered="true"
+		
+		
+		requiredEmail=""
+		
+		setPropertyActionListenerRemoverContato=""
+		setPropertyActionListenerRemoverEmail=""
+		
+		stringEmailUsuario=""
+		telefonePrincipal=""
+		
+		updateAdicionarEmailContato="" 
+		updateAdicionarTelefoneContato=""
+		updateRemoverEmailLista=""
+		updateRemoverTelefoneLista=""/> -->
+
 </ui:composition>
 
 </html>
