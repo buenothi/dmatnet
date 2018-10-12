@@ -11,36 +11,25 @@
 
 <ui:composition>
 	<dmat:pessoaFisicaContatosComposite id="pfcEmpregado"
+		emailPrincipal="#{cadastroEmpregadoMB.emailPrincipal}"
+		listaEmailsUsuarios="#{cadastroEmpregadoMB.emailsTrabalhadores}"
+		listaTelefonesUsuarios="#{cadastroEmpregadoMB.telefonesTrabalhadores}"
 		mensagemHasEmailRendered="#{cadastroEmpregadoMB.hasEmail}"
 		mensagemHasTelefoneRendered="#{cadastroEmpregadoMB.hasTelefone}"
 		dadosUsuarioEmailRendered="#{cadastroEmpregadoMB.emailRendered}"
 		dadosUsuarioTelefoneRendered="#{cadastroEmpregadoMB.telefoneRendered}"
-		editarRendered="#{cadastroEmpregadoMB.editarContato}" 
-		exibirRendered="#{cadastroEmpregadoMB.exibirContato}" 
-		mensagemSelecionarUsuarioRendered="#{cadastroEmpregadoMB.mensagemSelecionarTrabalhadorRendered}" />
-	<!-- actionListenerAdicionarEmailContato=""
-		actionListenerNovoEmailContato=""
-		actionListenerAdicionarTelefoneContato=""
-		actionListenerRemoverEmailLista=""
-		actionListenerRemoverTelefoneLista=""
-		
-		disabledBotaoAdicionarEmail=""
-		disabledBotaoNovoEmail=""
-		
-		editarRendered=""
-		exibirRendered=""
-		
-		emailPrincipal=""
-		
-		listaEmailsUsuarios=""
-		listaTelefonesUsuarios=""
-
-		
+		editarRendered="#{cadastroEmpregadoMB.editarContato}"
+		exibirRendered="#{cadastroEmpregadoMB.exibirContato}"
+		mensagemSelecionarUsuarioRendered="#{cadastroEmpregadoMB.mensagemSelecionarTrabalhadorRendered}"
 		mensagemRendered="true"
-		
-		
-		requiredEmail=""
-		
+		actionListenerAdicionarEmailContato="#{cadastroEmpregadoMB.adicionarEmailEmpregado}"
+		actionListenerNovoEmailContato="#{cadastroEmpregadoMB.novoEmailEmpregado}"
+		actionListenerAdicionarTelefoneContato="#{cadastroEmpregadoMB.adicionarTelefoneEmpregado}"
+		actionListenerRemoverEmailLista="#{cadastroEmpregadoMB.removerEmailLista}"
+		actionListenerRemoverTelefoneLista="#{cadastroEmpregadoMB.removerTelefoneLista}"
+		disabledBotaoAdicionarEmail="#{cadastroEmpregadoMB.disabledBotaoAddEmail}" 
+		disabledBotaoNovoEmail="#{cadastroEmpregadoMB.disabledBotaoNovoEmail}" />
+	<!-- 
 		setPropertyActionListenerRemoverContato=""
 		setPropertyActionListenerRemoverEmail=""
 		

@@ -14,7 +14,9 @@ import javax.faces.event.AjaxBehaviorEvent;
 
 import org.primefaces.event.SelectEvent;
 
+import br.com.smartems.dmatnet.entities.pessoa.EmailEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
+import br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.PessoaFisicaDocumentosEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEntity;
@@ -82,24 +84,32 @@ public class CadastroEmpregadoMB implements Serializable {
 	private boolean isMensagemSelecionarTrabalhadorRendered;
 
 	private boolean enderecoRendered;
-	
+
 	private EnderecoEntity enderecoAtual;
-	
+
 	private List<EnderecoEntity> enderecoHistorico;
-	
+
 	private boolean hasEndereco;
 	private boolean hasPessoaSelecionada;
-	
+
 	private boolean desativarCancelarEndereco;
-	
+
 	private boolean isEmailRendered;
 	private boolean isTelefoneRendered;
-	
+
 	private boolean hasEmail;
 	private boolean hasTelefone;
-	
+
 	private boolean isEditarContato;
 	private boolean isExibirContato;
+
+	private EmailEntity emailPrincipal;
+	private List<EmailEntity> emailsTrabalhadores;
+	private List<TelefoneEntity> telefonesTrabalhadores;
+	
+	private boolean disabledBotaoAddEmail;
+	private boolean disabledBotaoNovoEmail;
+	
 
 	/* getters e setter */
 
@@ -430,7 +440,7 @@ public class CadastroEmpregadoMB implements Serializable {
 	}
 
 	public EnderecoEntity getEnderecoAtual() {
-		if(this.enderecoAtual == null) {
+		if (this.enderecoAtual == null) {
 			this.enderecoAtual = new EnderecoEntity();
 		}
 		return enderecoAtual;
@@ -520,6 +530,55 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.isExibirContato = isExibirContato;
 	}
 
+	public EmailEntity getEmailPrincipal() {
+		if (this.emailPrincipal == null) {
+			this.emailPrincipal = new EmailEntity();
+		}
+		return emailPrincipal;
+	}
+
+	public void setEmailPrincipal(EmailEntity emailPrincipal) {
+		this.emailPrincipal = emailPrincipal;
+	}
+
+	public List<EmailEntity> getEmailsTrabalhadores() {
+		if (this.emailsTrabalhadores == null) {
+			this.emailsTrabalhadores = new ArrayList<>();
+		}
+		return emailsTrabalhadores;
+	}
+
+	public void setEmailsTrabalhadores(List<EmailEntity> emailsTrabalhadores) {
+		this.emailsTrabalhadores = emailsTrabalhadores;
+	}
+
+	public List<TelefoneEntity> getTelefonesTrabalhadores() {
+		if (this.telefonesTrabalhadores == null) {
+			this.telefonesTrabalhadores = new ArrayList<>();
+		}
+		return telefonesTrabalhadores;
+	}
+
+	public void setTelefonesTrabalhadores(List<TelefoneEntity> telefonesTrabalhadores) {
+		this.telefonesTrabalhadores = telefonesTrabalhadores;
+	}
+
+	public boolean isDisabledBotaoAddEmail() {
+		return disabledBotaoAddEmail;
+	}
+
+	public void setDisabledBotaoAddEmail(boolean disabledBotaoAddEmail) {
+		this.disabledBotaoAddEmail = disabledBotaoAddEmail;
+	}
+
+	public boolean isDisabledBotaoNovoEmail() {
+		return disabledBotaoNovoEmail;
+	}
+
+	public void setDisabledBotaoNovoEmail(boolean disabledBotaoNovoEmail) {
+		this.disabledBotaoNovoEmail = disabledBotaoNovoEmail;
+	}
+
 	public void mudarTipoFiltroListaEmpregados(AjaxBehaviorEvent evt) {
 
 		// teste abaixo ok
@@ -549,7 +608,7 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.exibirDadosCadastraisEmpregado = true;
 
 		this.exibirDadosCadastraisEmpregadoBloco = true;
-		
+
 		this.isEditarDadosCadastrais = true;
 		this.isExibirDadosCadastrais = false;
 
@@ -560,7 +619,7 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.hasRG = false;
 		this.hasRIC = false;
 		this.hasRNE = false;
-		
+
 		this.isDadosUsuarioCTPS = true;
 		this.isDadosUsuarioCNH = true;
 		this.isDadosUsuarioCPF = true;
@@ -568,7 +627,7 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.isDadosUsuarioRG = true;
 		this.isDadosUsuarioRIC = true;
 		this.isDadosUsuarioRNE = true;
-		
+
 		this.isExibirFormEditar = false;
 		this.isEditarFormEditar = true;
 
@@ -578,12 +637,12 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.hasEndereco = false;
 		this.hasPessoaSelecionada = false;
 		this.desativarCancelarEndereco = true;
-		
+
 		this.isMensagemSelecionarTrabalhadorRendered = false;
-		
+
 		this.isEmailRendered = true;
 		this.isTelefoneRendered = true;
-		
+
 		this.isEditarContato = true;
 		this.isExibirContato = false;
 
@@ -622,7 +681,28 @@ public class CadastroEmpregadoMB implements Serializable {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public void adicionarEmailEmpregado() {
+		
+	}
+	
+	public void novoEmailEmpregado() {
+		
+	}
+	
+	public void removerEmailLista() {
+		
+	}
+	
+	public void adicionarTelefoneEmpregado() {
+		
+	}
+	
+	public void removerTelefoneLista() {
+		
+	}
+	
+	
 	@PostConstruct
 	public void initEmpregado() {
 		this.usuarioMB = null;
@@ -644,7 +724,7 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.isDisabledImprimir = false;
 		this.isDisabledNovo = false;
 		this.isDisabledSalvar = true;
-		
+
 		this.exibirDadosCadastraisEmpregadoBloco = false;
 
 		this.isEditarDadosCadastrais = false;
@@ -679,18 +759,25 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.hasEndereco = false;
 		this.hasPessoaSelecionada = true;
 		this.desativarCancelarEndereco = true;
-		
+
 		this.isEmailRendered = false;
 		this.isTelefoneRendered = false;
-		
+
 		this.isMensagemSelecionarTrabalhadorRendered = true;
-		
+
 		this.hasEmail = false;
 		this.hasTelefone = false;
-		
+
 		this.isEditarContato = false;
 		this.isExibirContato = false;
+
+		this.emailPrincipal = null;
+		this.emailsTrabalhadores = null;
+		this.telefonesTrabalhadores = null;
 		
+		this.disabledBotaoAddEmail = true;
+		this.disabledBotaoNovoEmail = false;
+
 	}
 
 }
