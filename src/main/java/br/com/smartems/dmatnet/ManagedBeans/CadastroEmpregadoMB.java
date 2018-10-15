@@ -14,12 +14,15 @@ import javax.faces.event.AjaxBehaviorEvent;
 
 import org.primefaces.event.SelectEvent;
 
+import br.com.smartems.dmatnet.entities.ClassificacaoFuncional.ClassificacaoFuncionalEntity;
+import br.com.smartems.dmatnet.entities.LevAmbientais.GHEEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EmailEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.PessoaFisicaDocumentosEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.Funcao;
 
 @ManagedBean
 @SessionScoped
@@ -106,10 +109,13 @@ public class CadastroEmpregadoMB implements Serializable {
 	private EmailEntity emailPrincipal;
 	private List<EmailEntity> emailsTrabalhadores;
 	private List<TelefoneEntity> telefonesTrabalhadores;
-	
+
 	private boolean disabledBotaoAddEmail;
 	private boolean disabledBotaoNovoEmail;
-	
+
+	private List<ClassificacaoFuncionalEntity> classificacoesFuncionais;
+	private List<Funcao> funcoes;
+	private List<GHEEntity> ghes;
 
 	/* getters e setter */
 
@@ -579,6 +585,39 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.disabledBotaoNovoEmail = disabledBotaoNovoEmail;
 	}
 
+	public List<ClassificacaoFuncionalEntity> getClassificacoesFuncionais() {
+		if (this.classificacoesFuncionais == null) {
+			this.classificacoesFuncionais = new ArrayList<ClassificacaoFuncionalEntity>();
+		}
+		return classificacoesFuncionais;
+	}
+
+	public void setClassificacoesFuncionais(List<ClassificacaoFuncionalEntity> classificacoesFuncionais) {
+		this.classificacoesFuncionais = classificacoesFuncionais;
+	}
+
+	public List<Funcao> getFuncoes() {
+		if (this.funcoes == null) {
+			this.funcoes = new ArrayList<Funcao>();
+		}
+		return funcoes;
+	}
+
+	public void setFuncoes(List<Funcao> funcoes) {
+		this.funcoes = funcoes;
+	}
+
+	public List<GHEEntity> getGhes() {
+		return ghes;
+	}
+
+	public void setGhes(List<GHEEntity> ghes) {
+		if (this.ghes == null) {
+			this.ghes = new ArrayList<GHEEntity>();
+		}
+		this.ghes = ghes;
+	}
+
 	public void mudarTipoFiltroListaEmpregados(AjaxBehaviorEvent evt) {
 
 		// teste abaixo ok
@@ -681,28 +720,27 @@ public class CadastroEmpregadoMB implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void adicionarEmailEmpregado() {
-		
+
 	}
-	
+
 	public void novoEmailEmpregado() {
-		
+
 	}
-	
+
 	public void removerEmailLista() {
-		
+
 	}
-	
+
 	public void adicionarTelefoneEmpregado() {
-		
+
 	}
-	
+
 	public void removerTelefoneLista() {
-		
+
 	}
-	
-	
+
 	@PostConstruct
 	public void initEmpregado() {
 		this.usuarioMB = null;
@@ -774,7 +812,7 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.emailPrincipal = null;
 		this.emailsTrabalhadores = null;
 		this.telefonesTrabalhadores = null;
-		
+
 		this.disabledBotaoAddEmail = true;
 		this.disabledBotaoNovoEmail = false;
 
