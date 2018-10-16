@@ -118,31 +118,36 @@
 					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pnlDadosCadastraisEmpregado, 
 					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfdTrabalhador:pnlDocumentosPessoaFisica, 
 					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfeTrabalhador:pnlEnderecoUsuario,
-					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfcEmpregado:pnlContatosUsuario"
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfcEmpregado:pnlContatosUsuario, 
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:tcfClassFuncionalEmpregado:pnlClasFuncional"
 				updateCancelar="formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesEmpregados:tbrBotoes,
 					formModulos:formCadEmpresa:tbwCadastroEmpresa:dtbEmpregados,
 					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pnlDadosCadastraisEmpregado, 
 					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfdTrabalhador:pnlDocumentosPessoaFisica, 
 					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfeTrabalhador:pnlEnderecoUsuario,
-					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfcEmpregado:pnlContatosUsuario"
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfcEmpregado:pnlContatosUsuario, 
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:tcfClassFuncionalEmpregado:pnlClasFuncional"
 				updateImprimir="formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesEmpregados:tbrBotoes,
 					formModulos:formCadEmpresa:tbwCadastroEmpresa:dtbEmpregados,
 					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pnlDadosCadastraisEmpregado, 
 					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfdTrabalhador:pnlDocumentosPessoaFisica, 
 					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfeTrabalhador:pnlEnderecoUsuario,
-					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfcEmpregado:pnlContatosUsuario"
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfcEmpregado:pnlContatosUsuario, 
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:tcfClassFuncionalEmpregado:pnlClasFuncional"
 				updateNovo="formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesEmpregados:tbrBotoes,
 					formModulos:formCadEmpresa:tbwCadastroEmpresa:dtbEmpregados,
 					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pnlDadosCadastraisEmpregado, 
 					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfdTrabalhador:pnlDocumentosPessoaFisica, 
 					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfeTrabalhador:pnlEnderecoUsuario,
-					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfcEmpregado:pnlContatosUsuario"
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfcEmpregado:pnlContatosUsuario, 
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:tcfClassFuncionalEmpregado:pnlClasFuncional"
 				updateSalvar="formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesEmpregados:tbrBotoes,
 					formModulos:formCadEmpresa:tbwCadastroEmpresa:dtbEmpregados,
 					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pnlDadosCadastraisEmpregado, 
 					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfdTrabalhador:pnlDocumentosPessoaFisica, 
 					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfeTrabalhador:pnlEnderecoUsuario,
-					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfcEmpregado:pnlContatosUsuario" />
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfcEmpregado:pnlContatosUsuario, 
+					formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:tcfClassFuncionalEmpregado:pnlClasFuncional" />
 
 			<p:tabView id="tbwCadastroEmpregado"
 				rendered="#{cadastroEmpregadoMB.exibirDadosCadastraisEmpregado}">
@@ -166,7 +171,7 @@
 					<ui:include
 						src="/aplicacaoWeb/cadastroEmpregado/classificacaoFuncionalEmpregado.xhtml" />
 				</p:tab>
-				<p:tab title="#{msgs.InfoDeficiencia}" disabled="">
+				<p:tab title="#{msgs.InfoDeficiencia}" >
 					<ui:include
 						src="/aplicacaoWeb/cadastroEmpregado/infoDeficienciaEmpregado.xhtml" />
 				</p:tab>

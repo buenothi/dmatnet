@@ -11,14 +11,23 @@
 
 <ui:composition>
 	<dmat:trabalhadorClassificacaoFuncionalComposite
-		id="tcfClassFuncionalEmpregado" />
-	<!-- 	actionListenerAdicionarClassFuncional="" 
-		actionListenerCancelarClassFuncional=""
-		listaClassFuncional=""
-		listaFuncoesEstabelecimentoSelecionado=""
-		listaGHEEstabelecimentoSelecionado=""
+		id="tcfClassFuncionalEmpregado"
+		novaClassificacaoFuncional="#{cadastroEmpregadoMB.novaClassificacaoFuncional}"
+		listaEstabelecimentos="#{cadastroEmpregadoMB.locais}"
 		listaSetoresEstabelecimentoSelecionado=""
-		mensagemRendered=""
+		listaClassFuncional="#{cadastroEmpregadoMB.classificacoesFuncionais}"
+		listaFuncoesEstabelecimentoSelecionado="#{cadastroEmpregadoMB.funcoes}"
+		listaGHEEstabelecimentoSelecionado="#{cadastroEmpregadoMB.ghes}"
+		mensagemRendered="true"
+		actionListenerAdicionarClassFuncional="#{cadastroEmpregadoMB.adicionarClassFuncional}"
+		actionListenerCancelarClassFuncional="#{cadastroEmpregadoMB.cancelarClassFuncional}"
+		actionListenerRemoverClassFuncionalLista ="#{cadastroEmpregadoMB.removerClassFuncionalLista}"
+		editarRendered="#{cadastroEmpregadoMB.editarClassFuncionalRendered}" 
+		mensagemHasClassFuncional="#{cadastroEmpregadoMB.hasClassFuncional}"
+		mensagemSelecionarPessoaRendered="#{cadastroEmpregadoMB.mensagemSelecionarTrabalhadorRendered}"
+		blocoRendered="#{cadastroEmpregadoMB.classFuncionalBlocoRendered}"/>
+
+	<!-- 			
 		onCompleteNovo=""
 		updateNovo="" /> -->
 </ui:composition>

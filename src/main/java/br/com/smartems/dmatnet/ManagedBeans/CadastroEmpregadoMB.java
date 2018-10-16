@@ -16,6 +16,7 @@ import org.primefaces.event.SelectEvent;
 
 import br.com.smartems.dmatnet.entities.ClassificacaoFuncional.ClassificacaoFuncionalEntity;
 import br.com.smartems.dmatnet.entities.LevAmbientais.GHEEntity;
+import br.com.smartems.dmatnet.entities.LocalTrabalho.LocalTrabalhoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EmailEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity;
@@ -113,9 +114,15 @@ public class CadastroEmpregadoMB implements Serializable {
 	private boolean disabledBotaoAddEmail;
 	private boolean disabledBotaoNovoEmail;
 
+	private boolean isEditarClassFuncionalRendered;
+	private boolean hasClassFuncional;
+	private boolean classFuncionalBlocoRendered;
+
 	private List<ClassificacaoFuncionalEntity> classificacoesFuncionais;
 	private List<Funcao> funcoes;
 	private List<GHEEntity> ghes;
+	private List<LocalTrabalhoEntity> locais;
+	private ClassificacaoFuncionalEntity novaClassificacaoFuncional;
 
 	/* getters e setter */
 
@@ -218,6 +225,9 @@ public class CadastroEmpregadoMB implements Serializable {
 	}
 
 	public TrabalhadorCadastroEntity getTrabalhadorSelecionadoCadastroAtual() {
+		if (this.trabalhadorSelecionadoCadastroAtual == null) {
+			this.trabalhadorSelecionadoCadastroAtual = new TrabalhadorCadastroEntity();
+		}
 		return trabalhadorSelecionadoCadastroAtual;
 	}
 
@@ -226,6 +236,9 @@ public class CadastroEmpregadoMB implements Serializable {
 	}
 
 	public List<TrabalhadorCadastroEntity> getTrabalhadorSelecionadoListaCadastroHistorico() {
+		if (this.trabalhadorSelecionadoListaCadastroHistorico == null) {
+			trabalhadorSelecionadoListaCadastroHistorico = new ArrayList<TrabalhadorCadastroEntity>();
+		}
 		return trabalhadorSelecionadoListaCadastroHistorico;
 	}
 
@@ -585,6 +598,30 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.disabledBotaoNovoEmail = disabledBotaoNovoEmail;
 	}
 
+	public boolean isEditarClassFuncionalRendered() {
+		return isEditarClassFuncionalRendered;
+	}
+
+	public void setEditarClassFuncionalRendered(boolean isEditarClassFuncionalRendered) {
+		this.isEditarClassFuncionalRendered = isEditarClassFuncionalRendered;
+	}
+
+	public boolean isHasClassFuncional() {
+		return hasClassFuncional;
+	}
+
+	public void setHasClassFuncional(boolean hasClassFuncional) {
+		this.hasClassFuncional = hasClassFuncional;
+	}
+
+	public boolean isClassFuncionalBlocoRendered() {
+		return classFuncionalBlocoRendered;
+	}
+
+	public void setClassFuncionalBlocoRendered(boolean classFuncionalBlocoRendered) {
+		this.classFuncionalBlocoRendered = classFuncionalBlocoRendered;
+	}
+
 	public List<ClassificacaoFuncionalEntity> getClassificacoesFuncionais() {
 		if (this.classificacoesFuncionais == null) {
 			this.classificacoesFuncionais = new ArrayList<ClassificacaoFuncionalEntity>();
@@ -616,6 +653,28 @@ public class CadastroEmpregadoMB implements Serializable {
 			this.ghes = new ArrayList<GHEEntity>();
 		}
 		this.ghes = ghes;
+	}
+
+	public List<LocalTrabalhoEntity> getLocais() {
+		if (this.locais == null) {
+			this.locais = new ArrayList<LocalTrabalhoEntity>();
+		}
+		return locais;
+	}
+
+	public void setLocais(List<LocalTrabalhoEntity> locais) {
+		this.locais = locais;
+	}
+
+	public ClassificacaoFuncionalEntity getNovaClassificacaoFuncional() {
+		if (this.novaClassificacaoFuncional == null) {
+			this.novaClassificacaoFuncional = new ClassificacaoFuncionalEntity();
+		}
+		return novaClassificacaoFuncional;
+	}
+
+	public void setNovaClassificacaoFuncional(ClassificacaoFuncionalEntity novaClassificacaoFuncional) {
+		this.novaClassificacaoFuncional = novaClassificacaoFuncional;
 	}
 
 	public void mudarTipoFiltroListaEmpregados(AjaxBehaviorEvent evt) {
@@ -685,6 +744,11 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.isEditarContato = true;
 		this.isExibirContato = false;
 
+		this.hasClassFuncional = false;
+		this.classFuncionalBlocoRendered = true;
+
+		this.isEditarClassFuncionalRendered = true;
+
 	}
 
 	public void cancelarTrabalhadorSelecionado(ActionEvent evt) {
@@ -721,23 +785,35 @@ public class CadastroEmpregadoMB implements Serializable {
 		}
 	}
 
-	public void adicionarEmailEmpregado() {
+	public void adicionarEmailEmpregado(ActionEvent evt) {
 
 	}
 
-	public void novoEmailEmpregado() {
+	public void novoEmailEmpregado(ActionEvent evt) {
 
 	}
 
-	public void removerEmailLista() {
+	public void removerEmailLista(ActionEvent evt) {
 
 	}
 
-	public void adicionarTelefoneEmpregado() {
+	public void adicionarTelefoneEmpregado(ActionEvent evt) {
 
 	}
 
-	public void removerTelefoneLista() {
+	public void removerTelefoneLista(ActionEvent evt) {
+
+	}
+
+	public void adicionarClassFuncional(ActionEvent evt) {
+
+	}
+
+	public void cancelarClassFuncional(ActionEvent evt) {
+
+	}
+
+	public void removerClassFuncionalLista(ActionEvent evt) {
 
 	}
 
@@ -816,6 +892,15 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.disabledBotaoAddEmail = true;
 		this.disabledBotaoNovoEmail = false;
 
+		this.isEditarClassFuncionalRendered = false;
+		this.hasClassFuncional = false;
+		this.classFuncionalBlocoRendered = false;
+
+		this.classificacoesFuncionais = null;
+		this.funcoes = null;
+		this.ghes = null;
+		this.locais = null;
+		this.novaClassificacaoFuncional = null;
 	}
 
 }

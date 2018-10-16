@@ -9,11 +9,17 @@
 <composite:interface>
 	<composite:attribute name="mensagemRendered" />
 
-	<composite:actionSource name="mensagemHasClassFuncional" />
+	<composite:attribute name="mensagemHasClassFuncional" />
 
-	<composite:actionSource name="mensagemSelecionarPessoaRendered" />
+	<composite:attribute name="mensagemSelecionarPessoaRendered" />
+
+	<composite:attribute name="blocoRendered" />
+
+	<composite:attribute name="editarRendered" />
 
 	<composite:attribute name="listaClassFuncional" />
+
+	<composite:attribute name="listaEstabelecimentos" />
 
 	<composite:attribute name="listaSetoresEstabelecimentoSelecionado" />
 
@@ -23,9 +29,15 @@
 
 	<composite:attribute name="actionListenerAdicionarClassFuncional"
 		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
-		
+
+	<composite:attribute name="actionListenerRemoverClassFuncionalLista"
+		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+
 	<composite:attribute name="actionListenerCancelarClassFuncional"
 		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+
+	<composite:attribute name="novaClassificacaoFuncional"
+		type="br.com.smartems.dmatnet.entities.ClassificacaoFuncional.ClassificacaoFuncionalEntity" />
 
 	<composite:attribute name="updateNovo" />
 	<composite:attribute name="onCompleteNovo" />
@@ -43,17 +55,18 @@
 		<p:outputLabel value="#{msgs.MensagemHasClassFuncional}"
 			rendered="#{cc.attrs.mensagemHasClassFuncional}" />
 
-		<h:panelGroup id="pngClassFuncionalBloco" layout="block">
+		<h:panelGroup id="pngClassFuncionalBloco" layout="block"
+			rendered="#{cc.attrs.blocoRendered}">
 
 			<p:panelGrid columns="1" style="display:block"
 				styleClass="tabelaSemBorda">
 
 				<p:commandButton id="btnNovaClassFuncional"
 					value="#{msgs.NovaClassFuncional}" styleClass="botoes"
-					icon="fa fa-plus"
-					update="#{cc.attrs.updateNovo}"
+					icon="fa fa-plus" update="#{cc.attrs.updateNovo}"
 					onclick="PF('novoClassFuncionalDialog').show()"
-					oncomplete="#{cc.attrs.onCompleteNovo}" />
+					oncomplete="#{cc.attrs.onCompleteNovo}"
+					rendered="#{cc.attrs.editarRendered}" />
 
 				<p:dataTable paginator="true" rows="2" scrollable="true"
 					styleClass="dataTable"
@@ -180,7 +193,7 @@
 
 					<p:column width="25" rendered="#{cc.attrs.editarRendered}">
 						<p:commandButton icon="fa fa-trash"
-							actionListener="#{cc.attrs.actionListenerRemoverEmailLista}"
+							actionListener="#{cc.attrs.actionListenerRemoverClassFuncionalLista}"
 							update="#{cc.attrs.updateRemoverEmailLista}" immediate="true">
 							<f:setPropertyActionListener value="#{email}"
 								target="#{cc.attrs.setPropertyActionListenerRemoverEmail}" />
@@ -208,7 +221,8 @@
 				</p:column>
 				<p:column colspan="2">
 					<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-						pattern="dd/MM/yyyy" mask="true" size="8" />
+						pattern="dd/MM/yyyy" mask="true" size="8"
+						value="#{cc.attrs.novaClassificacaoFuncional.dataInicio}" />
 				</p:column>
 			</p:row>
 			<p:row>
@@ -217,7 +231,8 @@
 				</p:column>
 				<p:column colspan="2">
 					<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-						pattern="dd/MM/yyyy" mask="true" size="8" />
+						pattern="dd/MM/yyyy" mask="true" size="8"
+						value="#{cc.attrs.novaClassificacaoFuncional.dataTermino}" />
 				</p:column>
 			</p:row>
 			<p:row>
@@ -227,12 +242,13 @@
 				<p:column>
 					<p:selectOneMenu id="listEstabelecimentoClassNovo"
 						panelStyle="width:150px" effect="fade" style="width:300px"
-						immediate="true">
+						immediate="true"
+						value="#{cc.attrs.novaClassificacaoFuncional.local}">
 						<!-- <p:ajax event="itemSelect" listener="#" update="#" /> -->
-						<f:selectItem itemValue="#{classFuncional.local.numInscricao}" />
+						<f:selectItem
+							itemValue="#{cc.attrs.novaClassificacaoFuncional.local.numInscricao}" />
 						<f:selectItem itemLabel="--------------" noSelectionOption="true" />
-						<f:selectItems
-							value="#{cc.attrs.listaSetoresEstabelecimentoSelecionado}"
+						<f:selectItems value="#{cc.attrs.listaEstabelecimentos}"
 							var="local" itemLabel="#{local.numInscricao}"
 							itemValue="#{local}" />
 					</p:selectOneMenu>
@@ -247,14 +263,15 @@
 				</p:column>
 				<p:column>
 					<p:selectOneMenu id="listSetorClassNovo" panelStyle="width:150px"
-						effect="fade" style="width:300px" immediate="true">
+						effect="fade" style="width:300px" immediate="true"
+						value="#{cc.attrs.novaClassificacaoFuncional.setor}">
 						<!-- <p:ajax event="itemSelect" listener="#" update="#" /> -->
-						<f:selectItem itemValue="#{classFuncional.local.numInscricao}" />
+						<f:selectItem
+							itemValue="#{cc.attrs.novaClassificacaoFuncional.setor.setorNome}" />
 						<f:selectItem itemLabel="--------------" noSelectionOption="true" />
 						<f:selectItems
 							value="#{cc.attrs.listaSetoresEstabelecimentoSelecionado}"
-							var="local" itemLabel="#{local.numInscricao}"
-							itemValue="#{local}" />
+							var="setor" itemLabel="#{setor.setorNome}" itemValue="#{setor}" />
 					</p:selectOneMenu>
 				</p:column>
 				<p:column>
@@ -267,14 +284,16 @@
 				</p:column>
 				<p:column>
 					<p:selectOneMenu id="listFuncaoClassNovo" panelStyle="width:150px"
-						effect="fade" style="width:300px" immediate="true">
+						effect="fade" style="width:300px" immediate="true"
+						value="#{cc.attrs.novaClassificacaoFuncional.funcao}">
 						<!-- <p:ajax event="itemSelect" listener="#" update="#" /> -->
-						<f:selectItem itemValue="#{classFuncional.local.numInscricao}" />
+						<f:selectItem
+							itemValue="#{cc.attrs.novaClassificacaoFuncional.funcao.funcaoNome}" />
 						<f:selectItem itemLabel="--------------" noSelectionOption="true" />
 						<f:selectItems
-							value="#{cc.attrs.listaSetoresEstabelecimentoSelecionado}"
-							var="local" itemLabel="#{local.numInscricao}"
-							itemValue="#{local}" />
+							value="#{cc.attrs.listaFuncoesEstabelecimentoSelecionado}"
+							var="funcao" itemLabel="#{funcao.funcaoNome}"
+							itemValue="#{funcaol}" />
 					</p:selectOneMenu>
 				</p:column>
 				<p:column>
@@ -287,14 +306,15 @@
 				</p:column>
 				<p:column>
 					<p:selectOneMenu id="listGHEClassNovo" panelStyle="width:150px"
-						effect="fade" style="width:300px" immediate="true">
+						effect="fade" style="width:300px" immediate="true"
+						value="#{cc.attrs.novaClassificacaoFuncional.ghe}">
 						<!-- <p:ajax event="itemSelect" listener="#" update="#" /> -->
-						<f:selectItem itemValue="#{classFuncional.local.numInscricao}" />
+						<f:selectItem
+							itemValue="#{cc.attrs.novaClassificacaoFuncional.ghe.nomeGHE}" />
 						<f:selectItem itemLabel="--------------" noSelectionOption="true" />
 						<f:selectItems
-							value="#{cc.attrs.listaSetoresEstabelecimentoSelecionado}"
-							var="local" itemLabel="#{local.numInscricao}"
-							itemValue="#{local}" />
+							value="#{cc.attrs.listaGHEEstabelecimentoSelecionado}" var="ghe"
+							itemLabel="#{ghe.nomeGHE}" itemValue="#{ghe}" />
 					</p:selectOneMenu>
 				</p:column>
 				<p:column>
@@ -308,11 +328,11 @@
 		<p:toolbar id="tbrBotoes">
 			<f:facet name="left">
 				<p:commandButton value="#{msgs.Adicionar}" type="button"
-					styleClass="ui-confirmdialog-yes" icon="fa fa-save" 
-					actionListener="#{cc.attrs.actionListenerAdicionarClassFuncional}"/>
+					styleClass="ui-confirmdialog-yes" icon="fa fa-save"
+					actionListener="#{cc.attrs.actionListenerAdicionarClassFuncional}" />
 				<p:commandButton value="#{msgs.Cancelar}" type="button"
-					styleClass="ui-confirmdialog-no" icon="ui-icon-close" 
-					actionListener="#{cc.attrs.actionListenerCancelarClassFuncional}"/>
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close"
+					actionListener="#{cc.attrs.actionListenerCancelarClassFuncional}" />
 			</f:facet>
 		</p:toolbar>
 	</p:dialog>
