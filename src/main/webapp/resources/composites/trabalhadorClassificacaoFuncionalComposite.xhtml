@@ -47,7 +47,9 @@
 	<p:panel id="pnlClasFuncional" header="#{msgs.ClassificacaoFuncional}"
 		closable="false">
 		<p:messages id="msClassFuncional" showDetail="true" closable="true"
-			rendered="#{cc.attrs.mensagemRendered}" />
+			rendered="#{cc.attrs.mensagemRendered}" for="pngClassFuncionalBloco">
+			<p:autoUpdate />
+		</p:messages>
 
 		<p:outputLabel value="#{msgs.MensagemSelecionarPessoa}"
 			rendered="#{cc.attrs.mensagemSelecionarPessoaRendered}" />

@@ -49,9 +49,11 @@
 <composite:implementation>
 
 	<p:panel id="pnlEnderecoUsuario" header="#{msgs.Endereco}"
-		closable="false" >
+		closable="false">
 		<p:messages id="msEmail" showDetail="true" closable="true"
-			rendered="#{cc.attrs.mensagemRendered}" />
+			rendered="#{cc.attrs.mensagemRendered}" for="pnlEnderecoUsuario">
+			<p:autoUpdate />
+		</p:messages>
 
 		<p:outputLabel value="#{msgs.MensagemSelecionarPessoa}"
 			rendered="#{cc.attrs.mensagemSelecionarPessoaRendered}" />

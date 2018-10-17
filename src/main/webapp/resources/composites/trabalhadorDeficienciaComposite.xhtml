@@ -28,7 +28,9 @@
 	<p:panel id="pnlClasFuncional" header="#{msgs.InfoDeficiencia}"
 		closable="false">
 		<p:messages id="msDeficiencia" showDetail="true" closable="true"
-			rendered="#{cc.attrs.mensagemRendered}" />
+			rendered="#{cc.attrs.mensagemRendered}" for="pngEmpregadoDeficienciaEditar" >
+			<p:autoUpdate/>
+		</p:messages>
 
 		<h:panelGroup id="pngEmpregadoDeficienciaEditar" layout="block"
 			styleClass="formulario" rendered="#{cc.attrs.editarRendered}">

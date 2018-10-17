@@ -30,7 +30,9 @@
 
 	<p:panel header="#{msgs.Login}" closable="false">
 		<p:messages id="msEmail" showDetail="true" closable="true"
-			rendered="#{cc.attrs.mensagemRendered}" />
+			rendered="#{cc.attrs.mensagemRendered}" for="pngUsuario" >
+			<p:autoUpdate />
+			</p:messages>
 		<p:tabView id="tbwUsuario">
 			<p:tab title="#{msgs.Login}">
 

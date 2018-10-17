@@ -45,7 +45,10 @@
 		<h:panelGroup id="pngDadosUsuario" layout="block"
 			rendered="#{cc.attrs.dadosUsuarioRendered}">
 			<p:messages id="msEmail" showDetail="true" closable="true"
-				rendered="#{cc.attrs.mensagemRendered}" />
+				rendered="#{cc.attrs.mensagemRendered}"
+				for="pngUsuarioCadastroEditar">
+				<p:autoUpdate />
+			</p:messages>
 			<h:panelGroup id="pngUsuarioCadastroEditar" layout="block"
 				styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
 				<p:panelGrid id="pgdDadosUsuarioEditar" columns="2"
