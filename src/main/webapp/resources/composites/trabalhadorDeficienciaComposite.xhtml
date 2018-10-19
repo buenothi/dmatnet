@@ -13,12 +13,8 @@
 
 	<composite:attribute name="exibirRendered" default="false" />
 
-	<composite:attribute name="listaFuncoesEstabelecimentoSelecionado" />
-
-	<composite:attribute name="listaGHEEstabelecimentoSelecionado" />
-
-	<composite:attribute name="actionListenerAdicionarClassFuncional"
-		method-signature="void actionListener(javax.faces.event.ActionEvent)" />
+	<composite:attribute name="pessoaFisicaDeficiencia"
+		type="br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.DeficienciaFisicaEntity" />
 
 	<composite:attribute name="updateNovo" />
 	<composite:attribute name="onCompleteNovo" />
@@ -28,8 +24,9 @@
 	<p:panel id="pnlClasFuncional" header="#{msgs.InfoDeficiencia}"
 		closable="false">
 		<p:messages id="msDeficiencia" showDetail="true" closable="true"
-			rendered="#{cc.attrs.mensagemRendered}" for="pngEmpregadoDeficienciaEditar" >
-			<p:autoUpdate/>
+			rendered="#{cc.attrs.mensagemRendered}"
+			for="pngEmpregadoDeficienciaEditar">
+			<p:autoUpdate />
 		</p:messages>
 
 		<h:panelGroup id="pngEmpregadoDeficienciaEditar" layout="block"
@@ -38,32 +35,45 @@
 			<p:panelGrid columns="2" style="display:block"
 				styleClass="tabelaSemBorda">
 
+				<p:outputLabel value="#{msgs.DataCadastro}*:" />
+
+				<p:calendar id="calDataInicio" locale="pt" showOn="button"
+					pattern="dd/MM/yyyy" mask="true" label="#{msgs.DataCadastro}"
+					value="#{cc.attrs.pessoaFisicaDeficiencia.dataDeficiencia}" />
+
 				<p:outputLabel value="#{msgs.IsDeficienciaFisica}" />
 				<p:inputSwitch onLabel="#{msgs.Sim}" offLabel="#{msgs.Nao}"
-					onIcon="ui-icon-check" offIcon="ui-icon-close"></p:inputSwitch>
+					onIcon="ui-icon-check" offIcon="ui-icon-close"
+					value="#{cc.attrs.pessoaFisicaDeficiencia.deficienciaFisica}"></p:inputSwitch>
 
 				<p:outputLabel value="#{msgs.IsDeficienciaVisual}" />
 				<p:inputSwitch onLabel="#{msgs.Sim}" offLabel="#{msgs.Nao}"
-					onIcon="ui-icon-check" offIcon="ui-icon-close"></p:inputSwitch>
+					onIcon="ui-icon-check" offIcon="ui-icon-close"
+					value="#{cc.attrs.pessoaFisicaDeficiencia.deficienciaVisual}"></p:inputSwitch>
 
 				<p:outputLabel value="#{msgs.IsDeficienciaAuditiva}" />
 				<p:inputSwitch onLabel="#{msgs.Sim}" offLabel="#{msgs.Nao}"
-					onIcon="ui-icon-check" offIcon="ui-icon-close"></p:inputSwitch>
+					onIcon="ui-icon-check" offIcon="ui-icon-close"
+					value="#{cc.attrs.pessoaFisicaDeficiencia.deficienciaAuditiva}"></p:inputSwitch>
 
 				<p:outputLabel value="#{msgs.IsDeficienciaMental}" />
 				<p:inputSwitch onLabel="#{msgs.Sim}" offLabel="#{msgs.Nao}"
-					onIcon="ui-icon-check" offIcon="ui-icon-close"></p:inputSwitch>
+					onIcon="ui-icon-check" offIcon="ui-icon-close"
+					value="#{cc.attrs.pessoaFisicaDeficiencia.deficienciaMental}"></p:inputSwitch>
 
 				<p:outputLabel value="#{msgs.IsDeficienciaIntelectual}" />
 				<p:inputSwitch onLabel="#{msgs.Sim}" offLabel="#{msgs.Nao}"
-					onIcon="ui-icon-check" offIcon="ui-icon-close"></p:inputSwitch>
+					onIcon="ui-icon-check" offIcon="ui-icon-close"
+					value="#{cc.attrs.pessoaFisicaDeficiencia.deficienciaIntelectual}"></p:inputSwitch>
 
 				<p:outputLabel value="#{msgs.IsReabilitadoReadaptado}" />
 				<p:inputSwitch onLabel="#{msgs.Sim}" offLabel="#{msgs.Nao}"
-					onIcon="ui-icon-check" offIcon="ui-icon-close"></p:inputSwitch>
+					onIcon="ui-icon-check" offIcon="ui-icon-close"
+					value="#{cc.attrs.pessoaFisicaDeficiencia.reabilitadoReadaptado}"></p:inputSwitch>
 
 				<p:outputLabel value="#{msgs.Observacao}" />
-				<p:inputTextarea rows="2" cols="25"></p:inputTextarea>
+				<p:inputTextarea rows="2" cols="25" 
+					value="#{cc.attrs.pessoaFisicaDeficiencia.observacao}"></p:inputTextarea>
 
 			</p:panelGrid>
 

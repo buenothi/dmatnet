@@ -38,6 +38,10 @@ public class TrabalhadorEntity extends AbstractPessoaFisicaEntity implements Ser
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "trabalhador_ID")
 	private List<ClassificacaoFuncionalEntity> classificacoesFuncionais;
+	
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "deficiencia_ID")
+	private List<DeficienciaFisicaEntity> deficienciaFisica;
 
 	private static final long serialVersionUID = 1L;
 
@@ -111,6 +115,14 @@ public class TrabalhadorEntity extends AbstractPessoaFisicaEntity implements Ser
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public List<DeficienciaFisicaEntity> getDeficienciaFisica() {
+		return deficienciaFisica;
+	}
+
+	public void setDeficienciaFisica(List<DeficienciaFisicaEntity> deficienciaFisica) {
+		this.deficienciaFisica = deficienciaFisica;
 	}
 
 }
