@@ -37,7 +37,7 @@
 
 				<p:outputLabel value="#{msgs.DataCadastro}*:" />
 
-				<p:calendar id="calDataInicio" locale="pt" showOn="button"
+				<p:calendar id="calDataInicio" locale="pt" showOn="button" size="8"
 					pattern="dd/MM/yyyy" mask="true" label="#{msgs.DataCadastro}"
 					value="#{cc.attrs.pessoaFisicaDeficiencia.dataDeficiencia}" />
 
@@ -72,7 +72,7 @@
 					value="#{cc.attrs.pessoaFisicaDeficiencia.reabilitadoReadaptado}"></p:inputSwitch>
 
 				<p:outputLabel value="#{msgs.Observacao}" />
-				<p:inputTextarea rows="2" cols="25" 
+				<p:inputTextarea rows="2" cols="25"
 					value="#{cc.attrs.pessoaFisicaDeficiencia.observacao}"></p:inputTextarea>
 
 			</p:panelGrid>
