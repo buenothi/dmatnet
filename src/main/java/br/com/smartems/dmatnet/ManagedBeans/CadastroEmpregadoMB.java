@@ -21,6 +21,7 @@ import br.com.smartems.dmatnet.entities.pessoa.EmailEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.PessoaFisicaDocumentosEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.DeficienciaFisicaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.Funcao;
@@ -122,7 +123,13 @@ public class CadastroEmpregadoMB implements Serializable {
 	private List<Funcao> funcoes;
 	private List<GHEEntity> ghes;
 	private List<LocalTrabalhoEntity> locais;
+	
 	private ClassificacaoFuncionalEntity novaClassificacaoFuncional;
+	
+	private DeficienciaFisicaEntity deficienciaFisica;
+	private boolean hasDeficienciaFisica;
+	
+	private boolean isDialogNovoEmpregadoRendered;
 
 	/* getters e setter */
 
@@ -677,6 +684,33 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.novaClassificacaoFuncional = novaClassificacaoFuncional;
 	}
 
+	public DeficienciaFisicaEntity getDeficienciaFisica() {
+		if (this.deficienciaFisica == null) {
+			this.deficienciaFisica = new DeficienciaFisicaEntity();
+		}
+		return deficienciaFisica;
+	}
+
+	public void setDeficienciaFisica(DeficienciaFisicaEntity deficienciaFisica) {
+		this.deficienciaFisica = deficienciaFisica;
+	}
+
+	public boolean isHasDeficienciaFisica() {
+		return hasDeficienciaFisica;
+	}
+
+	public void setHasDeficienciaFisica(boolean hasDeficienciaFisica) {
+		this.hasDeficienciaFisica = hasDeficienciaFisica;
+	}
+
+	public boolean isDialogNovoEmpregadoRendered() {
+		return isDialogNovoEmpregadoRendered;
+	}
+
+	public void setDialogNovoEmpregadoRendered(boolean isDialogNovoEmpregadoRendered) {
+		this.isDialogNovoEmpregadoRendered = isDialogNovoEmpregadoRendered;
+	}
+
 	public void mudarTipoFiltroListaEmpregados(AjaxBehaviorEvent evt) {
 
 		// teste abaixo ok
@@ -760,7 +794,7 @@ public class CadastroEmpregadoMB implements Serializable {
 	}
 
 	public void novoTrabalhadorSelecionado(ActionEvent evt) {
-
+		
 	}
 
 	public void imprimirTrabalhadorSelecionado(ActionEvent evt) {
@@ -901,6 +935,9 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.ghes = null;
 		this.locais = null;
 		this.novaClassificacaoFuncional = null;
+		this.deficienciaFisica = null;
+		
+		this.isDialogNovoEmpregadoRendered = false;
 	}
 
 }

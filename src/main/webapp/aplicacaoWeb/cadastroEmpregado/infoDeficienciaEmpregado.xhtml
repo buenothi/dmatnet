@@ -10,7 +10,13 @@
 	xmlns:dmat="http://java.sun.com/jsf/composite/composites">
 
 <ui:composition>
-	<dmat:trabalhadorDeficienciaComposite id="tdcDeficiencia" pessoaFisicaDeficiencia=""/>
+	<dmat:trabalhadorDeficienciaComposite id="tdcDeficiencia"
+		pessoaFisicaDeficiencia="#{cadastroEmpregadoMB.deficienciaFisica}"
+		editarRendered="#{cadastroEmpregadoMB.editarContato}"
+		exibirRendered="#{cadastroEmpregadoMB.exibirContato}"
+		mensagemRendered="true"
+		mensagemHasDeficienciaFisica="#{cadastroEmpregadoMB.hasDeficienciaFisica}"
+		mensagemSelecionarPessoaRendered="#{cadastroEmpregadoMB.mensagemSelecionarTrabalhadorRendered}" />
 </ui:composition>
 
 </html>

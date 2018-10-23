@@ -13,21 +13,30 @@
 
 	<composite:attribute name="exibirRendered" default="false" />
 
+	<composite:attribute name="mensagemSelecionarPessoaRendered" />
+
+	<composite:attribute name="mensagemHasDeficienciaFisica" />
+
 	<composite:attribute name="pessoaFisicaDeficiencia"
 		type="br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.DeficienciaFisicaEntity" />
 
-	<composite:attribute name="updateNovo" />
-	<composite:attribute name="onCompleteNovo" />
 </composite:interface>
 
 <composite:implementation>
 	<p:panel id="pnlClasFuncional" header="#{msgs.InfoDeficiencia}"
 		closable="false">
+
 		<p:messages id="msDeficiencia" showDetail="true" closable="true"
 			rendered="#{cc.attrs.mensagemRendered}"
 			for="pngEmpregadoDeficienciaEditar">
 			<p:autoUpdate />
 		</p:messages>
+
+		<p:outputLabel value="#{msgs.MensagemSelecionarPessoa}"
+			rendered="#{cc.attrs.mensagemSelecionarPessoaRendered}" />
+
+		<p:outputLabel value="#{msgs.MensagemHasDeficienciaFisica}"
+			rendered="#{cc.attrs.mensagemHasDeficienciaFisica}" />
 
 		<h:panelGroup id="pngEmpregadoDeficienciaEditar" layout="block"
 			styleClass="formulario" rendered="#{cc.attrs.editarRendered}">
@@ -82,7 +91,45 @@
 
 		<h:panelGroup id="pngEmpregadoDeficienciaExibir" layout="block"
 			styleClass="formulario" rendered="#{cc.attrs.exibirRendered}">
+			<p:panelGrid columns="2" style="display:block"
+				styleClass="tabelaSemBorda">
 
+				<p:outputLabel value="#{msgs.DataCadastro}*:" />
+
+				<p:outputLabel
+					value="#{cc.attrs.pessoaFisicaDeficiencia.dataDeficiencia}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:outputLabel>
+
+				<p:outputLabel value="#{msgs.IsDeficienciaFisica}" />
+				<p:outputLabel
+					value="#{cc.attrs.pessoaFisicaDeficiencia.deficienciaFisica}" />
+
+				<p:outputLabel value="#{msgs.IsDeficienciaVisual}" />
+				<p:outputLabel
+					value="#{cc.attrs.pessoaFisicaDeficiencia.deficienciaVisual}" />
+
+				<p:outputLabel value="#{msgs.IsDeficienciaAuditiva}" />
+				<p:outputLabel
+					value="#{cc.attrs.pessoaFisicaDeficiencia.deficienciaAuditiva}" />
+
+				<p:outputLabel value="#{msgs.IsDeficienciaMental}" />
+				<p:outputLabel
+					value="#{cc.attrs.pessoaFisicaDeficiencia.deficienciaMental}" />
+
+				<p:outputLabel value="#{msgs.IsDeficienciaIntelectual}" />
+				<p:outputLabel
+					value="#{cc.attrs.pessoaFisicaDeficiencia.deficienciaIntelectual}" />
+
+				<p:outputLabel value="#{msgs.IsReabilitadoReadaptado}" />
+				<p:outputLabel
+					value="#{cc.attrs.pessoaFisicaDeficiencia.reabilitadoReadaptado}" />
+
+				<p:outputLabel value="#{msgs.Observacao}" />
+				<p:outputLabel
+					value="#{cc.attrs.pessoaFisicaDeficiencia.observacao}" />
+
+			</p:panelGrid>
 		</h:panelGroup>
 
 	</p:panel>
