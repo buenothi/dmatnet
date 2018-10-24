@@ -112,7 +112,6 @@
 				disabledEditar="#{cadastroEmpregadoMB.disabledEditar}"
 				disabledImprimir="#{cadastroEmpregadoMB.disabledImprimir}"
 				disabledNovo="#{cadastroEmpregadoMB.disabledNovo}"
-				onCompleteNovo="PF('dlgCriarEmpregado').show()"
 				disabledSalvar="#{cadastroEmpregadoMB.disabledSalvar}"
 				updateEditar="formModulos:formCadEmpresa:tbwCadastroEmpresa:barraBotoesEmpregados:tbrBotoes,
 					formModulos:formCadEmpresa:tbwCadastroEmpresa:dtbEmpregados,
@@ -185,13 +184,6 @@
 		</h:panelGroup>
 
 	</p:panel>
-
-	<p:dialog widgetVar="dlgCriarEmpregado" resizable="false" modal="true"
-		width="1000" header="#{msgs.NovoEmpregado}" style="padding:10px"
-		showEffect="fade" hideEffect="fade" responsive="true"
-		position="center" >
-		<ui:include src="" />
-	</p:dialog>
 
 </ui:composition>
 

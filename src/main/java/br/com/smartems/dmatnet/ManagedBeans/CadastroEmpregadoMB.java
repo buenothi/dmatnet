@@ -128,8 +128,6 @@ public class CadastroEmpregadoMB implements Serializable {
 	
 	private DeficienciaFisicaEntity deficienciaFisica;
 	private boolean hasDeficienciaFisica;
-	
-	private boolean isDialogNovoEmpregadoRendered;
 
 	/* getters e setter */
 
@@ -703,14 +701,6 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.hasDeficienciaFisica = hasDeficienciaFisica;
 	}
 
-	public boolean isDialogNovoEmpregadoRendered() {
-		return isDialogNovoEmpregadoRendered;
-	}
-
-	public void setDialogNovoEmpregadoRendered(boolean isDialogNovoEmpregadoRendered) {
-		this.isDialogNovoEmpregadoRendered = isDialogNovoEmpregadoRendered;
-	}
-
 	public void mudarTipoFiltroListaEmpregados(AjaxBehaviorEvent evt) {
 
 		// teste abaixo ok
@@ -794,7 +784,21 @@ public class CadastroEmpregadoMB implements Serializable {
 	}
 
 	public void novoTrabalhadorSelecionado(ActionEvent evt) {
-		
+		this.editarTrabalhadorSelecionado(evt);
+		this.trabalhadorSelecionado = new TrabalhadorEntity();
+		this.trabalhadorDocumentos = new PessoaFisicaDocumentosEntity();
+		this.trabalhadorSelecionadoCadastroAtual = new TrabalhadorCadastroEntity();
+		this.enderecoAtual = new EnderecoEntity();
+		this.enderecoHistorico = new ArrayList<EnderecoEntity>();
+		this.emailPrincipal = new EmailEntity();
+		this.emailsTrabalhadores = new ArrayList<EmailEntity>();
+		this.telefonesTrabalhadores = new ArrayList<TelefoneEntity>();
+		this.novaClassificacaoFuncional = new ClassificacaoFuncionalEntity();
+		this.locais = new ArrayList<LocalTrabalhoEntity>();
+		this.classificacoesFuncionais = new ArrayList<ClassificacaoFuncionalEntity>();
+		this.funcoes = new ArrayList<Funcao>();
+		this.ghes = new ArrayList<GHEEntity>();
+		this.deficienciaFisica = new DeficienciaFisicaEntity();
 	}
 
 	public void imprimirTrabalhadorSelecionado(ActionEvent evt) {
@@ -936,8 +940,7 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.locais = null;
 		this.novaClassificacaoFuncional = null;
 		this.deficienciaFisica = null;
-		
-		this.isDialogNovoEmpregadoRendered = false;
+
 	}
 
 }
