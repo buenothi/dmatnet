@@ -112,7 +112,7 @@ a:LINK {
 	height: 55px;
 	width: 200px;
 	background-color: rgb(215, 215, 215);
-	color: black;;
+	color: #464646;
 	display: block;
 	margin-top: 1px;
 	cursor: pointer;
@@ -121,8 +121,8 @@ a:LINK {
 .menuBotaoMenuSelecionado {
 	height: 55px;
 	width: 200px;
-	background-color: rgb(215, 215, 215);
-	color: black;
+	background-color: #3c3c3c;
+	color: white;
 	display: block;
 	margin-top: 1px;
 	cursor: pointer;
