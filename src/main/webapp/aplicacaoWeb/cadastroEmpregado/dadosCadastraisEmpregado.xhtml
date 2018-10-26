@@ -149,8 +149,12 @@
 									<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 										<p:selectOneMenu id="somRaca" style="width:200px"
 											value="#{cadastroEmpregadoMB.trabalhadorSelecionado.raca}">
-											<f:selectItem itemValue="1" itemLabel="#{msgs.Masculino}" />
-											<f:selectItem itemValue="2" itemLabel="#{msgs.Feminino}" />
+											<f:selectItem itemValue="1" itemLabel="#{msgs.RacaBranca}" />
+											<f:selectItem itemValue="2" itemLabel="#{msgs.RacaNegra}" />
+											<f:selectItem itemValue="3" itemLabel="#{msgs.RacaParda}" />
+											<f:selectItem itemValue="4" itemLabel="#{msgs.RacaAmarela}" />
+											<f:selectItem itemValue="5" itemLabel="#{msgs.RacaIndigena}" />
+											<f:selectItem itemValue="6" itemLabel="#{msgs.RacaNaoInformada}" />
 										</p:selectOneMenu>
 										<p:message for="somRaca" />
 									</p:panelGrid>
@@ -165,8 +169,11 @@
 									<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 										<p:selectOneMenu id="somEstadoCivil" style="width:200px"
 											value="#{cadastroEmpregadoMB.trabalhadorSelecionado.estadoCivil}">
-											<f:selectItem itemValue="1" itemLabel="#{msgs.Masculino}" />
-											<f:selectItem itemValue="2" itemLabel="#{msgs.Feminino}" />
+											<f:selectItem itemValue="1" itemLabel="#{msgs.EstadoCivilSolteiro}" />
+											<f:selectItem itemValue="2" itemLabel="#{msgs.EstadoCivilCasado}" />
+											<f:selectItem itemValue="3" itemLabel="#{msgs.EstadoCivilDivorciado}" />
+											<f:selectItem itemValue="4" itemLabel="#{msgs.EstadoCivilSeparado}" />
+											<f:selectItem itemValue="5" itemLabel="#{msgs.EstadoCivilViuvo}" />
 										</p:selectOneMenu>
 										<p:message for="somEstadoCivil" />
 									</p:panelGrid>
@@ -179,8 +186,15 @@
 									<p:panelGrid columns="2" styleClass="tabelaSemBorda">
 										<p:selectOneMenu id="somGrauInstrucao" style="width:200px"
 											value="#{cadastroEmpregadoMB.trabalhadorSelecionado.grauInstrucao}">
-											<f:selectItem itemValue="1" itemLabel="#{msgs.Masculino}" />
-											<f:selectItem itemValue="2" itemLabel="#{msgs.Feminino}" />
+											<f:selectItem itemValue="1" itemLabel="#{msgs.InstrucaoAnalfabeto}" />
+											<f:selectItem itemValue="2" itemLabel="#{msgs.InstrucaoAte5ano}" />
+											<f:selectItem itemValue="3" itemLabel="#{msgs.Instrucao6a9}" />
+											<f:selectItem itemValue="4" itemLabel="#{msgs.InstrucaoFundamental}" />
+											<f:selectItem itemValue="5" itemLabel="#{msgs.InstrucaoMedioIncompleto}" />
+											<f:selectItem itemValue="6" itemLabel="#{msgs.InstrucaoMedioCompleto}" />
+											<f:selectItem itemValue="7" itemLabel="#{msgs.InstrucaoSuperiorIncompleto}" />
+											<f:selectItem itemValue="8" itemLabel="#{msgs.InstrucaoSuperiorCompleto}" />
+											<f:selectItem itemValue="8" itemLabel="#{msgs.InstrucaoSuperiorCompleto}" />
 										</p:selectOneMenu>
 										<p:message for="somGrauInstrucao" />
 									</p:panelGrid>
