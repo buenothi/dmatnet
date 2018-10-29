@@ -28,6 +28,8 @@ public class LocalTrabalhoEntity implements Serializable{
 	private long idLocalTrabalho;
 	private Long codAmbienteEsocial;
 	
+	private String nomeLocal;
+	
 	@Temporal(TemporalType.DATE)
 	private Date dataInicioValidade;
 	
@@ -70,6 +72,14 @@ public class LocalTrabalhoEntity implements Serializable{
 
 	public void setCodAmbienteEsocial(Long codAmbienteEsocial) {
 		this.codAmbienteEsocial = codAmbienteEsocial;
+	}
+
+	public String getNomeLocal() {
+		return nomeLocal;
+	}
+
+	public void setNomeLocal(String nomeLocal) {
+		this.nomeLocal = nomeLocal;
 	}
 
 	public Date getDataInicioValidade() {
@@ -156,6 +166,7 @@ public class LocalTrabalhoEntity implements Serializable{
 		result = prime * result + ((ghes == null) ? 0 : ghes.hashCode());
 		result = prime * result + (int) (idLocalTrabalho ^ (idLocalTrabalho >>> 32));
 		result = prime * result + localAmbiente;
+		result = prime * result + ((nomeLocal == null) ? 0 : nomeLocal.hashCode());
 		result = prime * result + ((numInscricao == null) ? 0 : numInscricao.hashCode());
 		result = prime * result + ((setores == null) ? 0 : setores.hashCode());
 		result = prime * result + tipoInscricao;
@@ -204,6 +215,11 @@ public class LocalTrabalhoEntity implements Serializable{
 		if (idLocalTrabalho != other.idLocalTrabalho)
 			return false;
 		if (localAmbiente != other.localAmbiente)
+			return false;
+		if (nomeLocal == null) {
+			if (other.nomeLocal != null)
+				return false;
+		} else if (!nomeLocal.equals(other.nomeLocal))
 			return false;
 		if (numInscricao == null) {
 			if (other.numInscricao != null)

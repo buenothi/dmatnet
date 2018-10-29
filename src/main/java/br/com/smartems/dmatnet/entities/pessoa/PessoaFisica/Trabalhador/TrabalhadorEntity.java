@@ -2,7 +2,7 @@ package br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -33,15 +33,15 @@ public class TrabalhadorEntity extends AbstractPessoaFisicaEntity implements Ser
 
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "trabalhador_ID")
-	private List<TrabalhadorCadastroEntity> cadastrosTrabalhador;
+	private Set<TrabalhadorCadastroEntity> cadastrosTrabalhador;
 
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "trabalhador_ID")
-	private List<ClassificacaoFuncionalEntity> classificacoesFuncionais;
+	private Set<ClassificacaoFuncionalEntity> classificacoesFuncionais;
 	
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "deficiencia_ID")
-	private List<DeficienciaFisicaEntity> deficienciaFisica;
+	private Set<DeficienciaFisicaEntity> deficienciaFisica;
 
 	private static final long serialVersionUID = 1L;
 
@@ -97,31 +97,27 @@ public class TrabalhadorEntity extends AbstractPessoaFisicaEntity implements Ser
 		this.grauInstrucao = grauInstrucao;
 	}
 
-	public List<TrabalhadorCadastroEntity> getCadastrosTrabalhador() {
+	public Set<TrabalhadorCadastroEntity> getCadastrosTrabalhador() {
 		return cadastrosTrabalhador;
 	}
 
-	public void setCadastrosTrabalhador(List<TrabalhadorCadastroEntity> cadastrosTrabalhador) {
+	public void setCadastrosTrabalhador(Set<TrabalhadorCadastroEntity> cadastrosTrabalhador) {
 		this.cadastrosTrabalhador = cadastrosTrabalhador;
 	}
 
-	public List<ClassificacaoFuncionalEntity> getClassificacoesFuncionais() {
+	public Set<ClassificacaoFuncionalEntity> getClassificacoesFuncionais() {
 		return classificacoesFuncionais;
 	}
 
-	public void setClassificacoesFuncionais(List<ClassificacaoFuncionalEntity> classificacoesFuncionais) {
+	public void setClassificacoesFuncionais(Set<ClassificacaoFuncionalEntity> classificacoesFuncionais) {
 		this.classificacoesFuncionais = classificacoesFuncionais;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public List<DeficienciaFisicaEntity> getDeficienciaFisica() {
+	public Set<DeficienciaFisicaEntity> getDeficienciaFisica() {
 		return deficienciaFisica;
 	}
 
-	public void setDeficienciaFisica(List<DeficienciaFisicaEntity> deficienciaFisica) {
+	public void setDeficienciaFisica(Set<DeficienciaFisicaEntity> deficienciaFisica) {
 		this.deficienciaFisica = deficienciaFisica;
 	}
 

@@ -17,6 +17,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.com.smartems.dmatnet.entities.LocalTrabalho.LocalTrabalhoEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 
 @Entity
@@ -40,6 +41,11 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "empresa_ID")
 	private Set<LocalTrabalhoEntity> locais;
+	
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
+			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
+	@JoinColumn(name = "empresa_ID")
+	private Set<TrabalhadorEntity> trabalhadores;
 
 	@ManyToMany(mappedBy = "empresasGerenciadas", fetch = FetchType.EAGER)
 	private List<UsuarioEntity> usuarios;
@@ -96,6 +102,14 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 
 	public void setLocais(Set<LocalTrabalhoEntity> locais) {
 		this.locais = locais;
+	}
+
+	public Set<TrabalhadorEntity> getTrabalhadores() {
+		return trabalhadores;
+	}
+
+	public void setTrabalhadores(Set<TrabalhadorEntity> trabalhadores) {
+		this.trabalhadores = trabalhadores;
 	}
 
 	public String getTipoEstabelecimento() {
