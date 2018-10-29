@@ -24,7 +24,7 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.PessoaFisicaDocument
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.DeficienciaFisicaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEntity;
-import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.Funcao;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.FuncaoEntity;
 
 @ManagedBean
 @SessionScoped
@@ -120,7 +120,7 @@ public class CadastroEmpregadoMB implements Serializable {
 	private boolean classFuncionalBlocoRendered;
 
 	private List<ClassificacaoFuncionalEntity> classificacoesFuncionais;
-	private List<Funcao> funcoes;
+	private List<FuncaoEntity> funcoes;
 	private List<GHEEntity> ghes;
 	private List<LocalTrabalhoEntity> locais;
 	
@@ -638,14 +638,14 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.classificacoesFuncionais = classificacoesFuncionais;
 	}
 
-	public List<Funcao> getFuncoes() {
+	public List<FuncaoEntity> getFuncoes() {
 		if (this.funcoes == null) {
-			this.funcoes = new ArrayList<Funcao>();
+			this.funcoes = new ArrayList<FuncaoEntity>();
 		}
 		return funcoes;
 	}
 
-	public void setFuncoes(List<Funcao> funcoes) {
+	public void setFuncoes(List<FuncaoEntity> funcoes) {
 		this.funcoes = funcoes;
 	}
 
@@ -796,7 +796,7 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.novaClassificacaoFuncional = new ClassificacaoFuncionalEntity();
 		this.locais = new ArrayList<LocalTrabalhoEntity>();
 		this.classificacoesFuncionais = new ArrayList<ClassificacaoFuncionalEntity>();
-		this.funcoes = new ArrayList<Funcao>();
+		this.funcoes = new ArrayList<FuncaoEntity>();
 		this.ghes = new ArrayList<GHEEntity>();
 		this.deficienciaFisica = new DeficienciaFisicaEntity();
 	}

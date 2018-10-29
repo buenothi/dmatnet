@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 
 import br.com.smartems.dmatnet.entities.LevAmbientais.GHEEntity;
 import br.com.smartems.dmatnet.entities.LocalTrabalho.LocalTrabalhoEntity;
-import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.Funcao;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.FuncaoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.Setor;
 
 @Entity
@@ -42,7 +42,7 @@ public class ClassificacaoFuncionalEntity implements Serializable {
 
 	@OneToOne
 	@JoinColumn(name = "funcao_ID")
-	private Funcao funcao;
+	private FuncaoEntity funcao;
 
 	@OneToOne
 	@JoinColumn(name = "ghe_ID")
@@ -86,11 +86,11 @@ public class ClassificacaoFuncionalEntity implements Serializable {
 		this.setor = setor;
 	}
 
-	public Funcao getFuncao() {
+	public FuncaoEntity getFuncao() {
 		return funcao;
 	}
 
-	public void setFuncao(Funcao funcao) {
+	public void setFuncao(FuncaoEntity funcao) {
 		this.funcao = funcao;
 	}
 

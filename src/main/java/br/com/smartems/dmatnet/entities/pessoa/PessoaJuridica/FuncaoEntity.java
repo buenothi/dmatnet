@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tbl_TrabalhadorFuncao")
-public class Funcao implements Serializable {
+public class FuncaoEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class Funcao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public Funcao() {
+	public FuncaoEntity() {
 		super();
 	}
 
@@ -86,7 +86,7 @@ public class Funcao implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Funcao other = (Funcao) obj;
+		FuncaoEntity other = (FuncaoEntity) obj;
 		if (id != other.id)
 			return false;
 		return true;
