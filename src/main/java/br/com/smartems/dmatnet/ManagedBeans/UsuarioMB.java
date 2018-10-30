@@ -26,7 +26,7 @@ public class UsuarioMB implements Serializable {
 	private String senha;
 	private UsuarioEntity usuarioLogado;
 	private boolean isEditarCadastro;
-	public boolean isLogado;
+	private boolean isLogado;
 	private String outcome;
 
 	private static final long serialVersionUID = 1L;
@@ -64,6 +64,14 @@ public class UsuarioMB implements Serializable {
 
 	public void setEditarCadastro(boolean isEditarCadastro) {
 		this.isEditarCadastro = isEditarCadastro;
+	}
+
+	public boolean isLogado() {
+		return isLogado;
+	}
+
+	public void setLogado(boolean isLogado) {
+		this.isLogado = isLogado;
 	}
 
 	public void logarUsuario(ActionEvent e) {

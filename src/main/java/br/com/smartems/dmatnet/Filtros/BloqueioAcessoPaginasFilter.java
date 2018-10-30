@@ -35,7 +35,7 @@ public class BloqueioAcessoPaginasFilter implements Filter {
 		usuarioMB = (UsuarioMB) ((HttpServletRequest) request).getSession().getAttribute("usuarioMB");
 
 		try {
-			if (usuarioMB.isLogado) {
+			if (usuarioMB.isLogado()) {
 				System.out.println("O usuário logado é: \"" + usuarioMB.getUsuarioLogado().getNome() + "\"");
 				chain.doFilter(request, response);
 			} else {
