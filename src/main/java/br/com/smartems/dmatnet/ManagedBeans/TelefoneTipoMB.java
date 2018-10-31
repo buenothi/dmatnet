@@ -6,14 +6,14 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 import javax.persistence.NoResultException;
 
 import br.com.smartems.dmatnet.EJB.Facade.TelefoneTipoFacadeLocal;
 import br.com.smartems.dmatnet.entities.pessoa.TelefoneTipoEntity;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class TelefoneTipoMB implements Serializable {
 

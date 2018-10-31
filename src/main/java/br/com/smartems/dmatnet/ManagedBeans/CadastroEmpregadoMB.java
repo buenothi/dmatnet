@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 
@@ -26,17 +26,17 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.Trabalha
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.FuncaoEntity;
 
-@ManagedBean
+@Named
 @SessionScoped
 public class CadastroEmpregadoMB implements Serializable {
 
-	@ManagedProperty(value = "#{usuarioMB}")
+	@Inject
 	private UsuarioMB usuarioMB;
 
-	@ManagedProperty(value = "#{principalMB}")
+	@Inject
 	private PrincipalMB principalMB;
 
-	@ManagedProperty(value = "#{cadastroEmpresaMB}")
+	@Inject
 	private CadastroEmpresaMB cadastroEmpresaMB;
 
 	private static final long serialVersionUID = 1L;

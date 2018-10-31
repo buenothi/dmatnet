@@ -9,11 +9,11 @@ import java.util.TreeSet;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import org.primefaces.event.CloseEvent;
 import org.primefaces.event.SelectEvent;
@@ -29,17 +29,17 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaGrupoEntity;
 import br.com.smartems.dmatnet.util.StringsUtilitarios;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class CadastroUsuarioMB implements Serializable {
 
-	@ManagedProperty(value = "#{usuarioMB}")
+	@Inject
 	private UsuarioMB usuarioMB;
 
-	@ManagedProperty(value = "#{principalMB}")
+	@Inject
 	private PrincipalMB principalMB;
 
-	@ManagedProperty(value = "#{cadastroEmpresaMB}")
+	@Inject
 	private CadastroEmpresaMB cadastroEmpresaMB;
 
 	@EJB

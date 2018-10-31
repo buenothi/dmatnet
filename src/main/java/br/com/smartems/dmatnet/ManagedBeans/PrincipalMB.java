@@ -2,13 +2,13 @@ package br.com.smartems.dmatnet.ManagedBeans;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ActionEvent;
+import javax.inject.Named;
 
 import org.primefaces.PrimeFaces;
 
-@ManagedBean
+@Named
 @SessionScoped
 public class PrincipalMB implements Serializable {
 

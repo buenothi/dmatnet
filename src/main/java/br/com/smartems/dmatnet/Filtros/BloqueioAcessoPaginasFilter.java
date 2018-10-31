@@ -2,6 +2,7 @@ package br.com.smartems.dmatnet.Filtros;
 
 import java.io.IOException;
 
+import javax.inject.Inject;
 import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -18,7 +19,8 @@ import br.com.smartems.dmatnet.ManagedBeans.UsuarioMB;
 @WebFilter(dispatcherTypes = { DispatcherType.REQUEST }, urlPatterns = { "/aplicacaoWeb/*" })
 public class BloqueioAcessoPaginasFilter implements Filter {
 
-	private UsuarioMB usuarioMB = new UsuarioMB();
+	@Inject
+	private UsuarioMB usuarioMB;
 
 	public BloqueioAcessoPaginasFilter() {
 
@@ -32,7 +34,9 @@ public class BloqueioAcessoPaginasFilter implements Filter {
 			throws IOException, ServletException {
 
 		System.out.println("-----------------------------------\n" + "passagem pelo filtro na ida");
-		usuarioMB = (UsuarioMB) ((HttpServletRequest) request).getSession().getAttribute("usuarioMB");
+		
+		//a função abaixo é usada para obter atributos na requisição http, quando utilizado pelo ManagedBean (Deprecado)
+		//usuarioMB = (UsuarioMB) ((HttpServletRequest) request).getSession().getAttribute("usuarioMB");
 
 		try {
 			if (usuarioMB.isLogado()) {
