@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.AjaxBehaviorEvent;
@@ -14,6 +15,7 @@ import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 
+import br.com.smartems.dmatnet.EJB.Facade.TrabalhadorFacade;
 import br.com.smartems.dmatnet.entities.ClassificacaoFuncional.ClassificacaoFuncionalEntity;
 import br.com.smartems.dmatnet.entities.LevAmbientais.GHEEntity;
 import br.com.smartems.dmatnet.entities.LocalTrabalho.LocalTrabalhoEntity;
@@ -38,6 +40,9 @@ public class CadastroEmpregadoMB implements Serializable {
 
 	@Inject
 	private CadastroEmpresaMB cadastroEmpresaMB;
+	
+	@EJB
+	private TrabalhadorFacade trabalhadorFachada;
 
 	private static final long serialVersionUID = 1L;
 

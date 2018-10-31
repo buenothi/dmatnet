@@ -8,6 +8,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,7 +28,7 @@ public class TrabalhadorEntity extends AbstractPessoaFisicaEntity implements Ser
 
 	@Temporal(TemporalType.DATE)
 	private Date dataDesligamento;
-	
+
 	private String nomeMae;
 	private String nomePai;
 	private int grauInstrucao;
@@ -38,10 +40,10 @@ public class TrabalhadorEntity extends AbstractPessoaFisicaEntity implements Ser
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "trabalhador_ID")
 	private Set<ClassificacaoFuncionalEntity> classificacoesFuncionais;
-	
-	@OneToMany(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "deficiencia_ID")
-	private Set<DeficienciaFisicaEntity> deficienciaFisica;
+
+	@OneToOne(cascade={CascadeType.ALL})
+	@PrimaryKeyJoinColumn
+	private DeficienciaFisicaEntity deficienciaFisica;
 
 	private static final long serialVersionUID = 1L;
 
@@ -113,11 +115,11 @@ public class TrabalhadorEntity extends AbstractPessoaFisicaEntity implements Ser
 		this.classificacoesFuncionais = classificacoesFuncionais;
 	}
 
-	public Set<DeficienciaFisicaEntity> getDeficienciaFisica() {
+	public DeficienciaFisicaEntity getDeficienciaFisica() {
 		return deficienciaFisica;
 	}
 
-	public void setDeficienciaFisica(Set<DeficienciaFisicaEntity> deficienciaFisica) {
+	public void setDeficienciaFisica(DeficienciaFisicaEntity deficienciaFisica) {
 		this.deficienciaFisica = deficienciaFisica;
 	}
 
