@@ -68,6 +68,8 @@ public class TrabalhadorEAO extends AbstractEAO<TrabalhadorEntity, Long> {
 
 				trabalhadorNovo.setDeficienciaFisica(deficienciaFisica);
 				
+				trabalhadorNovo.setUsuarioCriador(usuario);
+				
 				empresaSelecionada.getTrabalhadores().add(trabalhadorNovo);
 				
 				this.pessoaJuridicaEAO.update(empresaSelecionada);

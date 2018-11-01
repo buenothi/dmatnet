@@ -15,7 +15,7 @@ import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 
-import br.com.smartems.dmatnet.EJB.Facade.TrabalhadorFacade;
+import br.com.smartems.dmatnet.EJB.Facade.TrabalhadorFacadeLocal;
 import br.com.smartems.dmatnet.entities.ClassificacaoFuncional.ClassificacaoFuncionalEntity;
 import br.com.smartems.dmatnet.entities.LevAmbientais.GHEEntity;
 import br.com.smartems.dmatnet.entities.LocalTrabalho.LocalTrabalhoEntity;
@@ -40,9 +40,9 @@ public class CadastroEmpregadoMB implements Serializable {
 
 	@Inject
 	private CadastroEmpresaMB cadastroEmpresaMB;
-	
+
 	@EJB
-	private TrabalhadorFacade trabalhadorFachada;
+	private TrabalhadorFacadeLocal trabalhadorFachada;
 
 	private static final long serialVersionUID = 1L;
 
@@ -128,9 +128,9 @@ public class CadastroEmpregadoMB implements Serializable {
 	private List<FuncaoEntity> funcoes;
 	private List<GHEEntity> ghes;
 	private List<LocalTrabalhoEntity> locais;
-	
+
 	private ClassificacaoFuncionalEntity novaClassificacaoFuncional;
-	
+
 	private DeficienciaFisicaEntity deficienciaFisica;
 	private boolean hasDeficienciaFisica;
 
@@ -785,6 +785,16 @@ public class CadastroEmpregadoMB implements Serializable {
 	}
 
 	public void salvarTrabalhadorSelecionado(ActionEvent evt) {
+		try {
+			this.trabalhadorFachada.salvarNovoTrabalhador(this.usuarioMB.getUsuarioLogado(),
+					this.cadastroEmpresaMB.getEmpresaSelecionada(), this.trabalhadorSelecionado,
+					this.trabalhadorSelecionadoCadastroAtual, this.trabalhadorSelecionadoListaCadastroHistorico,
+					this.trabalhadorDocumentos, this.enderecoAtual, this.enderecoHistorico, this.emailPrincipal,
+					this.emailsTrabalhadores, this.telefonesTrabalhadores, this.classificacoesFuncionais,
+					this.deficienciaFisica);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		this.initEmpregado();
 	}
 

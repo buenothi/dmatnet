@@ -20,10 +20,40 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 @Stateless
 public class TrabalhadorFacade implements TrabalhadorFacadeLocal {
 
+	public TrabalhadorFacade() {
+	}
+
 	@EJB
 	private TrabalhadorEAO trabalhadorEAO;
 
-	public TrabalhadorFacade() {
+	@Override
+	public TrabalhadorEntity read(long pk) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void create(TrabalhadorEntity entity) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public TrabalhadorEntity update(TrabalhadorEntity entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(TrabalhadorEntity entity) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public List<TrabalhadorEntity> findAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override

@@ -13,10 +13,13 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 
 @Entity
 @Table(name = "tbl_Pessoa")
@@ -44,6 +47,10 @@ public abstract class AbstractPessoaEntity implements Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastroPessoa;
+
+	@ManyToOne
+	@JoinColumn(name = "usuarioCriador_ID")
+	private UsuarioEntity usuarioCriador;
 
 	private static final long serialVersionUID = 1L;
 
@@ -97,6 +104,14 @@ public abstract class AbstractPessoaEntity implements Serializable {
 
 	public void setDataCadastroPessoa(Date dataCadastroPessoa) {
 		this.dataCadastroPessoa = dataCadastroPessoa;
+	}
+
+	public UsuarioEntity getUsuarioCriador() {
+		return usuarioCriador;
+	}
+
+	public void setUsuarioCriador(UsuarioEntity usuarioCriador) {
+		this.usuarioCriador = usuarioCriador;
 	}
 
 	public static long getSerialversionuid() {

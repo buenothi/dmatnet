@@ -50,10 +50,6 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 	@ManyToMany(mappedBy = "empresasGerenciadas", fetch = FetchType.EAGER)
 	private List<UsuarioEntity> usuarios;
 
-	@ManyToOne
-	@JoinColumn(name = "usuarioCriador_ID")
-	private UsuarioEntity usuarioCriador;
-
 	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
 			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name = "empresaFoto_ID")
@@ -126,14 +122,6 @@ public class EmpresaEntity extends AbstractPessoaJuridicaEntity implements Seria
 
 	public void setUsuarios(List<UsuarioEntity> usuarios) {
 		this.usuarios = usuarios;
-	}
-
-	public UsuarioEntity getUsuarioCriador() {
-		return usuarioCriador;
-	}
-
-	public void setUsuarioCriador(UsuarioEntity usuarioCriador) {
-		this.usuarioCriador = usuarioCriador;
 	}
 
 	public EmpresaFoto getEmpresaFotoFachada() {
