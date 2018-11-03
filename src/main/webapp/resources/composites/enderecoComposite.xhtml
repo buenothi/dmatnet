@@ -89,7 +89,7 @@
 					<p:calendar id="calDataInicio" locale="pt" showOn="button"
 						pattern="dd/MM/yyyy" mask="true" showTodayButton="true"
 						value="#{cc.attrs.enderecoAtual.dataInicioEndereco}"
-						label="#{msgs.DataCadastro}" size="8">
+						label="#{msgs.DataCadastro}">
 						<p:message for="calDataInicio" />
 					</p:calendar>
 					<p:outputLabel value="#{msgs.Logradouro}:" />
@@ -364,7 +364,8 @@
 									effect="fade" style="width:60px"
 									value="#{endereco.cidade.estado}" converter="estadoConverter"
 									immediate="true">
-									<p:ajax event="itemSelect" listener="#{estadoMB.onSelectionEstado}"
+									<p:ajax event="itemSelect"
+										listener="#{estadoMB.onSelectionEstado}"
 										update="#{cc.attrs.ajaxComponentRenderHistorico}" />
 									<f:selectItem itemValue="#{endereco.cidade.estado}"
 										itemLabel="#{endereco.cidade.estado.estadoSigla}" />

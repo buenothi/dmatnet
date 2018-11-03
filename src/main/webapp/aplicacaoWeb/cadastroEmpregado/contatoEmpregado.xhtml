@@ -13,6 +13,7 @@
 	<dmat:pessoaFisicaContatosComposite id="pfcEmpregado"
 		emailPrincipal="#{cadastroEmpregadoMB.emailPrincipal}"
 		listaEmailsUsuarios="#{cadastroEmpregadoMB.emailsTrabalhadores}"
+		telefonePrincipal="#{cadastroEmpregadoMB.telefonePrincipal}"
 		listaTelefonesUsuarios="#{cadastroEmpregadoMB.telefonesTrabalhadores}"
 		mensagemHasEmailRendered="#{cadastroEmpregadoMB.hasEmail}"
 		mensagemHasTelefoneRendered="#{cadastroEmpregadoMB.hasTelefone}"
@@ -28,7 +29,8 @@
 		actionListenerRemoverEmailLista="#{cadastroEmpregadoMB.removerEmailLista}"
 		actionListenerRemoverTelefoneLista="#{cadastroEmpregadoMB.removerTelefoneLista}"
 		disabledBotaoAdicionarEmail="#{cadastroEmpregadoMB.disabledBotaoAddEmail}" 
-		disabledBotaoNovoEmail="#{cadastroEmpregadoMB.disabledBotaoNovoEmail}" />
+		disabledBotaoNovoEmail="#{cadastroEmpregadoMB.disabledBotaoNovoEmail}" 
+		/>
 	<!-- 
 		setPropertyActionListenerRemoverContato=""
 		setPropertyActionListenerRemoverEmail=""

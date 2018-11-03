@@ -115,6 +115,7 @@ public class CadastroEmpregadoMB implements Serializable {
 
 	private EmailEntity emailPrincipal;
 	private List<EmailEntity> emailsTrabalhadores;
+	private TelefoneEntity telefonePrincipal;
 	private List<TelefoneEntity> telefonesTrabalhadores;
 
 	private boolean disabledBotaoAddEmail;
@@ -572,7 +573,7 @@ public class CadastroEmpregadoMB implements Serializable {
 
 	public List<EmailEntity> getEmailsTrabalhadores() {
 		if (this.emailsTrabalhadores == null) {
-			this.emailsTrabalhadores = new ArrayList<>();
+			this.emailsTrabalhadores = new ArrayList<EmailEntity>();
 		}
 		return emailsTrabalhadores;
 	}
@@ -581,9 +582,20 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.emailsTrabalhadores = emailsTrabalhadores;
 	}
 
+	public TelefoneEntity getTelefonePrincipal() {
+		if (this.telefonePrincipal == null) {
+			this.telefonePrincipal = new TelefoneEntity();
+		}
+		return telefonePrincipal;
+	}
+
+	public void setTelefonePrincipal(TelefoneEntity telefonePrincipal) {
+		this.telefonePrincipal = telefonePrincipal;
+	}
+
 	public List<TelefoneEntity> getTelefonesTrabalhadores() {
 		if (this.telefonesTrabalhadores == null) {
-			this.telefonesTrabalhadores = new ArrayList<>();
+			this.telefonesTrabalhadores = new ArrayList<TelefoneEntity>();
 		}
 		return telefonesTrabalhadores;
 	}
@@ -839,7 +851,7 @@ public class CadastroEmpregadoMB implements Serializable {
 	}
 
 	public void adicionarEmailEmpregado(ActionEvent evt) {
-
+		
 	}
 
 	public void novoEmailEmpregado(ActionEvent evt) {
@@ -940,6 +952,7 @@ public class CadastroEmpregadoMB implements Serializable {
 
 		this.emailPrincipal = null;
 		this.emailsTrabalhadores = null;
+		this.telefonePrincipal = null;
 		this.telefonesTrabalhadores = null;
 
 		this.disabledBotaoAddEmail = true;
