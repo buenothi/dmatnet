@@ -1,4 +1,3 @@
-
 package br.com.smartems.dmatnet.ManagedBeans;
 
 import java.io.Serializable;
@@ -45,6 +44,10 @@ public class CadastroEmpregadoMB implements Serializable {
 	private TrabalhadorFacadeLocal trabalhadorFachada;
 
 	private static final long serialVersionUID = 1L;
+
+	public CadastroEmpregadoMB() {
+		
+	}
 
 	private List<TrabalhadorEntity> listaEmpregadosEmpresaSelecionada;
 
@@ -136,14 +139,6 @@ public class CadastroEmpregadoMB implements Serializable {
 	private boolean hasDeficienciaFisica;
 
 	/* getters e setter */
-
-	public UsuarioMB getUsuarioMB() {
-		return usuarioMB;
-	}
-
-	public void setUsuarioMB(UsuarioMB usuarioMB) {
-		this.usuarioMB = usuarioMB;
-	}
 
 	public PrincipalMB getPrincipalMB() {
 		return principalMB;
@@ -481,6 +476,9 @@ public class CadastroEmpregadoMB implements Serializable {
 	}
 
 	public List<EnderecoEntity> getEnderecoHistorico() {
+		if (this.enderecoHistorico == null) {
+			this.enderecoHistorico = new ArrayList<EnderecoEntity>();
+		}
 		return enderecoHistorico;
 	}
 
@@ -798,12 +796,15 @@ public class CadastroEmpregadoMB implements Serializable {
 
 	public void salvarTrabalhadorSelecionado(ActionEvent evt) {
 		try {
-			this.trabalhadorFachada.salvarNovoTrabalhador(this.usuarioMB.getUsuarioLogado(),
-					this.cadastroEmpresaMB.getEmpresaSelecionada(), this.trabalhadorSelecionado,
-					this.trabalhadorSelecionadoCadastroAtual, this.trabalhadorSelecionadoListaCadastroHistorico,
-					this.trabalhadorDocumentos, this.enderecoAtual, this.enderecoHistorico, this.emailPrincipal,
-					this.emailsTrabalhadores, this.telefonesTrabalhadores, this.classificacoesFuncionais,
-					this.deficienciaFisica);
+			System.out.println(this.usuarioMB.getUsuarioLogado().getNome());
+			System.out.println("teste");
+			//System.out.println(this.cadastroEmpresaMB.getEmpresaSelecionada().getNome());
+//			this.trabalhadorFachada.salvarNovoTrabalhador(this.usuarioMB.getUsuarioLogado(),
+//					this.cadastroEmpresaMB.getEmpresaSelecionada(), this.trabalhadorSelecionado,
+//					this.trabalhadorSelecionadoCadastroAtual, this.trabalhadorSelecionadoListaCadastroHistorico,
+//					this.trabalhadorDocumentos, this.enderecoAtual, this.enderecoHistorico, this.emailPrincipal,
+//					this.emailsTrabalhadores, this.telefonePrincipal, this.telefonesTrabalhadores, this.classificacoesFuncionais,
+//					this.deficienciaFisica);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -851,11 +852,16 @@ public class CadastroEmpregadoMB implements Serializable {
 	}
 
 	public void adicionarEmailEmpregado(ActionEvent evt) {
-		
+		this.emailsTrabalhadores.add(emailPrincipal);
+		this.emailPrincipal = new EmailEntity();
+		this.disabledBotaoAddEmail = true;
+		this.disabledBotaoNovoEmail = false;
 	}
 
 	public void novoEmailEmpregado(ActionEvent evt) {
-
+		this.emailPrincipal = new EmailEntity();
+		this.disabledBotaoAddEmail = false;
+		this.disabledBotaoNovoEmail = true;
 	}
 
 	public void removerEmailLista(ActionEvent evt) {
@@ -863,7 +869,7 @@ public class CadastroEmpregadoMB implements Serializable {
 	}
 
 	public void adicionarTelefoneEmpregado(ActionEvent evt) {
-
+		this.telefonesTrabalhadores.add(telefonePrincipal);
 	}
 
 	public void removerTelefoneLista(ActionEvent evt) {
@@ -884,9 +890,6 @@ public class CadastroEmpregadoMB implements Serializable {
 
 	@PostConstruct
 	public void initEmpregado() {
-		this.usuarioMB = null;
-		this.principalMB = null;
-		this.cadastroEmpresaMB = null;
 		this.listaEmpregadosEmpresaSelecionada = null;
 		this.filtroEmpregadosEmpresaSelecionada = "Ativo";
 		this.nomeEmpregadoProcurado = null;
@@ -970,5 +973,7 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.deficienciaFisica = null;
 
 	}
+	
+	
 
 }

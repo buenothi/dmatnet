@@ -57,17 +57,17 @@ public class TrabalhadorFacade implements TrabalhadorFacadeLocal {
 	}
 
 	@Override
-	public TrabalhadorEntity salvarNovoTrabalhador(UsuarioEntity usuario, EmpresaEntity empresaSelecionada,
+	public void salvarNovoTrabalhador(UsuarioEntity usuario, EmpresaEntity empresaSelecionada,
 			TrabalhadorEntity trabalhadorNovo, TrabalhadorCadastroEntity trabalhadorCadastroAtual,
 			List<TrabalhadorCadastroEntity> trabalhadorListaCadastroHistorico,
 			PessoaFisicaDocumentosEntity trabalhadorDocumentos, EnderecoEntity enderecoAtual,
 			List<EnderecoEntity> enderecosHistorico, EmailEntity emailAtual, List<EmailEntity> emailsHistorico,
-			List<TelefoneEntity> telefones, List<ClassificacaoFuncionalEntity> classificacoesFuncionais,
-			DeficienciaFisicaEntity deficienciaFisica) throws Exception {
-		return trabalhadorEAO.salvarNovoTrabalhador(usuario, empresaSelecionada, trabalhadorNovo,
-				trabalhadorCadastroAtual, trabalhadorListaCadastroHistorico, trabalhadorDocumentos, enderecoAtual,
-				enderecosHistorico, emailAtual, emailsHistorico, telefones, classificacoesFuncionais,
-				deficienciaFisica);
+			TelefoneEntity telefonePrincipal, List<TelefoneEntity> telefones,
+			List<ClassificacaoFuncionalEntity> classificacoesFuncionais, DeficienciaFisicaEntity deficienciaFisica)
+			throws Exception {
+		trabalhadorEAO.salvarNovoTrabalhador(usuario, empresaSelecionada, trabalhadorNovo, trabalhadorCadastroAtual,
+				trabalhadorListaCadastroHistorico, trabalhadorDocumentos, enderecoAtual, enderecosHistorico, emailAtual,
+				emailsHistorico, telefonePrincipal, telefones, classificacoesFuncionais, deficienciaFisica);
 	}
 
 }

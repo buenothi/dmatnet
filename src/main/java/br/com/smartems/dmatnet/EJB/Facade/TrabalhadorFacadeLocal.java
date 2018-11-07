@@ -18,11 +18,11 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 @Local
 public interface TrabalhadorFacadeLocal extends AbstractFacade<TrabalhadorEntity>{
 
-	public TrabalhadorEntity salvarNovoTrabalhador(UsuarioEntity usuario, EmpresaEntity empresaSelecionada,
+	public void salvarNovoTrabalhador(UsuarioEntity usuario, EmpresaEntity empresaSelecionada,
 			TrabalhadorEntity trabalhadorNovo, TrabalhadorCadastroEntity trabalhadorCadastroAtual,
 			List<TrabalhadorCadastroEntity> trabalhadorListaCadastroHistorico,
 			PessoaFisicaDocumentosEntity trabalhadorDocumentos, EnderecoEntity enderecoAtual,
 			List<EnderecoEntity> enderecosHistorico, EmailEntity emailAtual, List<EmailEntity> emailsHistorico,
-			List<TelefoneEntity> telefones, List<ClassificacaoFuncionalEntity> classificacoesFuncionais,
+			TelefoneEntity telefonePrincipal, List<TelefoneEntity> telefones, List<ClassificacaoFuncionalEntity> classificacoesFuncionais,
 			DeficienciaFisicaEntity deficienciaFisica) throws Exception;
 }

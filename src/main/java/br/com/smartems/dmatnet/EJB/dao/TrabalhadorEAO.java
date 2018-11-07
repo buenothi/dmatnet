@@ -25,25 +25,27 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 @Local
 public class TrabalhadorEAO extends AbstractEAO<TrabalhadorEntity, Long> {
 
-	@PersistenceContext
+	@PersistenceContext(unitName = "dmatnet-pu")
 	private EntityManager entityManager;
-
-	@EJB
-	private PessoaJuridicaEAO pessoaJuridicaEAO;
 
 	public TrabalhadorEAO() {
 		super(TrabalhadorEntity.class);
 	}
 
-	public TrabalhadorEntity salvarNovoTrabalhador(UsuarioEntity usuario, EmpresaEntity empresaSelecionada,
+	@EJB
+	private PessoaJuridicaEAO pessoaJuridicaEAO;
+
+	public void salvarNovoTrabalhador(UsuarioEntity usuario, EmpresaEntity empresaSelecionada,
 			TrabalhadorEntity trabalhadorNovo, TrabalhadorCadastroEntity trabalhadorCadastroAtual,
 			List<TrabalhadorCadastroEntity> trabalhadorListaCadastroHistorico,
 			PessoaFisicaDocumentosEntity trabalhadorDocumentos, EnderecoEntity enderecoAtual,
 			List<EnderecoEntity> enderecosHistorico, EmailEntity emailAtual, List<EmailEntity> emailsHistorico,
-			List<TelefoneEntity> telefones, List<ClassificacaoFuncionalEntity> classificacoesFuncionais,
-			DeficienciaFisicaEntity deficienciaFisica) {
+			TelefoneEntity telefonePrincipal, List<TelefoneEntity> telefones,
+			List<ClassificacaoFuncionalEntity> classificacoesFuncionais, DeficienciaFisicaEntity deficienciaFisica) {
 		try {
 			if (trabalhadorNovo.getIdPessoa() == 0) {
+
+				EmpresaEntity novaEmpresaSelecionada = pessoaJuridicaEAO.read(empresaSelecionada.getIdPessoa());
 
 				Set<TrabalhadorCadastroEntity> cadastrosCombinados = new TreeSet<TrabalhadorCadastroEntity>();
 				cadastrosCombinados.addAll(trabalhadorListaCadastroHistorico);
@@ -62,24 +64,25 @@ public class TrabalhadorEAO extends AbstractEAO<TrabalhadorEntity, Long> {
 				emailsCombinados.add(emailAtual);
 				trabalhadorNovo.setEmails(emailsCombinados);
 
-				trabalhadorNovo.getTelefones().addAll(telefones);
+				Set<TelefoneEntity> telefonesCombinados = new TreeSet<TelefoneEntity>();
+				telefonesCombinados.addAll(telefones);
+				telefonesCombinados.add(telefonePrincipal);
+				trabalhadorNovo.getTelefones().addAll(telefonesCombinados);
 
 				trabalhadorNovo.getClassificacoesFuncionais().addAll(classificacoesFuncionais);
 
 				trabalhadorNovo.setDeficienciaFisica(deficienciaFisica);
-				
+
 				trabalhadorNovo.setUsuarioCriador(usuario);
-				
-				empresaSelecionada.getTrabalhadores().add(trabalhadorNovo);
-				
-				this.pessoaJuridicaEAO.update(empresaSelecionada);
+
+				novaEmpresaSelecionada.getTrabalhadores().add(trabalhadorNovo);
+
+				this.pessoaJuridicaEAO.update(novaEmpresaSelecionada);
 
 			}
-			this.create(trabalhadorNovo);
 		} catch (Exception excp) {
 			excp.printStackTrace();
 		}
-		return trabalhadorNovo;
 	}
 
 }

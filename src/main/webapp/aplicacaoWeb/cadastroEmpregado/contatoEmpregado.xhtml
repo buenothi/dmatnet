@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -12,9 +13,11 @@
 <ui:composition>
 	<dmat:pessoaFisicaContatosComposite id="pfcEmpregado"
 		emailPrincipal="#{cadastroEmpregadoMB.emailPrincipal}"
+		updateAdicionarEmailContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfcEmpregado:pnlContatosUsuario"
 		listaEmailsUsuarios="#{cadastroEmpregadoMB.emailsTrabalhadores}"
 		telefonePrincipal="#{cadastroEmpregadoMB.telefonePrincipal}"
 		listaTelefonesUsuarios="#{cadastroEmpregadoMB.telefonesTrabalhadores}"
+		updateAdicionarTelefoneContato="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado:pfcEmpregado:pnlContatosUsuario"
 		mensagemHasEmailRendered="#{cadastroEmpregadoMB.hasEmail}"
 		mensagemHasTelefoneRendered="#{cadastroEmpregadoMB.hasTelefone}"
 		dadosUsuarioEmailRendered="#{cadastroEmpregadoMB.emailRendered}"
@@ -28,18 +31,16 @@
 		actionListenerAdicionarTelefoneContato="#{cadastroEmpregadoMB.adicionarTelefoneEmpregado}"
 		actionListenerRemoverEmailLista="#{cadastroEmpregadoMB.removerEmailLista}"
 		actionListenerRemoverTelefoneLista="#{cadastroEmpregadoMB.removerTelefoneLista}"
-		disabledBotaoAdicionarEmail="#{cadastroEmpregadoMB.disabledBotaoAddEmail}" 
-		disabledBotaoNovoEmail="#{cadastroEmpregadoMB.disabledBotaoNovoEmail}" 
-		/>
+		disabledBotaoAdicionarEmail="#{cadastroEmpregadoMB.disabledBotaoAddEmail}"
+		disabledBotaoNovoEmail="#{cadastroEmpregadoMB.disabledBotaoNovoEmail}" />
 	<!-- 
 		setPropertyActionListenerRemoverContato=""
 		setPropertyActionListenerRemoverEmail=""
 		
 		stringEmailUsuario=""
-		telefonePrincipal=""
 		
-		updateAdicionarEmailContato="" 
-		updateAdicionarTelefoneContato=""
+		
+		
 		updateRemoverEmailLista=""
 		updateRemoverTelefoneLista=""/> -->
 
