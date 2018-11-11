@@ -46,7 +46,7 @@ public class CadastroEmpregadoMB implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public CadastroEmpregadoMB() {
-		
+
 	}
 
 	private List<TrabalhadorEntity> listaEmpregadosEmpresaSelecionada;
@@ -796,15 +796,12 @@ public class CadastroEmpregadoMB implements Serializable {
 
 	public void salvarTrabalhadorSelecionado(ActionEvent evt) {
 		try {
-			System.out.println(this.usuarioMB.getUsuarioLogado().getNome());
-			System.out.println("teste");
-			//System.out.println(this.cadastroEmpresaMB.getEmpresaSelecionada().getNome());
-//			this.trabalhadorFachada.salvarNovoTrabalhador(this.usuarioMB.getUsuarioLogado(),
-//					this.cadastroEmpresaMB.getEmpresaSelecionada(), this.trabalhadorSelecionado,
-//					this.trabalhadorSelecionadoCadastroAtual, this.trabalhadorSelecionadoListaCadastroHistorico,
-//					this.trabalhadorDocumentos, this.enderecoAtual, this.enderecoHistorico, this.emailPrincipal,
-//					this.emailsTrabalhadores, this.telefonePrincipal, this.telefonesTrabalhadores, this.classificacoesFuncionais,
-//					this.deficienciaFisica);
+			this.trabalhadorFachada.salvarNovoTrabalhador(this.usuarioMB.getUsuarioLogado(),
+					this.cadastroEmpresaMB.getEmpresaSelecionada(), this.trabalhadorSelecionado,
+					this.trabalhadorSelecionadoCadastroAtual, this.trabalhadorSelecionadoListaCadastroHistorico,
+					this.trabalhadorDocumentos, this.enderecoAtual, this.enderecoHistorico, this.emailPrincipal,
+					this.emailsTrabalhadores, this.telefonePrincipal, this.telefonesTrabalhadores, this.classificacoesFuncionais,
+					this.deficienciaFisica);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -973,7 +970,5 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.deficienciaFisica = null;
 
 	}
-	
-	
 
 }

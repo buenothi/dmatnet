@@ -238,14 +238,12 @@
 
 	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade"
 		responsive="true">
-		<p:toolbar id="tbrBotoes">
-			<f:facet name="right">
-				<p:commandButton value="#{msgs.Sim}" type="button"
-					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-				<p:commandButton value="#{msgs.Nao}" type="button"
-					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-			</f:facet>
-		</p:toolbar>
+		<h:panelGrid columns="2" styleClass="tabelaSemBorda">
+			<p:commandButton value="#{msgs.Sim}" type="button"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+			<p:commandButton value="#{msgs.Nao}" type="button"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		</h:panelGrid>
 	</p:confirmDialog>
 
 	<p:growl id="growlPrincipal" showDetail="true" sticky="false"
