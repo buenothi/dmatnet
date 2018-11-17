@@ -1,7 +1,7 @@
 package br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,10 +43,10 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 	@JoinTable(name="tbl_usuarioEmpresas_joinTable",
 		joinColumns=@JoinColumn(name="usuario_ID"),
 		inverseJoinColumns=@JoinColumn(name="empresa_ID"))
-	private Set<EmpresaEntity> empresasGerenciadas;
+	private List<EmpresaEntity> empresasGerenciadas;
 	
 	@ManyToMany(mappedBy="usuarios")
-	private Set<EmpresaGrupoEntity> gruposGerenciados;
+	private List<EmpresaGrupoEntity> gruposGerenciados;
 	
 	private Long idUsuarioPai;
 
@@ -81,11 +81,11 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 		this.grupo = grupo;
 	}
 
-	public Set<EmpresaEntity> getEmpresasGerenciadas() {
+	public List<EmpresaEntity> getEmpresasGerenciadas() {
 		return empresasGerenciadas;
 	}
 
-	public void setEmpresasGerenciadas(Set<EmpresaEntity> empresasGerenciadas) {
+	public void setEmpresasGerenciadas(List<EmpresaEntity> empresasGerenciadas) {
 		this.empresasGerenciadas = empresasGerenciadas;
 	}
 
@@ -97,11 +97,11 @@ public class UsuarioEntity extends AbstractPessoaFisicaEntity implements Seriali
 		this.idUsuarioPai = idUsuarioPai;
 	}
 
-	public Set<EmpresaGrupoEntity> getGruposGerenciados() {
+	public List<EmpresaGrupoEntity> getGruposGerenciados() {
 		return gruposGerenciados;
 	}
 
-	public void setGruposGerenciados(Set<EmpresaGrupoEntity> gruposGerenciados) {
+	public void setGruposGerenciados(List<EmpresaGrupoEntity> gruposGerenciados) {
 		this.gruposGerenciados = gruposGerenciados;
 	}
 

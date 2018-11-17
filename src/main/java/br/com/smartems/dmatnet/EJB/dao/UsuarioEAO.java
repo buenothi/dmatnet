@@ -9,10 +9,11 @@ import java.util.TreeSet;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
-import javax.ejb.Stateless;
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 
 import br.com.smartems.dmatnet.entities.pessoa.EmailEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
@@ -22,11 +23,11 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntit
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.util.CriptografiaString;
 
-@Stateless
+@Stateful
 @Local
 public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 
-	@PersistenceContext
+	@PersistenceContext(unitName = "dmatnet-pu", type = PersistenceContextType.EXTENDED)
 	private EntityManager entityManager;
 
 	@EJB
@@ -80,7 +81,7 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 				usuario.setEnderecos(new HashSet<>());
 				usuario.getEnderecos().add(endereco);
 				try {
-					Set<EmpresaEntity> setEmpresas = new HashSet<EmpresaEntity>(empresasAtribuidas);
+					List<EmpresaEntity> setEmpresas = new ArrayList<EmpresaEntity>(empresasAtribuidas);
 					usuario.setEmpresasGerenciadas(setEmpresas);
 				} catch (NullPointerException npe) {
 					npe.printStackTrace();
@@ -148,14 +149,14 @@ public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 	private void atribuirEmpresasAtribuidasPessoaFisica(List<EmpresaEntity> empresasAtribuidas,
 			UsuarioEntity usuarioAtual) {
 		try {
-			Set<EmpresaEntity> novoEmpresasAtribuidas = new HashSet<EmpresaEntity>();
+			List<EmpresaEntity> novoEmpresasAtribuidas = new ArrayList<EmpresaEntity>();
 			novoEmpresasAtribuidas.addAll(empresasAtribuidas);
 			usuarioAtual.setEmpresasGerenciadas(novoEmpresasAtribuidas);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
+ 
 	public EnderecoEntity selecionarEnderecoUsuarioAtual(UsuarioEntity usuario) throws Exception {
 		Date dataMaisRecente;
 		EnderecoEntity enderecoUsuarioAtual = new EnderecoEntity();
