@@ -86,8 +86,7 @@
 							</f:facet>
 							<f:facet name="input">
 								<p:calendar value="#{classFuncional.dataInicio}" locale="pt"
-									showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
-									mask="true" size="8" />
+									showOn="button" pattern="dd/MM/yyyy" mask="true" size="10" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -100,8 +99,7 @@
 							</f:facet>
 							<f:facet name="input">
 								<p:calendar value="#{classFuncional.dataTermino}" locale="pt"
-									showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
-									mask="true" size="8" />
+									showOn="button" pattern="dd/MM/yyyy" mask="true" size="10" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -222,8 +220,8 @@
 					<p:outputLabel value="#{msgs.DataInicio}" />
 				</p:column>
 				<p:column colspan="2">
-					<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-						pattern="dd/MM/yyyy" mask="true" size="8"
+					<p:calendar locale="pt" showOn="button" pattern="dd/MM/yyyy"
+						mask="true" size="10"
 						value="#{cc.attrs.novaClassificacaoFuncional.dataInicio}" />
 				</p:column>
 			</p:row>
@@ -232,8 +230,8 @@
 					<p:outputLabel value="#{msgs.DataTermino}" />
 				</p:column>
 				<p:column colspan="2">
-					<p:calendar locale="pt" showOn="button" showButtonPanel="true"
-						pattern="dd/MM/yyyy" mask="true" size="8"
+					<p:calendar locale="pt" showOn="button" pattern="dd/MM/yyyy"
+						mask="true" size="10"
 						value="#{cc.attrs.novaClassificacaoFuncional.dataTermino}" />
 				</p:column>
 			</p:row>

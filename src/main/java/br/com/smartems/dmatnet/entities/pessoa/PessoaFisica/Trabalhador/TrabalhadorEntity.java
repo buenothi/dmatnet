@@ -2,7 +2,7 @@ package br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -35,11 +35,11 @@ public class TrabalhadorEntity extends AbstractPessoaFisicaEntity implements Ser
 
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "trabalhador_ID")
-	private Set<TrabalhadorCadastroEntity> cadastrosTrabalhador;
+	private List<TrabalhadorCadastroEntity> cadastrosTrabalhador;
 
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "trabalhador_ID")
-	private Set<ClassificacaoFuncionalEntity> classificacoesFuncionais;
+	private List<ClassificacaoFuncionalEntity> classificacoesFuncionais;
 
 	@OneToOne(cascade={CascadeType.ALL})
 	@PrimaryKeyJoinColumn
@@ -99,19 +99,19 @@ public class TrabalhadorEntity extends AbstractPessoaFisicaEntity implements Ser
 		this.grauInstrucao = grauInstrucao;
 	}
 
-	public Set<TrabalhadorCadastroEntity> getCadastrosTrabalhador() {
+	public List<TrabalhadorCadastroEntity> getCadastrosTrabalhador() {
 		return cadastrosTrabalhador;
 	}
 
-	public void setCadastrosTrabalhador(Set<TrabalhadorCadastroEntity> cadastrosTrabalhador) {
+	public void setCadastrosTrabalhador(List<TrabalhadorCadastroEntity> cadastrosTrabalhador) {
 		this.cadastrosTrabalhador = cadastrosTrabalhador;
 	}
 
-	public Set<ClassificacaoFuncionalEntity> getClassificacoesFuncionais() {
+	public List<ClassificacaoFuncionalEntity> getClassificacoesFuncionais() {
 		return classificacoesFuncionais;
 	}
 
-	public void setClassificacoesFuncionais(Set<ClassificacaoFuncionalEntity> classificacoesFuncionais) {
+	public void setClassificacoesFuncionais(List<ClassificacaoFuncionalEntity> classificacoesFuncionais) {
 		this.classificacoesFuncionais = classificacoesFuncionais;
 	}
 

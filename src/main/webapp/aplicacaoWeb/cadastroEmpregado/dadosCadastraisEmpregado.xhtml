@@ -32,7 +32,7 @@
 							</p:column>
 							<p:column>
 								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-									<p:calendar id="calDataInicio" locale="pt" showOn="button"
+									<p:calendar id="calDataInicio" locale="pt" showOn="button" size="10"
 										pattern="dd/MM/yyyy" mask="true" label="#{msgs.DataCadastro}"
 										value="#{cadastroEmpregadoMB.trabalhadorSelecionado.dataCadastroPessoa}" />
 									<p:message for="calDataInicio" />
@@ -44,7 +44,7 @@
 							</p:column>
 							<p:column>
 								<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-									<p:calendar id="calDataNascimento" locale="pt" showOn="button"
+									<p:calendar id="calDataNascimento" locale="pt" showOn="button" size="10"
 										pattern="dd/MM/yyyy" mask="true" label="#{msgs.DataCadastro}"
 										value="#{cadastroEmpregadoMB.trabalhadorSelecionado.dataNascimento}" />
 									<p:message for="calDataNascimento" />
@@ -57,7 +57,7 @@
 						</p:column>
 						<p:column>
 							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-								<p:calendar id="calDataAdmissao" locale="pt" showOn="button"
+								<p:calendar id="calDataAdmissao" locale="pt" showOn="button" size="10"
 									pattern="dd/MM/yyyy" mask="true" label="#{msgs.DataDemissao}"
 									value="#{cadastroEmpregadoMB.trabalhadorSelecionado.dataAdmissao}" />
 								<p:message for="calDataAdmissao" />
@@ -69,7 +69,7 @@
 						</p:column>
 						<p:column>
 							<p:panelGrid columns="2" styleClass="tabelaSemBorda">
-								<p:calendar id="calDataDemissao" locale="pt" showOn="button"
+								<p:calendar id="calDataDemissao" locale="pt" showOn="button" size="10"
 									pattern="dd/MM/yyyy" mask="true" label="#{msgs.DataDemissao}"
 									value="#{cadastroEmpregadoMB.trabalhadorSelecionado.dataDesligamento}" />
 								<p:message for="calDataDemissao" />

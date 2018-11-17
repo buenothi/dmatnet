@@ -87,7 +87,7 @@
 					styleClass="tabelaSemBorda">
 					<p:outputLabel value="#{msgs.DataCadastro}:" />
 					<p:calendar id="calDataInicio" locale="pt" showOn="button"
-						pattern="dd/MM/yyyy" mask="true" showTodayButton="true"
+						pattern="dd/MM/yyyy" mask="true" size="10"
 						value="#{cc.attrs.enderecoAtual.dataInicioEndereco}"
 						label="#{msgs.DataCadastro}">
 						<p:message for="calDataInicio" />
@@ -248,8 +248,8 @@
 							</f:facet>
 							<f:facet name="input">
 								<p:calendar value="#{endereco.dataInicioEndereco}" locale="pt"
-									showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
-									mask="true" size="8" />
+									showOn="button" pattern="dd/MM/yyyy"
+									mask="true" size="10" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>
@@ -262,8 +262,8 @@
 							</f:facet>
 							<f:facet name="input">
 								<p:calendar value="#{endereco.dataTerminoEndereco}" locale="pt"
-									showOn="button" showButtonPanel="true" pattern="dd/MM/yyyy"
-									mask="true" size="8" />
+									showOn="button" pattern="dd/MM/yyyy"
+									mask="true" size="10" />
 							</f:facet>
 						</p:cellEditor>
 					</p:column>

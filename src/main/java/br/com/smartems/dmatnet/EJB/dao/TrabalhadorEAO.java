@@ -1,15 +1,17 @@
 package br.com.smartems.dmatnet.EJB.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
-import javax.ejb.Stateless;
+import javax.ejb.Stateful;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 
 import br.com.smartems.dmatnet.entities.ClassificacaoFuncional.ClassificacaoFuncionalEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EmailEntity;
@@ -22,11 +24,11 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.Trabalha
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 
-@Stateless
+@Stateful
 @Local
 public class TrabalhadorEAO extends AbstractEAO<TrabalhadorEntity, Long> {
 
-	@PersistenceContext(unitName = "dmatnet-pu")
+	@PersistenceContext(unitName = "dmatnet-pu", type = PersistenceContextType.EXTENDED)
 	private EntityManager entityManager;
 
 	public TrabalhadorEAO() {
@@ -47,7 +49,7 @@ public class TrabalhadorEAO extends AbstractEAO<TrabalhadorEntity, Long> {
 		if (trabalhadorNovo.getIdPessoa() == 0) {
 
 			try {
-				Set<TrabalhadorCadastroEntity> cadastrosCombinados = new TreeSet<TrabalhadorCadastroEntity>();
+				List<TrabalhadorCadastroEntity> cadastrosCombinados = new ArrayList<TrabalhadorCadastroEntity>();
 				cadastrosCombinados.addAll(trabalhadorListaCadastroHistorico);
 				cadastrosCombinados.add(trabalhadorCadastroAtual);
 				trabalhadorNovo.setCadastrosTrabalhador(cadastrosCombinados);
