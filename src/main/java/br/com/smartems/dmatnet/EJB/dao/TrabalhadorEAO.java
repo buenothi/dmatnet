@@ -7,11 +7,10 @@ import java.util.TreeSet;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
-import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 
 import br.com.smartems.dmatnet.entities.ClassificacaoFuncional.ClassificacaoFuncionalEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EmailEntity;
@@ -24,11 +23,11 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.Trabalha
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 
-@Stateful
+@Stateless
 @Local
 public class TrabalhadorEAO extends AbstractEAO<TrabalhadorEntity, Long> {
 
-	@PersistenceContext(unitName = "dmatnet-pu", type = PersistenceContextType.EXTENDED)
+	@PersistenceContext(unitName = "dmatnet-pu")
 	private EntityManager entityManager;
 
 	public TrabalhadorEAO() {

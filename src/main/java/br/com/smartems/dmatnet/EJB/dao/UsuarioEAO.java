@@ -9,11 +9,10 @@ import java.util.TreeSet;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
-import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 
 import br.com.smartems.dmatnet.entities.pessoa.EmailEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
@@ -23,11 +22,11 @@ import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntit
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.util.CriptografiaString;
 
-@Stateful
+@Stateless
 @Local
 public class UsuarioEAO extends AbstractEAO<UsuarioEntity, Long> {
 
-	@PersistenceContext(unitName = "dmatnet-pu", type = PersistenceContextType.EXTENDED)
+	@PersistenceContext(unitName = "dmatnet-pu")
 	private EntityManager entityManager;
 
 	@EJB
