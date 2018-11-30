@@ -29,6 +29,7 @@ import br.com.smartems.dmatnet.EJB.Facade.EstadoFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.PessoaJuridicaFacadeLocal;
 import br.com.smartems.dmatnet.EJB.Facade.UsuarioFacadeLocal;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
+import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaDadosIsencao;
@@ -48,9 +49,9 @@ public class CadastroEmpresaMB implements Serializable {
 
 	@Inject
 	private UsuarioMB usuarioMB;
-
+	
 	@Inject
-	private PrincipalMB principalMB;
+	private CadastroEmpregadoMB cadastroEmpregadoMB;
 
 	@EJB
 	private PessoaJuridicaFacadeLocal pessoaJuridicaFachada;
@@ -181,22 +182,6 @@ public class CadastroEmpresaMB implements Serializable {
 	}
 
 	// inicio dos getters e setters
-
-	public UsuarioMB getUsuarioMB() {
-		return usuarioMB;
-	}
-
-	public void setUsuarioMB(UsuarioMB usuarioMB) {
-		this.usuarioMB = usuarioMB;
-	}
-
-	public PrincipalMB getPrincipalMB() {
-		return principalMB;
-	}
-
-	public void setPrincipalMB(PrincipalMB principalMB) {
-		this.principalMB = principalMB;
-	}
 
 	public EmpresaEntity getEmpresa() {
 		if (empresa == null) {
@@ -1005,6 +990,7 @@ public class CadastroEmpresaMB implements Serializable {
 				SelectEvent evt = (SelectEvent) obj;
 				this.separarDadosCadastraisAtualDoHistorico((EmpresaEntity) evt.getObject());
 				this.separarEnderecoAtualDoHistorico((EmpresaEntity) evt.getObject());
+				this.carregarEmpregadosEmpresaSelecionada((EmpresaEntity) evt.getObject());
 			} else if (obj instanceof EmpresaEntity) {
 				this.separarDadosCadastraisAtualDoHistorico((EmpresaEntity) obj);
 				this.separarEnderecoAtualDoHistorico((EmpresaEntity) obj);
@@ -1228,7 +1214,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.exibirImagem(empresaLogotipo);
 	}
 
-	public void separarDadosCadastraisAtualDoHistorico(EmpresaEntity empresa) {
+	private void separarDadosCadastraisAtualDoHistorico(EmpresaEntity empresa) {
 		this.initEmpresa();
 		this.empresaSelecionada = pessoaJuridicaFachada.read(empresa.getIdPessoa());
 		this.fotografiaFachadaEmpresa = this.empresaSelecionada.getEmpresaFotoFachada();
@@ -1467,7 +1453,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isTabEstabelecimentosDesativado = true;
 	}
 
-	public void separarEnderecoAtualDoHistorico(EmpresaEntity empresa) {
+	private void separarEnderecoAtualDoHistorico(EmpresaEntity empresa) {
 		this.empresaSelecionada = pessoaJuridicaFachada.read(empresa.getIdPessoa());
 		this.fotografiaFachadaEmpresa = this.empresaSelecionada.getEmpresaFotoFachada();
 		this.exibirImagem(fotografiaFachadaEmpresa);
@@ -1492,6 +1478,13 @@ public class CadastroEmpresaMB implements Serializable {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
+	}
+	
+	private void carregarEmpregadosEmpresaSelecionada(EmpresaEntity empresa) {
+		this.empresaSelecionada = pessoaJuridicaFachada.read(empresa.getIdPessoa());
+		List<TrabalhadorEntity> novaListaTrabalhadores = new ArrayList<TrabalhadorEntity>();
+		novaListaTrabalhadores.addAll(this.empresaSelecionada.getTrabalhadores());
+		this.cadastroEmpregadoMB.setListaEmpregadosEmpresaSelecionada(novaListaTrabalhadores);
 	}
 
 	public void excluirEnderecoEmpresa(ActionEvent e) {

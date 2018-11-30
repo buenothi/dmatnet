@@ -45,7 +45,7 @@
 
 			<p:dataTable id="dtbEmpregados" scrollable="true" var="empregado"
 				value="#{cadastroEmpregadoMB.listaEmpregadosEmpresaSelecionada}"
-				styleClass="dataTable" paginator="true" rows="10"
+				styleClass="dataTable" paginator="true" rows="10" rowKey="#{empregado.idPessoa}"
 				paginatorAlwaysVisible="false" draggableColumns="true"
 				emptyMessage="#{msgs.ListaEmpregadosVazio}" selectionMode="single">
 
@@ -61,7 +61,7 @@
 				</p:column>
 
 				<p:column headerText="#{msgs.Nome}" width="200">
-					<h:outputText value="#{empregado.dataCadastroPessoa}"
+					<h:outputText value="#{empregado.nome}"
 						converter="stringConverter" />
 				</p:column>
 
