@@ -1482,6 +1482,7 @@ public class CadastroEmpresaMB implements Serializable {
 	
 	private void carregarEmpregadosEmpresaSelecionada(EmpresaEntity empresa) {
 		this.empresaSelecionada = pessoaJuridicaFachada.read(empresa.getIdPessoa());
+		this.cadastroEmpregadoMB.setExibirDadosCadastraisEmpregado(false);
 		List<TrabalhadorEntity> novaListaTrabalhadores = new ArrayList<TrabalhadorEntity>();
 		novaListaTrabalhadores.addAll(this.empresaSelecionada.getTrabalhadores());
 		this.cadastroEmpregadoMB.setListaEmpregadosEmpresaSelecionada(novaListaTrabalhadores);

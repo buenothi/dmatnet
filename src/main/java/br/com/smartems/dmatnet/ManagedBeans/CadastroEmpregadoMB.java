@@ -839,7 +839,7 @@ public class CadastroEmpregadoMB implements Serializable {
 			if (obj instanceof SelectEvent) {
 				SelectEvent evt = (SelectEvent) obj;
 				this.trabalhadorSelecionado = (TrabalhadorEntity) evt.getObject();
-
+				this.exibirDadosCadastraisEmpregado = true;
 			} else if (obj instanceof TrabalhadorEntity) {
 
 			}
@@ -893,7 +893,7 @@ public class CadastroEmpregadoMB implements Serializable {
 		this.mensagemHasEmpregado = false;
 		this.exibirDadosCadastraisEmpregadoBloco = true;
 		this.mensagemSelecionarEmpregado = true;
-		this.exibirDadosCadastraisEmpregado = true;
+		this.exibirDadosCadastraisEmpregado = false;
 		this.trabalhadorSelecionado = null;
 		this.trabalhadorSelecionadoCadastroAtual = null;
 		this.trabalhadorSelecionadoListaCadastroHistorico = null;

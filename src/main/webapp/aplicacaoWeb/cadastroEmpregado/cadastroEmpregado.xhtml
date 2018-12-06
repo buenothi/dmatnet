@@ -46,12 +46,12 @@
 			<p:dataTable id="dtbEmpregados" scrollable="true" var="empregado"
 				value="#{cadastroEmpregadoMB.listaEmpregadosEmpresaSelecionada}"
 				styleClass="dataTable" paginator="true" rows="10" rowKey="#{empregado.idPessoa}"
-				paginatorAlwaysVisible="false" draggableColumns="true"
+				paginatorAlwaysVisible="false" draggableColumns="true" 
 				emptyMessage="#{msgs.ListaEmpregadosVazio}" selectionMode="single">
 
 				<p:ajax event="rowSelect"
 					listener="#{cadastroEmpregadoMB.onSelectionEmpregado}"
-					update="formModulos:formCadEmpresa:tbwCadastroEmpresa:tbwCadastroEmpregado"
+					update="formModulos:formCadEmpresa:tbwCadastroEmpresa:pngCadastroEmpregados"
 					resetValues="true" />
 
 				<p:column headerText="#{msgs.DataCadastro}" width="60">
