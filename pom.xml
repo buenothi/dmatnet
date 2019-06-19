@@ -39,9 +39,6 @@
 			<version>7.0</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- <dependency> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-assembly-plugin</artifactId> 
-			<version>3.1.1</version> <configuration> <finalName>dmatnet</finalName> <appendAssemblyId>false</appendAssemblyId> 
-			</configuration> </dependency> -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
