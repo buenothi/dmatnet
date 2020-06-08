@@ -7,6 +7,7 @@ import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -33,7 +34,7 @@ public class BloqueioAcessoPaginasFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
-		System.out.println("-----------------------------------\n" + "passagem pelo filtro na ida");
+		System.out.println("-----------------------------------");
 		
 		//a função abaixo é usada para obter atributos na requisição http, quando utilizado pelo ManagedBean (Deprecado)
 		//usuarioMB = (UsuarioMB) ((HttpServletRequest) request).getSession().getAttribute("usuarioMB");
@@ -53,7 +54,6 @@ public class BloqueioAcessoPaginasFilter implements Filter {
 			System.out.println("usuário não está logado");
 		}
 
-		System.out.println("passagem pelo filtro na volta\n" + "-----------------------------------");
 
 	}
 

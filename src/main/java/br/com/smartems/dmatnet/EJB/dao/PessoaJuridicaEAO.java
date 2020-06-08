@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
@@ -18,13 +16,10 @@ import javax.persistence.Query;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
-import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaDadosIsencao;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFoto;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaLogotipo;
-import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaOrganismoInternacional;
-import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaSoftwareHouse;
 import br.com.smartems.dmatnet.util.ReportUtil;
 import br.com.smartems.dmatnet.util.filtrosCollection.Filter;
 import br.com.smartems.dmatnet.util.filtrosCollection.FiltroEmpresa;
@@ -72,13 +67,9 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 	}
 
 	public void alterarCadastroEmpresa(EmpresaEntity empresa, UsuarioEntity usuarioLogado, EmpresaFAP fap,
-			EmpresaDadosIsencao empresaDadosIsencao, EmpresaOrganismoInternacional empresaOrgI8n,
-			Set<EmpresaSoftwareHouse> empresasSoftware, EmpresaCadastroEntity dadosCadastraisAtual) {
+			EmpresaCadastroEntity dadosCadastraisAtual) {
 		empresa.setUsuarioCriador(usuarioLogado);
 		this.atribuirEmpresaFAP(fap, dadosCadastraisAtual);
-		this.atribuirEmpresaDadosIsencao(empresaDadosIsencao, dadosCadastraisAtual);
-		this.atribuirEmpresaOrgI8n(empresaOrgI8n, dadosCadastraisAtual);
-		this.atribuirEmpresaSoftware(empresasSoftware, dadosCadastraisAtual);
 		this.update(empresa);
 	}
 
@@ -105,67 +96,6 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 		return novoFap;
 	}
 
-	private void atribuirEmpresaDadosIsencao(EmpresaDadosIsencao empresaDadosIsencao,
-			EmpresaCadastroEntity dadosCadastraisAtual) {
-		if (empresaDadosIsencao != null) {
-			EmpresaDadosIsencao novoEmpresaDadosIsencao = new EmpresaDadosIsencao();
-			try {
-				novoEmpresaDadosIsencao = empresaDadosIsencao.clone();
-			} catch (CloneNotSupportedException e) {
-				e.printStackTrace();
-			}
-			novoEmpresaDadosIsencao.setIdEmpresaDadosIsencao(0);
-			dadosCadastraisAtual.setEmpresaDadosIsencao(novoEmpresaDadosIsencao);
-		}
-	}
-
-	private EmpresaDadosIsencao retornarEmpresaDadosIsencao(EmpresaDadosIsencao empresaDadosIsencao)
-			throws CloneNotSupportedException {
-		EmpresaDadosIsencao novoDadosIsencao = new EmpresaDadosIsencao();
-		if (empresaDadosIsencao != null) {
-			novoDadosIsencao = empresaDadosIsencao.clone();
-			novoDadosIsencao.setIdEmpresaDadosIsencao(0);
-		}
-		return novoDadosIsencao;
-	}
-
-	private void atribuirEmpresaOrgI8n(EmpresaOrganismoInternacional empresaOrgI8n,
-			EmpresaCadastroEntity dadosCadastraisAtual) {
-		if (empresaOrgI8n != null) {
-			EmpresaOrganismoInternacional novoEmpresaOrgI8n = new EmpresaOrganismoInternacional();
-			try {
-				novoEmpresaOrgI8n = empresaOrgI8n.clone();
-			} catch (CloneNotSupportedException e) {
-				e.printStackTrace();
-			}
-			novoEmpresaOrgI8n.setIdEmpresaOrgInternacional(0);
-			dadosCadastraisAtual.setOrganismoInternacional(novoEmpresaOrgI8n);
-		}
-	}
-
-	private EmpresaOrganismoInternacional retornarEmpresaOrgI8n(EmpresaOrganismoInternacional empresaOrgI8n)
-			throws CloneNotSupportedException {
-		EmpresaOrganismoInternacional novoOrgI8n = new EmpresaOrganismoInternacional();
-		if (empresaOrgI8n != null) {
-			novoOrgI8n = empresaOrgI8n.clone();
-			novoOrgI8n.setIdEmpresaOrgInternacional(0);
-		}
-		return novoOrgI8n;
-	}
-
-	private void atribuirEmpresaSoftware(Set<EmpresaSoftwareHouse> empresasSoftware,
-			EmpresaCadastroEntity dadosCadastraisAtual) {
-		if (empresasSoftware != null) {
-			Set<EmpresaSoftwareHouse> novoEmpresasSoftware = new TreeSet<>(empresasSoftware);
-			try {
-				novoEmpresasSoftware = empresasSoftware;
-				dadosCadastraisAtual.setEmpresaSoftwareHouse(novoEmpresasSoftware);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
 	public void excluirCadastroEmpresa(EmpresaEntity empresa) throws NullPointerException {
 		EmpresaEntity empresaDeletada = this.read(empresa.getIdPessoa());
 		this.delete(empresaDeletada);
@@ -186,9 +116,8 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 	// Dados Cadastrais da Empresa
 
 	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
-			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap,
-			EmpresaDadosIsencao empresaDadosIsencao, EmpresaOrganismoInternacional empresaOrgI8n,
-			Set<EmpresaSoftwareHouse> empresasSoftwareHouse, EmpresaEntity empresaSelecionada) throws Exception {
+			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap, EmpresaEntity empresaSelecionada)
+			throws Exception {
 		if (dadosCadastraisAtual.getId() == 0) {
 			EmpresaEntity novaEmpresaSelecionada = this.read(empresaSelecionada.getIdPessoa());
 			for (EmpresaCadastroEntity dadoCadastral : novaEmpresaSelecionada.getCadastros()) {
@@ -204,13 +133,9 @@ public class PessoaJuridicaEAO extends AbstractEAO<EmpresaEntity, Long> {
 				}
 			}
 			dadosCadastraisAtual.setEmpresaFAP(this.retornarEmpresaFAP(empresaFap));
-			dadosCadastraisAtual.setEmpresaDadosIsencao(this.retornarEmpresaDadosIsencao(empresaDadosIsencao));
-			dadosCadastraisAtual.setOrganismoInternacional(this.retornarEmpresaOrgI8n(empresaOrgI8n));
-			dadosCadastraisAtual.setEmpresaSoftwareHouse(empresasSoftwareHouse);
 			novaEmpresaSelecionada.getCadastros().add(dadosCadastraisAtual);
 			this.update(novaEmpresaSelecionada);
 		} else {
-			dadosCadastraisAtual.setEmpresaSoftwareHouse(empresasSoftwareHouse);
 			empresaSelecionada.getCadastros().add(dadosCadastraisAtual);
 			empresaSelecionada = this.update(empresaSelecionada);
 		}

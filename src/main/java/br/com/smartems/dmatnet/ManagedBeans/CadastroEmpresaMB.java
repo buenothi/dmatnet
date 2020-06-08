@@ -4,9 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -32,14 +30,11 @@ import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
-import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaDadosIsencao;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFoto;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaGrupoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaLogotipo;
-import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaOrganismoInternacional;
-import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaSoftwareHouse;
 import br.com.smartems.dmatnet.util.ReportUtil;
 import br.com.smartems.dmatnet.util.StringsUtilitarios;
 
@@ -49,7 +44,7 @@ public class CadastroEmpresaMB implements Serializable {
 
 	@Inject
 	private UsuarioMB usuarioMB;
-	
+
 	@Inject
 	private CadastroEmpregadoMB cadastroEmpregadoMB;
 
@@ -77,11 +72,6 @@ public class CadastroEmpresaMB implements Serializable {
 	private EmpresaEntity empresaSelecionada;
 	private EmpresaEntity empresa;
 	private EmpresaFAP empresaFap;
-	private EmpresaDadosIsencao empresaDadosIsencao;
-	private EmpresaOrganismoInternacional empresaOrgI8n;
-	private EmpresaSoftwareHouse empresaSoftwareHouse;
-	private Set<EmpresaSoftwareHouse> empresasSoftwareHouse;
-	private String empresaOrgI8nString;
 	private EmpresaFoto fotografiaFachadaEmpresa;
 	private EmpresaFoto fotografiaFachadaAntiga;
 	private DefaultStreamedContent fachadaEmpresa;
@@ -257,68 +247,6 @@ public class CadastroEmpresaMB implements Serializable {
 
 	public void setEmpresaFap(EmpresaFAP empresaFap) {
 		this.empresaFap = empresaFap;
-	}
-
-	public EmpresaDadosIsencao getEmpresaDadosIsencao() {
-		if (this.empresaDadosIsencao == null) {
-			this.empresaDadosIsencao = new EmpresaDadosIsencao();
-		}
-		return empresaDadosIsencao;
-	}
-
-	public void setEmpresaDadosIsencao(EmpresaDadosIsencao empresaDadosIsencao) {
-		this.empresaDadosIsencao = empresaDadosIsencao;
-	}
-
-	public EmpresaOrganismoInternacional getEmpresaOrgI8n() {
-		if (this.empresaOrgI8n == null) {
-			this.empresaOrgI8n = new EmpresaOrganismoInternacional();
-		}
-		return empresaOrgI8n;
-	}
-
-	public void setEmpresaOrgI8n(EmpresaOrganismoInternacional empresaOrgI8n) {
-		this.empresaOrgI8n = empresaOrgI8n;
-	}
-
-	public String getEmpresaOrgI8nString() {
-		try {
-			if (this.empresaOrgI8n.isAcordoInternacional() == true) {
-				this.empresaOrgI8nString = "Sim";
-			} else {
-				this.empresaOrgI8nString = "Não";
-			}
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-			this.empresaOrgI8nString = "Não";
-		}
-		return empresaOrgI8nString;
-	}
-
-	public void setEmpresaOrgI8nString(String empresaOrgI8nString) {
-		this.empresaOrgI8nString = empresaOrgI8nString;
-	}
-
-	public EmpresaSoftwareHouse getEmpresaSoftwareHouse() {
-		if (this.empresaSoftwareHouse == null) {
-			this.empresaSoftwareHouse = new EmpresaSoftwareHouse();
-		}
-		return empresaSoftwareHouse;
-	}
-
-	public void setEmpresaSoftwareHouse(EmpresaSoftwareHouse empresaSoftwareHouse) {
-		this.empresaSoftwareHouse = empresaSoftwareHouse;
-	}
-
-	public Set<EmpresaSoftwareHouse> getEmpresasSoftwareHouse() {
-		if (this.empresasSoftwareHouse == null) {
-			this.empresasSoftwareHouse = new HashSet<EmpresaSoftwareHouse>();
-		}
-		return empresasSoftwareHouse;
-	}
-
-	public void setEmpresasSoftwareHouse(Set<EmpresaSoftwareHouse> empresasSoftwareHouse) {
-		this.empresasSoftwareHouse = empresasSoftwareHouse;
 	}
 
 	public DefaultStreamedContent getFachadaEmpresa() {
@@ -937,8 +865,7 @@ public class CadastroEmpresaMB implements Serializable {
 				FacesContext.getCurrentInstance().addMessage(null, msg);
 			} else {
 				this.pessoaJuridicaFachada.alterarCadastroEmpresa(this.empresa, this.usuarioMB.getUsuarioLogado(),
-						this.empresaFap, this.empresaDadosIsencao, this.empresaOrgI8n, this.empresasSoftwareHouse,
-						this.dadosCadastraisAtual);
+						this.empresaFap, this.dadosCadastraisAtual);
 				FacesMessage msg = new FacesMessage("Sucesso",
 						stringUtils.formatarTextoParaLeitura(this.empresa.getNome().toString())
 								+ " Atualizado com Sucesso");
@@ -1019,8 +946,6 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isTabEstabelecimentosDesativado = true;
 
 		this.empresaFap = this.dadosCadastraisAtual.getEmpresaFAP();
-		this.empresaDadosIsencao = this.dadosCadastraisAtual.getEmpresaDadosIsencao();
-		this.empresaOrgI8n = this.dadosCadastraisAtual.getOrganismoInternacional();
 	}
 
 	public void cancelarDadosCadastraisEmpresa(ActionEvent e) {
@@ -1061,8 +986,7 @@ public class CadastroEmpresaMB implements Serializable {
 			if (dadosCadastraisAnterior == null || dadosCadastraisAtual.getDataInicioCadastro()
 					.compareTo(dadosCadastraisAnterior.getDataInicioCadastro()) >= 0) {
 				this.pessoaJuridicaFachada.salvarDadosCadastraisEmpresa(this.dadosCadastraisAtual,
-						this.dadosCadastraisAnterior, this.empresaFap, this.empresaDadosIsencao, this.empresaOrgI8n,
-						this.empresasSoftwareHouse, this.empresaSelecionada);
+						this.dadosCadastraisAnterior, this.empresaFap, this.empresaSelecionada);
 				this.exibirImagem(this.fotografiaFachadaEmpresa);
 				this.separarDadosCadastraisAtualDoHistorico(empresaSelecionada);
 			} else {
@@ -1074,8 +998,6 @@ public class CadastroEmpresaMB implements Serializable {
 		} catch (NullPointerException exc) {
 			exc.printStackTrace();
 			this.atribuirEmpresaFAP(this.empresaFap);
-			this.atribuirEmpresaDadosIsencao(this.empresaDadosIsencao);
-			this.atribuirEmpresaOrgI8n(this.empresaOrgI8n);
 			this.empresaSelecionada.getCadastros().add(this.dadosCadastraisAtual);
 			this.empresaSelecionada = this.pessoaJuridicaFachada.update(this.empresaSelecionada);
 			this.onSelectionEmpresa(empresaSelecionada);
@@ -1098,31 +1020,6 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 	}
 
-	private void atribuirEmpresaDadosIsencao(EmpresaDadosIsencao empresaDadosIsencao) {
-		if (empresaDadosIsencao != null) {
-			EmpresaDadosIsencao novoDadosIsencao = new EmpresaDadosIsencao();
-			try {
-				novoDadosIsencao = empresaDadosIsencao.clone();
-			} catch (CloneNotSupportedException e) {
-				e.printStackTrace();
-			}
-			novoDadosIsencao.setIdEmpresaDadosIsencao(0);
-			this.dadosCadastraisAtual.setEmpresaDadosIsencao(novoDadosIsencao);
-		}
-	}
-
-	private void atribuirEmpresaOrgI8n(EmpresaOrganismoInternacional empresaOrgI8n) {
-		if (empresaOrgI8n != null) {
-			EmpresaOrganismoInternacional novoOrgI8n = new EmpresaOrganismoInternacional();
-			try {
-				novoOrgI8n = empresaOrgI8n.clone();
-			} catch (CloneNotSupportedException e) {
-				e.printStackTrace();
-			}
-			novoOrgI8n.setIdEmpresaOrgInternacional(0);
-			this.dadosCadastraisAtual.setOrganismoInternacional(novoOrgI8n);
-		}
-	}
 
 	public void novoDadosCadastraisEmpresaEmBranco(ActionEvent e) {
 		try {
@@ -1133,7 +1030,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.dadosCadastraisAtual = new EmpresaCadastroEntity();
 		this.dadosCadastraisAtual.setId(0);
 		this.dadosCadastraisTrocaStatusBotoes();
-		//RequestContext.getCurrentInstance().execute();
+		// RequestContext.getCurrentInstance().execute();
 		PrimeFaces.current().ajax().update("PF('dlgPerguntaDadosCadastrais').hide()");
 	}
 
@@ -1144,11 +1041,9 @@ public class CadastroEmpresaMB implements Serializable {
 			e1.printStackTrace();
 		}
 		this.empresaFap = this.dadosCadastraisAtual.getEmpresaFAP();
-		this.empresaDadosIsencao = this.dadosCadastraisAtual.getEmpresaDadosIsencao();
-		this.empresaOrgI8n = this.dadosCadastraisAtual.getOrganismoInternacional();
 		this.dadosCadastraisAtual.setId(0);
 		this.dadosCadastraisTrocaStatusBotoes();
-		//RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').hide()");
+		// RequestContext.getCurrentInstance().execute("PF('dlgPerguntaDadosCadastrais').hide()");
 		PrimeFaces.current().ajax().update("PF('dlgPerguntaDadosCadastrais').hide()");
 	}
 
@@ -1180,14 +1075,6 @@ public class CadastroEmpresaMB implements Serializable {
 		this.isTabContatoDesativado = true;
 		this.isTabEmpregadosDesativado = true;
 		this.isTabEstabelecimentosDesativado = true;
-	}
-
-	public void novoCadastroEmpresaSoftware(ActionEvent evt) {
-		try {
-			this.empresasSoftwareHouse.add(this.empresaSoftwareHouse);
-		} catch (NullPointerException np) {
-			np.printStackTrace();
-		}
 	}
 
 	public void gravarImagemFachada(FileUploadEvent evt) {
@@ -1224,8 +1111,6 @@ public class CadastroEmpresaMB implements Serializable {
 					.selecionarDadosCadastraisAtual(this.empresaSelecionada);
 			this.dadosCadastraisHistorico = pessoaJuridicaFachada
 					.selecionarDadosCadastraisHistorico(this.dadosCadastraisAtual, this.empresaSelecionada);
-			this.empresasSoftwareHouse = this.dadosCadastraisAtual.getEmpresaSoftwareHouse();
-			this.empresaOrgI8n = this.dadosCadastraisAtual.getOrganismoInternacional();
 			if (this.dadosCadastraisAtual.getId() != 0) {
 				this.isBtnDadosCadastraisEditarDesativado = false;
 				this.isBtnDadosCadastraisExcluirDesativado = false;
@@ -1422,7 +1307,7 @@ public class CadastroEmpresaMB implements Serializable {
 		this.enderecoAtual = new EnderecoEntity();
 		this.enderecoAtual.setIdEndereco(0);
 		this.enderecoTrocaStatusBotoes();
-		//RequestContext.getCurrentInstance().execute("PF('dlgPerguntaEndereco').hide()");
+		// RequestContext.getCurrentInstance().execute("PF('dlgPerguntaEndereco').hide()");
 		PrimeFaces.current().ajax().update("PF('dlgPerguntaEndereco').hide()");
 	}
 
@@ -1434,7 +1319,7 @@ public class CadastroEmpresaMB implements Serializable {
 		}
 		this.enderecoAtual.setIdEndereco(0);
 		this.enderecoTrocaStatusBotoes();
-		//RequestContext.getCurrentInstance().execute("PF('dlgPerguntaEndereco').hide()");
+		// RequestContext.getCurrentInstance().execute("PF('dlgPerguntaEndereco').hide()");
 		PrimeFaces.current().ajax().update("PF('dlgPerguntaEndereco').hide()");
 	}
 
@@ -1479,7 +1364,7 @@ public class CadastroEmpresaMB implements Serializable {
 			e1.printStackTrace();
 		}
 	}
-	
+
 	private void carregarEmpregadosEmpresaSelecionada(EmpresaEntity empresa) {
 		this.empresaSelecionada = pessoaJuridicaFachada.read(empresa.getIdPessoa());
 		this.cadastroEmpregadoMB.setExibirDadosCadastraisEmpregado(false);
@@ -1712,10 +1597,6 @@ public class CadastroEmpresaMB implements Serializable {
 			this.fotografiaFachadaEmpresa = null;
 			this.empresa = null;
 			this.empresaFap = null;
-			this.empresaDadosIsencao = null;
-			this.empresaOrgI8n = null;
-			this.empresaSoftwareHouse = null;
-			this.empresasSoftwareHouse = null;
 			this.fachadaEmpresa = null;
 			this.logotipo = null;
 			this.fotografiaFachadaAntiga = null;

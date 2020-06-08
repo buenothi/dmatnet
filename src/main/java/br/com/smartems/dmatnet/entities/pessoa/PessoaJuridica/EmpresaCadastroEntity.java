@@ -2,16 +2,13 @@ package br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -43,21 +40,6 @@ public class EmpresaCadastroEntity implements Serializable, Cloneable {
 			CascadeType.MERGE }, orphanRemoval = true)
 	@JoinColumn(name = "empresaFAP_ID")
 	private EmpresaFAP empresaFAP;
-
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
-			CascadeType.MERGE }, orphanRemoval = true)
-	@JoinColumn(name = "empresaDadosIsencao_ID")
-	private EmpresaDadosIsencao empresaDadosIsencao;
-
-	@OneToOne(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
-			CascadeType.MERGE }, orphanRemoval = true)
-	@JoinColumn(name = "organismoInternacional_ID")
-	private EmpresaOrganismoInternacional organismoInternacional;
-
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REMOVE,
-			CascadeType.MERGE }, orphanRemoval = true, fetch = FetchType.EAGER)
-	@JoinColumn(name = "empresaSoftwareHouse_ID")
-	private Set<EmpresaSoftwareHouse> empresaSoftwareHouse;
 
 	private static final long serialVersionUID = 1L;
 
@@ -153,31 +135,7 @@ public class EmpresaCadastroEntity implements Serializable, Cloneable {
 	public void setEmpresaFAP(EmpresaFAP empresaFAP) {
 		this.empresaFAP = empresaFAP;
 	}
-
-	public EmpresaDadosIsencao getEmpresaDadosIsencao() {
-		return empresaDadosIsencao;
-	}
-
-	public void setEmpresaDadosIsencao(EmpresaDadosIsencao empresaDadosIsencao) {
-		this.empresaDadosIsencao = empresaDadosIsencao;
-	}
-
-	public EmpresaOrganismoInternacional getOrganismoInternacional() {
-		return organismoInternacional;
-	}
-
-	public void setOrganismoInternacional(EmpresaOrganismoInternacional organismoInternacional) {
-		this.organismoInternacional = organismoInternacional;
-	}
-
-	public Set<EmpresaSoftwareHouse> getEmpresaSoftwareHouse() {
-		return empresaSoftwareHouse;
-	}
-
-	public void setEmpresaSoftwareHouse(Set<EmpresaSoftwareHouse> empresaSoftwareHouse) {
-		this.empresaSoftwareHouse = empresaSoftwareHouse;
-	}
-
+	
 	@Override
 	public EmpresaCadastroEntity clone() throws CloneNotSupportedException {
 		return (EmpresaCadastroEntity) super.clone();

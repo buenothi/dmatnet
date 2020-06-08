@@ -1,7 +1,6 @@
 package br.com.smartems.dmatnet.EJB.Facade;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -10,13 +9,10 @@ import br.com.smartems.dmatnet.EJB.dao.PessoaJuridicaEAO;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity;
-import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaDadosIsencao;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFoto;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaLogotipo;
-import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaOrganismoInternacional;
-import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaSoftwareHouse;
 
 @Stateless
 public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
@@ -63,10 +59,8 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 	}
 
 	public void alterarCadastroEmpresa(EmpresaEntity empresa, UsuarioEntity usuarioLogado, EmpresaFAP fap,
-			EmpresaDadosIsencao empresaDadosIsencao, EmpresaOrganismoInternacional empresaOrgI8n,
-			Set<EmpresaSoftwareHouse> empresasSoftware, EmpresaCadastroEntity dadosCadastraisAtual) {
-		pessoaJuridicaEAO.alterarCadastroEmpresa(empresa, usuarioLogado, fap, empresaDadosIsencao, empresaOrgI8n,
-				empresasSoftware, dadosCadastraisAtual);
+			EmpresaCadastroEntity dadosCadastraisAtual) {
+		pessoaJuridicaEAO.alterarCadastroEmpresa(empresa, usuarioLogado, fap, dadosCadastraisAtual);
 	}
 
 	public void excluirCadastroEmpresa(EmpresaEntity empresa) {
@@ -79,11 +73,10 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 	}
 
 	public void salvarDadosCadastraisEmpresa(EmpresaCadastroEntity dadosCadastraisAtual,
-			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap,
-			EmpresaDadosIsencao empresaDadosIsencao, EmpresaOrganismoInternacional empresaOrgI8n,
-			Set<EmpresaSoftwareHouse> empresasSoftwareHouse, EmpresaEntity empresaSelecionada) throws Exception {
+			EmpresaCadastroEntity dadosCadastraisAnterior, EmpresaFAP empresaFap, EmpresaEntity empresaSelecionada)
+			throws Exception {
 		pessoaJuridicaEAO.salvarDadosCadastraisEmpresa(dadosCadastraisAtual, dadosCadastraisAnterior, empresaFap,
-				empresaDadosIsencao, empresaOrgI8n, empresasSoftwareHouse, empresaSelecionada);
+				empresaSelecionada);
 	}
 
 	public void imprimirDadosCadastrais(List<EmpresaEntity> empresasDisponiveis) {
@@ -98,9 +91,9 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 			EmpresaEntity empresaSelecionada) throws Exception {
 		return pessoaJuridicaEAO.selecionarDadosCadastraisHistorico(dadosCadastraisAtual, empresaSelecionada);
 	}
-	
-	public void excluirDadoCadastral(EmpresaCadastroEntity dadoCadastral,
-			EmpresaEntity empresaSelecionada) throws Exception {
+
+	public void excluirDadoCadastral(EmpresaCadastroEntity dadoCadastral, EmpresaEntity empresaSelecionada)
+			throws Exception {
 		pessoaJuridicaEAO.excluirDadoCadastral(dadoCadastral, empresaSelecionada);
 	}
 
@@ -112,15 +105,14 @@ public class PessoaJuridicaFacade implements PessoaJuridicaFacadeLocal {
 	public EnderecoEntity selecionarEnderecoAtual(EmpresaEntity empresa) throws Exception {
 		return pessoaJuridicaEAO.selecionarEnderecoAtual(empresa);
 	}
-	
+
 	public List<EnderecoEntity> selecionarEnderecosHistorico(EnderecoEntity enderecoAtual,
 			EmpresaEntity empresaSelecionada) throws Exception {
 		return pessoaJuridicaEAO.selecionarEnderecosHistorico(enderecoAtual, empresaSelecionada);
 	}
-	
-	public void excluirEnderecoEmpresa(EnderecoEntity endereco,
-			EmpresaEntity empresaSelecionada) throws Exception{
+
+	public void excluirEnderecoEmpresa(EnderecoEntity endereco, EmpresaEntity empresaSelecionada) throws Exception {
 		pessoaJuridicaEAO.excluirEnderecoEmpresa(endereco, empresaSelecionada);
 	}
-	
+
 }

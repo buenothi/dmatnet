@@ -24,11 +24,8 @@
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioGrupoEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.AbstractPessoaJuridicaEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaDadosIsencao</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaOrganismoInternacional</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaSoftwareHouse</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.NaturezaJuridica</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity</class>
 		<class>br.com.smartems.dmatnet.entities.pessoa.EnderecoTipoEntity</class>
