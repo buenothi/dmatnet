@@ -9,30 +9,9 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<jta-data-source>java:jboss/datasources/MySQLDS</jta-data-source>
 
-		<class>br.com.smartems.dmatnet.entities.LevAmbientais.RiscoAmbientalIdentificadoEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.AbstractPessoaEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.EmailEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.AbstractPessoaFisicaCadastro</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.AbstractPessoaFisicaEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.PessoaFisicaDocumentosEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorCadastroEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorDeficienteEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEstrangeiroEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioGrupoEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.AbstractPessoaJuridicaEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaCadastroEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaFAP</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.NaturezaJuridica</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.EnderecoTipoEntity</class>
-		<class>br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.EmpresaGrupoEntity</class>
 
 		<properties>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.event.merge.entity_copy_observer" value="allow" />
