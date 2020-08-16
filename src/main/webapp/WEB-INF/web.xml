@@ -1,41 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app metadata-complete="false" version="3.1"
- xmlns="http://xmlns.jcp.org/xml/ns/javaee"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
- <context-param>
-  <param-name>javax.faces.CONFIG_FILES</param-name>
-  <param-value>/WEB-INF/faces-config.xml</param-value>
- </context-param>
- <context-param>
-  <param-name>primefaces.FONT_AWESOME</param-name>
-  <param-value>true</param-value>
- </context-param>
- <context-param>
-  <param-name>primefaces.THEME</param-name>
-  <param-value>bootstrap</param-value>
- </context-param>
- <servlet>
-  <display-name>DMATNET</display-name>
-  <servlet-name>Faces Servlet</servlet-name>
-  <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-  <load-on-startup>1</load-on-startup>
- </servlet>
- <servlet-mapping>
-  <servlet-name>Faces Servlet</servlet-name>
-  <url-pattern>*.dmat</url-pattern>
- </servlet-mapping>
- <welcome-file-list>
-  <welcome-file>/index.dmat</welcome-file>
- </welcome-file-list>
- <error-page>
-  <exception-type>javax.faces.application.ViewExpiredException</exception-type>
-  <location>/index.dmat</location>
- </error-page>
- <login-config>
-  <auth-method>FORM</auth-method>
-  <form-login-config>
-   <form-login-page>/index.dmat</form-login-page>
-   <form-error-page>/index.dmat</form-error-page>
-  </form-login-config>
- </login-config>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" metadata-complete="false" version="3.1">
+  <context-param>
+    <param-name>javax.faces.CONFIG_FILES</param-name>
+    <param-value>/WEB-INF/faces-config.xml</param-value>
+  </context-param>
+  <context-param>
+    <param-name>primefaces.THEME</param-name>
+    <param-value>bootstrap</param-value>
+  </context-param>
+  <context-param>
+    <param-name>primefaces.FONT_AWESOME</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <servlet>
+    <display-name>DMATNET</display-name>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.dmat</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>/index.dmat</welcome-file>
+  </welcome-file-list>
+  <error-page>
+    <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+    <location>/index.dmat</location>
+  </error-page>
 </web-app>
