@@ -1,8 +1,11 @@
 package br.com.smartems.dmatnet.entities.LevAmbientais;
 
-import br.com.smartems.dmatnet.entities.LevAmbientais.AbstractRiscoEntity;
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="tbl_riscoambiental")

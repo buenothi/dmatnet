@@ -1,10 +1,13 @@
 package br.com.smartems.dmatnet.entities.LevAmbientais;
 
-import br.com.smartems.dmatnet.entities.LevAmbientais.AbstractMedidaControleEntity;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="tbl_EPI")
