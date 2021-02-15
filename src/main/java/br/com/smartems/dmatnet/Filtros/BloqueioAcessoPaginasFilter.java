@@ -14,7 +14,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.smartems.dmatnet.ManagedBeans.UsuarioMB;
+import br.com.smartems.dmatnet.JSF.ManagedBeans.UsuarioMB;
 
 @WebFilter(dispatcherTypes = { DispatcherType.REQUEST }, urlPatterns = { "/aplicacaoWeb/*" })
 public class BloqueioAcessoPaginasFilter implements Filter {
