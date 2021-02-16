@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.ejb.Local;
 
-import br.com.smartems.dmatnet.entities.ClassificacaoFuncional.ClassificacaoFuncionalEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EmailEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity;
@@ -23,6 +22,6 @@ public interface TrabalhadorServiceLocal extends AbstractService<TrabalhadorEnti
 			List<TrabalhadorCadastroEntity> trabalhadorListaCadastroHistorico,
 			PessoaFisicaDocumentosEntity trabalhadorDocumentos, EnderecoEntity enderecoAtual,
 			List<EnderecoEntity> enderecosHistorico, EmailEntity emailAtual, List<EmailEntity> emailsHistorico,
-			TelefoneEntity telefonePrincipal, List<TelefoneEntity> telefones, List<ClassificacaoFuncionalEntity> classificacoesFuncionais,
+			TelefoneEntity telefonePrincipal, List<TelefoneEntity> telefones,
 			DeficienciaFisicaEntity deficienciaFisica) throws Exception;
 }

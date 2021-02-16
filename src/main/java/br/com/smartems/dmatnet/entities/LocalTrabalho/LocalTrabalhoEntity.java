@@ -15,7 +15,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import br.com.smartems.dmatnet.entities.LevAmbientais.GHEEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.FuncaoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaJuridica.Setor;
 
@@ -35,10 +34,6 @@ public class LocalTrabalhoEntity implements Serializable{
 	
 	@Temporal(TemporalType.DATE)
 	private Date dataFimValidade;
-	
-	@OneToMany(cascade={CascadeType.ALL})
-	@JoinColumn(name="local_ID")
-	private List<GHEEntity> ghes;
 	
 	@OneToMany(cascade={CascadeType.ALL})
 	@JoinColumn(name="empresa_ID")
@@ -98,14 +93,6 @@ public class LocalTrabalhoEntity implements Serializable{
 		this.dataFimValidade = dataFimValidade;
 	}
 
-	public List<GHEEntity> getGhes() {
-		return ghes;
-	}
-
-	public void setGhes(List<GHEEntity> ghes) {
-		this.ghes = ghes;
-	}
-
 	public List<Setor> getSetores() {
 		return setores;
 	}
@@ -163,7 +150,6 @@ public class LocalTrabalhoEntity implements Serializable{
 		result = prime * result + ((dataInicioValidade == null) ? 0 : dataInicioValidade.hashCode());
 		result = prime * result + ((descricaoAmbiente == null) ? 0 : descricaoAmbiente.hashCode());
 		result = prime * result + ((funcoes == null) ? 0 : funcoes.hashCode());
-		result = prime * result + ((ghes == null) ? 0 : ghes.hashCode());
 		result = prime * result + (int) (idLocalTrabalho ^ (idLocalTrabalho >>> 32));
 		result = prime * result + localAmbiente;
 		result = prime * result + ((nomeLocal == null) ? 0 : nomeLocal.hashCode());
@@ -206,11 +192,6 @@ public class LocalTrabalhoEntity implements Serializable{
 			if (other.funcoes != null)
 				return false;
 		} else if (!funcoes.equals(other.funcoes))
-			return false;
-		if (ghes == null) {
-			if (other.ghes != null)
-				return false;
-		} else if (!ghes.equals(other.ghes))
 			return false;
 		if (idLocalTrabalho != other.idLocalTrabalho)
 			return false;

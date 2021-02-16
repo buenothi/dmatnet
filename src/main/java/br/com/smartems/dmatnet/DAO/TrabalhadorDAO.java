@@ -12,12 +12,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
-import br.com.smartems.dmatnet.entities.ClassificacaoFuncional.ClassificacaoFuncionalEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EmailEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.PessoaFisicaDocumentosEntity;
-import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.DeficienciaFisicaEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorCadastroEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Trabalhador.TrabalhadorEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.Usuario.UsuarioEntity;
@@ -42,8 +40,7 @@ public class TrabalhadorDAO extends AbstractDAO<TrabalhadorEntity, Long> {
 			List<TrabalhadorCadastroEntity> trabalhadorListaCadastroHistorico,
 			PessoaFisicaDocumentosEntity trabalhadorDocumentos, EnderecoEntity enderecoAtual,
 			List<EnderecoEntity> enderecosHistorico, EmailEntity emailAtual, List<EmailEntity> emailsHistorico,
-			TelefoneEntity telefonePrincipal, List<TelefoneEntity> telefones,
-			List<ClassificacaoFuncionalEntity> classificacoesFuncionais, DeficienciaFisicaEntity deficienciaFisica) {
+			TelefoneEntity telefonePrincipal, List<TelefoneEntity> telefones) {
 
 		if (trabalhadorNovo.getIdPessoa() == 0) {
 
@@ -89,20 +86,6 @@ public class TrabalhadorDAO extends AbstractDAO<TrabalhadorEntity, Long> {
 				telefonesCombinados.addAll(telefones);
 				telefonesCombinados.add(telefonePrincipal);
 				trabalhadorNovo.getTelefones().addAll(telefonesCombinados);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			try {
-				trabalhadorNovo.getClassificacoesFuncionais().addAll(classificacoesFuncionais);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			try {
-				trabalhadorNovo.setDeficienciaFisica(deficienciaFisica);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

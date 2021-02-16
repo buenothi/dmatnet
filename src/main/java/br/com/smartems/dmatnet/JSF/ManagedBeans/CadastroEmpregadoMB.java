@@ -800,8 +800,7 @@ public class CadastroEmpregadoMB implements Serializable {
 					this.cadastroEmpresaMB.getEmpresaSelecionada(), this.trabalhadorSelecionado,
 					this.trabalhadorSelecionadoCadastroAtual, this.trabalhadorSelecionadoListaCadastroHistorico,
 					this.trabalhadorDocumentos, this.enderecoAtual, this.enderecoHistorico, this.emailPrincipal,
-					this.emailsTrabalhadores, this.telefonePrincipal, this.telefonesTrabalhadores, this.classificacoesFuncionais,
-					this.deficienciaFisica);
+					this.emailsTrabalhadores, this.telefonePrincipal, this.telefonesTrabalhadores, this.deficienciaFisica);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

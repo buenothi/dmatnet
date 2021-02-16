@@ -14,7 +14,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import br.com.smartems.dmatnet.entities.ClassificacaoFuncional.ClassificacaoFuncionalEntity;
 import br.com.smartems.dmatnet.entities.pessoa.PessoaFisica.AbstractPessoaFisicaEntity;
 
 @Entity
@@ -36,10 +35,6 @@ public class TrabalhadorEntity extends AbstractPessoaFisicaEntity implements Ser
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "trabalhador_ID")
 	private List<TrabalhadorCadastroEntity> cadastrosTrabalhador;
-
-	@OneToMany(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "trabalhador_ID")
-	private List<ClassificacaoFuncionalEntity> classificacoesFuncionais;
 
 	@OneToOne(cascade={CascadeType.ALL})
 	@PrimaryKeyJoinColumn
@@ -105,14 +100,6 @@ public class TrabalhadorEntity extends AbstractPessoaFisicaEntity implements Ser
 
 	public void setCadastrosTrabalhador(List<TrabalhadorCadastroEntity> cadastrosTrabalhador) {
 		this.cadastrosTrabalhador = cadastrosTrabalhador;
-	}
-
-	public List<ClassificacaoFuncionalEntity> getClassificacoesFuncionais() {
-		return classificacoesFuncionais;
-	}
-
-	public void setClassificacoesFuncionais(List<ClassificacaoFuncionalEntity> classificacoesFuncionais) {
-		this.classificacoesFuncionais = classificacoesFuncionais;
 	}
 
 	public DeficienciaFisicaEntity getDeficienciaFisica() {

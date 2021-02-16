@@ -7,7 +7,6 @@ import javax.ejb.Stateless;
 
 import br.com.smartems.dmatnet.DAO.TrabalhadorDAO;
 import br.com.smartems.dmatnet.Service.TrabalhadorServiceLocal;
-import br.com.smartems.dmatnet.entities.ClassificacaoFuncional.ClassificacaoFuncionalEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EmailEntity;
 import br.com.smartems.dmatnet.entities.pessoa.EnderecoEntity;
 import br.com.smartems.dmatnet.entities.pessoa.TelefoneEntity;
@@ -64,11 +63,11 @@ public class TrabalhadorFacade implements TrabalhadorServiceLocal {
 			PessoaFisicaDocumentosEntity trabalhadorDocumentos, EnderecoEntity enderecoAtual,
 			List<EnderecoEntity> enderecosHistorico, EmailEntity emailAtual, List<EmailEntity> emailsHistorico,
 			TelefoneEntity telefonePrincipal, List<TelefoneEntity> telefones,
-			List<ClassificacaoFuncionalEntity> classificacoesFuncionais, DeficienciaFisicaEntity deficienciaFisica)
+			DeficienciaFisicaEntity deficienciaFisica)
 			throws Exception {
 		trabalhadorEAO.salvarNovoTrabalhador(usuario, empresaSelecionada, trabalhadorNovo, trabalhadorCadastroAtual,
 				trabalhadorListaCadastroHistorico, trabalhadorDocumentos, enderecoAtual, enderecosHistorico, emailAtual,
-				emailsHistorico, telefonePrincipal, telefones, classificacoesFuncionais, deficienciaFisica);
+				emailsHistorico, telefonePrincipal, telefones);
 	}
 
 }
